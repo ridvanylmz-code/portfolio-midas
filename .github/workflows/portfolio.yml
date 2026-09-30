@@ -1,0 +1,31 @@
+name: Portföy Midas - Günlük Rapor
+
+on:
+  schedule:
+    # Sabah 09:00 (UTC+3 = 06:00 UTC)
+    - cron: '0 6 * * *'
+    # Akşam 23:01 (UTC+3 = 20:01 UTC)
+    - cron: '1 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  portfolio-report:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Python Kur
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Dependencies Yükle
+      run: |
+        pip install yfinance requests pandas ta
+    
+    - name: Portföy Raporu Oluştur ve Gönder
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: python portfolio_bot.py
