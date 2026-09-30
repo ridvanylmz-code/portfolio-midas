@@ -1,9 +1,6 @@
-import yfinance as yf
-import pandas as pd
 import requests
 import os
 from datetime import datetime
-import ta
 
 # Telegram Ayarları
 BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -21,47 +18,26 @@ PORTFOLIO = {
     'CGNX': 75
 }
 
-# Watchlist
-WATCHLIST = ['AVGO', 'MU', 'HPE', 'KTOS', 'AVAV', 'IONQ', 'ASML']
+WATCHLIST = ['AVGO', 'MU', 'HPE', 'KTOS', 'AVAV']
 
-def get_technical_indicators(ticker, period=20):
+def get_stock_price(ticker):
+    """Alpha Vantage'den hisse fiyatı al"""
     try:
-        data = yf.download(ticker, period='3mo', progress=False)
-        if len(data) < 2:
-            return None
+        url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey=demo"
+        response = requests.get(url, timeout=5)
+        data = response.json()
         
-        rsi = ta.momentum.rsi(data['Close'], window=14).iloc[-1]
-        macd = ta.trend.macd(data['Close'])
-        ma20 = data['Close'].rolling(window=20).mean().iloc[-1]
-        ma50 = data['Close'].rolling(window=50).mean().iloc[-1]
-        
-        current_price = data['Close'].iloc[-1]
-        prev_price = data['Close'].iloc[-2]
-        daily_change = ((current_price - prev_price) / prev_price) * 100
-        
-        return {
-            'price': round(current_price, 2),
-            'daily_change': round(daily_change, 2),
-            'rsi': round(rsi, 2),
-            'ma20': round(ma20, 2),
-            'ma50': round(ma50, 2)
-        }
+        if 'Global Quote' in data:
+            price = float(data['Global Quote'].get('05. price', 0))
+            change = float(data['Global Quote'].get('09. change', 0))
+            change_pct = float(data['Global Quote'].get('10. change percent', '0').replace('%', ''))
+            return {'price': price, 'change': change, 'change_pct': change_pct}
+        return None
     except:
         return None
 
-def get_signal(rsi, daily_change, ma20, ma50):
-    if rsi > 70:
-        return "SATIŞ"
-    elif rsi < 30:
-        return "ALIM"
-    elif daily_change > 3:
-        return "GÜÇLÜ ALIM"
-    elif ma20 > ma50:
-        return "ALIM"
-    else:
-        return "BEKLE"
-
 def create_report():
+    """Portföy raporunu oluştur"""
     report = "📊 PORTFÖY MIDAS - GÜNLÜK RAPOR\n"
     report += f"⏰ {datetime.now().strftime('%d.%m.%Y %H:%M')}\n"
     report += "=" * 50 + "\n\n"
@@ -69,45 +45,58 @@ def create_report():
     report += "🎯 AKTİF POZİSYONLAR\n"
     report += "-" * 50 + "\n"
     
-    total_value = 0
     portfolio_changes = []
     
     for ticker, shares in PORTFOLIO.items():
-        indicators = get_technical_indicators(ticker)
-        if indicators:
-            price = indicators['price']
-            daily_change = indicators['daily_change']
-            rsi = indicators['rsi']
+        data = get_stock_price(ticker)
+        if data:
+            price = data['price']
+            change_pct = data['change_pct']
             position_value = price * shares
-            total_value += position_value
             
-            signal = get_signal(rsi, daily_change, indicators['ma20'], indicators['ma50'])
-            change_emoji = "📈" if daily_change > 0 else "📉"
+            change_emoji = "📈" if change_pct > 0 else "📉"
+            rsi = 50 + (change_pct * 2)  # Simplified RSI
             
-            report += f"${ticker}: ${price} {change_emoji} {daily_change:+.2f}%\n"
+            if rsi > 70:
+                signal = "SATIŞ"
+            elif rsi < 30:
+                signal = "ALIM"
+            elif change_pct > 2:
+                signal = "ALIM"
+            else:
+                signal = "BEKLE"
+            
+            report += f"${ticker}: ${price:.2f} {change_emoji} {change_pct:+.2f}%\n"
             report += f"  RSI: {rsi:.0f} | Sinyal: {signal}\n"
             report += f"  Pozisyon: {shares} hisse | Değer: ${position_value:,.0f}\n\n"
             
-            portfolio_changes.append((ticker, daily_change))
+            portfolio_changes.append((ticker, change_pct))
     
     report += "\n👀 WATCHLIST - EN UYGUN 5\n"
     report += "-" * 50 + "\n"
     
     watchlist_data = []
     for ticker in WATCHLIST[:5]:
-        indicators = get_technical_indicators(ticker)
-        if indicators:
-            price = indicators['price']
-            daily_change = indicators['daily_change']
-            rsi = indicators['rsi']
+        data = get_stock_price(ticker)
+        if data:
+            price = data['price']
+            change_pct = data['change_pct']
+            change_emoji = "📈" if change_pct > 0 else "📉"
             
-            signal = get_signal(rsi, daily_change, indicators['ma20'], indicators['ma50'])
-            change_emoji = "📈" if daily_change > 0 else "📉"
+            rsi = 50 + (change_pct * 2)
+            if rsi > 70:
+                signal = "SATIŞ"
+            elif rsi < 30:
+                signal = "ALIM"
+            elif change_pct > 2:
+                signal = "ALIM"
+            else:
+                signal = "BEKLE"
             
-            report += f"${ticker}: ${price} {change_emoji} {daily_change:+.2f}%\n"
-            report += f"  RSI: {rsi:.0f} | Sinyal: {signal}\n\n"
+            report += f"${ticker}: ${price:.2f} {change_emoji} {change_pct:+.2f}%\n"
+            report += f"  Sinyal: {signal}\n\n"
             
-            watchlist_data.append((ticker, signal, daily_change))
+            watchlist_data.append((ticker, signal))
     
     report += "\n💡 GÜNLÜK ÖNERİLER\n"
     report += "-" * 50 + "\n"
@@ -119,16 +108,13 @@ def create_report():
         worst = min(portfolio_changes, key=lambda x: x[1])
         report += f"⚠️ En Zayıf: ${worst[0]} ({worst[1]:+.2f}%)\n"
     
-    buy_signals = [t[0] for t in watchlist_data if 'ALIM' in t[1]]
-    if buy_signals:
-        report += f"🛒 Alım Fırsatı: {', '.join(buy_signals[:3])}\n"
-    
     report += "\n" + "=" * 50
     report += "\n🔔 Sonraki Rapor: 20:01 (akşam)\n"
     
     return report
 
 def send_telegram(message):
+    """Telegram'a mesaj gönder"""
     try:
         payload = {
             'chat_id': CHAT_ID,
