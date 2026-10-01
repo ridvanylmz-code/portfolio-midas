@@ -1,0 +1,14 @@
+{
+  "portfolio": {
+    "WYFI": 120,
+    "RKLB": 850,
+    "CRWV": 280,
+    "UAMY": 950,
+    "SGML": 450,
+    "CBRS": 1200,
+    "CGNX": 75
+  },
+  "watchlist": ["AVGO", "MU", "HPE", "KTOS", "AVAV", "ONDS", "IONQ"],
+  "cash_reserve": 8540,
+  "last_updated": "2026-10-01"
+}
