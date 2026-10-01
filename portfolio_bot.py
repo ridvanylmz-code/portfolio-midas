@@ -1,6 +1,7 @@
 import yfinance as yf
 import requests
 import os
+import json
 from datetime import datetime
 
 # Telegram Ayarları
@@ -8,18 +9,15 @@ BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 TELEGRAM_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-# Portföy Pozisyonları
-PORTFOLIO = {
-    'WYFI': 120,
-    'RKLB': 850,
-    'CRWV': 280,
-    'UAMY': 950,
-    'SGML': 450,
-    'CBRS': 1200,
-    'CGNX': 75
-}
-
-WATCHLIST = ['AVGO', 'MU', 'HPE', 'KTOS', 'AVAV', 'ONDS', 'IONQ']
+def load_portfolio():
+    """GitHub'dan portfolio.json yükle"""
+    try:
+        with open('portfolio.json', 'r') as f:
+            data = json.load(f)
+        return data.get('portfolio', {}), data.get('watchlist', []), data.get('cash_reserve', 0)
+    except:
+        print("❌ portfolio.json bulunamadı!")
+        return {}, [], 0
 
 def get_stock_data(ticker):
     """Yahoo Finance'ten gerçek veri al"""
@@ -76,7 +74,7 @@ def get_signal(rsi, change):
     else:
         return "BEKLE"
 
-def create_report():
+def create_report(portfolio, watchlist, cash_reserve):
     """Portföy raporunu oluştur"""
     report = "📊 PORTFÖY MIDAS - GÜNLÜK RAPOR\n"
     report += f"⏰ {datetime.now().strftime('%d.%m.%Y %H:%M')}\n"
@@ -88,7 +86,7 @@ def create_report():
     portfolio_changes = []
     total_value = 0
     
-    for ticker, shares in PORTFOLIO.items():
+    for ticker, shares in portfolio.items():
         data = get_stock_data(ticker)
         if data:
             price = data['price']
@@ -106,11 +104,16 @@ def create_report():
             
             portfolio_changes.append((ticker, change, signal))
     
-    report += "\n👀 WATCHLIST - EN UYGUN 5\n"
+    # Nakit bilgisi
+    total_portfolio = total_value + cash_reserve
+    report += f"\n💰 NAKIT YEDEK: ${cash_reserve:,.0f}\n"
+    report += f"📊 TOPLAM PORTFÖY: ${total_portfolio:,.0f}\n\n"
+    
+    report += "👀 WATCHLIST - EN UYGUN\n"
     report += "-" * 50 + "\n"
     
     watchlist_data = []
-    for ticker in WATCHLIST[:5]:
+    for ticker in watchlist[:5]:
         data = get_stock_data(ticker)
         if data:
             price = data['price']
@@ -140,6 +143,7 @@ def create_report():
     
     report += "\n" + "=" * 50
     report += "\n🔔 Sonraki Rapor: 20:01 (akşam)\n"
+    report += f"📁 Portföy Güncelleme: portfolio.json'dan okunuyor\n"
     
     return report
 
@@ -161,8 +165,15 @@ def send_telegram(message):
 
 if __name__ == "__main__":
     print("📊 Portföy Raporu Oluşturuluyor...")
-    report = create_report()
-    print(report)
-    print("\n📤 Telegram'a Gönderiliyor...")
-    send_telegram(report)
-    print("✅ Bitti!")
+    
+    # portfolio.json'dan oku
+    portfolio, watchlist, cash_reserve = load_portfolio()
+    
+    if portfolio:
+        report = create_report(portfolio, watchlist, cash_reserve)
+        print(report)
+        print("\n📤 Telegram'a Gönderiliyor...")
+        send_telegram(report)
+        print("✅ Bitti!")
+    else:
+        print("❌ Portföy yüklenemedi!")
