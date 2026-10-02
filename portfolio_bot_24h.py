@@ -10,8 +10,6 @@ CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 FINNHUB_KEY = os.getenv('FINNHUB_API_KEY')
 
 TELEGRAM_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-
-# Istanbul timezone
 IST = pytz.timezone('Europe/Istanbul')
 
 def load_portfolio():
@@ -20,8 +18,8 @@ def load_portfolio():
         with open('portfolio.json', 'r') as f:
             data = json.load(f)
         return data.get('portfolio', {}), data.get('watchlist', []), data.get('cash_reserve', 0)
-    except:
-        print("❌ portfolio.json bulunamadı!")
+    except Exception as e:
+        print(f"❌ portfolio.json hatası: {e}")
         return {}, [], 0
 
 def get_finnhub_realtime(ticker):
@@ -40,12 +38,11 @@ def get_finnhub_realtime(ticker):
                 'prev_close': round(data.get('pc', 0), 2),
                 'change': round(data.get('d', 0), 2),
                 'change_pct': round(data.get('dp', 0), 2),
-                'volume': int(data.get('v', 0)),
-                'timestamp': data.get('t', 0)
+                'volume': int(data.get('v', 0))
             }
         return None
     except Exception as e:
-        print(f"⚠️ {ticker} veri çekme hatası: {e}")
+        print(f"⚠️ {ticker} hatası: {e}")
         return None
 
 def create_realtime_report(portfolio, watchlist, cash_reserve):
@@ -55,25 +52,23 @@ def create_realtime_report(portfolio, watchlist, cash_reserve):
     report += f"⏰ {datetime.now(IST).strftime('%d.%m.%Y %H:%M')} Istanbul\n"
     report += "=" * 50 + "\n\n"
     
-    # Önemli değişiklikler (%5+)
     alerts = []
     portfolio_changes = []
     total_value = 0
     total_cost = 0
-    daily_pl_total = 0
     
     report += "🎯 AKTİF POZİSYONLAR\n"
-report += "-" * 50 + "\n"
-
-for ticker, ticker_data in portfolio.items():
-    # JSON'dan shares ve cost_basis oku
-    if isinstance(ticker_data, dict):
-        shares = ticker_data.get('shares', 0)
-        cost_price = ticker_data.get('cost_basis', 0)
-    else:
-        # Eski format (gerekirse)
-        shares = ticker_data
-        cost_price = 0
+    report += "-" * 50 + "\n"
+    
+    for ticker, ticker_data in portfolio.items():
+        # JSON'dan shares ve cost_basis oku
+        if isinstance(ticker_data, dict):
+            shares = ticker_data.get('shares', 0)
+            cost_price = ticker_data.get('cost_basis', 0)
+        else:
+            shares = ticker_data
+            cost_price = 0
+        
         data = get_finnhub_realtime(ticker)
         if data:
             current_price = data['current_price']
@@ -81,24 +76,21 @@ for ticker, ticker_data in portfolio.items():
             position_value = current_price * shares
             total_value += position_value
             
-            
+            cost_value = cost_price * shares
             total_cost += cost_value
             pl = position_value - cost_value
-            daily_pl_total += pl
-            
             pl_pct = (pl / cost_value * 100) if cost_value > 0 else 0
             
             change_emoji = "📈" if change_pct >= 0 else "📉"
             pl_emoji = "📈" if pl >= 0 else "📉"
             
-            # %5+ ALERT
             if abs(change_pct) >= 5.0:
-                alerts.append(f"🚨 ${ticker}: {change_pct:+.2f}% | Fiyat: ${current_price}")
+                alerts.append(f"🚨 ${ticker}: {change_pct:+.2f}% | ${current_price}")
             
             report += f"${ticker}: ${current_price} {change_emoji} {change_pct:+.2f}%\n"
             report += f"  Pozisyon: {shares} hisse | Değer: ${position_value:,.0f}\n"
             report += f"  Maliyet: ${cost_value:,.0f} | P&L: ${pl:,.0f} ({pl_pct:+.2f}%) {pl_emoji}\n"
-            report += f"  Gün Aralığı: ${data['low']} - ${data['high']}\n"
+            report += f"  Aralık: ${data['low']} - ${data['high']}\n"
             report += f"  Hacim: {data['volume']:,}\n\n"
             
             portfolio_changes.append((ticker, change_pct, pl_pct))
@@ -113,10 +105,8 @@ for ticker, ticker_data in portfolio.items():
     report += f"Portföy Değeri: ${total_value:,.0f}\n"
     report += f"Nakit Yedek: ${cash_reserve:,.0f}\n"
     report += f"Toplam: ${total_portfolio:,.0f}\n\n"
-    
     report += f"Maliyet Bazı: ${total_cost:,.0f}\n"
-    report += f"Toplam Kar/Zarar: ${total_pl:,.0f} ({total_pl_pct:+.2f}%)\n"
-    report += f"Günlük Kar/Zarar: ${daily_pl_total:,.0f}\n\n"
+    report += f"Toplam P&L: ${total_pl:,.0f} ({total_pl_pct:+.2f}%)\n\n"
     
     if portfolio_changes:
         best = max(portfolio_changes, key=lambda x: x[1])
@@ -135,7 +125,6 @@ for ticker, ticker_data in portfolio.items():
     
     report += "\n" + "=" * 50
     report += "\n⏰ Sonraki Rapor: +4 saat\n"
-    report += "🔗 Dashboard: https://claude.ai\n"
     
     return report, alerts
 
@@ -171,10 +160,10 @@ if __name__ == "__main__":
         print("\n📤 Telegram'a Gönderiliyor...")
         send_telegram(report)
         
-        # Eğer %5+ alert varsa ek mesaj gönder
+        # %5+ alert varsa ek mesaj
         if alerts:
             alert_message = "🚨 ÖNEMLİ DEĞİŞİKLİKLER (%5+):\n\n" + "\n".join(alerts)
-            print("⚠️ Alert de gönderiliyor...")
+            print("⚠️ Alert Telegram'a Gönderiliyor...")
             send_telegram(alert_message)
     else:
         print("❌ Portföy yüklenemedi!")
