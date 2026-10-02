@@ -1,11 +1,10 @@
-name: Portföy Midas - Günlük Rapor
+name: Portföy Midas - 4 Saatlik Real-time Rapor
 
 on:
   schedule:
-    # Sabah 09:00 (UTC+3 = 06:00 UTC)
-    - cron: '0 6 * * *'
-    # Akşam 23:01 (UTC+3 = 20:01 UTC)
-    - cron: '1 20 * * *'
+    # Her 4 saatte bir (00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC)
+    # Istanbul (UTC+3): 03:00, 07:00, 11:00, 15:00, 19:00, 23:00
+    - cron: '0 0,4,8,12,16,20 * * *'
   workflow_dispatch:
 
 jobs:
@@ -22,10 +21,11 @@ jobs:
     
     - name: Dependencies Yükle
       run: |
-        pip install yfinance requests pandas ta
+        pip install requests pandas pytz
     
-    - name: Portföy Raporu Oluştur ve Gönder
+    - name: Real-time Portföy Raporu Oluştur ve Gönder
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      run: python portfolio_bot.py
+        FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      run: python portfolio_bot_24h.py
