@@ -1,12 +1,23 @@
 {
   "portfolio": {
-    "WYFI": 0,
-    "RKLB": 129,
-    "CRWV": 71,
-    "UAMY": 1121,
-    "SGML": 600
+    "WYFI": {
+      "shares": 66,
+      "cost_basis": 18.02
+    },
+    "RKLB": {
+      "shares": 129,
+      "cost_basis": 78.82
+    },
+    "CRWV": {
+      "shares": 71,
+      "cost_basis": 92.82
+    },
+    "UAMY": {
+      "shares": 1121,
+      "cost_basis": 7.61
+    },
   },
-  "watchlist": ["AVGO", "MU", "HPE", "KTOS", "AVAV", "ONDS", "IONQ", "CBRS", "NVDA", "INTC", "STX", "BE", "UUUU"],
-  "cash_reserve": 33,
+  "watchlist": ["AVGO", "MU", "UUUU", "KTOS", "INTC", "NVDA", "SGML", "CBRS", "STX"],
+  "cash_reserve": 3870,
   "last_updated": "2026-10-01"
 }
