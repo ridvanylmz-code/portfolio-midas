@@ -90,8 +90,7 @@ def create_realtime_report(portfolio, watchlist, cash_reserve):
             report += f"${ticker}: ${current_price} {change_emoji} {change_pct:+.2f}%\n"
             report += f"  Pozisyon: {shares} hisse | Değer: ${position_value:,.0f}\n"
             report += f"  Maliyet: ${cost_value:,.0f} | P&L: ${pl:,.0f} ({pl_pct:+.2f}%) {pl_emoji}\n"
-            report += f"  Aralık: ${data['low']} - ${data['high']}\n"
-            report += f"  Hacim: {data['volume']:,}\n\n"
+            report += f"  Aralık: ${data['low']} - ${data['high']}\n\n"
             
             portfolio_changes.append((ticker, change_pct, pl_pct))
     
