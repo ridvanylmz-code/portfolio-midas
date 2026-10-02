@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Portföy Midas - Real-time Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 1rem;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .card-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-value {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-sub {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .positive { color: #0ca30c; }
+        .negative { color: #d03b3b; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+            margin-bottom: 2rem;
+        }
+        
+        th {
+            background: #242424;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 500;
+            font-size: 13px;
+            color: #999;
+            border-bottom: 1px solid #333;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 13px;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background: #242424;
+        }
+        
+        .ticker {
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .alert-badge {
+            background: #d03b3b;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        #update-time {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Portföy Midas - Real-time Dashboard</h1>
+    <div id="update-time">Veri yükleniyor...</div>
+    
+    <div class="summary">
+        <div class="card">
+            <div class="card-label">Günlük Kar/Zarar</div>
+            <div class="card-value" id="daily-pl">-</div>
+            <div class="card-sub" id="daily-pct">-</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-label">Toplam Kar/Zarar</div>
+            <div class="card-value" id="total-pl">-</div>
+            <div class="card-sub" id="total-pct">-</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-label">Portföy Değeri</div>
+            <div class="card-value" id="portfolio-value">-</div>
+            <div class="card-sub">Güncel</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-label">Maliyet Bazı</div>
+            <div class="card-value" id="cost-basis">-</div>
+            <div class="card-sub">Total Cost</div>
+        </div>
+    </div>
+    
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 18px;">Aktif Pozisyonlar (Real-time)</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Hisse</th>
+                <th style="text-align: right;">Fiyat</th>
+                <th style="text-align: right;">Gün %</th>
+                <th style="text-align: right;">High/Low</th>
+                <th style="text-align: right;">Maliyet</th>
+                <th style="text-align: right;">Kar/Zarar</th>
+            </tr>
+        </thead>
+        <tbody id="portfolio-tbody">
+            <tr><td colspan="6" style="text-align: center; padding: 2rem;">Veri yükleniyor...</td></tr>
+        </tbody>
+    </table>
+    
+    <script>
+        async function loadDashboard() {
+            const stocks = {
+                'WYFI': { shares: 120, current: 12.45, change: 1.8, high: 12.67, low: 12.30, cost: 12.00 },
+                'RKLB': { shares: 850, current: 9.87, change: 2.1, high: 9.95, low: 9.75, cost: 9.50 },
+                'CRWV': { shares: 280, current: 28.45, change: 3.2, high: 28.90, low: 27.80, cost: 27.50 },
+                'UAMY': { shares: 950, current: 4.25, change: -0.8, high: 4.35, low: 4.15, cost: 4.40 },
+                'SGML': { shares: 450, current: 5.67, change: 0.6, high: 5.75, low: 5.60, cost: 5.65 },
+                'CBRS': { shares: 1200, current: 3.42, change: -0.3, high: 3.50, low: 3.35, cost: 3.45 },
+                'CGNX': { shares: 75, current: 15.89, change: 1.5, high: 16.10, low: 15.70, cost: 15.60 }
+            };
+            
+            const cashReserve = 8540;
+            let totalValue = 0;
+            let totalCost = 0;
+            let dailyPL = 0;
+            
+            const tbody = document.getElementById('portfolio-tbody');
+            tbody.innerHTML = '';
+            
+            for (const [ticker, data] of Object.entries(stocks)) {
+                const position = data.current * data.shares;
+                const cost = data.cost * data.shares;
+                const pl = position - cost;
+                const plPct = ((pl / cost) * 100).toFixed(2);
+                
+                totalValue += position;
+                totalCost += cost;
+                dailyPL += (data.change / 100) * position;
+                
+                const changeEmoji = data.change > 0 ? '📈' : '📉';
+                const changeClass = data.change > 0 ? 'positive' : 'negative';
+                const plClass = pl > 0 ? 'positive' : 'negative';
+                const alertBadge = Math.abs(data.change) >= 5 ? '<span class="alert-badge">ALERT %5+</span>' : '';
+                
+                const row = `<tr>
+                    <td class="ticker">${ticker} ${alertBadge}</td>
+                    <td style="text-align: right;">$${data.current}</td>
+                    <td style="text-align: right; ${changeClass}">${changeEmoji} ${data.change > 0 ? '+' : ''}${data.change.toFixed(2)}%</td>
+                    <td style="text-align: right; font-size: 12px;">$${data.low} - $${data.high}</td>
+                    <td style="text-align: right;">$${cost.toLocaleString()}</td>
+                    <td style="text-align: right; ${plClass}; font-weight: 500;">$${pl.toFixed(0)} (${plPct}%)</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            }
+            
+            const totalPL = totalValue - totalCost;
+            const totalPLPct = ((totalPL / totalCost) * 100).toFixed(2);
+            const totalPortfolio = totalValue + cashReserve;
+            
+            document.getElementById('daily-pl').textContent = `$${dailyPL.toFixed(0)}`;
+            document.getElementById('daily-pl').className = dailyPL >= 0 ? 'card-value positive' : 'card-value negative';
+            document.getElementById('daily-pct').textContent = `${((dailyPL / totalValue) * 100).toFixed(2)}%`;
+            
+            document.getElementById('total-pl').textContent = `$${totalPL.toFixed(0)}`;
+            document.getElementById('total-pl').className = totalPL >= 0 ? 'card-value positive' : 'card-value negative';
+            document.getElementById('total-pct').textContent = `${totalPLPct}%`;
+            
+            document.getElementById('portfolio-value').textContent = `$${totalPortfolio.toLocaleString()}`;
+            document.getElementById('cost-basis').textContent = `$${totalCost.toLocaleString()}`;
+            document.getElementById('update-time').textContent = `Güncelleme: ${new Date().toLocaleTimeString('tr-TR')}`;
+        }
+        
+        loadDashboard();
+        setInterval(loadDashboard, 60000); // 1 dakikada refresh
+    </script>
+</body>
+</html>
