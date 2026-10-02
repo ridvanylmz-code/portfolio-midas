@@ -200,6 +200,10 @@
       return null;
     }
     
+    function formatNumber(num) {
+      return Math.abs(num).toLocaleString('en-US', { maximumFractionDigits: 0 });
+    }
+    
     async function renderDashboard() {
       const portfolio = await fetchPortfolioData();
       
@@ -237,16 +241,16 @@
           
           const changeEmoji = changePct >= 2 ? '📈' : changePct >= 0 ? '📊' : '📉';
           const cardClass = pl > 0 ? 'card-positive' : pl < 0 ? 'card-negative' : 'card-mixed';
-          const plEmoji = pl > 0 ? '✅' : '⚠️';
+          const plSign = pl > 0 ? '+' : '';
           
           stockCards.push({
             ticker,
             price: currentPrice.toFixed(2),
             changePct: changePct.toFixed(2),
             changeEmoji,
-            pl: pl.toFixed(0),
+            pl: formatNumber(pl),
             plPct: plPct.toFixed(1),
-            plEmoji,
+            plSign,
             cardClass
           });
         }
@@ -254,9 +258,17 @@
       
       const totalPortfolio = totalValue + cashReserve;
       const totalPL = totalValue - totalCost;
-      const totalPLPct = (totalPL / totalCost * 100).toFixed(2);
-      const plColor = totalPL > 0 ? 'delta-positive' : 'delta-negative';
-      const plSign = totalPL > 0 ? '+' : '';
+      const totalPLPct = (totalPL / totalCost * 100);
+      
+      // RENKLENDİRME FİXİ - doğru kontrol
+      let plColorClass = '';
+      if (totalPL > 0) {
+        plColorClass = 'delta-positive';
+      } else if (totalPL < 0) {
+        plColorClass = 'delta-negative';
+      }
+      
+      const plSign = totalPL >= 0 ? '+' : '';
       
       // Watchlist verilereri çek
       const watchlistCards = [];
@@ -267,13 +279,15 @@
           const changePct = price.dp.toFixed(2);
           const changeEmoji = changePct >= 2 ? '📈' : changePct >= 0 ? '📊' : '📉';
           const changeColor = changePct >= 0 ? 'delta-positive' : 'delta-negative';
+          const changeSign = changePct >= 0 ? '+' : '';
           
           watchlistCards.push({
             ticker,
             price: price.c.toFixed(2),
             changePct,
             changeEmoji,
-            changeColor
+            changeColor,
+            changeSign
           });
         }
       }
@@ -283,20 +297,20 @@
         <div class="summary-grid">
           <div class="summary-card">
             <div class="summary-label">Portföy Değeri</div>
-            <div class="summary-value">$${totalValue.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+            <div class="summary-value">$${formatNumber(totalValue)}</div>
           </div>
           <div class="summary-card">
             <div class="summary-label">Nakit Yedek</div>
-            <div class="summary-value">$${cashReserve.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+            <div class="summary-value">$${formatNumber(cashReserve)}</div>
           </div>
           <div class="summary-card">
             <div class="summary-label">Toplam Varlık</div>
-            <div class="summary-value">$${totalPortfolio.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+            <div class="summary-value">$${formatNumber(totalPortfolio)}</div>
           </div>
           <div class="summary-card">
             <div class="summary-label">Kar/Zarar</div>
-            <div class="summary-value ${plColor}">${plSign}$${Math.abs(totalPL).toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
-            <div class="summary-delta ${plColor}">${plSign}${totalPLPct}%</div>
+            <div class="summary-value ${plColorClass}">${plSign}$${formatNumber(totalPL)}</div>
+            <div class="summary-delta ${plColorClass}">${plSign}${totalPLPct.toFixed(2)}%</div>
           </div>
         </div>
         
@@ -312,7 +326,7 @@
               <div class="stock-ticker">$${card.ticker}</div>
               <div class="stock-price">$${card.price}</div>
               <div class="stock-change">${card.changeEmoji} ${card.changePct > 0 ? '+' : ''}${card.changePct}%</div>
-              <div class="stock-pl">${card.plEmoji} P&L: $${card.pl} (${card.plPct > 0 ? '+' : ''}${card.plPct}%)</div>
+              <div class="stock-pl">P&L: ${card.plSign}$${card.pl} (${card.plSign}${card.plPct}%)</div>
             </div>
           </div>
         `;
@@ -332,7 +346,7 @@
           <div class="watch-item">
             <div class="watch-ticker">$${card.ticker}</div>
             <div class="watch-price">$${card.price}</div>
-            <div class="watch-change ${card.changeColor}">${card.changeEmoji} ${card.changePct > 0 ? '+' : ''}${card.changePct}%</div>
+            <div class="watch-change ${card.changeColor}">${card.changeEmoji} ${card.changeSign}${card.changePct}%</div>
           </div>
         `;
       }
