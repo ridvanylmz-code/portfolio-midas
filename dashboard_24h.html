@@ -200,9 +200,10 @@
       return null;
     }
     
-    function formatNumber(num) {
-      return Math.abs(num).toLocaleString('en-US', { maximumFractionDigits: 0 });
-    }
+   function formatNumber(num) {
+  const sign = num < 0 ? '-' : '';
+  return sign + Math.abs(num).toLocaleString('en-US', { maximumFractionDigits: 0 });
+}
     
     async function renderDashboard() {
       const portfolio = await fetchPortfolioData();
