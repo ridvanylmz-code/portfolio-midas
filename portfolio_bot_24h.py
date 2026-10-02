@@ -62,21 +62,18 @@ def create_realtime_report(portfolio, watchlist, cash_reserve):
     total_cost = 0
     daily_pl_total = 0
     
-    # Maliyet bazı
-    cost_basis_data = {
-        'WYFI': 12.00,
-        'RKLB': 9.50,
-        'CRWV': 27.50,
-        'UAMY': 4.40,
-        'SGML': 5.65,
-        'CBRS': 3.45,
-        'CGNX': 15.60
-    }
-    
     report += "🎯 AKTİF POZİSYONLAR\n"
-    report += "-" * 50 + "\n"
-    
-    for ticker, shares in portfolio.items():
+report += "-" * 50 + "\n"
+
+for ticker, ticker_data in portfolio.items():
+    # JSON'dan shares ve cost_basis oku
+    if isinstance(ticker_data, dict):
+        shares = ticker_data.get('shares', 0)
+        cost_price = ticker_data.get('cost_basis', 0)
+    else:
+        # Eski format (gerekirse)
+        shares = ticker_data
+        cost_price = 0
         data = get_finnhub_realtime(ticker)
         if data:
             current_price = data['current_price']
@@ -84,9 +81,7 @@ def create_realtime_report(portfolio, watchlist, cash_reserve):
             position_value = current_price * shares
             total_value += position_value
             
-            # Maliyet hesabı
-            cost_price = cost_basis_data.get(ticker, current_price)
-            cost_value = cost_price * shares
+            
             total_cost += cost_value
             pl = position_value - cost_value
             daily_pl_total += pl
