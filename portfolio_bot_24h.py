@@ -172,16 +172,14 @@ if __name__ == "__main__":
         report, alerts = create_realtime_report(portfolio, watchlist, cash_reserve)
         print(report)
         
-        # Sadece %5+ değişiklik varsa alert gönder
-        if alerts:
-            alert_message = "🚨 PORTFÖY MIDAS - ÖNEMLİ DEĞİŞİKLİKLER (%5+)\n"
-            alert_message += "=" * 50 + "\n\n"
-            alert_message += "\n".join(alerts)
-            alert_message += f"\n\n{report}"
-            
-            print("\n📤 ÖNEMLİ ALERT Telegram'a Gönderiliyor...")
-            send_telegram(alert_message)
-        else:
-            print("\n✅ Önemli değişiklik yok, bildirim gönderilmedi.")
+        # HER ZAMAN rapor gönder
+print("\n📤 Telegram'a Gönderiliyor...")
+send_telegram(report)
+
+# Eğer %5+ alert varsa ek mesaj gönder
+if alerts:
+    alert_message = "🚨 ÖNEMLİ DEĞİŞİKLİKLER (%5+):\n\n" + "\n".join(alerts)
+    print("⚠️ Alert de gönderiliyor...")
+    send_telegram(alert_message)
     else:
         print("❌ Portföy yüklenemedi!")
