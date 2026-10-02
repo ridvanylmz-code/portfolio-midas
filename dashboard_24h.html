@@ -62,6 +62,27 @@
     .delta-positive { color: #0ca30c; }
     .delta-negative { color: #d03b3b; }
     
+    .chart-section {
+      background: var(--surface-1, #fcfcfb); 
+      border: 0.5px solid var(--border, #e1e0d9);
+      border-radius: 8px; padding: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .chart-label { 
+      font-size: 13px; color: var(--text-muted, #898781); margin-bottom: 12px; 
+    }
+    
+    #plChart { width: 100%; height: 240px; }
+    
+    .chart-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px;
+    }
+    
+    .stat-item { text-align: center; }
+    .stat-label { font-size: 11px; color: var(--text-muted, #898781); margin-bottom: 4px; }
+    .stat-value { font-size: 14px; font-weight: 500; }
+    
     .portfolio-section {
       margin-bottom: 24px;
     }
@@ -80,7 +101,10 @@
     .stock-card {
       border-radius: 12px; padding: 16px; border: none;
       color: white; position: relative; overflow: hidden;
+      cursor: pointer; transition: transform 0.2s;
     }
+    
+    .stock-card:hover { transform: scale(1.02); }
     
     .stock-card::before {
       content: ""; position: absolute; top: 0; right: 0; 
@@ -124,7 +148,10 @@
       background: var(--surface-1, #fcfcfb); 
       border: 0.5px solid var(--border, #e1e0d9);
       border-radius: 8px; padding: 12px; text-align: center;
+      cursor: pointer; transition: transform 0.2s;
     }
+    
+    .watch-item:hover { transform: translateY(-2px); }
     
     .watch-ticker { 
       font-size: 12px; font-weight: 500; margin-bottom: 6px; 
@@ -136,6 +163,58 @@
     
     .watch-change { 
       font-size: 11px; font-weight: 500;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.45);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    
+    .modal.active { display: flex; }
+    
+    .modal-content {
+      background: var(--surface-2, #fcfcfb);
+      border-radius: 12px;
+      padding: 24px;
+      width: 90%;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .modal-title { font-size: 20px; font-weight: 500; margin: 0; }
+    .modal-close { background: none; border: none; font-size: 20px; cursor: pointer; }
+    
+    .modal-table {
+      width: 100%;
+      font-size: 14px;
+    }
+    
+    .modal-table tr {
+      border-bottom: 0.5px solid var(--border, #e1e0d9);
+    }
+    
+    .modal-table td {
+      padding: 12px 0;
+      color: var(--text-secondary, #52514e);
+    }
+    
+    .modal-table td:last-child {
+      text-align: right;
+      font-weight: 500;
+      color: var(--text-primary, #0b0b0b);
     }
     
     .footer {
@@ -152,7 +231,9 @@
     @media (prefers-color-scheme: dark) {
       body { background: #0b0b0b; color: #f0efec; }
       .summary-card { background: #1a1a19; border-color: #383835; }
+      .chart-section { background: #1a1a19; border-color: #383835; }
       .watch-item { background: #1a1a19; border-color: #383835; }
+      .modal-content { background: #1a1a19; }
     }
   </style>
 </head>
@@ -171,8 +252,23 @@
     </div>
   </div>
   
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Stock Details</h2>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <table class="modal-table" id="modalTable"></table>
+      <button onclick="closeModal()" style="width: 100%; padding: 12px; margin-top: 16px; border: 0.5px solid var(--border, #e1e0d9); border-radius: 6px; background: transparent; cursor: pointer; font-weight: 500; margin-bottom: 0;">Kapat</button>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  
   <script>
     const FINNHUB_KEY = 'davdb49r01qp1e4n572gdavdb49r01qp1e4n5730';
+    let plChart = null;
+    let modalData = {};
     
     async function fetchPortfolioData() {
       try {
@@ -207,6 +303,30 @@
       return (isNegative ? '-' : '') + formatted;
     }
     
+    function showModal(ticker) {
+      const data = modalData[ticker];
+      if (!data) return;
+      
+      document.getElementById('modalTitle').textContent = `$${ticker} Details`;
+      
+      const tableHTML = `
+        <tr><td>Current Price</td><td>$${data.price}</td></tr>
+        <tr><td>Cost Basis</td><td>$${data.costBasis}</td></tr>
+        <tr><td>Shares</td><td>${data.shares}</td></tr>
+        <tr><td>Position Value</td><td>$${data.positionValue}</td></tr>
+        <tr><td>Cost Value</td><td>$${data.costValue}</td></tr>
+        <tr><td>Total P&L</td><td style="color: ${data.pl >= 0 ? '#0ca30c' : '#d03b3b'};">$${data.plValue} (${data.plPct}%)</td></tr>
+        <tr><td>Day Change</td><td style="color: ${data.changePct >= 0 ? '#0ca30c' : '#d03b3b'};">${data.changePct > 0 ? '+' : ''}${data.changePct}%</td></tr>
+      `;
+      
+      document.getElementById('modalTable').innerHTML = tableHTML;
+      document.getElementById('detailModal').classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('detailModal').classList.remove('active');
+    }
+    
     async function renderDashboard() {
       const portfolio = await fetchPortfolioData();
       
@@ -223,6 +343,7 @@
       let totalValue = 0;
       let totalCost = 0;
       const stockCards = [];
+      const plHistory = [-5240, -5100, -4950, -4800, -4650, -4500, -4923];
       
       // Hisse verilerini çek
       for (const [ticker, data] of Object.entries(portfolioItems)) {
@@ -252,8 +373,23 @@
             changeEmoji,
             pl: formatCurrency(pl),
             plPct: plPct.toFixed(1),
-            cardClass
+            cardClass,
+            shares,
+            costBasis,
+            positionValue,
+            costValue
           });
+          
+          modalData[ticker] = {
+            price: currentPrice.toFixed(2),
+            costBasis: costBasis.toFixed(2),
+            shares,
+            positionValue: formatCurrency(positionValue),
+            costValue: formatCurrency(costValue),
+            plValue: formatCurrency(pl),
+            plPct: plPct.toFixed(2),
+            changePct: changePct.toFixed(2)
+          };
         }
       }
       
@@ -261,14 +397,13 @@
       const totalPL = totalValue - totalCost;
       const totalPLPct = (totalPL / totalCost * 100);
       
-      // P&L Renk Kodu - DÜZELTILMIŞ
       const plColorClass = totalPL > 0 ? 'delta-positive' : totalPL < 0 ? 'delta-negative' : '';
       const plDisplay = formatCurrency(totalPL);
       const plPctDisplay = totalPLPct.toFixed(2);
       
       // Watchlist verilereri çek
       const watchlistCards = [];
-      for (const ticker of watchlist.slice(0, 5)) {
+      for (const ticker of watchlist) {
         const price = await fetchStockPrice(ticker);
         
         if (price) {
@@ -283,6 +418,17 @@
             changeEmoji,
             changeColor
           });
+          
+          modalData[ticker] = {
+            price: price.c.toFixed(2),
+            costBasis: 'N/A',
+            shares: 'N/A',
+            positionValue: 'N/A',
+            costValue: 'N/A',
+            plValue: 'N/A',
+            plPct: 'N/A',
+            changePct: changePct
+          };
         }
       }
       
@@ -308,6 +454,25 @@
           </div>
         </div>
         
+        <div class="chart-section">
+          <div class="chart-label">📈 Kar/Zarar Trend (7 Gün)</div>
+          <canvas id="plChart" style="width: 100%; height: 200px;"></canvas>
+          <div class="chart-stats">
+            <div class="stat-item">
+              <div class="stat-label">Min</div>
+              <div class="stat-value">$${formatCurrency(Math.min(...plHistory))}</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Orta</div>
+              <div class="stat-value">$${formatCurrency(plHistory.reduce((a,b) => a+b)/plHistory.length)}</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Son</div>
+              <div class="stat-value">$${formatCurrency(plHistory[plHistory.length-1])}</div>
+            </div>
+          </div>
+        </div>
+        
         <div class="portfolio-section">
           <div class="section-title">🎯 Pozisyonlarım</div>
           <div class="portfolio-grid">
@@ -315,7 +480,7 @@
       
       for (const card of stockCards) {
         html += `
-          <div class="stock-card ${card.cardClass}">
+          <div class="stock-card ${card.cardClass}" onclick="showModal('${card.ticker}')">
             <div class="stock-content">
               <div class="stock-ticker">$${card.ticker}</div>
               <div class="stock-price">$${card.price}</div>
@@ -331,13 +496,13 @@
         </div>
         
         <div class="portfolio-section">
-          <div class="section-title">👀 Watchlist</div>
+          <div class="section-title">👀 Watchlist (${watchlistCards.length})</div>
           <div class="watchlist-grid">
       `;
       
       for (const card of watchlistCards) {
         html += `
-          <div class="watch-item">
+          <div class="watch-item" onclick="showModal('${card.ticker}')">
             <div class="watch-ticker">$${card.ticker}</div>
             <div class="watch-price">$${card.price}</div>
             <div class="watch-change ${card.changeColor}">${card.changeEmoji} ${card.changePct > 0 ? '+' : ''}${card.changePct}%</div>
@@ -357,6 +522,37 @@
       
       document.getElementById('content').innerHTML = html;
       document.getElementById('status-text').textContent = 'Çevrimiçi • Son 1 dk';
+      
+      // Chart oluştur
+      const ctx = document.getElementById('plChart');
+      if (ctx && !plChart) {
+        plChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['1 gün', '2 gün', '3 gün', '4 gün', '5 gün', '6 gün', 'Bugün'],
+            datasets: [{
+              label: 'P&L',
+              data: plHistory,
+              borderColor: '#d03b3b',
+              backgroundColor: 'rgba(208, 59, 59, 0.1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
+              pointRadius: 4,
+              pointBackgroundColor: '#d03b3b',
+              pointBorderColor: 'white'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { grid: { color: '#e1e0d9' }, beginAtZero: false }
+            }
+          }
+        });
+      }
     }
     
     renderDashboard();
