@@ -46,19 +46,19 @@ def get_finnhub_realtime(ticker):
         return None
 
 def create_realtime_report(portfolio, watchlist, cash_reserve):
-    """Real-time portföy raporu oluştur"""
+    """Real-time portföy raporu oluştur - HTML & Emoji ile renkli"""
     
-    report = "📊 PORTFÖY MIDAS - REAL-TIME RAPOR\n"
+    report = "<b>📊 PORTFÖY MIDAS - REAL-TIME RAPOR</b>\n"
     report += f"⏰ {datetime.now(IST).strftime('%d.%m.%Y %H:%M')} Istanbul\n"
-    report += "=" * 50 + "\n\n"
+    report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
     
     alerts = []
     portfolio_changes = []
     total_value = 0
     total_cost = 0
     
-    report += "🎯 AKTİF POZİSYONLAR\n"
-    report += "-" * 50 + "\n"
+    report += "<b>🎯 AKTİF POZİSYONLAR</b>\n"
+    report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
     
     for ticker, ticker_data in portfolio.items():
         # JSON'dan shares ve cost_basis oku
@@ -81,54 +81,94 @@ def create_realtime_report(portfolio, watchlist, cash_reserve):
             pl = position_value - cost_value
             pl_pct = (pl / cost_value * 100) if cost_value > 0 else 0
             
-            change_emoji = "📈" if change_pct >= 0 else "📉"
-            pl_emoji = "📈" if pl >= 0 else "📉"
+            # Renkli Emoji Belirleme
+            if change_pct >= 3:
+                change_emoji = "🟢📈"
+            elif change_pct > 0:
+                change_emoji = "📈"
+            elif change_pct >= -3:
+                change_emoji = "📉"
+            else:
+                change_emoji = "🔴📉"
             
+            if pl > 0:
+                pl_emoji = "✅"
+            elif pl == 0:
+                pl_emoji = "➖"
+            else:
+                pl_emoji = "❌"
+            
+            # %5+ Alert
             if abs(change_pct) >= 5.0:
-                alerts.append(f"🚨 ${ticker}: {change_pct:+.2f}% | ${current_price}")
+                alerts.append(f"🚨 <b>${ticker}</b>: <b>{change_pct:+.2f}%</b> | Fiyat: <b>${current_price}</b>")
             
-            report += f"${ticker}: ${current_price} {change_emoji} {change_pct:+.2f}%\n"
-            report += f"  Pozisyon: {shares} hisse | Değer: ${position_value:,.0f}\n"
-            report += f"  Maliyet: ${cost_value:,.0f} | P&L: ${pl:,.0f} ({pl_pct:+.2f}%) {pl_emoji}\n"
-            report += f"  Aralık: ${data['low']} - ${data['high']}\n\n"
+            # Rapor Format
+            report += f"\n<b>${ticker}</b> {change_emoji} <b>{change_pct:+.2f}%</b>\n"
+            report += f"  💰 Fiyat: ${current_price} | Hisse: {shares}\n"
+            report += f"  {pl_emoji} P&L: <b>${pl:,.0f}</b> (<b>{pl_pct:+.2f}%</b>)\n"
+            report += f"  📊 Gün: ${data['low']} - ${data['high']}\n"
             
             portfolio_changes.append((ticker, change_pct, pl_pct))
     
-    # ÖZET
-    report += "\n💰 ÖZET\n"
-    report += "-" * 50 + "\n"
+    # ÖZET BÖLÜMÜ
+    report += "\n<b>💰 ÖZET</b>\n"
+    report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+    
     total_portfolio = total_value + cash_reserve
     total_pl = total_value - total_cost
     total_pl_pct = (total_pl / total_cost * 100) if total_cost > 0 else 0
     
-    report += f"Portföy Değeri: ${total_value:,.0f}\n"
-    report += f"Nakit Yedek: ${cash_reserve:,.0f}\n"
-    report += f"Toplam: ${total_portfolio:,.0f}\n\n"
-    report += f"Maliyet Bazı: ${total_cost:,.0f}\n"
-    report += f"Toplam P&L: ${total_pl:,.0f} ({total_pl_pct:+.2f}%)\n\n"
+    # P&L Rengi
+    if total_pl > 0:
+        pl_emoji = "✅"
+    elif total_pl == 0:
+        pl_emoji = "➖"
+    else:
+        pl_emoji = "❌"
     
+    report += f"\n💎 Portföy Değeri: <b>${total_value:,.0f}</b>\n"
+    report += f"💵 Nakit Yedek: <b>${cash_reserve:,.0f}</b>\n"
+    report += f"📊 <b>Toplam: ${total_portfolio:,.0f}</b>\n\n"
+    
+    report += f"📈 Maliyet Bazı: <b>${total_cost:,.0f}</b>\n"
+    report += f"{pl_emoji} <b>Kar/Zarar: ${total_pl:,.0f}</b> (<b>{total_pl_pct:+.2f}%</b>)\n"
+    
+    # En İyi / En Kötü
     if portfolio_changes:
         best = max(portfolio_changes, key=lambda x: x[1])
         worst = min(portfolio_changes, key=lambda x: x[1])
-        report += f"✅ En Güçlü: ${best[0]} ({best[1]:+.2f}%)\n"
-        report += f"⚠️ En Zayıf: ${worst[0]} ({worst[1]:+.2f}%)\n"
+        report += f"\n✅ <b>En Güçlü:</b> ${best[0]} ({best[1]:+.2f}%)\n"
+        report += f"⚠️ <b>En Zayıf:</b> ${worst[0]} ({worst[1]:+.2f}%)\n"
     
-    # Watchlist
-    report += "\n👀 WATCHLIST\n"
-    report += "-" * 50 + "\n"
-    for ticker in watchlist[:3]:
+    # WATCHLIST
+    report += "\n<b>👀 WATCHLIST - EN UYGUN</b>\n"
+    report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+    
+    for ticker in watchlist[:5]:
         data = get_finnhub_realtime(ticker)
         if data:
-            change_emoji = "📈" if data['change_pct'] >= 0 else "📉"
-            report += f"${ticker}: ${data['current_price']} {change_emoji} {data['change_pct']:+.2f}%\n"
+            change_pct = data['change_pct']
+            
+            if change_pct >= 2:
+                change_emoji = "🟢📈"
+            elif change_pct > 0:
+                change_emoji = "📈"
+            elif change_pct >= -2:
+                change_emoji = "📉"
+            else:
+                change_emoji = "🔴📉"
+            
+            report += f"\n<b>${ticker}</b> {change_emoji} <b>{change_pct:+.2f}%</b>\n"
+            report += f"  💰 ${data['current_price']} | Aralık: ${data['low']} - ${data['high']}\n"
     
-    report += "\n" + "=" * 50
-    report += "\n⏰ Sonraki Rapor: +4 saat\n"
+    report += "\n" + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+    report += "⏰ <b>Sonraki Rapor: +4 saat</b>\n"
+    report += "🔗 Dashboard: https://claude.ai\n"
     
     return report, alerts
 
 def send_telegram(message):
-    """Telegram'a mesaj gönder"""
+    """Telegram'a mesaj gönder - HTML formatında"""
     try:
         payload = {
             'chat_id': CHAT_ID,
@@ -155,14 +195,17 @@ if __name__ == "__main__":
         report, alerts = create_realtime_report(portfolio, watchlist, cash_reserve)
         print(report)
         
-        # HER ZAMAN rapor gönder
+        # HER ZAMAN RAPOR GÖNDER
         print("\n📤 Telegram'a Gönderiliyor...")
         send_telegram(report)
         
-        # %5+ alert varsa ek mesaj
+        # %5+ ALERT VARSA EK MESAJ GÖNDER
         if alerts:
-            alert_message = "🚨 ÖNEMLİ DEĞİŞİKLİKLER (%5+):\n\n" + "\n".join(alerts)
-            print("⚠️ Alert Telegram'a Gönderiliyor...")
+            alert_message = "<b>🚨 ÖNEMLİ DEĞİŞİKLİKLER (%5+)</b>\n"
+            alert_message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+            alert_message += "\n".join(alerts)
+            alert_message += "\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            print("\n⚠️ Alert Telegram'a Gönderiliyor...")
             send_telegram(alert_message)
     else:
         print("❌ Portföy yüklenemedi!")
