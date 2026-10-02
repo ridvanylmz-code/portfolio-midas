@@ -1,231 +1,358 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Portföy Midas - Real-time Dashboard</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #0f0f0f;
-            color: #e0e0e0;
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        h1 {
-            font-size: 28px;
-            margin-bottom: 1rem;
-        }
-        
-        .summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-        
-        .card-label {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card-value {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card-sub {
-            font-size: 11px;
-            color: #666;
-        }
-        
-        .positive { color: #0ca30c; }
-        .negative { color: #d03b3b; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #333;
-            margin-bottom: 2rem;
-        }
-        
-        th {
-            background: #242424;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 500;
-            font-size: 13px;
-            color: #999;
-            border-bottom: 1px solid #333;
-        }
-        
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid #2a2a2a;
-            font-size: 13px;
-        }
-        
-        tr:last-child td {
-            border-bottom: none;
-        }
-        
-        tr:hover {
-            background: #242424;
-        }
-        
-        .ticker {
-            font-weight: 600;
-            color: #fff;
-        }
-        
-        .alert-badge {
-            background: #d03b3b;
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 600;
-        }
-        
-        #update-time {
-            font-size: 12px;
-            color: #666;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portföy Midas - Real-time Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      background: var(--surface-0, #f9f8f5); 
+      color: var(--text-primary, #0b0b0b);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 20px 16px;
+      font-size: 16px;
+    }
+    
+    .container { max-width: 800px; margin: 0 auto; }
+    
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px;
+    }
+    
+    .title { font-size: 24px; font-weight: 500; }
+    
+    .status {
+      font-size: 12px; color: var(--text-muted, #898781);
+      display: flex; align-items: center; gap: 6px;
+    }
+    
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #0ca30c; animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .summary-card {
+      background: var(--surface-1, #fcfcfb); 
+      border: 0.5px solid var(--border, #e1e0d9);
+      border-radius: 8px; padding: 16px;
+    }
+    
+    .summary-label { 
+      font-size: 13px; color: var(--text-muted, #898781); margin-bottom: 8px; 
+    }
+    
+    .summary-value { 
+      font-size: 20px; font-weight: 500; color: var(--text-primary, #0b0b0b); 
+    }
+    
+    .summary-delta { 
+      font-size: 13px; margin-top: 4px; font-weight: 500;
+    }
+    
+    .delta-positive { color: #0ca30c; }
+    .delta-negative { color: #d03b3b; }
+    
+    .portfolio-section {
+      margin-bottom: 24px;
+    }
+    
+    .section-title { 
+      font-size: 14px; font-weight: 500; 
+      color: var(--text-secondary, #52514e);
+      margin-bottom: 12px; 
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    }
+    
+    .stock-card {
+      border-radius: 12px; padding: 16px; border: none;
+      color: white; position: relative; overflow: hidden;
+    }
+    
+    .stock-card::before {
+      content: ""; position: absolute; top: 0; right: 0; 
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,0.1); border-radius: 50%;
+    }
+    
+    .stock-content { position: relative; z-index: 1; }
+    
+    .stock-ticker { 
+      font-size: 14px; opacity: 0.9; margin-bottom: 8px; font-weight: 500;
+    }
+    
+    .stock-price { 
+      font-size: 24px; font-weight: 500; margin-bottom: 8px; 
+    }
+    
+    .stock-change { 
+      font-size: 13px; opacity: 0.95; margin-bottom: 8px;
+    }
+    
+    .stock-pl { 
+      font-size: 12px; opacity: 0.85; 
+    }
+    
+    .card-positive { 
+      background: linear-gradient(135deg, #0ca30c 0%, #087d07 100%); 
+    }
+    .card-mixed { 
+      background: linear-gradient(135deg, #2a78d6 0%, #1e5aa8 100%); 
+    }
+    .card-negative { 
+      background: linear-gradient(135deg, #d03b3b 0%, #a02d2d 100%); 
+    }
+    
+    .watchlist-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    
+    .watch-item {
+      background: var(--surface-1, #fcfcfb); 
+      border: 0.5px solid var(--border, #e1e0d9);
+      border-radius: 8px; padding: 12px; text-align: center;
+    }
+    
+    .watch-ticker { 
+      font-size: 12px; font-weight: 500; margin-bottom: 6px; 
+    }
+    
+    .watch-price { 
+      font-size: 14px; margin-bottom: 4px; 
+    }
+    
+    .watch-change { 
+      font-size: 11px; font-weight: 500;
+    }
+    
+    .footer {
+      font-size: 12px; color: var(--text-muted, #898781); text-align: center;
+      padding-top: 16px; border-top: 0.5px solid var(--border, #e1e0d9);
+      margin-top: 24px;
+    }
+    
+    .loading {
+      text-align: center; padding: 40px 20px;
+      color: var(--text-secondary, #52514e);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      body { background: #0b0b0b; color: #f0efec; }
+      .summary-card { background: #1a1a19; border-color: #383835; }
+      .watch-item { background: #1a1a19; border-color: #383835; }
+    }
+  </style>
 </head>
 <body>
-    <h1>📊 Portföy Midas - Real-time Dashboard</h1>
-    <div id="update-time">Veri yükleniyor...</div>
-    
-    <div class="summary">
-        <div class="card">
-            <div class="card-label">Günlük Kar/Zarar</div>
-            <div class="card-value" id="daily-pl">-</div>
-            <div class="card-sub" id="daily-pct">-</div>
-        </div>
-        
-        <div class="card">
-            <div class="card-label">Toplam Kar/Zarar</div>
-            <div class="card-value" id="total-pl">-</div>
-            <div class="card-sub" id="total-pct">-</div>
-        </div>
-        
-        <div class="card">
-            <div class="card-label">Portföy Değeri</div>
-            <div class="card-value" id="portfolio-value">-</div>
-            <div class="card-sub">Güncel</div>
-        </div>
-        
-        <div class="card">
-            <div class="card-label">Maliyet Bazı</div>
-            <div class="card-value" id="cost-basis">-</div>
-            <div class="card-sub">Total Cost</div>
-        </div>
+  <div class="container">
+    <div class="header">
+      <div class="title">📊 Portföy Midas</div>
+      <div class="status">
+        <span class="status-dot"></span>
+        <span id="status-text">Yükleniyor...</span>
+      </div>
     </div>
     
-    <h2 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 18px;">Aktif Pozisyonlar (Real-time)</h2>
+    <div id="content">
+      <div class="loading">⏳ Real-time veriler yükleniyor...</div>
+    </div>
+  </div>
+  
+  <script>
+    const FINNHUB_KEY = 'davdb49r01qp1e4n572gdavdb49r01qp1e4n5730';
     
-    <table>
-        <thead>
-            <tr>
-                <th>Hisse</th>
-                <th style="text-align: right;">Fiyat</th>
-                <th style="text-align: right;">Gün %</th>
-                <th style="text-align: right;">High/Low</th>
-                <th style="text-align: right;">Maliyet</th>
-                <th style="text-align: right;">Kar/Zarar</th>
-            </tr>
-        </thead>
-        <tbody id="portfolio-tbody">
-            <tr><td colspan="6" style="text-align: center; padding: 2rem;">Veri yükleniyor...</td></tr>
-        </tbody>
-    </table>
+    async function fetchPortfolioData() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/main/portfolio.json');
+        const data = await response.json();
+        return data;
+      } catch (e) {
+        console.error('Portfolio JSON yükleme hatası:', e);
+        return null;
+      }
+    }
     
-    <script>
-        async function loadDashboard() {
-            const stocks = {
-                'WYFI': { shares: 120, current: 12.45, change: 1.8, high: 12.67, low: 12.30, cost: 12.00 },
-                'RKLB': { shares: 850, current: 9.87, change: 2.1, high: 9.95, low: 9.75, cost: 9.50 },
-                'CRWV': { shares: 280, current: 28.45, change: 3.2, high: 28.90, low: 27.80, cost: 27.50 },
-                'UAMY': { shares: 950, current: 4.25, change: -0.8, high: 4.35, low: 4.15, cost: 4.40 },
-                'SGML': { shares: 450, current: 5.67, change: 0.6, high: 5.75, low: 5.60, cost: 5.65 },
-                'CBRS': { shares: 1200, current: 3.42, change: -0.3, high: 3.50, low: 3.35, cost: 3.45 },
-                'CGNX': { shares: 75, current: 15.89, change: 1.5, high: 16.10, low: 15.70, cost: 15.60 }
-            };
-            
-            const cashReserve = 8540;
-            let totalValue = 0;
-            let totalCost = 0;
-            let dailyPL = 0;
-            
-            const tbody = document.getElementById('portfolio-tbody');
-            tbody.innerHTML = '';
-            
-            for (const [ticker, data] of Object.entries(stocks)) {
-                const position = data.current * data.shares;
-                const cost = data.cost * data.shares;
-                const pl = position - cost;
-                const plPct = ((pl / cost) * 100).toFixed(2);
-                
-                totalValue += position;
-                totalCost += cost;
-                dailyPL += (data.change / 100) * position;
-                
-                const changeEmoji = data.change > 0 ? '📈' : '📉';
-                const changeClass = data.change > 0 ? 'positive' : 'negative';
-                const plClass = pl > 0 ? 'positive' : 'negative';
-                const alertBadge = Math.abs(data.change) >= 5 ? '<span class="alert-badge">ALERT %5+</span>' : '';
-                
-                const row = `<tr>
-                    <td class="ticker">${ticker} ${alertBadge}</td>
-                    <td style="text-align: right;">$${data.current}</td>
-                    <td style="text-align: right; ${changeClass}">${changeEmoji} ${data.change > 0 ? '+' : ''}${data.change.toFixed(2)}%</td>
-                    <td style="text-align: right; font-size: 12px;">$${data.low} - $${data.high}</td>
-                    <td style="text-align: right;">$${cost.toLocaleString()}</td>
-                    <td style="text-align: right; ${plClass}; font-weight: 500;">$${pl.toFixed(0)} (${plPct}%)</td>
-                </tr>`;
-                tbody.innerHTML += row;
-            }
-            
-            const totalPL = totalValue - totalCost;
-            const totalPLPct = ((totalPL / totalCost) * 100).toFixed(2);
-            const totalPortfolio = totalValue + cashReserve;
-            
-            document.getElementById('daily-pl').textContent = `$${dailyPL.toFixed(0)}`;
-            document.getElementById('daily-pl').className = dailyPL >= 0 ? 'card-value positive' : 'card-value negative';
-            document.getElementById('daily-pct').textContent = `${((dailyPL / totalValue) * 100).toFixed(2)}%`;
-            
-            document.getElementById('total-pl').textContent = `$${totalPL.toFixed(0)}`;
-            document.getElementById('total-pl').className = totalPL >= 0 ? 'card-value positive' : 'card-value negative';
-            document.getElementById('total-pct').textContent = `${totalPLPct}%`;
-            
-            document.getElementById('portfolio-value').textContent = `$${totalPortfolio.toLocaleString()}`;
-            document.getElementById('cost-basis').textContent = `$${totalCost.toLocaleString()}`;
-            document.getElementById('update-time').textContent = `Güncelleme: ${new Date().toLocaleTimeString('tr-TR')}`;
+    async function fetchStockPrice(ticker) {
+      try {
+        const response = await fetch(
+          `https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${FINNHUB_KEY}`
+        );
+        const data = await response.json();
+        if (data.c > 0) {
+          return data;
         }
+      } catch (e) {
+        console.error(`${ticker} fiyat hatası:`, e);
+      }
+      return null;
+    }
+    
+    async function renderDashboard() {
+      const portfolio = await fetchPortfolioData();
+      
+      if (!portfolio) {
+        document.getElementById('content').innerHTML = 
+          '<div class="loading">❌ Veriler yüklenemedi</div>';
+        return;
+      }
+      
+      const portfolioItems = portfolio.portfolio;
+      const watchlist = portfolio.watchlist;
+      const cashReserve = portfolio.cash_reserve;
+      
+      let totalValue = 0;
+      let totalCost = 0;
+      const stockCards = [];
+      
+      // Hisse verilerini çek
+      for (const [ticker, data] of Object.entries(portfolioItems)) {
+        const price = await fetchStockPrice(ticker);
         
-        loadDashboard();
-        setInterval(loadDashboard, 60000); // 1 dakikada refresh
-    </script>
+        if (price) {
+          const shares = data.shares;
+          const costBasis = data.cost_basis;
+          const currentPrice = price.c;
+          const changePct = price.dp;
+          
+          const positionValue = currentPrice * shares;
+          const costValue = costBasis * shares;
+          const pl = positionValue - costValue;
+          const plPct = (pl / costValue * 100);
+          
+          totalValue += positionValue;
+          totalCost += costValue;
+          
+          const changeEmoji = changePct >= 2 ? '📈' : changePct >= 0 ? '📊' : '📉';
+          const cardClass = pl > 0 ? 'card-positive' : pl < 0 ? 'card-negative' : 'card-mixed';
+          const plEmoji = pl > 0 ? '✅' : '⚠️';
+          
+          stockCards.push({
+            ticker,
+            price: currentPrice.toFixed(2),
+            changePct: changePct.toFixed(2),
+            changeEmoji,
+            pl: pl.toFixed(0),
+            plPct: plPct.toFixed(1),
+            plEmoji,
+            cardClass
+          });
+        }
+      }
+      
+      const totalPortfolio = totalValue + cashReserve;
+      const totalPL = totalValue - totalCost;
+      const totalPLPct = (totalPL / totalCost * 100).toFixed(2);
+      const plColor = totalPL > 0 ? 'delta-positive' : 'delta-negative';
+      const plSign = totalPL > 0 ? '+' : '';
+      
+      // Watchlist verilereri çek
+      const watchlistCards = [];
+      for (const ticker of watchlist.slice(0, 5)) {
+        const price = await fetchStockPrice(ticker);
+        
+        if (price) {
+          const changePct = price.dp.toFixed(2);
+          const changeEmoji = changePct >= 2 ? '📈' : changePct >= 0 ? '📊' : '📉';
+          const changeColor = changePct >= 0 ? 'delta-positive' : 'delta-negative';
+          
+          watchlistCards.push({
+            ticker,
+            price: price.c.toFixed(2),
+            changePct,
+            changeEmoji,
+            changeColor
+          });
+        }
+      }
+      
+      // HTML oluştur
+      let html = `
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="summary-label">Portföy Değeri</div>
+            <div class="summary-value">$${totalValue.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Nakit Yedek</div>
+            <div class="summary-value">$${cashReserve.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Toplam Varlık</div>
+            <div class="summary-value">$${totalPortfolio.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Kar/Zarar</div>
+            <div class="summary-value ${plColor}">${plSign}$${Math.abs(totalPL).toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+            <div class="summary-delta ${plColor}">${plSign}${totalPLPct}%</div>
+          </div>
+        </div>
+        
+        <div class="portfolio-section">
+          <div class="section-title">🎯 Pozisyonlarım</div>
+          <div class="portfolio-grid">
+      `;
+      
+      for (const card of stockCards) {
+        html += `
+          <div class="stock-card ${card.cardClass}">
+            <div class="stock-content">
+              <div class="stock-ticker">$${card.ticker}</div>
+              <div class="stock-price">$${card.price}</div>
+              <div class="stock-change">${card.changeEmoji} ${card.changePct > 0 ? '+' : ''}${card.changePct}%</div>
+              <div class="stock-pl">${card.plEmoji} P&L: $${card.pl} (${card.plPct > 0 ? '+' : ''}${card.plPct}%)</div>
+            </div>
+          </div>
+        `;
+      }
+      
+      html += `
+          </div>
+        </div>
+        
+        <div class="portfolio-section">
+          <div class="section-title">👀 Watchlist</div>
+          <div class="watchlist-grid">
+      `;
+      
+      for (const card of watchlistCards) {
+        html += `
+          <div class="watch-item">
+            <div class="watch-ticker">$${card.ticker}</div>
+            <div class="watch-price">$${card.price}</div>
+            <div class="watch-change ${card.changeColor}">${card.changeEmoji} ${card.changePct > 0 ? '+' : ''}${card.changePct}%</div>
+          </div>
+        `;
+      }
+      
+      html += `
+          </div>
+        </div>
+        
+        <div class="footer">
+          ⏰ Son güncelleme: ${new Date().toLocaleTimeString('tr-TR')} Istanbul | 
+          🔄 <a href="javascript:location.reload()" style="color: inherit;">Yenile</a>
+        </div>
+      `;
+      
+      document.getElementById('content').innerHTML = html;
+      document.getElementById('status-text').textContent = 'Çevrimiçi • Son 1 dk';
+    }
+    
+    renderDashboard();
+    setInterval(renderDashboard, 60000);
+  </script>
 </body>
 </html>
