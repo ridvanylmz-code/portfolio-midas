@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portföy Dashboard</title>
+<link rel="icon" href="data:,">
+<style>
+:root{
+  --bg:#f4f6f9;--card:#fff;--text:#1b2430;--muted:#6b7686;--line:#e3e8ef;
+  --up:#16a34a;--up-bg:#e8f7ee;--down:#dc2626;--down-bg:#fdecec;--flat-bg:#f1f3f6;--accent:#2563eb;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f141b;--card:#1a212b;--text:#e8edf3;--muted:#8d99aa;--line:#2a3340;
+  --up:#34d399;--up-bg:#12332a;--down:#f87171;--down-bg:#3a1c1f;--flat-bg:#232b36;--accent:#60a5fa;}}
+:root[data-theme="dark"]{
+  --bg:#0f141b;--card:#1a212b;--text:#e8edf3;--muted:#8d99aa;--line:#2a3340;
+  --up:#34d399;--up-bg:#12332a;--down:#f87171;--down-bg:#3a1c1f;--flat-bg:#232b36;--accent:#60a5fa;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:16px;max-width:1100px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+h1{font-size:20px}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 0 10px}
+button{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+#status{font-size:12px;color:var(--muted);margin-bottom:12px}
+#status.warn{color:var(--down);font-weight:600}
+.grid{display:grid;gap:10px}
+.sum{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.pos{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.wl{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.label{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.big{font-size:21px;font-weight:700;margin-top:2px}
+.sub{font-size:12px;color:var(--muted)}
+.up{color:var(--up)}.down{color:var(--down)}
+.pcard{cursor:pointer;border-left:5px solid var(--line);transition:transform .15s}
+.pcard:hover{transform:translateY(-2px)}
+.pcard.up-bg{background:var(--up-bg);border-left-color:var(--up)}
+.pcard.down-bg{background:var(--down-bg);border-left-color:var(--down)}
+.pcard.flat-bg{background:var(--flat-bg)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.tk{font-weight:700;font-size:16px}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;background:var(--flat-bg);color:var(--muted);margin:3px 4px 0 0}
+.chip.bad{background:var(--down-bg);color:var(--down);font-weight:600}
+.chip.good{background:var(--up-bg);color:var(--up);font-weight:600}
+svg.spark{width:100%;height:30px;display:block;margin:6px 0 2px}
+.bar{height:10px;border-radius:99px;background:var(--flat-bg);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.alloc{display:flex;height:16px;border-radius:99px;overflow:hidden;background:var(--flat-bg)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:12px;color:var(--muted)}
+.legend b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.rank{color:var(--muted);font-size:11px;margin-right:6px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+#modal.show{display:flex}
+#modal .card{max-width:420px;width:100%;max-height:90vh;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+td{padding:4px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right;font-weight:600}
+.err{background:var(--down-bg);color:var(--down);padding:12px;border-radius:10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 Portföy</h1>
+  <button id="theme" type="button" aria-label="Tema değiştir">🌓</button>
+</header>
+<div id="status">Yükleniyor…</div>
+<main id="app"></main>
+<div id="modal"><div class="card" id="modalBody"></div></div>
+
+<script>
+"use strict";
+const PALETTE=["#2563eb","#9333ea","#f59e0b","#14b8a6","#ec4899","#84cc16","#f97316","#06b6d4"];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=(v,d=2)=>Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const usd=(v,d=2)=>(v<0?"-":"")+"$"+num(Math.abs(v),d);
+const sUsd=(v,d=2)=>(v>0?"+":v<0?"-":"")+"$"+num(Math.abs(v),d);
+const sPct=v=>(v>0?"+":"")+num(v,2)+"%";
+const cls=v=>v>0?"up":v<0?"down":"";
+const bg=v=>v>0?"up-bg":v<0?"down-bg":"flat-bg";
+const pct=(a,b)=>b?a/b*100:0;
+const validQ=q=>q&&Number(q.c)>0;
+
+/* ---- tema (localStorage erişilemezse sessizce yoksay) ---- */
+function getTheme(){try{return localStorage.getItem("theme")}catch(e){return null}}
+function setTheme(t){
+  if(t)document.documentElement.setAttribute("data-theme",t);
+  else document.documentElement.removeAttribute("data-theme");
+  try{t?localStorage.setItem("theme",t):localStorage.removeItem("theme")}catch(e){}
+}
+setTheme(getTheme());
+$("#theme").onclick=()=>{
+  const cur=document.documentElement.getAttribute("data-theme")||
+    (matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");
+  setTheme(cur==="dark"?"light":"dark");
+};
+
+/* ---- veri ---- */
+async function getJson(name,optional){
+  try{
+    const r=await fetch("data/"+name+"?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    return await r.json();
+  }catch(e){if(optional)return null;throw new Error(name+" yüklenemedi");}
+}
+
+function levels(P,t){
+  const pos=P.portfolio[t],c=(P.position_levels||{})[t]||{},a=P.alerts||{};
+  let stop=c.stop_loss,target=c.target;
+  if(stop==null&&a.stop_loss_pct!=null)stop=pos.cost_basis*(1+a.stop_loss_pct/100);
+  if(target==null&&a.target_pct!=null)target=pos.cost_basis*(1+a.target_pct/100);
+  return {stop,target};
+}
+
+function compute(P,Q,H){
+  const pos=[];let value=0,cost=0,day=0,prev=0;
+  for(const [t,p] of Object.entries(P.portfolio)){
+    const q=Q.quotes[t];if(!validQ(q))continue;
+    const price=+q.c,pc=+(q.pc||q.c);
+    const v=p.shares*price,c=p.shares*p.cost_basis;
+    pos.push({t,shares:p.shares,cb:p.cost_basis,price,pc,value:v,cost:c,pnl:v-c,pnlPct:pct(v-c,c),
+      dayPnl:p.shares*(price-pc),dayPct:pct(price-pc,pc),stale:!!q.stale,...levels(P,t)});
+    value+=v;cost+=c;day+=p.shares*(price-pc);prev+=p.shares*pc;
+  }
+  const cash=+P.cash||0,total=value+cash;
+  pos.forEach(p=>p.weight=pct(p.value,total));
+  pos.sort((a,b)=>b.value-a.value);
+  const realized=(H.transactions||[]).reduce((s,x)=>s+(x.realized_pnl||0),0);
+  return {pos,value,cost,cash,total,pnl:value-cost,pnlPct:pct(value-cost,cost),
+    day,dayPct:pct(day,prev),realized};
+}
+
+function monthProgress(P,H,total){
+  const target=P.monthly_target;if(!target)return null;
+  const today=new Date().toISOString().slice(0,10),month=today.slice(0,7);
+  const snaps=(H.snapshots||[]).filter(s=>s.date.startsWith(month)).sort((a,b)=>a.date<b.date?-1:1);
+  if(!snaps.length)return null;
+  const start=snaps[0];let flows=0;
+  for(const x of H.transactions||[]){
+    if(x.date>start.date&&x.date.startswith(month)){
+      if(x.action==="deposit")flows+=x.amount;else if(x.action==="withdraw")flows-=x.amount;
+    }
+  }
+  const gain=total-start.value-flows;
+  return {gain,target,pct:pct(gain,target),since:start.date};
+}
+
+function spark(series){
+  if(!series||series.length<2)return '<div class="sub" style="margin:6px 0 2px">Trend verisi birikiyor…</div>';
+  const w=100,h=30,min=Math.min(...series),max=Math.max(...series),rng=(max-min)||1;
+  const pts=series.map((v,i)=>(i/(series.length-1)*w).toFixed(1)+","+(h-2-(v-min)/rng*(h-4)).toFixed(1)).join(" ");
+  const col=series[series.length-1]>=series[0]?"var(--up)":"var(--down)";
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline fill="none" stroke="${col}" stroke-width="1.8" vector-effect="non-scaling-stroke" points="${pts}"/></svg>`;
+}
+const seriesOf=(prices,t)=>{const h=(prices||{})[t]||{};return Object.keys(h).sort().map(d=>h[d])};
+
+/* ---- render ---- */
+let STATE=null;
+function render(){
+  const {P,Q,H,PR}=STATE,S=compute(P,Q,H);
+  const mp=monthProgress(P,H,S.total);
+  let h="";
+
+  h+=`<div class="grid sum">
+   <div class="card"><div class="label">Toplam değer</div><div class="big">${usd(S.total)}</div><div class="sub">Pozisyon ${usd(S.value,0)} + nakit</div></div>
+   <div class="card"><div class="label">Bugünkü K/Z</div><div class="big ${cls(S.day)}">${sUsd(S.day)}</div><div class="sub ${cls(S.day)}">${sPct(S.dayPct)}</div></div>
+   <div class="card"><div class="label">Toplam K/Z</div><div class="big ${cls(S.pnl)}">${sUsd(S.pnl)}</div><div class="sub ${cls(S.pnl)}">${sPct(S.pnlPct)} · maliyet ${usd(S.cost,0)}</div></div>
+   <div class="card"><div class="label">Nakit</div><div class="big">${usd(S.cash)}</div><div class="sub">%${num(pct(S.cash,S.total),1)} portföy</div></div>
+   <div class="card"><div class="label">Gerçekleşen K/Z</div><div class="big ${cls(S.realized)}">${sUsd(S.realized)}</div><div class="sub">satışlardan</div></div>
+  </div>`;
+
+  if(mp){
+    const w=Math.max(0,Math.min(100,mp.pct));
+    h+=`<div class="card" style="margin-top:10px"><div class="row"><span class="label">Aylık hedef</span>
+     <span class="sub">${sUsd(mp.gain,0)} / ${usd(mp.target,0)} · %${num(Math.max(mp.pct,0),0)}</span></div>
+     <div class="bar" style="margin-top:8px"><i style="width:${w}%;background:${mp.gain>=0?"var(--up)":"var(--down)"}"></i></div>
+     <div class="sub" style="margin-top:4px">${esc(mp.since)} tarihindeki ilk kayda göre (para yatırma/çekme düzeltilir)</div></div>`;
+  }
+
+  const segs=S.pos.map((p,i)=>({n:p.t,w:p.weight,c:PALETTE[i%PALETTE.length]}));
+  segs.push({n:"Nakit",w:pct(S.cash,S.total),c:"#94a3b8"});
+  h+=`<h2>Dağılım</h2><div class="card"><div class="alloc">${segs.map(s=>`<div title="${esc(s.n)}" style="width:${s.w}%;background:${s.c}"></div>`).join("")}</div>
+   <div class="legend">${segs.map(s=>`<span><b style="background:${s.c}"></b>${esc(s.n)} %${num(s.w,1)}</span>`).join("")}</div></div>`;
+
+  h+=`<h2>Pozisyonlar</h2><div class="grid pos">`;
+  for(const p of S.pos){
+    const stopBad=p.stop!=null&&p.price<=p.stop,tgtGood=p.target!=null&&p.price>=p.target;
+    h+=`<div class="card pcard ${bg(p.dayPct)}" data-t="${esc(p.t)}">
+      <div class="row"><span class="tk">${esc(p.t)}</span><span class="${cls(p.dayPct)}"><b>${sPct(p.dayPct)}</b> bugün</span></div>
+      <div class="row"><span class="big" style="font-size:18px">${usd(p.price)}</span><span class="sub">${num(p.shares,0)} adet · %${num(p.weight,0)}</span></div>
+      ${spark(seriesOf(PR,p.t))}
+      <div class="row"><span class="sub">K/Z</span><span class="${cls(p.pnl)}"><b>${sUsd(p.pnl,0)}</b> (${sPct(p.pnlPct)})</span></div>
+      <div>${p.stop!=null?`<span class="chip ${stopBad?"bad":""}">Stop ${usd(p.stop)}${stopBad?" ⚠":""}</span>`:""}
+      ${p.target!=null?`<span class="chip ${tgtGood?"good":""}">Hedef ${usd(p.target)}${tgtGood?" ✓":""}</span>`:""}
+      ${p.stale?'<span class="chip bad">eski veri</span>':""}</div></div>`;
+  }
+  h+=`</div>`;
+
+  const wl=P.watchlist.map(t=>({t,q:Q.quotes[t]})).filter(x=>validQ(x.q)).sort((a,b)=>(b.q.dp||0)-(a.q.dp||0));
+  const lost=P.watchlist.filter(t=>!validQ(Q.quotes[t]));
+  h+=`<h2>İzleme listesi · momentuma göre</h2><div class="grid wl">`;
+  wl.forEach((x,i)=>{
+    const zone=(P.buy_zones||{})[x.t],inZone=zone!=null&&x.q.c<=zone,dp=+x.q.dp||0;
+    h+=`<div class="card ${inZone?"":""}" style="${inZone?"border-color:var(--up)":""}">
+      <div class="row"><span><span class="rank">#${i+1}</span><b>${esc(x.t)}</b></span><span class="${cls(dp)}"><b>${sPct(dp)}</b></span></div>
+      <div class="sub">${usd(+x.q.c)}</div>
+      ${zone!=null?`<span class="chip ${inZone?"good":""}">${inZone?"🎯 alım bölgesinde":"alım ≤ "+usd(zone)}</span>`:""}</div>`;
+  });
+  h+=`</div>`;
+  if(lost.length)h+=`<div class="sub" style="margin-top:8px">⚠ Fiyat alınamadı: ${lost.map(esc).join(", ")}</div>`;
+
+  $("#app").innerHTML=h;
+  document.querySelectorAll(".pcard").forEach(el=>el.onclick=()=>openModal(el.dataset.t,S));
+
+  const upd=new Date(Q.updated),age=Math.round((Date.now()-upd)/60000);
+  const st=$("#status");
+  const mk=Q.market_open===true?"🟢 Piyasa açık":Q.market_open===false?"🔴 Piyasa kapalı":"⚪";
+  st.textContent=`${mk} · Son veri: ${upd.toLocaleString("tr-TR",{hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"})} (${age} dk önce)`;
+  st.className=(Q.market_open===true&&age>40)?"warn":"";
+  if(st.className)st.textContent+=" · veri gecikmiş olabilir";
+}
+
+function openModal(t,S){
+  const p=S.pos.find(x=>x.t===t);if(!p)return;
+  const tx=(STATE.H.transactions||[]).filter(x=>x.ticker===t).slice(-5).reverse();
+  const row=(a,b)=>`<tr><td>${a}</td><td>${b}</td></tr>`;
+  $("#modalBody").innerHTML=`<div class="row"><span class="tk" style="font-size:20px">${esc(t)}</span><button type="button" id="close">Kapat</button></div>
+   <table>
+   ${row("Fiyat",usd(p.price))}${row("Önceki kapanış",usd(p.pc))}${row("Bugün",`<span class="${cls(p.dayPnl)}">${sUsd(p.dayPnl)} (${sPct(p.dayPct)})</span>`)}
+   ${row("Adet",num(p.shares,0))}${row("Ort. maliyet",usd(p.cb,4))}
+   ${row("Pozisyon değeri",usd(p.value))}${row("Maliyet tutarı",usd(p.cost))}
+   ${row("Toplam K/Z",`<span class="${cls(p.pnl)}">${sUsd(p.pnl)} (${sPct(p.pnlPct)})</span>`)}
+   ${row("Portföy ağırlığı","%"+num(p.weight,1))}
+   ${p.stop!=null?row("Stop",usd(p.stop)):""}${p.target!=null?row("Hedef",usd(p.target)):""}</table>
+   ${tx.length?`<h2 style="margin-top:14px">Son işlemler</h2><table>${tx.map(x=>row(esc(x.date)+" "+esc(x.action==="buy"?"ALIŞ":"SATIŞ"),num(x.shares,0)+" @ "+usd(x.price))).join("")}</table>`:""}`;
+  $("#modal").classList.add("show");
+  $("#close").onclick=closeModal;
+}
+function closeModal(){$("#modal").classList.remove("show")}
+$("#modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+async function load(){
+  try{
+    const [P,Q,H,PR]=await Promise.all([getJson("portfolio.json"),getJson("quotes.json"),
+      getJson("history.json",true),getJson("prices.json",true)]);
+    STATE={P,Q,H:H||{transactions:[],snapshots:[]},PR:PR||{}};
+    render();
+  }catch(e){
+    $("#app").innerHTML=`<div class="err">${esc(e.message)}. İlk kurulumda "Portföy İzleme" workflow'unu bir kez elle çalıştırın.</div>`;
+    $("#status").textContent="";
+  }
+}
+load();
+setInterval(load,60000);
+</script>
+</body>
+</html>
