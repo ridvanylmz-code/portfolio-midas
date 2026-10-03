@@ -17,7 +17,7 @@
       "cost_basis": 7.61
     }
   },
-  "watchlist": ["AVGO", "MU", "UUUU", "KTOS", "INTC", "NVDA", "SGML", "CBRS", "STX"],
+  "watchlist": ["INTC", "NVDA", "SGML", "CBRS", "STX", "UUUU", "MU", "AVGO", "KTOS"],
   "cash_reserve": 3870,
   "last_updated": "2026-10-01"
 }
