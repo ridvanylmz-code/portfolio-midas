@@ -1,0 +1,18 @@
+{
+  "cash": 3870,
+  "monthly_target": 3500,
+  "portfolio": {
+    "WYFI": { "shares": 66, "cost_basis": 18.02 },
+    "RKLB": { "shares": 129, "cost_basis": 78.82 },
+    "CRWV": { "shares": 71, "cost_basis": 92.82 },
+    "UAMY": { "shares": 1121, "cost_basis": 7.61 }
+  },
+  "watchlist": ["INTC", "NVDA", "UUUU", "KTOS", "SGML", "CBRS", "STX", "MU", "AVGO"],
+  "alerts": {
+    "stop_loss_pct": -15,
+    "target_pct": 25,
+    "daily_move_pct": 5
+  },
+  "position_levels": {},
+  "buy_zones": {}
+}
