@@ -62,27 +62,6 @@
     .delta-positive { color: #0ca30c; }
     .delta-negative { color: #d03b3b; }
     
-    .chart-section {
-      background: var(--surface-1, #fcfcfb); 
-      border: 0.5px solid var(--border, #e1e0d9);
-      border-radius: 8px; padding: 16px;
-      margin-bottom: 24px;
-    }
-    
-    .chart-label { 
-      font-size: 13px; color: var(--text-muted, #898781); margin-bottom: 12px; 
-    }
-    
-    #plChart { width: 100%; height: 240px; }
-    
-    .chart-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px;
-    }
-    
-    .stat-item { text-align: center; }
-    .stat-label { font-size: 11px; color: var(--text-muted, #898781); margin-bottom: 4px; }
-    .stat-value { font-size: 14px; font-weight: 500; }
-    
     .portfolio-section {
       margin-bottom: 24px;
     }
@@ -231,7 +210,6 @@
     @media (prefers-color-scheme: dark) {
       body { background: #0b0b0b; color: #f0efec; }
       .summary-card { background: #1a1a19; border-color: #383835; }
-      .chart-section { background: #1a1a19; border-color: #383835; }
       .watch-item { background: #1a1a19; border-color: #383835; }
       .modal-content { background: #1a1a19; }
     }
@@ -263,11 +241,8 @@
     </div>
   </div>
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-  
   <script>
     const FINNHUB_KEY = 'davdb49r01qp1e4n572gdavdb49r01qp1e4n5730';
-    let plChart = null;
     let modalData = {};
     
     async function fetchPortfolioData() {
@@ -343,7 +318,6 @@
       let totalValue = 0;
       let totalCost = 0;
       const stockCards = [];
-      const plHistory = [-5240, -5100, -4950, -4800, -4650, -4500, -4923];
       
       // Hisse verilerini çek
       for (const [ticker, data] of Object.entries(portfolioItems)) {
@@ -388,7 +362,8 @@
             costValue: formatCurrency(costValue),
             plValue: formatCurrency(pl),
             plPct: plPct.toFixed(2),
-            changePct: changePct.toFixed(2)
+            changePct: changePct.toFixed(2),
+            pl
           };
         }
       }
@@ -427,7 +402,8 @@
             costValue: 'N/A',
             plValue: 'N/A',
             plPct: 'N/A',
-            changePct: changePct
+            changePct: changePct,
+            pl: 0
           };
         }
       }
@@ -451,25 +427,6 @@
             <div class="summary-label">Kar/Zarar</div>
             <div class="summary-value ${plColorClass}">$${plDisplay}</div>
             <div class="summary-delta ${plColorClass}">${plPctDisplay}%</div>
-          </div>
-        </div>
-        
-        <div class="chart-section">
-          <div class="chart-label">📈 Kar/Zarar Trend (7 Gün)</div>
-          <canvas id="plChart" style="width: 100%; height: 200px;"></canvas>
-          <div class="chart-stats">
-            <div class="stat-item">
-              <div class="stat-label">Min</div>
-              <div class="stat-value">$${formatCurrency(Math.min(...plHistory))}</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">Orta</div>
-              <div class="stat-value">$${formatCurrency(plHistory.reduce((a,b) => a+b)/plHistory.length)}</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">Son</div>
-              <div class="stat-value">$${formatCurrency(plHistory[plHistory.length-1])}</div>
-            </div>
           </div>
         </div>
         
@@ -522,37 +479,6 @@
       
       document.getElementById('content').innerHTML = html;
       document.getElementById('status-text').textContent = 'Çevrimiçi • Son 1 dk';
-      
-      // Chart oluştur
-      const ctx = document.getElementById('plChart');
-      if (ctx && !plChart) {
-        plChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: ['1 gün', '2 gün', '3 gün', '4 gün', '5 gün', '6 gün', 'Bugün'],
-            datasets: [{
-              label: 'P&L',
-              data: plHistory,
-              borderColor: '#d03b3b',
-              backgroundColor: 'rgba(208, 59, 59, 0.1)',
-              borderWidth: 2,
-              fill: true,
-              tension: 0.4,
-              pointRadius: 4,
-              pointBackgroundColor: '#d03b3b',
-              pointBorderColor: 'white'
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-              y: { grid: { color: '#e1e0d9' }, beginAtZero: false }
-            }
-          }
-        });
-      }
     }
     
     renderDashboard();
