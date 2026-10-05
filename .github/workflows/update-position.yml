@@ -32,12 +32,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - name: Python kur
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          - name: Bağımlılıkları kur
+      
+      - name: Bağımlılıkları kur
         run: pip install -r requirements.txt
+      
       - name: Pozisyon güncelle
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
