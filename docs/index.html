@@ -137,7 +137,7 @@ function monthProgress(P,H,total){
   if(!snaps.length)return null;
   const start=snaps[0];let flows=0;
   for(const x of H.transactions||[]){
-    if(x.date>start.date&&x.date.startswith(month)){
+    if(x.date>start.date&&x.date.startsWith(month)){
       if(x.action==="deposit")flows+=x.amount;else if(x.action==="withdraw")flows-=x.amount;
     }
   }
