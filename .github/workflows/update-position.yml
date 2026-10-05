@@ -1,1 +1,42 @@
+name: Pozisyon Güncelle
 
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'İşlem türü'
+        required: true
+        type: choice
+        options:
+          - buy
+          - sell
+          - deposit
+          - withdraw
+          - watch_add
+          - watch_remove
+      symbol:
+        description: 'Hisse kodu (örn: RKLB)'
+        required: true
+        type: string
+      quantity:
+        description: 'Miktar'
+        required: true
+        type: string
+      price:
+        description: 'Fiyat (buy/sell için gerekli)'
+        required: false
+        type: string
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Pozisyon güncelle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_position.py
