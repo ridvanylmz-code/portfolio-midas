@@ -19,7 +19,7 @@ on:
         required: true
         type: string
       quantity:
-        description: 'Miktar'
+        description: 'Miktar / Tutar'
         required: true
         type: string
       price:
@@ -39,4 +39,4 @@ jobs:
       - name: Pozisyon güncelle
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/update_position.py
+        run: python scripts/update_position.py --action ${{ inputs.action }} --ticker ${{ inputs.symbol }} --shares ${{ inputs.quantity }} --price ${{ inputs.price }}
