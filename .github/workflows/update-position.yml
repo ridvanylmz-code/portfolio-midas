@@ -15,35 +15,62 @@ on:
           - watch_add
           - watch_remove
       symbol:
-        description: 'Hisse kodu (örn: RKLB)'
-        required: true
-        type: string
-      quantity:
-        description: 'Miktar / Tutar'
-        required: true
-        type: string
-      price:
-        description: 'Fiyat (buy/sell için gerekli)'
+        description: 'Hisse kodu (buy/sell/watch_* için; deposit/withdraw için boş bırak)'
         required: false
         type: string
+      quantity:
+        description: 'buy/sell: adet | deposit/withdraw: tutar ($)'
+        required: false
+        type: string
+      price:
+        description: 'Fiyat (sadece buy/sell için)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portfolio-data
+  cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Python kur
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
-      
-      - name: Bağımlılıkları kur
-        run: pip install -r requirements.txt
-      
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - run: pip install -r requirements.txt
+
       - name: Pozisyon güncelle
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/update_position.py --action ${{ inputs.action }} --ticker ${{ inputs.symbol }} --shares ${{ inputs.quantity }} --price ${{ inputs.price }}
+          IN_ACTION: ${{ inputs.action }}
+          IN_TICKER: ${{ inputs.symbol }}
+          IN_PRICE: ${{ inputs.price }}
+          QUANTITY: ${{ inputs.quantity }}
+        run: |
+          # deposit/withdraw tutarı --amount'tan, buy/sell adedi --shares'ten okunur
+          case "$IN_ACTION" in
+            deposit|withdraw) export IN_AMOUNT="$QUANTITY" ;;
+            *) export IN_SHARES="$QUANTITY" ;;
+          esac
+          python scripts/update_position.py
+
+      - name: Değişikliği commit'le
+        run: |
+          git config user.name "portfolio-bot"
+          git config user.email "portfolio-bot@users.noreply.github.com"
+          git add portfolio.json history.json docs/data
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -m "pozisyon: ${{ inputs.action }} ${{ inputs.symbol }}"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
