@@ -9,90 +9,168 @@
 <style>
 :root{
   --bg:#0a0d14; --card:#11151f; --line:#1d2330; --txt:#e8ecf4; --mut:#7d8798;
-  --up:#3ddc84; --dn:#ff5c6c; --chip:#1a2030;
+  --up:#3ddc84; --dn:#ff5c6c; --warn:#f5b942; --chip:#1a2030; --on:#27304a; --acc:#5aa9ff;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--txt);
-  font:15px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-body{padding:0 14px calc(28px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
-.hero{padding:22px 4px 14px}
+  font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
+.tab{display:none} .tab.on{display:block}
+.hero{padding:22px 4px 10px}
 .lbl{color:var(--mut);font-size:13px}
 .total{font-size:34px;font-weight:700;letter-spacing:-.5px;margin:2px 0 8px;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600;
   font-variant-numeric:tabular-nums;border:1px solid transparent}
 .pill.up{color:var(--up);background:rgba(61,220,132,.1);border-color:rgba(61,220,132,.25)}
 .pill.dn{color:var(--dn);background:rgba(255,92,108,.1);border-color:rgba(255,92,108,.25)}
-.seg{display:flex;gap:4px;background:var(--chip);border-radius:12px;padding:3px;margin:14px 0 6px;width:max-content}
+.seg{display:flex;gap:4px;background:var(--chip);border-radius:12px;padding:3px;margin:14px 0 6px;width:max-content;max-width:100%}
 .seg button{border:0;background:transparent;color:var(--mut);font:inherit;font-weight:600;
-  padding:7px 16px;border-radius:9px;cursor:pointer}
-.seg button.on{background:#27304a;color:var(--txt)}
+  padding:7px 14px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.seg button.on{background:var(--on);color:var(--txt)}
+.h1{font-size:22px;font-weight:700;margin:22px 4px 6px}
 .sec{display:flex;align-items:center;gap:8px;margin:20px 4px 8px;font-size:17px;font-weight:700}
 .badge{background:var(--chip);color:var(--mut);font-size:12px;font-weight:600;padding:2px 8px;border-radius:8px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:8px;
-  display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-variant-numeric:tabular-nums}
+  display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+.card .l,.card .r{display:flex;flex-direction:column;gap:2px}
+.card .r{text-align:right;align-items:flex-end}
 .tk{font-weight:700;font-size:16px}
 .tk small{color:var(--mut);font-weight:500;font-size:13px;margin-left:6px}
-.val{text-align:right;font-weight:700;font-size:16px}
+.val{font-weight:700;font-size:16px}
 .sub{color:var(--mut);font-size:13px}
-.sub b{font-weight:600}
-.r{text-align:right}
-.up{color:var(--up)} .dn{color:var(--dn)}
+.up{color:var(--up)} .dn{color:var(--dn)} .warn{color:var(--warn)}
 .row{display:flex;justify-content:space-between;align-items:center;background:var(--card);
   border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:8px;font-variant-numeric:tabular-nums}
-.wl{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
-.wlbox{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:10px}
+.wl{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);
+  font-variant-numeric:tabular-nums}
 .wl:last-child{border-bottom:0}
+.wl.link{cursor:pointer}
+.wl small{color:var(--acc);font-weight:500;margin-left:6px}
 .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:18px}
 .err{background:rgba(255,92,108,.1);border:1px solid rgba(255,92,108,.3);color:var(--dn);
   border-radius:12px;padding:12px;margin-top:16px;font-size:13px}
+.note{color:var(--mut);font-size:12px;margin:8px 4px}
+/* analiz */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--mut);font:inherit;font-weight:700;
+  padding:8px 14px;border-radius:999px;cursor:pointer}
+.chip.on{background:var(--on);color:var(--txt);border-color:#3a4566}
+.body{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:6px}
+.body ul{margin:0;padding-left:18px} .body li{margin:6px 0}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.kv:last-child{border-bottom:0} .kv span:first-child{color:var(--mut)} .kv span:last-child{text-align:right;font-weight:600}
+.big{font-size:20px;font-weight:700;margin-bottom:6px}
+.news{display:block;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--txt);text-decoration:none}
+.news:last-child{border-bottom:0}
+.news .d{color:var(--mut);font-size:12px;margin-top:3px}
+.empty{color:var(--mut);padding:18px 14px;text-align:center}
+/* alt sekme çubuğu */
+.bar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;
+  padding:8px 12px calc(10px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--bg) 70%,rgba(10,13,20,0))}
+.bar nav{display:flex;gap:4px;width:100%;max-width:536px;background:#141926;border:1px solid var(--line);border-radius:22px;padding:5px}
+.bar button{flex:1;border:0;background:transparent;color:var(--mut);font:inherit;font-size:12px;font-weight:600;
+  padding:8px 4px;border-radius:17px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+.bar button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bar button.on{background:var(--on);color:var(--txt)}
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="lbl">Toplam Varlık</div>
-  <div class="total" id="total">–</div>
-  <span class="pill" id="pnl">yükleniyor…</span>
-  <div class="seg" id="seg">
-    <button data-m="day">Günlük</button>
-    <button data-m="all" class="on">Toplam</button>
+
+<!-- PORTFÖY -->
+<section class="tab on" id="t-portfoy">
+  <div class="hero">
+    <div class="lbl">Toplam Varlık</div>
+    <div class="total" id="total">–</div>
+    <span class="pill" id="pnl">yükleniyor…</span>
+    <div class="seg" id="seg">
+      <button data-m="day">Günlük</button>
+      <button data-m="all" class="on">Toplam</button>
+    </div>
   </div>
-</div>
+  <div class="sec">Hisselerim <span class="badge" id="cnt">0</span></div>
+  <div id="list"></div>
+  <div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
+  <div class="foot" id="foot"></div>
+</section>
 
-<div class="sec">Hisselerim <span class="badge" id="cnt">0</span></div>
-<div id="list"></div>
+<!-- TAKİP -->
+<section class="tab" id="t-takip">
+  <div class="h1">Takip Listesi</div>
+  <div class="box" id="wl"></div>
+  <div class="note">Analizi olan hisselere dokununca Analiz sekmesi açılır.</div>
+</section>
 
-<div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
+<!-- HABERLER -->
+<section class="tab" id="t-haber">
+  <div class="h1">Haberler</div>
+  <div id="newsAll"></div>
+</section>
 
-<div class="sec">Takip Listesi <span class="badge" id="wcnt">0</span></div>
-<div class="wlbox" id="wl"></div>
+<!-- ANALİZ -->
+<section class="tab" id="t-analiz">
+  <div class="h1">Analiz</div>
+  <div class="chips" id="chips"></div>
+  <div class="seg" id="sub">
+    <button data-s="momentum" class="on">Momentum</button>
+    <button data-s="teknik">Teknik</button>
+    <button data-s="temel">Temel</button>
+    <button data-s="haber">Haber</button>
+  </div>
+  <div id="abody"></div>
+  <div class="note" id="anote"></div>
+</section>
 
-<div class="foot" id="foot"></div>
 <div id="msg"></div>
+
+<div class="bar"><nav id="nav">
+  <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
+  <button data-t="takip"><svg viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>Takip</button>
+  <button data-t="haber"><svg viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg>Haberler</button>
+  <button data-t="analiz"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 5-6"/></svg>Analiz</button>
+</nav></div>
 
 <script>
 (function(){
-  // Telegram içinde açıldıysa tam ekran + tema rengi; dışında normal sayfa gibi çalışır
   try{
     var tg=window.Telegram&&window.Telegram.WebApp;
     if(tg){tg.ready();tg.expand();
       try{tg.setHeaderColor("#0a0d14");tg.setBackgroundColor("#0a0d14");}catch(e){}}
   }catch(e){}
 
-  var mode="all", P=null, Q=null;
+  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null;
   var $=function(id){return document.getElementById(id)};
   var usd=function(n){return "$"+n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})};
   var num=function(n,d){return n.toLocaleString("tr-TR",{minimumFractionDigits:d,maximumFractionDigits:d})};
-  var sgn=function(n){return (n>=0?"+":"−")};
+  var sgn=function(n){return n>=0?"+":"−"};
   var cls=function(n){return n>=0?"up":"dn"};
-
   function el(tag,c,t){var e=document.createElement(tag);if(c)e.className=c;if(t!==undefined)e.textContent=t;return e}
-
-  function load(name){
+  function load(name,optional){
     return fetch("data/"+name+"?t="+Date.now(),{cache:"no-store"}).then(function(r){
-      if(!r.ok)throw new Error(name+" "+r.status);return r.json()});
+      if(!r.ok)throw new Error(name+" "+r.status);return r.json()}).catch(function(e){
+      if(optional)return null;throw e});
   }
+  function momCls(s){s=(s||"").toLowerCase();
+    if(s.indexOf("güçlü")===0)return "up"; if(s.indexOf("zayıf")===0)return "dn"; return "warn"}
+  function riskCls(s){s=(s||"").toLowerCase();
+    if(s.indexOf("yüksek")===0)return "dn"; if(s.indexOf("düşük")===0)return "up"; return "warn"}
 
-  function render(){
+  /* ---------- sekmeler ---------- */
+  function showTab(t){
+    var ok=["portfoy","takip","haber","analiz"]; if(ok.indexOf(t)<0)t="portfoy";
+    [].forEach.call(document.querySelectorAll(".tab"),function(s){s.classList.toggle("on",s.id==="t-"+t)});
+    [].forEach.call($("nav").children,function(b){b.classList.toggle("on",b.getAttribute("data-t")===t)});
+    try{history.replaceState(null,"","#"+t)}catch(e){}
+    window.scrollTo(0,0);
+  }
+  $("nav").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(b)showTab(b.getAttribute("data-t"));
+  });
+
+  /* ---------- portföy ---------- */
+  function renderPortfolio(){
     var pf=P.portfolio||{}, q=(Q&&Q.quotes)||{};
     var rows=[], posVal=0, cost=0, dayPnl=0;
     Object.keys(pf).forEach(function(t){
@@ -116,46 +194,120 @@ body{padding:0 14px calc(28px + env(safe-area-inset-bottom));max-width:560px;mar
     $("cnt").textContent=rows.length;
     var list=$("list"); list.textContent="";
     rows.forEach(function(r){
-      var card=el("div","card");
+      var card=el("div","card"), l=el("div","l"), rr=el("div","r");
       var tk=el("div","tk",r.t); tk.appendChild(el("small","",num(r.s,r.s%1?2:0)+" adet"));
-      card.appendChild(tk);
-      card.appendChild(el("div","val",usd(r.v)));
-      var sub=el("div","sub"); sub.appendChild(document.createTextNode("Maliyet "+usd(r.cb)+" · "));
-      var b=el("b",cls(r.dp)+"",usd(r.c)+" ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)");
-      sub.appendChild(b); card.appendChild(sub);
+      l.appendChild(tk);
+      l.appendChild(el("div","sub","Maliyet "+usd(r.cb)));
+      l.appendChild(el("div","sub "+cls(r.dp),usd(r.c)+"  ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)"));
       var dv=mode==="day"?r.d:r.pnl, dpct=mode==="day"?r.dp:r.pct;
-      card.appendChild(el("div","r "+cls(dv),sgn(dv)+usd(Math.abs(dv))+" ("+sgn(dpct)+num(Math.abs(dpct),2)+"%)"));
+      rr.appendChild(el("div","val",usd(r.v)));
+      rr.appendChild(el("div","sub "+cls(dv),sgn(dv)+usd(Math.abs(dv))));
+      rr.appendChild(el("div","sub "+cls(dv),"%"+sgn(dpct)+num(Math.abs(dpct),2)));
+      card.appendChild(l); card.appendChild(rr);
+      if(A&&A.tickers&&A.tickers[r.t]){card.style.cursor="pointer";
+        card.addEventListener("click",function(){openAnaliz(r.t)})}
       list.appendChild(card);
     });
-
     $("cash").textContent=usd(cash)+(total?"  ·  %"+num(cash/total*100,1):"");
-
-    var wl=P.watchlist||[]; $("wcnt").textContent=wl.length;
-    var box=$("wl"); box.textContent="";
-    wl.forEach(function(t){
-      var x=q[t]||{}, row=el("div","wl");
-      row.appendChild(el("b","",t));
-      var r=el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"):"–");
-      row.appendChild(r); box.appendChild(row);
-    });
-
     var upd=Q&&Q.updated?new Date(Q.updated):null;
     $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+
       (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
         day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"")+" · Gecikmeli veri";
   }
-
   $("seg").addEventListener("click",function(e){
     var m=e.target.getAttribute&&e.target.getAttribute("data-m"); if(!m||!P)return;
     mode=m; [].forEach.call($("seg").children,function(b){b.classList.toggle("on",b.getAttribute("data-m")===m)});
-    render();
+    renderPortfolio();
   });
 
-  Promise.all([load("portfolio.json"),load("quotes.json")]).then(function(r){
-    P=r[0];Q=r[1];render();
+  /* ---------- takip ---------- */
+  function renderWatch(){
+    var q=(Q&&Q.quotes)||{}, wl=P.watchlist||[], box=$("wl"); box.textContent="";
+    if(!wl.length){box.appendChild(el("div","empty","Takip listesi boş"));return}
+    wl.forEach(function(t){
+      var x=q[t]||{}, row=el("div","wl"), has=A&&A.tickers&&A.tickers[t];
+      var b=el("b","",t); if(has)b.appendChild(el("small","","analiz ›"));
+      row.appendChild(b);
+      row.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"):"–"));
+      if(has){row.classList.add("link");row.addEventListener("click",function(){openAnaliz(t)})}
+      box.appendChild(row);
+    });
+  }
+
+  /* ---------- haberler ---------- */
+  function newsItem(n){
+    var a=el("a","news"); a.textContent="";
+    var url=(n.url||""); if(url.indexOf("https://")===0){a.href=url;a.target="_blank";a.rel="noopener noreferrer"}
+    a.appendChild(el("div","",n.title||""));
+    a.appendChild(el("div","d",(n.date||"")+(n.src?" · "+n.src:"")));
+    return a;
+  }
+  function renderNews(){
+    var wrap=$("newsAll"); wrap.textContent="";
+    var T=A&&A.tickers; if(!T||!Object.keys(T).length){wrap.appendChild(el("div","empty","Henüz haber verisi yok"));return}
+    Object.keys(T).forEach(function(t){
+      var items=T[t].news||[]; if(!items.length)return;
+      var h=el("div","sec",t); h.appendChild(el("span","badge",String(items.length)));
+      wrap.appendChild(h);
+      var box=el("div","box"); items.forEach(function(n){box.appendChild(newsItem(n))}); wrap.appendChild(box);
+    });
+  }
+
+  /* ---------- analiz ---------- */
+  function openAnaliz(t){cur=t;renderAnaliz();showTab("analiz")}
+  function renderAnaliz(){
+    var T=(A&&A.tickers)||{}, keys=Object.keys(T), chips=$("chips"), body=$("abody");
+    chips.textContent=""; body.textContent="";
+    $("anote").textContent=A&&A.note?A.note+(A.updated?" (Güncelleme: "+A.updated+")":""):"";
+    if(!keys.length){body.appendChild(el("div","empty","Henüz analiz verisi yok"));return}
+    if(!cur||!T[cur])cur=keys[0];
+    keys.forEach(function(t){
+      var c=el("button","chip"+(t===cur?" on":""),t);
+      c.addEventListener("click",function(){cur=t;renderAnaliz()});
+      chips.appendChild(c);
+    });
+    [].forEach.call($("sub").children,function(b){b.classList.toggle("on",b.getAttribute("data-s")===sub)});
+    var d=T[cur], q=((Q&&Q.quotes)||{})[cur]||{}, box=el("div","body");
+
+    if(sub==="momentum"){
+      var m=d.momentum||{};
+      box.appendChild(el("div","big "+momCls(m.status),m.status||"–"));
+      box.appendChild(el("div","",m.text||""));
+    }else if(sub==="teknik"){
+      if(q.c){
+        var k=el("div","kv"); box.appendChild(k); k.appendChild(el("span","","Canlı fiyat")); k.appendChild(el("span",cls(+q.dp||0),usd(+q.c)+" ("+sgn(+q.dp||0)+num(Math.abs(+q.dp||0),2)+"%)"));
+        var k2=el("div","kv"); k2.appendChild(el("span","","Gün aralığı")); k2.appendChild(el("span","",usd(+q.l)+" – "+usd(+q.h))); box.appendChild(k2);
+      }
+      var ul=el("ul"); (d.technical||[]).forEach(function(s){ul.appendChild(el("li","",s))});
+      var sp=el("div"); sp.style.marginTop="10px"; sp.appendChild(ul); box.appendChild(sp);
+    }else if(sub==="temel"){
+      ((d.fundamental&&d.fundamental.metrics)||[]).forEach(function(kv){
+        var k=el("div","kv"); k.appendChild(el("span","",kv[0])); k.appendChild(el("span","",kv[1])); box.appendChild(k)});
+      if(d.fundamental&&d.fundamental.fair_value){
+        var f=el("div","kv"); f.appendChild(el("span","","Adil değer")); f.appendChild(el("span","",d.fundamental.fair_value)); box.appendChild(f)}
+      if(d.dilution){
+        var r=el("div","kv"); r.appendChild(el("span","","Sermaye artırımı riski (12 ay)"));
+        r.appendChild(el("span",riskCls(d.dilution.risk),d.dilution.risk)); box.appendChild(r);
+        var tx=el("div","sub",d.dilution.text||""); tx.style.marginTop="8px"; box.appendChild(tx)}
+    }else if(sub==="haber"){
+      box.style.padding="0"; box.style.overflow="hidden";
+      var items=d.news||[]; if(!items.length)box.appendChild(el("div","empty","Haber yok"));
+      items.forEach(function(n){box.appendChild(newsItem(n))});
+    }
+    body.appendChild(box);
+  }
+  $("sub").addEventListener("click",function(e){
+    var s=e.target.getAttribute&&e.target.getAttribute("data-s"); if(!s)return; sub=s; renderAnaliz();
+  });
+
+  /* ---------- başlat ---------- */
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true)]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];
+    renderPortfolio();renderWatch();renderNews();renderAnaliz();
+    showTab((location.hash||"").replace("#",""));
   }).catch(function(e){
     $("pnl").textContent="veri alınamadı";
-    var m=el("div","err","Veri okunamadı: "+e.message); $("msg").appendChild(m);
+    $("msg").appendChild(el("div","err","Veri okunamadı: "+e.message));
   });
 })();
 </script>
