@@ -1,17 +1,22 @@
 name: Portföy İzleme
 
-# Saatler UTC. İstanbul = UTC+3.
-#  - Her 15 dk (13:00-21:45 UTC, hafta içi): sessiz yenileme -> dashboard verisi + alarm
-#  - 07:05 / 13:20 / 17:05 / 21:10 UTC (10:05 / 16:20 / 20:05 / 00:10 İstanbul): Telegram raporu
-# Not: GitHub zamanlanmış işleri birkaç dk geciktirebilir. ABD yaz/kış saati farkı
-# (kapanış 20:00 / 21:00 UTC) 21:10 raporuyla her iki durumda da kapanış sonrasına denk gelir.
+# Cron saatleri UTC. İstanbul = UTC+3. ABD YAZ saati (kapanış 20:00 UTC = 23:00 İstanbul).
+# Telegram raporları (İstanbul): 03:01 (Pzt-Cmt), 07:01, 11:01, 16:16, 16:31, 22:55, 23:01 (Pzt-Cum).
+#   - Cumartesi 03:01 haftasonu öncesi son rapor; Pazartesi 03:01 yeni hafta ilk raporu.
+#   - Cumartesi 03:01 ile Pazartesi 03:01 arası hiçbir otomatik çalışma yok.
+# Sessiz yenileme (dashboard + alarm): hafta içi 13:07-19:52 UTC, her 15 dk (rapor dakikalarıyla çakışmasın diye :07/:22/:37/:52).
+# ABD KIŞ saatine geçişte (1 Kasım 2026) tüm rapor saatleri UTC'de +1 saat kaydırılacak.
+# Not: GitHub zamanlanmış işleri birkaç dk-20 dk geciktirebilir.
 on:
   schedule:
-    - cron: "*/15 13-21 * * 1-5"
-    - cron: "5 7 * * 1-5"
-    - cron: "20 13 * * 1-5"
-    - cron: "5 17 * * 1-5"
-    - cron: "10 21 * * 1-5"
+    - cron: "7,22,37,52 13-19 * * 1-5"   # sessiz yenileme
+    - cron: "1 0 * * 1-6"                # 03:01 İstanbul (Pzt-Cmt)
+    - cron: "1 4 * * 1-5"                # 07:01
+    - cron: "1 8 * * 1-5"                # 11:01
+    - cron: "16 13 * * 1-5"              # 16:16
+    - cron: "31 13 * * 1-5"              # 16:31
+    - cron: "55 19 * * 1-5"              # 22:55
+    - cron: "1 20 * * 1-5"               # 23:01
   workflow_dispatch:
     inputs:
       report:
@@ -52,7 +57,7 @@ jobs:
           REPORT_INPUT: ${{ inputs.report }}
         run: |
           ARGS=""
-          if [ "$EVENT" = "schedule" ] && [ "$SCHEDULE" != "*/15 13-21 * * 1-5" ]; then
+          if [ "$EVENT" = "schedule" ] && [ "$SCHEDULE" != "7,22,37,52 13-19 * * 1-5" ]; then
             ARGS="--report"
           fi
           if [ "$EVENT" = "workflow_dispatch" ]; then
