@@ -150,6 +150,20 @@ def fetch_tv(symbol):
     raise RuntimeError(f"{type(last_err).__name__}: {str(last_err)[:160]}")
 
 
+def fetch_tv_retry(symbol):
+    """TradingView 429 (istek sınırı) verirse bekleyip en çok 2 kez yeniden dener."""
+    for attempt in range(3):
+        try:
+            return fetch_tv(symbol)
+        except Exception as e:
+            if "429" in str(e) and attempt < 2:
+                wait = 20 * (attempt + 1)
+                log(f"TV  {symbol}: 429, {wait} sn beklenip yeniden denenecek")
+                time.sleep(wait)
+                continue
+            raise
+
+
 def main():
     pf = load_json(PORTFOLIO, {})
     tickers = list(dict.fromkeys(list((pf.get("portfolio") or {}).keys()) + list(pf.get("watchlist") or [])))
@@ -170,14 +184,14 @@ def main():
         entry = {"tv": None, "td": None}
         if tv_ok:
             try:
-                entry["tv"] = fetch_tv(t)
+                entry["tv"] = fetch_tv_retry(t)
                 n_tv += 1
                 log(f"TV  {t}: {entry['tv']['recommendation']} (RSI {entry['tv']['indicators'].get('RSI')})")
             except Exception as e:
                 log(f"TV  {t}: HATA {e}")
                 if prev.get("tv"):
                     entry["tv"] = dict(prev["tv"], stale=True)
-            time.sleep(1.5)
+            time.sleep(2.5)
         if key:
             try:
                 entry["td"] = fetch_td(t, key)
