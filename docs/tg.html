@@ -213,10 +213,12 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   try{hide=localStorage.getItem("pm_hide")==="1"}catch(e){}
   document.body.classList.toggle("hide",hide);
   function mk(s){return hide?"*****":s}
+  // Yazılı notlardaki ortalama maliyet rakamlarını gizler ("maliyetin (78,82) altında" -> "maliyetin ***** altında")
+  function mc(s){return hide?String(s).replace(/(maliyet[a-zçğıöşü]*\s*)\(?\$?\d+(?:[.,]\d+)*\)?/gi,"$1*****"):s}
   $("eye").addEventListener("click",function(){
     hide=!hide; document.body.classList.toggle("hide",hide);
     try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
-    if(P)renderPortfolio();
+    if(P){renderPortfolio();renderAnaliz()}
   });
 
   function renderPortfolio(){
@@ -327,7 +329,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     }else if(sub==="momentum"){
       var m=d.momentum||{};
       box.appendChild(el("div","big "+momCls(m.status),m.status||"–"));
-      box.appendChild(el("div","",m.text||""));
+      box.appendChild(el("div","",mc(m.text||"")));
     }else if(sub==="teknik"){
       if(q.c){
         addKV(box,"Canlı fiyat",usd(+q.c)+" ("+sgn(+q.dp||0)+num(Math.abs(+q.dp||0),2)+"%)",cls(+q.dp||0));
@@ -336,7 +338,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       renderTech(box,cur);
       if((d.technical||[]).length){
         var hd2=el("div","sub","Yazılı notlar ("+(A&&A.updated||"")+")"); hd2.style.margin="12px 0 2px"; box.appendChild(hd2);
-        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",s))}); box.appendChild(ul);
+        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); box.appendChild(ul);
       }
     }else if(sub==="temel"){
       ((d.fundamental&&d.fundamental.metrics)||[]).forEach(function(kv){
