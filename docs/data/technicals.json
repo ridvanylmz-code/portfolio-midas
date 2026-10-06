@@ -1,0 +1,321 @@
+{
+  "updated": "2026-10-06T05:55:38+00:00",
+  "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
+  "log": [
+    "TWELVEDATA_API_KEY yok: Twelve Data adımı atlandı",
+    "TV  WYFI: SELL (RSI 41.073)",
+    "TV  RKLB: BUY (RSI 56.405)",
+    "TV  CRWV: NEUTRAL (RSI 50.414)",
+    "TV  UAMY: SELL (RSI 31.319)",
+    "TV  INTC: BUY (RSI 56.489)",
+    "TV  NVDA: BUY (RSI 66.901)",
+    "TV  UUUU: SELL (RSI 32.002)",
+    "TV  KTOS: SELL (RSI 28.507)",
+    "TV  SGML: SELL (RSI 45.556)",
+    "TV  CBRS: SELL (RSI 44.509)",
+    "TV  STX: BUY (RSI 51.559)",
+    "TV  MU: BUY (RSI 57.257)",
+    "TV  AVGO: BUY (RSI 52.072)",
+    "Özet: 13 hisse, TV başarılı 13, TD başarılı 0"
+  ],
+  "tickers": {
+    "WYFI": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "buy": 2,
+        "sell": 14,
+        "neutral": 10,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 41.073,
+          "MACD.macd": -0.924,
+          "MACD.signal": -1.009,
+          "SMA20": 18.665,
+          "SMA50": 21.273,
+          "SMA200": 21.548,
+          "EMA20": 18.884,
+          "ADX": 15.446,
+          "close": 17.46
+        }
+      },
+      "td": null
+    },
+    "RKLB": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "buy": 11,
+        "sell": 5,
+        "neutral": 10,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "BUY",
+        "indicators": {
+          "RSI": 56.405,
+          "MACD.macd": 0.897,
+          "MACD.signal": 0.086,
+          "SMA20": 68.238,
+          "SMA50": 69.943,
+          "SMA200": 81.502,
+          "EMA20": 69.922,
+          "ADX": 15.648,
+          "close": 73.02
+        }
+      },
+      "td": null
+    },
+    "CRWV": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "NEUTRAL",
+        "buy": 9,
+        "sell": 9,
+        "neutral": 8,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "NEUTRAL",
+        "indicators": {
+          "RSI": 50.414,
+          "MACD.macd": 0.079,
+          "MACD.signal": -0.316,
+          "SMA20": 87.094,
+          "SMA50": 87.007,
+          "SMA200": 92.368,
+          "EMA20": 87.045,
+          "ADX": 11.332,
+          "close": 87.39
+        }
+      },
+      "td": null
+    },
+    "UAMY": {
+      "tv": {
+        "exchange": "NYSE",
+        "recommendation": "SELL",
+        "buy": 2,
+        "sell": 16,
+        "neutral": 8,
+        "oscillators": "SELL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 31.319,
+          "MACD.macd": -0.326,
+          "MACD.signal": -0.285,
+          "SMA20": 4.59,
+          "SMA50": 5.116,
+          "SMA200": 7.54,
+          "EMA20": 4.518,
+          "ADX": 26.636,
+          "close": 3.95
+        }
+      },
+      "td": null
+    },
+    "INTC": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "buy": 11,
+        "sell": 5,
+        "neutral": 10,
+        "oscillators": "SELL",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 56.489,
+          "MACD.macd": 5.604,
+          "MACD.signal": 5.643,
+          "SMA20": 112.655,
+          "SMA50": 101.352,
+          "SMA200": 81.573,
+          "EMA20": 113.024,
+          "ADX": 24.894,
+          "close": 116.19
+        }
+      },
+      "td": null
+    },
+    "NVDA": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "buy": 15,
+        "sell": 1,
+        "neutral": 10,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 66.901,
+          "MACD.macd": 4.173,
+          "MACD.signal": 2.964,
+          "SMA20": 224.213,
+          "SMA50": 218.919,
+          "SMA200": 201.021,
+          "EMA20": 226.233,
+          "ADX": 17.106,
+          "close": 238.9
+        }
+      },
+      "td": null
+    },
+    "UUUU": {
+      "tv": {
+        "exchange": "AMEX",
+        "recommendation": "SELL",
+        "buy": 4,
+        "sell": 16,
+        "neutral": 6,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 32.002,
+          "MACD.macd": -0.808,
+          "MACD.signal": -0.726,
+          "SMA20": 11.969,
+          "SMA50": 13.117,
+          "SMA200": 17.109,
+          "EMA20": 11.862,
+          "ADX": 30.208,
+          "close": 10.82
+        }
+      },
+      "td": null
+    },
+    "KTOS": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "buy": 3,
+        "sell": 16,
+        "neutral": 7,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 28.507,
+          "MACD.macd": -2.355,
+          "MACD.signal": -2.123,
+          "SMA20": 45.93,
+          "SMA50": 51.056,
+          "SMA200": 68.791,
+          "EMA20": 45.958,
+          "ADX": 23.757,
+          "close": 42.02
+        }
+      },
+      "td": null
+    },
+    "SGML": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "buy": 4,
+        "sell": 12,
+        "neutral": 10,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 45.556,
+          "MACD.macd": -0.507,
+          "MACD.signal": -0.49,
+          "SMA20": 9.628,
+          "SMA50": 10.697,
+          "SMA200": 13.384,
+          "EMA20": 9.85,
+          "ADX": 24.856,
+          "close": 9.56
+        }
+      },
+      "td": null
+    },
+    "CBRS": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "buy": 4,
+        "sell": 10,
+        "neutral": 8,
+        "oscillators": "BUY",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 44.509,
+          "MACD.macd": -5.457,
+          "MACD.signal": -2.893,
+          "SMA20": 192.68,
+          "SMA50": 200.703,
+          "EMA20": 190.702,
+          "ADX": 12.162,
+          "close": 181.55
+        }
+      },
+      "td": null
+    },
+    "STX": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "buy": 15,
+        "sell": 3,
+        "neutral": 8,
+        "oscillators": "BUY",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 51.559,
+          "MACD.macd": 15.219,
+          "MACD.signal": 13.995,
+          "SMA20": 874.399,
+          "SMA50": 855.424,
+          "SMA200": 653.701,
+          "EMA20": 881.44,
+          "ADX": 11.723,
+          "close": 887.09
+        }
+      },
+      "td": null
+    },
+    "MU": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "buy": 13,
+        "sell": 4,
+        "neutral": 9,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 57.257,
+          "MACD.macd": 33.44,
+          "MACD.signal": 31.671,
+          "SMA20": 1027.37,
+          "SMA50": 958.906,
+          "SMA200": 685.772,
+          "EMA20": 1035.137,
+          "ADX": 14.114,
+          "close": 1063.96
+        }
+      },
+      "td": null
+    },
+    "AVGO": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "buy": 10,
+        "sell": 6,
+        "neutral": 10,
+        "oscillators": "BUY",
+        "moving_averages": "BUY",
+        "indicators": {
+          "RSI": 52.072,
+          "MACD.macd": -4.347,
+          "MACD.signal": -6.03,
+          "SMA20": 354.334,
+          "SMA50": 372.834,
+          "SMA200": 367.603,
+          "EMA20": 356.524,
+          "ADX": 20.477,
+          "close": 362.51
+        }
+      },
+      "td": null
+    }
+  }
+}
