@@ -1,0 +1,48 @@
+name: Genişletilmiş Saat Verisi (deneme)
+
+# DENEME: monitor.yml'den bağımsız. Sadece docs/data/extended.json yazar ve Telegram'a özet gönderir.
+# Şimdilik: bu dosya push edilince ve elle (workflow_dispatch) çalışır. Zamanlama, test başarılı olunca eklenecek.
+on:
+  push:
+    paths:
+      - ".github/workflows/extended.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: extended
+  cancel-in-progress: false
+
+jobs:
+  extended:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Ön piyasa / kapanış sonrası verisini çek
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/extended.py --telegram
+
+      - name: Sadece extended.json'u commit et
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/extended.json
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -m "extended: veri güncellendi"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 5
+          done
+          echo "push başarısız"; exit 1
