@@ -12,7 +12,8 @@
   --up:#3ddc84; --dn:#ff5c6c; --warn:#f5b942; --chip:#1a2030; --on:#27304a; --acc:#5aa9ff;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--txt);
+html{background:var(--bg)}
+html,body{margin:0;color:var(--txt);
   font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
 body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
 .tab{display:none} .tab.on{display:block}
@@ -78,12 +79,29 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   padding:8px 4px;border-radius:17px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
 .bar button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .bar button.on{background:var(--on);color:var(--txt)}
+/* görsel katman: aurora arka plan + başlık */
+.aurora{position:fixed;left:0;right:0;top:0;height:420px;z-index:-1;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(46px);opacity:.75;animation:drift 18s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:360px;height:260px;left:-90px;top:-40px;background:#2b4fd8}
+.aurora i:nth-child(2){width:320px;height:240px;right:-100px;top:20px;background:#7a3fd1;animation-delay:-6s}
+.aurora i:nth-child(3){width:300px;height:200px;left:20%;top:150px;background:#0e8fa8;opacity:.5;animation-delay:-11s}
+@keyframes drift{to{transform:translate(34px,22px) scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.aurora i{animation:none}}
+.brand{display:flex;align-items:center;gap:8px;padding:14px 4px 0;font-size:12px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(232,236,244,.75)}
+.brand b{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 10px var(--up)}
+.card,.box,.row,.body{background:rgba(17,21,31,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero{padding-top:12px} .hero .lbl,.hero .eye{color:rgba(232,236,244,.8)}
+.total{text-shadow:0 2px 18px rgba(90,140,255,.35)}
 </style>
 </head>
 <body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <!-- PORTFÖY -->
 <section class="tab on" id="t-portfoy">
+  <div class="brand"><b></b>Portföy Midas</div>
   <div class="hero">
     <div class="lbl">Toplam Varlık
       <button class="eye" id="eye" aria-label="Tutarları gizle / göster">
