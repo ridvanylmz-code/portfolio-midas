@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T08:02:20+00:00",
+  "updated": "2026-10-06T11:08:37+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "TV  WYFI: SELL (RSI 41.073)",
@@ -22,13 +22,13 @@
     "TD  SGML: RSI 45.6 SMA50 10.7 (250 bar)",
     "TV  CBRS: SELL (RSI 44.509)",
     "TD  CBRS: RSI 44.5 SMA50 200.7 (99 bar)",
-    "TV  STX: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TV  STX: BUY (RSI 51.559)",
     "TD  STX: RSI 51.6 SMA50 855.42 (250 bar)",
     "TV  MU: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
     "TD  MU: RSI 57.3 SMA50 958.91 (250 bar)",
     "TV  AVGO: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
     "TD  AVGO: RSI 52.1 SMA50 372.83 (250 bar)",
-    "Özet: 13 hisse, TV başarılı 10, TD başarılı 13"
+    "Özet: 13 hisse, TV başarılı 11, TD başarılı 13"
   ],
   "tickers": {
     "WYFI": {
@@ -479,8 +479,7 @@
           "EMA20": 881.44,
           "ADX": 11.723,
           "close": 887.09
-        },
-        "stale": true
+        }
       },
       "td": {
         "date": "2026-10-05",
