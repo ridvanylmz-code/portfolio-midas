@@ -55,8 +55,42 @@ def market_status(key):
         return None
 
 
+# ------------------------------------------------------------------ ön/sonrası
+def apply_extended(quotes, tickers, now):
+    """Ön piyasa / kapanış sonrası seansında rapor için fiyatı TradingView'den al.
+
+    Yalnızca rapor metni içindir; quotes.json, prices.json ve history.json Finnhub fiyatıyla kalır.
+    Hata olursa sessizce Finnhub fiyatına döner. Dönüş: (quotes, 'pre'|'post'|None)
+    """
+    try:
+        import extended
+        sess = extended.session_name(now)
+        if sess not in ("pre", "post"):
+            return quotes, None
+        got, _ = extended.fetch(tickers)
+    except Exception as ex:  # rapor hiçbir koşulda bundan dolayı düşmesin
+        print(f"[WARN] extended: {type(ex).__name__}")
+        return quotes, None
+    if not got:
+        return quotes, None
+    out, n = dict(quotes), 0
+    for t, q in quotes.items():
+        x = got.get(t) or {}
+        p = x.get(sess)
+        if not p or p <= 0 or not common.valid_quote(q):
+            continue
+        nq = dict(q)
+        if sess == "pre":  # Finnhub c = dünkü kapanış -> günlük değişim ona göre
+            nq["pc"] = q["c"]
+        pc = float(nq.get("pc") or q["c"])
+        nq.update(c=p, d=p - pc, dp=(p / pc - 1) * 100 if pc else 0.0, ext=sess)
+        out[t] = nq
+        n += 1
+    return (out, sess) if n else (quotes, None)
+
+
 # ------------------------------------------------------------------ rapor
-def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, now, dashboard_url):
+def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, now, dashboard_url, ext_sess=None):
     e = common.e
     ist = now.astimezone(IST).strftime("%d.%m %H:%M")
     state = {True: "🟢 Piyasa açık", False: "🔴 Piyasa kapalı"}.get(market_open, "⚪ Piyasa durumu bilinmiyor")
@@ -64,6 +98,8 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
     lines = [
         f"<b>📊 Portföy Raporu</b> · {ist} (İstanbul)",
         state,
+        *(["🌙 Kapanış sonrası fiyatlar (TradingView)"] if ext_sess == "post" else
+          ["🌅 Ön piyasa fiyatları (TradingView)"] if ext_sess == "pre" else []),
         "",
         f"💼 Toplam: <b>${summary['total_value']:,.2f}</b>",
         f"{ico(summary['day_pnl'])} Bugün: <b>{summary['day_pnl']:+,.2f}$</b> ({summary['day_pct']:+.2f}%)",
@@ -75,6 +111,8 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
     lines += ["", "<b>Pozisyonlar</b>"]
     for m in sorted(summary["positions"], key=lambda x: -x["value"]):
         stale = " ⏱" if m["stale"] else ""
+        if (quotes.get(m["ticker"]) or {}).get("ext"):
+            stale += " 🌙" if ext_sess == "post" else " 🌅"
         lines.append(
             f"{ico(m['day_pct'])} <b>{e(m['ticker'])}</b> ${m['price']:.2f} ({m['day_pct']:+.2f}%){stale}\n"
             f"    K/Z {m['pnl']:+,.0f}$ ({m['pnl_pct']:+.1f}%) · ağırlık %{m['weight']:.0f}"
@@ -169,7 +207,10 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
 
     if report:
         month = common.month_progress(history, portfolio["monthly_target"], summary["total_value"], et_date)
-        text = build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, now, dashboard_url)
+        rq, ext_sess = apply_extended(quotes, tickers, now)
+        rsummary = common.summarize(portfolio, rq) if ext_sess else summary
+        month = common.month_progress(history, portfolio["monthly_target"], rsummary["total_value"], et_date) if ext_sess else month
+        text = build_report(portfolio, rq, fresh, rsummary, market_open, alerts, month, now, dashboard_url, ext_sess)
         if common.send_telegram(text):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in alerts})
     elif new_alerts:
