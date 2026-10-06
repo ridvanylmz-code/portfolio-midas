@@ -1,16 +1,13 @@
-name: Teknik Veri (deneme)
+name: Teknik Veri
 
 # DENEME: monitor.yml'den bağımsız. Sadece docs/data/technicals.json yazar.
 # Zamanlama: hafta içi 22:30 UTC (= 01:30 İstanbul, ABD kapanışından en az 1,5 saat sonra).
 # Yaz/kış saati geçişinde (kapanış 20:00 -> 21:00 UTC) değişiklik gerekmez.
-# Ayrıca elle (workflow_dispatch) çalışır. Tek seferlik test için push tetikleyicisi var (test bitince kaldırılacak).
+# Ayrıca Actions sekmesinden elle (workflow_dispatch) çalıştırılabilir.
 # TradingView 429 verirse script bekleyip yeniden dener; olmazsa önceki değer "eski" olarak korunur.
 on:
   schedule:
     - cron: "30 22 * * 1-5"
-  push:
-    paths:
-      - ".github/workflows/technicals.yml"
   workflow_dispatch:
 
 permissions:
