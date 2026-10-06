@@ -17,6 +17,9 @@ html,body{margin:0;background:var(--bg);color:var(--txt);
 body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
 .tab{display:none} .tab.on{display:block}
 .hero{padding:22px 4px 10px}
+.eye{border:0;background:transparent;color:var(--mut);padding:2px 6px;margin-left:4px;vertical-align:middle;cursor:pointer}
+.eye svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.eye .ico-off{display:none} body.hide .eye .ico-off{display:block} body.hide .eye .ico-on{display:none}
 .lbl{color:var(--mut);font-size:13px}
 .total{font-size:34px;font-weight:700;letter-spacing:-.5px;margin:2px 0 8px;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600;
@@ -82,7 +85,12 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 <!-- PORTFÖY -->
 <section class="tab on" id="t-portfoy">
   <div class="hero">
-    <div class="lbl">Toplam Varlık</div>
+    <div class="lbl">Toplam Varlık
+      <button class="eye" id="eye" aria-label="Tutarları gizle / göster">
+        <svg class="ico-on" viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="ico-off" viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>
+      </button>
+    </div>
     <div class="total" id="total">–</div>
     <span class="pill" id="pnl">yükleniyor…</span>
     <div class="seg" id="seg">
@@ -200,6 +208,17 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   });
 
   /* ---------- portföy ---------- */
+  /* tutar gizleme: tutarlar, adet ve maliyet *****; yüzdeler ve fiyatlar açık kalır */
+  var hide=false;
+  try{hide=localStorage.getItem("pm_hide")==="1"}catch(e){}
+  document.body.classList.toggle("hide",hide);
+  function mk(s){return hide?"*****":s}
+  $("eye").addEventListener("click",function(){
+    hide=!hide; document.body.classList.toggle("hide",hide);
+    try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
+    if(P)renderPortfolio();
+  });
+
   function renderPortfolio(){
     var pf=P.portfolio||{}, q=(Q&&Q.quotes)||{};
     var rows=[], posVal=0, cost=0, dayPnl=0;
@@ -214,31 +233,31 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     rows.sort(function(a,b){return b.v-a.v});
     var cash=+P.cash||0, total=posVal+cash;
 
-    $("total").textContent=usd(total);
+    $("total").textContent=mk(usd(total));
     var pill=$("pnl"), val, pct;
     if(mode==="day"){val=dayPnl;pct=(posVal-dayPnl)?dayPnl/(posVal-dayPnl)*100:0}
     else{val=posVal-cost;pct=cost?(posVal-cost)/cost*100:0}
     pill.className="pill "+cls(val);
-    pill.textContent=(val>=0?"▲ ":"▼ ")+sgn(val)+usd(Math.abs(val))+"  (%"+sgn(pct)+num(Math.abs(pct),2)+")";
+    pill.textContent=(val>=0?"▲ ":"▼ ")+sgn(val)+mk(usd(Math.abs(val)))+"  (%"+sgn(pct)+num(Math.abs(pct),2)+")";
 
     $("cnt").textContent=rows.length;
     var list=$("list"); list.textContent="";
     rows.forEach(function(r){
       var card=el("div","card"), l=el("div","l"), rr=el("div","r");
-      var tk=el("div","tk",r.t); tk.appendChild(el("small","",num(r.s,r.s%1?2:0)+" adet"));
+      var tk=el("div","tk",r.t); tk.appendChild(el("small","",mk(num(r.s,r.s%1?2:0)+" adet")));
       l.appendChild(tk);
-      l.appendChild(el("div","sub","Maliyet "+usd(r.cb)));
+      l.appendChild(el("div","sub","Maliyet "+mk(usd(r.cb))));
       l.appendChild(el("div","sub "+cls(r.dp),usd(r.c)+"  ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)"));
       var dv=mode==="day"?r.d:r.pnl, dpct=mode==="day"?r.dp:r.pct;
-      rr.appendChild(el("div","val",usd(r.v)));
-      rr.appendChild(el("div","sub "+cls(dv),sgn(dv)+usd(Math.abs(dv))));
+      rr.appendChild(el("div","val",mk(usd(r.v))));
+      rr.appendChild(el("div","sub "+cls(dv),sgn(dv)+mk(usd(Math.abs(dv)))));
       rr.appendChild(el("div","sub "+cls(dv),"%"+sgn(dpct)+num(Math.abs(dpct),2)));
       card.appendChild(l); card.appendChild(rr);
       if(hasInfo(r.t)){card.style.cursor="pointer";
         card.addEventListener("click",function(){openAnaliz(r.t)})}
       list.appendChild(card);
     });
-    $("cash").textContent=usd(cash)+(total?"  ·  %"+num(cash/total*100,1):"");
+    $("cash").textContent=mk(usd(cash))+(total?"  ·  %"+num(cash/total*100,1):"");
     var upd=Q&&Q.updated?new Date(Q.updated):null;
     $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+
       (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
