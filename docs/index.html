@@ -80,6 +80,14 @@ const cls=v=>v>0?"up":v<0?"down":"";
 const bg=v=>v>0?"up-bg":v<0?"down-bg":"flat-bg";
 const pct=(a,b)=>b?a/b*100:0;
 const validQ=q=>q&&Number(q.c)>0;
+// Ön/kapanış sonrası: quotes.json'daki ext güncelse (3 saat) fiyat/değişim onunla gösterilir; kapanış korunur.
+function eff(q){
+  const e=q&&q.ext;if(!e||!(+e.p>0))return q;
+  if(!(Date.now()-new Date(e.t).getTime()<3*3600e3))return q;
+  const base=e.sess==="pre"?+q.c:(+q.pc||+q.c);if(!(base>0))return q;
+  const c=+e.p;return {...q,c,d:c-base,dp:(c/base-1)*100,pc:base,extp:e.sess,close:+q.c};
+}
+const extTag=x=>x&&x.extp?(x.extp==="pre"?" 🌅":" 🌙"):"";
 
 /* ---- tema (localStorage erişilemezse sessizce yoksay) ---- */
 function getTheme(){try{return localStorage.getItem("theme")}catch(e){return null}}
@@ -119,7 +127,7 @@ function compute(P,Q,H){
     const price=+q.c,pc=+(q.pc||q.c);
     const v=p.shares*price,c=p.shares*p.cost_basis;
     pos.push({t,shares:p.shares,cb:p.cost_basis,price,pc,value:v,cost:c,pnl:v-c,pnlPct:pct(v-c,c),
-      dayPnl:p.shares*(price-pc),dayPct:pct(price-pc,pc),stale:!!q.stale,...levels(P,t)});
+      dayPnl:p.shares*(price-pc),dayPct:pct(price-pc,pc),stale:!!q.stale,extp:q.extp,close:q.close,...levels(P,t)});
     value+=v;cost+=c;day+=p.shares*(price-pc);prev+=p.shares*pc;
   }
   const cash=+P.cash||0,total=value+cash;
@@ -187,11 +195,12 @@ function render(){
     const stopBad=p.stop!=null&&p.price<=p.stop,tgtGood=p.target!=null&&p.price>=p.target;
     h+=`<div class="card pcard ${bg(p.dayPct)}" data-t="${esc(p.t)}">
       <div class="row"><span class="tk">${esc(p.t)}</span><span class="${cls(p.dayPct)}"><b>${sPct(p.dayPct)}</b> bugün</span></div>
-      <div class="row"><span class="big" style="font-size:18px">${usd(p.price)}</span><span class="sub">${num(p.shares,0)} adet · %${num(p.weight,0)}</span></div>
+      <div class="row"><span class="big" style="font-size:18px">${usd(p.price)}${extTag(p)}</span><span class="sub">${num(p.shares,0)} adet · %${num(p.weight,0)}</span></div>
       ${spark(seriesOf(PR,p.t))}
       <div class="row"><span class="sub">K/Z</span><span class="${cls(p.pnl)}"><b>${sUsd(p.pnl,0)}</b> (${sPct(p.pnlPct)})</span></div>
       <div>${p.stop!=null?`<span class="chip ${stopBad?"bad":""}">Stop ${usd(p.stop)}${stopBad?" ⚠":""}</span>`:""}
       ${p.target!=null?`<span class="chip ${tgtGood?"good":""}">Hedef ${usd(p.target)}${tgtGood?" ✓":""}</span>`:""}
+      ${p.extp?`<span class="chip">${p.extp==="pre"?"Ön piyasa":"Kapanış sonrası"} · kapanış ${usd(p.close)}</span>`:""}
       ${p.stale?'<span class="chip bad">eski veri</span>':""}</div></div>`;
   }
   h+=`</div>`;
@@ -203,7 +212,7 @@ function render(){
     const zone=(P.buy_zones||{})[x.t],inZone=zone!=null&&x.q.c<=zone,dp=+x.q.dp||0;
     h+=`<div class="card ${inZone?"":""}" style="${inZone?"border-color:var(--up)":""}">
       <div class="row"><span><span class="rank">#${i+1}</span><b>${esc(x.t)}</b></span><span class="${cls(dp)}"><b>${sPct(dp)}</b></span></div>
-      <div class="sub">${usd(+x.q.c)}</div>
+      <div class="sub">${usd(+x.q.c)}${extTag(x.q)}</div>
       ${zone!=null?`<span class="chip ${inZone?"good":""}">${inZone?"🎯 alım bölgesinde":"alım ≤ "+usd(zone)}</span>`:""}</div>`;
   });
   h+=`</div>`;
@@ -226,7 +235,7 @@ function openModal(t,S){
   const row=(a,b)=>`<tr><td>${a}</td><td>${b}</td></tr>`;
   $("#modalBody").innerHTML=`<div class="row"><span class="tk" style="font-size:20px">${esc(t)}</span><button type="button" id="close">Kapat</button></div>
    <table>
-   ${row("Fiyat",usd(p.price))}${row("Önceki kapanış",usd(p.pc))}${row("Bugün",`<span class="${cls(p.dayPnl)}">${sUsd(p.dayPnl)} (${sPct(p.dayPct)})</span>`)}
+   ${row(p.extp?(p.extp==="pre"?"Ön piyasa fiyatı":"Kapanış sonrası fiyat"):"Fiyat",usd(p.price))}${p.extp?row("Kapanış",usd(p.close)):""}${row("Önceki kapanış",usd(p.pc))}${row("Bugün",`<span class="${cls(p.dayPnl)}">${sUsd(p.dayPnl)} (${sPct(p.dayPct)})</span>`)}
    ${row("Adet",num(p.shares,0))}${row("Ort. maliyet",usd(p.cb,4))}
    ${row("Pozisyon değeri",usd(p.value))}${row("Maliyet tutarı",usd(p.cost))}
    ${row("Toplam K/Z",`<span class="${cls(p.pnl)}">${sUsd(p.pnl)} (${sPct(p.pnlPct)})</span>`)}
@@ -244,6 +253,7 @@ async function load(){
   try{
     const [P,Q,H,PR]=await Promise.all([getJson("portfolio.json"),getJson("quotes.json"),
       getJson("history.json",true),getJson("prices.json",true)]);
+    if(Q&&Q.quotes)for(const t of Object.keys(Q.quotes))Q.quotes[t]=eff(Q.quotes[t]);
     STATE={P,Q,H:H||{transactions:[],snapshots:[]},PR:PR||{}};
     render();
   }catch(e){

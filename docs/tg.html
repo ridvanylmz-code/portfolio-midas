@@ -172,6 +172,15 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function addKV(box,k,v,c){var row=el("div","kv");row.appendChild(el("span","",k));row.appendChild(el("span",c||"",v));box.appendChild(row);return row}
   function fmt(n){return (n===null||n===undefined)?"–":num(+n,2)}
   function rel(close,ma){if(ma===null||ma===undefined||!close)return "";return +close>=+ma?" ▲":" ▼"}
+  /* Ön/kapanış sonrası fiyatı: quotes.json'daki ext alanı güncelse (3 saat) fiyat/değişim onunla gösterilir; kapanış korunur. */
+  function eff(q){
+    var e=q&&q.ext; if(!e||!(+e.p>0))return q;
+    if(!(Date.now()-new Date(e.t).getTime()<3*3600e3))return q;
+    var base=e.sess==="pre"?+q.c:(+q.pc||+q.c); if(!(base>0))return q;
+    var o={}; for(var k in q)o[k]=q[k];
+    o.c=+e.p; o.d=o.c-base; o.dp=(o.c/base-1)*100; o.pc=base; o.extp=e.sess; o.close=+q.c; return o;
+  }
+  function extTag(x){return x&&x.extp?(x.extp==="pre"?" 🌅":" 🌙"):""}
   var INTRA_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/data/intraday.json";
   var SESS_ICO={pre:"🌅",regular:"☀️",post:"🌙",kapali:"⏸"};
   function arrow(d){return d==="up"?["▲","up"]:d==="down"?["▼","dn"]:["■","warn"]}
@@ -270,7 +279,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       var x=q[t]||{}, c=+x.c||0;
       var v=s*c, cs=s*cb, pnl=v-cs, d=s*(+x.d||0);
       posVal+=v; cost+=cs; dayPnl+=d;
-      rows.push({t:t,s:s,cb:cb,c:c,v:v,pnl:pnl,pct:cs?pnl/cs*100:0,dp:+x.dp||0,d:d});
+      rows.push({t:t,s:s,cb:cb,c:c,v:v,pnl:pnl,pct:cs?pnl/cs*100:0,dp:+x.dp||0,d:d,x:x});
     });
     rows.sort(function(a,b){return b.v-a.v});
     var cash=+P.cash||0, total=posVal+cash;
@@ -289,7 +298,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       var tk=el("div","tk",r.t); tk.appendChild(el("small","",mk(num(r.s,r.s%1?2:0)+" adet")));
       l.appendChild(tk);
       l.appendChild(el("div","sub","Maliyet "+mk(usd(r.cb))));
-      l.appendChild(el("div","sub "+cls(r.dp),usd(r.c)+"  ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)"));
+      l.appendChild(el("div","sub "+cls(r.dp),usd(r.c)+"  ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)"+extTag(r.x)));
+      if(r.x&&r.x.extp)l.appendChild(el("div","sub","Kapanış "+usd(r.x.close)));
       var dv=mode==="day"?r.d:r.pnl, dpct=mode==="day"?r.dp:r.pct;
       rr.appendChild(el("div","val",mk(usd(r.v))));
       rr.appendChild(el("div","sub "+cls(dv),sgn(dv)+mk(usd(Math.abs(dv)))));
@@ -301,7 +311,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     });
     $("cash").textContent=mk(usd(cash))+(total?"  ·  %"+num(cash/total*100,1):"");
     var upd=Q&&Q.updated?new Date(Q.updated):null;
-    $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+
+    $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+(rows.some(function(r){return r.x&&r.x.extp})?" · "+(rows.filter(function(r){return r.x&&r.x.extp})[0].x.extp==="pre"?"🌅 ön piyasa fiyatı":"🌙 kapanış sonrası fiyat"):"")+
       (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
         day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"")+" · Gecikmeli veri";
   }
@@ -319,7 +329,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       var x=q[t]||{}, row=el("div","wl"), has=hasInfo(t);
       var b=el("b","",t); if(has)b.appendChild(el("small","","analiz ›"));
       row.appendChild(b);
-      row.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"):"–"));
+      row.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"+extTag(x)):"–"));
       if(has){row.classList.add("link");row.addEventListener("click",function(){openAnaliz(t)})}
       box.appendChild(row);
     });
@@ -374,7 +384,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       box.appendChild(el("div","",mc(m.text||"")));
     }else if(sub==="teknik"){
       if(q.c){
-        addKV(box,"Canlı fiyat",usd(+q.c)+" ("+sgn(+q.dp||0)+num(Math.abs(+q.dp||0),2)+"%)",cls(+q.dp||0));
+        addKV(box,q.extp?(q.extp==="pre"?"Ön piyasa fiyatı":"Kapanış sonrası fiyat"):"Canlı fiyat",usd(+q.c)+" ("+sgn(+q.dp||0)+num(Math.abs(+q.dp||0),2)+"%)",cls(+q.dp||0));
+        if(q.extp)addKV(box,"Kapanış",usd(+q.close));
         addKV(box,"Gün aralığı",usd(+q.l)+" – "+usd(+q.h));
       }
       renderIntraday(box,cur);
@@ -409,6 +420,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   }
   Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra()]).then(function(r){
     P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];
+    if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
     renderPortfolio();renderWatch();renderNews();renderAnaliz();
     showTab((location.hash||"").replace("#",""));
   }).catch(function(e){

@@ -10,6 +10,8 @@ name: Portföy İzleme
 on:
   schedule:
     - cron: "7,22,37,52 13-19 * * 1-5"   # sessiz yenileme
+    - cron: "7,37 8-12 * * 1-5"          # ön piyasa fiyatı (yalnız ext alanı), 11:07-15:37 İstanbul
+    - cron: "7,37 20-23 * * 1-5"         # kapanış sonrası fiyatı (yalnız ext alanı), 23:07-02:37 İstanbul
     - cron: "1 0 * * 1-6"                # 03:01 İstanbul (Pzt-Cmt)
     - cron: "1 4 * * 1-5"                # 07:01
     - cron: "1 8 * * 1-5"                # 11:01
@@ -57,8 +59,11 @@ jobs:
           REPORT_INPUT: ${{ inputs.report }}
         run: |
           ARGS=""
-          if [ "$EVENT" = "schedule" ] && [ "$SCHEDULE" != "7,22,37,52 13-19 * * 1-5" ]; then
-            ARGS="--report"
+          if [ "$EVENT" = "schedule" ]; then
+            case "$SCHEDULE" in
+              "7,22,37,52 13-19 * * 1-5"|"7,37 8-12 * * 1-5"|"7,37 20-23 * * 1-5") ;;  # sessiz
+              *) ARGS="--report" ;;
+            esac
           fi
           if [ "$EVENT" = "workflow_dispatch" ]; then
             ARGS="--force"

@@ -56,6 +56,54 @@ def market_status(key):
 
 
 # ------------------------------------------------------------------ ön/sonrası
+def attach_ext(quotes, tickers, now):
+    """quotes.json'daki her kotasyona ön/kapanış sonrası fiyatını `ext` olarak ekler (TradingView).
+
+    Finnhub alanları (c, pc, d, dp) DEĞİŞMEZ; ekranlar `ext`i görünce fiyatı onunla gösterir.
+    Normal seans/seans dışında `ext` kaldırılır. Çekim başarısızsa önceki `ext` kalır (ekranda 3 saat yaş sınırı var).
+    Dönüş: seans adı ('pre'|'post'|None).
+    """
+    try:
+        import extended
+        sess = extended.session_name(now)
+        got = extended.fetch(tickers)[0] if sess in ("pre", "post") else {}
+    except Exception as ex:  # asla çalışmayı düşürme
+        print(f"[WARN] attach_ext: {type(ex).__name__}")
+        return None
+    if sess not in ("pre", "post"):
+        for q in quotes.values():
+            q.pop("ext", None)
+        return None
+    if not got:
+        return sess
+    for t, q in quotes.items():
+        x = got.get(t) or {}
+        p = x.get(sess)
+        if p and p > 0:
+            q["ext"] = {"sess": sess, "p": p, "pct": x.get(sess + "_pct"), "close": x.get("close"),
+                        "t": now.isoformat(timespec="seconds")}
+        else:
+            q.pop("ext", None)
+    return sess
+
+
+def refresh_ext_only(now):
+    """Piyasa kapalıyken (ön/sonrası): yalnızca quotes.json'daki `ext` alanlarını yenile.
+    Finnhub, prices.json, history.json ve alarmlara dokunmaz."""
+    qj = common.load_json("docs/data/quotes.json", {}) or {}
+    quotes = qj.get("quotes") or {}
+    if not quotes:
+        print("quotes.json boş; ön/sonrası yenileme atlandı.")
+        return 0
+    sess = attach_ext(quotes, list(quotes), now)
+    qj["quotes"] = quotes
+    qj["ext_updated"] = now.isoformat(timespec="seconds")
+    common.save_json("docs/data/quotes.json", qj)
+    n = sum(1 for q in quotes.values() if q.get("ext"))
+    print(f"Ön/sonrası ({sess}): {n}/{len(quotes)} hisse güncellendi")
+    return 0
+
+
 def apply_extended(quotes, tickers, now):
     """Ön piyasa / kapanış sonrası seansında rapor için fiyatı TradingView'den al.
 
@@ -166,6 +214,12 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     status = status_fn(key)
     market_open = status.get("isOpen") if status else None
     if not report and not force and market_open is False:
+        try:
+            import extended
+            if extended.session_name(now) in ("pre", "post"):
+                return refresh_ext_only(now)
+        except Exception as ex:
+            print(f"[WARN] ext yenileme: {type(ex).__name__}")
         print("Piyasa kapalı; yenileme atlandı.")
         return 0
 
@@ -186,6 +240,7 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     summary = common.summarize(portfolio, quotes)
     history = common.load_history()
 
+    attach_ext(quotes, tickers, now)
     common.save_json("docs/data/quotes.json", {
         "updated": now.isoformat(timespec="seconds"),
         "market_open": market_open,
