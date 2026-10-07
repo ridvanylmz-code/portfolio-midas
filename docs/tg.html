@@ -166,12 +166,34 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       try{tg.setHeaderColor("#0a0d14");tg.setBackgroundColor("#0a0d14");}catch(e){}}
   }catch(e){}
 
-  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null;
+  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null, INTRA=null;
   function hasInfo(t){return !!((A&&A.tickers&&A.tickers[t])||(TECH&&TECH.tickers&&TECH.tickers[t]))}
   var TV_TR={STRONG_BUY:["Güçlü Al","up"],BUY:["Al","up"],NEUTRAL:["Nötr","warn"],SELL:["Sat","dn"],STRONG_SELL:["Güçlü Sat","dn"]};
   function addKV(box,k,v,c){var row=el("div","kv");row.appendChild(el("span","",k));row.appendChild(el("span",c||"",v));box.appendChild(row);return row}
   function fmt(n){return (n===null||n===undefined)?"–":num(+n,2)}
   function rel(close,ma){if(ma===null||ma===undefined||!close)return "";return +close>=+ma?" ▲":" ▼"}
+  var INTRA_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/data/intraday.json";
+  var SESS_ICO={pre:"🌅",regular:"☀️",post:"🌙",kapali:"⏸"};
+  function arrow(d){return d==="up"?["▲","up"]:d==="down"?["▼","dn"]:["■","warn"]}
+  function renderIntraday(box,t){
+    var hd=el("div","sub","Gün içi sinyaller"); hd.style.margin="4px 0 2px"; box.appendChild(hd);
+    var e=INTRA&&INTRA.tickers&&INTRA.tickers[t];
+    if(!e){box.appendChild(el("div","sub","Gün içi veri henüz yok (seans dışı veya ilk çalışma bekleniyor)"));return}
+    var h=e.h4, m=e.m15, w=e.elliott, a;
+    if(h){a=arrow(h.dir);
+      addKV(box,"4s trend (EMA 8 / 20)",a[0]+" "+num(h.ema8,2)+" / "+num(h.ema20,2),a[1]);
+      addKV(box,"   fark",(h.diff>=0?"+":"−")+num(Math.abs(h.diff),2)+(h.cross_bars_ago!==null?" · kesişim "+h.cross_bars_ago+" mum önce":""),a[1]);
+    }
+    if(m){a=arrow(m.dir);
+      addKV(box,"15dk kısa vade (EMA 34 / 89)",a[0]+" "+(m.dir==="up"?"yükseliş":m.dir==="down"?"düşüş":"yatay"),a[1]);
+      addKV(box,"   değerler",num(m.ema34,2)+" / "+num(m.ema89,2)+(m.cross_bars_ago!==null?" · kesişim "+m.cross_bars_ago+" mum önce":""),a[1]);
+    }
+    if(w){a=w.bias==="up"?["▲","up"]:w.bias==="down"?["▼","dn"]:["■","warn"];
+      addKV(box,"Elliott (4s, muhtemel)",a[0]+" "+w.label,a[1]);
+    }
+    var when=INTRA.updated?new Date(INTRA.updated).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"–";
+    var n=el("div","sub",(SESS_ICO[INTRA.session]||"")+" Veri: "+when+" (İstanbul)"+(e.stale?" · bu hisse eski":"")+" · Yahoo, ön/sonrası dahil. Elliott kesin sayım değildir."); n.style.margin="6px 0 12px"; box.appendChild(n);
+  }
   function renderTech(box,t){
     var e=TECH&&TECH.tickers&&TECH.tickers[t]; if(!e){box.appendChild(el("div","sub","Teknik veri henüz yok"));return}
     var tv=e.tv, td=e.td;
@@ -326,7 +348,9 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function openAnaliz(t){cur=t;renderAnaliz();showTab("analiz")}
   function renderAnaliz(){
     var T=(A&&A.tickers)||{}, TT=(TECH&&TECH.tickers)||{}, chips=$("chips"), body=$("abody");
+    var TI=(INTRA&&INTRA.tickers)||{};
     var keys=Object.keys(T).concat(Object.keys(TT).filter(function(t){return !T[t]}));
+    Object.keys(TI).forEach(function(t){if(keys.indexOf(t)<0)keys.push(t)});
     chips.textContent=""; body.textContent="";
     var notes=[]; if(A&&A.note)notes.push(A.note+(A.updated?" (Yazılı analiz: "+A.updated+")":""));
     if(TECH&&TECH.updated)notes.push("Teknik veri: "+new Date(TECH.updated).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+". TradingView özeti gayriresmi kaynaktır.");
@@ -353,6 +377,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
         addKV(box,"Canlı fiyat",usd(+q.c)+" ("+sgn(+q.dp||0)+num(Math.abs(+q.dp||0),2)+"%)",cls(+q.dp||0));
         addKV(box,"Gün aralığı",usd(+q.l)+" – "+usd(+q.h));
       }
+      renderIntraday(box,cur);
       renderTech(box,cur);
       if((d.technical||[]).length){
         var hd2=el("div","sub","Yazılı notlar ("+(A&&A.updated||"")+")"); hd2.style.margin="12px 0 2px"; box.appendChild(hd2);
@@ -379,8 +404,11 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   });
 
   /* ---------- başlat ---------- */
-  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true)]).then(function(r){
-    P=r[0];Q=r[1];A=r[2];TECH=r[3];
+  function loadIntra(){
+    return fetch(INTRA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  }
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra()]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];
     renderPortfolio();renderWatch();renderNews();renderAnaliz();
     showTab((location.hash||"").replace("#",""));
   }).catch(function(e){
