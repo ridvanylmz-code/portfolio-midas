@@ -192,7 +192,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       addKV(box,"Elliott (4s, muhtemel)",a[0]+" "+w.label,a[1]);
     }
     var when=INTRA.updated?new Date(INTRA.updated).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"–";
-    var n=el("div","sub",(SESS_ICO[INTRA.session]||"")+" Veri: "+when+" (İstanbul)"+(e.stale?" · bu hisse eski":"")+" · Yahoo, ön/sonrası dahil. Elliott kesin sayım değildir."); n.style.margin="6px 0 12px"; box.appendChild(n);
+    var n=el("div","sub",(SESS_ICO[INTRA.session]||"")+" Veri: "+when+" (İstanbul)"+(e.stale?" · bu hisse eski":"")+" · Twelve Data 15dk, "+(INTRA.prepost?"ön/sonrası dahil":"yalnızca normal seans mumları")+". Elliott kesin sayım değildir."); n.style.margin="6px 0 12px"; box.appendChild(n);
   }
   function renderTech(box,t){
     var e=TECH&&TECH.tickers&&TECH.tickers[t]; if(!e){box.appendChild(el("div","sub","Teknik veri henüz yok"));return}

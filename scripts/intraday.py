@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Gün içi teknik sinyaller: 4s EMA8/EMA20, 15dk EMA34/EMA89, Elliott (kural tabanlı, muhtemel).
 
-Kaynak: Yahoo Finance chart API (gayriresmi, anahtarsız), ön/sonrası mumlar dahil (15dk, 60 gün).
-4 saatlik mumlar 15dk mumlardan ABD saatiyle (ET) 04-08 / 08-12 / 12-16 / 16-20 dilimlerinde birleştirilir.
+Kaynak: Twelve Data 15dk mumlar (TWELVEDATA_API_KEY). Önce ön/sonrası mumlar (prepost) denenir;
+planda yoksa normal seans mumlarına düşülür ve bu `prepost: false` olarak dosyaya yazılır.
+4 saatlik mumlar 15dk mumlardan ABD saatiyle (ET) 04-08 / 08-12 / 12-16 / 16-20 dilimlerinde birleştirilir
+(yalnızca normal seans verisiyle günde 2 mum: 09:30-12:00 ve 12:00-16:00).
 
 Çıktı: --out (varsayılan intraday.json). Workflow bunu `data` dalına yazar; main'e dokunmaz.
 Hisse listesi docs/data/portfolio.json'dan okunur (pozisyonlar + izleme listesi).
@@ -25,13 +27,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 PORTFOLIO = "docs/data/portfolio.json"
 ET = ZoneInfo("America/New_York")
-YAHOO_HOSTS = ["query2.finance.yahoo.com", "query1.finance.yahoo.com"]
-YAHOO = "https://{host}/v8/finance/chart/{sym}"
-SESSION = requests.Session()
-_WARM = {"done": False}
-HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
-           "Accept": "application/json,text/plain,*/*", "Accept-Language": "en-US,en;q=0.9",
-           "Referer": "https://finance.yahoo.com/"}
+TD_URL = "https://api.twelvedata.com/time_series"
+TD_PAUSE = 8.0  # ücretsiz plan: dakikada 8 istek
+OUTPUTSIZE = 2000
 EXT_MIN_AGE_MIN = 50
 LOG = []
 
@@ -66,46 +64,44 @@ def session_name(now):
 
 
 # ------------------------------------------------------------------ veri
-def warm_up():
-    """Yahoo çerezini al (datacenter IP'lerinde 429'u azaltabilir); başarısız olursa devam et."""
-    if _WARM["done"]:
-        return
-    _WARM["done"] = True
-    try:
-        SESSION.get("https://fc.yahoo.com", headers=HEADERS, timeout=(6, 10))
-    except Exception as ex:
-        log(f"çerez ısıtma: {type(ex).__name__}")
-
-
-def fetch_15m(sym, retries=2):
-    """[(epoch, o, h, l, c, v), ...] eskiden yeniye; None = başarısız."""
-    params = {"interval": "15m", "range": "60d", "includePrePost": "true"}
-    warm_up()
+def fetch_15m(sym, key, prepost, retries=2):
+    """([(epoch, o, h, l, c, v), ...] eskiden yeniye, prepost_ok) ; başarısızsa (None, prepost)."""
     for attempt in range(retries):
+        params = {"symbol": sym, "interval": "15min", "outputsize": OUTPUTSIZE,
+                  "timezone": "America/New_York", "order": "ASC", "apikey": key}
+        if prepost:
+            params["prepost"] = "true"
         try:
-            host = YAHOO_HOSTS[attempt % len(YAHOO_HOSTS)]
-            r = SESSION.get(YAHOO.format(host=host, sym=sym), params=params, headers=HEADERS, timeout=(6, 15))
-            if r.status_code == 429:
-                log(f"{sym}: HTTP 429 {host} (deneme {attempt + 1})")
-                time.sleep(3 * (attempt + 1))
-                continue
-            if r.status_code != 200:
-                log(f"{sym}: HTTP {r.status_code} {r.text[:120]!r}")
-                return None
-            r.raise_for_status()
-            res = r.json()["chart"]["result"][0]
-            q = res["indicators"]["quote"][0]
-            rows = []
-            for i, ts in enumerate(res.get("timestamp") or []):
-                o, h, l, c = q["open"][i], q["high"][i], q["low"][i], q["close"][i]
-                if None in (o, h, l, c):
-                    continue
-                rows.append((int(ts), float(o), float(h), float(l), float(c), q["volume"][i] or 0))
-            return rows or None
-        except Exception as ex:  # ağ/JSON/anahtar hatası: yalnızca türünü yaz
+            r = requests.get(TD_URL, params=params, timeout=(6, 30))
+            d = r.json()
+        except Exception as ex:  # ağ/JSON hatası: yalnızca türünü yaz
             log(f"{sym}: {type(ex).__name__}")
-            time.sleep(1.5)
-    return None
+            time.sleep(2)
+            continue
+        if d.get("status") == "error" or "values" not in d:
+            code, msg = d.get("code"), str(d.get("message", d))[:160]
+            if code == 429:
+                log(f"{sym}: 429 hız sınırı (deneme {attempt + 1})")
+                time.sleep(20)
+                continue
+            if prepost:  # plan ön/sonrası mumu desteklemiyor olabilir -> normal seansla yeniden dene
+                log(f"{sym}: prepost reddedildi ({code}: {msg}); normal seans mumlarıyla denenecek")
+                prepost = False
+                continue
+            log(f"{sym}: Twelve Data hata {code}: {msg}")
+            return None, prepost
+        rows = []
+        for v in d["values"]:
+            try:
+                dt = v["datetime"]
+                t = datetime.strptime(dt[:19] if len(dt) > 10 else dt + " 00:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=ET)
+                rows.append((int(t.timestamp()), float(v["open"]), float(v["high"]), float(v["low"]),
+                             float(v["close"]), float(v.get("volume") or 0)))
+            except (KeyError, ValueError):
+                continue
+        rows.sort(key=lambda x: x[0])
+        return (rows or None), prepost
+    return None, prepost
 
 
 def aggregate_4h(rows):
@@ -282,12 +278,20 @@ def main(argv=None):
     ap.add_argument("--force", action="store_true", help="Seans/yaş kontrolünü atla")
     args = ap.parse_args(argv)
 
+    key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
+    if not key:
+        print("[ERROR] TWELVEDATA_API_KEY tanımlı değil (GitHub Secrets).")
+        return 1
     now = datetime.now(timezone.utc)
     sess = session_name(now)
     prev = load_json(args.out, {}) or {}
+    prepost_known_off = prev.get("prepost") is False
     if not args.force:
         if sess == "kapali":
             print("Seans dışı; atlandı.")
+            return 0
+        if sess in ("pre", "post") and prepost_known_off:
+            print("Plan ön/sonrası mum vermiyor (prepost=false); bu seansta kredi harcanmadı, atlandı.")
             return 0
         if sess in ("pre", "post") and prev.get("updated"):
             try:
@@ -304,11 +308,14 @@ def main(argv=None):
         print("[ERROR] Hisse listesi okunamadı (docs/data/portfolio.json).")
         return 1
     out, fails = {}, 0
-    for t in tickers:
+    prepost = args.force or not prepost_known_off  # kapalı biliniyorsa boşuna deneme (kredi); --force yeniden dener
+    for i, t in enumerate(tickers):
         if fails >= 3 and not out:  # ilk 3 hisse hiç gelmediyse kaynak erişilemez: boşuna bekleme
             log("Üst üste 3 hisse alınamadı; kaynak erişilemez sayıldı, durduruldu")
             break
-        rows = fetch_15m(t)
+        if i:
+            time.sleep(TD_PAUSE)
+        rows, prepost = fetch_15m(t, key, prepost)
         fails = 0 if rows else fails + 1
         if rows and len(rows) >= 120:
             try:
@@ -319,12 +326,12 @@ def main(argv=None):
             log(f"{t}: yetersiz mum ({len(rows)})")
         if t not in out and (prev.get("tickers") or {}).get(t):
             out[t] = {**prev["tickers"][t], "stale": True}
-        time.sleep(0.4)
     fresh = sum(1 for v in out.values() if not v.get("stale"))
     # Başarısız olsa da yaz: log (hata sebebi) data dalında okunabilsin; önceki veri stale olarak korunur.
     data = {"updated": now.isoformat(timespec="seconds") if fresh else prev.get("updated"),
             "checked": now.isoformat(timespec="seconds"), "session": sess,
-            "source": "Yahoo Finance (gayriresmi)", "log": LOG, "tickers": out}
+            "source": "Twelve Data 15dk", "prepost": bool(prepost) if fresh else prev.get("prepost"),
+            "log": LOG, "tickers": out}
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
         f.write("\n")
