@@ -1,0 +1,60 @@
+name: Trend Tara (elle)
+
+# Elle tetiklenir: Actions -> "Trend Tara (elle)" -> Run workflow.
+# Sembol kutusu doluysa onu, boşsa trend/tickers.txt'yi kullanır. Sonuç `trend-data` dalına trend.json olarak yazılır
+# (intraday'in `data` dalına dokunmaz). Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/
+# Kaynak: Yahoo Finance (anahtarsız); TWELVEDATA_API_KEY varsa eksik kalan semboller için yedek.
+on:
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: "Semboller (virgül/boşluk). Boşsa trend/tickers.txt"
+        type: string
+        default: ""
+      include_portfolio:
+        description: "Portföy + izleme listesini de ekle"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trend
+  cancel-in-progress: false
+
+jobs:
+  trend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Hesapla
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          TICKERS: ${{ github.event.inputs.tickers }}
+          INCLUDE_PF: ${{ github.event.inputs.include_portfolio }}
+        run: |
+          mkdir -p data-out
+          ARGS=""
+          if [ "$INCLUDE_PF" = "true" ]; then ARGS="--include-portfolio"; fi
+          python scripts/trend.py --tickers "$TICKERS" --file trend/tickers.txt --out data-out/trend.json $ARGS
+
+      - name: trend-data dalına yaz (tek commit; intraday'in data dalından bağımsız)
+        if: always()
+        run: |
+          [ -f data-out/trend.json ] || { echo "trend.json yok"; exit 0; }
+          cd data-out
+          git init -q -b trend-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add trend.json
+          git commit -q -m "trend: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" trend-data:refs/heads/trend-data

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trend Tablosu</title>
+<link rel="icon" href="data:,">
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--text:#1b2430;--muted:#6b7686;--line:#e3e8ef;--up:#16a34a;--up-bg:#e8f7ee;--down:#dc2626;--down-bg:#fdecec;--mix-bg:#f1f3f6;--accent:#2563eb}
+@media (prefers-color-scheme:dark){:root{--bg:#0f141b;--card:#1a212b;--text:#e8edf3;--muted:#8d99aa;--line:#2a3340;--up:#34d399;--up-bg:#12332a;--down:#f87171;--down-bg:#3a1c1f;--mix-bg:#232b36;--accent:#60a5fa}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:14px;max-width:1100px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+h1{font-size:19px}
+button,a.btn{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 11px;cursor:pointer;text-decoration:none;display:inline-block}
+button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+#status{font-size:12px;color:var(--muted);margin-bottom:10px}#status.warn{color:var(--down);font-weight:600}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.sum{display:flex;gap:8px;margin-bottom:10px}
+.sum div{flex:1;border-radius:10px;padding:9px 6px;text-align:center;font-weight:700;font-size:20px}
+.sum small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+.s-bullish{background:var(--up-bg);color:var(--up)}.s-bearish{background:var(--down-bg);color:var(--down)}.s-mixed,.s-na{background:var(--mix-bg)}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);cursor:pointer;position:sticky;top:0;background:var(--card)}
+tr:last-child td{border-bottom:0}
+td.sym{font-weight:700;position:sticky;left:0;background:var(--card)}
+.up{color:var(--up)}.down{color:var(--down)}.m{color:var(--muted);font-size:12px}
+.badge{border-radius:6px;padding:2px 8px;font-weight:700;font-size:12px;display:inline-block}
+.ev{font-size:11px;color:var(--accent);font-weight:600}
+.note{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5}
+#empty{padding:30px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Trend Tablosu</h1>
+  <div><button id="refresh">Yenile</button> <a class="btn" id="runlink" target="_blank" rel="noopener">Tara ▶</a></div>
+</header>
+<div id="status">Yükleniyor…</div>
+<div class="sum" id="sum"></div>
+<div class="chips" id="filters"></div>
+<div class="wrap"><table id="t"><thead></thead><tbody></tbody></table><div id="empty" hidden>Veri yok. "Tara ▶" ile Actions'tan Trend Tara'yı çalıştır.</div></div>
+<p class="note">Durum: 4s EMA8/20, 15dk EMA34/89 ve 15dk Supertrend (10, 3) üçü de yukarıdaysa <b>Bullish</b>, üçü de aşağıdaysa <b>Bearish</b>, aksi halde <b>Karışık</b>.
+EMA gösterimi "hızlı / yavaş" (▲ hızlı üstte). "Yeni" sütunu: 15dk'da son 8 mum, 4s'de son 2 mumda gelen kesişim / Supertrend dönüşü.
+Elliott kural tabanlı tahmindir (4s zigzag), kesin sayım değildir. Veri Yahoo Finance 15dk (ön/sonrası dahil); 4s mumlar ET 04/08/12/16 diliminde birleştirilir, TradingView 4s mumundan küçük farklar olabilir. Yatırım tavsiyesi değildir.</p>
+<script>
+(function(){
+  var REPO="ridvanylmz-code/portfolio-midas";
+  var SRC=new URLSearchParams(location.search).get("src")||("https://raw.githubusercontent.com/"+REPO+"/trend-data/trend.json");
+  document.getElementById("runlink").href="https://github.com/"+REPO+"/actions/workflows/trend.yml";
+  var DATA=null, filt="all", sortKey="score", sortDir=-1;
+  var ORDER={bullish:3,mixed:2,"n/a":1,bearish:0};
+  var COLS=[["sym","Hisse"],["price","Fiyat"],["chg","Gün %"],["state","Durum"],["h4","4s EMA 8/20"],["m15","15dk EMA 34/89"],["st","Supertrend 15dk"],["ell","Elliott (muhtemel)"],["ev","Yeni"]];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function f(n,d){return n==null?"–":Number(n).toFixed(d==null?2:d)}
+  function arrow(d){return d==="up"?'<span class="up">▲</span>':d==="down"?'<span class="down">▼</span>':"–"}
+  function ema(p,a,b){if(!p)return "–";return arrow(p.dir)+' <span class="m">'+f(p["ema"+a])+" / "+f(p["ema"+b])+"</span>"}
+  function rowOf(t,v){
+    var st=v.st15,pe=v.elliott;
+    return {sym:t,price:v.price,chg:v.chg_pct,state:v.state||"n/a",score:v.score||0,v:v,
+      h4:v.h4?(v.h4.dir==="up"?1:-1):0,m15:v.m15?(v.m15.dir==="up"?1:-1):0,st:st?(st.dir==="up"?1:-1):0,
+      ell:pe&&pe.bias==="up"?pe.wave||0:pe&&pe.bias==="down"?-(pe.wave||0):0,ev:(v.events||[]).length};
+  }
+  function cell(r,k){
+    var v=r.v;
+    if(k==="sym")return '<td class="sym">'+esc(r.sym)+"</td>";
+    if(v.state==="n/a"&&k!=="state")return '<td class="m">–</td>';
+    if(k==="price")return "<td>"+f(v.price)+"</td>";
+    if(k==="chg")return '<td class="'+(v.chg_pct>0?"up":v.chg_pct<0?"down":"")+'">'+(v.chg_pct==null?"–":(v.chg_pct>0?"+":"")+f(v.chg_pct)+"%")+"</td>";
+    if(k==="state"){var L={bullish:"Bullish",bearish:"Bearish",mixed:"Karışık","n/a":"Veri yok"};return '<td><span class="badge s-'+(v.state==="n/a"?"na":v.state)+'">'+L[v.state||"n/a"]+"</span></td>"}
+    if(k==="h4")return "<td>"+ema(v.h4,8,20)+"</td>";
+    if(k==="m15")return "<td>"+ema(v.m15,34,89)+"</td>";
+    if(k==="st"){var s=v.st15;return "<td>"+(s?arrow(s.dir)+' <span class="m">'+f(s.line)+" ("+(s.dist_pct>0?"+":"")+f(s.dist_pct,1)+"%)</span>":"–")+"</td>"}
+    if(k==="ell"){var e=v.elliott;if(!e)return '<td class="m">–</td>';var c=e.bias==="up"?"up":e.bias==="down"?"down":"m";return '<td class="'+c+'">'+esc(e.label)+"</td>"}
+    if(k==="ev")return '<td class="ev">'+((v.events||[]).map(esc).join("<br>")||'<span class="m">–</span>')+"</td>";
+    return "<td></td>";
+  }
+  function render(){
+    var tb=document.querySelector("#t tbody"),th=document.querySelector("#t thead");
+    var rows=Object.keys(DATA.tickers).map(function(t){return rowOf(t,DATA.tickers[t])});
+    var cnt={bullish:0,mixed:0,bearish:0,"n/a":0};rows.forEach(function(r){cnt[r.state]=(cnt[r.state]||0)+1});
+    document.getElementById("sum").innerHTML=
+      '<div class="s-bullish">'+cnt.bullish+"<small>Bullish</small></div><div class=\"s-mixed\">"+cnt.mixed+"<small>Karışık</small></div><div class=\"s-bearish\">"+cnt.bearish+"<small>Bearish</small></div>";
+    var fl=[["all","Hepsi"],["bullish","Bullish"],["mixed","Karışık"],["bearish","Bearish"],["ev","Yeni sinyal"]];
+    document.getElementById("filters").innerHTML=fl.map(function(x){return '<button data-f="'+x[0]+'"'+(filt===x[0]?' class="on"':"")+">"+x[1]+"</button>"}).join("");
+    if(filt==="ev")rows=rows.filter(function(r){return r.ev>0});else if(filt!=="all")rows=rows.filter(function(r){return r.state===filt});
+    rows.sort(function(a,b){
+      var x=a[sortKey],y=b[sortKey];
+      if(sortKey==="state"){x=ORDER[x];y=ORDER[y]}
+      if(sortKey==="sym")return sortDir*(x<y?-1:x>y?1:0);
+      if(x==null)x=-1e9;if(y==null)y=-1e9;
+      return sortDir*(x-y)||(a.sym<b.sym?-1:1);
+    });
+    th.innerHTML="<tr>"+COLS.map(function(c){return '<th data-k="'+c[0]+'">'+c[1]+(sortKey===c[0]?(sortDir>0?" ↑":" ↓"):"")+"</th>"}).join("")+"</tr>";
+    tb.innerHTML=rows.map(function(r){return "<tr>"+COLS.map(function(c){return cell(r,c[0])}).join("")+"</tr>"}).join("");
+    document.getElementById("empty").hidden=rows.length>0;
+  }
+  function load(){
+    var st=document.getElementById("status");st.className="";st.textContent="Yükleniyor…";
+    fetch(SRC+(SRC.indexOf("?")<0?"?":"&")+"t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(function(d){
+      DATA=d;var u=new Date(d.updated),age=Math.round((Date.now()-u)/60000);
+      st.textContent="Son tarama: "+u.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+" (İstanbul) · "+(age<90?age+" dk önce":Math.round(age/60)+" sa önce")+" · "+d.ok+"/"+d.count+" hisse";
+      if(d.ok<d.count){st.className="warn";st.textContent+=" · eksikler: "+Object.keys(d.tickers).filter(function(t){return d.tickers[t].state==="n/a"}).join(", ")}
+      render();
+    }).catch(function(e){st.className="warn";st.textContent="Veri okunamadı ("+e.message+"). Henüz tarama yapılmamış olabilir: Tara ▶";document.getElementById("empty").hidden=false});
+  }
+  document.getElementById("refresh").onclick=load;
+  document.getElementById("filters").onclick=function(e){var b=e.target.closest("button");if(b&&DATA){filt=b.dataset.f;render()}};
+  document.querySelector("#t thead").onclick=function(e){var h=e.target.closest("th");if(!h||!DATA)return;var k=h.dataset.k;if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=k==="sym"?1:-1}render()};
+  load();
+})();
+</script>
+</body>
+</html>
