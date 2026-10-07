@@ -164,6 +164,39 @@ def compute(rows):
     return out
 
 
+def overlay_extended(out):
+    """Ön/kapanış sonrası seansında fiyatı ve 'Gün %'yi TradingView'in ön/sonrası fiyatıyla değiştirir.
+    Sinyaller (EMA/Supertrend/Elliott) mum verisinden kalır; `ext` ve `close` alanları eklenir. Dönüş: seans ya da None."""
+    try:
+        import extended
+        sess = extended.session_name(datetime.now(timezone.utc))
+        if sess not in ("pre", "post"):
+            return None
+        got = extended.fetch(list(out))[0] or {}
+    except Exception as ex:
+        log(f"ön/sonrası fiyat alınamadı: {type(ex).__name__}")
+        return None
+    n = 0
+    for t, v in out.items():
+        x = got.get(t) or {}
+        p = x.get(sess)
+        if v.get("state") == "n/a" or not p or p <= 0:
+            continue
+        v["close"] = v.get("price")
+        v["price"] = round(p, 4)
+        if sess == "pre":
+            pct = x.get("pre_pct")
+        else:  # kapanış sonrası: bugünkü normal seans değişimi + sonrası hareketi
+            ch, pp = x.get("change_pct"), x.get("post_pct")
+            pct = round(((1 + ch / 100) * (1 + pp / 100) - 1) * 100, 2) if ch is not None and pp is not None else None
+        if pct is not None:
+            v["chg_pct"] = pct
+        v["ext"] = sess
+        n += 1
+    log(f"ön/sonrası fiyat ({sess}) uygulandı: {n}/{len(out)}")
+    return sess
+
+
 # ------------------------------------------------------------------ ana akış
 def parse_tickers(text):
     toks = [t.strip(".-") for t in re.split(r"[\s,;]+", (text or "").upper())]
@@ -224,6 +257,7 @@ def main(argv=None):
         if yahoo_on:
             time.sleep(0.4)
 
+    ext_sess = overlay_extended(out)
     ok = [t for t, v in out.items() if v.get("state") != "n/a"]
     data = {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "count": len(tickers), "ok": len(ok), "sources": src, "log": ix.LOG, "tickers": out}

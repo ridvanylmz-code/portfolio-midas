@@ -67,7 +67,7 @@ Elliott kural tabanlı tahmindir (4s zigzag), kesin sayım değildir. Veri Yahoo
     var v=r.v;
     if(k==="sym")return '<td class="sym">'+esc(r.sym)+"</td>";
     if(v.state==="n/a"&&k!=="state")return '<td class="m">–</td>';
-    if(k==="price")return "<td>"+f(v.price)+"</td>";
+    if(k==="price")return "<td>"+f(v.price)+(v.ext?(v.ext==="pre"?" 🌅":" 🌙"):"")+(v.ext&&v.close!=null?'<div class="m">kapanış '+f(v.close)+"</div>":"")+"</td>";
     if(k==="chg")return '<td class="'+(v.chg_pct>0?"up":v.chg_pct<0?"down":"")+'">'+(v.chg_pct==null?"–":(v.chg_pct>0?"+":"")+f(v.chg_pct)+"%")+"</td>";
     if(k==="state"){var L={bullish:"Bullish",bearish:"Bearish",mixed:"Karışık","n/a":"Veri yok"};return '<td><span class="badge s-'+(v.state==="n/a"?"na":v.state)+'">'+L[v.state||"n/a"]+"</span></td>"}
     if(k==="h4")return "<td>"+ema(v.h4,8,20)+"</td>";
