@@ -3,10 +3,11 @@ name: Gün İçi Teknik (4s EMA, 15dk EMA, Elliott)
 # Sonuç main'e DEĞİL, tek commit'lik `data` dalına (intraday.json) yazılır; main temiz kalır.
 # Seans kontrolü scripts/intraday.py içinde (ET saati, yaz/kış saatinden bağımsız):
 #   normal seans -> her çalışmada, ön/kapanış sonrası -> en az 50 dk aralıkla, seans dışı -> atla.
+# Kaynak: Twelve Data (ücretsiz plan 8 istek/dk, 800 kredi/gün; çalışma başına ~13 kredi, ~2 dk).
 # GitHub cron'u 5-20 dk gecikebilir; sinyal tam 15 dk'da bir gelmeyebilir.
 on:
-  # KAPALI: Yahoo, GitHub sunucu IP'lerine HTTP 429 veriyor (07.10 testi). Veri kaynağı kararı bekleniyor.
-  # Açmak için: schedule:\n    - cron: "*/15 8-23 * * 1-5"
+  schedule:
+    - cron: "*/15 8-23 * * 1-5"
   workflow_dispatch:
     inputs:
       force:
@@ -44,6 +45,8 @@ jobs:
           sha256sum data-out/intraday.json 2>/dev/null | cut -d' ' -f1 > data-out/.before || echo none > data-out/.before
 
       - name: Hesapla
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
         run: |
           ARGS=""
           if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="--force"; fi
