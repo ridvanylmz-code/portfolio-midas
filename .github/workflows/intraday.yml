@@ -50,6 +50,7 @@ jobs:
           python scripts/intraday.py --out data-out/intraday.json $ARGS
 
       - name: Değiştiyse data dalına yaz (tek commit, force push)
+        if: always()
         run: |
           cd data-out
           AFTER=$(sha256sum intraday.json 2>/dev/null | cut -d' ' -f1 || echo none)

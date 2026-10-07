@@ -61,15 +61,19 @@ def session_name(now):
 
 
 # ------------------------------------------------------------------ veri
-def fetch_15m(sym, retries=3):
+def fetch_15m(sym, retries=2):
     """[(epoch, o, h, l, c, v), ...] eskiden yeniye; None = başarısız."""
     params = {"interval": "15m", "range": "60d", "includePrePost": "true"}
     for attempt in range(retries):
         try:
-            r = requests.get(YAHOO.format(sym=sym), params=params, headers=HEADERS, timeout=20)
+            r = requests.get(YAHOO.format(sym=sym), params=params, headers=HEADERS, timeout=(6, 15))
             if r.status_code == 429:
+                log(f"{sym}: HTTP 429 (deneme {attempt + 1})")
                 time.sleep(3 * (attempt + 1))
                 continue
+            if r.status_code != 200:
+                log(f"{sym}: HTTP {r.status_code} {r.text[:120]!r}")
+                return None
             r.raise_for_status()
             res = r.json()["chart"]["result"][0]
             q = res["indicators"]["quote"][0]
@@ -281,9 +285,13 @@ def main(argv=None):
     if not tickers:
         print("[ERROR] Hisse listesi okunamadı (docs/data/portfolio.json).")
         return 1
-    out = {}
+    out, fails = {}, 0
     for t in tickers:
+        if fails >= 3 and not out:  # ilk 3 hisse hiç gelmediyse kaynak erişilemez: boşuna bekleme
+            log("Üst üste 3 hisse alınamadı; kaynak erişilemez sayıldı, durduruldu")
+            break
         rows = fetch_15m(t)
+        fails = 0 if rows else fails + 1
         if rows and len(rows) >= 120:
             try:
                 out[t] = compute(rows)
@@ -295,15 +303,17 @@ def main(argv=None):
             out[t] = {**prev["tickers"][t], "stale": True}
         time.sleep(0.4)
     fresh = sum(1 for v in out.values() if not v.get("stale"))
-    if not fresh:
-        print("[ERROR] Hiç hisse alınamadı; dosya yazılmadı.")
-        return 1
-    data = {"updated": now.isoformat(timespec="seconds"), "session": sess,
+    # Başarısız olsa da yaz: log (hata sebebi) data dalında okunabilsin; önceki veri stale olarak korunur.
+    data = {"updated": now.isoformat(timespec="seconds") if fresh else prev.get("updated"),
+            "checked": now.isoformat(timespec="seconds"), "session": sess,
             "source": "Yahoo Finance (gayriresmi)", "log": LOG, "tickers": out}
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
         f.write("\n")
     print(f"{fresh}/{len(tickers)} hisse güncel, seans={sess}")
+    if not fresh:
+        print("[ERROR] Hiç hisse alınamadı (log alanına bak).")
+        return 1
     return 0
 
 
