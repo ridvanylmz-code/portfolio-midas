@@ -1,0 +1,63 @@
+name: Gün İçi Teknik (4s EMA, 15dk EMA, Elliott)
+
+# Sonuç main'e DEĞİL, tek commit'lik `data` dalına (intraday.json) yazılır; main temiz kalır.
+# Seans kontrolü scripts/intraday.py içinde (ET saati, yaz/kış saatinden bağımsız):
+#   normal seans -> her çalışmada, ön/kapanış sonrası -> en az 50 dk aralıkla, seans dışı -> atla.
+# GitHub cron'u 5-20 dk gecikebilir; sinyal tam 15 dk'da bir gelmeyebilir.
+on:
+  schedule:
+    - cron: "*/15 8-23 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Seans ve yaş kontrolünü atla (test)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: intraday
+  cancel-in-progress: false
+
+jobs:
+  intraday:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Önceki sonucu data dalından al
+        run: |
+          mkdir -p data-out
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git fetch --depth=1 origin data
+            git show FETCH_HEAD:intraday.json > data-out/intraday.json || rm -f data-out/intraday.json
+          fi
+          sha256sum data-out/intraday.json 2>/dev/null | cut -d' ' -f1 > data-out/.before || echo none > data-out/.before
+
+      - name: Hesapla
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="--force"; fi
+          python scripts/intraday.py --out data-out/intraday.json $ARGS
+
+      - name: Değiştiyse data dalına yaz (tek commit, force push)
+        run: |
+          cd data-out
+          AFTER=$(sha256sum intraday.json 2>/dev/null | cut -d' ' -f1 || echo none)
+          if [ "$AFTER" = "$(cat .before)" ]; then echo "Değişiklik yok"; exit 0; fi
+          rm -f .before
+          git init -q -b data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add intraday.json
+          git commit -q -m "intraday: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data:refs/heads/data
