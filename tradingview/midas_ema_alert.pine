@@ -1,0 +1,38 @@
+//@version=6
+indicator("Midas EMA Kesişim", overlay=true)
+
+// Grafiği 15 dakikaya ayarla. Ön/sonrası mumlar ticker.modify ile dahil edilir.
+// Her hisse için 1 alarm: Koşul = bu gösterge, "Herhangi bir alert() fonksiyon çağrısı".
+chatId = input.string("", "Telegram chat_id")
+
+if timeframe.period != "15"
+    runtime.error("Grafik periyodunu 15 dakikaya ayarla")
+
+tkr = ticker.modify(syminfo.tickerid, session.extended)
+
+// 15dk: EMA 34 / 89 (grafik 15dk olduğundan kapanmış mumda tetiklenir)
+[f15, s15] = request.security(tkr, "15", [ta.ema(close, 34), ta.ema(close, 89)])
+// 4s: EMA 8 / 20, yeniden boyanmasın diye yalnızca KAPANMIŞ 4s mumlar ([1] + lookahead_on)
+[f4, s4] = request.security(tkr, "240", [ta.ema(close, 8)[1], ta.ema(close, 20)[1]], lookahead = barmerge.lookahead_on)
+
+up15 = ta.crossover(f15, s15)
+dn15 = ta.crossunder(f15, s15)
+up4  = ta.crossover(f4, s4)
+dn4  = ta.crossunder(f4, s4)
+
+plot(f15, "EMA34 (15dk)", color.new(color.teal, 0))
+plot(s15, "EMA89 (15dk)", color.new(color.orange, 0))
+plotshape(up15, "15dk yukarı", shape.triangleup, location.belowbar, color.green, size = size.tiny)
+plotshape(dn15, "15dk aşağı", shape.triangledown, location.abovebar, color.red, size = size.tiny)
+
+msg(icon, title, a, b, an, bn) =>
+    '{"chat_id":"' + chatId + '","text":"' + icon + ' ' + syminfo.ticker + ' · ' + title + ' · fiyat ' + str.tostring(close, "#.##") + ' · ' + an + ' ' + str.tostring(a, "#.##") + ' / ' + bn + ' ' + str.tostring(b, "#.##") + '"}'
+
+if up15
+    alert(msg("🟢▲", "15dk yukarı kesişim (EMA34>EMA89)", f15, s15, "EMA34", "EMA89"), alert.freq_once_per_bar_close)
+if dn15
+    alert(msg("🔴▼", "15dk aşağı kesişim (EMA34<EMA89)", f15, s15, "EMA34", "EMA89"), alert.freq_once_per_bar_close)
+if up4
+    alert(msg("🟢▲", "4s yukarı kesişim (EMA8>EMA20)", f4, s4, "EMA8", "EMA20"), alert.freq_once_per_bar_close)
+if dn4
+    alert(msg("🔴▼", "4s aşağı kesişim (EMA8<EMA20)", f4, s4, "EMA8", "EMA20"), alert.freq_once_per_bar_close)
