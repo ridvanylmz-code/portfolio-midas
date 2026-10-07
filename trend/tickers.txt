@@ -1,4 +1,4 @@
 # Trend sayfası için sembol listesi (virgül/satır ayrılabilir, # yorum). 30-50 sembol, en fazla 80.
 # Workflow'da "tickers" kutusu doluysa o kullanılır; boşsa bu dosya.
 RKLB, CRWV, UAMY, WYFI, SGML
-INTC, NVDA, UUUU, KTOS, CBRS, STX, MU, AVGO
+INTC, NVDA, UUUU, KTOS, CBRS, STX, MU, AVGO, SN, TSLA, NVDA, INTC, ASTS
