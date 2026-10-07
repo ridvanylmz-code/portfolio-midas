@@ -34,7 +34,7 @@ def log(msg):
 
 
 # ------------------------------------------------------------------ veri
-def fetch_yahoo(sym, retries=3):
+def fetch_yahoo(sym, retries=1):
     """15dk mumlar [(epoch, o, h, l, c, v)] eskiden yeniye (ön/sonrası dahil) ya da None."""
     ysym = sym.replace(".", "-")  # BRK.B -> BRK-B
     params = {"interval": "15m", "range": "60d", "includePrePost": "true"}
@@ -42,9 +42,8 @@ def fetch_yahoo(sym, retries=3):
         try:
             r = requests.get(YF_URL.format(sym=ysym), params=params, headers=YF_HEADERS, timeout=(6, 30))
             if r.status_code == 429:
-                log(f"{sym}: Yahoo 429 (deneme {attempt + 1})")
-                time.sleep(5 * (attempt + 1))
-                continue
+                log(f"{sym}: Yahoo 429")
+                return "blocked"
             d = r.json()
             res = (d.get("chart") or {}).get("result")
             if not res:
@@ -196,15 +195,24 @@ def main(argv=None):
 
     td_key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
     out, src = {}, {}
+    yahoo_on, yahoo_fail, prepost = True, 0, True
     for i, t in enumerate(tickers):
-        rows = fetch_yahoo(t)
-        used = "Yahoo"
+        rows, used = None, "Yahoo"
+        if yahoo_on:
+            rows = fetch_yahoo(t)
+            if rows == "blocked" or rows is None:
+                yahoo_fail += 1
+                if yahoo_fail >= 2:
+                    yahoo_on = False
+                    log("Yahoo bu ortamda erişilemez/engelli; kalan semboller Twelve Data ile (yavaş)")
+            else:
+                yahoo_fail = 0
+            if rows == "blocked":
+                rows = None
         if (not rows or len(rows) < 120) and td_key:
-            if rows is not None:
-                log(f"{t}: Yahoo mum sayısı yetersiz ({len(rows)}), Twelve Data deneniyor")
             time.sleep(ix.TD_PAUSE)
-            rows, _ = ix.fetch_15m(t, td_key, True)
-            used = "TwelveData"
+            rows, prepost = ix.fetch_15m(t, td_key, prepost)
+            used = "TwelveData" + ("" if prepost else " (yalnız normal seans)")
         if rows and len(rows) >= 120:
             try:
                 out[t] = compute(rows)
@@ -213,7 +221,8 @@ def main(argv=None):
                 log(f"{t}: hesap hatası {type(ex).__name__}: {str(ex)[:80]}")
         else:
             out[t] = {"state": "n/a", "error": "veri alınamadı"}
-        time.sleep(0.4)  # Yahoo'ya nazik ol
+        if yahoo_on:
+            time.sleep(0.4)
 
     ok = [t for t, v in out.items() if v.get("state") != "n/a"]
     data = {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
