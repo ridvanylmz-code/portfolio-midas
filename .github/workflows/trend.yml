@@ -58,3 +58,9 @@ jobs:
           git add trend.json
           git commit -q -m "trend: $(date -u +%Y-%m-%dT%H:%MZ)"
           git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" trend-data:refs/heads/trend-data
+
+      - name: Sayfa linki
+        if: always()
+        run: |
+          OWNER="${GITHUB_REPOSITORY%%/*}"; REPO="${GITHUB_REPOSITORY##*/}"
+          echo "Trend sayfası: https://${OWNER}.github.io/${REPO}/trend/" >> "$GITHUB_STEP_SUMMARY"

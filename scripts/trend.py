@@ -166,7 +166,7 @@ def compute(rows):
 
 # ------------------------------------------------------------------ ana akış
 def parse_tickers(text):
-    toks = re.split(r"[\s,;]+", (text or "").upper())
+    toks = [t.strip(".-") for t in re.split(r"[\s,;]+", (text or "").upper())]
     return [t for t in toks if re.fullmatch(r"[A-Z][A-Z0-9.\-]{0,9}", t)]
 
 
@@ -184,7 +184,7 @@ def main(argv=None):
             tickers = parse_tickers(re.sub(r"#.*", "", f.read()))
     if args.include_portfolio:
         pf = ix.load_json(ix.PORTFOLIO, {})
-        tickers += list(pf.get("portfolio", {})) + list(pf.get("watchlist", []))
+        tickers += parse_tickers(" ".join(list(pf.get("portfolio", {})) + list(pf.get("watchlist", []))))
     tickers = list(dict.fromkeys(tickers))
     if not tickers:
         print("[ERROR] Sembol listesi boş.")
