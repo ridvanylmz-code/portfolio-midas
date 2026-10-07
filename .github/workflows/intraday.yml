@@ -5,8 +5,8 @@ name: Gün İçi Teknik (4s EMA, 15dk EMA, Elliott)
 #   normal seans -> her çalışmada, ön/kapanış sonrası -> en az 50 dk aralıkla, seans dışı -> atla.
 # GitHub cron'u 5-20 dk gecikebilir; sinyal tam 15 dk'da bir gelmeyebilir.
 on:
-  schedule:
-    - cron: "*/15 8-23 * * 1-5"
+  # KAPALI: Yahoo, GitHub sunucu IP'lerine HTTP 429 veriyor (07.10 testi). Veri kaynağı kararı bekleniyor.
+  # Açmak için: schedule:\n    - cron: "*/15 8-23 * * 1-5"
   workflow_dispatch:
     inputs:
       force:
