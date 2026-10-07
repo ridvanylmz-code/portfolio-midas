@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T22:44:49+00:00",
+  "updated": "2026-10-07T07:34:30+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "TV  WYFI: SELL (RSI 40.593)",
@@ -10,6 +10,8 @@
     "TD  CRWV: RSI 56.1 SMA50 87.43 (250 bar)",
     "TV  UAMY: SELL (RSI 32.72)",
     "TD  UAMY: RSI 32.7 SMA50 5.09 (250 bar)",
+    "TV  SGML: SELL (RSI 46.919)",
+    "TD  SGML: RSI 46.9 SMA50 10.69 (250 bar)",
     "TV  INTC: NEUTRAL (RSI 51.989)",
     "TD  INTC: RSI 52.0 SMA50 101.77 (250 bar)",
     "TV  NVDA: BUY (RSI 67.163)",
@@ -18,8 +20,6 @@
     "TD  UUUU: RSI 39.0 SMA50 13.11 (250 bar)",
     "TV  KTOS: SELL (RSI 37.62)",
     "TD  KTOS: RSI 37.6 SMA50 50.94 (250 bar)",
-    "TV  SGML: SELL (RSI 46.919)",
-    "TD  SGML: RSI 46.9 SMA50 10.69 (250 bar)",
     "TV  CBRS: STRONG_SELL (RSI 42.673)",
     "TD  CBRS: RSI 42.7 SMA50 200.47 (100 bar)",
     "TV  STX: 429, 20 sn beklenip yeniden denenecek",
@@ -119,7 +119,7 @@
         "atr14": 4.04,
         "support20": 60.51,
         "resistance20": 78.28,
-        "vol_ratio": 1.24,
+        "vol_ratio": 1.25,
         "bars": 250
       }
     },
@@ -209,6 +209,49 @@
         "bars": 250
       }
     },
+    "SGML": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "buy": 6,
+        "sell": 10,
+        "neutral": 10,
+        "oscillators": "NEUTRAL",
+        "moving_averages": "SELL",
+        "indicators": {
+          "RSI": 46.919,
+          "MACD.macd": -0.456,
+          "MACD.signal": -0.483,
+          "SMA20": 9.592,
+          "SMA50": 10.692,
+          "SMA200": 13.379,
+          "EMA20": 9.837,
+          "ADX": 24.862,
+          "close": 9.71
+        }
+      },
+      "td": {
+        "date": "2026-10-06",
+        "close": 9.71,
+        "rsi14": 46.9,
+        "sma20": 9.59,
+        "sma50": 10.69,
+        "sma200": 13.38,
+        "above_sma20": true,
+        "above_sma50": false,
+        "above_sma200": false,
+        "macd": {
+          "macd": -0.456,
+          "signal": -0.483,
+          "hist": 0.027
+        },
+        "atr14": 0.71,
+        "support20": 7.79,
+        "resistance20": 11.25,
+        "vol_ratio": 0.81,
+        "bars": 250
+      }
+    },
     "INTC": {
       "tv": {
         "exchange": "NASDAQ",
@@ -245,10 +288,10 @@
           "signal": 5.488,
           "hist": -0.622
         },
-        "atr14": 6.0,
+        "atr14": 6.01,
         "support20": 94.52,
         "resistance20": 127.44,
-        "vol_ratio": 0.92,
+        "vol_ratio": 0.93,
         "bars": 250
       }
     },
@@ -334,7 +377,7 @@
         "atr14": 0.62,
         "support20": 10.61,
         "resistance20": 14.94,
-        "vol_ratio": 1.21,
+        "vol_ratio": 1.24,
         "bars": 250
       }
     },
@@ -381,49 +424,6 @@
         "bars": 250
       }
     },
-    "SGML": {
-      "tv": {
-        "exchange": "NASDAQ",
-        "recommendation": "SELL",
-        "buy": 6,
-        "sell": 10,
-        "neutral": 10,
-        "oscillators": "NEUTRAL",
-        "moving_averages": "SELL",
-        "indicators": {
-          "RSI": 46.919,
-          "MACD.macd": -0.456,
-          "MACD.signal": -0.483,
-          "SMA20": 9.592,
-          "SMA50": 10.692,
-          "SMA200": 13.379,
-          "EMA20": 9.837,
-          "ADX": 24.862,
-          "close": 9.71
-        }
-      },
-      "td": {
-        "date": "2026-10-06",
-        "close": 9.71,
-        "rsi14": 46.9,
-        "sma20": 9.59,
-        "sma50": 10.69,
-        "sma200": 13.38,
-        "above_sma20": true,
-        "above_sma50": false,
-        "above_sma200": false,
-        "macd": {
-          "macd": -0.456,
-          "signal": -0.483,
-          "hist": 0.027
-        },
-        "atr14": 0.71,
-        "support20": 7.79,
-        "resistance20": 11.25,
-        "vol_ratio": 0.8,
-        "bars": 250
-      }
-    },
     "CBRS": {
       "tv": {
         "exchange": "NASDAQ",
@@ -462,7 +462,7 @@
         "atr14": 13.9,
         "support20": 165.22,
         "resistance20": 214.0,
-        "vol_ratio": 1.21,
+        "vol_ratio": 1.3,
         "bars": 100
       }
     },
@@ -506,7 +506,7 @@
         "atr14": 58.0,
         "support20": 758.35,
         "resistance20": 946.36,
-        "vol_ratio": 1.59,
+        "vol_ratio": 1.6,
         "bars": 250
       }
     },
@@ -550,7 +550,7 @@
         "atr14": 43.44,
         "support20": 902.6,
         "resistance20": 1108.72,
-        "vol_ratio": 0.83,
+        "vol_ratio": 0.86,
         "bars": 250
       }
     },
@@ -594,7 +594,7 @@
         "atr14": 11.27,
         "support20": 335.81,
         "resistance20": 380.84,
-        "vol_ratio": 1.25,
+        "vol_ratio": 1.26,
         "bars": 250
       }
     }
