@@ -26,6 +26,10 @@ on:
         description: 'Fiyat (sadece buy/sell için)'
         required: false
         type: string
+      commission:
+        description: 'Komisyon $ (isteğe bağlı; buy/sell için, boşsa 0)'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -56,6 +60,7 @@ jobs:
           IN_ACTION: ${{ inputs.action }}
           IN_TICKER: ${{ inputs.symbol }}
           IN_PRICE: ${{ inputs.price }}
+          IN_COMMISSION: ${{ inputs.commission }}
           QUANTITY: ${{ inputs.quantity }}
         run: |
           # deposit/withdraw tutarı --amount'tan, buy/sell adedi --shares'ten okunur
