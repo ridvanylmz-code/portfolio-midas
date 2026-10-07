@@ -25,8 +25,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 PORTFOLIO = "docs/data/portfolio.json"
 ET = ZoneInfo("America/New_York")
-YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/{sym}"
-HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"}
+YAHOO_HOSTS = ["query2.finance.yahoo.com", "query1.finance.yahoo.com"]
+YAHOO = "https://{host}/v8/finance/chart/{sym}"
+SESSION = requests.Session()
+_WARM = {"done": False}
+HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
+           "Accept": "application/json,text/plain,*/*", "Accept-Language": "en-US,en;q=0.9",
+           "Referer": "https://finance.yahoo.com/"}
 EXT_MIN_AGE_MIN = 50
 LOG = []
 
@@ -61,14 +66,27 @@ def session_name(now):
 
 
 # ------------------------------------------------------------------ veri
+def warm_up():
+    """Yahoo çerezini al (datacenter IP'lerinde 429'u azaltabilir); başarısız olursa devam et."""
+    if _WARM["done"]:
+        return
+    _WARM["done"] = True
+    try:
+        SESSION.get("https://fc.yahoo.com", headers=HEADERS, timeout=(6, 10))
+    except Exception as ex:
+        log(f"çerez ısıtma: {type(ex).__name__}")
+
+
 def fetch_15m(sym, retries=2):
     """[(epoch, o, h, l, c, v), ...] eskiden yeniye; None = başarısız."""
     params = {"interval": "15m", "range": "60d", "includePrePost": "true"}
+    warm_up()
     for attempt in range(retries):
         try:
-            r = requests.get(YAHOO.format(sym=sym), params=params, headers=HEADERS, timeout=(6, 15))
+            host = YAHOO_HOSTS[attempt % len(YAHOO_HOSTS)]
+            r = SESSION.get(YAHOO.format(host=host, sym=sym), params=params, headers=HEADERS, timeout=(6, 15))
             if r.status_code == 429:
-                log(f"{sym}: HTTP 429 (deneme {attempt + 1})")
+                log(f"{sym}: HTTP 429 {host} (deneme {attempt + 1})")
                 time.sleep(3 * (attempt + 1))
                 continue
             if r.status_code != 200:
