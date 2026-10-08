@@ -91,11 +91,11 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 <link rel="stylesheet" href="theme.css?v=1">
 </head>
 <body>
-<div class="stage" aria-hidden="true"></div>
+<div class="stage" aria-hidden="true"><i class="aur"></i><i class="aur"></i><i class="aur"></i></div>
 
 <!-- PORTFÖY -->
 <section class="tab on" id="t-portfoy">
-  <div class="brand"><b></b>RIDVAN&nbsp;&nbsp;//&nbsp;&nbsp;COCKPIT</div>
+  <div class="brand"><b></b>RIDVAN&nbsp;&nbsp;//&nbsp;&nbsp;COCKPIT<button class="herobtn" id="heroBtn" type="button" aria-label="Arka plan temasını değiştir"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></button></div>
   <div class="brandsub">Market Intelligence Terminal</div>
   <div class="hero">
     <div class="lbl">Toplam Varlık
@@ -144,9 +144,27 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   </div>
   <div id="abody"></div>
   <div class="note" id="anote"></div>
+  <div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
 </section>
 
 <div id="msg"></div>
+<script>
+(function(){
+  var MODES=["photo","aurora","auto"],LBL={photo:"Foto",aurora:"Aurora",auto:"Otomatik (günlük değişir)"};
+  function get(){try{var v=localStorage.getItem("hero");return MODES.indexOf(v)>=0?v:"photo"}catch(e){return "photo"}}
+  function set(v){try{localStorage.setItem("hero",v)}catch(e){}}
+  function apply(m){
+    var d=new Date(),day=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5),eff=m==="auto"?(day%2?"aurora":"photo"):m;
+    document.documentElement.setAttribute("data-hero",eff);
+  }
+  var mode=get();apply(mode);
+  var toast=document.createElement("div");toast.className="herotoast";document.body.appendChild(toast);var tm;
+  document.getElementById("heroBtn").addEventListener("click",function(){
+    mode=MODES[(MODES.indexOf(mode)+1)%MODES.length];set(mode);apply(mode);
+    toast.textContent="Arka plan: "+LBL[mode];toast.classList.add("on");clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove("on")},1600);
+  });
+})();
+</script>
 <script src="motto.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
