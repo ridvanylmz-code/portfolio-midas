@@ -8,7 +8,7 @@
 
 /* Sayfa üstü sahne (mini uygulama): fotoğraf kararıp zemine karışır */
 .stage{position:absolute;left:0;right:0;top:0;height:330px;z-index:-1;pointer-events:none;overflow:hidden;background:#0a0d14}
-.stage::before{content:"";position:absolute;inset:0;background:url(img/hero.jpg) 75% 0/150% auto no-repeat;filter:brightness(.58) contrast(1.1)}
+.stage::before{content:"";position:absolute;inset:0;background:url(img/hero.jpg) 100% 0/125% auto no-repeat;filter:brightness(.58) contrast(1.1)}
 .stage::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(10,13,20,.45) 0,rgba(10,13,20,.05) 38%,rgba(10,13,20,.78) 80%,#0a0d14 100%),
              linear-gradient(to right,rgba(10,13,20,.78) 0,rgba(10,13,20,.2) 55%,rgba(10,13,20,0) 100%)}
@@ -45,3 +45,23 @@
 @media (max-width:560px){.motto-t{font-size:26px;-webkit-text-stroke:6px #0b0b0c}.motto.slim .motto-t{font-size:22px}}
 @media (prefers-reduced-motion:reduce){.motto-t{transition:none}}
 @media (min-width:900px){.motto{min-height:150px;padding:22px 32px}.motto-t{font-size:42px;-webkit-text-stroke:8px #0b0b0c}}
+
+/* Alternatif başlık teması: mavi-mor aurora (html[data-hero="aurora"]).
+   Mini uygulamadaki düğme Foto / Aurora / Otomatik arasında döner. */
+.stage .aur{display:none}
+html[data-hero="aurora"] .stage{position:fixed;height:420px;background:transparent;
+  -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+html[data-hero="aurora"] .stage::before,html[data-hero="aurora"] .stage::after{display:none}
+html[data-hero="aurora"] .stage .aur{display:block}
+.stage .aur{position:absolute;border-radius:50%;filter:blur(46px);opacity:.75;animation:drift 18s ease-in-out infinite alternate}
+.stage .aur:nth-child(1){width:360px;height:260px;left:-90px;top:-40px;background:#2b4fd8}
+.stage .aur:nth-child(2){width:320px;height:240px;right:-100px;top:20px;background:#7a3fd1;animation-delay:-6s}
+.stage .aur:nth-child(3){width:300px;height:200px;left:20%;top:150px;background:#0e8fa8;opacity:.5;animation-delay:-11s}
+@keyframes drift{to{transform:translate(34px,22px) scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.stage .aur{animation:none}}
+.herobtn{margin-left:auto;flex:none;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);
+  color:rgba(240,243,250,.9);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.herobtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.herotoast{position:fixed;top:56px;right:14px;z-index:20;padding:6px 12px;border-radius:999px;background:rgba(10,13,20,.85);border:1px solid rgba(255,255,255,.18);
+  color:#e8ecf4;font:600 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;opacity:0;transition:opacity .25s;pointer-events:none}
+.herotoast.on{opacity:1}
