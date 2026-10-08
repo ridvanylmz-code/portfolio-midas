@@ -200,6 +200,20 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   var INTRA_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/data/intraday.json";
   var SESS_ICO={pre:"🌅",regular:"☀️",post:"🌙",kapali:"⏸"};
   function arrow(d){return d==="up"?["▲","up"]:d==="down"?["▼","dn"]:["■","warn"]}
+  /* Elliott açıklaması: intraday.json'daki bias/wave/start_price/last_price/thr_pct alanlarından üretilir (kesin sayım değildir). */
+  function ellDetail(w,price){
+    if(!w||!w.wave||w.start_price===undefined||w.start_price===null)return [];
+    var s=+w.start_price,l=+w.last_price,dn=w.bias==="down",mv=Math.abs(l-s),wv=+w.wave,p=+price,out=[];
+    var fb=function(f){return dn?l+f*mv:l-f*mv}, yn=dn?"aşağı":"yukarı", ters=dn?"yukarı":"aşağı";
+    out.push((dn?"Düşüş":"Yükseliş")+" sayımı "+usd(s)+" seviyesinden başlıyor; son uç "+usd(l)+" (%"+num(mv/s*100,1)+" "+yn+").");
+    if(wv===1)out.push("Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile "+ters+" yönlü bir tepki ("+usd(fb(0.382))+" – "+usd(fb(0.618))+" bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar.");
+    else if(wv===3)out.push("Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden "+yn+" yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi "+usd(fb(0.382))+" – "+usd(fb(0.618))+".");
+    else if(wv===5)out.push("Dalga 5 son itkidir: yorgunluk ve "+ters+" yönlü düzeltme riski yüksek. Düzeltme bölgesi "+usd(fb(0.382))+" – "+usd(fb(0.618))+". Bu, dibin/tepenin geldiği anlamına gelmez.");
+    else out.push("Şu an düzeltme dalgası (Dalga "+wv+") sürüyor; bugüne kadarki ucu "+usd(l)+". Düzeltme bitince ana yön ("+yn+") devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor.");
+    if(p>0&&(wv===1||wv===3||wv===5)&&(dn?p<l:p>l))out.push("Fiyat ("+usd(p)+") son ucu aştı: dalga uzuyor, yukarıdaki bölgeler "+yn+" kayar.");
+    out.push("Sayım "+usd(s)+" "+(dn?"üstünde":"altında")+" kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4s mumlarda (eşik %"+num(+w.thr_pct,1)+"); kesin değildir.");
+    return out;
+  }
   function renderIntraday(box,t){
     var hd=el("div","sub","Gün içi sinyaller"); hd.style.margin="4px 0 2px"; box.appendChild(hd);
     var e=INTRA&&INTRA.tickers&&INTRA.tickers[t];
@@ -215,6 +229,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     }
     if(w){a=w.bias==="up"?["▲","up"]:w.bias==="down"?["▼","dn"]:["■","warn"];
       addKV(box,"Elliott (4s, muhtemel)",a[0]+" "+w.label,a[1]);
+      ellDetail(w,e.price).forEach(function(s){var d=el("div","sub",s); d.style.margin="4px 0"; box.appendChild(d)});
     }
     var when=INTRA.updated?new Date(INTRA.updated).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"–";
     var n=el("div","sub",(SESS_ICO[INTRA.session]||"")+" Veri: "+when+" (İstanbul)"+(e.stale?" · bu hisse eski":"")+" · Twelve Data 15dk, "+(INTRA.prepost?"ön/sonrası dahil":"yalnızca normal seans mumları")+". Elliott kesin sayım değildir."); n.style.margin="6px 0 12px"; box.appendChild(n);
