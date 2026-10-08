@@ -57,19 +57,23 @@ table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
 td{padding:4px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right;font-weight:600}
 .err{background:var(--down-bg);color:var(--down);padding:12px;border-radius:10px}
 </style>
+<link rel="stylesheet" href="theme.css?v=1">
 </head>
 <body>
+<div class="masthead">
 <header>
-  <h1>📊 RIDVAN // COCKPIT</h1>
+  <h1><i></i>RIDVAN // COCKPIT</h1>
   <button id="theme" type="button" aria-label="Tema değiştir">🌓</button>
 </header>
+<div class="tag">MARKET INTELLIGENCE TERMINAL</div>
 <div id="status">Yükleniyor…</div>
+</div>
 <main id="app"></main>
 <div id="modal"><div class="card" id="modalBody"></div></div>
 
 <script>
 "use strict";
-const PALETTE=["#2563eb","#9333ea","#f59e0b","#14b8a6","#ec4899","#84cc16","#f97316","#06b6d4"];
+const PALETTE=["#5b8def","#8b86c4","#7c93b8","#4fb3a5","#b07a8e","#7fae6f","#6b7a90","#a0a8b8"];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=(v,d=2)=>Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -185,6 +189,8 @@ function render(){
      <div class="sub" style="margin-top:4px">${esc(mp.since)} tarihindeki ilk kayda göre (para yatırma/çekme düzeltilir)</div></div>`;
   }
 
+  h+=`<div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>`;
+
   const segs=S.pos.map((p,i)=>({n:p.t,w:p.weight,c:PALETTE[i%PALETTE.length]}));
   segs.push({n:"Nakit",w:pct(S.cash,S.total),c:"#94a3b8"});
   h+=`<h2>Dağılım</h2><div class="card"><div class="alloc">${segs.map(s=>`<div title="${esc(s.n)}" style="width:${s.w}%;background:${s.c}"></div>`).join("")}</div>
@@ -219,6 +225,7 @@ function render(){
   if(lost.length)h+=`<div class="sub" style="margin-top:8px">⚠ Fiyat alınamadı: ${lost.map(esc).join(", ")}</div>`;
 
   $("#app").innerHTML=h;
+  if(window.mottoInit)mottoInit();
   document.querySelectorAll(".pcard").forEach(el=>el.onclick=()=>openModal(el.dataset.t,S));
 
   const upd=new Date(Q.updated),age=Math.round((Date.now()-upd)/60000);
@@ -264,5 +271,6 @@ async function load(){
 load();
 setInterval(load,60000);
 </script>
+<script src="motto.js?v=1"></script>
 </body>
 </html>

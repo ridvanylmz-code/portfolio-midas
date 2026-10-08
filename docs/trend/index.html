@@ -32,19 +32,25 @@ td.sym{font-weight:700;position:sticky;left:0;background:var(--card)}
 .note{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5}
 #empty{padding:30px;text-align:center;color:var(--muted)}
 </style>
+<link rel="stylesheet" href="../theme.css?v=1">
 </head>
 <body>
+<div class="masthead">
 <header>
-  <h1>RIDVAN MARKET PROJECTION</h1>
+  <h1><i></i>RIDVAN MARKET PROJECTION</h1>
   <div><button id="refresh">Yenile</button> <a class="btn" id="runlink" target="_blank" rel="noopener">Tara ▶</a></div>
 </header>
+<div class="tag">TREND TARAMASI · EMA · SUPERTREND · ELLIOTT</div>
 <div id="status">Yükleniyor…</div>
+</div>
 <div class="sum" id="sum"></div>
 <div class="chips" id="filters"></div>
 <div class="wrap"><table id="t"><thead></thead><tbody></tbody></table><div id="empty" hidden>Veri yok. "Tara ▶" ile Actions'tan Trend Tara'yı çalıştır.</div></div>
+<div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir" style="margin-top:14px"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
 <p class="note">Durum: 4s EMA8/20, 15dk EMA34/89 ve 15dk Supertrend (10, 3) üçü de yukarıdaysa <b>Bullish</b>, üçü de aşağıdaysa <b>Bearish</b>, aksi halde <b>Karışık</b>.
 EMA gösterimi "hızlı / yavaş" (▲ hızlı üstte). "Yeni" sütunu: 15dk'da son 8 mum, 4s'de son 2 mumda gelen kesişim / Supertrend dönüşü.
 Elliott kural tabanlı tahmindir (4s zigzag), kesin sayım değildir. Veri Yahoo Finance 15dk (ön/sonrası dahil); 4s mumlar ET 04/08/12/16 diliminde birleştirilir, TradingView 4s mumundan küçük farklar olabilir. Yatırım tavsiyesi değildir.</p>
+<script src="../motto.js?v=1"></script>
 <script>
 (function(){
   var REPO="ridvanylmz-code/portfolio-midas";

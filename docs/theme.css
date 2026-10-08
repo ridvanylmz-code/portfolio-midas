@@ -1,0 +1,47 @@
+/* Midas görsel teması: sakin, net, disiplinli.
+   Tek dosyadan üç sayfaya (index, tg, trend) uygulanır.
+   Geri almak için: sayfalardaki <link theme.css> ve .stage/.masthead/.motto işaretlerini kaldırmak yeterli. */
+@font-face{font-family:"Sedgwick Ave Display";font-display:swap;src:url(fonts/sedgwick-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Sedgwick Ave Display";font-display:swap;src:url(fonts/sedgwick-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* Sayfa üstü sahne (mini uygulama): fotoğraf kararıp zemine karışır */
+.stage{position:absolute;left:0;right:0;top:0;height:330px;z-index:-1;pointer-events:none;overflow:hidden;background:#0a0d14}
+.stage::before{content:"";position:absolute;inset:0;background:url(img/hero.jpg) 75% 0/150% auto no-repeat;filter:brightness(.58) contrast(1.1)}
+.stage::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(10,13,20,.45) 0,rgba(10,13,20,.05) 38%,rgba(10,13,20,.78) 80%,#0a0d14 100%),
+             linear-gradient(to right,rgba(10,13,20,.78) 0,rgba(10,13,20,.2) 55%,rgba(10,13,20,0) 100%)}
+
+/* Başlık bandı (dashboard, tarama) */
+.masthead{position:relative;isolation:isolate;overflow:hidden;border-radius:18px;margin-bottom:14px;padding:26px 22px 18px;min-height:168px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:8px;color:#f3f5f8;background:#0a0d14}
+.masthead::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/hero.jpg) 66% 22%/cover no-repeat;filter:brightness(.6) contrast(1.1)}
+.masthead::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to right,rgba(10,13,20,.88) 0,rgba(10,13,20,.55) 45%,rgba(10,13,20,.08) 100%),
+             linear-gradient(to top,rgba(10,13,20,.55),rgba(10,13,20,0) 55%)}
+.masthead header{margin:0}
+.masthead h1{color:#fff;font-size:21px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:flex-start;gap:10px}
+.masthead h1 i{flex:none;margin-top:.42em;display:inline-block;width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 12px #3ddc84}
+.masthead .tag{font-size:11px;letter-spacing:.1em;color:rgba(235,240,248,.7);margin:-2px 0 0 19px}
+.masthead #status{color:rgba(240,244,250,.82);margin:2px 0 0}
+.masthead #status.warn{color:#ff8a94}
+.masthead button,.masthead a.btn{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@media (max-width:560px){.masthead{padding:22px 16px 14px;min-height:150px;border-radius:16px}.masthead h1{font-size:16px;letter-spacing:.08em}.masthead header{align-items:flex-start;gap:10px}.masthead .tag{font-size:10px;margin-left:19px}}
+
+/* Duvar yazısı bandı: günün cümlesi, dokununca sıradaki */
+.motto{position:relative;isolation:isolate;overflow:hidden;border-radius:16px;margin:12px 0;min-height:132px;display:flex;align-items:center;
+  padding:18px 22px;cursor:pointer;background:#1a1816;color:#f2f2f0;-webkit-tap-highlight-color:transparent;user-select:none}
+.motto::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/wall.jpg) 30% 40%/cover no-repeat;filter:brightness(.55) contrast(1.05) saturate(.75)}
+.motto::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to right,rgba(8,9,11,.55),rgba(8,9,11,.15) 70%,rgba(8,9,11,.4))}
+.motto-in{display:flex;flex-direction:column;gap:6px;max-width:100%}
+.motto-k{font:600 10.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em;color:rgba(240,240,236,.62)}
+.motto-t{margin:0;font:400 30px/1.12 "Sedgwick Ave Display","Impact","Arial Narrow",sans-serif;letter-spacing:.02em;
+  color:#f4f4f2;-webkit-text-stroke:7px #0b0b0c;paint-order:stroke fill;transform:rotate(-1.6deg);transform-origin:left center;
+  text-wrap:balance;transition:opacity .25s ease}
+.motto.fade .motto-t{opacity:0}
+.motto.slim{min-height:96px;padding:12px 20px}
+.motto.slim .motto-t{font-size:25px}
+@media (max-width:560px){.motto-t{font-size:26px;-webkit-text-stroke:6px #0b0b0c}.motto.slim .motto-t{font-size:22px}}
+@media (prefers-reduced-motion:reduce){.motto-t{transition:none}}
+@media (min-width:900px){.motto{min-height:150px;padding:22px 32px}.motto-t{font-size:42px;-webkit-text-stroke:8px #0b0b0c}}
