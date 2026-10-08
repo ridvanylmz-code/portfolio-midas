@@ -8,7 +8,7 @@
 
 /* Sayfa üstü sahne (mini uygulama): fotoğraf kararıp zemine karışır */
 .stage{position:absolute;left:0;right:0;top:0;height:330px;z-index:-1;pointer-events:none;overflow:hidden;background:#0a0d14}
-.stage::before{content:"";position:absolute;inset:0;background:url(img/hero.jpg) 100% 100%/cover no-repeat;filter:brightness(.58) contrast(1.1)}
+.stage::before{content:"";position:absolute;inset:0;background:url(img/hero.jpg) 100% 36px/112% auto no-repeat;filter:brightness(.5) contrast(1.15);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 70px);mask-image:linear-gradient(to bottom,transparent,#000 70px)}
 .stage::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(10,13,20,.45) 0,rgba(10,13,20,.05) 38%,rgba(10,13,20,.78) 80%,#0a0d14 100%),
              linear-gradient(to right,rgba(10,13,20,.78) 0,rgba(10,13,20,.2) 55%,rgba(10,13,20,0) 100%)}
@@ -16,7 +16,7 @@
 /* Başlık bandı (dashboard, tarama) */
 .masthead{position:relative;isolation:isolate;overflow:hidden;border-radius:18px;margin-bottom:14px;padding:26px 22px 18px;min-height:168px;
   display:flex;flex-direction:column;justify-content:flex-end;gap:8px;color:#f3f5f8;background:#0a0d14}
-.masthead::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/hero.jpg) 80% 60%/cover no-repeat;filter:brightness(.6) contrast(1.1)}
+.masthead::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/hero.jpg) 66% 22%/cover no-repeat;filter:brightness(.6) contrast(1.1)}
 .masthead::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(to right,rgba(10,13,20,.88) 0,rgba(10,13,20,.55) 45%,rgba(10,13,20,.08) 100%),
              linear-gradient(to top,rgba(10,13,20,.55),rgba(10,13,20,0) 55%)}
