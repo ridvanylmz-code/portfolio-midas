@@ -1,0 +1,59 @@
+name: BIST Trend Tara (elle)
+
+# Elle tetiklenir: Actions -> "BIST Trend Tara (elle)" -> Run workflow.
+# Sembol kutusu doluysa onu, boşsa trend/bist_tickers.txt'yi kullanır.
+# Sonuç `trend-bist-data` dalına trend-bist.json olarak yazılır (ABD'nin `trend-data` ve `data` dallarına dokunmaz).
+# Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/bist/
+# Kaynak: Yahoo Finance (anahtarsız), sembol soneki .IS.
+on:
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: "Semboller (virgül/boşluk, .IS yazma). Boşsa trend/bist_tickers.txt"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trend-bist
+  cancel-in-progress: false
+
+jobs:
+  trend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Hesapla
+        env:
+          TICKERS: ${{ github.event.inputs.tickers }}
+        run: |
+          mkdir -p data-out
+          python scripts/trend_bist.py --tickers "$TICKERS" --file trend/bist_tickers.txt --out data-out/trend-bist.json
+
+      - name: trend-bist-data dalına yaz (tek commit)
+        if: always()
+        run: |
+          [ -f data-out/trend-bist.json ] || { echo "trend-bist.json yok"; exit 0; }
+          cd data-out
+          git init -q -b trend-bist-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add trend-bist.json
+          git commit -q -m "trend-bist: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" trend-bist-data:refs/heads/trend-bist-data
+
+      - name: Sayfa linki
+        if: always()
+        run: |
+          OWNER="${GITHUB_REPOSITORY%%/*}"; REPO="${GITHUB_REPOSITORY##*/}"
+          echo "BIST trend sayfası: https://${OWNER}.github.io/${REPO}/trend/bist/" >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,5 @@
+# BIST trend sayfası için sembol listesi (Yahoo'da .IS soneki otomatik eklenir; yazma). Virgül/satır ayrılabilir, # yorum.
+# Dışlama: bankalar (AKBNK, GARAN, YKBNK…) ve alkol (AEFES) bu listeye girmez.
+BIENY, SASA, SMRTG, MIATK, EMKEL, KLSER, DOFER, ALTNY
+TCELL, THYAO, ALTIN, GMSTR, EMPAE, RYSAS, HRKET, SDTTR
+DOHOL, TRENJ, AKSGY
