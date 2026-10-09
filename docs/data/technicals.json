@@ -1,12 +1,7 @@
 {
-  "updated": "2026-10-08T22:44:04+00:00",
+  "updated": "2026-10-09T05:16:09+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
-    "TV  WYFI: STRONG_SELL (RSI 34.963)",
-    "TD  WYFI: RSI 35.0 SMA50 20.93 (250 bar)",
-    "TV  RKLB: SELL (RSI 46.594)",
-    "TD  RKLB: RSI 46.6 SMA50 70.46 (250 bar)",
-    "TV  CRWV: STRONG_SELL (RSI 42.991)",
     "TD  CRWV: RSI 43.0 SMA50 88.26 (250 bar)",
     "TV  UAMY: STRONG_SELL (RSI 28.35)",
     "TD  UAMY: RSI 28.4 SMA50 5.04 (250 bar)",
@@ -22,15 +17,51 @@
     "TD  KTOS: RSI 32.9 SMA50 50.77 (250 bar)",
     "TV  CBRS: STRONG_SELL (RSI 38.895)",
     "TD  CBRS: RSI 38.9 SMA50 200.09 (102 bar)",
-    "TV  STX: SELL (RSI 39.186)",
+    "TV  STX: 429, 20 sn beklenip yeniden denenecek",
+    "TV  STX: 429, 40 sn beklenip yeniden denenecek",
+    "TV  STX: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
     "TD  STX: RSI 39.2 SMA50 856.61 (250 bar)",
-    "TV  MU: NEUTRAL (RSI 51.213)",
+    "TV  MU: 429, 20 sn beklenip yeniden denenecek",
+    "TV  MU: 429, 40 sn beklenip yeniden denenecek",
+    "TV  MU: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
     "TD  MU: RSI 51.2 SMA50 973.1 (250 bar)",
     "TV  AVGO: 429, 20 sn beklenip yeniden denenecek",
     "TV  AVGO: 429, 40 sn beklenip yeniden denenecek",
     "TV  AVGO: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
     "TD  AVGO: RSI 49.3 SMA50 372.39 (250 bar)",
-    "Özet: 13 hisse, TV başarılı 12, TD başarılı 13"
+    "TV  SN: 429, 20 sn beklenip yeniden denenecek",
+    "TV  SN: 429, 40 sn beklenip yeniden denenecek",
+    "TV  SN: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  SN: RSI 62.4 SMA50 177.71 (250 bar)",
+    "TV  TSLA: 429, 20 sn beklenip yeniden denenecek",
+    "TV  TSLA: 429, 40 sn beklenip yeniden denenecek",
+    "TV  TSLA: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  TSLA: RSI 55.8 SMA50 353.27 (250 bar)",
+    "TV  ASTS: 429, 20 sn beklenip yeniden denenecek",
+    "TV  ASTS: 429, 40 sn beklenip yeniden denenecek",
+    "TV  ASTS: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  ASTS: RSI 43.2 SMA50 63.0 (250 bar)",
+    "TV  ARM: 429, 20 sn beklenip yeniden denenecek",
+    "TV  ARM: 429, 40 sn beklenip yeniden denenecek",
+    "TV  ARM: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  ARM: RSI 46.7 SMA50 269.37 (250 bar)",
+    "TV  WDC: 429, 20 sn beklenip yeniden denenecek",
+    "TV  WDC: 429, 40 sn beklenip yeniden denenecek",
+    "TV  WDC: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  WDC: RSI 37.2 SMA50 460.32 (250 bar)",
+    "TV  TSM: 429, 20 sn beklenip yeniden denenecek",
+    "TV  TSM: 429, 40 sn beklenip yeniden denenecek",
+    "TV  TSM: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  TSM: RSI 55.1 SMA50 431.47 (250 bar)",
+    "TV  NOK: 429, 20 sn beklenip yeniden denenecek",
+    "TV  NOK: 429, 40 sn beklenip yeniden denenecek",
+    "TV  NOK: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  NOK: RSI 46.8 SMA50 10.2 (250 bar)",
+    "TV  CAR: 429, 20 sn beklenip yeniden denenecek",
+    "TV  CAR: 429, 40 sn beklenip yeniden denenecek",
+    "TV  CAR: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
+    "TD  CAR: RSI 40.0 SMA50 128.63 (250 bar)",
+    "Özet: 21 hisse, TV başarılı 10, TD başarılı 21"
   ],
   "tickers": {
     "WYFI": {
@@ -115,7 +146,7 @@
         "atr14": 4.08,
         "support20": 60.51,
         "resistance20": 78.28,
-        "vol_ratio": 1.06,
+        "vol_ratio": 1.07,
         "bars": 250
       }
     },
@@ -199,7 +230,7 @@
           "hist": -0.039
         },
         "atr14": 0.27,
-        "support20": 3.65,
+        "support20": 3.66,
         "resistance20": 5.06,
         "vol_ratio": 1.34,
         "bars": 250
@@ -287,7 +318,7 @@
         "atr14": 6.02,
         "support20": 94.52,
         "resistance20": 127.44,
-        "vol_ratio": 1.08,
+        "vol_ratio": 1.09,
         "bars": 250
       }
     },
@@ -373,7 +404,7 @@
         "atr14": 0.64,
         "support20": 9.72,
         "resistance20": 13.79,
-        "vol_ratio": 1.4,
+        "vol_ratio": 1.42,
         "bars": 250
       }
     },
@@ -458,7 +489,7 @@
         "atr14": 13.36,
         "support20": 161.51,
         "resistance20": 214.0,
-        "vol_ratio": 1.31,
+        "vol_ratio": 1.33,
         "bars": 102
       }
     },
@@ -481,7 +512,8 @@
           "EMA20": 859.011,
           "ADX": 13.677,
           "close": 774.825
-        }
+        },
+        "stale": true
       },
       "td": {
         "date": "2026-10-08",
@@ -524,7 +556,8 @@
           "EMA20": 1040.571,
           "ADX": 13.087,
           "close": 1035.84
-        }
+        },
+        "stale": true
       },
       "td": {
         "date": "2026-10-08",
@@ -544,7 +577,7 @@
         "atr14": 46.64,
         "support20": 902.6,
         "resistance20": 1108.72,
-        "vol_ratio": 1.14,
+        "vol_ratio": 1.15,
         "bars": 250
       }
     },
@@ -588,7 +621,199 @@
         "atr14": 11.6,
         "support20": 335.81,
         "resistance20": 380.84,
-        "vol_ratio": 1.1,
+        "vol_ratio": 1.12,
+        "bars": 250
+      }
+    },
+    "SN": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 184.87,
+        "rsi14": 62.4,
+        "sma20": 175.21,
+        "sma50": 177.71,
+        "sma200": 136.34,
+        "above_sma20": true,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 3.087,
+          "signal": 1.879,
+          "hist": 1.208
+        },
+        "atr14": 5.74,
+        "support20": 157.01,
+        "resistance20": 186.32,
+        "vol_ratio": 0.52,
+        "bars": 250
+      }
+    },
+    "TSLA": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 375.0,
+        "rsi14": 55.8,
+        "sma20": 367.8,
+        "sma50": 353.27,
+        "sma200": 391.13,
+        "above_sma20": true,
+        "above_sma50": true,
+        "above_sma200": false,
+        "macd": {
+          "macd": 4.429,
+          "signal": 3.733,
+          "hist": 0.696
+        },
+        "atr14": 11.73,
+        "support20": 345.88,
+        "resistance20": 386.83,
+        "vol_ratio": 0.8,
+        "bars": 250
+      }
+    },
+    "ASTS": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 56.93,
+        "rsi14": 43.2,
+        "sma20": 60.07,
+        "sma50": 63.0,
+        "sma200": 80.93,
+        "above_sma20": false,
+        "above_sma50": false,
+        "above_sma200": false,
+        "macd": {
+          "macd": -1.001,
+          "signal": -1.05,
+          "hist": 0.048
+        },
+        "atr14": 4.17,
+        "support20": 55.42,
+        "resistance20": 65.47,
+        "vol_ratio": 1.7,
+        "bars": 250
+      }
+    },
+    "ARM": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 275.29,
+        "rsi14": 46.7,
+        "sma20": 288.85,
+        "sma50": 269.37,
+        "sma200": 219.35,
+        "above_sma20": false,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 7.553,
+          "signal": 9.669,
+          "hist": -2.115
+        },
+        "atr14": 17.76,
+        "support20": 238.03,
+        "resistance20": 336.98,
+        "vol_ratio": 1.04,
+        "bars": 250
+      }
+    },
+    "WDC": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 393.31,
+        "rsi14": 37.2,
+        "sma20": 437.61,
+        "sma50": 460.32,
+        "sma200": 404.8,
+        "above_sma20": false,
+        "above_sma50": false,
+        "above_sma200": false,
+        "macd": {
+          "macd": -13.436,
+          "signal": -8.937,
+          "hist": -4.499
+        },
+        "atr14": 27.68,
+        "support20": 390.6,
+        "resistance20": 475.66,
+        "vol_ratio": 1.06,
+        "bars": 250
+      }
+    },
+    "TSM": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 457.99,
+        "rsi14": 55.1,
+        "sma20": 449.47,
+        "sma50": 431.47,
+        "sma200": 390.97,
+        "above_sma20": true,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 12.453,
+          "signal": 11.125,
+          "hist": 1.328
+        },
+        "atr14": 11.12,
+        "support20": 412.55,
+        "resistance20": 487.47,
+        "vol_ratio": 1.33,
+        "bars": 250
+      }
+    },
+    "NOK": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 10.14,
+        "rsi14": 46.8,
+        "sma20": 10.44,
+        "sma50": 10.2,
+        "sma200": 10.1,
+        "above_sma20": false,
+        "above_sma50": false,
+        "above_sma200": true,
+        "macd": {
+          "macd": 0.027,
+          "signal": 0.034,
+          "hist": -0.007
+        },
+        "atr14": 0.5,
+        "support20": 9.65,
+        "resistance20": 11.17,
+        "vol_ratio": 0.83,
+        "bars": 250
+      }
+    },
+    "CAR": {
+      "tv": null,
+      "td": {
+        "date": "2026-10-08",
+        "close": 110.0,
+        "rsi14": 40.0,
+        "sma20": 111.4,
+        "sma50": 128.63,
+        "sma200": 155.64,
+        "above_sma20": false,
+        "above_sma50": false,
+        "above_sma200": false,
+        "macd": {
+          "macd": -6.262,
+          "signal": -7.649,
+          "hist": 1.386
+        },
+        "atr14": 5.66,
+        "support20": 102.2,
+        "resistance20": 129.0,
+        "vol_ratio": 0.73,
         "bars": 250
       }
     }
