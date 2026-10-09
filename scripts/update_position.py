@@ -111,6 +111,11 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
             tx["commission"] = fee
         msg = (f"🟢 ALIŞ {ticker}: {_num(qty)} adet @ ${px:,.2f}{fee_txt}\n"
                f"Yeni pozisyon: {_num(new_shares)} adet, ort. maliyet ${new_cost:,.4f}")
+        lv = portfolio["position_levels"].get(ticker)
+        if lv and not pos:  # kapatılmış pozisyon yeniden açıldı: saklı seviyeler geri geçerli
+            msg += f"\n🎯 Kayıtlı seviyeler geri yüklendi ({_lv_txt(lv)})"
+            if lv.get("stop_loss") is not None and px <= float(lv["stop_loss"]):
+                msg += "\n⚠️ Kayıtlı stop alış fiyatına eşit/üstünde: ilk alarmda hemen tetiklenir, seviyeyi güncelle"
         if ticker in portfolio["watchlist"]:  # artık pozisyonda; listede iki kez görünmesin
             portfolio["watchlist"].remove(ticker)
             portfolio["buy_zones"].pop(ticker, None)
@@ -124,8 +129,9 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
         remaining = pos["shares"] - qty
         if remaining < EPS:
             del portfolio["portfolio"][ticker]
-            portfolio["position_levels"].pop(ticker, None)
-            rest = "Pozisyon kapandı."
+            # Stop/hedef silinmez: yeniden alımda geçerli olur (alarmlar yalnız eldeki hisselere bakar).
+            lv = portfolio["position_levels"].get(ticker)
+            rest = "Pozisyon kapandı." + (f" Seviyeler saklandı ({_lv_txt(lv)}), yeniden alımda geçerli olur." if lv else "")
         else:
             portfolio["portfolio"][ticker] = {"shares": _num(remaining), "cost_basis": pos["cost_basis"]}
             rest = f"Kalan: {_num(remaining)} adet (maliyet ${pos['cost_basis']:,.4f})"
@@ -143,6 +149,12 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
     tx["cash_after"] = portfolio["cash"]
     history["transactions"].append(tx)
     return msg
+
+
+def _lv_txt(lv):
+    st, tg = lv.get("stop_loss"), lv.get("target")
+    return ", ".join(x for x in (f"stop ${float(st):,.2f}" if st is not None else "",
+                                 f"hedef ${float(tg):,.2f}" if tg is not None else "") if x) or "boş"
 
 
 def _env_or(args, name, env):
