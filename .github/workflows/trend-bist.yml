@@ -4,7 +4,7 @@ name: BIST Trend Tara (elle)
 # Sembol kutusu doluysa onu, boşsa trend/bist_tickers.txt'yi kullanır.
 # Sonuç `trend-bist-data` dalına trend-bist.json olarak yazılır (ABD'nin `trend-data` ve `data` dallarına dokunmaz).
 # Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/bist/
-# Kaynak: Yahoo Finance (anahtarsız), sembol soneki .IS.
+# Kaynak sırası: Yahoo (ham istek) -> yfinance -> Twelve Data XIST (TWELVEDATA_API_KEY varsa). Sembol soneki .IS.
 on:
   workflow_dispatch:
     inputs:
@@ -31,10 +31,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install requests
+      - run: pip install requests yfinance pandas
 
       - name: Hesapla
         env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
           TICKERS: ${{ github.event.inputs.tickers }}
         run: |
           mkdir -p data-out

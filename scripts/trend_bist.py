@@ -7,7 +7,7 @@ Hesap fonksiyonları (EMA, Supertrend, Elliott) ABD tarafındaki scripts/intrada
 aynen kullanılır; burada yalnızca BIST'e özgü kısımlar vardır:
   - Kaynak: Yahoo Finance chart API, sembol soneki .IS (BIST'te ön/sonrası seans yok)
   - 4S mumlar İstanbul saatiyle 10:00-14:00 ve 14:00-18:00 dilimlerinde 15dk mumlardan birleştirilir
-  - Yedek kaynak yok (Twelve Data ABD seansına göre yazılmış)
+  - Kaynak sırası: ham Yahoo -> yfinance -> Twelve Data (XIST, yalnız TWELVEDATA_API_KEY varsa)
 
 Kullanım: python scripts/trend_bist.py --file trend/bist_tickers.txt --out trend-bist.json
 """
@@ -27,7 +27,7 @@ import intraday as ix  # noqa: E402
 import trend as tr  # noqa: E402
 
 TRT = ZoneInfo("Europe/Istanbul")
-YF_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{sym}"
+YF_URL = "https://{host}.finance.yahoo.com/v8/finance/chart/{sym}"
 MAX_TICKERS = 80
 MIN_BARS = 120
 
@@ -36,33 +36,97 @@ def log(msg):
     ix.log(msg)
 
 
-def fetch_yahoo_bist(sym):
-    """15dk mumlar [(epoch, o, h, l, c, v)] eskiden yeniye ya da None / 'blocked'."""
+def _yahoo_raw(sym):
+    """Ham Yahoo chart API (query1, olmazsa query2). Liste ya da None."""
     params = {"interval": "15m", "range": "60d", "includePrePost": "false"}
-    try:
-        r = requests.get(YF_URL.format(sym=sym + ".IS"), params=params, headers=tr.YF_HEADERS, timeout=(6, 30))
-        if r.status_code == 429:
-            log(f"{sym}: Yahoo 429")
-            return "blocked"
-        d = r.json()
-        res = (d.get("chart") or {}).get("result")
-        if not res:
-            err = ((d.get("chart") or {}).get("error") or {}).get("description", f"HTTP {r.status_code}")
-            log(f"{sym}: Yahoo veri yok ({str(err)[:80]})")
-            return None
-        res = res[0]
-        ts = res.get("timestamp") or []
-        q = res["indicators"]["quote"][0]
-        rows = []
-        for i, t in enumerate(ts):
-            o, h, l, c = q["open"][i], q["high"][i], q["low"][i], q["close"][i]
-            if None in (o, h, l, c):
+    for host in ("query1", "query2"):
+        try:
+            r = requests.get(YF_URL.format(host=host, sym=sym + ".IS"), params=params,
+                             headers=tr.YF_HEADERS, timeout=(6, 30))
+            if r.status_code == 429:
+                log(f"{sym}: Yahoo {host} 429")
+                time.sleep(2)
                 continue
-            rows.append((int(t), float(o), float(h), float(l), float(c), float(q["volume"][i] or 0)))
+            d = r.json()
+            res = (d.get("chart") or {}).get("result")
+            if not res:
+                err = ((d.get("chart") or {}).get("error") or {}).get("description", f"HTTP {r.status_code}")
+                log(f"{sym}: Yahoo {host} veri yok ({str(err)[:80]})")
+                return None
+            res = res[0]
+            ts = res.get("timestamp") or []
+            q = res["indicators"]["quote"][0]
+            rows = []
+            for i, t in enumerate(ts):
+                o, h, l, c = q["open"][i], q["high"][i], q["low"][i], q["close"][i]
+                if None in (o, h, l, c):
+                    continue
+                rows.append((int(t), float(o), float(h), float(l), float(c), float(q["volume"][i] or 0)))
+            return rows or None
+        except Exception as ex:
+            log(f"{sym}: Yahoo {host} {type(ex).__name__}")
+    return None
+
+
+def _yahoo_lib(sym):
+    """yfinance kütüphanesi (çerez/crumb ile; ham istek 429 alırken çoğu zaman çalışır). Liste ya da None."""
+    try:
+        import yfinance as yf
+        df = yf.Ticker(sym + ".IS").history(period="60d", interval="15m", auto_adjust=False)
+        if df is None or df.empty:
+            log(f"{sym}: yfinance boş döndü")
+            return None
+        rows = []
+        for t, r in df.iterrows():
+            o, h, l, c = r["Open"], r["High"], r["Low"], r["Close"]
+            if o != o or h != h or l != l or c != c:  # NaN
+                continue
+            rows.append((int(t.timestamp()), float(o), float(h), float(l), float(c), float(r.get("Volume") or 0)))
         return rows or None
     except Exception as ex:
-        log(f"{sym}: Yahoo {type(ex).__name__}")
+        log(f"{sym}: yfinance {type(ex).__name__}: {str(ex)[:60]}")
         return None
+
+
+def _twelvedata(sym, key):
+    """Twelve Data, borsa XIST (BIST). Ücretsiz planda BIST kapalı olabilir; hata mesajı loga yazılır."""
+    try:
+        params = {"symbol": sym, "exchange": "XIST", "interval": "15min", "outputsize": ix.OUTPUTSIZE,
+                  "timezone": "Europe/Istanbul", "order": "ASC", "apikey": key}
+        d = requests.get(ix.TD_URL, params=params, timeout=(6, 30)).json()
+        if d.get("status") == "error" or "values" not in d:
+            log(f"{sym}: Twelve Data {d.get('code')}: {str(d.get('message', d))[:120]}")
+            return None
+        rows = []
+        for v in d["values"]:
+            dt = v["datetime"]
+            t = datetime.strptime(dt[:19], "%Y-%m-%d %H:%M:%S").replace(tzinfo=TRT)
+            rows.append((int(t.timestamp()), float(v["open"]), float(v["high"]), float(v["low"]),
+                         float(v["close"]), float(v.get("volume") or 0)))
+        rows.sort(key=lambda x: x[0])
+        return rows or None
+    except Exception as ex:
+        log(f"{sym}: Twelve Data {type(ex).__name__}")
+        return None
+
+
+def fetch_bars(sym, td_key, state):
+    """Sırayla: ham Yahoo -> yfinance -> Twelve Data. (rows, kaynak). Çalışmayan kaynak 2 hisse üst üste
+    başarısız olursa atlanır (state['off'])."""
+    chain = [("Yahoo", _yahoo_raw), ("yfinance", _yahoo_lib)]
+    if td_key:
+        chain.append(("TwelveData", lambda s: _twelvedata(s, td_key)))
+    for name, fn in chain:
+        if state["fail"].get(name, 0) >= 2 and name != chain[-1][0]:
+            continue
+        rows = fn(sym)
+        if isinstance(rows, list) and len(rows) >= MIN_BARS:
+            state["fail"][name] = 0
+            return rows, name
+        state["fail"][name] = state["fail"].get(name, 0) + 1
+        if name == "TwelveData":
+            time.sleep(ix.TD_PAUSE)  # dakikada 8 istek sınırı
+    return None, None
 
 
 def aggregate_4h_bist(rows):
@@ -141,22 +205,19 @@ def main(argv=None):
         print("[ERROR] Sembol listesi boş.")
         return 1
 
-    out, src = {}, {}
+    td_key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
+    out, src, state = {}, {}, {"fail": {}}
     for t in tickers:
-        rows = fetch_yahoo_bist(t)
-        if rows == "blocked":
-            time.sleep(3)
-            rows = fetch_yahoo_bist(t)
-        if isinstance(rows, list) and len(rows) >= MIN_BARS:
+        rows, used = fetch_bars(t, td_key, state)
+        if rows:
             try:
                 out[t] = compute(rows)
-                src[t] = "Yahoo"
+                src[t] = used
             except Exception as ex:
                 log(f"{t}: hesap hatası {type(ex).__name__}: {str(ex)[:80]}")
                 out[t] = {"state": "n/a", "error": "hesap hatası"}
         else:
-            n = len(rows) if isinstance(rows, list) else 0
-            log(f"{t}: yetersiz veri ({n} mum, en az {MIN_BARS} gerekli)")
+            log(f"{t}: hiçbir kaynaktan yeterli veri gelmedi")
             out[t] = {"state": "n/a", "error": "veri alınamadı"}
         time.sleep(0.4)
 
