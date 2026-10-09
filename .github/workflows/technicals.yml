@@ -1,6 +1,7 @@
 name: Teknik Veri
 
 # DENEME: monitor.yml'den bağımsız. Sadece docs/data/technicals.json yazar.
+# Semboller: portföy + takip listesi + trend/tickers.txt (en fazla 40; ~12 sn/hisse).
 # Zamanlama: hafta içi 22:30 UTC (= 01:30 İstanbul, ABD kapanışından en az 1,5 saat sonra).
 # Yaz/kış saati geçişinde (kapanış 20:00 -> 21:00 UTC) değişiklik gerekmez.
 # Ayrıca Actions sekmesinden elle (workflow_dispatch) çalıştırılabilir.
@@ -20,7 +21,7 @@ concurrency:
 jobs:
   technicals:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 

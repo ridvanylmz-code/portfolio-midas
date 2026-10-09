@@ -9,6 +9,7 @@ Mevcut sistem (monitor.py, update_position.py) bu dosyayı kullanmaz.
 """
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -17,6 +18,9 @@ import requests
 
 OUT = "docs/data/technicals.json"
 PORTFOLIO = "docs/data/portfolio.json"
+TICKERS_FILE = "trend/tickers.txt"  # portföy + takip listesine ek olarak bu dosyadaki semboller de alınır
+MAX_TICKERS = 40
+TIME_BUDGET = 15 * 60  # sn; aşılırsa kalan hisselerde önceki veri korunur, dosya yine yazılır
 EXCHANGES = ["NASDAQ", "NYSE", "AMEX"]
 LOG = []
 
@@ -164,9 +168,25 @@ def fetch_tv_retry(symbol):
             raise
 
 
+def read_tickers_file(path):
+    """trend/tickers.txt: virgül/boşluk/satır ayrımlı, # yorum satırları atlanır."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            text = re.sub(r"#.*", "", f.read())
+    except OSError:
+        return []
+    toks = [t.strip(".-") for t in re.split(r"[\s,;]+", text.upper())]
+    return [t for t in toks if re.fullmatch(r"[A-Z][A-Z0-9.\-]{0,9}", t)]
+
+
 def main():
+    t0 = time.time()
     pf = load_json(PORTFOLIO, {})
-    tickers = list(dict.fromkeys(list((pf.get("portfolio") or {}).keys()) + list(pf.get("watchlist") or [])))
+    tickers = list(dict.fromkeys(list((pf.get("portfolio") or {}).keys()) + list(pf.get("watchlist") or [])
+                                 + read_tickers_file(TICKERS_FILE)))
+    if len(tickers) > MAX_TICKERS:
+        log(f"Liste {len(tickers)} sembol; ilk {MAX_TICKERS} alındı")
+        tickers = tickers[:MAX_TICKERS]
     old = load_json(OUT, {}).get("tickers", {})
     key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
     try:
@@ -182,6 +202,14 @@ def main():
     for i, t in enumerate(tickers):
         prev = old.get(t, {})
         entry = {"tv": None, "td": None}
+        if time.time() - t0 > TIME_BUDGET:
+            if not any("Süre bütçesi" in m for m in LOG):
+                log(f"Süre bütçesi doldu: {t} ve sonrası atlandı, önceki veri korundu")
+            for k in ("tv", "td"):
+                if prev.get(k):
+                    entry[k] = dict(prev[k], stale=True)
+            result[t] = entry
+            continue
         if tv_ok:
             try:
                 entry["tv"] = fetch_tv_retry(t)

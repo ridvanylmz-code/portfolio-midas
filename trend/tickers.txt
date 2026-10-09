@@ -2,3 +2,4 @@
 # Workflow'da "tickers" kutusu doluysa o kullanılır; boşsa bu dosya.
 RKLB, CRWV, UAMY, WYFI, SGML
 INTC, NVDA, UUUU, KTOS, CBRS, STX, MU, AVGO, SN, TSLA, NVDA, INTC, ASTS
+ARM, WDC, TSM, NOK, CAR
