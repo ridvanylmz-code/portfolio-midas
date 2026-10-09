@@ -199,6 +199,7 @@ def main():
         log("TWELVEDATA_API_KEY yok: Twelve Data adımı atlandı")
 
     result, n_td, n_tv = {}, 0, 0
+    tv_429 = 0  # art arda TradingView 429 sayısı
     for i, t in enumerate(tickers):
         prev = old.get(t, {})
         entry = {"tv": None, "td": None}
@@ -214,12 +215,19 @@ def main():
             try:
                 entry["tv"] = fetch_tv_retry(t)
                 n_tv += 1
+                tv_429 = 0
                 log(f"TV  {t}: {entry['tv']['recommendation']} (RSI {entry['tv']['indicators'].get('RSI')})")
             except Exception as e:
                 log(f"TV  {t}: HATA {e}")
                 if prev.get("tv"):
                     entry["tv"] = dict(prev["tv"], stale=True)
+                tv_429 = tv_429 + 1 if "429" in str(e) else 0
+                if tv_429 >= 2:
+                    tv_ok = False
+                    log("TV: art arda 2 kez 429, bu çalışmada kalan hisselerde TradingView atlandı (önceki değer korunur)")
             time.sleep(2.5)
+        elif prev.get("tv"):
+            entry["tv"] = dict(prev["tv"], stale=True)
         if key:
             try:
                 entry["td"] = fetch_td(t, key)
