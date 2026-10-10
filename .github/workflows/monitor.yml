@@ -65,6 +65,9 @@ jobs:
           fi
           git config user.name "portfolio-bot"
           git config user.email "portfolio-bot@users.noreply.github.com"
+          # Rapor için piyasa rejimi / sektörler (market-data dalı; yoksa rapor eskisi gibi)
+          export MARKET_JSON="$RUNNER_TEMP/market.json"
+          git fetch -q --depth=1 origin market-data 2>/dev/null && git show FETCH_HEAD:market.json > "$MARKET_JSON" 2>/dev/null || rm -f "$MARKET_JSON"
           ok=0; rc=0
           for i in 1 2 3 4; do
             git fetch -q origin "$BRANCH" && git reset -q --hard "origin/$BRANCH"

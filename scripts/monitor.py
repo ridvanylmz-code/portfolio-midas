@@ -177,6 +177,31 @@ def apply_extended(quotes, tickers, now):
 
 
 # ------------------------------------------------------------------ rapor
+def market_lines(summary):
+    """market.json (market-data dalı; iş akışı MARKET_JSON ile verir) varsa rejim, nakit hedefi ve lider/zayıf sektörler."""
+    path = os.environ.get("MARKET_JSON", "")
+    if BIST or not path or not os.path.exists(path):
+        return []
+    try:
+        import json
+        with open(path, encoding="utf-8") as f:
+            m = json.load(f)
+        r = m.get("regime") or {}
+        lo, hi = (r.get("cash_target") or [None, None])[:2]
+        cp = summary["cash_pct"]
+        gap = "" if lo is None else (" ⚠️ hedefin altında" if cp < lo else " ⚠️ hedefin üstünde" if cp > hi else " ✅")
+        g = m.get("groups") or []
+        lead = [x["sym"] for x in g if str(x.get("verdict", "")).startswith(("Ol", "Erken")) and not x.get("bank")][:5]
+        weak = [x["sym"] for x in g if str(x.get("verdict", "")).startswith("Uzak")][-4:]
+        out = [f"🧭 Rejim: {common.e(r.get('label', '–'))} ({r.get('score')}/{r.get('max')}) · önerilen nakit %{lo}–{hi}, şu an %{cp:.1f}{gap}"]
+        if lead:
+            out.append("📈 Güçlü: " + ", ".join(common.e(x) for x in lead) + (" · 📉 Zayıf: " + ", ".join(common.e(x) for x in weak) if weak else ""))
+        return out
+    except Exception as ex:
+        print(f"[WARN] market.json okunamadı: {type(ex).__name__}")
+        return []
+
+
 def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, now, dashboard_url, ext_sess=None):
     e = common.e
     ist = now.astimezone(IST).strftime("%d.%m %H:%M")
@@ -193,6 +218,7 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
         f"{ico(summary['pnl'])} Toplam K/Z: <b>{summary['pnl']:+,.2f}{CUR}</b> ({summary['pnl_pct']:+.2f}%)",
         f"💵 Nakit: {CUR}{summary['cash']:,.2f} (%{summary['cash_pct']:.1f})",
     ]
+    lines += market_lines(summary)
     if month:
         lines.append(f"🎯 Aylık hedef: {month['gain']:+,.0f}{CUR} / {month['target']:,.0f}{CUR} (%{max(month['pct'], 0):.0f})")
     lines += ["", "<b>Pozisyonlar</b>"]
