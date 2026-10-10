@@ -426,6 +426,9 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       var er=((d.fundamental&&d.fundamental.metrics)||[]).filter(function(k){return /bilanço/i.test(k[0])})[0];
       if(er){var MON={Oca:0,"Şub":1,Mar:2,Nis:3,May:4,Haz:5,Tem:6,"Ağu":7,Eyl:8,Eki:9,Kas:10,Ara:11},mm=String(er[1]).match(/(\d{1,2}) (\S{3}) (\d{4})/);
         if(mm&&MON[mm[2]]!==undefined){var dd=Math.ceil((new Date(+mm[3],MON[mm[2]],+mm[1])-new Date())/864e5);if(dd>=0)bits.push("bilanço "+dd+" gün")}}
+      var zz=(P.buy_zones||{})[t]; if(zz!=null){if(typeof zz==="number")zz={below:zz};
+        bits.push("🎯 alarm "+(zz.below!=null?"≤"+usd(+zz.below):"")+(zz.above!=null?" ≥"+usd(+zz.above):""))}
+      if(s&&s.earn_next){var ed=Math.ceil((new Date(s.earn_next+"T12:00:00Z")-new Date())/864e5);if(ed>=0&&ed<=7)bits.push("📅 bilanço "+ed+" gün")}
       if(s&&s.ema20&&s.close)bits.push(s.close>=s.ema20?"EMA20 üstünde (geri çekilmede giriş "+num(s.ema20,2)+")":"giriş için EMA20 ("+num(s.ema20,2)+") üstü kapanış");
       line.appendChild(document.createTextNode(bits.join(" · ")));
       row.appendChild(line);

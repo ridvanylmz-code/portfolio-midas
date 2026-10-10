@@ -20,7 +20,8 @@ MARKET_COLS = ["name", "exchange", "description", "type", "sector", "industry", 
                "EMA20", "EMA50", "SMA50", "SMA200", "RSI", "ADX", "ATR", "MACD.macd", "MACD.signal",
                "Stoch.K", "CCI20", "Recommend.All", "Recommend.MA", "Recommend.Other",
                "EMA20|1W", "SMA50|1W", "RSI|1W", "High.3M", "price_52_week_high",
-               "premarket_close", "premarket_change", "postmarket_close", "postmarket_change", "market_cap_basic"]
+               "premarket_close", "premarket_change", "postmarket_close", "postmarket_change", "market_cap_basic",
+               "earnings_release_next_date"]
 
 
 def _payload(tickers, cols):

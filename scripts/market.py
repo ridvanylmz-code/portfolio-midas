@@ -158,6 +158,8 @@ def compact(x, src):
             "macd": rnd(num(x.get("MACD.macd")), 4), "macd_sig": rnd(num(x.get("MACD.signal")), 4),
             "rec": tvscan.rec_label(x.get("Recommend.All")), "rvol": rnd(num(x.get("relative_volume_10d_calc")), 2),
             "high3m": rnd(num(x.get("High.3M")), 4),
+            "earn_next": (datetime.fromtimestamp(x["earnings_release_next_date"], timezone.utc).date().isoformat()
+                          if isinstance(x.get("earnings_release_next_date"), (int, float)) else None),
             "pre": rnd(num(x.get("premarket_close")), 4), "pre_pct": rnd(num(x.get("premarket_change")), 2),
             "post": rnd(num(x.get("postmarket_close")), 4), "post_pct": rnd(num(x.get("postmarket_change")), 2),
             "src": src}

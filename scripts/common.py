@@ -267,8 +267,31 @@ def levels_for(portfolio, ticker):
     return stop, target
 
 
+def zone_of(portfolio, t):
+    """Alım bölgesi: eski biçim sayı (= fiyat ≤ değer) ya da {"below": x, "above": y}."""
+    z = (portfolio.get("buy_zones") or {}).get(t)
+    if z is None:
+        return {}
+    if isinstance(z, (int, float)):
+        return {"below": float(z)}
+    return {k: float(v) for k, v in z.items() if k in ("below", "above") and v is not None}
+
+
 def check_alerts(portfolio, fresh_quotes):
     out = []
+    # İzleme listesi alım bölgeleri: geri çekilme (fiyat ≤ below) ya da kırılım (fiyat ≥ above)
+    for t in list(dict.fromkeys(list(portfolio.get("watchlist", [])) + list(portfolio.get("buy_zones", {})))):
+        q = fresh_quotes.get(t)
+        z = zone_of(portfolio, t)
+        if not z or not valid_quote(q):
+            continue
+        price = float(q["c"])
+        if "below" in z and price <= z["below"]:
+            out.append({"key": f"{t}:zone_below:{z['below']}",
+                        "text": f"🎯 {t} alım bölgesinde (geri çekilme): {CUR}{price:.2f} ≤ {CUR}{z['below']:.2f}"})
+        if "above" in z and price >= z["above"]:
+            out.append({"key": f"{t}:zone_above:{z['above']}",
+                        "text": f"🚀 {t} kırılım seviyesini geçti: {CUR}{price:.2f} ≥ {CUR}{z['above']:.2f}"})
     move = portfolio["alerts"].get("daily_move_pct")
     for t in portfolio["portfolio"]:
         q = fresh_quotes.get(t)

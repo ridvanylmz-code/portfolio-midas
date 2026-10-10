@@ -15,6 +15,9 @@ on:
           - watch_add
           - watch_remove
           - undo
+          - zone_below
+          - zone_above
+          - zone_clear
       symbol:
         description: 'Hisse kodu (buy/sell/watch_* için; deposit/withdraw için boş bırak)'
         required: false
@@ -24,7 +27,7 @@ on:
         required: false
         type: string
       price:
-        description: 'Fiyat ₺ (sadece buy/sell için)'
+        description: 'Fiyat ₺ (buy/sell) · zone_below: bu fiyata inince alarm · zone_above: bu fiyatı geçince alarm'
         required: false
         type: string
       confirm:
