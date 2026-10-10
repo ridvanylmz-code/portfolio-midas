@@ -15,10 +15,11 @@ Bir hisse için istek başarısız olursa önceki veri korunur (stale=true).
 """
 import argparse
 import json
+import re
 import os
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import requests
@@ -34,7 +35,11 @@ EXT_MIN_AGE_MIN = 50
 LOG = []
 
 
+_SECRET_RE = re.compile(r"(apikey|api_key|token|key)=[^&\s'\"]+", re.I)
+
+
 def log(msg):
+    msg = _SECRET_RE.sub(r"\1=***", str(msg))  # log data dalına (herkese açık) yazılır
     print(msg, flush=True)
     LOG.append(msg)
 
@@ -45,6 +50,12 @@ def load_json(path, default):
             return json.load(f)
     except Exception:
         return default
+
+
+def symbols():
+    """Pozisyon + izleme listesi sembolleri (şifre gerektirmez: docs/data/symbols.json)."""
+    import common
+    return common.public_symbols("docs/data")
 
 
 # ------------------------------------------------------------------ seans
@@ -104,23 +115,61 @@ def fetch_15m(sym, key, prepost, retries=2):
     return None, prepost
 
 
-def aggregate_4h(rows):
-    """15dk mumları ET'de 04/08/12/16 saat dilimlerine birleştir. Dönüş: [(epoch0, o, h, l, c), ...]."""
-    out, cur_key = [], None
+REG_OPEN, REG_MID, REG_CLOSE = 9 * 60 + 30, 13 * 60 + 30, 16 * 60  # ET dakika
+
+
+def closed_rows(rows, now=None):
+    """Yalnızca kapanmış 15dk mumlar (zaman damgası mum başlangıcı). Oluşan mum sinyale girmez (repaint olmasın)."""
+    now_ts = (now or datetime.now(timezone.utc)).timestamp()
+    return [r for r in rows if r[0] + 15 * 60 <= now_ts]
+
+
+def is_regular_only(rows):
+    """Tüm mumlar 09:30-16:00 ET içindeyse veri yalnız normal seanstır."""
+    for r in rows[-400:]:
+        t = datetime.fromtimestamp(r[0], ET)
+        m = t.hour * 60 + t.minute
+        if m < REG_OPEN or m >= REG_CLOSE:
+            return False
+    return True
+
+
+def aggregate_4h(rows, regular=None, now=None, complete_only=False):
+    """15dk mumları TradingView 4s mumlarıyla aynı dilimlerde birleştir. Dönüş: [(epoch0, o, h, l, c), ...].
+    Normal seans verisi: 09:30-13:30 ve 13:30-16:00 ET (TradingView 'yalnız normal seans' 4s mumu).
+    Ön/sonrası dahil veri: 04/08/12/16 ET dilimleri. complete_only: bitmemiş son 4s mum atılır."""
+    if regular is None:
+        regular = is_regular_only(rows)
+    out, ends, cur_key = [], [], None
     for ts, o, h, l, c, _v in rows:
         t = datetime.fromtimestamp(ts, ET)
-        hh = t.hour // 4 * 4
-        if hh < 4 or hh > 16:
-            continue  # 04:00-20:00 ET dışı (olmamalı)
-        key = (t.date(), hh)
+        m = t.hour * 60 + t.minute
+        if regular:
+            if m < REG_OPEN or m >= REG_CLOSE:
+                continue
+            part = 0 if m < REG_MID else 1
+            key = (t.date(), part)
+            end_m = REG_MID if part == 0 else REG_CLOSE
+        else:
+            hh = t.hour // 4 * 4
+            if hh < 4 or hh > 16:
+                continue  # 04:00-20:00 ET dışı (olmamalı)
+            key = (t.date(), hh)
+            end_m = (hh + 4) * 60
         if key != cur_key:
             out.append([ts, o, h, l, c])
+            day0 = t.replace(hour=0, minute=0, second=0, microsecond=0)
+            ends.append((day0 + timedelta(minutes=end_m)).timestamp())
             cur_key = key
         else:
             b = out[-1]
             b[2] = max(b[2], h)
             b[3] = min(b[3], l)
             b[4] = c
+    if complete_only and out:
+        now_ts = (now or datetime.now(timezone.utc)).timestamp()
+        while out and ends[len(out) - 1] > now_ts:
+            out.pop()
     return [tuple(b) for b in out]
 
 
@@ -259,13 +308,20 @@ def elliott(bars):
 
 
 # ------------------------------------------------------------------ ana akış
-def compute(rows):
-    b4 = aggregate_4h(rows)
-    c15 = [r[4] for r in rows]
+def compute(rows, now=None):
+    """Sinyaller (EMA, kesişim, Elliott) yalnızca KAPANMIŞ mumlardan; fiyat en son mumdan (canlı)."""
+    now = now or datetime.now(timezone.utc)
+    closed = closed_rows(rows, now) or rows[:-1]
+    regular = is_regular_only(rows)
+    b4 = aggregate_4h(closed, regular=regular, now=now, complete_only=True)
+    c15 = [r[4] for r in closed]
     c4 = [b[4] for b in b4]
     return {
         "price": round(rows[-1][4], 4),
         "bar_time": datetime.fromtimestamp(rows[-1][0], timezone.utc).isoformat(timespec="minutes"),
+        "signal_bar": datetime.fromtimestamp(closed[-1][0], timezone.utc).isoformat(timespec="minutes"),
+        "h4_bar": datetime.fromtimestamp(b4[-1][0], timezone.utc).isoformat(timespec="minutes") if b4 else None,
+        "session_data": "regular" if regular else "extended",
         "h4": ema_pair(c4, 8, 20),
         "m15": ema_pair(c15, 34, 89),
         "elliott": elliott(b4),
@@ -302,10 +358,9 @@ def main(argv=None):
             except ValueError:
                 pass
 
-    pf = load_json(PORTFOLIO, {})
-    tickers = list(dict.fromkeys(list(pf.get("portfolio", {})) + list(pf.get("watchlist", []))))
+    tickers = symbols()
     if not tickers:
-        print("[ERROR] Hisse listesi okunamadı (docs/data/portfolio.json).")
+        print("[ERROR] Hisse listesi okunamadı (docs/data/symbols.json / portfolio.json).")
         return 1
     out, fails = {}, 0
     prepost = args.force or not prepost_known_off  # kapalı biliniyorsa boşuna deneme (kredi); --force yeniden dener

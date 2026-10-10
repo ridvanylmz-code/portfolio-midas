@@ -166,6 +166,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 })();
 </script>
 <script src="motto.js?v=1"></script>
+<script src="vault.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
   <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
@@ -268,7 +269,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function load(name,optional){
     return fetch("data/"+name+"?t="+Date.now(),{cache:"no-store"}).then(function(r){
       if(!r.ok)throw new Error(name+" "+r.status);return r.json()}).catch(function(e){
-      if(optional)return null;throw e});
+      if(optional)return null;throw e}).then(function(j){return window.Vault?Vault.open(j):j});
   }
   function momCls(s){s=(s||"").toLowerCase();
     if(s.indexOf("güçlü")===0)return "up"; if(s.indexOf("zayıf")===0)return "dn"; return "warn"}
@@ -294,7 +295,14 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   document.body.classList.toggle("hide",hide);
   function mk(s){return hide?"*****":s}
   // Yazılı notlardaki ortalama maliyet rakamlarını gizler ("maliyetin (78,82) altında" -> "maliyetin ***** altında")
-  function mc(s){return hide?String(s).replace(/(maliyet[a-zçğıöşü]*\s*)\(?\$?\d+(?:[.,]\d+)*\)?/gi,"$1*****"):s}
+  /* Analiz metinlerinde {cost:T} {stop:T} {target:T} {shares:T}: değerler şifreli portföyden doldurulur (public dosyada sayı yok). */
+  function tok(s){return String(s).replace(/\{(cost|stop|target|shares):([A-Z0-9.\-]+)\}/g,function(_,k,t){
+    var pos=P&&P.portfolio&&P.portfolio[t], lv=(P&&P.position_levels||{})[t]||{}, v=null;
+    if(k==="cost"&&pos)v=pos.cost_basis; else if(k==="shares"&&pos)v=pos.shares;
+    else if(k==="stop")v=lv.stop_loss; else if(k==="target")v=lv.target;
+    if(v===null||v===undefined)return "–";
+    return k==="shares"?num(+v,0):usd(+v)})}
+  function mc(s){s=tok(s);return hide?String(s).replace(/(maliyet[a-zçğıöşü]*\s*)\(?\$?\d+(?:[.,]\d+)*\)?/gi,"$1*****"):s}
   $("eye").addEventListener("click",function(){
     hide=!hide; document.body.classList.toggle("hide",hide);
     try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
@@ -345,6 +353,9 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+(rows.some(function(r){return r.x&&r.x.extp})?" · "+(rows.filter(function(r){return r.x&&r.x.extp})[0].x.extp==="pre"?"🌅 ön piyasa fiyatı":"🌙 kapanış sonrası fiyat"):"")+
       (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
         day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"")+" · Gecikmeli veri";
+    if(window.Vault&&Vault.unlocked()&&!$("lockBtn")){var lb=el("a","","🔒 Kilitle");lb.id="lockBtn";lb.href="#";
+      lb.style.cssText="display:block;margin-top:6px;color:inherit;opacity:.7;text-decoration:underline";
+      lb.onclick=function(e){e.preventDefault();Vault.forget()};$("foot").parentNode.insertBefore(lb,$("foot").nextSibling)}
   }
   $("seg").addEventListener("click",function(e){
     var m=e.target.getAttribute&&e.target.getAttribute("data-m"); if(!m||!P)return;

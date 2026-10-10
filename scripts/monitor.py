@@ -11,7 +11,7 @@ import argparse
 import os
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import requests
@@ -26,6 +26,25 @@ BIST = common.MARKET == "bist"
 CUR = common.CUR
 PRICE_DAYS = 30
 SNAPSHOT_LIMIT = 400
+
+# Telegram rapor saatleri ABD saatine (ET) bağlı: yaz/kış saati geçişinde kendiliğinden kayar.
+# (saat, dakika, ET hafta günleri 0=Pzt). İstanbul karşılığı yazın: 03:01, 07:01, 11:01, 16:16, 16:31, 22:55, 23:01
+# (kışın 1 saat sonra). 20:01 ET Pazar dahil: Pazartesi sabahı (İstanbul) yeni hafta ilk raporu.
+WEEK = (0, 1, 2, 3, 4)
+REPORT_SLOTS_ET = [(20, 1, (6,) + WEEK), (0, 1, WEEK), (4, 1, WEEK), (9, 16, WEEK), (9, 31, WEEK),
+                   (15, 55, WEEK), (16, 1, WEEK)]
+SLOT_WINDOW_MIN = 25  # GitHub zamanlanmış işleri geciktirebilir
+
+
+def due_slots(now):
+    """Şu an penceresinde olan rapor saatleri (kimlik: ET tarih + saat)."""
+    t = now.astimezone(ET)
+    out = []
+    for h, m, days in REPORT_SLOTS_ET:
+        s = t.replace(hour=h, minute=m, second=0, microsecond=0)
+        if t.weekday() in days and s <= t < s + timedelta(minutes=SLOT_WINDOW_MIN):
+            out.append(f"{s:%Y-%m-%dT%H%M}")
+    return out
 
 
 # ------------------------------------------------------------------ Finnhub
@@ -215,6 +234,19 @@ def upsert_snapshot(history, et_date, summary):
 def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market_status,
         now=None, dashboard_url=None):
     now = now or datetime.now(timezone.utc)
+    et_date = now.astimezone(IST if BIST else ET).date().isoformat()
+    due = []
+    if report == "auto":  # zamanlanmış çalışma: rapor mu sessiz yenileme mi, ET saatine göre burada seçilir
+        st0 = common.load_json(common.F_STATE, {}) or {}
+        done = set(st0.get("reports", [])) if st0.get("date") == et_date else set()
+        due = [x for x in due_slots(now) if x not in done]
+        report = bool(due)
+        if not report and not BIST:
+            import extended
+            if extended.session_name(now) in ("pre", "post") and now.astimezone(ET).minute % 30 >= 15:
+                print("Ön/sonrası seansı: yarım saatte bir yenilenir; atlandı.")
+                return 0
+        print(f"Otomatik mod: {'rapor ' + ','.join(due) if report else 'sessiz yenileme'}")
     portfolio = common.load_portfolio()
     holdings = portfolio["portfolio"]
     tickers = list(dict.fromkeys(list(holdings) + list(portfolio["watchlist"])))
@@ -244,7 +276,6 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         print("[ERROR] Hiç fiyat alınamadı (API anahtarı / limit?).")
         return 1
 
-    et_date = now.astimezone(IST if BIST else ET).date().isoformat()
     summary = common.summarize(portfolio, quotes)
     history = common.load_history()
 
@@ -265,7 +296,8 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     alerts = common.check_alerts(portfolio, fresh)
     state = common.load_json(common.F_STATE, {}) or {}
     if state.get("date") != et_date:
-        state = {"date": et_date, "sent": []}
+        state = {"date": et_date, "sent": [], "reports": []}
+    state.setdefault("reports", [])
     new_alerts = [a for a in alerts if a["key"] not in state["sent"]]
 
     if report:
@@ -276,6 +308,7 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         text = build_report(portfolio, rq, fresh, rsummary, market_open, alerts, month, now, dashboard_url, ext_sess)
         if common.send_telegram(text):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in alerts})
+            state["reports"] = sorted(set(state["reports"]) | set(due))
     elif new_alerts:
         if common.send_telegram("<b>🚨 Portföy Alarmı</b>\n" + "\n".join(common.e(a["text"]) for a in new_alerts)):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in new_alerts})
@@ -288,7 +321,11 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true", help="Telegram raporu gönder")
     ap.add_argument("--force", action="store_true", help="Piyasa kapalıyken de çalış")
+    ap.add_argument("--auto", action="store_true",
+                    help="Zamanlanmış çalışma: rapor saatindeyse rapor, değilse sessiz yenileme (ET'ye göre)")
     args = ap.parse_args(argv)
+    if args.auto and not args.report:
+        args.report = "auto"
     if BIST:
         import bist_data
         pf = common.load_portfolio()

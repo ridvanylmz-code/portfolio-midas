@@ -49,12 +49,14 @@ td.sym{font-weight:700;position:sticky;left:0;background:var(--card)}
 <div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir" style="margin-top:14px"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
 <p class="note">Durum: 4s EMA8/20, 15dk EMA34/89 ve 15dk Supertrend (10, 3) üçü de yukarıdaysa <b>Bullish</b>, üçü de aşağıdaysa <b>Bearish</b>, aksi halde <b>Karışık</b>.
 EMA gösterimi "hızlı / yavaş" (▲ hızlı üstte). "Yeni" sütunu: 15dk'da son 8 mum, 4s'de son 2 mumda gelen kesişim / Supertrend dönüşü.
-Elliott kural tabanlı tahmindir (4s zigzag), kesin sayım değildir. Veri Yahoo Finance 15dk (ön/sonrası dahil); 4s mumlar ET 04/08/12/16 diliminde birleştirilir, TradingView 4s mumundan küçük farklar olabilir. Yatırım tavsiyesi değildir.</p>
+Elliott kural tabanlı tahmindir (4s zigzag), kesin sayım değildir. Veri Yahoo Finance ya da Twelve Data 15dk (kaynak sütunu tarama kaydında). Sinyaller yalnızca kapanmış mumlardan hesaplanır (mum içinde gelip kaybolmaz); fiyat canlıdır. 4s mumlar TradingView ile aynı dilimlerde: yalnız normal seans verisinde 09:30–13:30 / 13:30–16:00 ET, ön/sonrası dahil veride 04/08/12/16 ET. Yatırım tavsiyesi değildir.</p>
 <script src="../motto.js?v=1"></script>
 <script>
 (function(){
   var REPO="ridvanylmz-code/portfolio-midas";
-  var SRC=new URLSearchParams(location.search).get("src")||("https://raw.githubusercontent.com/"+REPO+"/trend-data/trend.json");
+  /* ?src= yalnızca bu reponun raw dosyalarına izin verir (başka adresten veri/XSS yüklenmesin). */
+  var SRC0=new URLSearchParams(location.search).get("src")||"";
+  var SRC=/^https:\/\/raw\.githubusercontent\.com\/ridvanylmz-code\/portfolio-midas\/[\w.\-\/]+$/.test(SRC0)?SRC0:("https://raw.githubusercontent.com/"+REPO+"/trend-data/trend.json");
   document.getElementById("runlink").href="https://github.com/"+REPO+"/actions/workflows/trend.yml";
   var DATA=null, filt="all", sortKey="score", sortDir=-1;
   var ORDER={bullish:3,mixed:2,"n/a":1,bearish:0};
@@ -75,7 +77,7 @@ Elliott kural tabanlı tahmindir (4s zigzag), kesin sayım değildir. Veri Yahoo
     if(v.state==="n/a"&&k!=="state")return '<td class="m">–</td>';
     if(k==="price")return "<td>"+f(v.price)+(v.ext?(v.ext==="pre"?" 🌅":" 🌙"):"")+(v.ext&&v.close!=null?'<div class="m">kapanış '+f(v.close)+"</div>":"")+"</td>";
     if(k==="chg")return '<td class="'+(v.chg_pct>0?"up":v.chg_pct<0?"down":"")+'">'+(v.chg_pct==null?"–":(v.chg_pct>0?"+":"")+f(v.chg_pct)+"%")+"</td>";
-    if(k==="state"){var L={bullish:"Bullish",bearish:"Bearish",mixed:"Karışık","n/a":"Veri yok"};return '<td><span class="badge s-'+(v.state==="n/a"?"na":v.state)+'">'+L[v.state||"n/a"]+"</span></td>"}
+    if(k==="state"){var L={bullish:"Bullish",bearish:"Bearish",mixed:"Karışık","n/a":"Veri yok"};var sv=L.hasOwnProperty(v.state)?v.state:"n/a";return '<td><span class="badge s-'+(sv==="n/a"?"na":sv)+'">'+L[sv]+"</span></td>"}
     if(k==="h4")return "<td>"+ema(v.h4,8,20)+"</td>";
     if(k==="m15")return "<td>"+ema(v.m15,34,89)+"</td>";
     if(k==="st"){var s=v.st15;return "<td>"+(s?arrow(s.dir)+' <span class="m">'+f(s.line)+" ("+(s.dist_pct>0?"+":"")+f(s.dist_pct,1)+"%)</span>":"–")+"</td>"}

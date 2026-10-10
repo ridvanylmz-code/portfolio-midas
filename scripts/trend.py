@@ -148,15 +148,22 @@ def fresh_events(item):
     return ev
 
 
-def compute(rows):
-    out = ix.compute(rows)
-    out["st15"] = supertrend(rows)
+def compute(rows, now=None):
+    now = now or datetime.now(timezone.utc)
+    out = ix.compute(rows, now)
+    closed = ix.closed_rows(rows, now) or rows[:-1]
+    st = supertrend(closed)  # kapanmış mumlar: "Supertrend döndü" mum içinde gelip kaybolmasın
+    if st:
+        price = rows[-1][4]
+        st["dist_pct"] = round((price - st["line"]) / price * 100, 2)
+    out["st15"] = st
     out["state"], out["score"] = classify(out)
     out["events"] = fresh_events(out)
-    # Yüksek seviye gün içi değişim: son kapanış, önceki ET günü kapanışına göre
+    # Gün %: son fiyat, önceki ET gününün NORMAL SEANS kapanışına (16:00) göre (kapanış sonrası mumu değil)
     try:
         last_day = datetime.fromtimestamp(rows[-1][0], ix.ET).date()
-        prev = [r for r in rows if datetime.fromtimestamp(r[0], ix.ET).date() < last_day]
+        prev = [r for r in rows if datetime.fromtimestamp(r[0], ix.ET).date() < last_day
+                and (lambda t: t.hour * 60 + t.minute)(datetime.fromtimestamp(r[0], ix.ET)) < ix.REG_CLOSE]
         if prev:
             out["chg_pct"] = round((rows[-1][4] / prev[-1][4] - 1) * 100, 2)
     except Exception:
@@ -216,8 +223,7 @@ def main(argv=None):
         with open(args.file, encoding="utf-8") as f:
             tickers = parse_tickers(re.sub(r"#.*", "", f.read()))
     if args.include_portfolio:
-        pf = ix.load_json(ix.PORTFOLIO, {})
-        tickers += parse_tickers(" ".join(list(pf.get("portfolio", {})) + list(pf.get("watchlist", []))))
+        tickers += parse_tickers(" ".join(ix.symbols()))
     tickers = list(dict.fromkeys(tickers))
     if not tickers:
         print("[ERROR] Sembol listesi boş.")

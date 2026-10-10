@@ -22,7 +22,8 @@ import common  # noqa: E402
 
 ET = ZoneInfo("Europe/Istanbul" if common.MARKET == "bist" else "America/New_York")
 C = common.CUR
-ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove")
+ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove", "undo")
+PRICE_TOL = 0.15  # girilen fiyat son kapanıştan bu orandan fazla saparsa onaysız kabul edilmez
 EPS = 1e-9
 
 
@@ -44,15 +45,77 @@ def _commission(x):
     return round(v, 4)
 
 
+def ref_price(ticker, quotes=None):
+    """Son bilinen fiyat (docs/data/quotes.json, herkese açık dosya). Yoksa None."""
+    q = (quotes if quotes is not None else
+         (common.load_json(f"{common.DATA_DIR}/quotes.json", {}) or {}).get("quotes", {})).get(ticker) or {}
+    try:
+        c = float(q.get("c"))
+        return c if c > 0 else None
+    except (TypeError, ValueError):
+        return None
+
+
+def check_price(ticker, px, confirm, quotes=None):
+    """Yazım hatası koruması (ör. '82 adet @16' yerine '16 adet @82'). Dönüş: mesaja eklenecek not."""
+    ref = ref_price(ticker, quotes)
+    if ref is None:
+        return "\nℹ️ Referans fiyat yok; fiyat kontrolü yapılamadı"
+    dev = px / ref - 1
+    if abs(dev) > PRICE_TOL and not confirm:
+        raise ValueError(
+            f"{ticker} fiyatı {C}{px:,.2f}, son fiyattan ({C}{ref:,.2f}) %{dev * 100:+.1f} sapıyor. "
+            "Adet ve fiyat yer değiştirmiş olabilir. Doğruysa 'confirm' kutusunu işaretleyip tekrar çalıştır.")
+    return f"\n⚠️ Fiyat son fiyattan %{dev * 100:+.1f} sapıyor (onaylandı)" if abs(dev) > PRICE_TOL else ""
+
+
+def undo_last(portfolio, history, now):
+    """Son (geri alınmamış) işlemi geri alır. Yalnızca 'before' kaydı olan işlemler geri alınabilir."""
+    txs = history["transactions"]
+    for tx in reversed(txs):
+        if tx.get("action") == "undo" or tx.get("undone"):
+            continue
+        b = tx.get("before")
+        if not b:
+            raise ValueError("Son işlem bu sürümden önce kaydedilmiş; otomatik geri alınamaz (elle düzeltilmeli)")
+        t = tx.get("ticker")
+        if "position" in b:
+            if b["position"] is None:
+                portfolio["portfolio"].pop(t, None)
+            else:
+                portfolio["portfolio"][t] = b["position"]
+        if "cash" in b:
+            portfolio["cash"] = b["cash"]
+        if "watchlist" in b:
+            portfolio["watchlist"] = b["watchlist"]
+        tx["undone"] = True
+        desc = " ".join(str(x) for x in (tx["action"], t, tx.get("shares", tx.get("amount"))) if x not in (None, ""))
+        if tx.get("price"):
+            desc += f" @ {C}{tx['price']:,.2f}"
+        txs.append({"date": now.astimezone(ET).date().isoformat(), "time": now.isoformat(timespec="seconds"),
+                    "action": "undo", "note": f"Geri alındı: {desc} ({tx['time']})", "ticker": t,
+                    "undo_of": tx["time"], "cash_after": portfolio["cash"]})
+        return f"↩️ Geri alındı: {desc}\nNakit: {C}{portfolio['cash']:,.2f}"
+    raise ValueError("Geri alınacak işlem yok")
+
+
 def apply(portfolio, history, action, ticker=None, shares=None, price=None, amount=None,
-          note="", date=None, update_cash=True, now=None, commission=None):
+          note="", date=None, update_cash=True, now=None, commission=None, confirm=False, quotes=None):
     """portfolio/history'yi yerinde günceller, kullanıcıya mesaj döndürür. Hata -> ValueError."""
     now = now or datetime.now(timezone.utc)
     date = date or now.astimezone(ET).date().isoformat()
     if action not in ACTIONS:
         raise ValueError(f"Geçersiz işlem: {action}")
+    if action == "undo":
+        return undo_last(portfolio, history, now)
 
     tx = {"date": date, "time": now.isoformat(timespec="seconds"), "action": action, "note": note or ""}
+    # Geri alma için işlem öncesi durum (yalnızca değişen alanlar)
+    t0 = (ticker or "").strip().upper()
+    tx["before"] = {"cash": portfolio["cash"], "watchlist": list(portfolio["watchlist"])}
+    if action in ("buy", "sell"):
+        p0 = portfolio["portfolio"].get(t0)
+        tx["before"]["position"] = dict(p0) if p0 else None
 
     if action in ("buy", "sell", "watch_add", "watch_remove"):
         ticker = (ticker or "").strip().upper()
@@ -89,6 +152,7 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
     # buy / sell
     qty = common.finite_positive(shares, "shares")
     px = common.finite_positive(price, "price")
+    warn = check_price(ticker, px, confirm, quotes)
     pos = portfolio["portfolio"].get(ticker)
     fee = _commission(commission)
     gross = qty * px
@@ -149,7 +213,7 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
         msg += "\n(Nakit güncellenmedi)"
     tx["cash_after"] = portfolio["cash"]
     history["transactions"].append(tx)
-    return msg
+    return msg + warn
 
 
 def _lv_txt(lv):
@@ -174,6 +238,7 @@ def main(argv=None):
     ap.add_argument("--note")
     ap.add_argument("--date")
     ap.add_argument("--no-cash-update", action="store_true")
+    ap.add_argument("--confirm", action="store_true", help="Fiyat sapma kontrolünü onayla")
     args = ap.parse_args(argv)
 
     action = _env_or(args, "action", "IN_ACTION")
@@ -189,7 +254,8 @@ def main(argv=None):
                     note=_env_or(args, "note", "IN_NOTE"),
                     date=_env_or(args, "date", "IN_DATE") or None,
                     update_cash=update_cash,
-                    commission=_env_or(args, "commission", "IN_COMMISSION") or None)
+                    commission=_env_or(args, "commission", "IN_COMMISSION") or None,
+                    confirm=args.confirm or os.environ.get("IN_CONFIRM", "").lower() == "true")
     except ValueError as ex:
         print(f"[ERROR] {ex}")
         common.send_telegram(f"⚠️ Pozisyon güncellemesi reddedildi: {common.e(ex)}")
