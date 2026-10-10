@@ -1,4 +1,9 @@
 {
-  "date": "2026-10-10",
-  "sent": []
+ "vault": 1,
+ "alg": "AES-256-GCM",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 600000,
+ "salt": "ltPvPk7z9SsseBYCd0xaLA==",
+ "iv": "08SV3d3wEhxdxuSR",
+ "data": "MinAzvmlo/5OZJb5yRl0q1VywNQ62JBkE83/teEciD4T1BOvwVbd2vmviT+Z4ClRW12r3xe5dAao5vmGmu+efVwDw0evqA=="
 }
