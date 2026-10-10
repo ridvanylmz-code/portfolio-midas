@@ -218,11 +218,13 @@ function render(){
   const lost=P.watchlist.filter(t=>!validQ(Q.quotes[t]));
   h+=`<h2>İzleme listesi · momentuma göre</h2><div class="grid wl">`;
   wl.forEach((x,i)=>{
-    const zone=(P.buy_zones||{})[x.t],inZone=zone!=null&&x.q.c<=zone,dp=+x.q.dp||0;
+    let z0=(P.buy_zones||{})[x.t]; if(typeof z0==="number")z0={below:z0};
+    const zb=z0&&z0.below!=null?+z0.below:null, za=z0&&z0.above!=null?+z0.above:null, zone=z0?1:null,
+      inZone=(zb!=null&&x.q.c<=zb)||(za!=null&&x.q.c>=za),dp=+x.q.dp||0;
     h+=`<div class="card ${inZone?"":""}" style="${inZone?"border-color:var(--up)":""}">
       <div class="row"><span><span class="rank">#${i+1}</span><b>${esc(x.t)}</b></span><span class="${cls(dp)}"><b>${sPct(dp)}</b></span></div>
       <div class="sub">${usd(+x.q.c)}${extTag(x.q)}</div>
-      ${zone!=null?`<span class="chip ${inZone?"good":""}">${inZone?"🎯 alım bölgesinde":"alım ≤ "+usd(zone)}</span>`:""}</div>`;
+      ${zone!=null?`<span class="chip ${inZone?"good":""}">${inZone?(za!=null&&x.q.c>=za?"🚀 kırılım":"🎯 alım bölgesinde"):[zb!=null?"alım ≤ "+usd(zb):"",za!=null?"kırılım ≥ "+usd(za):""].filter(Boolean).join(" · ")}</span>`:""}</div>`;
   });
   h+=`</div>`;
   if(lost.length)h+=`<div class="sub" style="margin-top:8px">⚠ Fiyat alınamadı: ${lost.map(esc).join(", ")}</div>`;

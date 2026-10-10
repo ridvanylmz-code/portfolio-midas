@@ -401,3 +401,37 @@ def finite_positive(x, name):
     if not math.isfinite(x) or x <= 0:
         raise ValueError(f"{name} > 0 olmalı")
     return x
+
+
+def perf_summary(history, total_value, today_iso):
+    """Rapor satırı: Hafta / Ay / Yıl kazancı ($) ve zaman ağırlıklı getiri (%), para giriş-çıkışından arındırılmış."""
+    snaps = sorted(history.get("snapshots", []), key=lambda s: s["date"])
+    if not snaps:
+        return None
+    snaps = [s for s in snaps if s["date"] != today_iso] + [{"date": today_iso, "value": total_value}]
+    if len(snaps) < 2:
+        return None
+    flows = {}
+    for tx in history.get("transactions", []):
+        if tx.get("undone") or tx.get("action") not in ("deposit", "withdraw"):
+            continue
+        flows[tx["date"]] = flows.get(tx["date"], 0) + (tx["amount"] if tx["action"] == "deposit" else -tx["amount"])
+    idx, out_idx, fl = 1.0, [1.0], [0.0]
+    for i in range(1, len(snaps)):
+        f = sum(v for d, v in flows.items() if snaps[i - 1]["date"] < d <= snaps[i]["date"])
+        prev = snaps[i - 1]["value"]
+        idx *= ((snaps[i]["value"] - f) / prev) if prev else 1
+        out_idx.append(idx)
+        fl.append(f)
+    from datetime import date, timedelta
+    t = date.fromisoformat(today_iso)
+    marks = {"Hafta": (t - timedelta(days=7)).isoformat(), "Ay": date(t.year, t.month, 1).isoformat(),
+             "Yıl": date(t.year, 1, 1).isoformat()}
+    res = {}
+    for k, d0 in marks.items():
+        j = max([i for i, s in enumerate(snaps) if s["date"] < d0] or [0])
+        if j >= len(snaps) - 1:
+            continue
+        gain = snaps[-1]["value"] - snaps[j]["value"] - sum(fl[j + 1:])
+        res[k] = {"gain": gain, "twr": (out_idx[-1] / out_idx[j] - 1) * 100}
+    return res or None

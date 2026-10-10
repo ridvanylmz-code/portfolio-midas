@@ -128,6 +128,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div id="list"></div>
   <div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
   <div id="riskStrip"></div>
+  <div id="perfBox"></div>
   <div class="foot" id="foot"></div>
 </section>
 
@@ -187,7 +188,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 <script src="motto.js?v=1"></script>
 <script src="vault.js?v=1"></script>
 <script src="sector.js?v=2"></script>
-<script src="techview.js?v=1"></script>
+<script src="techview.js?v=2"></script>
+<script src="perf.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
   <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
@@ -328,7 +330,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   $("eye").addEventListener("click",function(){
     hide=!hide; document.body.classList.toggle("hide",hide);
     try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
-    if(P){renderPortfolio();renderAnaliz();renderSector()}
+    if(P){renderPortfolio();renderAnaliz();renderSector();renderPerf()}
   });
 
   function trendChip(t){
@@ -534,6 +536,15 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function loadMarket(){
     return fetch(MARKET_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
+  var H=null;
+  function renderPerf(){
+    if(!window.PerfView||!P||!H)return;
+    var q=(Q&&Q.quotes)||{}, v=0, c=0;
+    Object.keys(P.portfolio||{}).forEach(function(t){var p=P.portfolio[t],px=+(q[t]&&q[t].c)||p.cost_basis;v+=p.shares*px;c+=p.shares*p.cost_basis});
+    try{PerfView.render($("perfBox"),{H:H,P:P,Q:Q,hide:hide,total:v+(+P.cash||0),cost:c,
+      today:new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"})})}
+    catch(e){$("perfBox").textContent="Performans hatası: "+e.message}
+  }
   function renderSector(){
     if(!window.SectorView)return;
     try{SectorView.render($("sbody"),{M:M,N:NOTES,P:P,Q:Q,hide:hide});SectorView.strip($("riskStrip"),P,Q,M,hide)}
@@ -544,10 +555,10 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   }
   Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadMarket(),load("sector_notes.json",true),
     loadRaw("https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-data/bars.json"),
-    loadRaw("https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/trend-data/trend.json")]).then(function(r){
-    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];M=r[5];NOTES=r[6];BARS=r[7];TRENDD=r[8];
+    loadRaw("https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/trend-data/trend.json"),load("history.json",true)]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];M=r[5];NOTES=r[6];BARS=r[7];TRENDD=r[8];H=r[9];
     if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
-    renderPortfolio();renderWatch();renderNews();renderAnaliz();renderSector();
+    renderPortfolio();renderWatch();renderNews();renderAnaliz();renderSector();renderPerf();
     showTab((location.hash||"").replace("#",""));
   }).catch(function(e){
     $("pnl").textContent="veri alınamadı";
