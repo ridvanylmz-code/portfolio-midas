@@ -11,7 +11,7 @@ Başlangıç: 2026-10-10 22:33 İstanbul. İstek: 3. aşamayı tamamla + sektör
 - [x] 5. Dashboard (index.html): koyu tema varsayılan, Türkçe sayı biçimi, kart renklendirme sadece stop kırılınca, "momentuma göre" = RS, duvar yazısı en alta  [alt ajan]
 - [x] 6. Trend sayfası: mobil kart görünümü, Türkçe etiketler, sıralama, Günlük trend + RS sütunu, Yeni sütunu kesilmesin  [alt ajan]
 - [x] 7. Telegram raporu: rejim + nakit hedefi + lider sektörler satırı
-- [ ] 8. Test, push, canlı çalıştırma, rapor
+- [x] 8. Test, push, canlı çalıştırma, rapor
 
 ## Notlar
 - 1 (veri) ✔ market.py build_picks + tvscan.screen + universe.json picks (yerel test ok). Canlı tarama doğrulanacak; UI henüz yok.
@@ -21,3 +21,8 @@ Başlangıç: 2026-10-10 22:33 İstanbul. İstek: 3. aşamayı tamamla + sektör
 - 4 ✔ Portföy kartları (trend etiketi, ağırlık, stop–hedef çubuğu, stop kırılınca kırmızı çerçeve); Takip sekmesi RS'e göre sıralı + trend/RS/karar/hedefe kalan %/bilanço günü/EMA20 giriş notu.
 - 7 ✔ Telegram raporuna rejim + nakit hedefi + güçlü/zayıf sektör satırı (MARKET_JSON).
 - Regresyon: 6 sayfa × 2 genişlik, hata yok, yatay kaydırma yok.
+- 8 ✔ Canlı: monitor.yml (rejim satırı adımı) başarılı; Pages'te techview.js yayında. Son commit 6e78f4d.
+## Aşama 3 bitti. Sonraki fikirler (istenirse)
+- BIST mini uygulamasına da Teknik grafik/sektör (BIST verisi farklı; ayrı iş).
+- Alım tetikleri (buy_zones) için Telegram alarmı; bilanço öncesi 3 gün uyarısı; performans günlüğü (SPY'ye karşı).
+- Repo geçmişindeki eski düz portföy kayıtlarının temizlenmesi (geri alınamaz, onay gerekli).
