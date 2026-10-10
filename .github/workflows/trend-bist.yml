@@ -44,6 +44,9 @@ jobs:
           mkdir -p data-out
           git fetch -q --depth=1 origin trend-bist-data 2>/dev/null && git show FETCH_HEAD:trend-bist.json > prev.json 2>/dev/null || echo "önceki veri yok"
           python scripts/trend_bist.py --tickers "$TICKERS" --file trend/bist_tickers.txt --prev prev.json --out data-out/trend-bist.json
+          # Teknik sekmesi grafiği için günlük mumlar (gün içinde değişmez; hata trend taramasını etkilemez)
+          git show FETCH_HEAD:bars-bist.json > prev-bars.json 2>/dev/null || echo "önceki mum verisi yok"
+          python scripts/bist_bars.py --file trend/bist_tickers.txt --prev prev-bars.json --out data-out/bars-bist.json || echo "bars-bist atlandı"
 
       - name: trend-bist-data dalına yaz (tek commit)
         if: always()
@@ -54,6 +57,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add trend-bist.json
+          [ -f bars-bist.json ] && git add bars-bist.json || true
           git commit -q -m "trend-bist: $(date -u +%Y-%m-%dT%H:%MZ)"
           git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" trend-bist-data:refs/heads/trend-bist-data
 

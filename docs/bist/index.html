@@ -7,16 +7,15 @@
 <link rel="icon" href="data:,">
 <style>
 :root{
-  --bg:#f4f6f9;--card:#fff;--text:#1b2430;--muted:#6b7686;--line:#e3e8ef;
-  --up:#16a34a;--up-bg:#e8f7ee;--down:#dc2626;--down-bg:#fdecec;--flat-bg:#f1f3f6;--accent:#2563eb;
-  --pc-up:#eaf6ef;--pc-down:#fbeeee;
+  --bg:#0a0d14;--card:#11151f;--text:#e8ecf4;--muted:#7d8798;--line:#1d2330;
+  --up:#3ddc84;--up-bg:rgba(61,220,132,.12);--down:#ff5c6c;--down-bg:rgba(255,92,108,.12);--flat-bg:#1a2030;
+  --warn:#f5b942;--warn-bg:rgba(245,185,66,.12);--accent:#5aa9ff;--on:#27304a;color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f141b;--card:#1a212b;--text:#e8edf3;--muted:#8d99aa;--line:#2a3340;
-  --up:#34d399;--up-bg:#12332a;--down:#f87171;--down-bg:#3a1c1f;--flat-bg:#232b36;--accent:#60a5fa;--pc-up:#142a23;--pc-down:#2a1d22;}}
-:root[data-theme="dark"]{
-  --bg:#0f141b;--card:#1a212b;--text:#e8edf3;--muted:#8d99aa;--line:#2a3340;
-  --up:#34d399;--up-bg:#12332a;--down:#f87171;--down-bg:#3a1c1f;--flat-bg:#232b36;--accent:#60a5fa;--pc-up:#142a23;--pc-down:#2a1d22;}
+:root[data-theme="light"]{
+  --bg:#f4f6f9;--card:#fff;--text:#1b2430;--muted:#6b7686;--line:#e3e8ef;
+  --up:#16a34a;--up-bg:#e8f7ee;--down:#dc2626;--down-bg:#fdecec;--flat-bg:#f1f3f6;
+  --warn:#b7791f;--warn-bg:#fdf3dc;--accent:#2563eb;--on:#dbe4f3;color-scheme:light;
+}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:16px;max-width:1100px;margin:0 auto}
 header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
@@ -34,22 +33,31 @@ button{font:inherit;color:var(--text);background:var(--card);border:1px solid va
 .big{font-size:21px;font-weight:700;margin-top:2px}
 .sub{font-size:12px;color:var(--muted)}
 .up{color:var(--up)}.down{color:var(--down)}
-.pcard{cursor:pointer;border-left:5px solid var(--line);transition:transform .15s}
+.pcard{cursor:pointer;transition:transform .15s}
 .pcard:hover{transform:translateY(-2px)}
-.pcard.up-bg{background:var(--pc-up);border-left-color:var(--up)}
-.pcard.down-bg{background:var(--pc-down);border-left-color:var(--down)}
-.pcard.flat-bg{background:var(--flat-bg)}
+.pcard.broken{border-color:var(--down);background:var(--down-bg);box-shadow:0 0 0 1px var(--down) inset}
+.card,.big,.sub,.row{font-variant-numeric:tabular-nums}
 .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .tk{font-weight:700;font-size:16px}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;background:var(--flat-bg);color:var(--muted);margin:3px 4px 0 0}
 .chip.bad{background:var(--down-bg);color:var(--down);font-weight:600}
+.chip.warn{background:var(--warn-bg);color:var(--warn);font-weight:600}
+.sl{position:relative;height:6px;border-radius:99px;background:var(--flat-bg);margin:14px 0 4px}
+.sl .rng{position:absolute;top:0;bottom:0;border-radius:99px;opacity:.55}
+.sl .mk{position:absolute;top:-4px;width:3px;height:14px;border-radius:2px;background:var(--text);transform:translateX(-50%)}
+.sl .tick{position:absolute;top:-2px;bottom:-2px;width:2px;transform:translateX(-50%)}
+.slL{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.sprow{display:flex;gap:6px;align-items:stretch;margin:6px 0 2px}
+.sprow svg.spark{margin:0;flex:1;min-width:0;height:44px}
+.spl{display:flex;flex-direction:column;justify-content:space-between;font-size:10px;color:var(--muted);text-align:right;min-width:46px;line-height:1.1}
 .chip.good{background:var(--up-bg);color:var(--up);font-weight:600}
-svg.spark{width:100%;height:30px;display:block;margin:6px 0 2px}
+svg.spark{width:100%;height:30px;display:block;margin:6px 0 2px;overflow:visible}
 .bar{height:10px;border-radius:99px;background:var(--flat-bg);overflow:hidden}
 .bar>i{display:block;height:100%;background:var(--accent)}
 .alloc{display:flex;height:16px;border-radius:99px;overflow:hidden;background:var(--flat-bg)}
 .legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:12px;color:var(--muted)}
 .legend b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.motto{margin-top:22px}
 .rank{color:var(--muted);font-size:11px;margin-right:6px}
 #modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
 #modal.show{display:flex}
@@ -60,6 +68,7 @@ td{padding:4px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:ri
 </style>
 <link rel="stylesheet" href="../theme.css?v=1">
 <script src="../vault.js?v=1"></script>
+<script src="../perf.js?v=1"></script>
 </head>
 <body>
 <div class="masthead">
@@ -78,7 +87,7 @@ td{padding:4px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:ri
 const PALETTE=["#4f86f7","#a78bfa","#f0b24c","#3fc1b0","#e879a6","#9bcf53","#f08a4b","#4cc3e6"];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const num=(v,d=2)=>Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const num=(v,d=2)=>Number(v).toLocaleString("tr-TR",{minimumFractionDigits:d,maximumFractionDigits:d});
 const usd=(v,d=2)=>(v<0?"-":"")+"₺"+num(Math.abs(v),d);
 const sUsd=(v,d=2)=>(v>0?"+":v<0?"-":"")+"₺"+num(Math.abs(v),d);
 const sPct=v=>(v>0?"+":"")+num(v,2)+"%";
@@ -102,10 +111,9 @@ function setTheme(t){
   else document.documentElement.removeAttribute("data-theme");
   try{t?localStorage.setItem("theme",t):localStorage.removeItem("theme")}catch(e){}
 }
-setTheme(getTheme());
+{const t=getTheme();setTheme(t==="light"?"light":"dark");}
 $("#theme").onclick=()=>{
-  const cur=document.documentElement.getAttribute("data-theme")||
-    (matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");
+  const cur=document.documentElement.getAttribute("data-theme")||"dark";
   setTheme(cur==="dark"?"light":"dark");
 };
 
@@ -160,12 +168,27 @@ function monthProgress(P,H,total){
   return {gain,target,pct:pct(gain,target),since:start.date};
 }
 
-function spark(series){
+function spark(series,stop){
   if(!series||series.length<2)return '<div class="sub" style="margin:6px 0 2px">Trend verisi birikiyor…</div>';
-  const w=100,h=30,min=Math.min(...series),max=Math.max(...series),rng=(max-min)||1;
-  const pts=series.map((v,i)=>(i/(series.length-1)*w).toFixed(1)+","+(h-2-(v-min)/rng*(h-4)).toFixed(1)).join(" ");
+  const w=100,h=44,mn=Math.min(...series),mx=Math.max(...series);
+  const useStop=stop!=null&&stop>0&&stop>=mn*0.8&&stop<=mx*1.2;
+  const lo=useStop?Math.min(mn,stop):mn,hi=useStop?Math.max(mx,stop):mx,rng=(hi-lo)||1;
+  const y=v=>(h-3-(v-lo)/rng*(h-6)).toFixed(1);
+  const pts=series.map((v,i)=>(i/(series.length-1)*w).toFixed(1)+","+y(v)).join(" ");
   const col=series[series.length-1]>=series[0]?"var(--up)":"var(--down)";
-  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline fill="none" stroke="${col}" stroke-width="1.8" vector-effect="non-scaling-stroke" points="${pts}"/></svg>`;
+  const sl=useStop?`<line x1="0" x2="${w}" y1="${y(stop)}" y2="${y(stop)}" stroke="var(--down)" stroke-width="1" stroke-dasharray="4 3" vector-effect="non-scaling-stroke" opacity=".8"/>`:"";
+  return `<div class="sprow"><svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">${sl}<polyline fill="none" stroke="${col}" stroke-width="1.8" vector-effect="non-scaling-stroke" points="${pts}"/></svg>
+   <div class="spl"><span>${usd(mx)}</span>${useStop?`<span style="color:var(--down)">stop</span>`:""}<span>${usd(mn)}</span></div></div>`;
+}
+function stopBar(p){
+  if(p.stop==null||p.target==null||!(p.target>p.stop))return "";
+  const lo=Math.min(p.stop,p.price),hi=Math.max(p.target,p.price),r=(hi-lo)||1;
+  const pos=v=>((v-lo)/r*100).toFixed(1);
+  const bad=p.price<=p.stop,good=p.price>=p.target;
+  return `<div class="sl" title="Stop – fiyat – hedef"><div class="rng" style="left:${pos(p.stop)}%;width:${(pos(p.target)-pos(p.stop)).toFixed(1)}%;background:linear-gradient(90deg,var(--down),var(--warn),var(--up))"></div>
+   <div class="tick" style="left:${pos(p.stop)}%;background:var(--down)"></div><div class="tick" style="left:${pos(p.target)}%;background:var(--up)"></div>
+   <div class="mk" style="left:${pos(p.price)}%;${bad?"background:var(--down)":good?"background:var(--up)":""}"></div></div>
+   <div class="slL"><span>Stop ${usd(p.stop)}</span><span>Hedef ${usd(p.target)}</span></div>`;
 }
 const seriesOf=(prices,t)=>{const h=(prices||{})[t]||{};return Object.keys(h).sort().map(d=>h[d])};
 
@@ -192,8 +215,6 @@ function render(){
      <div class="sub" style="margin-top:4px">${esc(mp.since)} tarihindeki ilk kayda göre (para yatırma/çekme düzeltilir)</div></div>`;
   }
 
-  h+=`<div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>`;
-
   const segs=S.pos.map((p,i)=>({n:p.t,w:p.weight,c:PALETTE[i%PALETTE.length]}));
   segs.push({n:"Nakit",w:pct(S.cash,S.total),c:"#94a3b8"});
   h+=`<h2>Dağılım</h2><div class="card"><div class="alloc">${segs.map(s=>`<div title="${esc(s.n)}" style="width:${s.w}%;background:${s.c}"></div>`).join("")}</div>
@@ -202,11 +223,12 @@ function render(){
   h+=`<h2>Pozisyonlar</h2><div class="grid pos">`;
   for(const p of S.pos){
     const stopBad=p.stop!=null&&p.price<=p.stop,tgtGood=p.target!=null&&p.price>=p.target;
-    h+=`<div class="card pcard ${bg(p.dayPct)}" data-t="${esc(p.t)}">
+    h+=`<div class="card pcard ${stopBad?"broken":""}" data-t="${esc(p.t)}">
       <div class="row"><span class="tk">${esc(p.t)}</span><span class="${cls(p.dayPct)}"><b>${sPct(p.dayPct)}</b> bugün</span></div>
       <div class="row"><span class="big" style="font-size:18px">${usd(p.price)}${extTag(p)}</span><span class="sub">${num(p.shares,0)} adet · %${num(p.weight,0)}</span></div>
-      ${spark(seriesOf(PR,p.t))}
-      <div class="row"><span class="sub">K/Z</span><span class="${cls(p.pnl)}"><b>${sUsd(p.pnl,0)}</b> (${sPct(p.pnlPct)})</span></div>
+      ${spark(seriesOf(PR,p.t),p.stop)}
+      ${stopBar(p)}
+      <div class="row" style="margin-top:6px"><span class="sub">K/Z</span><span class="${cls(p.pnl)}"><b>${sUsd(p.pnl,0)}</b> (${sPct(p.pnlPct)})</span></div>
       <div>${p.stop!=null?`<span class="chip ${stopBad?"bad":""}">Stop ${usd(p.stop)}${stopBad?" ⚠":""}</span>`:""}
       ${p.target!=null?`<span class="chip ${tgtGood?"good":""}">Hedef ${usd(p.target)}${tgtGood?" ✓":""}</span>`:""}
       ${p.extp?`<span class="chip">${p.extp==="pre"?"Ön piyasa":"Kapanış sonrası"} · kapanış ${usd(p.close)}</span>`:""}
@@ -229,8 +251,13 @@ function render(){
   h+=`</div>`;
   if(lost.length)h+=`<div class="sub" style="margin-top:8px">⚠ Fiyat alınamadı: ${lost.map(esc).join(", ")}</div>`;
 
+  h+=`<div id="perfBox"></div>`;
+  h+=`<div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>`;
+
   $("#app").innerHTML=h;
   if(window.mottoInit)mottoInit();
+  if(window.PerfView){try{PerfView.render(document.getElementById("perfBox"),{H,P,Q,hide:false,total:S.total,cost:S.cost,cur:"₺",
+    today:new Date().toLocaleDateString("en-CA",{timeZone:"Europe/Istanbul"})})}catch(e){console.warn(e)}}
   document.querySelectorAll(".pcard").forEach(el=>el.onclick=()=>openModal(el.dataset.t,S));
 
   const upd=new Date(Q.updated),age=Math.round((Date.now()-upd)/60000);

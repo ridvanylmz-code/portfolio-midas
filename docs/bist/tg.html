@@ -87,6 +87,13 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 .card,.box,.row,.body{background:rgba(17,21,31,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .hero{padding-top:12px} .hero .lbl,.hero .eye{color:rgba(232,236,244,.8)}
 .total{text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.chipx{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:7px;background:#1a2030;margin-right:6px}
+.chipx.up{color:var(--up);background:rgba(61,220,132,.1)}.chipx.dn{color:var(--dn);background:rgba(255,92,108,.1)}.chipx.warn{color:var(--warn);background:rgba(245,185,66,.1)}
+.lvl{flex-basis:100%;margin-top:6px}
+.lvl .tr{position:relative;height:6px;border-radius:4px;background:linear-gradient(90deg,rgba(255,92,108,.55),rgba(90,105,130,.35) 50%,rgba(61,220,132,.55))}
+.lvl .mk{position:absolute;top:-4px;width:3px;height:14px;border-radius:2px;background:#fff;box-shadow:0 0 0 2px #0a0d14}
+.lvl .lb{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut);margin-top:4px;font-variant-numeric:tabular-nums}
+.card.broken{border-color:rgba(255,92,108,.6);box-shadow:inset 0 0 0 1px rgba(255,92,108,.35)}
 </style>
 <link rel="stylesheet" href="../theme.css?v=1">
 </head>
@@ -115,6 +122,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div class="sec">Hisselerim <span class="badge" id="cnt">0</span></div>
   <div id="list"></div>
   <div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
+  <div id="perfBox"></div>
   <div class="foot" id="foot"></div>
 </section>
 
@@ -167,6 +175,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 </script>
 <script src="../motto.js?v=1"></script>
 <script src="../vault.js?v=1"></script>
+<script src="../techview.js?v=2"></script>
+<script src="../perf.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
   <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
@@ -183,7 +193,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       try{tg.setHeaderColor("#0a0d14");tg.setBackgroundColor("#0a0d14");}catch(e){}}
   }catch(e){}
 
-  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null, INTRA=null;
+  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null, INTRA=null, BARS=null, H=null;
   function hasInfo(t){return !!((A&&A.tickers&&A.tickers[t])||(TECH&&TECH.tickers&&TECH.tickers[t]))}
   var TV_TR={STRONG_BUY:["Güçlü Al","up"],BUY:["Al","up"],NEUTRAL:["Nötr","warn"],SELL:["Sat","dn"],STRONG_SELL:["Güçlü Sat","dn"]};
   function addKV(box,k,v,c){var row=el("div","kv");row.appendChild(el("span","",k));row.appendChild(el("span",c||"",v));box.appendChild(row);return row}
@@ -198,6 +208,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     o.c=+e.p; o.d=o.c-base; o.dp=(o.c/base-1)*100; o.pc=base; o.extp=e.sess; o.close=+q.c; return o;
   }
   function extTag(x){return x&&x.extp?(x.extp==="pre"?" 🌅":" 🌙"):""}
+  var BARS_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/trend-bist-data/bars-bist.json";
   var INTRA_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/trend-bist-data/trend-bist.json";
   var SESS_ICO={pre:"🌅",regular:"☀️",post:"🌙",kapali:"⏸"};
   function arrow(d){return d==="up"?["▲","up"]:d==="down"?["▼","dn"]:["■","warn"]}
@@ -314,6 +325,28 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     if(P){renderPortfolio();renderAnaliz()}
   });
 
+  /* Pozisyon kartı: 4S Trend / 15dk Trend / 15dk Tamam yada Devam durumu (trend-bist.json) */
+  function trendChip(t){
+    var e=INTRA&&INTRA.tickers&&INTRA.tickers[t]; if(!e||!e.state||e.state==="n/a")return null;
+    var L={bullish:["Bullish","up"],bearish:["Bearish","dn"],mixed:["Karışık","warn"]}[e.state]; if(!L)return null;
+    return el("span","chipx "+L[1],L[0]);
+  }
+  function levelBar(t,price){
+    var lv=(P.position_levels||{})[t]||{}, st=lv.stop_loss, tg=lv.target;
+    if(st==null||tg==null||!(tg>st))return null;
+    var w=el("div","lvl"), tr=el("div","tr"), mkr=el("i","mk");
+    var f=Math.max(0,Math.min(1,(price-st)/(tg-st))); mkr.style.left="calc("+(f*100)+"% - 1px)";
+    tr.appendChild(mkr); w.appendChild(tr);
+    var lb=el("div","lb"); lb.appendChild(el("span",price<=st?"dn":"","Stop "+usd(+st)+(price<=st?" ⚠ kırıldı":" · %"+num((price-st)/price*100,1)+" uzak")));
+    lb.appendChild(el("span","","Hedef "+usd(+tg)+" · %"+num((tg-price)/price*100,1))); w.appendChild(lb);
+    return w;
+  }
+  function renderPerf(rows,total,cost){
+    if(!window.PerfView||!P||!H)return;
+    try{PerfView.render($("perfBox"),{H:H,P:P,Q:Q,hide:hide,total:total,cost:cost,cur:"₺",
+      today:new Date().toLocaleDateString("en-CA",{timeZone:"Europe/Istanbul"})})}
+    catch(e){$("perfBox").textContent="Performans hatası: "+e.message}
+  }
   function renderPortfolio(){
     var pf=P.portfolio||{}, q=(Q&&Q.quotes)||{};
     var rows=[], posVal=0, cost=0, dayPnl=0;
@@ -341,6 +374,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       var card=el("div","card"), l=el("div","l"), rr=el("div","r");
       var tk=el("div","tk",r.t); tk.appendChild(el("small","",mk(num(r.s,r.s%1?2:0)+" adet")));
       l.appendChild(tk);
+      var tl=el("div","sub"), ch=trendChip(r.t); if(ch)tl.appendChild(ch);
+      tl.appendChild(document.createTextNode("ağırlık %"+num(total?r.v/total*100:0,1))); l.appendChild(tl);
       l.appendChild(el("div","sub","Maliyet "+mk(usd(r.cb))));
       l.appendChild(el("div","sub "+cls(r.dp),usd(r.c)+"  ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)"+extTag(r.x)));
       if(r.x&&r.x.extp)l.appendChild(el("div","sub","Kapanış "+usd(r.x.close)));
@@ -349,6 +384,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       rr.appendChild(el("div","sub "+cls(dv),sgn(dv)+mk(usd(Math.abs(dv)))));
       rr.appendChild(el("div","sub "+cls(dv),"%"+sgn(dpct)+num(Math.abs(dpct),2)));
       card.appendChild(l); card.appendChild(rr);
+      var lvb=levelBar(r.t,r.c); if(lvb)card.appendChild(lvb);
+      var lv0=(P.position_levels||{})[r.t]||{}; if(lv0.stop_loss!=null&&r.c<=lv0.stop_loss)card.classList.add("broken");
       if(hasInfo(r.t)){card.style.cursor="pointer";
         card.addEventListener("click",function(){openAnaliz(r.t)})}
       list.appendChild(card);
@@ -359,6 +396,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+(rows.some(function(r){return r.x&&r.x.extp})?" · "+(rows.filter(function(r){return r.x&&r.x.extp})[0].x.extp==="pre"?"🌅 ön piyasa fiyatı":"🌙 kapanış sonrası fiyat"):"")+
       (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
         day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"")+" · Gecikmeli veri";
+    renderPerf(rows,total,cost);
     if(window.Vault&&Vault.unlocked()&&!$("lockBtn")){var lb=el("a","","🔒 Kilitle");lb.id="lockBtn";lb.href="#";
       lb.style.cssText="display:block;margin-top:6px;color:inherit;opacity:.7;text-decoration:underline";
       lb.onclick=function(e){e.preventDefault();Vault.forget()};$("foot").parentNode.insertBefore(lb,$("foot").nextSibling)}
@@ -376,6 +414,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     wl.forEach(function(t){
       var x=q[t]||{}, row=el("div","wl"), has=hasInfo(t);
       var b=el("b","",t); if(has)b.appendChild(el("small","","analiz ›"));
+      var tc=trendChip(t); if(tc){tc.style.marginLeft="8px";b.appendChild(tc)}
       row.appendChild(b);
       row.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"+extTag(x)):"–"));
       if(has){row.classList.add("link");row.addEventListener("click",function(){openAnaliz(t)})}
@@ -438,6 +477,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       }
       renderIntraday(box,cur);
       renderTech(box,cur);
+      if(window.TechView)TechView.render(box,cur,{chartOnly:true,plainLegend:true,BARS:BARS,P:P,
+        noBarsMsg:"Günlük mum grafiği henüz yok (BIST Trend Tara çalışınca gelir)."});
       if((d.technical||[]).length){
         var hd2=el("div","sub","Yazılı notlar ("+(A&&A.updated||"")+")"); hd2.style.margin="12px 0 2px"; box.appendChild(hd2);
         var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); box.appendChild(ul);
@@ -466,8 +507,11 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function loadIntra(){
     return fetch(INTRA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
-  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra()]).then(function(r){
-    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];
+  function loadBars(){
+    return fetch(BARS_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  }
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadBars(),load("history.json",true)]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];BARS=r[5];H=r[6];
     if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
     renderPortfolio();renderWatch();renderNews();renderAnaliz();
     showTab((location.hash||"").replace("#",""));
