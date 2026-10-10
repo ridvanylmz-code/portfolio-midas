@@ -164,14 +164,15 @@ def fresh_events(item):
 
 
 def compute(rows):
-    b4 = aggregate_4h_bist(rows)
+    closed = ix.closed_rows(rows) or rows[:-1]  # oluşan 15dk mum sinyale girmesin (repaint)
+    b4 = aggregate_4h_bist(closed)
     out = {
         "price": round(rows[-1][4], 4),
         "bar_time": datetime.fromtimestamp(rows[-1][0], timezone.utc).isoformat(timespec="minutes"),
         "h4": ix.ema_pair([b[4] for b in b4], 8, 20),
-        "m15": ix.ema_pair([r[4] for r in rows], 34, 89),
+        "m15": ix.ema_pair([r[4] for r in closed], 34, 89),
         "elliott": ix.elliott(b4),
-        "st15": tr.supertrend(rows),
+        "st15": tr.supertrend(closed),
     }
     out["state"], out["score"] = tr.classify(out)
     out["events"] = fresh_events(out)

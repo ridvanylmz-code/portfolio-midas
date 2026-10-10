@@ -55,7 +55,9 @@ Elliott kural tabanlı tahmindir (4S zigzag), kesin sayım değildir. Veri Yahoo
 <script>
 (function(){
   var REPO="ridvanylmz-code/portfolio-midas";
-  var SRC=new URLSearchParams(location.search).get("src")||("https://raw.githubusercontent.com/"+REPO+"/trend-bist-data/trend-bist.json");
+  /* ?src= yalnızca bu reponun raw dosyalarına izin verir (başka adresten veri/XSS yüklenmesin). */
+  var SRC0=new URLSearchParams(location.search).get("src")||"";
+  var SRC=/^https:\/\/raw\.githubusercontent\.com\/ridvanylmz-code\/portfolio-midas\/[\w.\-\/]+$/.test(SRC0)?SRC0:("https://raw.githubusercontent.com/"+REPO+"/trend-bist-data/trend-bist.json");
   document.getElementById("runlink").href="https://github.com/"+REPO+"/actions/workflows/trend-bist.yml";
   var DATA=null, filt="all", sortKey="score", sortDir=-1;
   var ORDER={bullish:3,mixed:2,"n/a":1,bearish:0};
@@ -76,7 +78,7 @@ Elliott kural tabanlı tahmindir (4S zigzag), kesin sayım değildir. Veri Yahoo
     if(v.state==="n/a"&&k!=="state")return '<td class="m">–</td>';
     if(k==="price")return "<td>"+f(v.price)+"</td>";
     if(k==="chg")return '<td class="'+(v.chg_pct>0?"up":v.chg_pct<0?"down":"")+'">'+(v.chg_pct==null?"–":(v.chg_pct>0?"+":"")+f(v.chg_pct)+"%")+"</td>";
-    if(k==="state"){var L={bullish:"Bullish",bearish:"Bearish",mixed:"Karışık","n/a":"Veri yok"};return '<td><span class="badge s-'+(v.state==="n/a"?"na":v.state)+'">'+L[v.state||"n/a"]+"</span></td>"}
+    if(k==="state"){var L={bullish:"Bullish",bearish:"Bearish",mixed:"Karışık","n/a":"Veri yok"};var sv=L.hasOwnProperty(v.state)?v.state:"n/a";return '<td><span class="badge s-'+(sv==="n/a"?"na":sv)+'">'+L[sv]+"</span></td>"}
     if(k==="h4")return "<td>"+ema(v.h4,8,20)+"</td>";
     if(k==="m15")return "<td>"+ema(v.m15,34,89)+"</td>";
     if(k==="st"){var s=v.st15;return "<td>"+(s?arrow(s.dir)+' <b>'+(s.dir==="up"?"Devam":"Tamam")+'</b> <span class="m">'+f(s.line)+" ("+(s.dist_pct>0?"+":"")+f(s.dist_pct,1)+"%)</span>":"–")+"</td>"}

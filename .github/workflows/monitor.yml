@@ -1,24 +1,21 @@
 name: Portföy İzleme
 
-# Cron saatleri UTC. İstanbul = UTC+3. ABD YAZ saati (kapanış 20:00 UTC = 23:00 İstanbul).
-# Telegram raporları (İstanbul): 03:01 (Pzt-Cmt), 07:01, 11:01, 16:16, 16:31, 22:55, 23:01 (Pzt-Cum).
-#   - Cumartesi 03:01 haftasonu öncesi son rapor; Pazartesi 03:01 yeni hafta ilk raporu.
-#   - Cumartesi 03:01 ile Pazartesi 03:01 arası hiçbir otomatik çalışma yok.
-# Sessiz yenileme (dashboard + alarm): hafta içi 13:07-19:52 UTC, her 15 dk (rapor dakikalarıyla çakışmasın diye :07/:22/:37/:52).
-# ABD KIŞ saatine geçişte (1 Kasım 2026) tüm rapor saatleri UTC'de +1 saat kaydırılacak.
-# Not: GitHub zamanlanmış işleri birkaç dk-20 dk geciktirebilir.
+# Zamanlama UTC, ama rapor/sessiz seçimi scripts/monitor.py içinde ABD saatine (ET) göre yapılır (--auto):
+# yaz/kış saati geçişinde (1 Kasım 2026, Mart 2027) elle değişiklik gerekmez. Her rapor saati için iki cron
+# vardır (EDT ve EST karşılığı); saatine denk gelmeyen çalışma sessiz yenilemeye döner.
+# Telegram raporları (ET): 20:01 (Paz-Cum), 00:01, 04:01, 09:16, 09:31, 15:55, 16:01 (Pzt-Cum).
+#   İstanbul karşılığı yazın 03:01, 07:01, 11:01, 16:16, 16:31, 22:55, 23:01; kışın birer saat sonra.
+# Sessiz yenileme: normal seansta 15 dk'da bir, ön/sonrası seansında 30 dk'da bir (dashboard + alarm).
+# Not: GitHub zamanlanmış işleri birkaç dk-20 dk geciktirebilir; rapor penceresi 25 dk.
 on:
   schedule:
-    - cron: "7,22,37,52 13-19 * * 1-5"   # sessiz yenileme
-    - cron: "7,37 8-12 * * 1-5"          # ön piyasa fiyatı (yalnız ext alanı), 11:07-15:37 İstanbul
-    - cron: "7,37 20-23 * * 1-5"         # kapanış sonrası fiyatı (yalnız ext alanı), 23:07-02:37 İstanbul
-    - cron: "1 0 * * 1-6"                # 03:01 İstanbul (Pzt-Cmt)
-    - cron: "1 4 * * 1-5"                # 07:01
-    - cron: "1 8 * * 1-5"                # 11:01
-    - cron: "16 13 * * 1-5"              # 16:16
-    - cron: "31 13 * * 1-5"              # 16:31
-    - cron: "55 19 * * 1-5"              # 22:55
-    - cron: "1 20 * * 1-5"               # 23:01
+    - cron: "7,22,37,52 8-23 * * 1-5"    # sessiz yenileme (ön piyasa -> kapanış sonrası, EDT+EST)
+    - cron: "7,22,37,52 0 * * 2-6"       # kapanış sonrası sonu (EST)
+    - cron: "1 0,1 * * 1-6"              # 20:01 ET raporu (EDT/EST)
+    - cron: "1 4,5,8,9 * * 1-5"          # 00:01 ve 04:01 ET raporları
+    - cron: "16,31 13,14 * * 1-5"        # 09:16 ve 09:31 ET raporları
+    - cron: "55 19,20 * * 1-5"           # 15:55 ET raporu
+    - cron: "1 20,21 * * 1-5"            # 16:01 ET raporu
   workflow_dispatch:
     inputs:
       report:
@@ -30,13 +27,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: portfolio-data
+  group: monitor-us          # yalnız izleme çalışmaları sıraya girer; işlem kayıtları (update-position) ayrı
   cancel-in-progress: false
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
 
@@ -48,36 +45,51 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: Fiyatları çek / rapor gönder
+      - name: Fiyatları çek, kaydet, push et (çakışmada en güncel veriyle yeniden dene)
+        id: run
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PORTFOLIO_KEY: ${{ secrets.PORTFOLIO_KEY }}
           DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          TELEGRAM_OUTBOX: ${{ runner.temp }}/outbox.jsonl
           EVENT: ${{ github.event_name }}
-          SCHEDULE: ${{ github.event.schedule }}
           REPORT_INPUT: ${{ inputs.report }}
+          BRANCH: ${{ github.ref_name }}
         run: |
-          ARGS=""
-          if [ "$EVENT" = "schedule" ]; then
-            case "$SCHEDULE" in
-              "7,22,37,52 13-19 * * 1-5"|"7,37 8-12 * * 1-5"|"7,37 20-23 * * 1-5") ;;  # sessiz
-              *) ARGS="--report" ;;
-            esac
-          fi
+          ARGS="--auto"
           if [ "$EVENT" = "workflow_dispatch" ]; then
             ARGS="--force"
             if [ "$REPORT_INPUT" = "true" ]; then ARGS="$ARGS --report"; fi
           fi
-          python scripts/monitor.py $ARGS
-
-      - name: Veriyi commit'le
-        run: |
           git config user.name "portfolio-bot"
           git config user.email "portfolio-bot@users.noreply.github.com"
-          git add portfolio.json history.json state.json docs/data
-          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
-          git commit -m "data: $(date -u +'%Y-%m-%d %H:%M') UTC"
-          git pull --rebase origin "${{ github.ref_name }}"
-          git push origin "HEAD:${{ github.ref_name }}"
+          ok=0; rc=0
+          for i in 1 2 3 4; do
+            git fetch -q origin "$BRANCH" && git reset -q --hard "origin/$BRANCH"
+            rm -f "$TELEGRAM_OUTBOX"
+            set +e; python scripts/monitor.py $ARGS; rc=$?; set -e
+            git add portfolio.json history.json state.json docs/data
+            if git diff --cached --quiet; then ok=1; echo "Değişiklik yok"; break; fi
+            git commit -q -m "data: $(date -u +'%Y-%m-%d %H:%M') UTC"
+            if git push -q origin "HEAD:$BRANCH"; then ok=1; break; fi
+            echo "push reddedildi (deneme $i); en güncel veriyle yeniden"; sleep $((i * 6))
+          done
+          echo "ok=$ok" >> "$GITHUB_OUTPUT"; echo "rc=$rc" >> "$GITHUB_OUTPUT"
 
+      - name: Telegram (veri kaydedildikten sonra)
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_OUTBOX: ${{ runner.temp }}/outbox.jsonl
+          PUSH_OK: ${{ steps.run.outputs.ok }}
+        run: python scripts/flush_outbox.py
+
+      - name: Sonuç
+        if: always()
+        env:
+          OK: ${{ steps.run.outputs.ok }}
+          RC: ${{ steps.run.outputs.rc }}
+        run: |
+          [ "$OK" = "1" ] || { echo "::error::Veri push edilemedi"; exit 1; }
+          [ "$RC" = "0" ] || { echo "::error::monitor.py hata kodu $RC"; exit 1; }

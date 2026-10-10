@@ -122,8 +122,12 @@ def telegram_text(data):
     sess = {"pre": "Ön piyasa", "post": "Kapanış sonrası", "regular": "Normal seans",
             "kapali": "Seans dışı"}[data["session"]]
     lines = [f"<b>🧪 Genişletilmiş saat testi</b> · {now:%d.%m %H:%M} (İstanbul)", f"Seans: {sess}", ""]
-    pf = load_json(PORTFOLIO, {})
-    for title, names in (("Pozisyonlar", list(pf.get("portfolio", {}))), ("İzleme", pf.get("watchlist", []))):
+    try:  # gruplama için gerçek portföy (şifreliyse PORTFOLIO_KEY gerekir); yoksa tek liste
+        pf = common.load_portfolio()
+        groups = (("Pozisyonlar", list(pf["portfolio"])), ("İzleme", pf["watchlist"]))
+    except Exception:
+        groups = (("Hisseler", common.public_symbols("docs/data")),)
+    for title, names in groups:
         lines.append(f"<b>{title}</b>")
         for t in names:
             q = data["quotes"].get(t)
@@ -144,8 +148,7 @@ def main():
     ap.add_argument("--telegram", action="store_true", help="Özet mesajı Telegram'a gönder")
     args = ap.parse_args()
 
-    pf = load_json(PORTFOLIO, {})
-    tickers = sorted(set(list(pf.get("portfolio", {})) + list(pf.get("watchlist", []))))
+    tickers = sorted(set(common.public_symbols("docs/data")))
     prev = load_json(OUT, {}) or {}
     now = datetime.now(timezone.utc)
     quotes, stale = {}, False

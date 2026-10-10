@@ -16,6 +16,9 @@ from datetime import datetime, timezone
 
 import requests
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import common  # noqa: E402
+
 OUT = "docs/data/technicals.json"
 PORTFOLIO = "docs/data/portfolio.json"
 TICKERS_FILE = "trend/tickers.txt"  # portföy + takip listesine ek olarak bu dosyadaki semboller de alınır
@@ -25,7 +28,21 @@ EXCHANGES = ["NASDAQ", "NYSE", "AMEX"]
 LOG = []
 
 
+_SECRET_RE = re.compile(r"(apikey|api_key|token|key)=[^&\s'\"]+", re.I)
+
+
+def scrub(msg):
+    """Log public dosyaya (docs/data) yazılıyor: URL içindeki anahtarları maskele."""
+    return _SECRET_RE.sub(r"\1=***", str(msg))
+
+
+def err(e):
+    """Hata özeti: tür + kısa, maskelenmiş mesaj (istek URL'si anahtar içerebilir)."""
+    return f"{type(e).__name__}: {scrub(e)[:120]}"
+
+
 def log(msg):
+    msg = scrub(msg)
     print(msg, flush=True)
     LOG.append(msg)
 
@@ -181,9 +198,7 @@ def read_tickers_file(path):
 
 def main():
     t0 = time.time()
-    pf = load_json(PORTFOLIO, {})
-    tickers = list(dict.fromkeys(list((pf.get("portfolio") or {}).keys()) + list(pf.get("watchlist") or [])
-                                 + read_tickers_file(TICKERS_FILE)))
+    tickers = list(dict.fromkeys(common.public_symbols("docs/data") + read_tickers_file(TICKERS_FILE)))
     if len(tickers) > MAX_TICKERS:
         log(f"Liste {len(tickers)} sembol; ilk {MAX_TICKERS} alındı")
         tickers = tickers[:MAX_TICKERS]
@@ -218,7 +233,7 @@ def main():
                 tv_429 = 0
                 log(f"TV  {t}: {entry['tv']['recommendation']} (RSI {entry['tv']['indicators'].get('RSI')})")
             except Exception as e:
-                log(f"TV  {t}: HATA {e}")
+                log(f"TV  {t}: HATA {err(e)}")
                 if prev.get("tv"):
                     entry["tv"] = dict(prev["tv"], stale=True)
                 tv_429 = tv_429 + 1 if "429" in str(e) else 0
@@ -234,7 +249,7 @@ def main():
                 n_td += 1
                 log(f"TD  {t}: RSI {entry['td']['rsi14']} SMA50 {entry['td']['sma50']} ({entry['td']['bars']} bar)")
             except Exception as e:
-                log(f"TD  {t}: HATA {e}")
+                log(f"TD  {t}: HATA {err(e)}")
                 if prev.get("td"):
                     entry["td"] = dict(prev["td"], stale=True)
             if i < len(tickers) - 1:
@@ -257,5 +272,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception as e:  # asla workflow'u kırma
-        print(f"BEKLENMEYEN HATA: {e}")
+        print(f"BEKLENMEYEN HATA: {err(e)}")
         sys.exit(0)

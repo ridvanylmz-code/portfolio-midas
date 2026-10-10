@@ -1,4 +1,5 @@
-"""Ortak yardımcılar: dosya I/O, hesaplamalar, uyarılar, Telegram."""
+"""Ortak yardımcılar: dosya I/O, hesaplamalar, uyarılar, Telegram, şifreli kasa."""
+import base64
 import html
 import json
 import math
@@ -23,6 +24,58 @@ else:
     DATA_DIR, CUR = "docs/data", "$"
 
 
+# ---------------------------------------------------------------- şifreli kasa
+# Repo ve GitHub Pages herkese açık. Adet/maliyet/nakit/işlem içeren dosyalar PORTFOLIO_KEY (GitHub secret,
+# mini uygulamada girilen parola) ile AES-256-GCM şifrelenir; anahtar PBKDF2-SHA256 ile parolanın türevidir.
+# Dosya adları değişmez, içerik {"vault": 1, ...} zarfıdır. Tarayıcı tarafı: docs/vault.js (WebCrypto, aynı biçim).
+# Anahtar tanımlı değilse eski davranış (düz JSON) sürer; tanımlanınca ilk yazımda dosyalar şifrelenir.
+SECRET_FILES = {F_PORTFOLIO, F_HISTORY, F_STATE, f"{DATA_DIR}/portfolio.json", f"{DATA_DIR}/history.json"}
+VAULT_ITER = 600_000
+_KEYS = {}      # (parola, salt, iter) -> türetilmiş anahtar (aynı çalışmada tekrar türetme olmasın)
+_SAVE_SALT = os.urandom(16)
+
+
+class VaultError(RuntimeError):
+    pass
+
+
+def vault_key():
+    return (os.environ.get("PORTFOLIO_KEY") or "").strip()
+
+
+def is_vault(d):
+    return isinstance(d, dict) and d.get("vault") == 1
+
+
+def _derive(passphrase, salt, iters):
+    k = (passphrase, salt, iters)
+    if k not in _KEYS:
+        import hashlib
+        _KEYS[k] = hashlib.pbkdf2_hmac("sha256", passphrase.encode("utf-8"), salt, iters, 32)
+    return _KEYS[k]
+
+
+def vault_encrypt(obj, passphrase):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    iv = os.urandom(12)
+    plain = json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    ct = AESGCM(_derive(passphrase, _SAVE_SALT, VAULT_ITER)).encrypt(iv, plain, None)
+    b = lambda x: base64.b64encode(x).decode()  # noqa: E731
+    return {"vault": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256", "iter": VAULT_ITER,
+            "salt": b(_SAVE_SALT), "iv": b(iv), "data": b(ct)}
+
+
+def vault_decrypt(env, passphrase):
+    from cryptography.exceptions import InvalidTag
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    try:
+        salt, iv, ct = (base64.b64decode(env[k]) for k in ("salt", "iv", "data"))
+        plain = AESGCM(_derive(passphrase, salt, int(env["iter"]))).decrypt(iv, ct, None)
+    except InvalidTag:
+        raise VaultError("Şifreli dosya çözülemedi: PORTFOLIO_KEY yanlış") from None
+    return json.loads(plain.decode("utf-8"))
+
+
 # ---------------------------------------------------------------- dosya I/O
 def path(name):
     return ROOT / name
@@ -33,17 +86,28 @@ def load_json(name, default=None):
     if not p.exists():
         return default
     with open(p, encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+    if is_vault(data):
+        key = vault_key()
+        if not key:
+            raise VaultError(f"{name} şifreli; PORTFOLIO_KEY secret'ı bu iş akışına verilmeli")
+        data = vault_decrypt(data, key)
+    return data
 
 
 def save_json(name, data):
-    """Atomik yazım: yarım dosya kalmasın."""
+    """Atomik yazım: yarım dosya kalmasın. Hassas dosyalar anahtar varsa şifreli yazılır."""
     p = path(name)
+    if str(name) in SECRET_FILES and vault_key():
+        data = vault_encrypt(data, vault_key())
     p.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=p.parent, suffix=".tmp")
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+            if is_vault(data):
+                json.dump(data, f, indent=1)
+            else:
+                json.dump(data, f, indent=2, ensure_ascii=False)
             f.write("\n")
         os.replace(tmp, p)
     except Exception:
@@ -81,11 +145,48 @@ def load_history():
 
 
 def sync_public():
-    """Dashboard (GitHub Pages /docs) sadece docs/ altını görür; kopyala."""
+    """Dashboard (GitHub Pages /docs) sadece docs/ altını görür; kopyala (anahtar varsa şifreli).
+    symbols.json: diğer iş akışları (intraday/technicals) için yalnızca sembol listesi; adet/maliyet içermez,
+    pozisyon ile izleme listesi ayrılmadan alfabetik yazılır."""
+    ensure_encrypted()
+    pf = None
     for name, src in (("portfolio.json", F_PORTFOLIO), ("history.json", F_HISTORY)):
         data = load_json(src)
         if data is not None:
             save_json(f"{DATA_DIR}/{name}", data)
+            if name == "portfolio.json":
+                pf = data
+    if pf is not None:
+        syms = sorted(set(pf.get("portfolio", {})) | set(pf.get("watchlist", [])))
+        save_json(f"{DATA_DIR}/symbols.json", {"tickers": syms})
+
+
+def ensure_encrypted():
+    """Anahtar tanımlıyken diskte düz kalmış hassas dosya varsa şifreli yeniden yaz (ilk geçiş)."""
+    if not vault_key():
+        return
+    for name in sorted(SECRET_FILES):
+        p = path(name)
+        if not p.exists():
+            continue
+        with open(p, encoding="utf-8") as f:
+            raw = json.load(f)
+        if not is_vault(raw):
+            save_json(name, raw)
+            print(f"[vault] {name} şifrelendi")
+
+
+def public_symbols(data_dir=None):
+    """Sembol listesi (şifre gerektirmez): symbols.json, yoksa düz portfolio.json."""
+    d = data_dir or DATA_DIR
+    s = load_json(f"{d}/symbols.json")
+    if s and s.get("tickers"):
+        return list(s["tickers"])
+    try:
+        pf = load_json(f"{d}/portfolio.json", {}) or {}
+    except VaultError:
+        return []
+    return list(dict.fromkeys(list(pf.get("portfolio", {})) + list(pf.get("watchlist", []))))
 
 
 # ------------------------------------------------------------- hesaplamalar
@@ -198,6 +299,8 @@ def month_progress(history, target, total_value, today_iso):
     start = snaps[0]
     flows = 0.0
     for tx in history["transactions"]:
+        if tx.get("undone"):
+            continue
         if tx["date"] > start["date"] and tx["date"].startswith(month):
             if tx["action"] == "deposit":
                 flows += tx["amount"]
@@ -209,14 +312,43 @@ def month_progress(history, target, total_value, today_iso):
 
 
 # ----------------------------------------------------------------- Telegram
+def _chunks(text, limit=3900):
+    """4096 sınırı: satır sınırında böl (HTML etiketi ortadan kesilmesin)."""
+    out, cur = [], ""
+    for line in text.split("\n"):
+        if len(cur) + len(line) + 1 > limit and cur:
+            out.append(cur)
+            cur = ""
+        cur = (cur + "\n" + line) if cur else line[:limit]
+    if cur:
+        out.append(cur)
+    return out or [""]
+
+
 def send_telegram(text):
+    """TELEGRAM_OUTBOX tanımlıysa mesaj dosyaya yazılır; iş akışı veriyi push ettikten SONRA
+    scripts/flush_outbox.py ile gönderir (kaydedilmemiş işlem için 'güncellendi' denmesin)."""
+    box = os.environ.get("TELEGRAM_OUTBOX")
+    if box:
+        with open(box, "a", encoding="utf-8") as f:
+            f.write(json.dumps({"text": text}, ensure_ascii=False) + "\n")
+        return True
+    return send_telegram_now(text)
+
+
+def send_telegram_now(text):
+    ok = True
+    for part in _chunks(text):
+        ok = _send_one(part) and ok
+    return ok
+
+
+def _send_one(text):
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         print("[WARN] Telegram bilgileri yok; mesaj gönderilmedi.")
         return False
-    if len(text) > 4000:
-        text = text[:3990] + "\n…"
     try:
         r = requests.post(
             f"https://api.telegram.org/bot{token}/sendMessage",

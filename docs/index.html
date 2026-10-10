@@ -59,6 +59,7 @@ td{padding:4px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:ri
 .err{background:var(--down-bg);color:var(--down);padding:12px;border-radius:10px}
 </style>
 <link rel="stylesheet" href="theme.css?v=1">
+<script src="vault.js?v=1"></script>
 </head>
 <body>
 <div class="masthead">
@@ -113,7 +114,8 @@ async function getJson(name,optional){
   try{
     const r=await fetch("data/"+name+"?t="+Date.now(),{cache:"no-store"});
     if(!r.ok)throw new Error(r.status);
-    return await r.json();
+    const j=await r.json();
+    return window.Vault?await Vault.open(j):j;
   }catch(e){if(optional)return null;throw new Error(name+" yüklenemedi");}
 }
 
@@ -138,7 +140,7 @@ function compute(P,Q,H){
   const cash=+P.cash||0,total=value+cash;
   pos.forEach(p=>p.weight=pct(p.value,total));
   pos.sort((a,b)=>b.value-a.value);
-  const realized=(H.transactions||[]).reduce((s,x)=>s+(x.realized_pnl||0),0);
+  const realized=(H.transactions||[]).reduce((s,x)=>s+(x.undone?0:(x.realized_pnl||0)),0);
   return {pos,value,cost,cash,total,pnl:value-cost,pnlPct:pct(value-cost,cost),
     day,dayPct:pct(day,prev),realized};
 }
@@ -150,7 +152,7 @@ function monthProgress(P,H,total){
   if(!snaps.length)return null;
   const start=snaps[0];let flows=0;
   for(const x of H.transactions||[]){
-    if(x.date>start.date&&x.date.startsWith(month)){
+    if(!x.undone&&x.date>start.date&&x.date.startsWith(month)){
       if(x.action==="deposit")flows+=x.amount;else if(x.action==="withdraw")flows-=x.amount;
     }
   }
@@ -235,6 +237,8 @@ function render(){
   st.textContent=`${mk} · Son veri: ${upd.toLocaleString("tr-TR",{hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"})} (${age} dk önce)`;
   st.className=(Q.market_open===true&&age>40)?"warn":"";
   if(st.className)st.textContent+=" · veri gecikmiş olabilir";
+  if(window.Vault&&Vault.unlocked()){const lk=document.createElement("a");lk.href="#";lk.textContent=" · 🔒 Kilitle";
+    lk.style.color="inherit";lk.onclick=e=>{e.preventDefault();Vault.forget()};st.appendChild(lk);}
 }
 
 function openModal(t,S){

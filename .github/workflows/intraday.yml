@@ -47,9 +47,10 @@ jobs:
       - name: Hesapla
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          FORCE_INPUT: ${{ github.event.inputs.force }}
         run: |
           ARGS=""
-          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="--force"; fi
+          if [ "$FORCE_INPUT" = "true" ]; then ARGS="--force"; fi
           python scripts/intraday.py --out data-out/intraday.json $ARGS
 
       - name: Değiştiyse data dalına yaz (tek commit, force push)
