@@ -22,7 +22,8 @@ import common  # noqa: E402
 
 ET = ZoneInfo("Europe/Istanbul" if common.MARKET == "bist" else "America/New_York")
 C = common.CUR
-ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove", "undo")
+ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove", "undo",
+           "zone_below", "zone_above", "zone_clear")
 PRICE_TOL = 0.15  # girilen fiyat son kapanıştan bu orandan fazla saparsa onaysız kabul edilmez
 EPS = 1e-9
 
@@ -88,6 +89,8 @@ def undo_last(portfolio, history, now):
             portfolio["cash"] = b["cash"]
         if "watchlist" in b:
             portfolio["watchlist"] = b["watchlist"]
+        if "buy_zones" in b:
+            portfolio["buy_zones"] = b["buy_zones"]
         tx["undone"] = True
         desc = " ".join(str(x) for x in (tx["action"], t, tx.get("shares", tx.get("amount"))) if x not in (None, ""))
         if tx.get("price"):
@@ -117,11 +120,32 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
         p0 = portfolio["portfolio"].get(t0)
         tx["before"]["position"] = dict(p0) if p0 else None
 
-    if action in ("buy", "sell", "watch_add", "watch_remove"):
+    if action in ("buy", "sell", "watch_add", "watch_remove", "zone_below", "zone_above", "zone_clear"):
         ticker = (ticker or "").strip().upper()
         if not common.TICKER_RE.match(ticker):
             raise ValueError(f"Geçersiz ticker: {ticker!r}")
         tx["ticker"] = ticker
+
+    if action in ("zone_below", "zone_above", "zone_clear"):
+        z = common.zone_of(portfolio, ticker)
+        tx["before"] = {"buy_zones": dict(portfolio["buy_zones"])}
+        if action == "zone_clear":
+            portfolio["buy_zones"].pop(ticker, None)
+            msg = f"🧹 {ticker} alım bölgesi silindi"
+        else:
+            lvl = common.finite_positive(price, "price")
+            check_price(ticker, lvl, True, quotes)  # sapma bilgisi için (alarm seviyesi uzak olabilir; reddetmez)
+            z["below" if action == "zone_below" else "above"] = round(lvl, 4)
+            portfolio["buy_zones"][ticker] = z
+            kind = "geri çekilme (fiyat ≤)" if action == "zone_below" else "kırılım (fiyat ≥)"
+            msg = f"🎯 {ticker} alım alarmı: {kind} {C}{lvl:,.2f}"
+            if ticker not in portfolio["watchlist"] and ticker not in portfolio["portfolio"]:
+                portfolio["watchlist"].append(ticker)
+                msg += f"\n👀 {ticker} izleme listesine de eklendi"
+                tx["before"]["watchlist"] = [x for x in portfolio["watchlist"] if x != ticker]
+        tx["zone"] = portfolio["buy_zones"].get(ticker)
+        history["transactions"].append(tx)
+        return msg
 
     if action in ("watch_add", "watch_remove"):
         wl = portfolio["watchlist"]

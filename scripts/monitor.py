@@ -177,15 +177,52 @@ def apply_extended(quotes, tickers, now):
 
 
 # ------------------------------------------------------------------ rapor
-def market_lines(summary):
-    """market.json (market-data dalı; iş akışı MARKET_JSON ile verir) varsa rejim, nakit hedefi ve lider/zayıf sektörler."""
+def _market():
     path = os.environ.get("MARKET_JSON", "")
     if BIST or not path or not os.path.exists(path):
-        return []
+        return None
     try:
         import json
         with open(path, encoding="utf-8") as f:
-            m = json.load(f)
+            return json.load(f)
+    except Exception as ex:
+        print(f"[WARN] market.json okunamadı: {type(ex).__name__}")
+        return None
+
+
+def earnings_alerts(portfolio, now):
+    """Pozisyon ve izleme listesindeki hisselerin bilançosuna 3 gün (ve 0 gün) kala tek seferlik uyarı."""
+    m = _market()
+    if not m:
+        return []
+    today = now.astimezone(ET).date()
+    held = set(portfolio["portfolio"])
+    out = []
+    for t in list(held) + [x for x in portfolio["watchlist"] if x not in held]:
+        d = ((m.get("stocks") or {}).get(t) or {}).get("earn_next")
+        if not d:
+            continue
+        try:
+            days = (datetime.fromisoformat(d).date() - today).days
+        except ValueError:
+            continue
+        if not 0 <= days <= 3:
+            continue
+        stage = "0" if days == 0 else "3"
+        when = "BUGÜN" if days == 0 else f"{days} gün sonra"
+        what = "pozisyonda: bilanço oynaklığına karşı stopu/boyutu gözden geçir" if t in held else \
+               "izleme listesinde: girişi bilanço sonrasına bırakmak daha güvenli"
+        out.append({"key": f"{t}:earn:{d}:{stage}", "once": True,
+                    "text": f"📅 {t} bilançosu {d} ({when}) — {what}"})
+    return out
+
+
+def market_lines(summary):
+    """market.json (market-data dalı; iş akışı MARKET_JSON ile verir) varsa rejim, nakit hedefi ve lider/zayıf sektörler."""
+    m = _market()
+    if not m:
+        return []
+    try:
         r = m.get("regime") or {}
         lo, hi = (r.get("cash_target") or [None, None])[:2]
         cp = summary["cash_pct"]
@@ -237,8 +274,10 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
     wl.sort(key=lambda x: -(x[1].get("dp") or 0))
     lines += ["", f"<b>İzleme listesi ({len(portfolio['watchlist'])})</b>"]
     for t, q in wl:
-        zone = portfolio["buy_zones"].get(t)
-        tag = " 🎯 alım bölgesi" if zone and q["c"] <= zone else ""
+        z = common.zone_of(portfolio, t)
+        tag = (" 🎯 alım bölgesi" if "below" in z and q["c"] <= z["below"] else "") + \
+              (" 🚀 kırılım" if "above" in z and q["c"] >= z["above"] else "") + \
+              (f" · alarm {'≤' + format(z['below'], '.2f') if 'below' in z else ''}{' ≥' + format(z['above'], '.2f') if 'above' in z else ''}" if z else "")
         lines.append(f"{ico(q.get('dp') or 0)} {e(t)} {CUR}{q['c']:.2f} ({(q.get('dp') or 0):+.2f}%){tag}")
     no_quote = [t for t in portfolio["watchlist"] if not common.valid_quote(quotes.get(t))]
     if no_quote:
@@ -349,11 +388,14 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         common.save_json(common.F_HISTORY, history)
     common.sync_public()
 
-    alerts = common.check_alerts(portfolio, fresh)
+    alerts = common.check_alerts(portfolio, fresh) + earnings_alerts(portfolio, now)
     state = common.load_json(common.F_STATE, {}) or {}
+    once = list(state.get("once", []))[-300:]  # tek seferlik alarmlar (bilanço) gün değişse de tekrarlanmaz
     if state.get("date") != et_date:
         state = {"date": et_date, "sent": [], "reports": []}
     state.setdefault("reports", [])
+    state["once"] = once
+    alerts = [a for a in alerts if not (a.get("once") and a["key"] in once)]
     new_alerts = [a for a in alerts if a["key"] not in state["sent"]]
 
     if report:
@@ -364,10 +406,12 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         text = build_report(portfolio, rq, fresh, rsummary, market_open, alerts, month, now, dashboard_url, ext_sess)
         if common.send_telegram(text):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in alerts})
+            state["once"] = once + [a["key"] for a in alerts if a.get("once")]
             state["reports"] = sorted(set(state["reports"]) | set(due))
     elif new_alerts:
         if common.send_telegram("<b>🚨 Portföy Alarmı</b>\n" + "\n".join(common.e(a["text"]) for a in new_alerts)):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in new_alerts})
+            state["once"] = once + [a["key"] for a in new_alerts if a.get("once")]
     common.save_json(common.F_STATE, state)
     print(f"Tamam: {len(fresh)}/{len(tickers)} fiyat güncel, toplam {CUR}{summary['total_value']:,.2f}")
     return 0
