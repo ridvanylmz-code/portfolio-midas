@@ -174,7 +174,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 </script>
 <script src="motto.js?v=1"></script>
 <script src="vault.js?v=1"></script>
-<script src="sector.js?v=1"></script>
+<script src="sector.js?v=2"></script>
+<script src="techview.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
   <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
@@ -439,12 +440,24 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
         if(q.extp)addKV(box,"Kapanış",usd(+q.close));
         addKV(box,"Gün aralığı",usd(+q.l)+" – "+usd(+q.h));
       }
-      renderIntraday(box,cur);
-      renderTech(box,cur);
+      if(window.TechView)TechView.render(box,cur,{M:M,BARS:BARS,INTRA:INTRA,TREND:TRENDD,P:P});
+      function det(title,open){var x=document.createElement("details");x.className="tx-d";if(open)x.open=true;x.appendChild(el("summary","",title));box.appendChild(x);return x}
       if((d.technical||[]).length){
-        var hd2=el("div","sub","Yazılı notlar ("+(A&&A.updated||"")+")"); hd2.style.margin="12px 0 2px"; box.appendChild(hd2);
-        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); box.appendChild(ul);
+        var wn=det("Yazılı analiz ("+(A&&A.updated||"")+")");
+        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); wn.appendChild(ul);
       }
+      var raw=det("Ayrıntılı göstergeler (gün içi, Elliott, TradingView, Twelve Data)");
+      renderIntraday(raw,cur); renderTech(raw,cur);
+      var gl=det("Göstergeler ne anlatır?");
+      [["EMA / SMA","Hareketli ortalama. Fiyat ortalamanın üstündeyse o zaman diliminde alıcılar baskın. Kısa ortalamanın uzunu yukarı kesmesi trend dönüşü işaretidir."],
+       ["RSI","0-100 arası ivme. 70 üstü aşırı alım, 30 altı aşırı satım; 50 üstü alıcı, altı satıcı baskısı."],
+       ["MACD","İki ortalama farkı. Sinyal çizgisinin üstüne çıkması ivmenin yukarı döndüğünü gösterir."],
+       ["ADX","Trendin gücü (yönü değil). 20 altı trend yok, 25 üstü güçlü trend."],
+       ["Supertrend","ATR'ye göre çizilen iz süren çizgi. Fiyat çizginin altına inince yön düşüşe döner; geçici stop gibi okunur."],
+       ["ATR stop","Hissenin günlük ortalama oynaklığına (ATR) göre stop: fiyattan 2×ATR ya da 3 aylık tepeden 3×ATR aşağısı."],
+       ["Elliott","Fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı. Kural tabanlı tahmindir, kesin sayım değildir; tek başına al/sat sinyali değildir."],
+       ["Zaman dilimi uyumu","Haftalık ve günlük yön trendi, 4s ve 15dk giriş zamanlamasını gösterir. Hepsi aynı yöndeyse sinyal güçlüdür."]
+      ].forEach(function(k){var r=el("div","kv");r.appendChild(el("span","",k[0]));r.appendChild(el("span","",k[1]));r.lastChild.style.fontWeight="400";gl.appendChild(r)});
     }else if(sub==="temel"){
       ((d.fundamental&&d.fundamental.metrics)||[]).forEach(function(kv){
         var k=el("div","kv"); k.appendChild(el("span","",kv[0])); k.appendChild(el("span","",kv[1])); box.appendChild(k)});
@@ -466,7 +479,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   });
 
   /* ---------- başlat ---------- */
-  var MARKET_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-data/market.json", M=null, NOTES=null;
+  var MARKET_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-data/market.json", M=null, NOTES=null, BARS=null, TRENDD=null;
+  function loadRaw(u){return fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
   function loadMarket(){
     return fetch(MARKET_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
@@ -478,8 +492,10 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function loadIntra(){
     return fetch(INTRA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
-  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadMarket(),load("sector_notes.json",true)]).then(function(r){
-    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];M=r[5];NOTES=r[6];
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadMarket(),load("sector_notes.json",true),
+    loadRaw("https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-data/bars.json"),
+    loadRaw("https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/trend-data/trend.json")]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];M=r[5];NOTES=r[6];BARS=r[7];TRENDD=r[8];
     if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
     renderPortfolio();renderWatch();renderNews();renderAnaliz();renderSector();
     showTab((location.hash||"").replace("#",""));
