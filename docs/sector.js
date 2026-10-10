@@ -11,7 +11,11 @@
   function n(x, d) { return (x === null || x === undefined || isNaN(+x)) ? "–" : (+x).toLocaleString("tr-TR", { minimumFractionDigits: d, maximumFractionDigits: d }) }
   function sp(x, d) { if (x === null || x === undefined) return "–"; return (x > 0 ? "+" : x < 0 ? "−" : "") + n(Math.abs(x), d === undefined ? 1 : d) }
   function cls(x) { return x > 0 ? "up" : x < 0 ? "dn" : "" }
-  function vcls(v) { v = (v || "").split(" · ")[0]; return VCLS[v] || "" }
+  function vcls(v) {
+    v = (v || "").split(" · ")[0]; if (VCLS[v] !== undefined) return VCLS[v];
+    for (var k in VCLS) if (k && v.indexOf(k.split(" ")[0]) === 0) return VCLS[k];
+    return "";
+  }
   function dots(p) { var s = ""; for (var i = 0; i < 7; i++) s += i < p ? "●" : "○"; return s }
 
   function css() {
