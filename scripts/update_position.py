@@ -12,6 +12,7 @@ satışta net tutardan düşer (gerçekleşen K/Z ve nakit buna göre).
   python scripts/update_position.py --action watch_add --ticker AMD
 """
 import argparse
+import copy
 import os
 import sys
 from datetime import datetime, timezone
@@ -23,7 +24,7 @@ import common  # noqa: E402
 ET = ZoneInfo("Europe/Istanbul" if common.MARKET == "bist" else "America/New_York")
 C = common.CUR
 ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove", "undo",
-           "zone_below", "zone_above", "zone_clear")
+           "zone_below", "zone_above", "zone_clear", "trail_off", "trail_on")
 PRICE_TOL = 0.15  # girilen fiyat son kapanıştan bu orandan fazla saparsa onaysız kabul edilmez
 EPS = 1e-9
 
@@ -91,6 +92,8 @@ def undo_last(portfolio, history, now):
             portfolio["watchlist"] = b["watchlist"]
         if "buy_zones" in b:
             portfolio["buy_zones"] = b["buy_zones"]
+        if "position_levels" in b:
+            portfolio["position_levels"] = b["position_levels"]
         tx["undone"] = True
         desc = " ".join(str(x) for x in (tx["action"], t, tx.get("shares", tx.get("amount"))) if x not in (None, ""))
         if tx.get("price"):
@@ -120,11 +123,28 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
         p0 = portfolio["portfolio"].get(t0)
         tx["before"]["position"] = dict(p0) if p0 else None
 
-    if action in ("buy", "sell", "watch_add", "watch_remove", "zone_below", "zone_above", "zone_clear"):
+    if action in ("buy", "sell", "watch_add", "watch_remove", "zone_below", "zone_above", "zone_clear", "trail_off", "trail_on"):
         ticker = (ticker or "").strip().upper()
         if not common.TICKER_RE.match(ticker):
             raise ValueError(f"Geçersiz ticker: {ticker!r}")
         tx["ticker"] = ticker
+
+    if action in ("trail_off", "trail_on"):
+        # Takip eden stop (monitor, ATR'ye göre yalnız yukarı) bu hisse için kapatılır/açılır; kayıtlı stop olduğu gibi kalır.
+        if ticker not in portfolio["portfolio"]:
+            raise ValueError(f"{ticker} portföyde yok")
+        tx["before"] = {"position_levels": copy.deepcopy(portfolio["position_levels"])}
+        lv = portfolio["position_levels"].setdefault(ticker, {})
+        if action == "trail_off":
+            lv["trail"] = False
+            msg = f"⏸ {ticker} takip eden stop kapatıldı (stop elle yönetilir; kayıtlı: {_lv_txt(lv)})"
+        else:
+            lv.pop("trail", None)
+            msg = f"▶️ {ticker} takip eden stop açıldı (ATR stop kayıtlı stoptan yüksekse stop otomatik yükselir)"
+        if not lv:
+            portfolio["position_levels"].pop(ticker, None)
+        history["transactions"].append(tx)
+        return msg
 
     if action in ("zone_below", "zone_above", "zone_clear"):
         z = common.zone_of(portfolio, ticker)

@@ -394,9 +394,19 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     if all(t in fresh for t in holdings):
         upsert_snapshot(history, et_date, summary)
         common.save_json(common.F_HISTORY, history)
+    # Takip eden stop (tam otomatik, yalnız yukarı): kayıtlı stopu ATR stopa göre yükseltir; sync_public'ten ÖNCE
+    # kaydedilir ki dashboard/mini uygulama yeni stopu görsün. Hata monitor'ü durdurmaz.
+    try:
+        trail = common.trail_stops(portfolio, fresh, _market(), now.astimezone(IST if BIST else ET).date())
+        if trail:
+            common.save_json(common.F_PORTFOLIO, portfolio)
+            print("Takip eden stop: " + ", ".join(f"{a['t']} {a['old']:.2f}->{a['new']:.2f}" for a in trail))
+    except Exception as ex:
+        print(f"[WARN] takip eden stop atlandı: {type(ex).__name__}: {str(ex)[:80]}")
+        trail = []
     common.sync_public()
 
-    alerts = common.check_alerts(portfolio, fresh) + earnings_alerts(portfolio, now)
+    alerts = common.check_alerts(portfolio, fresh) + earnings_alerts(portfolio, now) + trail
     state = common.load_json(common.F_STATE, {}) or {}
     once = list(state.get("once", []))[-300:]  # tek seferlik alarmlar (bilanço) gün değişse de tekrarlanmaz
     if state.get("date") != et_date:

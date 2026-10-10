@@ -18,8 +18,10 @@ on:
           - zone_below
           - zone_above
           - zone_clear
+          - trail_off
+          - trail_on
       symbol:
-        description: 'Hisse kodu (buy/sell/watch_* için; deposit/withdraw için boş bırak)'
+        description: 'Hisse kodu (buy/sell/watch_*/zone_*/trail_* için; deposit/withdraw için boş bırak)'
         required: false
         type: string
       quantity:
