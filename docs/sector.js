@@ -126,6 +126,7 @@
     var ch2 = el("div", "sx-chips"); avoid.forEach(function (g) { ch2.appendChild(el("span", "sx-chip dn", g.name + " · " + g.sym)) });
     c2.appendChild(ch2);
     box.appendChild(c2);
+    picksCard(box, M, go);
 
     // alt görünüm seçimi
     var seg = el("div", "sx-seg");
@@ -133,6 +134,7 @@
       var b = el("button", view === x[0] ? "on" : "", x[1]); b.onclick = function () { view = x[0]; render(box, ctx) }; seg.appendChild(b);
     });
     box.appendChild(seg);
+    window.__MK = M;
     if (view === "sektor") sectors(box, G, gn);
     else if (view === "hisse") stocks(box, M, N, P);
     else risk(box, P, Q, M, hide);
@@ -142,7 +144,32 @@
     box.appendChild(ft);
   }
 
+  function pickRow(x) {
+    var row = el("div", "sx-row"); row.style.cursor = "default";
+    var r1 = el("div", "sx-r1"), nm = el("div", "sx-nm", x.t);
+    nm.appendChild(el("small", "", (x.tracked ? "takipte · " : "") + (x.name || "").slice(0, 28)));
+    r1.appendChild(nm); r1.appendChild(el("span", "sx-v up", "RS " + sp(x.rs))); row.appendChild(r1);
+    row.appendChild(el("div", "sx-r2", n(x.close, 2) + " (" + sp(x.chg, 2) + "%) · trend " + x.trend + "/7 · grubuna göre " + sp(x.rs_group) +
+      " · RSI " + n(x.rsi, 0) + " · ATR %" + n(x.atr_pct, 1) + " · stop ≈ " + n(x.stop_atr, 2) + " · " + n(x.mcap_bn, 1) + " mlr $"));
+    return row;
+  }
+
+  function picksCard(box, M, go) {
+    var P = M.picks || {}, groups = go.filter(function (g) { return (P[g.sym] || []).length });
+    if (!groups.length) return;
+    var c = el("div", "sx-card");
+    c.appendChild(el("div", "sx-t", "Güçlü sektörlerde aday hisseler"));
+    c.appendChild(el("div", "sx-s", "Her grupta trendi en az 5/7 ve SPY'den güçlü ilk 3 hisse (banka, alkol ve tercihli hisse hariç; ~1.500 hisse + tema listeleri taranır). " +
+      "Alım öncesi: sermaye artırımı riski, bilanço tarihi ve giriş noktası ayrıca kontrol edilmeli."));
+    groups.forEach(function (g) {
+      var h = el("div", "sx-nm", g.name); h.appendChild(el("small", "", g.sym)); h.style.marginTop = "12px"; c.appendChild(h);
+      P[g.sym].forEach(function (x) { c.appendChild(pickRow(x)) });
+    });
+    box.appendChild(c);
+  }
+
   function sectors(box, G, gn) {
+    var PK = (window.__MK && window.__MK.picks) || {};
     var c = el("div", "sx-card");
     G.forEach(function (g) {
       var row = el("div", "sx-row"), r1 = el("div", "sx-r1"), nm = el("div", "sx-nm", (g.rank ? g.rank + ". " : "") + g.name);
@@ -161,6 +188,12 @@
       (tr.checks || []).forEach(function (k) { d.appendChild(el("div", k[1] ? "up" : "dn", (k[1] ? "✓ " : "✗ ") + k[0])) });
       if (gn[g.sym] && gn[g.sym].note) d.appendChild(el("div", "sx-note", gn[g.sym].note));
       if (g.bank) d.appendChild(el("div", "warn", "Banka kuralı: bu gruptan hisse önerilmez, yalnız piyasa okuması için."));
+      var pk = PK[g.sym] || [];
+      if (pk.length) {
+        d.appendChild(el("div", "sx-s", /^(Ol|Erken)/.test(v) ? "Bu gruptaki en güçlü hisseler:" :
+          "Grup zayıf; aşağıdakiler grubuna rağmen güçlü olanlar (daha riskli, sektör rüzgârı arkada değil):"));
+        pk.forEach(function (x) { d.appendChild(pickRow(x)) });
+      } else if (!g.bank) d.appendChild(el("div", "sx-s", "Bu grupta koşulları sağlayan hisse yok."));
       row.appendChild(d);
       row.onclick = function () { row.classList.toggle("open") };
       c.appendChild(row);

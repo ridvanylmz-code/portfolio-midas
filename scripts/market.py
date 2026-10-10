@@ -203,7 +203,7 @@ def build_picks(uni, gmap, spy_p, held):  # held: izlenen semboller (pozisyon + 
         gperf = gmap[g].get("perf") or {}
         cands = []
         for t, x in recs.items():
-            if (x.get("industry") or "") in excl:
+            if (x.get("industry") or "") in excl or "/" in t:  # banka/alkol ve tercihli hisse (ör. HPE/PC) hariç
                 continue
             c = compact(x, "tv")
             dv = (num(x.get("average_volume_10d_calc")) or 0) * (c["close"] or 0)
@@ -225,6 +225,32 @@ def build_picks(uni, gmap, spy_p, held):  # held: izlenen semboller (pozisyon + 
             z.pop("_k")
         out[g] = cands[:cfg.get("per_group", 3)]
     return out, len(big)
+
+
+def write_bars(path, stocks, sout):
+    """Mini uygulama grafiği: hisse başına ~180 işlem günü [gün, o, y, d, k]. Alpaca yoksa/başarısızsa dosya
+    yazılmaz (önceki dosya iş akışında korunur)."""
+    try:
+        import alpaca
+        if not alpaca.keys():
+            log("Grafik mumları: Alpaca anahtarı yok, atlandı")
+            return
+        got = alpaca.bars_daily(stocks, log=log)
+    except Exception as ex:
+        log(f"Grafik mumları hatası: {type(ex).__name__}")
+        return
+    if not got:
+        log("Grafik mumları alınamadı (önceki dosya korunur)")
+        return
+    def r4(v):
+        return round(float(v), 4 if v < 10 else 2)
+    out = {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "source": "Alpaca günlük", "bars": {}}
+    for t, rows in got.items():
+        out["bars"][t] = [[datetime.fromtimestamp(b[0], timezone.utc).strftime("%Y-%m-%d"), r4(b[1]), r4(b[2]), r4(b[3]), r4(b[4])]
+                          for b in rows[-180:]]
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, separators=(",", ":"))
+    log(f"Grafik mumları: {len(out['bars'])}/{len(stocks)} hisse")
 
 
 def regime(data, groups_out, stocks_out):
@@ -267,6 +293,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="market.json")
     ap.add_argument("--tickers-file", default="trend/tickers.txt")
+    ap.add_argument("--bars-out", default="", help="Grafik için günlük mumlar (Alpaca anahtarı varsa)")
     args = ap.parse_args(argv)
 
     uni = common.load_json(UNIVERSE)
@@ -376,6 +403,8 @@ def main(argv=None):
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
         f.write("\n")
+    if args.bars_out:
+        write_bars(args.bars_out, stocks, sout)
     top = ", ".join(f"{x['sym']}({x['verdict']})" for x in gout[:5])
     print(f"Rejim: {reg and reg['label']} · ilk 5: {top} · hisse {len(sout)}")
     return 0

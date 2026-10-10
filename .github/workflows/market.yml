@@ -37,12 +37,15 @@ jobs:
           if git ls-remote --exit-code --heads origin market-data >/dev/null 2>&1; then
             git fetch --depth=1 origin market-data
             git show FETCH_HEAD:market.json > market-out/market.json || rm -f market-out/market.json
+            git show FETCH_HEAD:bars.json > market-out/bars.json || rm -f market-out/bars.json
           fi
 
       - name: Hesapla
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
-        run: python scripts/market.py --out market-out/market.json
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python scripts/market.py --out market-out/market.json --bars-out market-out/bars.json
 
       - name: market-data dalına yaz (tek commit)
         if: always()
@@ -52,6 +55,6 @@ jobs:
           git init -q -b market-data
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add market.json
+          git add market.json $( [ -f bars.json ] && echo bars.json )
           git commit -q -m "market: $(date -u +%Y-%m-%dT%H:%MZ)"
           git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" market-data:refs/heads/market-data

@@ -87,3 +87,33 @@ def bars_15m(sym, days=30, log=print):
         if rows:
             return rows
     return None
+
+
+def bars_daily(tickers, days=260, log=print):
+    """Çok sembol günlük mum (tek/az istek): {T: [(epoch, o, h, l, c, v), ...]}. Önce SIP, olmazsa IEX."""
+    if not keys() or not tickers:
+        return {}
+    now = datetime.now(timezone.utc)
+    start = (now - timedelta(days=days)).isoformat(timespec="seconds").replace("+00:00", "Z")
+    for feed, end in (("sip", now - timedelta(minutes=16)), ("iex", now)):
+        out, token, ok = {}, None, True
+        while True:
+            p = {"symbols": ",".join(tickers), "timeframe": "1Day", "start": start,
+                 "end": end.isoformat(timespec="seconds").replace("+00:00", "Z"), "limit": 10000,
+                 "feed": feed, "adjustment": "split"}
+            if token:
+                p["page_token"] = token
+            d = _get("/bars", p, log)
+            if not d or d.get("_error"):
+                ok = False
+                break
+            for t, bars in (d.get("bars") or {}).items():
+                for b in bars:
+                    ts = int(datetime.fromisoformat(b["t"].replace("Z", "+00:00")).timestamp())
+                    out.setdefault(t, []).append((ts, b["o"], b["h"], b["l"], b["c"], b.get("v") or 0))
+            token = d.get("next_page_token")
+            if not token:
+                break
+        if ok and out:
+            return out
+    return {}
