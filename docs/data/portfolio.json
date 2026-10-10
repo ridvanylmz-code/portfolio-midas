@@ -1,0 +1,9 @@
+{
+ "vault": 1,
+ "alg": "AES-256-GCM",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 600000,
+ "salt": "uDjW/FHGf3mRQ3kJ9X2Qjg==",
+ "iv": "cEw18977HwXhArqX",
+ "data": "euk6Pj5zRaxGB9BiBvFHeETFzk5SgQDs4GIiFtahee/jnV598Mj4mOVgDBnfiOAsffm5hqlLU+IaZJlKg+tkTZWatLlgq2ba/ZQEXhg0C4Bls8/mete347TZr0cZBVF1bc3KK/Ilcu2t3Jmf41c8RPFCA+bmjekpz8Abam9N/5CIg86n1vp9p5MZ3tbGIpCyvV/+utUuFmwLySaMYXNtlX82PNjtQ2Qk/GpDZAxClZJT/iSOkuDQ3Iy7/FtlNeOzccFCN4PAgK86O3KnilXKSIT0yIel9ay4dt9hAlf/P9+cK/Fh7qQKvdWVhS1L3K7NIWVnQyUMhyW+oCYrZPnzDs/myPNjYrwUSvFXJkCzUoVe8cfj7ww4eTrKoFdXcUViJ8fnn1wGaHyS4EzYceJ6ECpBp8XfgCNnELBW5QPzz8mvpHJewvbsfENdAlGwoLVHWpU2aMv9R5gn81ggWK3ZSlVYtIh9rQaHuJw5uHU/8SbHgpPN2cudxy3s4bwVl6kXFX2WODjjy7Kxigqhp/FzIYqwFG38Dzdzd9gueCZdtkO/kkDPMGWdad7EpxlJ3GY+BxPWeNmLfk1VR1wTvfRgi8u1Nj3Pqd0EuSyLTY4NOIJ6w3p4W/N2NB13PlmuS6z9FhEydSxuujxcMBM8NaV7bNWKtytkzOFmj8b+UEyAVx7XwMoe3Hq2kuNLoPvRcHuhdu/GwP/Ndl348cV/iqTDP50/HhtAZS/lct6PP74fdkc9rjuFEFX8sSunnA0/AlVyQs+HfSeUPTht1VWZSrud0PDGvre3VuHiWAA="
+}

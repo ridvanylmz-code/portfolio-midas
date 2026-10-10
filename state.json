@@ -1,0 +1,9 @@
+{
+ "vault": 1,
+ "alg": "AES-256-GCM",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 600000,
+ "salt": "uDjW/FHGf3mRQ3kJ9X2Qjg==",
+ "iv": "ANYJPdtHqJhtIGYI",
+ "data": "H3J/30a3Ryy47YufMc65i6Mmw1uKaiDhlJa7I4rHEHi/DBi9mRBy11aUnPywYmcl0mvtz4YpPeZMY4QdD515rsixxXpeP0M="
+}

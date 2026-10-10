@@ -1,0 +1,33 @@
+{
+  "cash": 0,
+  "monthly_target": 0,
+  "portfolio": {},
+  "watchlist": [
+    "BIENY",
+    "SASA",
+    "SMRTG",
+    "MIATK",
+    "EMKEL",
+    "KLSER",
+    "DOFER",
+    "ALTNY",
+    "TCELL",
+    "THYAO",
+    "ALTIN",
+    "GMSTR",
+    "EMPAE",
+    "RYSAS",
+    "HRKET",
+    "SDTTR",
+    "DOHOL",
+    "TRENJ",
+    "AKSGY"
+  ],
+  "buy_zones": {},
+  "position_levels": {},
+  "alerts": {
+    "stop_loss_pct": -15,
+    "target_pct": 25,
+    "daily_move_pct": 7
+  }
+}
