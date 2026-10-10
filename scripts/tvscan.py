@@ -67,6 +67,36 @@ def fetch(tickers, cols=None, retries=3, log=print, timeout=25):
     return None
 
 
+def screen(filters, cols=None, limit=1500, log=print, retries=2, timeout=40):
+    """Filtreli tarama (ör. piyasa değeri > 3 mlr $): [kayıt, ...] piyasa değerine göre azalan, ya da None."""
+    cols = list(cols or MARKET_COLS)
+    if "name" not in cols:
+        cols.insert(0, "name")
+    payload = {"filter": filters, "options": {"lang": "en"}, "markets": ["america"],
+               "symbols": {"query": {"types": ["stock", "dr"]}, "tickers": []}, "columns": cols,
+               "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"}, "range": [0, limit]}
+    for attempt in range(retries):
+        try:
+            r = requests.post(URL, json=payload, headers=HEADERS, timeout=timeout)
+        except requests.RequestException as ex:
+            log(f"TV tarama {type(ex).__name__} (deneme {attempt + 1})")
+            time.sleep(5)
+            continue
+        if r.status_code == 200:
+            out, seen = [], set()
+            for row in r.json().get("data") or []:
+                d = row.get("d") or []
+                rec = {c: (d[i] if i < len(d) else None) for i, c in enumerate(cols)}
+                if rec.get("name") and rec["name"] not in seen:
+                    seen.add(rec["name"])
+                    rec["symbol"] = row.get("s")
+                    out.append(rec)
+            return out
+        log(f"TV tarama HTTP {r.status_code}: {r.text[:160]!r}")
+        time.sleep(10)
+    return None
+
+
 def rec_label(v):
     """TradingView 'Recommend.*' değeri -> etiket (TradingView eşikleri)."""
     if not isinstance(v, (int, float)):

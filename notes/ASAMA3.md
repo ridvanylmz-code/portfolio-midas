@@ -14,3 +14,5 @@ Başlangıç: 2026-10-10 22:33 İstanbul. İstek: 3. aşamayı tamamla + sektör
 - [ ] 8. Test, push, canlı çalıştırma, rapor
 
 ## Notlar
+- 1 (veri) ✔ market.py build_picks + tvscan.screen + universe.json picks (yerel test ok). Canlı tarama doğrulanacak; UI henüz yok.
+- 5-6 ✔ alt ajan bitirdi (docs/index.html, docs/trend/index.html) — gözden geçirme bekliyor.
