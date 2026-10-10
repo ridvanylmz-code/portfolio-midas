@@ -14,7 +14,7 @@ pozisyon büyüklüğü ve risk.
 - [x] 5. intraday/trend 15dk mum yedeği: Alpaca (anahtar varsa, ön/sonrası dahil) → Twelve Data
 - [x] 6. Mini uygulama: Sektör sekmesi, rejim + hedef nakit, portföy risk/ısı, pozisyon büyüklüğü hesabı
 - [x] 7. docs/data/sector_notes.json: haber/momentum yorumu (güncelle bizi ile yenilenir) + ilk analiz
-- [ ] 8. Test, push, canlı çalıştırma, rapor
+- [x] 8. Test, push, canlı çalıştırma, rapor
 
 ## Notlar
 - 1 ✔ Scanner sütunları MCP ile doğrulandı (|1W haftalık dahil). Not: IGV/ITA/PAVE CBOE'de listeli (scanner "name" filtresiyle sorun yok).
@@ -26,3 +26,10 @@ pozisyon büyüklüğü ve risk.
 - Sıradaki: 6 (mini uygulama Sektör sekmesi + risk), 7 (sector_notes + analiz), 8.
 - 6 (kısmen) ✔ docs/sector.js + tg.html Sektör sekmesi, Portföy sekmesinde nakit/ısı şeridi. Test edilmedi, push edilmedi (yerelde). Sıradaki: Playwright testi, sector_notes.json.
 - 6-7 ✔ Sektör sekmesi Playwright ile test edildi (390/1024px, hata yok). docs/data/sector_notes.json ilk yorum (9 Eki, haber + momentum). 'güncelle bizi'de bu dosya da yenilenecek.
+- 8 ✔ Canlı: market.yml 63/63 sembol TV scanner'dan; technicals TV 21/21 (önce 13/21, 429). Push 9e14b58.
+## Aşama 2 bitti. Açık kalanlar (aşama 3'e)
+- Kullanıcı isterse Alpaca ücretsiz hesap → ALPACA_KEY_ID / ALPACA_SECRET_KEY secret (ön/sonrası 15dk mum + yedek fiyat).
+- Dashboard (index.html) "momentuma göre" sıralamasını market.json RS'e bağla; Telegram raporuna rejim satırı.
+- Teknik sekmesi sadeleştirme (tek sinyal tablosu + grafik), tek tema, mobil trend kartları.
+- BIST için sektör görünümü yok (ABD'ye özel).
+- 'güncelle bizi': docs/data/sector_notes.json (haber yorumu) da yenilenmeli.
