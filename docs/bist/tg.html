@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="color-scheme" content="dark">
+<title>RIDVAN // COCKPIT · BIST</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+  --bg:#0a0d14; --card:#11151f; --line:#1d2330; --txt:#e8ecf4; --mut:#7d8798;
+  --up:#3ddc84; --dn:#ff5c6c; --warn:#f5b942; --chip:#1a2030; --on:#27304a; --acc:#5aa9ff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+html,body{margin:0;color:var(--txt);
+  font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
+.tab{display:none} .tab.on{display:block}
+.hero{padding:22px 4px 10px}
+.eye{border:0;background:transparent;color:var(--mut);padding:2px 6px;margin-left:4px;vertical-align:middle;cursor:pointer}
+.eye svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.eye .ico-off{display:none} body.hide .eye .ico-off{display:block} body.hide .eye .ico-on{display:none}
+.lbl{color:var(--mut);font-size:13px}
+.total{font-size:34px;font-weight:700;letter-spacing:-.5px;margin:2px 0 8px;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600;
+  font-variant-numeric:tabular-nums;border:1px solid transparent}
+.pill.up{color:var(--up);background:rgba(61,220,132,.1);border-color:rgba(61,220,132,.25)}
+.pill.dn{color:var(--dn);background:rgba(255,92,108,.1);border-color:rgba(255,92,108,.25)}
+.seg{display:flex;gap:4px;background:var(--chip);border-radius:12px;padding:3px;margin:14px 0 6px;width:max-content;max-width:100%}
+.seg button{border:0;background:transparent;color:var(--mut);font:inherit;font-weight:600;
+  padding:7px 14px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.seg button.on{background:var(--on);color:var(--txt)}
+.h1{font-size:22px;font-weight:700;margin:22px 4px 6px}
+.sec{display:flex;align-items:center;gap:8px;margin:20px 4px 8px;font-size:17px;font-weight:700}
+.badge{background:var(--chip);color:var(--mut);font-size:12px;font-weight:600;padding:2px 8px;border-radius:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:8px;
+  display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+.card .l,.card .r{display:flex;flex-direction:column;gap:2px}
+.card .r{text-align:right;align-items:flex-end}
+.tk{font-weight:700;font-size:16px}
+.tk small{color:var(--mut);font-weight:500;font-size:13px;margin-left:6px}
+.val{font-weight:700;font-size:16px}
+.sub{color:var(--mut);font-size:13px}
+.up{color:var(--up)} .dn{color:var(--dn)} .warn{color:var(--warn)}
+.row{display:flex;justify-content:space-between;align-items:center;background:var(--card);
+  border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:10px}
+.wl{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);
+  font-variant-numeric:tabular-nums}
+.wl:last-child{border-bottom:0}
+.wl.link{cursor:pointer}
+.wl small{color:var(--acc);font-weight:500;margin-left:6px}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin-top:18px}
+.err{background:rgba(255,92,108,.1);border:1px solid rgba(255,92,108,.3);color:var(--dn);
+  border-radius:12px;padding:12px;margin-top:16px;font-size:13px}
+.note{color:var(--mut);font-size:12px;margin:8px 4px}
+/* analiz */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--mut);font:inherit;font-weight:700;
+  padding:8px 14px;border-radius:999px;cursor:pointer}
+.chip.on{background:var(--on);color:var(--txt);border-color:#3a4566}
+.body{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:6px}
+.body ul{margin:0;padding-left:18px} .body li{margin:6px 0}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.kv:last-child{border-bottom:0} .kv span:first-child{color:var(--mut)} .kv span:last-child{text-align:right;font-weight:600}
+.big{font-size:20px;font-weight:700;margin-bottom:6px}
+.news{display:block;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--txt);text-decoration:none}
+.news:last-child{border-bottom:0}
+.news .d{color:var(--mut);font-size:12px;margin-top:3px}
+.empty{color:var(--mut);padding:18px 14px;text-align:center}
+/* alt sekme çubuğu */
+.bar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;
+  padding:8px 12px calc(10px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--bg) 70%,rgba(10,13,20,0))}
+.bar nav{display:flex;gap:4px;width:100%;max-width:536px;background:#141926;border:1px solid var(--line);border-radius:22px;padding:5px}
+.bar button{flex:1;border:0;background:transparent;color:var(--mut);font:inherit;font-size:12px;font-weight:600;
+  padding:8px 4px;border-radius:17px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+.bar button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bar button.on{background:var(--on);color:var(--txt)}
+/* görsel katman: başlık (arka plan sahnesi theme.css'te) */
+.brand{display:flex;align-items:center;gap:10px;padding:14px 4px 0;font-size:19px;font-weight:800;line-height:1.1;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(240,243,250,.95)}
+.brandsub{padding:5px 4px 0 22px;font-size:11px;letter-spacing:.08em;color:var(--mut);opacity:.7}
+.brand b{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 10px var(--up)}
+.card,.box,.row,.body{background:rgba(17,21,31,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero{padding-top:12px} .hero .lbl,.hero .eye{color:rgba(232,236,244,.8)}
+.total{text-shadow:0 2px 18px rgba(0,0,0,.55)}
+</style>
+<link rel="stylesheet" href="../theme.css?v=1">
+</head>
+<body>
+<div class="stage" aria-hidden="true"><i class="aur"></i><i class="aur"></i><i class="aur"></i></div>
+
+<!-- PORTFÖY -->
+<section class="tab on" id="t-portfoy">
+  <div class="brand"><b></b>RIDVAN&nbsp;&nbsp;//&nbsp;&nbsp;COCKPIT&nbsp;&nbsp;·&nbsp;&nbsp;BIST<button class="herobtn" id="heroBtn" type="button" aria-label="Arka plan temasını değiştir"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></button></div>
+  <div class="brandsub">Borsa İstanbul · Trend Takip</div>
+  <div class="hero">
+    <div class="lbl">Toplam Varlık
+      <button class="eye" id="eye" aria-label="Tutarları gizle / göster">
+        <svg class="ico-on" viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="ico-off" viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>
+      </button>
+    </div>
+    <div class="total" id="total">–</div>
+    <span class="pill" id="pnl">yükleniyor…</span>
+    <div class="seg" id="seg">
+      <button data-m="day">Günlük</button>
+      <button data-m="all" class="on">Toplam</button>
+    </div>
+  </div>
+  <div class="motto slim" id="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
+  <div class="sec">Hisselerim <span class="badge" id="cnt">0</span></div>
+  <div id="list"></div>
+  <div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
+  <div class="foot" id="foot"></div>
+</section>
+
+<!-- TAKİP -->
+<section class="tab" id="t-takip">
+  <div class="h1">Takip Listesi</div>
+  <div class="box" id="wl"></div>
+  <div class="note">Analizi olan hisselere dokununca Analiz sekmesi açılır.</div>
+  <div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
+</section>
+
+<!-- HABERLER -->
+<section class="tab" id="t-haber">
+  <div class="h1">Haberler</div>
+  <div id="newsAll"></div>
+</section>
+
+<!-- ANALİZ -->
+<section class="tab" id="t-analiz">
+  <div class="h1">Analiz</div>
+  <div class="chips" id="chips"></div>
+  <div class="seg" id="sub">
+    <button data-s="momentum" class="on">Momentum</button>
+    <button data-s="teknik">Teknik</button>
+    <button data-s="temel">Temel</button>
+    <button data-s="haber">Haber</button>
+  </div>
+  <div id="abody"></div>
+  <div class="note" id="anote"></div>
+  <div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
+</section>
+
+<div id="msg"></div>
+<script>
+(function(){
+  var MODES=["photo","aurora","auto"],LBL={photo:"Foto",aurora:"Aurora",auto:"Otomatik (günlük değişir)"};
+  function get(){try{var v=localStorage.getItem("hero");return MODES.indexOf(v)>=0?v:"photo"}catch(e){return "photo"}}
+  function set(v){try{localStorage.setItem("hero",v)}catch(e){}}
+  function apply(m){
+    var d=new Date(),day=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5),eff=m==="auto"?(day%2?"aurora":"photo"):m;
+    document.documentElement.setAttribute("data-hero",eff);
+  }
+  var mode=get();apply(mode);
+  var toast=document.createElement("div");toast.className="herotoast";document.body.appendChild(toast);var tm;
+  document.getElementById("heroBtn").addEventListener("click",function(){
+    mode=MODES[(MODES.indexOf(mode)+1)%MODES.length];set(mode);apply(mode);
+    toast.textContent="Arka plan: "+LBL[mode];toast.classList.add("on");clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove("on")},1600);
+  });
+})();
+</script>
+<script src="../motto.js?v=1"></script>
+
+<div class="bar"><nav id="nav">
+  <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
+  <button data-t="takip"><svg viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>Takip</button>
+  <button data-t="haber"><svg viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg>Haberler</button>
+  <button data-t="analiz"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 5-6"/></svg>Analiz</button>
+</nav></div>
+
+<script>
+(function(){
+  try{
+    var tg=window.Telegram&&window.Telegram.WebApp;
+    if(tg){tg.ready();tg.expand();
+      try{tg.setHeaderColor("#0a0d14");tg.setBackgroundColor("#0a0d14");}catch(e){}}
+  }catch(e){}
+
+  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null, INTRA=null;
+  function hasInfo(t){return !!((A&&A.tickers&&A.tickers[t])||(TECH&&TECH.tickers&&TECH.tickers[t]))}
+  var TV_TR={STRONG_BUY:["Güçlü Al","up"],BUY:["Al","up"],NEUTRAL:["Nötr","warn"],SELL:["Sat","dn"],STRONG_SELL:["Güçlü Sat","dn"]};
+  function addKV(box,k,v,c){var row=el("div","kv");row.appendChild(el("span","",k));row.appendChild(el("span",c||"",v));box.appendChild(row);return row}
+  function fmt(n){return (n===null||n===undefined)?"–":num(+n,2)}
+  function rel(close,ma){if(ma===null||ma===undefined||!close)return "";return +close>=+ma?" ▲":" ▼"}
+  /* Ön/kapanış sonrası fiyatı: quotes.json'daki ext alanı güncelse (3 saat) fiyat/değişim onunla gösterilir; kapanış korunur. */
+  function eff(q){
+    var e=q&&q.ext; if(!e||!(+e.p>0))return q;
+    if(!(Date.now()-new Date(e.t).getTime()<3*3600e3))return q;
+    var base=e.sess==="pre"?+q.c:(+q.pc||+q.c); if(!(base>0))return q;
+    var o={}; for(var k in q)o[k]=q[k];
+    o.c=+e.p; o.d=o.c-base; o.dp=(o.c/base-1)*100; o.pc=base; o.extp=e.sess; o.close=+q.c; return o;
+  }
+  function extTag(x){return x&&x.extp?(x.extp==="pre"?" 🌅":" 🌙"):""}
+  var INTRA_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/trend-bist-data/trend-bist.json";
+  var SESS_ICO={pre:"🌅",regular:"☀️",post:"🌙",kapali:"⏸"};
+  function arrow(d){return d==="up"?["▲","up"]:d==="down"?["▼","dn"]:["■","warn"]}
+  /* Elliott açıklaması: intraday.json'daki bias/wave/start_price/last_price/thr_pct alanlarından üretilir (kesin sayım değildir). */
+  function ellDetail(w,price){
+    if(!w||!w.wave||w.start_price===undefined||w.start_price===null)return [];
+    var s=+w.start_price,l=+w.last_price,dn=w.bias==="down",mv=Math.abs(l-s),wv=+w.wave,p=+price,out=[];
+    var fb=function(f){return dn?l+f*mv:l-f*mv}, yn=dn?"aşağı":"yukarı", ters=dn?"yukarı":"aşağı";
+    out.push((dn?"Düşüş":"Yükseliş")+" sayımı "+usd(s)+" seviyesinden başlıyor; son uç "+usd(l)+" (%"+num(mv/s*100,1)+" "+yn+").");
+    if(wv===1)out.push("Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile "+ters+" yönlü bir tepki ("+usd(fb(0.382))+" – "+usd(fb(0.618))+" bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar.");
+    else if(wv===3)out.push("Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden "+yn+" yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi "+usd(fb(0.382))+" – "+usd(fb(0.618))+".");
+    else if(wv===5)out.push("Dalga 5 son itkidir: yorgunluk ve "+ters+" yönlü düzeltme riski yüksek. Düzeltme bölgesi "+usd(fb(0.382))+" – "+usd(fb(0.618))+". Bu, dibin/tepenin geldiği anlamına gelmez.");
+    else out.push("Şu an düzeltme dalgası (Dalga "+wv+") sürüyor; bugüne kadarki ucu "+usd(l)+". Düzeltme bitince ana yön ("+yn+") devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor.");
+    if(p>0&&(wv===1||wv===3||wv===5)&&(dn?p<l:p>l))out.push("Fiyat ("+usd(p)+") son ucu aştı: dalga uzuyor, yukarıdaki bölgeler "+yn+" kayar.");
+    out.push("Sayım "+usd(s)+" "+(dn?"üstünde":"altında")+" kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4s mumlarda (eşik %"+num(+w.thr_pct,1)+"); kesin değildir.");
+    return out;
+  }
+  function renderIntraday(box,t){
+    var hd=el("div","sub","Gün içi sinyaller"); hd.style.margin="4px 0 2px"; box.appendChild(hd);
+    var e=INTRA&&INTRA.tickers&&INTRA.tickers[t];
+    if(!e){box.appendChild(el("div","sub","Trend verisi henüz yok (ilk çalışma bekleniyor)"));return}
+    var h=e.h4, m=e.m15, w=e.elliott, st=e.st15, a;
+    var dirTxt=function(d){return d==="up"?"yükseliş":d==="down"?"düşüş":"yatay"};
+    if(h){a=arrow(h.dir);
+      addKV(box,"4S Trend",a[0]+" "+dirTxt(h.dir),a[1]);
+      addKV(box,"   değerler",num(h.ema8,2)+" / "+num(h.ema20,2)+(h.cross_bars_ago!==null&&h.cross_bars_ago!==undefined?" · kesişim "+h.cross_bars_ago+" mum önce":""),a[1]);
+    }
+    if(m){a=arrow(m.dir);
+      addKV(box,"15dk Trend",a[0]+" "+dirTxt(m.dir),a[1]);
+      addKV(box,"   değerler",num(m.ema34,2)+" / "+num(m.ema89,2)+(m.cross_bars_ago!==null&&m.cross_bars_ago!==undefined?" · kesişim "+m.cross_bars_ago+" mum önce":""),a[1]);
+    }
+    if(st){a=st.dir==="up"?["▲ Devam","up"]:["▼ Tamam","dn"];
+      addKV(box,"15dk Tamam yada Devam",a[0],a[1]);
+      addKV(box,"   çizgi",num(st.line,2)+" · fiyata %"+num(+st.dist_pct,1)+" uzak"+(st.bars_since_flip!==null&&st.bars_since_flip!==undefined?" · "+st.bars_since_flip+" mumdur bu yönde":""),a[1]);
+    }
+    if(w){a=w.bias==="up"?["▲","up"]:w.bias==="down"?["▼","dn"]:["■","warn"];
+      addKV(box,"Elliott (4S, muhtemel)",a[0]+" "+w.label,a[1]);
+      ellDetail(w,e.price).forEach(function(s){var d=el("div","sub",s); d.style.margin="4px 0"; box.appendChild(d)});
+    }
+    var when=INTRA.updated?new Date(INTRA.updated).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"–";
+    var n=el("div","sub",(SESS_ICO[INTRA.session]||"")+" Veri: "+when+" (İstanbul)"+(e.stale?" · bu hisse eski":"")+" · Yahoo Finance 15dk (gecikmeli), yalnızca normal seans mumları. Elliott kesin sayım değildir."); n.style.margin="6px 0 12px"; box.appendChild(n);
+  }
+  function renderTech(box,t){
+    var e=TECH&&TECH.tickers&&TECH.tickers[t]; if(!e){box.appendChild(el("div","sub","Teknik veri henüz yok"));return}
+    var tv=e.tv, td=e.td;
+    if(tv){
+      var rec=TV_TR[tv.recommendation]||[tv.recommendation||"–","warn"];
+      addKV(box,"TradingView (günlük)",rec[0]+(tv.stale?" (eski)":""),rec[1]);
+      addKV(box,"Sinyaller","Al "+(tv.buy||0)+" · Nötr "+(tv.neutral||0)+" · Sat "+(tv.sell||0));
+      var o=TV_TR[tv.oscillators]||[tv.oscillators||"–","warn"], m=TV_TR[tv.moving_averages]||[tv.moving_averages||"–","warn"];
+      addKV(box,"Osilatörler",o[0],o[1]); addKV(box,"Hareketli ortalamalar",m[0],m[1]);
+      var i=tv.indicators||{}, c=i.close;
+      if(i.RSI!==undefined)addKV(box,"RSI (14)",fmt(i.RSI)+(i.RSI>=70?"  aşırı alım":i.RSI<=30?"  aşırı satım":""),i.RSI>=70?"dn":i.RSI<=30?"up":"");
+      if(i["MACD.macd"]!==undefined)addKV(box,"MACD / sinyal",fmt(i["MACD.macd"])+" / "+fmt(i["MACD.signal"]),i["MACD.macd"]>=i["MACD.signal"]?"up":"dn");
+      ["SMA20","SMA50","SMA200"].forEach(function(k){if(i[k]!==undefined)addKV(box,k.replace("SMA","SMA "),usd(+i[k])+rel(c,i[k]),c&&+c>=+i[k]?"up":"dn")});
+    }
+    if(td){
+      var hd=el("div","sub","Twelve Data (günlük mum, "+td.bars+" bar, "+td.date+")"+(td.stale?" · eski":"")); hd.style.margin="12px 0 2px"; box.appendChild(hd);
+      addKV(box,"RSI (14)",fmt(td.rsi14));
+      ["sma20","sma50","sma200"].forEach(function(k){if(td[k]!==null&&td[k]!==undefined)addKV(box,k.replace("sma","SMA "),usd(+td[k])+rel(td.close,td[k]),+td.close>=+td[k]?"up":"dn")});
+      if(td.macd)addKV(box,"MACD histogram",fmt(td.macd.hist),td.macd.hist>=0?"up":"dn");
+      addKV(box,"ATR (14)",fmt(td.atr14));
+      addKV(box,"Destek / direnç (20g)",usd(+td.support20)+" / "+usd(+td.resistance20));
+      addKV(box,"Hacim / 20g ort.",td.vol_ratio===null?"–":"x"+num(+td.vol_ratio,2));
+    }
+    if(!tv&&!td)box.appendChild(el("div","sub","Bu hisse için teknik veri alınamadı"));
+  }
+  var $=function(id){return document.getElementById(id)};
+  var usd=function(n){return "₺"+n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})};
+  var num=function(n,d){return n.toLocaleString("tr-TR",{minimumFractionDigits:d,maximumFractionDigits:d})};
+  var sgn=function(n){return n>=0?"+":"−"};
+  var cls=function(n){return n>=0?"up":"dn"};
+  function el(tag,c,t){var e=document.createElement(tag);if(c)e.className=c;if(t!==undefined)e.textContent=t;return e}
+  function load(name,optional){
+    return fetch("data/"+name+"?t="+Date.now(),{cache:"no-store"}).then(function(r){
+      if(!r.ok)throw new Error(name+" "+r.status);return r.json()}).catch(function(e){
+      if(optional)return null;throw e});
+  }
+  function momCls(s){s=(s||"").toLowerCase();
+    if(s.indexOf("güçlü")===0)return "up"; if(s.indexOf("zayıf")===0)return "dn"; return "warn"}
+  function riskCls(s){s=(s||"").toLowerCase();
+    if(s.indexOf("yüksek")===0)return "dn"; if(s.indexOf("düşük")===0)return "up"; return "warn"}
+
+  /* ---------- sekmeler ---------- */
+  function showTab(t){
+    var ok=["portfoy","takip","haber","analiz"]; if(ok.indexOf(t)<0)t="portfoy";
+    [].forEach.call(document.querySelectorAll(".tab"),function(s){s.classList.toggle("on",s.id==="t-"+t)});
+    [].forEach.call($("nav").children,function(b){b.classList.toggle("on",b.getAttribute("data-t")===t)});
+    try{history.replaceState(null,"","#"+t)}catch(e){}
+    window.scrollTo(0,0);
+  }
+  $("nav").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(b)showTab(b.getAttribute("data-t"));
+  });
+
+  /* ---------- portföy ---------- */
+  /* tutar gizleme: tutarlar, adet ve maliyet *****; yüzdeler ve fiyatlar açık kalır */
+  var hide=false;
+  try{hide=localStorage.getItem("pm_hide")==="1"}catch(e){}
+  document.body.classList.toggle("hide",hide);
+  function mk(s){return hide?"*****":s}
+  // Yazılı notlardaki ortalama maliyet rakamlarını gizler ("maliyetin (78,82) altında" -> "maliyetin ***** altında")
+  function mc(s){return hide?String(s).replace(/(maliyet[a-zçğıöşü]*\s*)\(?\$?\d+(?:[.,]\d+)*\)?/gi,"$1*****"):s}
+  $("eye").addEventListener("click",function(){
+    hide=!hide; document.body.classList.toggle("hide",hide);
+    try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
+    if(P){renderPortfolio();renderAnaliz()}
+  });
+
+  function renderPortfolio(){
+    var pf=P.portfolio||{}, q=(Q&&Q.quotes)||{};
+    var rows=[], posVal=0, cost=0, dayPnl=0;
+    Object.keys(pf).forEach(function(t){
+      var s=+pf[t].shares||0, cb=+pf[t].cost_basis||0;
+      if(!s)return;
+      var x=q[t]||{}, c=+x.c||0;
+      var v=s*c, cs=s*cb, pnl=v-cs, d=s*(+x.d||0);
+      posVal+=v; cost+=cs; dayPnl+=d;
+      rows.push({t:t,s:s,cb:cb,c:c,v:v,pnl:pnl,pct:cs?pnl/cs*100:0,dp:+x.dp||0,d:d,x:x});
+    });
+    rows.sort(function(a,b){return b.v-a.v});
+    var cash=+P.cash||0, total=posVal+cash;
+
+    $("total").textContent=mk(usd(total));
+    var pill=$("pnl"), val, pct;
+    if(mode==="day"){val=dayPnl;pct=(posVal-dayPnl)?dayPnl/(posVal-dayPnl)*100:0}
+    else{val=posVal-cost;pct=cost?(posVal-cost)/cost*100:0}
+    pill.className="pill "+cls(val);
+    pill.textContent=(val>=0?"▲ ":"▼ ")+sgn(val)+mk(usd(Math.abs(val)))+"  (%"+sgn(pct)+num(Math.abs(pct),2)+")";
+
+    $("cnt").textContent=rows.length;
+    var list=$("list"); list.textContent="";
+    rows.forEach(function(r){
+      var card=el("div","card"), l=el("div","l"), rr=el("div","r");
+      var tk=el("div","tk",r.t); tk.appendChild(el("small","",mk(num(r.s,r.s%1?2:0)+" adet")));
+      l.appendChild(tk);
+      l.appendChild(el("div","sub","Maliyet "+mk(usd(r.cb))));
+      l.appendChild(el("div","sub "+cls(r.dp),usd(r.c)+"  ("+sgn(r.dp)+num(Math.abs(r.dp),2)+"%)"+extTag(r.x)));
+      if(r.x&&r.x.extp)l.appendChild(el("div","sub","Kapanış "+usd(r.x.close)));
+      var dv=mode==="day"?r.d:r.pnl, dpct=mode==="day"?r.dp:r.pct;
+      rr.appendChild(el("div","val",mk(usd(r.v))));
+      rr.appendChild(el("div","sub "+cls(dv),sgn(dv)+mk(usd(Math.abs(dv)))));
+      rr.appendChild(el("div","sub "+cls(dv),"%"+sgn(dpct)+num(Math.abs(dpct),2)));
+      card.appendChild(l); card.appendChild(rr);
+      if(hasInfo(r.t)){card.style.cursor="pointer";
+        card.addEventListener("click",function(){openAnaliz(r.t)})}
+      list.appendChild(card);
+    });
+    if(!rows.length)list.appendChild(el("div","empty","Henüz pozisyon girilmedi (adet ve maliyet sonra eklenecek). Takip sekmesinde izleme listesi var."));
+    $("cash").textContent=mk(usd(cash))+(total?"  ·  %"+num(cash/total*100,1):"");
+    var upd=Q&&Q.updated?new Date(Q.updated):null;
+    $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+(rows.some(function(r){return r.x&&r.x.extp})?" · "+(rows.filter(function(r){return r.x&&r.x.extp})[0].x.extp==="pre"?"🌅 ön piyasa fiyatı":"🌙 kapanış sonrası fiyat"):"")+
+      (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
+        day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"")+" · Gecikmeli veri";
+  }
+  $("seg").addEventListener("click",function(e){
+    var m=e.target.getAttribute&&e.target.getAttribute("data-m"); if(!m||!P)return;
+    mode=m; [].forEach.call($("seg").children,function(b){b.classList.toggle("on",b.getAttribute("data-m")===m)});
+    renderPortfolio();
+  });
+
+  /* ---------- takip ---------- */
+  function renderWatch(){
+    var q=(Q&&Q.quotes)||{}, wl=P.watchlist||[], box=$("wl"); box.textContent="";
+    if(!wl.length){box.appendChild(el("div","empty","Takip listesi boş"));return}
+    wl.forEach(function(t){
+      var x=q[t]||{}, row=el("div","wl"), has=hasInfo(t);
+      var b=el("b","",t); if(has)b.appendChild(el("small","","analiz ›"));
+      row.appendChild(b);
+      row.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"+extTag(x)):"–"));
+      if(has){row.classList.add("link");row.addEventListener("click",function(){openAnaliz(t)})}
+      box.appendChild(row);
+    });
+  }
+
+  /* ---------- haberler ---------- */
+  function newsItem(n){
+    var a=el("a","news"); a.textContent="";
+    var url=(n.url||""); if(url.indexOf("https://")===0){a.href=url;a.target="_blank";a.rel="noopener noreferrer"}
+    a.appendChild(el("div","",n.title||""));
+    a.appendChild(el("div","d",(n.date||"")+(n.src?" · "+n.src:"")));
+    return a;
+  }
+  function renderNews(){
+    var wrap=$("newsAll"); wrap.textContent="";
+    var T=A&&A.tickers; if(!T||!Object.keys(T).length){wrap.appendChild(el("div","empty","Henüz haber verisi yok"));return}
+    Object.keys(T).forEach(function(t){
+      var items=T[t].news||[]; if(!items.length)return;
+      var h=el("div","sec",t); h.appendChild(el("span","badge",String(items.length)));
+      wrap.appendChild(h);
+      var box=el("div","box"); items.forEach(function(n){box.appendChild(newsItem(n))}); wrap.appendChild(box);
+    });
+  }
+
+  /* ---------- analiz ---------- */
+  function openAnaliz(t){cur=t;renderAnaliz();showTab("analiz")}
+  function renderAnaliz(){
+    var T=(A&&A.tickers)||{}, TT=(TECH&&TECH.tickers)||{}, chips=$("chips"), body=$("abody");
+    var TI=(INTRA&&INTRA.tickers)||{};
+    var keys=Object.keys(T).concat(Object.keys(TT).filter(function(t){return !T[t]}));
+    Object.keys(TI).forEach(function(t){if(keys.indexOf(t)<0)keys.push(t)});
+    chips.textContent=""; body.textContent="";
+    var notes=[]; if(A&&A.note)notes.push(A.note+(A.updated?" (Yazılı analiz: "+A.updated+")":""));
+    if(TECH&&TECH.updated)notes.push("Teknik veri: "+new Date(TECH.updated).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+". TradingView özeti gayriresmi kaynaktır.");
+    $("anote").textContent=notes.join(" ");
+    if(!keys.length){body.appendChild(el("div","empty","Henüz analiz verisi yok"));return}
+    if(!cur||keys.indexOf(cur)<0)cur=keys[0];
+    keys.forEach(function(t){
+      var c=el("button","chip"+(t===cur?" on":""),t);
+      c.addEventListener("click",function(){cur=t;renderAnaliz()});
+      chips.appendChild(c);
+    });
+    [].forEach.call($("sub").children,function(b){b.classList.toggle("on",b.getAttribute("data-s")===sub)});
+    var d=T[cur]||{}, q=((Q&&Q.quotes)||{})[cur]||{}, box=el("div","body");
+    var noText=!T[cur]&&sub!=="teknik";
+
+    if(noText){
+      box.appendChild(el("div","sub","Bu hisse için henüz yazılı analiz yok (sadece Teknik sekmesinde veri var)."));
+    }else if(sub==="momentum"){
+      var m=d.momentum||{};
+      box.appendChild(el("div","big "+momCls(m.status),m.status||"–"));
+      box.appendChild(el("div","",mc(m.text||"")));
+    }else if(sub==="teknik"){
+      if(q.c){
+        addKV(box,q.extp?(q.extp==="pre"?"Ön piyasa fiyatı":"Kapanış sonrası fiyat"):"Canlı fiyat",usd(+q.c)+" ("+sgn(+q.dp||0)+num(Math.abs(+q.dp||0),2)+"%)",cls(+q.dp||0));
+        if(q.extp)addKV(box,"Kapanış",usd(+q.close));
+        addKV(box,"Gün aralığı",usd(+q.l)+" – "+usd(+q.h));
+      }
+      renderIntraday(box,cur);
+      renderTech(box,cur);
+      if((d.technical||[]).length){
+        var hd2=el("div","sub","Yazılı notlar ("+(A&&A.updated||"")+")"); hd2.style.margin="12px 0 2px"; box.appendChild(hd2);
+        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); box.appendChild(ul);
+      }
+    }else if(sub==="temel"){
+      ((d.fundamental&&d.fundamental.metrics)||[]).forEach(function(kv){
+        var k=el("div","kv"); k.appendChild(el("span","",kv[0])); k.appendChild(el("span","",kv[1])); box.appendChild(k)});
+      if(d.fundamental&&d.fundamental.fair_value){
+        var f=el("div","kv"); f.appendChild(el("span","","Adil değer")); f.appendChild(el("span","",d.fundamental.fair_value)); box.appendChild(f)}
+      if(d.dilution){
+        var r=el("div","kv"); r.appendChild(el("span","","Sermaye artırımı riski (12 ay)"));
+        r.appendChild(el("span",riskCls(d.dilution.risk),d.dilution.risk)); box.appendChild(r);
+        var tx=el("div","sub",d.dilution.text||""); tx.style.marginTop="8px"; box.appendChild(tx)}
+    }else if(sub==="haber"){
+      box.style.padding="0"; box.style.overflow="hidden";
+      var items=d.news||[]; if(!items.length)box.appendChild(el("div","empty","Haber yok"));
+      items.forEach(function(n){box.appendChild(newsItem(n))});
+    }
+    body.appendChild(box);
+  }
+  $("sub").addEventListener("click",function(e){
+    var s=e.target.getAttribute&&e.target.getAttribute("data-s"); if(!s)return; sub=s; renderAnaliz();
+  });
+
+  /* ---------- başlat ---------- */
+  function loadIntra(){
+    return fetch(INTRA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  }
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra()]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];
+    if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
+    renderPortfolio();renderWatch();renderNews();renderAnaliz();
+    showTab((location.hash||"").replace("#",""));
+  }).catch(function(e){
+    $("pnl").textContent="veri alınamadı";
+    $("msg").appendChild(el("div","err","Veri okunamadı: "+e.message));
+  });
+})();
+</script>
+</body>
+</html>

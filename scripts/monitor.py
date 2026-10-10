@@ -22,6 +22,8 @@ import common  # noqa: E402
 API = "https://finnhub.io/api/v1"
 ET = ZoneInfo("America/New_York")
 IST = ZoneInfo("Europe/Istanbul")
+BIST = common.MARKET == "bist"
+CUR = common.CUR
 PRICE_DAYS = 30
 SNAPSHOT_LIMIT = 400
 
@@ -63,6 +65,8 @@ def attach_ext(quotes, tickers, now):
     Normal seans/seans dışında `ext` kaldırılır. Çekim başarısızsa önceki `ext` kalır (ekranda 3 saat yaş sınırı var).
     Dönüş: seans adı ('pre'|'post'|None).
     """
+    if BIST:
+        return None
     try:
         import extended
         sess = extended.session_name(now)
@@ -90,7 +94,9 @@ def attach_ext(quotes, tickers, now):
 def refresh_ext_only(now):
     """Piyasa kapalıyken (ön/sonrası): yalnızca quotes.json'daki `ext` alanlarını yenile.
     Finnhub, prices.json, history.json ve alarmlara dokunmaz."""
-    qj = common.load_json("docs/data/quotes.json", {}) or {}
+    if BIST:
+        return 0
+    qj = common.load_json(f"{common.DATA_DIR}/quotes.json", {}) or {}
     quotes = qj.get("quotes") or {}
     if not quotes:
         print("quotes.json boş; ön/sonrası yenileme atlandı.")
@@ -98,7 +104,7 @@ def refresh_ext_only(now):
     sess = attach_ext(quotes, list(quotes), now)
     qj["quotes"] = quotes
     qj["ext_updated"] = now.isoformat(timespec="seconds")
-    common.save_json("docs/data/quotes.json", qj)
+    common.save_json(f"{common.DATA_DIR}/quotes.json", qj)
     n = sum(1 for q in quotes.values() if q.get("ext"))
     print(f"Ön/sonrası ({sess}): {n}/{len(quotes)} hisse güncellendi")
     return 0
@@ -110,6 +116,8 @@ def apply_extended(quotes, tickers, now):
     Yalnızca rapor metni içindir; quotes.json, prices.json ve history.json Finnhub fiyatıyla kalır.
     Hata olursa sessizce Finnhub fiyatına döner. Dönüş: (quotes, 'pre'|'post'|None)
     """
+    if BIST:
+        return quotes, None
     try:
         import extended
         sess = extended.session_name(now)
@@ -144,26 +152,26 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
     state = {True: "🟢 Piyasa açık", False: "🔴 Piyasa kapalı"}.get(market_open, "⚪ Piyasa durumu bilinmiyor")
     ico = lambda v: "🟢" if v >= 0 else "🔴"  # noqa: E731
     lines = [
-        f"<b>📊 Portföy Raporu</b> · {ist} (İstanbul)",
+        f"<b>{'🇹🇷 BIST Portföy Raporu' if BIST else '📊 Portföy Raporu'}</b> · {ist} (İstanbul)",
         state,
         *(["🌙 Kapanış sonrası fiyatlar (TradingView)"] if ext_sess == "post" else
           ["🌅 Ön piyasa fiyatları (TradingView)"] if ext_sess == "pre" else []),
         "",
-        f"💼 Toplam: <b>${summary['total_value']:,.2f}</b>",
-        f"{ico(summary['day_pnl'])} Bugün: <b>{summary['day_pnl']:+,.2f}$</b> ({summary['day_pct']:+.2f}%)",
-        f"{ico(summary['pnl'])} Toplam K/Z: <b>{summary['pnl']:+,.2f}$</b> ({summary['pnl_pct']:+.2f}%)",
-        f"💵 Nakit: ${summary['cash']:,.2f} (%{summary['cash_pct']:.1f})",
+        f"💼 Toplam: <b>{CUR}{summary['total_value']:,.2f}</b>",
+        f"{ico(summary['day_pnl'])} Bugün: <b>{summary['day_pnl']:+,.2f}{CUR}</b> ({summary['day_pct']:+.2f}%)",
+        f"{ico(summary['pnl'])} Toplam K/Z: <b>{summary['pnl']:+,.2f}{CUR}</b> ({summary['pnl_pct']:+.2f}%)",
+        f"💵 Nakit: {CUR}{summary['cash']:,.2f} (%{summary['cash_pct']:.1f})",
     ]
     if month:
-        lines.append(f"🎯 Aylık hedef: {month['gain']:+,.0f}$ / {month['target']:,.0f}$ (%{max(month['pct'], 0):.0f})")
+        lines.append(f"🎯 Aylık hedef: {month['gain']:+,.0f}{CUR} / {month['target']:,.0f}{CUR} (%{max(month['pct'], 0):.0f})")
     lines += ["", "<b>Pozisyonlar</b>"]
     for m in sorted(summary["positions"], key=lambda x: -x["value"]):
         stale = " ⏱" if m["stale"] else ""
         if (quotes.get(m["ticker"]) or {}).get("ext"):
             stale += " 🌙" if ext_sess == "post" else " 🌅"
         lines.append(
-            f"{ico(m['day_pct'])} <b>{e(m['ticker'])}</b> ${m['price']:.2f} ({m['day_pct']:+.2f}%){stale}\n"
-            f"    K/Z {m['pnl']:+,.0f}$ ({m['pnl_pct']:+.1f}%) · ağırlık %{m['weight']:.0f}"
+            f"{ico(m['day_pct'])} <b>{e(m['ticker'])}</b> {CUR}{m['price']:.2f} ({m['day_pct']:+.2f}%){stale}\n"
+            f"    K/Z {m['pnl']:+,.0f}{CUR} ({m['pnl_pct']:+.1f}%) · ağırlık %{m['weight']:.0f}"
         )
     if summary["missing"]:
         lines.append("⚠️ Fiyat alınamadı: " + ", ".join(e(t) for t in summary["missing"]))
@@ -174,7 +182,7 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
     for t, q in wl:
         zone = portfolio["buy_zones"].get(t)
         tag = " 🎯 alım bölgesi" if zone and q["c"] <= zone else ""
-        lines.append(f"{ico(q.get('dp') or 0)} {e(t)} ${q['c']:.2f} ({(q.get('dp') or 0):+.2f}%){tag}")
+        lines.append(f"{ico(q.get('dp') or 0)} {e(t)} {CUR}{q['c']:.2f} ({(q.get('dp') or 0):+.2f}%){tag}")
     no_quote = [t for t in portfolio["watchlist"] if not common.valid_quote(quotes.get(t))]
     if no_quote:
         lines.append("⚠️ Fiyat alınamadı: " + ", ".join(e(t) for t in no_quote))
@@ -216,14 +224,14 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     if not report and not force and market_open is False:
         try:
             import extended
-            if extended.session_name(now) in ("pre", "post"):
+            if not BIST and extended.session_name(now) in ("pre", "post"):
                 return refresh_ext_only(now)
         except Exception as ex:
             print(f"[WARN] ext yenileme: {type(ex).__name__}")
         print("Piyasa kapalı; yenileme atlandı.")
         return 0
 
-    prev = (common.load_json("docs/data/quotes.json", {}) or {}).get("quotes", {})
+    prev = (common.load_json(f"{common.DATA_DIR}/quotes.json", {}) or {}).get("quotes", {})
     quotes, fresh = {}, {}
     for t in tickers:
         q = fetch(t, key)
@@ -236,26 +244,26 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         print("[ERROR] Hiç fiyat alınamadı (API anahtarı / limit?).")
         return 1
 
-    et_date = now.astimezone(ET).date().isoformat()
+    et_date = now.astimezone(IST if BIST else ET).date().isoformat()
     summary = common.summarize(portfolio, quotes)
     history = common.load_history()
 
     attach_ext(quotes, tickers, now)
-    common.save_json("docs/data/quotes.json", {
+    common.save_json(f"{common.DATA_DIR}/quotes.json", {
         "updated": now.isoformat(timespec="seconds"),
         "market_open": market_open,
         "quotes": quotes,
     })
-    common.save_json("docs/data/prices.json",
-                     update_prices(common.load_json("docs/data/prices.json", {}) or {}, fresh, et_date))
+    common.save_json(f"{common.DATA_DIR}/prices.json",
+                     update_prices(common.load_json(f"{common.DATA_DIR}/prices.json", {}) or {}, fresh, et_date))
 
     if all(t in fresh for t in holdings):
         upsert_snapshot(history, et_date, summary)
-        common.save_json("history.json", history)
+        common.save_json(common.F_HISTORY, history)
     common.sync_public()
 
     alerts = common.check_alerts(portfolio, fresh)
-    state = common.load_json("state.json", {}) or {}
+    state = common.load_json(common.F_STATE, {}) or {}
     if state.get("date") != et_date:
         state = {"date": et_date, "sent": []}
     new_alerts = [a for a in alerts if a["key"] not in state["sent"]]
@@ -271,8 +279,8 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     elif new_alerts:
         if common.send_telegram("<b>🚨 Portföy Alarmı</b>\n" + "\n".join(common.e(a["text"]) for a in new_alerts)):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in new_alerts})
-    common.save_json("state.json", state)
-    print(f"Tamam: {len(fresh)}/{len(tickers)} fiyat güncel, toplam ${summary['total_value']:,.2f}")
+    common.save_json(common.F_STATE, state)
+    print(f"Tamam: {len(fresh)}/{len(tickers)} fiyat güncel, toplam {CUR}{summary['total_value']:,.2f}")
     return 0
 
 
@@ -281,6 +289,12 @@ def main(argv=None):
     ap.add_argument("--report", action="store_true", help="Telegram raporu gönder")
     ap.add_argument("--force", action="store_true", help="Piyasa kapalıyken de çalış")
     args = ap.parse_args(argv)
+    if BIST:
+        import bist_data
+        pf = common.load_portfolio()
+        tk = list(dict.fromkeys(list(pf["portfolio"]) + list(pf["watchlist"])))
+        return run(report=args.report, force=args.force, key=None, fetch=bist_data.make_fetch(tk),
+                   status_fn=bist_data.market_status, dashboard_url=os.environ.get("DASHBOARD_URL"))
     key = os.environ.get("FINNHUB_API_KEY")
     if not key:
         print("[ERROR] FINNHUB_API_KEY tanımlı değil (GitHub Secrets).")

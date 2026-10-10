@@ -23,6 +23,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import bist_data  # noqa: E402
 import intraday as ix  # noqa: E402
 import trend as tr  # noqa: E402
 
@@ -194,6 +195,7 @@ def main(argv=None):
     ap.add_argument("--tickers", default="", help="virgül/boşlukla ayrılmış semboller (.IS yazma)")
     ap.add_argument("--file", default="", help="satır/virgülle sembol listesi (# yorum)")
     ap.add_argument("--out", default="trend-bist.json")
+    ap.add_argument("--prev", default="", help="önceki trend-bist.json; veri alınamayan hisse eski değeriyle (stale) kalır")
     args = ap.parse_args(argv)
 
     tickers = parse_tickers(args.tickers)
@@ -205,6 +207,13 @@ def main(argv=None):
         print("[ERROR] Sembol listesi boş.")
         return 1
 
+    prev = {}
+    if args.prev and os.path.exists(args.prev):
+        try:
+            with open(args.prev, encoding="utf-8") as f:
+                prev = (json.load(f) or {}).get("tickers") or {}
+        except Exception:
+            prev = {}
     td_key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
     out, src, state = {}, {}, {"fail": {}}
     for t in tickers:
@@ -218,11 +227,16 @@ def main(argv=None):
                 out[t] = {"state": "n/a", "error": "hesap hatası"}
         else:
             log(f"{t}: hiçbir kaynaktan yeterli veri gelmedi")
-            out[t] = {"state": "n/a", "error": "veri alınamadı"}
+            p = prev.get(t)
+            if p and p.get("state") != "n/a":
+                out[t] = {**p, "stale": True}
+            else:
+                out[t] = {"state": "n/a", "error": "veri alınamadı"}
         time.sleep(0.4)
 
-    ok = [t for t, v in out.items() if v.get("state") != "n/a"]
+    ok = [t for t, v in out.items() if v.get("state") != "n/a" and not v.get("stale")]
     data = {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "market": "BIST",
+            "session": "regular" if bist_data.session_open() else "kapali", "prepost": False,
             "count": len(tickers), "ok": len(ok), "sources": src, "log": ix.LOG, "tickers": out}
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)

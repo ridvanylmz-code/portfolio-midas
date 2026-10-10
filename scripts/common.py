@@ -12,6 +12,16 @@ import requests
 ROOT = Path(os.environ.get("PORTFOLIO_ROOT") or Path(__file__).resolve().parent.parent)
 TICKER_RE = re.compile(r"^[A-Z][A-Z0-9.\-]{0,9}$")
 
+# Piyasa seçimi: MARKET=bist -> BIST kopyası (ayrı portföy/geçmiş/durum dosyaları, ₺, docs/bist/data).
+# Varsayılan (MARKET boş/us) ABD yapısıdır ve davranışı değişmez.
+MARKET = (os.environ.get("MARKET") or "us").strip().lower()
+if MARKET == "bist":
+    F_PORTFOLIO, F_HISTORY, F_STATE = "bist/portfolio.json", "bist/history.json", "bist/state.json"
+    DATA_DIR, CUR = "docs/bist/data", "₺"
+else:
+    F_PORTFOLIO, F_HISTORY, F_STATE = "portfolio.json", "history.json", "state.json"
+    DATA_DIR, CUR = "docs/data", "$"
+
 
 # ---------------------------------------------------------------- dosya I/O
 def path(name):
@@ -43,9 +53,9 @@ def save_json(name, data):
 
 
 def load_portfolio():
-    data = load_json("portfolio.json")
+    data = load_json(F_PORTFOLIO)
     if data is None:
-        raise FileNotFoundError("portfolio.json bulunamadı")
+        raise FileNotFoundError(f"{F_PORTFOLIO} bulunamadı")
     # Eski şema: "cash_reserve". Tek anahtara ("cash") taşı ki bayat kopya kalmasın.
     data["cash"] = float(data.get("cash", data.get("cash_reserve", 0)))
     data.pop("cash_reserve", None)
@@ -64,7 +74,7 @@ def load_portfolio():
 
 
 def load_history():
-    h = load_json("history.json", {}) or {}
+    h = load_json(F_HISTORY, {}) or {}
     h.setdefault("transactions", [])
     h.setdefault("snapshots", [])
     return h
@@ -72,10 +82,10 @@ def load_history():
 
 def sync_public():
     """Dashboard (GitHub Pages /docs) sadece docs/ altını görür; kopyala."""
-    for name in ("portfolio.json", "history.json"):
-        data = load_json(name)
+    for name, src in (("portfolio.json", F_PORTFOLIO), ("history.json", F_HISTORY)):
+        data = load_json(src)
         if data is not None:
-            save_json(f"docs/data/{name}", data)
+            save_json(f"{DATA_DIR}/{name}", data)
 
 
 # ------------------------------------------------------------- hesaplamalar
@@ -166,13 +176,13 @@ def check_alerts(portfolio, fresh_quotes):
         price = float(q["c"])
         stop, target = levels_for(portfolio, t)
         if stop is not None and price <= stop:
-            out.append({"key": f"{t}:stop", "text": f"🛑 {t} stop seviyesinde: ${price:.2f} (stop ${stop:.2f})"})
+            out.append({"key": f"{t}:stop", "text": f"🛑 {t} stop seviyesinde: {CUR}{price:.2f} (stop {CUR}{stop:.2f})"})
         if target is not None and price >= target:
-            out.append({"key": f"{t}:target", "text": f"🎯 {t} hedefe ulaştı: ${price:.2f} (hedef ${target:.2f})"})
+            out.append({"key": f"{t}:target", "text": f"🎯 {t} hedefe ulaştı: {CUR}{price:.2f} (hedef {CUR}{target:.2f})"})
         dp = q.get("dp")
         if move and dp is not None and abs(dp) >= move:
             side = "up" if dp > 0 else "down"
-            out.append({"key": f"{t}:move_{side}", "text": f"⚡ {t} günlük %{dp:+.2f} hareket (${price:.2f})"})
+            out.append({"key": f"{t}:move_{side}", "text": f"⚡ {t} günlük %{dp:+.2f} hareket ({CUR}{price:.2f})"})
     return out
 
 

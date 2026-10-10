@@ -1,0 +1,78 @@
+{
+ "asof": "2026-10-09",
+ "dilution": {
+  "SASA": {
+   "risk": "Yüksek",
+   "text": "7 Mayıs 2026 SPK bülteninde (2026/29) 2,44 mlr ₺'lik şarta bağlı tahsisli artırım onayı var (sermaye 43,8 → 46,3 mlr ₺, dönüştürülebilir tahvil sahipleri için). Ağustos 2026'da nakit + tahsisli artırım kararı alındı, SPK'ya 21 Ağustos'ta başvuruldu (alıcı Erdemoğlu Holding; tutar açıklanmamış, SPK onayı görmedim). Kayıtlı sermaye tavanı 16 Eylül 2026'da 60 → 100 mlr ₺ yapıldı. Net zarar −12,1 mlr ₺, serbest nakit akışı −25,3 mlr ₺: yeni kaynak ihtiyacı yüksek. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "SMRTG": {
+   "risk": "Yüksek",
+   "text": "Yönetim kurulu 23 Haziran 2026'da kontrol eden ortak Smart Holding'e tahsisli 2 mlr ₺ nakit artırımı kararı aldı, SPK'ya 7 Temmuz 2026'da başvuruldu; mevcut ortakların rüçhan hakkı tamamen kısıtlı. Çıkarılmış sermaye 1,8176 mlr ₺, tavan 10 mlr ₺; fiyat nominal/baz fiyatın altında olamaz. Borç/özsermaye 3,12, serbest nakit akışı −3,4 mlr ₺. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "RYSAS": {
+   "risk": "Düşük",
+   "text": "Planlanan bedelli ve bedelsiz artırımlar iptal edildi (yönetim kurulu 14 Ağustos 2026, SPK geri çekmeyi 27 Ağustos'ta uygun buldu, 31 Ağustos'ta duyuruldu). Gerekçe: güçlü finansal yapı. Yeni bedelli beklenmiyor. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "EMPAE": {
+   "risk": "Orta",
+   "text": "Şubat 2026 halka arzında (19–20 Şubat, 22 ₺) 29 milyon lot yeni pay + 9 milyon lot ortak satışı, toplam 38 milyon lot sunuldu; yani yakın zamanda sermaye artırıldı. Yeni bir bedelli kararı görmedim; halka arz sonrası kısıtlar ve fon kullanımı raporlarını izleyin. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "HRKET": {
+   "risk": "Orta",
+   "text": "%1300 bedelsiz artırım yapıldı (sermaye 115,2 mn → 1.612,8 mn ₺, hak kullanımı 21 Eylül 2026, hisseler 23 Eylül'de hesaplara geçti). Bedelsiz artırım pay sahibinin değerini seyreltmez. Ancak net zarar (−1,4 mlr ₺) ve negatif serbest nakit akışı nedeniyle ileride nakit artırımı ihtimali tamamen dışlanamaz (bu bir çıkarımdır, KAP kararı değil). (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "TRENJ": {
+   "risk": "Düşük",
+   "text": "Kayıtlı sermaye tavanı 400 mn → 3 mlr ₺ yapıldı (SPK 19 Haziran, genel kurul 30 Temmuz, tescil 31 Temmuz 2026). Bedelli/bedelsiz kararı görmedim; son artırım 2012'de %100 bedelli. Tavan artışı esneklik sağlar, tek başına artırım demek değildir. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "ALTNY": {
+   "risk": "Bilinmiyor",
+   "text": "Kayıtlı sermaye tavanı 1 → 5 mlr ₺ (2026–2030) için SPK onayı 17 Mart 2026'da alındı, KAP'ta 2 Nisan'da duyuruldu; genel kurul onayı gerekir. Net bir bedelli kararı doğrulayamadım. Bedelli sermaye artırımı kontrolü için KAP'a bakın. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "SDTTR": {
+   "risk": "Bilinmiyor",
+   "text": "%1000 bedelsiz artırım (sermaye 58 mn → 638 mn ₺; yönetim kurulu 15 Nisan, SPK bülteni 13 Ağustos 2026, 2026/51). Bedelsiz artırım seyreltici değildir. Nakit artırımı için ayrı bir karar görmedim; yine de KAP'ta doğrulayın. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "MIATK": {
+   "risk": "Bilinmiyor",
+   "text": "Birleşme süreci: SPK onayı 23 Temmuz 2026, genel kurul 28 Ağustos, tescil 31 Ağustos 2026. Kaynakta birleşme nedeniyle yeni pay çıkarılıp çıkarılmadığı belirtilmiyor; pay değişim oranı ve olası yeni pay için KAP'a bakın. Net zarar −1,6 mlr ₺. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "KLSER": {
+   "risk": "Orta",
+   "text": "Son 12 ayda pay ihracı bulamadım. Ancak net zarar −1,9 mlr ₺, borç/özsermaye 1,27 ve serbest nakit akışı −2,3 mlr ₺: finansman ihtiyacı var, artırım ya da borçlanma ihtimali orta düzeyde (çıkarım). (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "DOFER": {
+   "risk": "Bilinmiyor",
+   "text": "Bulabildiğim tek sermaye artırımı Ekim 2023 halka arzı (41,75 → 55,75 mn ₺); fon kullanım raporu 26 Ocak 2026'da kapandı. Güncel bedelli kararı görmedim. 2026 ilk yarı solo net zarar −42 mn ₺. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "EMKEL": {
+   "risk": "Bilinmiyor",
+   "text": "Son 12 ayda sermaye artırımı bulamadım; son bedelli haberi Aralık 2023. 2026 ilk yarı net zarar −172,9 mn ₺; bedelli ihtimali için KAP'ı izleyin. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "BIENY": {
+   "risk": "Bilinmiyor",
+   "text": "Pay ihracı kararı bulamadım. Net zarar −0,9 mlr ₺, serbest nakit akışı −2,5 mlr ₺, borç/özsermaye 0,51: nakit ihtiyacı var, ancak bir karar doğrulanmadı. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "THYAO": {
+   "risk": "Düşük",
+   "text": "Bedelli sermaye artırımı kararı veya beklentisi görmedim. Bilanço beklentisi haberleri izlenmeli. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "TCELL": {
+   "risk": "Düşük",
+   "text": "9 Ekim'de 500 mn ₺ finansman bonosu; Turkcell Finansman 6 mlr ₺'ye kadar kira sertifikası planı: bunlar borçlanmadır, pay çıkarımı değildir. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "AKSGY": {
+   "risk": "Düşük",
+   "text": "Düşük borç (borç/özsermaye 0,04), güçlü nakit akışı; bedelli beklentisi görmedim. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  },
+  "DOHOL": {
+   "risk": "Düşük",
+   "text": "Holding yapısı, bedelli beklentisi görmedim. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+  }
+ },
+ "no_dilution": [
+  "ALTIN",
+  "GMSTR"
+ ],
+ "names": {}
+}
