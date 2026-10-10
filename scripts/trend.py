@@ -248,6 +248,10 @@ def main(argv=None):
                 yahoo_fail = 0
             if rows == "blocked":
                 rows = None
+        if not rows or len(rows) < 120:
+            ar = ix.alpaca_rows(t)
+            if ar:
+                rows, used = ar, "Alpaca (ön/sonrası dahil)"
         if (not rows or len(rows) < 120) and td_key:
             time.sleep(ix.TD_PAUSE)
             rows, prepost = ix.fetch_15m(t, td_key, prepost)

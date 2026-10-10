@@ -39,6 +39,8 @@ jobs:
       - name: Hesapla
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
           TICKERS: ${{ github.event.inputs.tickers }}
           INCLUDE_PF: ${{ github.event.inputs.include_portfolio }}
         run: |

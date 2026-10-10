@@ -75,6 +75,27 @@ def session_name(now):
 
 
 # ------------------------------------------------------------------ veri
+def alpaca_on():
+    try:
+        import alpaca
+        return bool(alpaca.keys())
+    except Exception:
+        return False
+
+
+def alpaca_rows(sym):
+    """Alpaca 15dk mumları (ALPACA_KEY_ID/ALPACA_SECRET_KEY varsa), yoksa None."""
+    try:
+        import alpaca
+        if not alpaca.keys():
+            return None
+        rows = alpaca.bars_15m(sym, days=45, log=log)
+        return rows if rows and len(rows) >= 120 else None
+    except Exception as ex:
+        log(f"{sym}: Alpaca {type(ex).__name__}")
+        return None
+
+
 def fetch_15m(sym, key, prepost, retries=2):
     """([(epoch, o, h, l, c, v), ...] eskiden yeniye, prepost_ok) ; başarısızsa (None, prepost)."""
     for attempt in range(retries):
@@ -335,8 +356,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
-    if not key:
-        print("[ERROR] TWELVEDATA_API_KEY tanımlı değil (GitHub Secrets).")
+    if not key and not alpaca_on():
+        print("[ERROR] TWELVEDATA_API_KEY (ya da ALPACA_KEY_ID/ALPACA_SECRET_KEY) tanımlı değil (GitHub Secrets).")
         return 1
     now = datetime.now(timezone.utc)
     sess = session_name(now)
@@ -346,7 +367,7 @@ def main(argv=None):
         if sess == "kapali":
             print("Seans dışı; atlandı.")
             return 0
-        if sess in ("pre", "post") and prepost_known_off:
+        if sess in ("pre", "post") and prepost_known_off and not alpaca_on():
             print("Plan ön/sonrası mum vermiyor (prepost=false); bu seansta kredi harcanmadı, atlandı.")
             return 0
         if sess in ("pre", "post") and prev.get("updated"):
@@ -362,15 +383,21 @@ def main(argv=None):
     if not tickers:
         print("[ERROR] Hisse listesi okunamadı (docs/data/symbols.json / portfolio.json).")
         return 1
-    out, fails = {}, 0
+    out, fails, used = {}, 0, {}
     prepost = args.force or not prepost_known_off  # kapalı biliniyorsa boşuna deneme (kredi); --force yeniden dener
     for i, t in enumerate(tickers):
         if fails >= 3 and not out:  # ilk 3 hisse hiç gelmediyse kaynak erişilemez: boşuna bekleme
             log("Üst üste 3 hisse alınamadı; kaynak erişilemez sayıldı, durduruldu")
             break
-        if i:
-            time.sleep(TD_PAUSE)
-        rows, prepost = fetch_15m(t, key, prepost)
+        rows = alpaca_rows(t)  # anahtar varsa: ön/sonrası dahil, Twelve Data kredisi harcamaz
+        if rows:
+            used["Alpaca"] = used.get("Alpaca", 0) + 1
+        else:
+            if i:
+                time.sleep(TD_PAUSE)
+            rows, prepost = fetch_15m(t, key, prepost)
+            if rows:
+                used["TwelveData"] = used.get("TwelveData", 0) + 1
         fails = 0 if rows else fails + 1
         if rows and len(rows) >= 120:
             try:
@@ -385,7 +412,7 @@ def main(argv=None):
     # Başarısız olsa da yaz: log (hata sebebi) data dalında okunabilsin; önceki veri stale olarak korunur.
     data = {"updated": now.isoformat(timespec="seconds") if fresh else prev.get("updated"),
             "checked": now.isoformat(timespec="seconds"), "session": sess,
-            "source": "Twelve Data 15dk", "prepost": bool(prepost) if fresh else prev.get("prepost"),
+            "source": " + ".join(f"{k} {v}" for k, v in used.items()) or "Twelve Data 15dk", "prepost": (bool(prepost) or bool(used.get("Alpaca"))) if fresh else prev.get("prepost"),
             "log": LOG, "tickers": out}
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
