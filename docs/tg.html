@@ -115,6 +115,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div class="sec">Hisselerim <span class="badge" id="cnt">0</span></div>
   <div id="list"></div>
   <div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
+  <div id="riskStrip"></div>
   <div class="foot" id="foot"></div>
 </section>
 
@@ -147,6 +148,12 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
 </section>
 
+<!-- SEKTÖR -->
+<section class="tab" id="t-sektor">
+  <div class="h1">Sektör &amp; Rejim</div>
+  <div id="sbody"><div class="empty">Yükleniyor…</div></div>
+</section>
+
 <div id="msg"></div>
 <script>
 (function(){
@@ -167,12 +174,14 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 </script>
 <script src="motto.js?v=1"></script>
 <script src="vault.js?v=1"></script>
+<script src="sector.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
   <button data-t="portfoy" class="on"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M16 3.5A9 9 0 0 1 20.5 8H16z"/></svg>Portföy</button>
   <button data-t="takip"><svg viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>Takip</button>
   <button data-t="haber"><svg viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg>Haberler</button>
   <button data-t="analiz"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 5-6"/></svg>Analiz</button>
+  <button data-t="sektor"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/></svg>Sektör</button>
 </nav></div>
 
 <script>
@@ -278,7 +287,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 
   /* ---------- sekmeler ---------- */
   function showTab(t){
-    var ok=["portfoy","takip","haber","analiz"]; if(ok.indexOf(t)<0)t="portfoy";
+    var ok=["portfoy","takip","haber","analiz","sektor"]; if(ok.indexOf(t)<0)t="portfoy";
     [].forEach.call(document.querySelectorAll(".tab"),function(s){s.classList.toggle("on",s.id==="t-"+t)});
     [].forEach.call($("nav").children,function(b){b.classList.toggle("on",b.getAttribute("data-t")===t)});
     try{history.replaceState(null,"","#"+t)}catch(e){}
@@ -306,7 +315,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   $("eye").addEventListener("click",function(){
     hide=!hide; document.body.classList.toggle("hide",hide);
     try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
-    if(P){renderPortfolio();renderAnaliz()}
+    if(P){renderPortfolio();renderAnaliz();renderSector()}
   });
 
   function renderPortfolio(){
@@ -457,13 +466,22 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   });
 
   /* ---------- başlat ---------- */
+  var MARKET_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-data/market.json", M=null, NOTES=null;
+  function loadMarket(){
+    return fetch(MARKET_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  }
+  function renderSector(){
+    if(!window.SectorView)return;
+    try{SectorView.render($("sbody"),{M:M,N:NOTES,P:P,Q:Q,hide:hide});SectorView.strip($("riskStrip"),P,Q,M,hide)}
+    catch(e){$("sbody").textContent="Sektör görünümü hatası: "+e.message}
+  }
   function loadIntra(){
     return fetch(INTRA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
-  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra()]).then(function(r){
-    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadMarket(),load("sector_notes.json",true)]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];M=r[5];NOTES=r[6];
     if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
-    renderPortfolio();renderWatch();renderNews();renderAnaliz();
+    renderPortfolio();renderWatch();renderNews();renderAnaliz();renderSector();
     showTab((location.hash||"").replace("#",""));
   }).catch(function(e){
     $("pnl").textContent="veri alınamadı";
