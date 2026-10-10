@@ -130,22 +130,32 @@ def fetch_bars(sym, td_key, state):
     return None, None
 
 
-def aggregate_4h_bist(rows):
+SLOT_END = ((14, 0), (18, 10))  # İstanbul: 1. dilim 14:00'te, 2. dilim kapanış seansıyla 18:10'da biter
+
+
+def aggregate_4h_bist(rows, now=None, complete_only=False):
     """15dk mumları İstanbul saatiyle 10:00-14:00 / 14:00-18:00 dilimlerine birleştirir.
-    Açılış öncesi (10:00'dan önce) mumlar ilk dilime, 18:00 ve sonrası ikinci dilime katılır."""
-    out, cur_key = [], None
+    Açılış öncesi (10:00'dan önce) mumlar ilk dilime, 18:00 ve sonrası ikinci dilime katılır.
+    complete_only: bitmemiş son 4s mum atılır (ABD'deki intraday.aggregate_4h ile aynı mantık; repaint olmasın)."""
+    out, ends, cur_key = [], [], None
     for ts, o, h, l, c, _v in rows:
         t = datetime.fromtimestamp(ts, TRT)
         slot = 0 if t.hour < 14 else 1
         key = (t.date(), slot)
         if key != cur_key:
             out.append([ts, o, h, l, c])
+            hh, mm = SLOT_END[slot]
+            ends.append(t.replace(hour=hh, minute=mm, second=0, microsecond=0).timestamp())
             cur_key = key
         else:
             b = out[-1]
             b[2] = max(b[2], h)
             b[3] = min(b[3], l)
             b[4] = c
+    if complete_only and out:
+        now_ts = (now or datetime.now(timezone.utc)).timestamp()
+        while out and ends[len(out) - 1] > now_ts:
+            out.pop()
     return [tuple(b) for b in out]
 
 
@@ -165,7 +175,7 @@ def fresh_events(item):
 
 def compute(rows):
     closed = ix.closed_rows(rows) or rows[:-1]  # oluşan 15dk mum sinyale girmesin (repaint)
-    b4 = aggregate_4h_bist(closed)
+    b4 = aggregate_4h_bist(closed, complete_only=True)  # bitmemiş son 4s mum sinyale girmesin
     out = {
         "price": round(rows[-1][4], 4),
         "bar_time": datetime.fromtimestamp(rows[-1][0], timezone.utc).isoformat(timespec="minutes"),
