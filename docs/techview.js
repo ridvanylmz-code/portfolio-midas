@@ -94,7 +94,8 @@
       bars.forEach(function (r) { lo = Math.min(lo, r[3]); hi = Math.max(hi, r[2]) });
       lines.forEach(function (l) { if (l[0] > lo * 0.85 && l[0] < hi * 1.15) { lo = Math.min(lo, l[0]); hi = Math.max(hi, l[0]) } });
       var pad = (hi - lo) * 0.06; lo -= pad; hi += pad;
-      var W = 640, H = 300, L = 4, R = 58, T = 8, Bm = 22, cw = (W - L - R) / bars.length;
+      var W = Math.max(300, Math.round(wrap.clientWidth || 360)), H = W < 500 ? 270 : 330, L = 4, R = 54, T = 8, Bm = 20,
+        cw = (W - L - R) / bars.length;
       function y(v) { return T + (hi - v) / (hi - lo) * (H - T - Bm) }
       function x(i) { return L + i * cw + cw / 2 }
       var svg = sv("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": t + " günlük mum grafiği" });
@@ -115,10 +116,12 @@
         if (d) svg.appendChild(sv("path", { d: d, fill: "none", stroke: col, "stroke-width": 1.6, "stroke-dasharray": dash || "" }));
       }
       path(e20, "#5aa9ff"); path(s50, "#b58cff");
-      lines.forEach(function (l) {
-        if (l[0] < lo || l[0] > hi) return;
+      var vis = lines.filter(function (l) { return l[0] >= lo && l[0] <= hi }).sort(function (a, b) { return y(a[0]) - y(b[0]) }), lastY = -99;
+      vis.forEach(function (l) {
         svg.appendChild(sv("line", { x1: L, x2: W - R, y1: y(l[0]), y2: y(l[0]), stroke: l[1], "stroke-width": 1.2, "stroke-dasharray": "5 4" }));
-        var tx = sv("text", { x: L + 4, y: y(l[0]) - 4, fill: l[1], "font-size": 11, "font-weight": 600 }); tx.textContent = l[2]; svg.appendChild(tx);
+        var ty = Math.max(y(l[0]) - 4, lastY + 13); lastY = ty;  // etiketler üst üste binmesin
+        var tx = sv("text", { x: L + 4, y: ty, fill: l[1], "font-size": 11, "font-weight": 600, "paint-order": "stroke", stroke: "#0a0d14", "stroke-width": 3 });
+        tx.textContent = l[2]; svg.appendChild(tx);
       });
       var last = bars[bars.length - 1], ly = y(last[4]);
       svg.appendChild(sv("rect", { x: W - R + 1, y: ly - 9, width: R - 2, height: 18, rx: 4, fill: last[4] >= last[1] ? "#1f6f45" : "#7a2832" }));
