@@ -33,3 +33,4 @@ pozisyon büyüklüğü ve risk.
 - Teknik sekmesi sadeleştirme (tek sinyal tablosu + grafik), tek tema, mobil trend kartları.
 - BIST için sektör görünümü yok (ABD'ye özel).
 - 'güncelle bizi': docs/data/sector_notes.json (haber yorumu) da yenilenmeli.
+- 2026-10-10 22:20: Alpaca secret'ları eklendi; intraday canlı testte 12/12 hisse Alpaca'dan, ön/sonrası dahil (son mum 19:45 ET). Endpoint (paper-api) gerekmiyor; veri data.alpaca.markets'tan.
