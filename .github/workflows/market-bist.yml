@@ -1,0 +1,55 @@
+name: BIST Piyasa & Sektör Rotasyonu
+
+# scripts/market_bist.py: BIST rejimi (nakit hedefi), sektör göreli gücü (XU100'e göre), hisse günlük/haftalık trend, sektör başına 3 aday.
+# Kaynak: TradingView Türkiye tarayıcısı (anahtarsız) -> eksik izleme hisseleri yfinance günlük -> önceki değer (stale).
+# Sonuç 'market-bist-data' dalına market-bist.json olarak yazılır (main geçmişini kirletmez, ABD'nin market-data dalına dokunmaz).
+# Zamanlama (UTC, Pzt-Cum; Türkiye'de yaz/kış saati yok, TRT = UTC+3): seans öncesi, seans boyunca saatte bir, kapanış sonrası.
+on:
+  schedule:
+    - cron: "17 6 * * 1-5"           # 09:17 TRT, açılış öncesi
+    - cron: "47 7-14 * * 1-5"        # 10:47-17:47 TRT, seans içi saatlik
+    - cron: "27 15,17 * * 1-5"       # 18:27 / 20:27 TRT, kapanış sonrası
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-bist
+  cancel-in-progress: true
+
+jobs:
+  market-bist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests yfinance
+
+      - name: Önceki market-bist.json (yedek için)
+        run: |
+          mkdir -p market-bist-out
+          if git ls-remote --exit-code --heads origin market-bist-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin market-bist-data
+            git show FETCH_HEAD:market-bist.json > market-bist-out/market-bist.json || rm -f market-bist-out/market-bist.json
+          fi
+
+      - name: Hesapla
+        run: python scripts/market_bist.py --out market-bist-out/market-bist.json
+
+      - name: market-bist-data dalına yaz (tek commit)
+        if: always()
+        run: |
+          [ -f market-bist-out/market-bist.json ] || { echo "market-bist.json yok"; exit 0; }
+          cd market-bist-out
+          git init -q -b market-bist-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add market-bist.json
+          git commit -q -m "market-bist: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" market-bist-data:refs/heads/market-bist-data

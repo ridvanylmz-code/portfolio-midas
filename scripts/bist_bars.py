@@ -11,6 +11,9 @@ import re
 import sys
 from datetime import datetime, timezone
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from technicals import scrub  # noqa: E402  (log'a anahtar sızmasın)
+
 
 def parse_tickers(text):
     return [t for t in re.split(r"[\s,;]+", text.upper()) if t]
@@ -51,7 +54,7 @@ def main(argv=None):
         try:
             rows = fetch(t, a.days)
         except Exception as ex:  # ağ/kütüphane hatası tek hisseyi düşürür
-            print(f"{t}: {type(ex).__name__}: {str(ex)[:60]}")
+            print(scrub(f"{t}: {type(ex).__name__}: {str(ex)[:60]}"))
             rows = None
         if rows:
             bars[t] = rows[-200:]

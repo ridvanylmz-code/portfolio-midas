@@ -9,6 +9,13 @@ import time
 import requests
 
 URL = "https://scanner.tradingview.com/america/scan"
+
+
+def url_for(market="america"):
+    """Piyasaya göre tarayıcı adresi (varsayılan ABD; BIST için market="turkey", kur için "forex")."""
+    return URL if market == "america" else f"https://scanner.tradingview.com/{market}/scan"
+
+
 HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
            "Content-Type": "application/json", "Origin": "https://www.tradingview.com",
            "Referer": "https://www.tradingview.com/"}
@@ -24,11 +31,14 @@ MARKET_COLS = ["name", "exchange", "description", "type", "sector", "industry", 
                "earnings_release_next_date"]
 
 
-def _payload(tickers, cols):
+def _payload(tickers, cols, market="america", exact=False):
+    if exact:  # tickers = "BORSA:SEMBOL" (ör. BIST:XU100, FX_IDC:USDTRY); filtre yok
+        return {"options": {"lang": "en"}, "markets": [market], "symbols": {"tickers": list(tickers)},
+                "columns": cols, "range": [0, 1000]}
     return {
         "filter": [{"left": "name", "operation": "in_range", "right": list(tickers)}],
         "options": {"lang": "en"},
-        "markets": ["america"],
+        "markets": [market],
         "symbols": {"query": {"types": ["stock", "dr", "fund"]}, "tickers": []},
         "columns": cols,
         "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"},
@@ -36,16 +46,17 @@ def _payload(tickers, cols):
     }
 
 
-def fetch(tickers, cols=None, retries=3, log=print, timeout=25):
+def fetch(tickers, cols=None, retries=3, log=print, timeout=25, market="america", exact=False):
     """{TICKER: {kolon: değer}} ya da None (kaynak erişilemez). Bulunamayan semboller sonuçta yer almaz.
-    Aynı isimde birden çok borsa varsa piyasa değeri en büyük olan alınır."""
+    Aynı isimde birden çok borsa varsa piyasa değeri en büyük olan alınır.
+    market: tarayıcı piyasası (varsayılan america). exact=True: semboller 'BORSA:SEMBOL' biçiminde (endeks/kur için)."""
     cols = list(cols or MARKET_COLS)
     if "name" not in cols:
         cols.insert(0, "name")
     tickers = list(dict.fromkeys(tickers))
     for attempt in range(retries):
         try:
-            r = requests.post(URL, json=_payload(tickers, cols), headers=HEADERS, timeout=timeout)
+            r = requests.post(url_for(market), json=_payload(tickers, cols, market, exact), headers=HEADERS, timeout=timeout)
         except requests.RequestException as ex:
             log(f"TV scanner {type(ex).__name__} (deneme {attempt + 1})")
             time.sleep(3 * (attempt + 1))
@@ -68,17 +79,18 @@ def fetch(tickers, cols=None, retries=3, log=print, timeout=25):
     return None
 
 
-def screen(filters, cols=None, limit=1500, log=print, retries=2, timeout=40):
-    """Filtreli tarama (ör. piyasa değeri > 3 mlr $): [kayıt, ...] piyasa değerine göre azalan, ya da None."""
+def screen(filters, cols=None, limit=1500, log=print, retries=2, timeout=40, market="america", types=None):
+    """Filtreli tarama (ör. piyasa değeri > 3 mlr $): [kayıt, ...] piyasa değerine göre azalan, ya da None.
+    market: varsayılan america (BIST için turkey); types: varsayılan ["stock", "dr"]."""
     cols = list(cols or MARKET_COLS)
     if "name" not in cols:
         cols.insert(0, "name")
-    payload = {"filter": filters, "options": {"lang": "en"}, "markets": ["america"],
-               "symbols": {"query": {"types": ["stock", "dr"]}, "tickers": []}, "columns": cols,
+    payload = {"filter": filters, "options": {"lang": "en"}, "markets": [market],
+               "symbols": {"query": {"types": list(types or ["stock", "dr"])}, "tickers": []}, "columns": cols,
                "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"}, "range": [0, limit]}
     for attempt in range(retries):
         try:
-            r = requests.post(URL, json=payload, headers=HEADERS, timeout=timeout)
+            r = requests.post(url_for(market), json=payload, headers=HEADERS, timeout=timeout)
         except requests.RequestException as ex:
             log(f"TV tarama {type(ex).__name__} (deneme {attempt + 1})")
             time.sleep(5)
