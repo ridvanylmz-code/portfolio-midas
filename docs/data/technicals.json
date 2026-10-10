@@ -1,41 +1,22 @@
 {
-  "updated": "2026-10-09T22:46:09+00:00",
+  "updated": "2026-10-10T18:02:24+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
-    "TV  WYFI: SELL (RSI 34.762)",
-    "TD  WYFI: RSI 34.8 SMA50 20.72 (250 bar)",
-    "TV  RKLB: SELL (RSI 46.27)",
-    "TD  RKLB: RSI 46.3 SMA50 70.53 (250 bar)",
-    "TV  CRWV: SELL (RSI 43.707)",
-    "TD  CRWV: RSI 43.7 SMA50 88.43 (250 bar)",
-    "TV  SGML: SELL (RSI 43.953)",
-    "TD  SGML: RSI 43.9 SMA50 10.69 (250 bar)",
-    "TV  INTC: SELL (RSI 43.445)",
-    "TD  INTC: RSI 43.4 SMA50 103.08 (250 bar)",
-    "TV  NVDA: BUY (RSI 52.963)",
-    "TD  NVDA: RSI 53.0 SMA50 222.08 (250 bar)",
-    "TV  UUUU: SELL (RSI 29.438)",
-    "TD  UUUU: RSI 29.4 SMA50 13.04 (250 bar)",
-    "TV  KTOS: SELL (RSI 35.161)",
-    "TD  KTOS: RSI 35.2 SMA50 50.69 (250 bar)",
-    "TV  CBRS: STRONG_SELL (RSI 37.414)",
-    "TD  CBRS: RSI 37.4 SMA50 199.31 (103 bar)",
-    "TV  STX: SELL (RSI 40.429)",
-    "TD  STX: RSI 40.4 SMA50 855.24 (250 bar)",
-    "TV  MU: NEUTRAL (RSI 50.203)",
-    "TD  MU: RSI 50.2 SMA50 976.19 (250 bar)",
-    "TV  AVGO: SELL (RSI 50.073)",
+    "TV scanner: 21/21 sembol tek istekte",
     "TD  AVGO: RSI 50.1 SMA50 371.87 (250 bar)",
-    "TV  UAMY: SELL (RSI 27.738)",
+    "TD  CBRS: RSI 37.4 SMA50 199.31 (103 bar)",
+    "TD  CRWV: RSI 43.7 SMA50 88.43 (250 bar)",
+    "TD  INTC: RSI 43.4 SMA50 103.08 (250 bar)",
+    "TD  KTOS: RSI 35.2 SMA50 50.69 (250 bar)",
+    "TD  MU: RSI 50.2 SMA50 976.19 (250 bar)",
+    "TD  NVDA: RSI 53.0 SMA50 222.08 (250 bar)",
+    "TD  RKLB: RSI 46.3 SMA50 70.53 (250 bar)",
+    "TD  SGML: RSI 44.0 SMA50 10.69 (250 bar)",
+    "TD  STX: RSI 40.4 SMA50 855.24 (250 bar)",
+    "TD  UUUU: RSI 29.4 SMA50 13.04 (250 bar)",
+    "TD  WYFI: RSI 34.8 SMA50 20.72 (250 bar)",
     "TD  UAMY: RSI 27.7 SMA50 5.01 (250 bar)",
-    "TV  SN: 429, 20 sn beklenip yeniden denenecek",
-    "TV  SN: 429, 40 sn beklenip yeniden denenecek",
-    "TV  SN: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
     "TD  SN: RSI 62.6 SMA50 178.14 (250 bar)",
-    "TV  TSLA: 429, 20 sn beklenip yeniden denenecek",
-    "TV  TSLA: 429, 40 sn beklenip yeniden denenecek",
-    "TV  TSLA: HATA Exception: Can't access TradingView's API. HTTP status code: 429. Check for invalid symbol, exchange, or indicators.",
-    "TV: art arda 2 kez 429, bu çalışmada kalan hisselerde TradingView atlandı (önceki değer korunur)",
     "TD  TSLA: RSI 59.7 SMA50 354.74 (250 bar)",
     "TD  ASTS: RSI 35.7 SMA50 62.85 (250 bar)",
     "TD  ARM: RSI 43.9 SMA50 269.86 (250 bar)",
@@ -43,102 +24,94 @@
     "TD  TSM: RSI 52.4 SMA50 432.47 (250 bar)",
     "TD  NOK: RSI 49.4 SMA50 10.22 (250 bar)",
     "TD  CAR: RSI 36.0 SMA50 127.71 (250 bar)",
-    "Özet: 21 hisse, TV başarılı 13, TD başarılı 21"
+    "Özet: 21 hisse, TV başarılı 21, TD başarılı 21"
   ],
   "tickers": {
-    "WYFI": {
+    "AVGO": {
       "tv": {
         "exchange": "NASDAQ",
         "recommendation": "SELL",
-        "buy": 2,
-        "sell": 15,
-        "neutral": 9,
         "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_SELL",
+        "moving_averages": "SELL",
         "indicators": {
-          "RSI": 34.762,
-          "MACD.macd": -1.172,
-          "MACD.signal": -1.045,
-          "SMA20": 18.068,
-          "SMA50": 20.715,
-          "SMA200": 21.559,
-          "EMA20": 18.04,
-          "ADX": 18.856,
-          "close": 15.69
-        }
+          "RSI": 50.073,
+          "MACD.macd": -0.51,
+          "MACD.signal": -2.994,
+          "SMA20": 355.246,
+          "SMA50": 371.868,
+          "SMA200": 368.285,
+          "EMA20": 360.232,
+          "ADX": 17.015,
+          "close": 361.54
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
-        "close": 15.71,
-        "rsi14": 34.8,
-        "sma20": 18.07,
-        "sma50": 20.72,
-        "sma200": 21.56,
-        "above_sma20": false,
+        "close": 361.54,
+        "rsi14": 50.1,
+        "sma20": 355.25,
+        "sma50": 371.87,
+        "sma200": 368.28,
+        "above_sma20": true,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.171,
-          "signal": -1.045,
-          "hist": -0.126
+          "macd": -0.51,
+          "signal": -2.994,
+          "hist": 2.485
         },
-        "atr14": 1.4,
-        "support20": 15.3,
-        "resistance20": 20.57,
-        "vol_ratio": 1.16,
+        "atr14": 11.23,
+        "support20": 335.81,
+        "resistance20": 380.84,
+        "vol_ratio": 0.7,
         "bars": 250
       }
     },
-    "RKLB": {
+    "CBRS": {
       "tv": {
         "exchange": "NASDAQ",
-        "recommendation": "SELL",
-        "buy": 1,
-        "sell": 15,
-        "neutral": 10,
-        "oscillators": "SELL",
+        "recommendation": "STRONG_SELL",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 46.27,
-          "MACD.macd": 0.511,
-          "MACD.signal": 0.529,
-          "SMA20": 69.725,
-          "SMA50": 70.532,
-          "SMA200": 81.61,
-          "EMA20": 70.146,
-          "ADX": 15.219,
-          "close": 68.21
-        }
+          "RSI": 37.414,
+          "MACD.macd": -7.928,
+          "MACD.signal": -5.302,
+          "SMA20": 187.93,
+          "SMA50": 199.312,
+          "EMA20": 184.032,
+          "ADX": 11.852,
+          "close": 164.17
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
-        "close": 68.21,
-        "rsi14": 46.3,
-        "sma20": 69.72,
-        "sma50": 70.53,
-        "sma200": 81.61,
+        "close": 164.17,
+        "rsi14": 37.4,
+        "sma20": 187.93,
+        "sma50": 199.31,
+        "sma200": null,
         "above_sma20": false,
         "above_sma50": false,
-        "above_sma200": false,
+        "above_sma200": null,
         "macd": {
-          "macd": 0.511,
-          "signal": 0.529,
-          "hist": -0.018
+          "macd": -7.928,
+          "signal": -5.302,
+          "hist": -2.626
         },
-        "atr14": 3.95,
-        "support20": 60.51,
-        "resistance20": 78.28,
-        "vol_ratio": 0.8,
-        "bars": 250
+        "atr14": 12.95,
+        "support20": 161.51,
+        "resistance20": 214.0,
+        "vol_ratio": 0.9,
+        "bars": 103
       }
     },
     "CRWV": {
       "tv": {
         "exchange": "NASDAQ",
         "recommendation": "SELL",
-        "buy": 2,
-        "sell": 15,
-        "neutral": 9,
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
@@ -151,7 +124,8 @@
           "EMA20": 86.541,
           "ADX": 11.182,
           "close": 82.08
-        }
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
@@ -175,56 +149,10 @@
         "bars": 250
       }
     },
-    "SGML": {
-      "tv": {
-        "exchange": "NASDAQ",
-        "recommendation": "SELL",
-        "buy": 2,
-        "sell": 14,
-        "neutral": 10,
-        "oscillators": "BUY",
-        "moving_averages": "STRONG_SELL",
-        "indicators": {
-          "RSI": 43.953,
-          "MACD.macd": -0.366,
-          "MACD.signal": -0.431,
-          "SMA20": 9.524,
-          "SMA50": 10.691,
-          "SMA200": 13.337,
-          "EMA20": 9.768,
-          "ADX": 22.911,
-          "close": 9.35
-        }
-      },
-      "td": {
-        "date": "2026-10-09",
-        "close": 9.34,
-        "rsi14": 43.9,
-        "sma20": 9.52,
-        "sma50": 10.69,
-        "sma200": 13.34,
-        "above_sma20": false,
-        "above_sma50": false,
-        "above_sma200": false,
-        "macd": {
-          "macd": -0.367,
-          "signal": -0.432,
-          "hist": 0.065
-        },
-        "atr14": 0.67,
-        "support20": 7.79,
-        "resistance20": 10.64,
-        "vol_ratio": 0.06,
-        "bars": 250
-      }
-    },
     "INTC": {
       "tv": {
         "exchange": "NASDAQ",
         "recommendation": "SELL",
-        "buy": 5,
-        "sell": 11,
-        "neutral": 10,
         "oscillators": "NEUTRAL",
         "moving_averages": "SELL",
         "indicators": {
@@ -237,7 +165,8 @@
           "EMA20": 111.69,
           "ADX": 20.602,
           "close": 104.7
-        }
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
@@ -261,13 +190,92 @@
         "bars": 250
       }
     },
+    "KTOS": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 35.161,
+          "MACD.macd": -2.208,
+          "MACD.signal": -2.195,
+          "SMA20": 44.996,
+          "SMA50": 50.692,
+          "SMA200": 68.15,
+          "EMA20": 44.797,
+          "ADX": 27.696,
+          "close": 42.36
+        },
+        "via": "scanner"
+      },
+      "td": {
+        "date": "2026-10-09",
+        "close": 42.36,
+        "rsi14": 35.2,
+        "sma20": 45.0,
+        "sma50": 50.69,
+        "sma200": 68.15,
+        "above_sma20": false,
+        "above_sma50": false,
+        "above_sma200": false,
+        "macd": {
+          "macd": -2.208,
+          "signal": -2.195,
+          "hist": -0.013
+        },
+        "atr14": 2.13,
+        "support20": 40.93,
+        "resistance20": 49.68,
+        "vol_ratio": 0.91,
+        "bars": 250
+      }
+    },
+    "MU": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "NEUTRAL",
+        "oscillators": "SELL",
+        "moving_averages": "BUY",
+        "indicators": {
+          "RSI": 50.203,
+          "MACD.macd": 22.359,
+          "MACD.signal": 28.681,
+          "SMA20": 1038.255,
+          "SMA50": 976.186,
+          "SMA200": 701.681,
+          "EMA20": 1039.469,
+          "ADX": 13.347,
+          "close": 1029
+        },
+        "via": "scanner"
+      },
+      "td": {
+        "date": "2026-10-09",
+        "close": 1029.0,
+        "rsi14": 50.2,
+        "sma20": 1038.25,
+        "sma50": 976.19,
+        "sma200": 701.68,
+        "above_sma20": false,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 22.359,
+          "signal": 28.681,
+          "hist": -6.323
+        },
+        "atr14": 45.97,
+        "support20": 902.6,
+        "resistance20": 1108.72,
+        "vol_ratio": 0.77,
+        "bars": 250
+      }
+    },
     "NVDA": {
       "tv": {
         "exchange": "NASDAQ",
         "recommendation": "BUY",
-        "buy": 12,
-        "sell": 4,
-        "neutral": 10,
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_BUY",
         "indicators": {
@@ -280,7 +288,8 @@
           "EMA20": 228.682,
           "ADX": 18.227,
           "close": 229.28
-        }
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
@@ -300,145 +309,96 @@
         "atr14": 5.69,
         "support20": 208.93,
         "resistance20": 243.37,
-        "vol_ratio": 0.77,
+        "vol_ratio": 0.78,
         "bars": 250
       }
     },
-    "UUUU": {
+    "RKLB": {
       "tv": {
-        "exchange": "AMEX",
+        "exchange": "NASDAQ",
         "recommendation": "SELL",
-        "buy": 3,
-        "sell": 16,
-        "neutral": 7,
-        "oscillators": "NEUTRAL",
+        "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 29.438,
-          "MACD.macd": -0.845,
-          "MACD.signal": -0.776,
-          "SMA20": 11.253,
-          "SMA50": 13.035,
-          "SMA200": 17.028,
-          "EMA20": 11.348,
-          "ADX": 31.519,
-          "close": 9.96
-        }
+          "RSI": 46.27,
+          "MACD.macd": 0.511,
+          "MACD.signal": 0.529,
+          "SMA20": 69.725,
+          "SMA50": 70.532,
+          "SMA200": 81.61,
+          "EMA20": 70.146,
+          "ADX": 15.219,
+          "close": 68.21
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
-        "close": 9.96,
-        "rsi14": 29.4,
-        "sma20": 11.25,
-        "sma50": 13.04,
-        "sma200": 17.03,
+        "close": 68.21,
+        "rsi14": 46.3,
+        "sma20": 69.72,
+        "sma50": 70.53,
+        "sma200": 81.61,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.845,
-          "signal": -0.776,
-          "hist": -0.069
+          "macd": 0.511,
+          "signal": 0.529,
+          "hist": -0.018
         },
-        "atr14": 0.62,
-        "support20": 9.72,
-        "resistance20": 12.6,
-        "vol_ratio": 0.72,
+        "atr14": 3.95,
+        "support20": 60.51,
+        "resistance20": 78.28,
+        "vol_ratio": 0.69,
         "bars": 250
       }
     },
-    "KTOS": {
+    "SGML": {
       "tv": {
         "exchange": "NASDAQ",
         "recommendation": "SELL",
-        "buy": 3,
-        "sell": 14,
-        "neutral": 9,
-        "oscillators": "NEUTRAL",
+        "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 35.161,
-          "MACD.macd": -2.208,
-          "MACD.signal": -2.195,
-          "SMA20": 44.996,
-          "SMA50": 50.692,
-          "SMA200": 68.15,
-          "EMA20": 44.797,
-          "ADX": 27.696,
-          "close": 42.36
-        }
+          "RSI": 43.953,
+          "MACD.macd": -0.366,
+          "MACD.signal": -0.431,
+          "SMA20": 9.524,
+          "SMA50": 10.691,
+          "SMA200": 13.337,
+          "EMA20": 9.768,
+          "ADX": 22.911,
+          "close": 9.35
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
-        "close": 42.36,
-        "rsi14": 35.2,
-        "sma20": 45.0,
-        "sma50": 50.69,
-        "sma200": 68.15,
+        "close": 9.35,
+        "rsi14": 44.0,
+        "sma20": 9.52,
+        "sma50": 10.69,
+        "sma200": 13.34,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -2.208,
-          "signal": -2.195,
-          "hist": -0.013
+          "macd": -0.366,
+          "signal": -0.431,
+          "hist": 0.065
         },
-        "atr14": 2.12,
-        "support20": 40.93,
-        "resistance20": 49.68,
-        "vol_ratio": 0.91,
+        "atr14": 0.67,
+        "support20": 7.79,
+        "resistance20": 10.64,
+        "vol_ratio": 0.6,
         "bars": 250
-      }
-    },
-    "CBRS": {
-      "tv": {
-        "exchange": "NASDAQ",
-        "recommendation": "STRONG_SELL",
-        "buy": 1,
-        "sell": 14,
-        "neutral": 9,
-        "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_SELL",
-        "indicators": {
-          "RSI": 37.414,
-          "MACD.macd": -7.928,
-          "MACD.signal": -5.302,
-          "SMA20": 187.93,
-          "SMA50": 199.312,
-          "EMA20": 184.032,
-          "ADX": 11.852,
-          "close": 164.17
-        }
-      },
-      "td": {
-        "date": "2026-10-09",
-        "close": 164.17,
-        "rsi14": 37.4,
-        "sma20": 187.93,
-        "sma50": 199.31,
-        "sma200": null,
-        "above_sma20": false,
-        "above_sma50": false,
-        "above_sma200": null,
-        "macd": {
-          "macd": -7.928,
-          "signal": -5.302,
-          "hist": -2.626
-        },
-        "atr14": 12.95,
-        "support20": 161.51,
-        "resistance20": 214.0,
-        "vol_ratio": 0.84,
-        "bars": 103
       }
     },
     "STX": {
       "tv": {
         "exchange": "NASDAQ",
         "recommendation": "SELL",
-        "buy": 4,
-        "sell": 13,
-        "neutral": 9,
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
@@ -451,7 +411,8 @@
           "EMA20": 851.772,
           "ADX": 14.457,
           "close": 783
-        }
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
@@ -475,89 +436,85 @@
         "bars": 250
       }
     },
-    "MU": {
+    "UUUU": {
       "tv": {
-        "exchange": "NASDAQ",
-        "recommendation": "NEUTRAL",
-        "buy": 8,
-        "sell": 8,
-        "neutral": 10,
-        "oscillators": "SELL",
-        "moving_averages": "BUY",
-        "indicators": {
-          "RSI": 50.203,
-          "MACD.macd": 22.359,
-          "MACD.signal": 28.681,
-          "SMA20": 1038.255,
-          "SMA50": 976.186,
-          "SMA200": 701.681,
-          "EMA20": 1039.469,
-          "ADX": 13.347,
-          "close": 1029
-        }
-      },
-      "td": {
-        "date": "2026-10-09",
-        "close": 1029.0,
-        "rsi14": 50.2,
-        "sma20": 1038.25,
-        "sma50": 976.19,
-        "sma200": 701.68,
-        "above_sma20": false,
-        "above_sma50": true,
-        "above_sma200": true,
-        "macd": {
-          "macd": 22.359,
-          "signal": 28.681,
-          "hist": -6.323
-        },
-        "atr14": 45.92,
-        "support20": 902.6,
-        "resistance20": 1108.72,
-        "vol_ratio": 0.77,
-        "bars": 250
-      }
-    },
-    "AVGO": {
-      "tv": {
-        "exchange": "NASDAQ",
+        "exchange": "AMEX",
         "recommendation": "SELL",
-        "buy": 7,
-        "sell": 10,
-        "neutral": 9,
         "oscillators": "NEUTRAL",
-        "moving_averages": "SELL",
+        "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 50.073,
-          "MACD.macd": -0.51,
-          "MACD.signal": -2.994,
-          "SMA20": 355.246,
-          "SMA50": 371.868,
-          "SMA200": 368.285,
-          "EMA20": 360.232,
-          "ADX": 17.015,
-          "close": 361.54
-        }
+          "RSI": 29.438,
+          "MACD.macd": -0.845,
+          "MACD.signal": -0.776,
+          "SMA20": 11.253,
+          "SMA50": 13.035,
+          "SMA200": 17.028,
+          "EMA20": 11.348,
+          "ADX": 31.519,
+          "close": 9.96
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
-        "close": 361.54,
-        "rsi14": 50.1,
-        "sma20": 355.25,
-        "sma50": 371.87,
-        "sma200": 368.28,
-        "above_sma20": true,
+        "close": 9.96,
+        "rsi14": 29.4,
+        "sma20": 11.25,
+        "sma50": 13.04,
+        "sma200": 17.03,
+        "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.51,
-          "signal": -2.994,
-          "hist": 2.485
+          "macd": -0.845,
+          "signal": -0.776,
+          "hist": -0.069
         },
-        "atr14": 11.23,
-        "support20": 335.81,
-        "resistance20": 380.84,
-        "vol_ratio": 0.69,
+        "atr14": 0.62,
+        "support20": 9.72,
+        "resistance20": 12.6,
+        "vol_ratio": 0.74,
+        "bars": 250
+      }
+    },
+    "WYFI": {
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 34.762,
+          "MACD.macd": -1.172,
+          "MACD.signal": -1.045,
+          "SMA20": 18.068,
+          "SMA50": 20.715,
+          "SMA200": 21.559,
+          "EMA20": 18.04,
+          "ADX": 18.856,
+          "close": 15.69
+        },
+        "via": "scanner"
+      },
+      "td": {
+        "date": "2026-10-09",
+        "close": 15.69,
+        "rsi14": 34.8,
+        "sma20": 18.07,
+        "sma50": 20.72,
+        "sma200": 21.56,
+        "above_sma20": false,
+        "above_sma50": false,
+        "above_sma200": false,
+        "macd": {
+          "macd": -1.172,
+          "signal": -1.045,
+          "hist": -0.127
+        },
+        "atr14": 1.4,
+        "support20": 15.3,
+        "resistance20": 20.57,
+        "vol_ratio": 1.22,
         "bars": 250
       }
     },
@@ -565,9 +522,6 @@
       "tv": {
         "exchange": "NYSE",
         "recommendation": "SELL",
-        "buy": 2,
-        "sell": 15,
-        "neutral": 9,
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
@@ -580,7 +534,8 @@
           "EMA20": 4.281,
           "ADX": 30.801,
           "close": 3.68
-        }
+        },
+        "via": "scanner"
       },
       "td": {
         "date": "2026-10-09",
@@ -605,7 +560,24 @@
       }
     },
     "SN": {
-      "tv": null,
+      "tv": {
+        "exchange": "NYSE",
+        "recommendation": "BUY",
+        "oscillators": "SELL",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 62.554,
+          "MACD.macd": 3.197,
+          "MACD.signal": 2.142,
+          "SMA20": 176.416,
+          "SMA50": 178.14,
+          "SMA200": 136.683,
+          "EMA20": 179.296,
+          "ADX": 21.528,
+          "close": 184.98
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 184.98,
@@ -621,15 +593,32 @@
           "signal": 2.142,
           "hist": 1.055
         },
-        "atr14": 5.53,
+        "atr14": 5.58,
         "support20": 158.82,
-        "resistance20": 186.32,
+        "resistance20": 186.75,
         "vol_ratio": 0.49,
         "bars": 250
       }
     },
     "TSLA": {
-      "tv": null,
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "BUY",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 59.733,
+          "MACD.macd": 5.071,
+          "MACD.signal": 4.001,
+          "SMA20": 368.659,
+          "SMA50": 354.745,
+          "SMA200": 390.604,
+          "EMA20": 369.208,
+          "ADX": 17.091,
+          "close": 382.7
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 382.7,
@@ -648,12 +637,29 @@
         "atr14": 11.86,
         "support20": 345.88,
         "resistance20": 388.56,
-        "vol_ratio": 1.08,
+        "vol_ratio": 1.09,
         "bars": 250
       }
     },
     "ASTS": {
-      "tv": null,
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "STRONG_SELL",
+        "oscillators": "SELL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 35.704,
+          "MACD.macd": -1.625,
+          "MACD.signal": -1.165,
+          "SMA20": 59.628,
+          "SMA50": 62.847,
+          "SMA200": 80.75,
+          "EMA20": 59.36,
+          "ADX": 10.67,
+          "close": 50.965
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 50.97,
@@ -672,12 +678,29 @@
         "atr14": 4.54,
         "support20": 47.57,
         "resistance20": 65.47,
-        "vol_ratio": 4.0,
+        "vol_ratio": 4.01,
         "bars": 250
       }
     },
     "ARM": {
-      "tv": null,
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "oscillators": "SELL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 43.85,
+          "MACD.macd": 4.891,
+          "MACD.signal": 8.713,
+          "SMA20": 288.927,
+          "SMA50": 269.864,
+          "SMA200": 220.113,
+          "EMA20": 286.05,
+          "ADX": 17.138,
+          "close": 266.28
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 266.28,
@@ -701,7 +724,24 @@
       }
     },
     "WDC": {
-      "tv": null,
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 38.416,
+          "MACD.macd": -14.996,
+          "MACD.signal": -10.149,
+          "SMA20": 435.12,
+          "SMA50": 457.606,
+          "SMA200": 405.899,
+          "EMA20": 433.822,
+          "ADX": 17.101,
+          "close": 397.28
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 397.28,
@@ -725,7 +765,24 @@
       }
     },
     "TSM": {
-      "tv": null,
+      "tv": {
+        "exchange": "NYSE",
+        "recommendation": "BUY",
+        "oscillators": "SELL",
+        "moving_averages": "BUY",
+        "indicators": {
+          "RSI": 52.436,
+          "MACD.macd": 10.857,
+          "MACD.signal": 11.071,
+          "SMA20": 450.474,
+          "SMA50": 432.472,
+          "SMA200": 391.772,
+          "EMA20": 453.814,
+          "ADX": 19.013,
+          "close": 453.31
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 453.31,
@@ -749,7 +806,24 @@
       }
     },
     "NOK": {
-      "tv": null,
+      "tv": {
+        "exchange": "NYSE",
+        "recommendation": "SELL",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 49.431,
+          "MACD.macd": 0.019,
+          "MACD.signal": 0.031,
+          "SMA20": 10.4,
+          "SMA50": 10.221,
+          "SMA200": 10.117,
+          "EMA20": 10.412,
+          "ADX": 8.657,
+          "close": 10.36
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 10.36,
@@ -768,12 +842,29 @@
         "atr14": 0.49,
         "support20": 9.65,
         "resistance20": 11.05,
-        "vol_ratio": 0.59,
+        "vol_ratio": 0.6,
         "bars": 250
       }
     },
     "CAR": {
-      "tv": null,
+      "tv": {
+        "exchange": "NASDAQ",
+        "recommendation": "SELL",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 36.037,
+          "MACD.macd": -6.165,
+          "MACD.signal": -7.352,
+          "SMA20": 110.609,
+          "SMA50": 127.707,
+          "SMA200": 155.511,
+          "EMA20": 113.182,
+          "ADX": 29.057,
+          "close": 105.98
+        },
+        "via": "scanner"
+      },
       "td": {
         "date": "2026-10-09",
         "close": 105.98,
