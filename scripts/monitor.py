@@ -179,7 +179,7 @@ def apply_extended(quotes, tickers, now):
 # ------------------------------------------------------------------ rapor
 def _market():
     path = os.environ.get("MARKET_JSON", "")
-    if BIST or not path or not os.path.exists(path):
+    if not path or not os.path.exists(path):  # ABD: market.json, BIST: market-bist.json (iş akışı MARKET_JSON ile verir)
         return None
     try:
         import json
@@ -195,7 +195,7 @@ def earnings_alerts(portfolio, now):
     m = _market()
     if not m:
         return []
-    today = now.astimezone(ET).date()
+    today = now.astimezone(IST if BIST else ET).date()
     held = set(portfolio["portfolio"])
     out = []
     for t in list(held) + [x for x in portfolio["watchlist"] if x not in held]:
@@ -218,7 +218,7 @@ def earnings_alerts(portfolio, now):
 
 
 def market_lines(summary):
-    """market.json (market-data dalı; iş akışı MARKET_JSON ile verir) varsa rejim, nakit hedefi ve lider/zayıf sektörler."""
+    """market.json / market-bist.json (iş akışı MARKET_JSON ile verir) varsa rejim, nakit hedefi ve lider/zayıf sektörler."""
     m = _market()
     if not m:
         return []
@@ -228,8 +228,9 @@ def market_lines(summary):
         cp = summary["cash_pct"]
         gap = "" if lo is None else (" ⚠️ hedefin altında" if cp < lo else " ⚠️ hedefin üstünde" if cp > hi else " ✅")
         g = m.get("groups") or []
-        lead = [x["sym"] for x in g if str(x.get("verdict", "")).startswith(("Ol", "Erken")) and not x.get("bank")][:5]
-        weak = [x["sym"] for x in g if str(x.get("verdict", "")).startswith("Uzak")][-4:]
+        lbl = (lambda x: x.get("name") or x["sym"]) if BIST else (lambda x: x["sym"])  # BIST'te grup adı okunur, ABD'de ETF kodu
+        lead = [lbl(x) for x in g if str(x.get("verdict", "")).startswith(("Ol", "Erken")) and not x.get("bank")][:5]
+        weak = [lbl(x) for x in g if str(x.get("verdict", "")).startswith("Uzak")][-4:]
         out = [f"🧭 Rejim: {common.e(r.get('label', '–'))} ({r.get('score')}/{r.get('max')}) · önerilen nakit %{lo}–{hi}, şu an %{cp:.1f}{gap}"]
         if lead:
             out.append("📈 Güçlü: " + ", ".join(common.e(x) for x in lead) + (" · 📉 Zayıf: " + ", ".join(common.e(x) for x in weak) if weak else ""))

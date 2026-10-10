@@ -51,6 +51,10 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 .wl:last-child{border-bottom:0}
 .wl.link{cursor:pointer}
 .wl small{color:var(--acc);font-weight:500;margin-left:6px}
+.wl2{padding:11px 14px;border-bottom:1px solid var(--line)}.wl2:last-child{border-bottom:0}
+.wl2 .a{display:flex;justify-content:space-between;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.wl2 .b{color:var(--mut);font-size:12.5px;margin-top:4px}
+.wl2 b small{color:var(--acc);font-weight:500;margin-left:6px}
 .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:18px}
 .err{background:rgba(255,92,108,.1);border:1px solid rgba(255,92,108,.3);color:var(--dn);
   border-radius:12px;padding:12px;margin-top:16px;font-size:13px}
@@ -122,6 +126,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div class="sec">Hisselerim <span class="badge" id="cnt">0</span></div>
   <div id="list"></div>
   <div class="row"><span class="lbl">Nakit</span><b id="cash">–</b></div>
+  <div id="riskStrip"></div>
   <div id="perfBox"></div>
   <div class="foot" id="foot"></div>
 </section>
@@ -155,6 +160,12 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div class="motto" role="button" tabindex="0" aria-label="Günün duvar yazısı, dokununca değişir"><div class="motto-in"><span class="motto-k">DUVAR YAZISI</span><p class="motto-t"></p></div></div>
 </section>
 
+<!-- SEKTÖR -->
+<section class="tab" id="t-sektor">
+  <div class="h1">Sektör &amp; Rejim</div>
+  <div id="sbody"><div class="empty">Yükleniyor…</div></div>
+</section>
+
 <div id="msg"></div>
 <script>
 (function(){
@@ -175,7 +186,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 </script>
 <script src="../motto.js?v=1"></script>
 <script src="../vault.js?v=1"></script>
-<script src="../techview.js?v=2"></script>
+<script src="../sector.js?v=3"></script>
+<script src="../techview.js?v=3"></script>
 <script src="../perf.js?v=1"></script>
 
 <div class="bar"><nav id="nav">
@@ -183,6 +195,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <button data-t="takip"><svg viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>Takip</button>
   <button data-t="haber"><svg viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg>Haberler</button>
   <button data-t="analiz"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 5-6"/></svg>Analiz</button>
+  <button data-t="sektor"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/></svg>Sektör</button>
 </nav></div>
 
 <script>
@@ -193,7 +206,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       try{tg.setHeaderColor("#0a0d14");tg.setBackgroundColor("#0a0d14");}catch(e){}}
   }catch(e){}
 
-  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null, INTRA=null, BARS=null, H=null;
+  var mode="all", sub="momentum", cur=null, P=null, Q=null, A=null, TECH=null, INTRA=null, BARS=null, H=null, M=null, NOTES=null;
   function hasInfo(t){return !!((A&&A.tickers&&A.tickers[t])||(TECH&&TECH.tickers&&TECH.tickers[t]))}
   var TV_TR={STRONG_BUY:["Güçlü Al","up"],BUY:["Al","up"],NEUTRAL:["Nötr","warn"],SELL:["Sat","dn"],STRONG_SELL:["Güçlü Sat","dn"]};
   function addKV(box,k,v,c){var row=el("div","kv");row.appendChild(el("span","",k));row.appendChild(el("span",c||"",v));box.appendChild(row);return row}
@@ -294,7 +307,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 
   /* ---------- sekmeler ---------- */
   function showTab(t){
-    var ok=["portfoy","takip","haber","analiz"]; if(ok.indexOf(t)<0)t="portfoy";
+    var ok=["portfoy","takip","haber","analiz","sektor"]; if(ok.indexOf(t)<0)t="portfoy";
     [].forEach.call(document.querySelectorAll(".tab"),function(s){s.classList.toggle("on",s.id==="t-"+t)});
     [].forEach.call($("nav").children,function(b){b.classList.toggle("on",b.getAttribute("data-t")===t)});
     try{history.replaceState(null,"","#"+t)}catch(e){}
@@ -322,7 +335,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   $("eye").addEventListener("click",function(){
     hide=!hide; document.body.classList.toggle("hide",hide);
     try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
-    if(P){renderPortfolio();renderAnaliz()}
+    if(P){renderPortfolio();renderAnaliz();renderSector()}
   });
 
   /* Pozisyon kartı: 4S Trend / 15dk Trend / 15dk Tamam yada Devam durumu (trend-bist.json) */
@@ -409,15 +422,31 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 
   /* ---------- takip ---------- */
   function renderWatch(){
-    var q=(Q&&Q.quotes)||{}, wl=P.watchlist||[], box=$("wl"); box.textContent="";
+    var q=(Q&&Q.quotes)||{}, wl=(P.watchlist||[]).slice(), box=$("wl"); box.textContent="";
     if(!wl.length){box.appendChild(el("div","empty","Takip listesi boş"));return}
+    var MS=(M&&M.stocks)||{};
+    wl.sort(function(a,b){return ((MS[b]&&MS[b].rs&&MS[b].rs.score)||-999)-((MS[a]&&MS[a].rs&&MS[a].rs.score)||-999)});
     wl.forEach(function(t){
-      var x=q[t]||{}, row=el("div","wl"), has=hasInfo(t);
-      var b=el("b","",t); if(has)b.appendChild(el("small","","analiz ›"));
-      var tc=trendChip(t); if(tc){tc.style.marginLeft="8px";b.appendChild(tc)}
-      row.appendChild(b);
-      row.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"+extTag(x)):"–"));
-      if(has){row.classList.add("link");row.addEventListener("click",function(){openAnaliz(t)})}
+      var x=q[t]||{}, row=el("div","wl2"), has=hasInfo(t), s=MS[t], d=(A&&A.tickers&&A.tickers[t])||{};
+      var a=el("div","a"), b=el("b","",t); if(has)b.appendChild(el("small","","analiz ›"));
+      a.appendChild(b);
+      a.appendChild(el("span", x.c?cls(+x.dp||0):"sub", x.c?(usd(+x.c)+"  "+sgn(+x.dp||0)+num(Math.abs(+x.dp||0),2)+"%"+extTag(x)):"–"));
+      row.appendChild(a);
+      var line=el("div","b"), tc=trendChip(t); if(tc)line.appendChild(tc);
+      if(s&&s.trend){var tp=s.trend.points; line.appendChild(el("span","chipx "+(tp>=5?"up":tp<=2?"dn":"warn"),"Günlük "+tp+"/7"))}
+      var bits=[];
+      if(s&&s.rs&&s.rs.score!=null)bits.push("RS "+(s.rs.score>0?"+":"−")+num(Math.abs(s.rs.score),1));
+      if(s&&s.verdict)bits.push(s.verdict);
+      var er=((d.fundamental&&d.fundamental.metrics)||[]).filter(function(k){return /bilanço/i.test(k[0])})[0];
+      if(er){var MON={Oca:0,"Şub":1,Mar:2,Nis:3,May:4,Haz:5,Tem:6,"Ağu":7,Eyl:8,Eki:9,Kas:10,Ara:11},mm=String(er[1]).match(/(\d{1,2}) (\S{3}) (\d{4})/);
+        if(mm&&MON[mm[2]]!==undefined){var dd=Math.ceil((new Date(+mm[3],MON[mm[2]],+mm[1])-new Date())/864e5);if(dd>=0)bits.push("bilanço "+dd+" gün")}}
+      var zz=(P.buy_zones||{})[t]; if(zz!=null){if(typeof zz==="number")zz={below:zz};
+        bits.push("🎯 alarm "+(zz.below!=null?"≤"+usd(+zz.below):"")+(zz.above!=null?" ≥"+usd(+zz.above):""))}
+      if(s&&s.earn_next){var ed=Math.ceil((new Date(s.earn_next+"T12:00:00Z")-new Date())/864e5);if(ed>=0&&ed<=7)bits.push("📅 bilanço "+ed+" gün")}
+      if(s&&s.ema20&&s.close)bits.push(s.close>=s.ema20?"20 günlük çizginin üstünde (geri çekilmede giriş "+num(s.ema20,2)+")":"giriş için 20 günlük çizgi ("+num(s.ema20,2)+") üstü kapanış");
+      line.appendChild(document.createTextNode(bits.join(" · ")));
+      row.appendChild(line);
+      if(has){row.style.cursor="pointer";row.addEventListener("click",function(){openAnaliz(t)})}
       box.appendChild(row);
     });
   }
@@ -475,14 +504,25 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
         if(q.extp)addKV(box,"Kapanış",usd(+q.close));
         addKV(box,"Gün aralığı",usd(+q.l)+" – "+usd(+q.h));
       }
-      renderIntraday(box,cur);
-      renderTech(box,cur);
-      if(window.TechView)TechView.render(box,cur,{chartOnly:true,plainLegend:true,BARS:BARS,P:P,
+      if(window.TechView)TechView.render(box,cur,{M:M,BARS:BARS,INTRA:INTRA,TREND:INTRA,P:P,bench:"XU100",plain:true,plainLegend:true,
         noBarsMsg:"Günlük mum grafiği henüz yok (BIST Trend Tara çalışınca gelir)."});
+      function det(title,open){var x=document.createElement("details");x.className="tx-d";if(open)x.open=true;x.appendChild(el("summary","",title));box.appendChild(x);return x}
       if((d.technical||[]).length){
-        var hd2=el("div","sub","Yazılı notlar ("+(A&&A.updated||"")+")"); hd2.style.margin="12px 0 2px"; box.appendChild(hd2);
-        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); box.appendChild(ul);
+        var wn=det("Yazılı notlar ("+(A&&A.updated||"")+")");
+        var ul=el("ul"); d.technical.forEach(function(s){ul.appendChild(el("li","",mc(s)))}); wn.appendChild(ul);
       }
+      var raw=det("Ayrıntılı göstergeler (gün içi, Elliott, TradingView)");
+      renderIntraday(raw,cur); renderTech(raw,cur);
+      var gl=det("Göstergeler ne anlatır?");
+      [["Ortalama çizgileri","Fiyatın son N günün ortalamasına göre konumu. Fiyat çizginin üstündeyse o zaman diliminde alıcılar baskın; kısa çizginin uzunu yukarı kesmesi trend dönüşü işaretidir."],
+       ["RSI","0-100 arası ivme. 70 üstü aşırı alım, 30 altı aşırı satım; 50 üstü alıcı, altı satıcı baskısı."],
+       ["MACD","İki ortalama farkı. Sinyal çizgisinin üstüne çıkması ivmenin yukarı döndüğünü gösterir."],
+       ["ADX","Trendin gücü (yönü değil). 20 altı trend yok, 25 üstü güçlü trend."],
+       ["15dk Tamam yada Devam","Fiyatı izleyen çizgi. Fiyat çizginin altına inince 'Tamam', üstüne çıkınca 'Devam'; geçici stop gibi okunur."],
+       ["ATR stop","Hissenin günlük ortalama oynaklığına (ATR) göre stop: fiyattan 2×ATR ya da 3 aylık tepeden 3×ATR aşağısı."],
+       ["Elliott","Fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı. Kural tabanlı tahmindir, kesin sayım değildir; tek başına al/sat sinyali değildir."],
+       ["Zaman dilimi uyumu","Haftalık ve günlük yön trendi, 4S ve 15dk giriş zamanlamasını gösterir. Hepsi aynı yöndeyse sinyal güçlüdür."]
+      ].forEach(function(k){var r=el("div","kv");r.appendChild(el("span","",k[0]));r.appendChild(el("span","",k[1]));r.lastChild.style.fontWeight="400";gl.appendChild(r)});
     }else if(sub==="temel"){
       ((d.fundamental&&d.fundamental.metrics)||[]).forEach(function(kv){
         var k=el("div","kv"); k.appendChild(el("span","",kv[0])); k.appendChild(el("span","",kv[1])); box.appendChild(k)});
@@ -507,13 +547,24 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   function loadIntra(){
     return fetch(INTRA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
+  var MARKET_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-bist-data/market-bist.json";
+  function loadMarket(){
+    return fetch(MARKET_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  }
+  function renderSector(){
+    if(!window.SectorView)return;
+    var ctx={M:M,N:NOTES,P:P,Q:Q,hide:hide,bench:"XU100",cur:"₺",
+      picksNote:"Her grupta trendi en az 5/7 ve XU100'den güçlü ilk 3 hisse (banka ve alkol hariç; piyasa değeri > 10 mlr ₺ ve günlük hacmi ≥ 50 mn ₺ olan BIST hisseleri taranır). "};
+    try{SectorView.render($("sbody"),ctx);SectorView.strip($("riskStrip"),P,Q,M,hide,ctx)}
+    catch(e){$("sbody").textContent="Sektör görünümü hatası: "+e.message}
+  }
   function loadBars(){
     return fetch(BARS_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   }
-  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadBars(),load("history.json",true)]).then(function(r){
-    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];BARS=r[5];H=r[6];
+  Promise.all([load("portfolio.json"),load("quotes.json"),load("analysis.json",true),load("technicals.json",true),loadIntra(),loadBars(),load("history.json",true),loadMarket(),load("sector_notes.json",true)]).then(function(r){
+    P=r[0];Q=r[1];A=r[2];TECH=r[3];INTRA=r[4];BARS=r[5];H=r[6];M=r[7];NOTES=r[8];
     if(Q&&Q.quotes)Object.keys(Q.quotes).forEach(function(t){Q.quotes[t]=eff(Q.quotes[t])});
-    renderPortfolio();renderWatch();renderNews();renderAnaliz();
+    renderPortfolio();renderWatch();renderNews();renderAnaliz();renderSector();
     showTab((location.hash||"").replace("#",""));
   }).catch(function(e){
     $("pnl").textContent="veri alınamadı";

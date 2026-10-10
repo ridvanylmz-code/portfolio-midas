@@ -6,6 +6,13 @@
     "İzle (trend zayıfladı)": "warn", "Azalt / kâr al": "dn", "Uzak dur": "dn", "Veri yetersiz": "" };
   var QCLS = { "Lider": "up", "Toparlanan": "acc", "Zayıflayan": "warn", "Geride": "dn" };
   var RISK_PCT_KEY = "pm_risk_pct";
+  /* Piyasa bağlamı: varsayılan ABD (SPY, $). BIST sayfası ctx.bench="XU100", ctx.cur="₺" geçer. */
+  var cfg = { bench: "SPY", cur: "$", picksNote: null };
+  function setCtx(c) {
+    if (!c) return;
+    cfg.bench = c.bench || "SPY"; cfg.cur = c.cur || "$"; cfg.picksNote = c.picksNote || null;
+  }
+  function rkey() { return RISK_PCT_KEY + (cfg.bench === "SPY" ? "" : "_" + cfg.bench.toLowerCase()) }
 
   function el(tag, c, t) { var e = document.createElement(tag); if (c) e.className = c; if (t !== undefined && t !== null) e.textContent = t; return e }
   function n(x, d) { return (x === null || x === undefined || isNaN(+x)) ? "–" : (+x).toLocaleString("tr-TR", { minimumFractionDigits: d, maximumFractionDigits: d }) }
@@ -34,8 +41,8 @@
       ".sx-chip.up{border-color:rgba(61,220,132,.35);color:var(--up)}.sx-chip.dn{border-color:rgba(255,92,108,.35);color:var(--dn)}" +
       ".sx-row{padding:11px 2px;border-bottom:1px solid var(--line);cursor:pointer}.sx-row:last-child{border-bottom:0}" +
       ".sx-r1{display:flex;justify-content:space-between;gap:8px;align-items:center}" +
-      ".sx-nm{font-weight:700}.sx-nm small{color:var(--mut);font-weight:500;margin-left:6px}" +
-      ".sx-v{font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;background:#1a2030;white-space:nowrap}" +
+      ".sx-nm{font-weight:700;min-width:0}.sx-nm small{color:var(--mut);font-weight:500;margin-left:6px}" +
+      ".sx-v{font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;background:#1a2030;max-width:62%;text-align:right}" +
       ".sx-v.up{color:var(--up);background:rgba(61,220,132,.1)}.sx-v.dn{color:var(--dn);background:rgba(255,92,108,.1)}.sx-v.warn{color:var(--warn);background:rgba(245,185,66,.1)}" +
       ".sx-r2{display:flex;gap:12px;color:var(--mut);font-size:12.5px;margin-top:4px;font-variant-numeric:tabular-nums;flex-wrap:wrap}" +
       ".sx-dots{letter-spacing:1px;color:#5aa9ff}.sx-q.up{color:var(--up)}.sx-q.dn{color:var(--dn)}.sx-q.warn{color:var(--warn)}.sx-q.acc{color:#5aa9ff}" +
@@ -70,8 +77,8 @@
   }
 
   /* Portföy sekmesine kısa şerit: nakit hedefi + ısı + yoğunlaşma */
-  function strip(box, P, Q, M, hide) {
-    if (!box) return; box.textContent = "";
+  function strip(box, P, Q, M, hide, ctx) {
+    if (!box) return; box.textContent = ""; setCtx(ctx);
     if (!P || !M || !M.regime) return;
     css();
     var b = book(P, Q, M), r = M.regime, lo = r.cash_target[0], hi = r.cash_target[1];
@@ -83,11 +90,11 @@
     mk.style.left = "calc(" + Math.min(b.cashPct, 60) / 60 * 100 + "% - 1px)";
     bar.appendChild(band); bar.appendChild(mk); c.appendChild(bar);
     var gap = (lo - b.cashPct) / 100 * b.eq, msg;
-    if (b.cashPct < lo) msg = "Nakit hedefin altında: hedefe ulaşmak için " + (hide ? "*****" : "$" + n(gap, 0)) + " nakde geçmek gerekir (en zayıf pozisyondan başlanır).";
-    else if (b.cashPct > hi) msg = "Nakit hedefin üstünde: " + (hide ? "*****" : "$" + n((b.cashPct - hi) / 100 * b.eq, 0)) + " güçlü sektörlerde kademeli kullanılabilir.";
+    if (b.cashPct < lo) msg = "Nakit hedefin altında: hedefe ulaşmak için " + (hide ? "*****" : cfg.cur + n(gap, 0)) + " nakde geçmek gerekir (en zayıf pozisyondan başlanır).";
+    else if (b.cashPct > hi) msg = "Nakit hedefin üstünde: " + (hide ? "*****" : cfg.cur + n((b.cashPct - hi) / 100 * b.eq, 0)) + " güçlü sektörlerde kademeli kullanılabilir.";
     else msg = "Nakit hedef aralığında.";
     c.appendChild(el("div", "sx-s", msg));
-    var heat = el("div", "sx-s", "Portföy ısısı (tüm stoplar tetiklenirse kayıp): %" + n(b.heatPct, 1) + (hide ? "" : " · $" + n(b.heat, 0)) +
+    var heat = el("div", "sx-s", "Portföy ısısı (tüm stoplar tetiklenirse kayıp): %" + n(b.heatPct, 1) + (hide ? "" : " · " + cfg.cur + n(b.heat, 0)) +
       (b.heatPct > 8 ? " — yüksek (öneri ≤ %6)" : ""));
     heat.style.marginTop = "6px"; c.appendChild(heat);
     var big = b.rows.filter(function (x) { return x.w > 25 }).map(function (x) { return x.t + " %" + n(x.w, 0) });
@@ -99,6 +106,7 @@
   var view = "sektor";
   function render(box, ctx) {
     css(); box.textContent = "";
+    setCtx(ctx);
     var M = ctx.M, N = ctx.N || {}, P = ctx.P, Q = ctx.Q, hide = ctx.hide;
     if (!M) { box.appendChild(el("div", "empty", "Sektör verisi henüz yok (Piyasa & Sektör Rotasyonu iş akışı ilk kez çalışınca gelir).")); return }
     var r = M.regime || {};
@@ -110,7 +118,7 @@
     (r.checks || []).forEach(function (k) { var row = el("div", "sx-ck"); row.appendChild(el("span", k[1] ? "up" : "dn", k[1] ? "✓" : "✗")); row.appendChild(el("span", "", k[0])); c.appendChild(row) });
     if (N.summary) c.appendChild(el("div", "sx-note", N.summary));
     box.appendChild(c);
-    strip(box.appendChild(el("div")), P, Q, M, hide);
+    strip(box.appendChild(el("div")), P, Q, M, hide, ctx);
 
     // olunacak / uzak durulacak
     var G = M.groups || [], gn = N.groups || {};
@@ -150,7 +158,7 @@
     nm.appendChild(el("small", "", (x.tracked ? "takipte · " : "") + (x.name || "").slice(0, 28)));
     r1.appendChild(nm); r1.appendChild(el("span", "sx-v up", "RS " + sp(x.rs))); row.appendChild(r1);
     row.appendChild(el("div", "sx-r2", n(x.close, 2) + " (" + sp(x.chg, 2) + "%) · trend " + x.trend + "/7 · grubuna göre " + sp(x.rs_group) +
-      " · RSI " + n(x.rsi, 0) + " · ATR %" + n(x.atr_pct, 1) + " · stop ≈ " + n(x.stop_atr, 2) + " · " + n(x.mcap_bn, 1) + " mlr $"));
+      " · RSI " + n(x.rsi, 0) + " · ATR %" + n(x.atr_pct, 1) + " · stop ≈ " + n(x.stop_atr, 2) + " · " + n(x.mcap_bn, 1) + " mlr " + cfg.cur));
     return row;
   }
 
@@ -159,7 +167,7 @@
     if (!groups.length) return;
     var c = el("div", "sx-card");
     c.appendChild(el("div", "sx-t", "Güçlü sektörlerde aday hisseler"));
-    c.appendChild(el("div", "sx-s", "Her grupta trendi en az 5/7 ve SPY'den güçlü ilk 3 hisse (banka, alkol ve tercihli hisse hariç; ~1.500 hisse + tema listeleri taranır). " +
+    c.appendChild(el("div", "sx-s", (cfg.picksNote || ("Her grupta trendi en az 5/7 ve " + cfg.bench + "'den güçlü ilk 3 hisse (banka, alkol ve tercihli hisse hariç; ~1.500 hisse + tema listeleri taranır). ")) +
       "Alım öncesi: sermaye artırımı riski, bilanço tarihi ve giriş noktası ayrıca kontrol edilmeli."));
     groups.forEach(function (g) {
       var h = el("div", "sx-nm", g.name); h.appendChild(el("small", "", g.sym)); h.style.marginTop = "12px"; c.appendChild(h);
@@ -183,8 +191,11 @@
       if (g.stale) r2.appendChild(el("span", "warn", "eski"));
       row.appendChild(r2);
       var d = el("div", "sx-det");
-      d.appendChild(el("div", "", "Göreli güç (SPY'ye göre puan): 1H " + sp(rs.w) + " · 1A " + sp(rs.m1) + " · 3A " + sp(rs.m3) + " · 6A " + sp(rs.m6) + " · bileşik " + sp(rs.score)));
-      d.appendChild(el("div", "", "Fiyat " + n(g.close, 2) + " (" + sp(g.chg, 2) + "%) · RSI " + n(g.rsi, 0) + " · haftalık RSI " + n(g.rsi_w, 0) + " · ATR %" + n(g.atr_pct, 1)));
+      d.appendChild(el("div", "", "Göreli güç (" + cfg.bench + "'e göre puan): 1H " + sp(rs.w) + " · 1A " + sp(rs.m1) + " · 3A " + sp(rs.m3) + " · 6A " + sp(rs.m6) + " · bileşik " + sp(rs.score)));
+      d.appendChild(el("div", "", (g.close == null ? "Grup medyanı (" + (g.n || "?") + " hisse): günün " + sp(g.chg, 2) + "%" : "Fiyat " + n(g.close, 2) + " (" + sp(g.chg, 2) + "%)") +
+        " · RSI " + n(g.rsi, 0) + " · haftalık RSI " + n(g.rsi_w, 0) + " · ATR %" + n(g.atr_pct, 1) +
+        (g.breadth50 != null && g.close == null ? " · SMA50 üstü %" + g.breadth50 : "")));
+      if (g.members && g.members.length) d.appendChild(el("div", "sx-s", "Üyeler: " + g.members.join(", ")));
       (tr.checks || []).forEach(function (k) { d.appendChild(el("div", k[1] ? "up" : "dn", (k[1] ? "✓ " : "✗ ") + k[0])) });
       if (gn[g.sym] && gn[g.sym].note) d.appendChild(el("div", "sx-note", gn[g.sym].note));
       if (g.bank) d.appendChild(el("div", "warn", "Banka kuralı: bu gruptan hisse önerilmez, yalnız piyasa okuması için."));
@@ -199,7 +210,7 @@
       c.appendChild(row);
     });
     box.appendChild(c);
-    box.appendChild(el("div", "note", "Çeyrek: Lider = 3A ve 1A'da SPY'den güçlü · Toparlanan = 3A zayıf ama 1A güçlü (erken dönüş) · Zayıflayan = 3A güçlü ama 1A zayıf (kâr al) · Geride = ikisi de zayıf. Noktalar: 7 trend koşulundan (5 günlük + 2 haftalık) kaçı sağlanıyor."));
+    box.appendChild(el("div", "note", "Çeyrek: Lider = 3A ve 1A'da " + cfg.bench + "'den güçlü · Toparlanan = 3A zayıf ama 1A güçlü (erken dönüş) · Zayıflayan = 3A güçlü ama 1A zayıf (kâr al) · Geride = ikisi de zayıf. Noktalar: 7 trend koşulundan (5 günlük + 2 haftalık) kaçı sağlanıyor."));
   }
 
   function stocks(box, M, N, P) {
@@ -221,7 +232,7 @@
       r2.appendChild(el("span", "", tr.label || "–"));
       row.appendChild(r2);
       var d = el("div", "sx-det");
-      d.appendChild(el("div", "", "SPY'ye göre: 1A " + sp(rs.m1) + " · 3A " + sp(rs.m3) + " · bileşik " + sp(rs.score) +
+      d.appendChild(el("div", "", cfg.bench + "'e göre: 1A " + sp(rs.m1) + " · 3A " + sp(rs.m3) + " · bileşik " + sp(rs.score) +
         (s.rs_group ? " · kendi grubuna (" + s.group + ") göre " + sp(s.rs_group.score) : "")));
       d.appendChild(el("div", "", "RSI " + n(s.rsi, 0) + " (haftalık " + n(s.rsi_w, 0) + ") · ADX " + n(s.adx, 0) + " · ATR " + n(s.atr, 2) + " (%" + n(s.atr_pct, 1) + ")"));
       d.appendChild(el("div", "", "ATR tabanlı stop önerisi: " + n(s.stop_atr, 2) + " (fiyattan 2×ATR ya da 3A tepeden 3×ATR, yüksek olan)"));
@@ -242,7 +253,7 @@
       var r1 = el("div", "sx-r1"); r1.appendChild(el("div", "sx-nm", r.t + " · %" + n(r.w, 1)));
       r1.appendChild(el("span", "sx-v " + (r.below ? "dn" : ""), r.below ? "stop altında" : "stopa %" + n(r.stop ? (r.px - r.stop) / r.px * 100 : null, 1)));
       row.appendChild(r1);
-      row.appendChild(el("div", "sx-r2", "Stop " + n(r.stop, 2) + " (" + r.stopSrc + ") · stopta kayıp " + (hide ? "*****" : "$" + n(r.risk, 0)) + " = portföyün %" + n(b.eq ? (r.risk || 0) / b.eq * 100 : 0, 1)));
+      row.appendChild(el("div", "sx-r2", "Stop " + n(r.stop, 2) + " (" + r.stopSrc + ") · stopta kayıp " + (hide ? "*****" : cfg.cur + n(r.risk, 0)) + " = portföyün %" + n(b.eq ? (r.risk || 0) / b.eq * 100 : 0, 1)));
       c.appendChild(row);
     });
     c.appendChild(el("div", "sx-s", "Toplam ısı %" + n(b.heatPct, 1) + " · öneri: işlem başına %1–1,5, toplam ≤ %6"));
@@ -256,22 +267,22 @@
     function field(lbl, input) { var l = el("label", "", lbl); l.appendChild(input); g.appendChild(l); return input }
     var sel = field("Hisse", el("select")); Object.keys(S).sort().forEach(function (t) { var o = el("option", "", t); o.value = t; sel.appendChild(o) });
     var rp = field("Risk % (işlem başına)", el("input")); rp.type = "number"; rp.step = "0.25"; rp.min = "0.25";
-    try { rp.value = localStorage.getItem(RISK_PCT_KEY) || "1" } catch (e) { rp.value = "1" }
+    try { rp.value = localStorage.getItem(rkey()) || "1" } catch (e) { rp.value = "1" }
     var en = field("Giriş fiyatı", el("input")); en.type = "number"; en.step = "0.01";
     var stp = field("Stop", el("input")); stp.type = "number"; stp.step = "0.01";
     c2.appendChild(g);
     var out = el("div", "sx-out"); c2.appendChild(out);
     function fill() { var s = S[sel.value] || {}; en.value = s.close || ""; stp.value = s.stop_atr || ""; calc() }
     function calc() {
-      try { localStorage.setItem(RISK_PCT_KEY, rp.value) } catch (e) {}
+      try { localStorage.setItem(rkey(), rp.value) } catch (e) {}
       var e = +en.value, s = +stp.value, pr = +rp.value / 100;
       out.textContent = "";
       if (!(e > 0) || !(s > 0) || s >= e) { out.appendChild(el("div", "warn", "Stop giriş fiyatının altında olmalı.")); return }
       var riskUsd = b.eq * pr, perShare = e - s, sh = Math.floor(riskUsd / perShare);
       var capW = Math.floor(b.eq * 0.20 / e), capC = Math.floor(b.cash / e), fin = Math.max(0, Math.min(sh, capW, capC));
       var why = fin === sh ? "risk sınırı" : fin === capW ? "%20 tek hisse sınırı" : "eldeki nakit";
-      out.appendChild(el("div", "", "Önerilen: " + fin + " adet ≈ " + (hide ? "*****" : "$" + n(fin * e, 0)) + " (belirleyen: " + why + ")"));
-      out.appendChild(el("div", "sx-s", "Stopa mesafe %" + n(perShare / e * 100, 1) + " · stopta kayıp " + (hide ? "*****" : "$" + n(fin * perShare, 0)) +
+      out.appendChild(el("div", "", "Önerilen: " + fin + " adet ≈ " + (hide ? "*****" : cfg.cur + n(fin * e, 0)) + " (belirleyen: " + why + ")"));
+      out.appendChild(el("div", "sx-s", "Stopa mesafe %" + n(perShare / e * 100, 1) + " · stopta kayıp " + (hide ? "*****" : cfg.cur + n(fin * perShare, 0)) +
         " = portföyün %" + n(b.eq ? fin * perShare / b.eq * 100 : 0, 2) + " · hedef için en az 2R: " + n(e + 2 * perShare, 2)));
       var s0 = S[sel.value];
       if (s0 && /^(Uzak|Azalt)/.test(s0.verdict)) out.appendChild(el("div", "dn", "Dikkat: " + sel.value + " şu an '" + s0.verdict + "' (momentum zayıf)."));
