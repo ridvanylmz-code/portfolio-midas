@@ -1,0 +1,1511 @@
+{
+ "updated": "2026-10-10",
+ "note": "Fiyatlar 9 Ekim 2026 (Cuma) seans kapanışı, TradingView; trend verisi (EMA/Supertrend/Elliott) 9 Eki ~17:25 ET, Twelve Data (kapanışa göre ±%0,5). Günlük göstergeler TradingView 1D. Adil değer = analist ortalama hedefi, kendi tahminim değil. Kısa sözlük: EMA = son fiyata ağırlık veren hareketli ortalama; Supertrend = ATR tabanlı trend çizgisi; RSI = ivme (30 altı aşırı satım, 70 üstü aşırı alım); MACD = ivme/trend dönüşü; ADX = trend gücü; Elliott = fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı, kural tabanlı ve kesin değil. Yazılı notlar sabittir; gün içi sinyaller (Teknik sekmesi) canlı güncellenir.",
+ "tickers": {
+  "RKLB": {
+   "name": "Rocket Lab",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $68,21 (−%0,28). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 1. Günlük RSI 46,3. Gün içi $66,98'e indi ve {stop:RKLB} stop seviyesine çok yaklaştı (kapanış $68,21, stopa %1,8). Barclays 'Overweight' başlattı, TD Cowen 'Al' tuttu, ama fiyat tepki vermedi; günlük SMA50 (70,53) ve EMA20 (70,15) üstüne dönmeden toparlanma sayılmaz. Maliyetin ({cost:RKLB}) %12 altında. Momentum zayıf; {stop:RKLB} kapanış altı planlı çıkış. Satış kararı sende."
+   },
+   "technical": [
+    "9 Eki kapanışı $68,21 (−%0,28); trend verisi son fiyatı $68,22",
+    "4s EMA8 69,77 < EMA20 70,61: aşağı kesişim 2 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 68,31 < EMA89 69,61 (69 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $67,32 (fiyata %1,3 uzak; 7 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %6,1): $78,28'dan başlayan düşüş şu an Dalga 1 sayılıyor; başlangıçtan $66,99 ucuna kadar hareket %14,4. Dalga 1 erken evredir; arkasından Dalga 2 tepkisi (ters yönde düzeltme) gelmesi olağandır. Dalga 2 tepki bölgesi (Fibonacci %38,2–61,8 geri alım) $71,30–$73,97. Sayım $78,28 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 46,3: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 0,51 sinyalin (0,53) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 15,2: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir",
+    "Fiyat günlük EMA20 (70,15) altında, SMA50 (70,53) altında, SMA200 (81,61) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$40,8 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$769,1 mn"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$165,5 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$371,1 mn"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,04"
+     ],
+     [
+      "Sonraki bilanço",
+      "16 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $108,70 (25 analist, 'Güçlü Al'; kapanışa göre +%59; aralık $80,00–$150,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Rocket Lab Is Maintained at Buy by TD Cowen",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009004678:0-rocket-lab-is-maintained-at-buy-by-td-cowen/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Rocket Lab Initiated at Overweight by Barclays",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009003748:0-rocket-lab-initiated-at-overweight-by-barclays/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Key facts: Rocket Lab (RKLB) wins 20 Synspective launches; shares fall",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:e0d95c842d016:0-key-facts-rocket-lab-rklb-wins-20-synspective-launches-shares-fall/"
+    }
+   ],
+   "dilution": {
+    "risk": "Orta",
+    "text": "Iridium finansmanı için $1,94 mlr'lık ATM programı 15 Eyl'de tamamlandı, yani sulandırmanın büyük kısmı yapıldı; yakın vadede yeni büyük ihraç ihtimali daha düşük. Net zarar sürüyor, bilanço sonrası (9 Kas) kontrol edilmeli."
+   }
+  },
+  "CRWV": {
+   "name": "CoreWeave",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $82,08 (+%0,61). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 1. Günlük RSI 43,7. Kapanış $82,08, {stop:CRWV} stopun %2,6 üstünde; maliyetin ({cost:CRWV}) %8,5 altında. CEO'nun $347 mn'lık hisse satışı ve OpenAI gelir açıklamasıyla bağlantılı satış baskısı var; günlük SMA50 (88,43) üstü geri alınmadıkça trend aşağı. Yüksek borç yapısı riskli. Momentum zayıf; satış kararı sende."
+   },
+   "technical": [
+    "9 Eki kapanışı $82,08 (+%0,61); trend verisi son fiyatı $82,37",
+    "4s EMA8 84,74 < EMA20 86,19: aşağı kesişim 2 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 82,51 < EMA89 84,45 (59 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $83,18 (fiyata %1,0 uzak; 77 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %5,5): $93,20'dan başlayan düşüş şu an Dalga 1 sayılıyor; başlangıçtan $80,63 ucuna kadar hareket %13,5. Dalga 1 erken evredir; arkasından Dalga 2 tepkisi (ters yönde düzeltme) gelmesi olağandır. Dalga 2 tepki bölgesi (Fibonacci %38,2–61,8 geri alım) $85,43–$88,40. Sayım $93,20 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 43,7: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,48 sinyalin (−0,14) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 11,2: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir",
+    "Fiyat günlük EMA20 (86,54) altında, SMA50 (88,43) altında, SMA200 (92,59) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$45,3 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$7,6 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$1,9 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$13,7 mlr"
+     ],
+     [
+      "Borç/Özsermaye",
+      "10,27"
+     ],
+     [
+      "Sonraki bilanço",
+      "16 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $141,55 (46 analist, 'Güçlü Al'; kapanışa göre +%72; aralık $39,00–$278,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "CoreWeave's Busy Week: A 240 MW India Entry, a Sell-Off Tied to OpenAI's Revenue Disclosure",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:05a20dbdd094b:0-coreweave-s-busy-week-a-240-mw-india-entry-a-sell-off-tied-to-openai-s-revenue-disclosure/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Scrapped IPO of Nvidia-Backed Company Points to Limits of AI Boom — WSJ",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009001251:0-scrapped-ipo-of-nvidia-backed-company-points-to-limits-of-ai-boom-wsj/"
+    },
+    {
+     "date": "7 Eki 2026",
+     "title": "CoreWeave CEO Dumps $347 Million of Stock",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:1b1a75080094b:0-coreweave-ceo-dumps-347-million-of-stock/"
+    }
+   ],
+   "dilution": {
+    "risk": "Yüksek",
+    "text": "Sürekli borç ve sermaye toplama modeli, borç/özsermaye ≈10; serbest nakit akışı −$13,7 mlr. CEO'nun 7 Eki'de $347 mn'lık hisse satışı da var. Yeni ihraç ihtimali yüksek."
+   }
+  },
+  "WYFI": {
+   "name": "WhiteFiber",
+   "momentum": {
+    "status": "Zayıf (stop altı)",
+    "text": "9 Eki kapanışı $15,69 (−%0,38). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 34,8. Fiyat {stop:WYFI} stop seviyesinin altında kapandı (gün içi dip $15,39), maliyetin ({cost:WYFI}) yaklaşık %11 altında; günlük SMA50 (20,72) ve SMA200 (21,56) çok uzakta. Tepki gelirse maliyet ({cost:WYFI}) ve 4s EMA20 bölgesi direnç. Momentum kırık; elde tutma önerisi yok, satış kararı sende."
+   },
+   "technical": [
+    "9 Eki kapanışı $15,69 (−%0,38); trend verisi son fiyatı $15,80",
+    "4s EMA8 16,32 < EMA20 17,19: aşağı kesişim 16 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 15,71 < EMA89 16,17 (254 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $15,79 (fiyata %0,1 uzak; 10 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %7,3): $20,52'dan başlayan düşüş şu an Dalga 3 sayılıyor; başlangıçtan $15,30 ucuna kadar hareket %25,4. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $17,29–$18,53. Sayım $20,52 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 34,8: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,17 sinyalin (−1,05) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 18,9: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 8,5 (aşırı satım); CCI −153 (aşırı satım)",
+    "Fiyat günlük EMA20 (18,04) altında, SMA50 (20,72) altında, SMA200 (21,56) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$609,5 mn"
+     ],
+     [
+      "Gelir (TTM)",
+      "$92,9 mn (+%52) [StockAnalysis; TradingView değeri tutarsız]"
+     ],
+     [
+      "Net sonuç",
+      "−$44,3 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$2,8 mn"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,95"
+     ],
+     [
+      "Sonraki bilanço",
+      "12 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $40,75 (12 analist, 'Güçlü Al'; kapanışa göre +%160; aralık $32,00–$50,00). Adil değer = analist hedefi, kendi tahminim değil. Az analistli/tek kaynaklı; temkinli oku, fiyat hedeflerden çok uzak."
+   },
+   "news": [
+    {
+     "date": "5 Eki 2026",
+     "title": "Clockwork.io Raises $31M as LinkedIn, Together AI and WhiteFiber Adopt Its Resilience Software to Stop Wasting GPU-Hours",
+     "src": "PR Newswire",
+     "url": "https://www.tradingview.com/news/prnewswire:cf95d510f611a:0-clockwork-io-raises-31m-as-linkedin-together-ai-and-whitefiber-adopt-its-resilience-software-to-stop-wasting-gpu-hours/"
+    },
+    {
+     "date": "21 Ağu 2026",
+     "title": "WhiteFiber Announces Closing of Upsized $310.0 Million Convertible Senior Notes Offering",
+     "src": "PR Newswire",
+     "url": "https://www.tradingview.com/news/prnewswire:0b078383d5864:0-whitefiber-announces-closing-of-upsized-310-0-million-convertible-senior-notes-offering/"
+    }
+   ],
+   "dilution": {
+    "risk": "Yüksek",
+    "text": "Ağustos'ta $310 mn'lık %5'lik dönüştürülebilir tahvil (2032) çıkardı, piyasa değerinin yarısından fazla. Dönüşüm olursa hisse sayısı artar; zarar sürüyor, genişleme finansmanı gerekiyor."
+   }
+  },
+  "SGML": {
+   "name": "Sigma Lithium",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $9,35 (−%2,20). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 44,0. Kapanış $9,35 (−%2,2), {stop:SGML} stopun %3,9 üstünde; maliyet ({cost:SGML}) altında. Maden faaliyeti mahkeme kararıyla yeniden başladı ama ATB Cormark 'Sektör Performansı'na indirdi. 4s EMA'lar yeni yukarı kesişti ama 15dk ve Supertrend aşağı; kırılgan. Satış kararı sende."
+   },
+   "technical": [
+    "9 Eki kapanışı $9,35 (−%2,20); trend verisi son fiyatı $9,36",
+    "4s EMA8 9,49 < EMA20 9,50: aşağı kesişim 0 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 9,44 < EMA89 9,48 (15 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $9,53 (fiyata %1,8 uzak; 51 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %7,6): $7,79'dan başlayan yükseliş şu an Dalga 2 sayılıyor; başlangıçtan $9,32 ucuna kadar hareket %19,6. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $7,79 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 44,0: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,37 sinyalin (−0,43) üstünde (boğa); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 22,9: trend gücü yeni oluşuyor (20–25); ADX yönü değil gücü gösterir",
+    "Fiyat günlük EMA20 (9,77) altında, SMA50 (10,69) altında, SMA200 (13,34) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$1,1 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$138,5 mn"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$27,1 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$28,5 mn"
+     ],
+     [
+      "Borç/Özsermaye",
+      "3,26"
+     ],
+     [
+      "Sonraki bilanço",
+      "13 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $14,10 (4 analist, 'Al'; kapanışa göre +%51; aralık $10,00–$22,14). Adil değer = analist hedefi, kendi tahminim değil. Az analistli/tek kaynaklı; temkinli oku, fiyat hedeflerden çok uzak."
+   },
+   "news": [
+    {
+     "date": "7 Eki 2026",
+     "title": "Sigma Lithium Resumes Operations Following Brazilian Federal Court Ruling",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:c2bdaa102094b:0-sigma-lithium-resumes-operations-following-brazilian-federal-court-ruling/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "Sigma Lithium Corporation (SGML) Resumes Operations, Reiterates 2027 Output Target of 330,000t",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:53e416a4d7798:0-sigma-lithium-corporation-sgml-resumes-operations-reiterates-2027-output-target-of-330-000t/"
+    },
+    {
+     "date": "2 Eki 2026",
+     "title": "Sigma Lithium Corp. Cut to Sector Perform From Outperform by ATB Cormark",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261002003979:0-sigma-lithium-corp-cut-to-sector-perform-from-outperform-by-atb-cormark/"
+    }
+   ],
+   "dilution": {
+    "risk": "Orta (teyit edilmedi)",
+    "text": "Zarar ediyor (−$27,6 mn) ve genişleme yatırımı sürüyor, ama bu turda nakit/borç ve ATM programı doğrulanmadı. Bilanço öncesi (13 Kas) SEC dosyalarından kontrol edilmeli."
+   }
+  },
+  "UAMY": {
+   "name": "United States Antimony",
+   "momentum": {
+    "status": "Zayıf (satıldı)",
+    "text": "9 Eki kapanışı $3,68 (−%1,08). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 5. Günlük RSI 27,7. POZİSYON SATILDI (9 Eki, $3,68). Fiyat $4,00 geçersizlik seviyesini kırmıştı; takipte tutulmuyor, geri dönüş için günlük EMA20 (4,28) üstü kapanış aranır."
+   },
+   "technical": [
+    "9 Eki kapanışı $3,68 (−%1,08); trend verisi son fiyatı $3,72",
+    "4s EMA8 3,79 < EMA20 4,00: aşağı kesişim 42 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 3,70 < EMA89 3,77 (330 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $3,76 (fiyata %1,1 uzak; 77 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %5,8): $4,97'dan başlayan düşüş şu an Dalga 5 sayılıyor; başlangıçtan $3,65 ucuna kadar hareket %26,6. Dalga 5 son itkidir; arkasından büyük bir düzeltme riski artar, yeni pozisyon için geç evre. düzeltme bölgesi (Fibonacci %38,2–61,8 geri alım) $4,15–$4,47. Sayım $4,97 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 27,7: aşırı satım bölgesinde (<30). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,36 sinyalin (−0,32) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 30,8: trend gücü güçlü (>25); ADX yönü değil gücü gösterir; Stochastic %K 5,4 (aşırı satım); CCI −133 (aşırı satım)",
+    "Fiyat günlük EMA20 (4,28) altında, SMA50 (5,01) altında, SMA200 (7,52) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$550,8 mn"
+     ],
+     [
+      "Gelir (TTM)",
+      "$36,4 mn"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$16,3 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$71,3 mn"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,00"
+     ],
+     [
+      "Sonraki bilanço",
+      "18 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $10,56 (5 analist, 'Güçlü Al'; kapanışa göre +%187; aralık $9,25–$13,50). Adil değer = analist hedefi, kendi tahminim değil. Az analistli/tek kaynaklı; temkinli oku, fiyat hedeflerden çok uzak."
+   },
+   "news": [
+    {
+     "date": "30 Eyl 2026",
+     "title": "United States Antimony Corporation (UAMY) Updates Q3 DLA MIL-SPEC Antimony Deliveries",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:ddca25e2f80a2:0-united-states-antimony-corporation-uamy-updates-q3-dla-mil-spec-antimony-deliveries/"
+    },
+    {
+     "date": "2 Eki 2026",
+     "title": "Short interest alert: Most and least shorted sub-$2B materials stocks in September",
+     "src": "Seeking Alpha",
+     "url": "https://www.tradingview.com/news/seekingalpha:f91e0ce0b094b:0-short-interest-alert-most-and-least-shorted-sub-2b-materials-stocks-in-september/"
+    }
+   ],
+   "dilution": {
+    "risk": "Yüksek",
+    "text": "Pozisyon satıldı. Zarar ve geçmişte hisse ihracı nedeniyle risk yüksek."
+   }
+  },
+  "INTC": {
+   "name": "Intel",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $104,70 (−%2,22). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 43,4. Güçlü satış dalgası sürüyor (Dalga 3), günlük RSI 43 ama aşırı satıma yaklaşmadı; günlük SMA50 (103,08) önemli destek, kapanış onun altına inerse düşüş hızlanır. Bilanço 29 Eki."
+   },
+   "technical": [
+    "9 Eki kapanışı $104,70 (−%2,22); trend verisi son fiyatı $104,56",
+    "4s EMA8 109,48 < EMA20 112,93: aşağı kesişim 6 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 106,17 < EMA89 109,10 (126 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $106,16 (fiyata %1,5 uzak; 142 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %5,0): $127,44'dan başlayan düşüş şu an Dalga 3 sayılıyor; başlangıçtan $104,00 ucuna kadar hareket %18,4. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $112,95–$118,48. Sayım $127,44 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 43,4: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 2,29 sinyalin (4,34) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 20,6: trend gücü yeni oluşuyor (20–25); ADX yönü değil gücü gösterir; Stochastic %K 14,4 (aşırı satım); CCI −77",
+    "Fiyat günlük EMA20 (111,69) altında, SMA50 (103,08) üstünde, SMA200 (83,03) üstünde. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$553,5 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$57,0 mlr (+%7 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$11,3 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$344,0 mn"
+     ],
+     [
+      "Brüt marj",
+      "%39,0"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,58"
+     ],
+     [
+      "Sonraki bilanço",
+      "29 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $121,66 (53 analist, 'Al'; kapanışa göre +%16; aralık $80,00–$200,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Intel Stocks Fall 1.0% as Applied Partnership Targets AI Bottlenecks",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:0d3a1d097094b:0-intel-stocks-fall-1-0-as-applied-partnership-targets-ai-bottlenecks/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Intel's Latest Move Sends a Strong Signal on Musk's Terafab",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:2f98ea126094b:0-intel-s-latest-move-sends-a-strong-signal-on-musk-s-terafab/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Intel (INTC): Buy, Sell, or Hold Post Q2 Earnings?",
+     "src": "Stock Story",
+     "url": "https://www.tradingview.com/news/stockstory:737bef7a5094b:0-intel-intc-buy-sell-or-hold-post-q2-earnings/"
+    }
+   ],
+   "dilution": {
+    "risk": "Orta-yüksek",
+    "text": "Net zarar büyük ve yatırım yükü ağır; 2025'te devlet, SoftBank ve Nvidia ile hisse bazlı yatırım anlaşmaları yapıldı (bilinen, bu turda yeniden doğrulanmadı)."
+   }
+  },
+  "NVDA": {
+   "name": "Nvidia",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $229,28 (−%0,52). 4s EMA yukarı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 53,0. Günlük trend yukarı (fiyat tüm günlük ortalamaların üstünde) ama kısa vadede 15dk/Supertrend aşağı; 'boğa tuzağı' uyarıları ve AI değerleme kaygıları baskı yaratıyor. Bilanço 25 Kas."
+   },
+   "technical": [
+    "9 Eki kapanışı $229,28 (−%0,52); trend verisi son fiyatı $229,58",
+    "4s EMA8 232,83 > EMA20 232,15: yukarı kesişim 29 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 230,57 < EMA89 232,91 (44 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $231,10 (fiyata %0,7 uzak; 38 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %2,4): $227,03'dan başlayan yükseliş şu an Dalga 2 sayılıyor; başlangıçtan $229,11 ucuna kadar hareket %0,9. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $227,03 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 53,0: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 3,95 sinyalin (3,82) üstünde (boğa); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 18,2: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 51,9; CCI 39",
+    "Fiyat günlük EMA20 (228,68) üstünde, SMA50 (222,08) üstünde, SMA200 (202,15) üstünde. TradingView günlük özeti: Al"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$5,53 trilyon"
+     ],
+     [
+      "Gelir (TTM)",
+      "$303,0 mlr (+%83 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$192,9 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$127,0 mlr"
+     ],
+     [
+      "Brüt marj",
+      "%74,7"
+     ],
+     [
+      "F/K (TTM)",
+      "29,0"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,17"
+     ],
+     [
+      "Sonraki bilanço",
+      "25 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $334,45 (72 analist, 'Güçlü Al'; kapanışa göre +%46; aralık $180,00–$710,29). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Nvidia Stocks Edge Higher as $1 Billion Science Bet Tests Returns",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:4d9a3d301094b:0-nvidia-stocks-edge-higher-as-1-billion-science-bet-tests-returns/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Nvidia Stock Recovers but IPO Fears Feed AI Concerns — Barrons.com",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009002145:0-nvidia-stock-recovers-but-ipo-fears-feed-ai-concerns-barrons-com/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "NVIDIA's Rally in Trouble? Analyst Warns of Bull Trap",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:7222ec61a094b:0-nvidia-s-rally-in-trouble-analyst-warns-of-bull-trap/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Çok yüksek nakit akışı; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "UUUU": {
+   "name": "Energy Fuels",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $9,96 (+%0,20). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 1. Günlük RSI 29,4. Günlük RSI 29 ve Stochastic 6: aşırı satım, tepki ihtimali var ama trend aşağı (ADX 31, güçlü). Dip dönüşü için 4s EMA8'in EMA20'yi yukarı kesmesi beklenir. Bilanço 30 Eki."
+   },
+   "technical": [
+    "9 Eki kapanışı $9,96 (+%0,20); trend verisi son fiyatı $9,98",
+    "4s EMA8 10,27 < EMA20 10,72: aşağı kesişim 55 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 10,03 < EMA89 10,23 (70 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $9,92 (fiyata %0,6 uzak; 23 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %5,6): $11,56'dan başlayan düşüş şu an Dalga 1 sayılıyor; başlangıçtan $9,72 ucuna kadar hareket %15,9. Dalga 1 erken evredir; arkasından Dalga 2 tepkisi (ters yönde düzeltme) gelmesi olağandır. Dalga 2 tepki bölgesi (Fibonacci %38,2–61,8 geri alım) $10,42–$10,86. Sayım $11,56 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 29,4: aşırı satım bölgesinde (<30). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,84 sinyalin (−0,78) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 31,5: trend gücü güçlü (>25); ADX yönü değil gücü gösterir; Stochastic %K 6,2 (aşırı satım); CCI −153 (aşırı satım)",
+    "Fiyat günlük EMA20 (11,35) altında, SMA50 (13,04) altında, SMA200 (17,03) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$2,6 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$105,8 mn (+%63 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$81,7 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$116,1 mn"
+     ],
+     [
+      "Brüt marj",
+      "%30,0"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,86"
+     ],
+     [
+      "Sonraki bilanço",
+      "30 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $25,77 (9 analist, 'Güçlü Al'; kapanışa göre +%159; aralık $16,00–$32,44). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "7 Eki 2026",
+     "title": "Can Energy Fuels' Liquidity Support Its Ambitious Growth Plans?",
+     "src": "Zacks",
+     "url": "https://www.tradingview.com/news/zacks:b21ce3550094b:0-can-energy-fuels-liquidity-support-its-ambitious-growth-plans/"
+    },
+    {
+     "date": "5 Eki 2026",
+     "title": "UUUU Trades at a Premium to the Industry: How to Play the Stock?",
+     "src": "Zacks",
+     "url": "https://www.tradingview.com/news/zacks:b796ac3f2094b:0-uuuu-trades-at-a-premium-to-the-industry-how-to-play-the-stock/"
+    },
+    {
+     "date": "29 Eyl 2026",
+     "title": "UUUU's Cash Flow Deficit Narrows in 1H26: What's Next?",
+     "src": "Zacks",
+     "url": "https://www.tradingview.com/news/zacks:c01d9c4cc094b:0-uuuu-s-cash-flow-deficit-narrows-in-1h26-what-s-next/"
+    }
+   ],
+   "dilution": {
+    "risk": "Yüksek",
+    "text": "Net zarar sürüyor (−$82 mn) ve geçmişte ATM ile hisse ihracı yapıldı; 7 Eki'de likidite yeterliliği tartışıldı. Yeni ihraç ihtimali yüksek."
+   }
+  },
+  "KTOS": {
+   "name": "Kratos",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $42,36 (+%1,03). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 2. Günlük RSI 35,2. Günlük RSI 35, trend aşağı (ADX 28) ama Supertrend yukarı döndü (24 mum). Barclays $90 hedef verdi. Bilanço 29 Eki."
+   },
+   "technical": [
+    "9 Eki kapanışı $42,36 (+%1,03); trend verisi son fiyatı $42,49",
+    "4s EMA8 42,33 < EMA20 43,18: aşağı kesişim 70 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 42,13 < EMA89 42,23 (75 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $41,67 (fiyata %1,9 uzak; 50 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %4,3): $44,13'dan başlayan düşüş şu an Dalga 2 sayılıyor; başlangıçtan $43,04 ucuna kadar hareket %2,5. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $44,13 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 35,2: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −2,21 sinyalin (−2,19) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 27,7: trend gücü güçlü (>25); ADX yönü değil gücü gösterir; Stochastic %K 13,2 (aşırı satım); CCI −84",
+    "Fiyat günlük EMA20 (44,80) altında, SMA50 (50,69) altında, SMA200 (68,15) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$8,0 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$1,5 mlr (+%26 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$30,9 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$130,3 mn"
+     ],
+     [
+      "Brüt marj",
+      "%21,6"
+     ],
+     [
+      "F/K (TTM)",
+      "243,6"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,06"
+     ],
+     [
+      "Sonraki bilanço",
+      "29 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $99,96 (25 analist, 'Güçlü Al'; kapanışa göre +%136; aralık $55,00–$150,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Kratos Price Target Announced at $90.00/Share by Barclays",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009003081:0-kratos-price-target-announced-at-90-00-share-by-barclays/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Key facts: KTOS Q2 revenue $458.8M; 5G NTN Demo; ARKK Buys Shares",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:df76d146f3838:0-key-facts-ktos-q2-revenue-458-8m-5g-ntn-demo-arkk-buys-shares/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "Kratos Defense & Security Solutions, Inc. Stock 12-Month Price Target Cut to $99.96, Implies 138% Upside",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:0a903e6d44891:0-kratos-defense-security-solutions-inc-stock-12-month-price-target-cut-to-99-96-implies-138-upside/"
+    }
+   ],
+   "dilution": {
+    "risk": "Orta",
+    "text": "Net kâr çok küçük, serbest nakit akışı −$130 mn; büyüme yatırımı ve geçmiş hisse ihraçları nedeniyle ihraç ihtimali orta. Borç/özsermaye düşük (0,06)."
+   }
+  },
+  "CBRS": {
+   "name": "Cerebras",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $164,17 (−%2,23). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 37,4. Lock-up çözülümü (19,4 mn hisse) ve Nvidia raporuyla sert düştü; OpenAI anlaşması kısmen toparladı. Yeni halka arz olduğu için SMA200 yok; satış baskısı sürüyor (günlük MACD ayı). Bilanço 2 Ara."
+   },
+   "technical": [
+    "9 Eki kapanışı $164,17 (−%2,23); trend verisi son fiyatı $164,49",
+    "4s EMA8 169,99 < EMA20 177,58: aşağı kesişim 15 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 165,32 < EMA89 168,81 (210 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $166,69 (fiyata %1,3 uzak; 50 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %7,0): $213,98'dan başlayan düşüş şu an Dalga 3 sayılıyor; başlangıçtan $161,51 ucuna kadar hareket %24,5. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $181,55–$193,94. Sayım $213,98 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 37,4: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −7,93 sinyalin (−5,30) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 11,9: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 12,5 (aşırı satım); CCI −117 (aşırı satım)",
+    "Fiyat günlük EMA20 (184,03) altında, SMA50 (199,31) altında (SMA200 için yeterli geçmiş yok, yeni halka arz). TradingView günlük özeti: Güçlü Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$36,7 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$680,7 mn (+%91 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$512,4 mn"
+     ],
+     [
+      "Brüt marj",
+      "%39,0"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,16"
+     ],
+     [
+      "Sonraki bilanço",
+      "2 Ara 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $291,08 (13 analist, 'Güçlü Al'; kapanışa göre +%77; aralık $209,00–$330,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "5 Eki 2026",
+     "title": "Cerebras Stock Rebounds After Getting an OpenAI Boost — Barrons.com",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261005001634:0-cerebras-stock-rebounds-after-getting-an-openai-boost-barrons-com/"
+    },
+    {
+     "date": "5 Eki 2026",
+     "title": "Cerebras Stock Surges After Altman Calls Them \"Close Partner\"",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:523381536094b:0-cerebras-stock-surges-after-altman-calls-them-close-partner/"
+    },
+    {
+     "date": "5 Eki 2026",
+     "title": "Weekly Recap: OpenAI $10B+ wafer-scale deal and IPO lockup release",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:8a9c5306fd89f:0-weekly-recap-openai-10b-wafer-scale-deal-and-ipo-lockup-release/"
+    },
+    {
+     "date": "2 Eki 2026",
+     "title": "Cerebras Shares Sink Nearly 20% After Report Nvidia Will Power OpenAI Model Feature",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/binance_news:3e5fc9598094b:0-cerebras-shares-sink-nearly-20-after-report-nvidia-will-power-openai-model-feature/"
+    }
+   ],
+   "dilution": {
+    "risk": "Yüksek",
+    "text": "Net zarar −$512 mn; büyüme finansmanı gerekiyor. Halka arz sonrası lock-up çözülümü (19,4 mn hisse) satış baskısı; yeni hisse ihracı ihtimali yüksek."
+   }
+  },
+  "STX": {
+   "name": "Seagate",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $783,00 (+%1,06). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 40,4. Toshiba rekabeti haberleri ve HDD sıkışıklığı gevşeyebilir endişesi; günlük MACD sinyal altına geçti. Bilanço 28 Eki (TradingView takvimi; başlıkta 27 Eki geçiyor, teyit edilmeli)."
+   },
+   "technical": [
+    "9 Eki kapanışı $783,00 (+%1,06); trend verisi son fiyatı $781,59",
+    "4s EMA8 801,53 < EMA20 835,57: aşağı kesişim 10 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 782,08 < EMA89 796,08 (154 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $789,90 (fiyata %1,1 uzak; 103 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %7,3): $946,34'dan başlayan düşüş şu an Dalga 3 sayılıyor; başlangıçtan $766,09 ucuna kadar hareket %19,0. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $834,95–$877,48. Sayım $946,34 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 40,4: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −11,53 sinyalin (3,28) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 14,5: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 9,4 (aşırı satım); CCI −95",
+    "Fiyat günlük EMA20 (851,77) altında, SMA50 (855,24) altında, SMA200 (663,81) üstünde. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$178,0 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$12,2 mlr (+%34 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$3,2 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$3,1 mlr"
+     ],
+     [
+      "Brüt marj",
+      "%45,6"
+     ],
+     [
+      "F/K (TTM)",
+      "56,4"
+     ],
+     [
+      "Borç/Özsermaye",
+      "1,80"
+     ],
+     [
+      "Sonraki bilanço",
+      "28 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $1.177,95 (29 analist, 'Güçlü Al'; kapanışa göre +%50; aralık $860,00–$1.600,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "7 Eki 2026",
+     "title": "Seagate vs. Western Digital: Which HDD Stock Has More Room to Run?",
+     "src": "Zacks",
+     "url": "https://www.tradingview.com/news/zacks:220bfca45094b:0-seagate-vs-western-digital-which-hdd-stock-has-more-room-to-run/"
+    },
+    {
+     "date": "7 Eki 2026",
+     "title": "Seagate Technology Holdings (STX) Stock Is Trending After Hours: Here's Why",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:ccd01670a094b:0-seagate-technology-holdings-stx-stock-is-trending-after-hours-here-s-why/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "Seagate and Western Digital Drop. The Hot Tech Stocks Have a Big Toshiba Problem. — Barrons.com",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261006001807:0-seagate-and-western-digital-drop-the-hot-tech-stocks-have-a-big-toshiba-problem-barrons-com/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "MU": {
+   "name": "Micron",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $1.029,00 (−%0,66). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 50,2. Rekor yıllık sonuçlara rağmen hisse düştü ('beklenti yüksekti'). 4s EMA8 ilk kez EMA20 altına döndü; günlük MACD hâlâ pozitif ama sinyalin altında. Tayvan grevi riski var. Bilanço 23 Ara."
+   },
+   "technical": [
+    "9 Eki kapanışı $1.029,00 (−%0,66); trend verisi son fiyatı $1.029,50",
+    "4s EMA8 1.048,01 < EMA20 1.053,52: aşağı kesişim 1 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 1.034,26 < EMA89 1.047,42 (36 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $1.038,97 (fiyata %0,9 uzak; 50 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %4,6): $1.011,42'dan başlayan yükseliş şu an Dalga 2 sayılıyor; başlangıçtan $1.017,00 ucuna kadar hareket %0,6. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $1.011,42 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 50,2: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 22,36 sinyalin (28,68) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 13,3: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 42,4; CCI −5",
+    "Fiyat günlük EMA20 (1.039,47) altında, SMA50 (976,19) üstünde, SMA200 (701,68) üstünde. TradingView günlük özeti: Nötr"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$1,16 trilyon"
+     ],
+     [
+      "Gelir (TTM)",
+      "$133,2 mlr (+%256 y/y)"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$85,0 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$59,0 mlr"
+     ],
+     [
+      "Brüt marj",
+      "%85,9"
+     ],
+     [
+      "F/K (TTM)",
+      "13,9"
+     ],
+     [
+      "Borç/Özsermaye",
+      "0,04"
+     ],
+     [
+      "Sonraki bilanço",
+      "23 Ara 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $1.602,94 (55 analist, 'Güçlü Al'; kapanışa göre +%56; aralık $361,00–$3.000,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Micron Stock Falls. Why Buybacks Could be Crucial for Gains. — Barrons.com",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009002430:0-micron-stock-falls-why-buybacks-could-be-crucial-for-gains-barrons-com/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Micron's Record Growth Wasn't Enough",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:108abb400094b:0-micron-s-record-growth-wasn-t-enough/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Micron Technology Inc FY 2026: Revenue $133.19B, EPS $74.33— 10-K Summary",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:5445d6c3001bb:0-micron-technology-inc-fy-2026-revenue-133-19b-eps-74-33-10-k-summary/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Micron Stock Faces New Risk as Taiwan Workers Back Strike",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/gurufocus:7784644dd094b:0-micron-stock-faces-new-risk-as-taiwan-workers-back-strike/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı ve nakit üretiyor; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "AVGO": {
+   "name": "Broadcom",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $361,54 (+%0,39). 4s EMA yukarı, 15dk EMA aşağı, Supertrend yukarı; Elliott yükseliş Dalga 2. Günlük RSI 50,1. 4s EMA'lar yukarı ama 15dk aşağı; günlük SMA50/200 (≈370) hemen üstte direnç. OpenAI için $50 mlr'lık finansman haberi borç yapısı gibi, hisse ihracı değil. Bilanço 10 Ara."
+   },
+   "technical": [
+    "9 Eki kapanışı $361,54 (+%0,39); trend verisi son fiyatı $362,28",
+    "4s EMA8 365,27 > EMA20 362,35: yukarı kesişim 9 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 363,30 < EMA89 365,35 (30 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $359,45 (fiyata %0,8 uzak; 25 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %3,3): $343,32'dan başlayan yükseliş şu an Dalga 2 sayılıyor; başlangıçtan $357,41 ucuna kadar hareket %4,1. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $343,32 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 50,1: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,51 sinyalin (−2,99) üstünde (boğa); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 17,0: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 60,6; CCI 67",
+    "Fiyat günlük EMA20 (360,23) üstünde, SMA50 (371,87) altında, SMA200 (368,28) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$1,73 trilyon"
+     ],
+     [
+      "Gelir (TTM)",
+      "$89,1 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$38,3 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$39,4 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "10 Ara 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $533,19 (54 analist, 'Güçlü Al'; kapanışa göre +%47; aralık $350,00–$715,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "8 Eki 2026",
+     "title": "Broadcom Eyes $50 Billion Financing Deal for OpenAI Chips",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:d3d9e3221094b:0-broadcom-eyes-50-billion-financing-deal-for-openai-chips/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Broadcom Redefines AI Infrastructure with Industry-Leading Networking Innovations at 2026 OCP Global Summit",
+     "src": "GlobeNewswire",
+     "url": "https://www.tradingview.com/news/globenewswire:732dd0fc7094b:0-broadcom-redefines-ai-infrastructure-with-industry-leading-networking-innovations-at-2026-ocp-global-summit/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Broadcom Stocks Edge Lower as Marvell Raises Custom-Chip Stakes",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:f73f02d8b094b:0-broadcom-stocks-edge-lower-as-marvell-raises-custom-chip-stakes/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı ve nakit üretiyor. OpenAI için $50 mlr'lık finansman haberi borç yapısı (hisse ihracı değil); Oracle/SpaceX ile birlikte borç piyasasına gidiş gündemde."
+   }
+  },
+  "TSLA": {
+   "name": "Tesla",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "9 Eki kapanışı $382,70 (+%2,05). 4s EMA yukarı, 15dk EMA yukarı, Supertrend yukarı; Elliott yükseliş Dalga 3. Günlük RSI 59,7. Bu hafta toparlandı: 4s ve 15dk EMA yukarı, Supertrend yukarı, Elliott Dalga 3 yükseliş. Analist ortalama hedefi güncel fiyata çok yakın (fiyatlanmış). Bilanço 21 Eki, o güne kadar yön riski yüksek."
+   },
+   "technical": [
+    "9 Eki kapanışı $382,70 (+%2,05); trend verisi son fiyatı $382,50",
+    "4s EMA8 377,82 > EMA20 373,24: yukarı kesişim 9 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 381,44 > EMA89 378,39 (24 mum önce, yukarı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $379,77 (fiyata %0,7 uzak; 26 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %2,9): $345,88'dan başlayan yükseliş şu an Dalga 3 sayılıyor; başlangıçtan $388,56 ucuna kadar hareket %12,3. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $362,18–$372,26. Sayım $345,88 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 59,7: güçlü (55–70). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 5,07 sinyalin (4,00) üstünde (boğa); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 17,1: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 78,5; CCI 110 (aşırı alım)",
+    "Fiyat günlük EMA20 (369,21) üstünde, SMA50 (354,74) üstünde, SMA200 (390,60) altında. TradingView günlük özeti: Al"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$1,51 trilyon"
+     ],
+     [
+      "Gelir (TTM)",
+      "$103,6 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$3,8 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$5,8 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "21 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $381,42 (49 analist, 'Al'; kapanışa göre −%0; aralık $24,86–$550,00). Adil değer = analist hedefi, kendi tahminim değil. Düşük hedef $24,86 aykırı değer, ortalamayı bozmuş olabilir; çoğu analist 'Tut'."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Tesla renames 'Full Self-Driving' to 'Assisted Driving' in Europe as it chases clearance for software",
+     "src": "Reuters",
+     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L6N45V0PF:0-tesla-renames-full-self-driving-to-assisted-driving-in-europe-as-it-chases-clearance-for-software/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Tesla Stock Rises as Elon Musk Asserts Control Over Terafab Chip Project — Barrons.com",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261009003119:0-tesla-stock-rises-as-elon-musk-asserts-control-over-terafab-chip-project-barrons-com/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Tesla Stock Jumps as Shanghai Deliveries Rise for 11th Straight Month",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:183c6e4c1094b:0-tesla-stock-jumps-as-shanghai-deliveries-rise-for-11th-straight-month/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Nakit pozisyonu güçlü, kâr ediyor. Büyük yapay zekâ yatırımı ileride finansman gerektirebilir; bu turda doğrulanmadı."
+   }
+  },
+  "ARM": {
+   "name": "Arm Holdings",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $266,28 (−%3,27). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 1. Günlük RSI 43,9. Qualcomm davası jüri kararı yakın (olumsuz çıkarsa baskı). 4s ve 15dk EMA aşağı, Elliott yeni düşüş dalgasında. Günlük SMA50 (269,9) hemen altında kapandı. Bilanço 4 Kas."
+   },
+   "technical": [
+    "9 Eki kapanışı $266,28 (−%3,27); trend verisi son fiyatı $266,55",
+    "4s EMA8 281,49 < EMA20 289,41: aşağı kesişim 3 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 270,18 < EMA89 280,03 (73 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $270,48 (fiyata %1,5 uzak; 77 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %5,6): $318,36'dan başlayan düşüş şu an Dalga 1 sayılıyor; başlangıçtan $265,66 ucuna kadar hareket %16,6. Dalga 1 erken evredir; arkasından Dalga 2 tepkisi (ters yönde düzeltme) gelmesi olağandır. Dalga 2 tepki bölgesi (Fibonacci %38,2–61,8 geri alım) $285,79–$298,23. Sayım $318,36 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 43,9: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 4,89 sinyalin (8,71) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 17,1: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 17,3 (aşırı satım); CCI −58",
+    "Fiyat günlük EMA20 (286,05) altında, SMA50 (269,86) altında, SMA200 (220,11) üstünde. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$294,0 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$5,2 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$1,0 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$1,5 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "4 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $300,48 (45 analist, 'Güçlü Al'; kapanışa göre +%13; aralık $130,00–$480,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Qualcomm and Arm set for jury verdict in contract breach feud",
+     "src": "Reuters",
+     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L6N45U18L:0-qualcomm-and-arm-set-for-jury-verdict-in-contract-breach-feud/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Networking startup Eliyan gets takeover interest, held early talks with Arm - report",
+     "src": "Seeking Alpha",
+     "url": "https://www.tradingview.com/news/seekingalpha:f7ae4534c094b:0-networking-startup-eliyan-gets-takeover-interest-held-early-talks-with-arm-report/"
+    },
+    {
+     "date": "7 Eki 2026",
+     "title": "Lattice Collaborates with Arm to Advance Secure, Adaptable AI Data Center Infrastructure",
+     "src": "BusinessWire",
+     "url": "https://www.tradingview.com/news/business_wire:f7614a18d3c5d:0-lattice-collaborates-with-arm-to-advance-secure-adaptable-ai-data-center-infrastructure/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı ve nakit üreten bir yapı; yakın vadede sermaye artırımı ihtiyacı görünmüyor."
+   }
+  },
+  "WDC": {
+   "name": "Western Digital",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $397,28 (+%1,01). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 38,4. Hisse günlük SMA200 (405,9) altına indi; günlük MACD ayı, Stochastic 9. Bilanço 22 Eki (resmi duyuru). Toshiba rekabeti riski."
+   },
+   "technical": [
+    "9 Eki kapanışı $397,28 (+%1,01); trend verisi son fiyatı $396,08",
+    "4s EMA8 404,42 < EMA20 420,49: aşağı kesişim 11 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 395,20 < EMA89 401,77 (155 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $399,73 (fiyata %0,9 uzak; 103 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %7,0): $465,66'dan başlayan düşüş şu an Dalga 3 sayılıyor; başlangıçtan $386,01 ucuna kadar hareket %17,1. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $416,44–$435,23. Sayım $465,66 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 38,4: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −15,00 sinyalin (−10,15) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 17,1: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 9,0 (aşırı satım); CCI −136 (aşırı satım)",
+    "Fiyat günlük EMA20 (433,82) altında, SMA50 (457,61) altında, SMA200 (405,90) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$148,7 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$12,9 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$9,3 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$3,5 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "22 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $687,13 (29 analist, 'Güçlü Al'; kapanışa göre +%73; aralık $460,00–$1.050,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "8 Eki 2026",
+     "title": "WD to Announce First Quarter Fiscal Year 2027 Financial Results on October 22, 2026",
+     "src": "BusinessWire",
+     "url": "https://www.tradingview.com/news/business_wire:bd5557979b5dc:0-wd-to-announce-first-quarter-fiscal-year-2027-financial-results-on-october-22-2026/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "Seagate vs. Western Digital vs. Toshiba: The AI Storage War Is Getting Serious",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:21a703303094b:0-seagate-vs-western-digital-vs-toshiba-the-ai-storage-war-is-getting-serious/"
+    },
+    {
+     "date": "5 Eki 2026",
+     "title": "Toshiba's Threat to Western Digital, Seagate Seen as Overblown — Market Talk",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261005006107:0-toshiba-s-threat-to-western-digital-seagate-seen-as-overblown-market-talk/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Net kâr yüksek ve nakit üretiyor; yakın vadede sermaye artırımı beklenmiyor."
+   }
+  },
+  "TSM": {
+   "name": "TSMC",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $453,31 (−%1,02). 4s EMA yukarı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 52,4. Eylül satışları %55 arttı ama hisse düştü (beklentiler yüksek); 4s EMA yukarı, kısa vadede 15dk/Supertrend aşağı: düzeltme içinde yükseliş. Bilanço 15 Eki (bu hafta)."
+   },
+   "technical": [
+    "9 Eki kapanışı $453,31 (−%1,02); trend verisi son fiyatı $453,12",
+    "4s EMA8 462,47 > EMA20 462,16: yukarı kesişim 31 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 454,27 < EMA89 461,46 (55 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $455,77 (fiyata %0,6 uzak; 95 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %2,6): $443,11'dan başlayan yükseliş şu an Dalga 2 sayılıyor; başlangıçtan $449,75 ucuna kadar hareket %1,5. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $443,11 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 52,4: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 10,86 sinyalin (11,07) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 19,0: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 47,5; CCI 27",
+    "Fiyat günlük EMA20 (453,81) altında, SMA50 (432,47) üstünde, SMA200 (391,77) üstünde. TradingView günlük özeti: Al"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$2,07 trilyon"
+     ],
+     [
+      "Gelir (TTM)",
+      "$142,8 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$71,9 mlr"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$39,9 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "15 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $546,89 (21 analist, 'Güçlü Al'; kapanışa göre +%21; aralık $440,00–$665,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "TSMC Stocks Fall Despite 55% September Sales Surge",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:6011c3487094b:0-tsmc-stocks-fall-despite-55-september-sales-surge/"
+    },
+    {
+     "date": "9 Eki 2026",
+     "title": "Taiwan Semiconductor's strong Q3 sales a positive sign for Q4, Wedbush says",
+     "src": "Seeking Alpha",
+     "url": "https://www.tradingview.com/news/seekingalpha:dfcebbdff094b:0-taiwan-semiconductor-s-strong-q3-sales-a-positive-sign-for-q4-wedbush-says/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "GlobalFoundries Lands $2 Billion TSMC Deal to Expand US AI Chip Packaging",
+     "src": "Benzinga",
+     "url": "https://www.tradingview.com/news/benzinga:d4c4a3272094b:0-globalfoundries-lands-2-billion-tsmc-deal-to-expand-us-ai-chip-packaging/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Güçlü kâr ve nakit akışı; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "NOK": {
+   "name": "Nokia",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $10,36 (+%2,17). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 2. Günlük RSI 49,4. Günlük ADX 8,7: trend yok, yatay. Fiyat 4s EMA'lara çok yakın; yön için kırılım beklenir. Bilanço 22 Eki."
+   },
+   "technical": [
+    "9 Eki kapanışı $10,36 (+%2,17); trend verisi son fiyatı $10,36",
+    "4s EMA8 10,38 < EMA20 10,40: aşağı kesişim 2 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 10,32 < EMA89 10,36 (45 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $10,25 (fiyata %1,1 uzak; 25 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %4,6): $10,98'dan başlayan düşüş şu an Dalga 2 sayılıyor; başlangıçtan $10,53 ucuna kadar hareket %4,1. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $10,98 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 49,4: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 0,02 sinyalin (0,03) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 8,7: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 41,4; CCI −11",
+    "Fiyat günlük EMA20 (10,41) altında, SMA50 (10,22) üstünde, SMA200 (10,12) üstünde. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$56,9 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$23,6 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$813,3 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$639,3 mn"
+     ],
+     [
+      "Sonraki bilanço",
+      "22 Eki 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $13,20 (34 analist, 'Al'; kapanışa göre +%27; aralık $7,39–$20,41). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "1 Eki 2026",
+     "title": "Inseego Completes Acquisition Of Nokia's Fixed Wireless Access Business >INSG",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261001001314_20261001001314:0-inseego-completes-acquisition-of-nokia-s-fixed-wireless-access-business-insg/"
+    },
+    {
+     "date": "1 Eki 2026",
+     "title": "ICEYE and Nokia partner to launch secure and sovereign satellite communications for governments and defense customers",
+     "src": "GlobeNewswire",
+     "url": "https://www.tradingview.com/news/globenewswire:835af1b43094b:0-iceye-and-nokia-partner-to-launch-secure-and-sovereign-satellite-communications-for-governments-and-defense-customers/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "Nokia CEO Issues Bold AI Verdict as Industry Stakes Rise",
+     "src": "GuruFocus",
+     "url": "https://www.tradingview.com/news/gurufocus:b23f49654094b:0-nokia-ceo-issues-bold-ai-verdict-as-industry-stakes-rise/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı büyük bir şirket; sermaye artırımı ihtimali düşük (bu turda ayrıca doğrulanmadı)."
+   }
+  },
+  "CAR": {
+   "name": "Avis Budget",
+   "momentum": {
+    "status": "Zayıf",
+    "text": "9 Eki kapanışı $105,98 (−%3,65). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 36,0. Yüksek oynaklık: günlük SMA200 (155,5) çok üstte; JP Morgan 'Düşük Ağırlık' tutuyor. Bilanço 3 Kas."
+   },
+   "technical": [
+    "9 Eki kapanışı $105,98 (−%3,65); trend verisi son fiyatı $105,98",
+    "4s EMA8 108,50 < EMA20 109,36: aşağı kesişim 3 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 107,55 < EMA89 108,76 (46 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) aşağı, çizgi $107,67 (fiyata %1,6 uzak; 21 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %5,6): $103,62'dan başlayan yükseliş şu an Dalga 2 sayılıyor; başlangıçtan $105,83 ucuna kadar hareket %2,1. Şu an ana yöne karşı bir düzeltme dalgası sürüyor; ana yönde yeni dalga için düzeltmenin bitmesi ve başlangıç seviyesinin korunması gerekir. Düzeltme hedefi hesaplanmıyor. Sayım $103,62 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 36,0: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −6,17 sinyalin (−7,35) üstünde (boğa); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 29,1: trend gücü güçlü (>25); ADX yönü değil gücü gösterir; Stochastic %K 37,1; CCI −53",
+    "Fiyat günlük EMA20 (113,18) altında, SMA50 (127,71) altında, SMA200 (155,51) altında. TradingView günlük özeti: Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$3,7 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$11,7 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$636,0 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$11,4 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "3 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $122,86 (10 analist, 'Al'; kapanışa göre +%16; aralık $94,00–$160,00). Adil değer = analist hedefi, kendi tahminim değil. 10 analistin çoğu 'Tut'/'Sat', ortalama notu zayıf."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Avis Budget Group to Announce Third Quarter 2026 Results on November 03, 2026",
+     "src": "GlobeNewswire",
+     "url": "https://www.tradingview.com/news/globenewswire:2b9d6612a094b:0-avis-budget-group-to-announce-third-quarter-2026-results-on-november-03-2026/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Avis Budget Group Is Maintained at Underweight by JP Morgan",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261008008786:0-avis-budget-group-is-maintained-at-underweight-by-jp-morgan/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "Avis Says It Was Paid $650 Million Under Settlement With Pentwater Capital Management",
+     "src": "Reuters",
+     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN45S1IF:0-avis-says-it-was-paid-650-million-under-settlement-with-pentwater-capital-management/"
+    },
+    {
+     "date": "8 Eki 2026",
+     "title": "Avis Budget Group Is Maintained at Underweight by JP Morgan (analist olumsuz derecelendirme; downgrade degil, teyit)",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/symbols/CAR/"
+    }
+   ],
+   "dilution": {
+    "risk": "Orta (teyit edilmedi)",
+    "text": "Net zarar ve yüksek borç yapısı var; yeni hisse ihracı bu turda doğrulanmadı. Bilanço öncesi kontrol edilmeli."
+   }
+  },
+  "SN": {
+   "name": "SharkNinja",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "9 Eki kapanışı $184,98 (+%0,06). 4s EMA yukarı, 15dk EMA yukarı, Supertrend yukarı; Elliott yükseliş Dalga 3. Günlük RSI 62,6. Takip listesindeki en güçlü teknik görünüm: tüm göstergeler yukarı, fiyat tüm günlük ortalamaların üstünde. Günlük Stochastic 93 aşırı alımda, yani yeni giriş için küçük geri çekilme beklemek daha güvenli. Bilanço 5 Kas."
+   },
+   "technical": [
+    "9 Eki kapanışı $184,98 (+%0,06); trend verisi son fiyatı $184,98",
+    "4s EMA8 184,24 > EMA20 181,92: yukarı kesişim 22 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 184,51 > EMA89 184,11 (363 mum önce, yukarı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $183,56 (fiyata %0,8 uzak; 34 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %2,6): $177,48'dan başlayan yükseliş şu an Dalga 3 sayılıyor; başlangıçtan $186,75 ucuna kadar hareket %5,2. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $181,02–$183,21. Sayım $177,48 altında geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 62,6: güçlü (55–70). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 3,20 sinyalin (2,14) üstünde (boğa); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 21,5: trend gücü yeni oluşuyor (20–25); ADX yönü değil gücü gösterir; Stochastic %K 93,2 (aşırı alım); CCI 88",
+    "Fiyat günlük EMA20 (179,30) üstünde, SMA50 (178,14) üstünde, SMA200 (136,68) üstünde. TradingView günlük özeti: Al"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$26,1 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$6,9 mlr"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "$695,2 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "$804,5 mn"
+     ],
+     [
+      "Sonraki bilanço",
+      "5 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $209,56 (15 analist, 'Güçlü Al'; kapanışa göre +%13; aralık $195,67–$240,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Top 10 consumer discretionary stocks with A+ EPS revision grades ahead of Q3 earnings",
+     "src": "Seeking Alpha",
+     "url": "https://www.tradingview.com/news/seekingalpha:2af8c797a094b:0-top-10-consumer-discretionary-stocks-with-a-eps-revision-grades-ahead-of-q3-earnings/"
+    },
+    {
+     "date": "6 Eki 2026",
+     "title": "SharkNinja Taps AI to Sharpen Consumer Insights & Drive Innovation",
+     "src": "Zacks",
+     "url": "https://www.tradingview.com/news/zacks:1dc3d96bf094b:0-sharkninja-taps-ai-to-sharpen-consumer-insights-drive-innovation/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı (net kâr $695 mn) ve nakit üretiyor; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "ASTS": {
+   "name": "AST SpaceMobile",
+   "momentum": {
+    "status": "Nötr (karışık)",
+    "text": "9 Eki kapanışı $50,97 (−%10,48). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 3. Günlük RSI 35,7. Gün içi sert satış (−%10,5): SpaceX 800 MHz spektrum haberi ve 2 Eki'de B. Riley'nin 'Nötr' indirimi. Yeni giriş için erken; $47,57 dip üstünde tutunma ve günlük EMA20 (59,4) geri alımı beklenir."
+   },
+   "technical": [
+    "9 Eki kapanışı $50,97 (−%10,48); trend verisi son fiyatı $51,19",
+    "4s EMA8 55,25 < EMA20 57,74: aşağı kesişim 3 mum önce. EMA, son fiyatlara ağırlık veren ortalamadır; kısa EMA uzunun altındaysa kısa vade zayıftır",
+    "15dk EMA34 51,44 < EMA89 54,78 (51 mum önce, aşağı)",
+    "Supertrend (15dk, ATR10×3) yukarı, çizgi $48,57 (fiyata %5,1 uzak; 0 mumdur bu yönde). Supertrend, fiyat çizginin ters tarafına geçince yön değişimi verir, ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4s, muhtemel sayım, eşik %9,6): $65,47'dan başlayan düşüş şu an Dalga 3 sayılıyor; başlangıçtan $47,57 ucuna kadar hareket %27,3. Dalga 3 sayımın genelde en sert ve en uzun dalgasıdır; bu yüzden hareketin sürmesi olağan senaryodur (kesin değil). Dalga 4 bölgesi (Fibonacci %38,2–61,8 geri alım) $54,41–$58,63. Sayım $65,47 üstünde geçersizdir. Kural tabanlıdır, gün içi değişebilir.",
+    "Günlük RSI 35,7: zayıf (30–45). RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,62 sinyalin (−1,16) altında (ayı); MACD iki hareketli ortalama farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 10,7: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 28,7; CCI −310 (aşırı satım)",
+    "Fiyat günlük EMA20 (59,36) altında, SMA50 (62,85) altında, SMA200 (80,75) altında. TradingView günlük özeti: Güçlü Sat"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$19,8 mlr"
+     ],
+     [
+      "Gelir (TTM)",
+      "$115,3 mn"
+     ],
+     [
+      "Net sonuç (TTM)",
+      "−$618,8 mn"
+     ],
+     [
+      "Serbest nakit akışı",
+      "−$1,6 mlr"
+     ],
+     [
+      "Borç/Özsermaye",
+      "1,58"
+     ],
+     [
+      "Sonraki bilanço",
+      "16 Kas 2026 (TradingView takvimi)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $82,53 (16 analist, 'Al'; kapanışa göre +%62; aralık $42,50–$115,00). Adil değer = analist hedefi, kendi tahminim değil."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "ASTS Slides 13% On SpaceX 800 MHz Deal, But CEO Says Carriers Already Hold 1,000 MHz For Its Satellites",
+     "src": "Stocktwits",
+     "url": "https://www.tradingview.com/news/stocktwits:52e86978e094b:0-asts-slides-13-on-spacex-800-mhz-deal-but-ceo-says-carriers-already-hold-1-000-mhz-for-its-satellites/"
+    },
+    {
+     "date": "5 Eki 2026",
+     "title": "Telus Corporation - Co And Ast Spacemobile Complete First Satellite-To-Smartphone Integration Test",
+     "src": "Reuters",
+     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN45R0IP:0-telus-corporation-co-and-ast-spacemobile-complete-first-satellite-to-smartphone-integration-test/"
+    },
+    {
+     "date": "5 Eki 2026",
+     "title": "Weekly Recap: Q2 revenue and 45-satellite BlueBird rollout",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:88aefecd64b4e:0-weekly-recap-q2-revenue-and-45-satellite-bluebird-rollout/"
+    },
+    {
+     "date": "2 Eki 2026",
+     "title": "AST SpaceMobile Cut to Neutral From Buy by B. Riley Securities",
+     "src": "Dow Jones Newswires",
+     "url": "https://www.tradingview.com/news/DJN_DN20261002001919:0-ast-spacemobile-cut-to-neutral-from-buy-by-b-riley-securities/"
+    }
+   ],
+   "dilution": {
+    "risk": "Yüksek",
+    "text": "Net zarar −$619 mn, serbest nakit akışı −$1,6 mlr; uydu fırlatma yatırımı sürüyor. Tarihsel olarak hisse ve dönüştürülebilir ihracı yaptı; yeni ihraç ihtimali yüksek (bu turda yeni ihraç haberi yok)."
+   }
+  }
+ }
+}
