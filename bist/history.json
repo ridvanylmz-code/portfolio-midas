@@ -1,11 +1,9 @@
 {
-  "transactions": [],
-  "snapshots": [
-    {
-      "date": "2026-10-10",
-      "value": 0.0,
-      "cost": 0.0,
-      "cash": 0.0
-    }
-  ]
+ "vault": 1,
+ "alg": "AES-256-GCM",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 600000,
+ "salt": "ltPvPk7z9SsseBYCd0xaLA==",
+ "iv": "9sGOJBlZw9ALFewG",
+ "data": "UZw2SXgffPHzKHaQN9MMa5puNkKMY+/rwNV8Z8Wr8uPGWZaDh/eIAR0SigzAYrKI9Fmrt7zux54C1toUos5qK/qe3JRne5sULlG+jZnv0AH2wuNG3FoRgvngLtRz/7536T8N8ENUXcbWATiRy3P7RQbqhPplbsuC1Dq0sxrLp7tWka35jVTIE3YzOepGgWIqrDDMaEyT4BzB5Z9bLy/kUSg="
 }

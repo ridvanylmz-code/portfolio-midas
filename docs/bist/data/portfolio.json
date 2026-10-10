@@ -1,33 +1,9 @@
 {
-  "cash": 0,
-  "monthly_target": 0,
-  "portfolio": {},
-  "watchlist": [
-    "BIENY",
-    "SASA",
-    "SMRTG",
-    "MIATK",
-    "EMKEL",
-    "KLSER",
-    "DOFER",
-    "ALTNY",
-    "TCELL",
-    "THYAO",
-    "ALTIN",
-    "GMSTR",
-    "EMPAE",
-    "RYSAS",
-    "HRKET",
-    "SDTTR",
-    "DOHOL",
-    "TRENJ",
-    "AKSGY"
-  ],
-  "buy_zones": {},
-  "position_levels": {},
-  "alerts": {
-    "stop_loss_pct": -15,
-    "target_pct": 25,
-    "daily_move_pct": 7
-  }
+ "vault": 1,
+ "alg": "AES-256-GCM",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 600000,
+ "salt": "ltPvPk7z9SsseBYCd0xaLA==",
+ "iv": "zTljpD3g8IlKYgOX",
+ "data": "8ysk5P+zeP3A0rulNeJNsb19CETl9NzOKIPtVQMESvy047brBTspMyQp1IIiTlna3rvAE5SP5/8hywpi6wtdcbq6v9JzaVc1QIq5ANEf9JiQBhpS38Gxgqksu0dD6I2Q5lMezrXbsGJDghsgmTIsCIvt2IrR+RtP4I5GhNP9tRy0MMTA8d1UZAJR7EEpWQSJ8vTepein4LLq6VKJoWAzsY9e4VHxZrisjjOPgvzdkt23T3GcRWWKI83GE8+wnTg2RD3wE5zhxFgcmIMt1IOZRB3kMCcyzN5E5ZdoB+l6kZqddVFkBBXNijx60qOb4X4nR/hfDVD7Zb8Ow7+1hB2g19BDs8a1Kp5OpFJcEn0E+wBaLnCroRuTLzjJ3e2ZcpHbjKmpZ/D4//yC7CQOBxue+vOLJlvdH+hLspObdOIaRAMk+Xvb2fPd"
 }
