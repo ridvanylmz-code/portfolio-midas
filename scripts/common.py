@@ -6,6 +6,7 @@ import math
 import os
 import re
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
 import requests
@@ -265,6 +266,59 @@ def levels_for(portfolio, ticker):
     if target is None and a.get("target_pct") is not None:
         target = pos["cost_basis"] * (1 + a["target_pct"] / 100)
     return stop, target
+
+
+TRAIL_MIN_STEP = 0.005      # stop en az fiyatın %0,5'i kadar yükselecekse taşınır (gürültü/commit seli olmasın)
+TRAIL_MAX_AGE_DAYS = 5      # piyasa verisi bundan eskiyse stop taşınmaz (hafta sonu + tatil payı)
+
+
+def trail_stops(portfolio, quotes, market, today):
+    """Tam otomatik takip eden stop: eldeki her hisse için stop = max(kayıtlı stop, ATR stop). YALNIZCA YUKARI.
+
+    ATR stop: market.json / market-bist.json içindeki `stop_atr` (2×ATR ya da 3A tepeden 3×ATR). Kurallar:
+    - veri bayatsa (`updated` > TRAIL_MAX_AGE_DAYS gün) ya da hissenin satırı `stale` ise dokunulmaz;
+    - güncel fiyat alınamadıysa (quotes'ta yok) dokunulmaz; yeni stop fiyatın en az %0,5 altında olmalı
+      (gün içi düşüşte anında tetiklenmesin) ve hedefin altında kalmalı;
+    - kayıtlı (ya da maliyet -%X varsayılan) stoptan en az TRAIL_MIN_STEP·fiyat yüksek değilse taşınmaz;
+    - position_levels[T]["trail"] == False ise o hisse atlanır (update-position: trail_off).
+    portfolio yerinde güncellenir; dönen liste alarm metinleridir ({key, text, once, t, old, new})."""
+    if not market or not isinstance(market.get("stocks"), dict):
+        return []
+    try:
+        age = (today - datetime.fromisoformat(str(market.get("updated"))).date()).days
+    except (TypeError, ValueError):
+        return []
+    if age > TRAIL_MAX_AGE_DAYS:
+        return []
+    out = []
+    for t in list(portfolio["portfolio"]):
+        lv = portfolio["position_levels"].get(t) or {}
+        if lv.get("trail") is False:
+            continue
+        row = market["stocks"].get(t)
+        q = quotes.get(t)
+        if not row or row.get("stale") or not valid_quote(q):
+            continue
+        try:
+            new, price = float(row.get("stop_atr")), float(q["c"])
+        except (TypeError, ValueError):
+            continue
+        if not (math.isfinite(new) and math.isfinite(price)) or price <= 0:
+            continue
+        if not (0.5 * price <= new <= price * (1 - TRAIL_MIN_STEP)):
+            continue
+        cur, target = levels_for(portfolio, t)
+        cur = float(cur) if cur is not None else 0.0
+        if target is not None and new >= float(target):
+            continue
+        if new < cur + price * TRAIL_MIN_STEP:
+            continue
+        new = round(new, 4)
+        portfolio["position_levels"].setdefault(t, {}).update(stop_loss=new, stop_auto=today.isoformat())
+        was = f"{CUR}{cur:,.2f}" if cur > 0 else "yok"
+        out.append({"key": f"{t}:trail:{new}", "once": True, "t": t, "old": cur, "new": new,
+                    "text": f"🔼 {t} stop yükseltildi: {was} → {CUR}{new:,.2f} (ATR takip; fiyat {CUR}{price:,.2f})"})
+    return out
 
 
 def zone_of(portfolio, t):
