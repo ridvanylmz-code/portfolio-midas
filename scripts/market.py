@@ -163,6 +163,70 @@ def compact(x, src):
             "src": src}
 
 
+def atr_stop(c):
+    """Fiyattan 2×ATR ya da 3A tepeden 3×ATR (yüksek olan; fiyatın en az 1×ATR altında)."""
+    if not (c.get("atr") and c.get("close")):
+        return None
+    ref = max(v for v in (c["close"], c.get("high3m") or 0) if v)
+    return rnd(max(c["close"] - 2 * c["atr"], min(ref - 3 * c["atr"], c["close"] - 1 * c["atr"])), 2)
+
+
+def build_picks(uni, gmap, spy_p, held):  # held: izlenen semboller (pozisyon + izleme listesi)
+    """Sektör/tema başına en çok N hisse: trend >= min_trend, SPY'ye göre RS > 0, yeterli işlem hacmi.
+    Aday havuzu: büyük tarama (piyasa değeri > min_mcap, TEK istek) + tema aday listeleri (TEK istek)."""
+    cfg = uni.get("picks") or {}
+    if not cfg:
+        return {}, 0
+    ind_g, sec_g, themes = cfg.get("industry_group", {}), uni.get("sector_group", {}), cfg.get("theme_candidates", {})
+    excl = set(cfg.get("exclude_industries", []))
+    big = tvscan.screen([{"left": "market_cap_basic", "operation": "greater", "right": cfg.get("min_mcap", 3e9)},
+                         {"left": "exchange", "operation": "in_range", "right": ["NASDAQ", "NYSE", "AMEX"]}],
+                        log=log) or []
+    curated = sorted({t for v in themes.values() for t in v})
+    cur = tvscan.fetch(curated, log=log) or {}
+    log(f"Hisse seçimi: büyük tarama {len(big)} hisse, tema adayları {len(cur)}/{len(curated)}")
+    pool = {}
+    for rec in big:
+        g = ind_g.get(rec.get("industry") or "") or sec_g.get(rec.get("sector") or "")
+        if g:
+            pool.setdefault(g, {})[rec["name"]] = rec
+    for g, names in themes.items():
+        for t in names:
+            rec = cur.get(t) or next((x for x in big if x["name"] == t), None)
+            if rec:
+                pool.setdefault(g, {})[t] = rec
+    bank = {x["sym"] for x in gmap.values() if x.get("bank")}
+    out = {}
+    for g, recs in pool.items():
+        if g in bank or g not in gmap:
+            continue
+        gperf = gmap[g].get("perf") or {}
+        cands = []
+        for t, x in recs.items():
+            if (x.get("industry") or "") in excl:
+                continue
+            c = compact(x, "tv")
+            dv = (num(x.get("average_volume_10d_calc")) or 0) * (c["close"] or 0)
+            if dv < cfg.get("min_dollar_vol", 2e7):
+                continue
+            tr = trend_points(x)
+            rs = rel(perf_of(x), spy_p)
+            if not tr or tr["points"] < cfg.get("min_trend", 5) or (rs.get("score") or -1) <= 0:
+                continue
+            rg = rel(perf_of(x), gperf) if gperf else {}
+            cands.append({"t": t, "name": x.get("description") or t, "close": c["close"], "chg": c["chg"],
+                          "rs": rs.get("score"), "rs_m1": rs.get("m1"), "rs_m3": rs.get("m3"), "rs_group": rg.get("score"),
+                          "trend": tr["points"], "label": tr["label"], "rsi": c["rsi"], "atr_pct": c["atr_pct"],
+                          "stop_atr": atr_stop(c), "mcap_bn": rnd((num(x.get("market_cap_basic")) or 0) / 1e9, 1),
+                          "industry": x.get("industry"), "tracked": t in held,
+                          "_k": (rs.get("score") or 0) + 0.5 * (rg.get("score") or 0)})
+        cands.sort(key=lambda z: z["_k"], reverse=True)
+        for z in cands:
+            z.pop("_k")
+        out[g] = cands[:cfg.get("per_group", 3)]
+    return out, len(big)
+
+
 def regime(data, groups_out, stocks_out):
     """0-7 puan: SPY/QQQ/IWM trendi, piyasa genişliği, eşit ağırlık katılımı."""
     def g(s, k):
@@ -285,15 +349,17 @@ def main(argv=None):
         tr = trend_points(x)
         q = quadrant(rs)
         c = compact(x, src[s])
-        stop = None
-        if c["atr"] and c["close"]:
-            ref = max(v for v in (c["close"], c.get("high3m") or 0) if v)  # iz süren: 3A tepeden 3×ATR, fiyattan 2×ATR
-            stop = rnd(max(c["close"] - 2 * c["atr"], min(ref - 3 * c["atr"], c["close"] - 1 * c["atr"])), 2)
+        stop = atr_stop(c)
         sout[s] = {"name": x.get("description") or s, "sector": x.get("sector"), "industry": x.get("industry"),
                    "group": grp, "group_name": (gmap.get(grp) or {}).get("name"),
                    **c, "rs": rs, "rs_group": rel(perf_of(x), gp) if gp else None, "trend": tr, "quadrant": q,
                    "verdict": verdict(q, tr), "stop_atr": stop}
 
+    try:
+        picks, pool_n = build_picks(uni, gmap, spy_p, set(common.public_symbols("docs/data")))
+    except Exception as ex:  # seçim hatası ana çıktıyı düşürmesin
+        log(f"Hisse seçimi hatası: {type(ex).__name__}: {tk.scrub(ex)[:100]}")
+        picks, pool_n = (prev.get("picks") or {}), 0
     reg = regime(data, [x for x in gout if not x.get("stale")] + [{"close": num(data[b].get("close")),
                  "sma50": num(data[b].get("SMA50"))} for b in bench if b in data], sout)
     out = {
@@ -303,7 +369,7 @@ def main(argv=None):
         "missing": [s for s in allsyms if s not in data],
         "benchmarks": {b: {"name": uni["benchmarks"][b], **compact(data[b], src[b]), "trend": trend_points(data[b])}
                        for b in bench if b in data},
-        "regime": reg, "groups": gout, "stocks": sout, "log": LOG,
+        "regime": reg, "groups": gout, "stocks": sout, "picks": picks, "picks_pool": pool_n, "log": LOG,
         "method": "RS = performans − SPY (puan). Bileşik: 0.15·1H+0.35·1A+0.35·3A+0.15·6A. Trend 0-7 (5 günlük + 2 haftalık koşul). "
                   "Çeyrek: 3A RS (uzun) ve 1A RS (kısa). Stop önerisi: fiyattan 2×ATR ya da 3A tepeden 3×ATR (yüksek olan).",
     }

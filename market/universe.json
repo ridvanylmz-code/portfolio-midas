@@ -1,55 +1,526 @@
 {
-  "_not": "Sektör/tema ETF evreni ve hisse -> tema eşlemesi. Elle düzenlenebilir. bank=true: banka kuralı nedeniyle hisse önerisi yapılmaz (yalnız piyasa okuması).",
-  "benchmarks": {"SPY": "S&P 500", "QQQ": "Nasdaq 100", "IWM": "Russell 2000 (küçük şirket)", "RSP": "S&P 500 eşit ağırlık", "DIA": "Dow Jones"},
-  "groups": [
-    {"sym": "XLK", "name": "Teknoloji", "kind": "sektör"},
-    {"sym": "XLC", "name": "İletişim", "kind": "sektör"},
-    {"sym": "XLY", "name": "Döngüsel tüketim", "kind": "sektör"},
-    {"sym": "XLP", "name": "Temel tüketim", "kind": "sektör"},
-    {"sym": "XLV", "name": "Sağlık", "kind": "sektör"},
-    {"sym": "XLF", "name": "Finans", "kind": "sektör", "bank": true},
-    {"sym": "XLI", "name": "Sanayi", "kind": "sektör"},
-    {"sym": "XLE", "name": "Enerji", "kind": "sektör"},
-    {"sym": "XLB", "name": "Malzeme", "kind": "sektör"},
-    {"sym": "XLU", "name": "Kamu hizmetleri (elektrik)", "kind": "sektör"},
-    {"sym": "XLRE", "name": "Gayrimenkul", "kind": "sektör"},
-    {"sym": "SMH", "name": "Yarı iletken", "kind": "tema"},
-    {"sym": "IGV", "name": "Yazılım", "kind": "tema"},
-    {"sym": "CIBR", "name": "Siber güvenlik", "kind": "tema"},
-    {"sym": "AIQ", "name": "Yapay zekâ", "kind": "tema"},
-    {"sym": "DTCR", "name": "Veri merkezi altyapısı", "kind": "tema"},
-    {"sym": "BOTZ", "name": "Robotik", "kind": "tema"},
-    {"sym": "QTUM", "name": "Kuantum / ileri hesaplama", "kind": "tema"},
-    {"sym": "ITA", "name": "Savunma & havacılık", "kind": "tema"},
-    {"sym": "UFO", "name": "Uzay", "kind": "tema"},
-    {"sym": "URA", "name": "Uranyum", "kind": "tema"},
-    {"sym": "NLR", "name": "Nükleer enerji", "kind": "tema"},
-    {"sym": "LIT", "name": "Lityum & batarya", "kind": "tema"},
-    {"sym": "REMX", "name": "Nadir toprak & stratejik metal", "kind": "tema"},
-    {"sym": "COPX", "name": "Bakır madencileri", "kind": "tema"},
-    {"sym": "GDX", "name": "Altın madencileri", "kind": "tema"},
-    {"sym": "SIL", "name": "Gümüş madencileri", "kind": "tema"},
-    {"sym": "TAN", "name": "Güneş enerjisi", "kind": "tema"},
-    {"sym": "ICLN", "name": "Temiz enerji", "kind": "tema"},
-    {"sym": "XBI", "name": "Biyoteknoloji", "kind": "tema"},
-    {"sym": "XHB", "name": "Konut inşaat", "kind": "tema"},
-    {"sym": "PAVE", "name": "ABD altyapı", "kind": "tema"},
-    {"sym": "JETS", "name": "Havayolları", "kind": "tema"},
-    {"sym": "KWEB", "name": "Çin internet", "kind": "tema"},
-    {"sym": "WGMI", "name": "Bitcoin madencileri / HPC", "kind": "tema"},
-    {"sym": "IBIT", "name": "Bitcoin", "kind": "tema"},
-    {"sym": "KRE", "name": "Bölgesel bankalar", "kind": "tema", "bank": true}
-  ],
-  "stock_group": {
-    "RKLB": "UFO", "ASTS": "UFO", "CRWV": "DTCR", "WYFI": "DTCR", "SGML": "LIT", "UAMY": "REMX",
-    "INTC": "SMH", "NVDA": "SMH", "MU": "SMH", "AVGO": "SMH", "TSM": "SMH", "ARM": "SMH", "CBRS": "SMH",
-    "STX": "XLK", "WDC": "XLK", "NOK": "XLK", "UUUU": "URA", "KTOS": "ITA", "TSLA": "XLY", "SN": "XLY", "CAR": "XLI"
+ "_not": "Sektör/tema ETF evreni ve hisse -> tema eşlemesi. Elle düzenlenebilir. bank=true: banka kuralı nedeniyle hisse önerisi yapılmaz (yalnız piyasa okuması).",
+ "benchmarks": {
+  "SPY": "S&P 500",
+  "QQQ": "Nasdaq 100",
+  "IWM": "Russell 2000 (küçük şirket)",
+  "RSP": "S&P 500 eşit ağırlık",
+  "DIA": "Dow Jones"
+ },
+ "groups": [
+  {
+   "sym": "XLK",
+   "name": "Teknoloji",
+   "kind": "sektör"
   },
-  "sector_group": {
-    "Electronic Technology": "XLK", "Technology Services": "IGV", "Health Technology": "XLV", "Health Services": "XLV",
-    "Finance": "XLF", "Energy Minerals": "XLE", "Non-Energy Minerals": "XLB", "Process Industries": "XLB",
-    "Producer Manufacturing": "XLI", "Industrial Services": "XLI", "Commercial Services": "XLI", "Transportation": "XLI",
-    "Distribution Services": "XLI", "Consumer Durables": "XLY", "Retail Trade": "XLY", "Consumer Services": "XLY",
-    "Consumer Non-Durables": "XLP", "Utilities": "XLU", "Communications": "XLC"
+  {
+   "sym": "XLC",
+   "name": "İletişim",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLY",
+   "name": "Döngüsel tüketim",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLP",
+   "name": "Temel tüketim",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLV",
+   "name": "Sağlık",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLF",
+   "name": "Finans",
+   "kind": "sektör",
+   "bank": true
+  },
+  {
+   "sym": "XLI",
+   "name": "Sanayi",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLE",
+   "name": "Enerji",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLB",
+   "name": "Malzeme",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLU",
+   "name": "Kamu hizmetleri (elektrik)",
+   "kind": "sektör"
+  },
+  {
+   "sym": "XLRE",
+   "name": "Gayrimenkul",
+   "kind": "sektör"
+  },
+  {
+   "sym": "SMH",
+   "name": "Yarı iletken",
+   "kind": "tema"
+  },
+  {
+   "sym": "IGV",
+   "name": "Yazılım",
+   "kind": "tema"
+  },
+  {
+   "sym": "CIBR",
+   "name": "Siber güvenlik",
+   "kind": "tema"
+  },
+  {
+   "sym": "AIQ",
+   "name": "Yapay zekâ",
+   "kind": "tema"
+  },
+  {
+   "sym": "DTCR",
+   "name": "Veri merkezi altyapısı",
+   "kind": "tema"
+  },
+  {
+   "sym": "BOTZ",
+   "name": "Robotik",
+   "kind": "tema"
+  },
+  {
+   "sym": "QTUM",
+   "name": "Kuantum / ileri hesaplama",
+   "kind": "tema"
+  },
+  {
+   "sym": "ITA",
+   "name": "Savunma & havacılık",
+   "kind": "tema"
+  },
+  {
+   "sym": "UFO",
+   "name": "Uzay",
+   "kind": "tema"
+  },
+  {
+   "sym": "URA",
+   "name": "Uranyum",
+   "kind": "tema"
+  },
+  {
+   "sym": "NLR",
+   "name": "Nükleer enerji",
+   "kind": "tema"
+  },
+  {
+   "sym": "LIT",
+   "name": "Lityum & batarya",
+   "kind": "tema"
+  },
+  {
+   "sym": "REMX",
+   "name": "Nadir toprak & stratejik metal",
+   "kind": "tema"
+  },
+  {
+   "sym": "COPX",
+   "name": "Bakır madencileri",
+   "kind": "tema"
+  },
+  {
+   "sym": "GDX",
+   "name": "Altın madencileri",
+   "kind": "tema"
+  },
+  {
+   "sym": "SIL",
+   "name": "Gümüş madencileri",
+   "kind": "tema"
+  },
+  {
+   "sym": "TAN",
+   "name": "Güneş enerjisi",
+   "kind": "tema"
+  },
+  {
+   "sym": "ICLN",
+   "name": "Temiz enerji",
+   "kind": "tema"
+  },
+  {
+   "sym": "XBI",
+   "name": "Biyoteknoloji",
+   "kind": "tema"
+  },
+  {
+   "sym": "XHB",
+   "name": "Konut inşaat",
+   "kind": "tema"
+  },
+  {
+   "sym": "PAVE",
+   "name": "ABD altyapı",
+   "kind": "tema"
+  },
+  {
+   "sym": "JETS",
+   "name": "Havayolları",
+   "kind": "tema"
+  },
+  {
+   "sym": "KWEB",
+   "name": "Çin internet",
+   "kind": "tema"
+  },
+  {
+   "sym": "WGMI",
+   "name": "Bitcoin madencileri / HPC",
+   "kind": "tema"
+  },
+  {
+   "sym": "IBIT",
+   "name": "Bitcoin",
+   "kind": "tema"
+  },
+  {
+   "sym": "KRE",
+   "name": "Bölgesel bankalar",
+   "kind": "tema",
+   "bank": true
   }
+ ],
+ "stock_group": {
+  "RKLB": "UFO",
+  "ASTS": "UFO",
+  "CRWV": "DTCR",
+  "WYFI": "DTCR",
+  "SGML": "LIT",
+  "UAMY": "REMX",
+  "INTC": "SMH",
+  "NVDA": "SMH",
+  "MU": "SMH",
+  "AVGO": "SMH",
+  "TSM": "SMH",
+  "ARM": "SMH",
+  "CBRS": "SMH",
+  "STX": "XLK",
+  "WDC": "XLK",
+  "NOK": "XLK",
+  "UUUU": "URA",
+  "KTOS": "ITA",
+  "TSLA": "XLY",
+  "SN": "XLY",
+  "CAR": "XLI"
+ },
+ "sector_group": {
+  "Electronic Technology": "XLK",
+  "Technology Services": "IGV",
+  "Health Technology": "XLV",
+  "Health Services": "XLV",
+  "Finance": "XLF",
+  "Energy Minerals": "XLE",
+  "Non-Energy Minerals": "XLB",
+  "Process Industries": "XLB",
+  "Producer Manufacturing": "XLI",
+  "Industrial Services": "XLI",
+  "Commercial Services": "XLI",
+  "Transportation": "XLI",
+  "Distribution Services": "XLI",
+  "Consumer Durables": "XLY",
+  "Retail Trade": "XLY",
+  "Consumer Services": "XLY",
+  "Consumer Non-Durables": "XLP",
+  "Utilities": "XLU",
+  "Communications": "XLC"
+ },
+ "picks": {
+  "_not": "Sektör başına 3 hisse: büyük tarama (piyasa değeri > min_mcap) + tema aday listeleri. Banka ve alkol hariç. Koşul: trend >= min_trend, SPY'ye göre RS > 0, günlük işlem hacmi > min_dollar_vol.",
+  "min_mcap": 3000000000.0,
+  "min_dollar_vol": 20000000.0,
+  "min_trend": 5,
+  "per_group": 3,
+  "exclude_industries": [
+   "Major Banks",
+   "Regional Banks",
+   "Savings Banks",
+   "Beverages: Alcoholic"
+  ],
+  "industry_group": {
+   "Semiconductors": "SMH",
+   "Packaged Software": "IGV",
+   "Information Technology Services": "IGV",
+   "Internet Software/Services": "XLC",
+   "Aerospace & Defense": "ITA",
+   "Biotechnology": "XBI",
+   "Oil & Gas Production": "XLE",
+   "Integrated Oil": "XLE",
+   "Oil Refining/Marketing": "XLE",
+   "Contract Drilling": "XLE",
+   "Oilfield Services/Equipment": "XLE",
+   "Oil & Gas Pipelines": "XLE",
+   "Electric Utilities": "XLU",
+   "Gas Distributors": "XLU",
+   "Water Utilities": "XLU",
+   "Alternative Power Generation": "XLU",
+   "Homebuilding": "XHB",
+   "Real Estate Investment Trusts": "XLRE",
+   "Precious Metals": "GDX",
+   "Airlines": "JETS",
+   "Aluminum": "XLB",
+   "Steel": "XLB",
+   "Chemicals: Major Diversified": "XLB",
+   "Chemicals: Specialty": "XLB",
+   "Construction Materials": "PAVE",
+   "Engineering & Construction": "PAVE",
+   "Telecommunications Equipment": "XLK",
+   "Computer Peripherals": "XLK",
+   "Computer Processing Hardware": "XLK",
+   "Electronic Components": "XLK",
+   "Electronic Equipment/Instruments": "XLK",
+   "Electronic Production Equipment": "SMH"
+  },
+  "theme_candidates": {
+   "CIBR": [
+    "CRWD",
+    "PANW",
+    "FTNT",
+    "ZS",
+    "NET",
+    "OKTA",
+    "CYBR",
+    "S",
+    "CHKP",
+    "QLYS",
+    "TENB",
+    "RPD",
+    "VRNS"
+   ],
+   "AIQ": [
+    "NVDA",
+    "MSFT",
+    "GOOGL",
+    "META",
+    "AMZN",
+    "PLTR",
+    "AVGO",
+    "AMD",
+    "ORCL",
+    "CRM",
+    "NOW",
+    "SNOW",
+    "ANET"
+   ],
+   "DTCR": [
+    "EQIX",
+    "DLR",
+    "VRT",
+    "ANET",
+    "CRWV",
+    "WYFI",
+    "IREN",
+    "CIFR",
+    "NBIS",
+    "APLD",
+    "ETN",
+    "CORZ"
+   ],
+   "BOTZ": [
+    "ISRG",
+    "ROK",
+    "TER",
+    "SYM",
+    "PATH",
+    "SERV",
+    "CGNX",
+    "ZBRA"
+   ],
+   "QTUM": [
+    "IONQ",
+    "RGTI",
+    "QBTS",
+    "QUBT",
+    "IBM",
+    "HON"
+   ],
+   "UFO": [
+    "RKLB",
+    "ASTS",
+    "LUNR",
+    "PL",
+    "IRDM",
+    "VSAT",
+    "GSAT",
+    "SATS",
+    "RDW",
+    "BKSY"
+   ],
+   "URA": [
+    "CCJ",
+    "UEC",
+    "NXE",
+    "UUUU",
+    "DNN",
+    "LEU",
+    "URG",
+    "EU"
+   ],
+   "NLR": [
+    "CEG",
+    "VST",
+    "OKLO",
+    "SMR",
+    "BWXT",
+    "LEU",
+    "NNE",
+    "TLN"
+   ],
+   "LIT": [
+    "ALB",
+    "SQM",
+    "LAC",
+    "SGML",
+    "ENVX",
+    "QS",
+    "ELVR"
+   ],
+   "REMX": [
+    "MP",
+    "UAMY",
+    "USAR",
+    "TMC",
+    "NB",
+    "ALB",
+    "PPTA"
+   ],
+   "COPX": [
+    "FCX",
+    "SCCO",
+    "TECK",
+    "HBM",
+    "ERO",
+    "IE",
+    "TGB"
+   ],
+   "GDX": [
+    "NEM",
+    "AEM",
+    "B",
+    "KGC",
+    "AU",
+    "AGI",
+    "WPM",
+    "FNV",
+    "RGLD",
+    "GFI"
+   ],
+   "SIL": [
+    "PAAS",
+    "AG",
+    "HL",
+    "CDE",
+    "SSRM",
+    "EXK",
+    "MAG",
+    "FSM"
+   ],
+   "TAN": [
+    "FSLR",
+    "ENPH",
+    "SEDG",
+    "RUN",
+    "NXT",
+    "ARRY",
+    "SHLS",
+    "CSIQ"
+   ],
+   "ICLN": [
+    "NEE",
+    "FSLR",
+    "ENPH",
+    "PLUG",
+    "BE",
+    "ORA",
+    "BEP"
+   ],
+   "WGMI": [
+    "MARA",
+    "RIOT",
+    "CLSK",
+    "HUT",
+    "CORZ",
+    "IREN",
+    "CIFR",
+    "BITF",
+    "WULF"
+   ],
+   "IBIT": [
+    "MSTR",
+    "COIN",
+    "HOOD",
+    "MARA",
+    "RIOT",
+    "GLXY"
+   ],
+   "KWEB": [
+    "BABA",
+    "PDD",
+    "JD",
+    "BIDU",
+    "TCOM",
+    "BEKE",
+    "NTES",
+    "TME",
+    "BILI"
+   ],
+   "PAVE": [
+    "PWR",
+    "MLM",
+    "VMC",
+    "URI",
+    "EME",
+    "FIX",
+    "STLD",
+    "NUE",
+    "ETN",
+    "CSX"
+   ],
+   "XHB": [
+    "DHI",
+    "LEN",
+    "PHM",
+    "NVR",
+    "TOL",
+    "BLDR",
+    "KBH"
+   ],
+   "JETS": [
+    "DAL",
+    "UAL",
+    "AAL",
+    "LUV",
+    "ALK",
+    "JBLU"
+   ],
+   "ITA": [
+    "RTX",
+    "LMT",
+    "NOC",
+    "GD",
+    "GE",
+    "HWM",
+    "TDG",
+    "LHX",
+    "KTOS",
+    "AVAV",
+    "HII"
+   ]
+  }
+ }
 }
