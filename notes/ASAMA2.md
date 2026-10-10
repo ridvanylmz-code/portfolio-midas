@@ -12,8 +12,8 @@ pozisyon büyüklüğü ve risk.
 - [x] 3. .github/workflows/market.yml (hafta içi saatlik + kapanış sonrası)
 - [x] 4. monitor.py fiyat yedeği: Finnhub → TV scanner → (Alpaca, anahtar varsa) → stale
 - [x] 5. intraday/trend 15dk mum yedeği: Alpaca (anahtar varsa, ön/sonrası dahil) → Twelve Data
-- [ ] 6. Mini uygulama: Sektör sekmesi, rejim + hedef nakit, portföy risk/ısı, pozisyon büyüklüğü hesabı
-- [ ] 7. docs/data/sector_notes.json: haber/momentum yorumu (güncelle bizi ile yenilenir) + ilk analiz
+- [x] 6. Mini uygulama: Sektör sekmesi, rejim + hedef nakit, portföy risk/ısı, pozisyon büyüklüğü hesabı
+- [x] 7. docs/data/sector_notes.json: haber/momentum yorumu (güncelle bizi ile yenilenir) + ilk analiz
 - [ ] 8. Test, push, canlı çalıştırma, rapor
 
 ## Notlar
@@ -25,3 +25,4 @@ pozisyon büyüklüğü ve risk.
 - Not: PORTFOLIO_KEY kullanıcı tarafından eklendi; repodaki portföy şifreli (17:24 UTC). Testlerde 0a46479'daki düz kopya kullanıldı.
 - Sıradaki: 6 (mini uygulama Sektör sekmesi + risk), 7 (sector_notes + analiz), 8.
 - 6 (kısmen) ✔ docs/sector.js + tg.html Sektör sekmesi, Portföy sekmesinde nakit/ısı şeridi. Test edilmedi, push edilmedi (yerelde). Sıradaki: Playwright testi, sector_notes.json.
+- 6-7 ✔ Sektör sekmesi Playwright ile test edildi (390/1024px, hata yok). docs/data/sector_notes.json ilk yorum (9 Eki, haber + momentum). 'güncelle bizi'de bu dosya da yenilenecek.
