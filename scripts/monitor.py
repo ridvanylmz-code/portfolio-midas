@@ -66,6 +66,18 @@ def fetch_quote(ticker, key, retries=3):
     return None
 
 
+def backup_tv(tickers):
+    import tvscan
+    sc = tvscan.fetch(tickers, ["name", "close", "change", "change_abs", "open", "high", "low", "market_cap_basic"],
+                      retries=2) or {}
+    return {t: q for t, r in sc.items() if (q := tvscan.quote_from(r))}
+
+
+def backup_alpaca(tickers):
+    import alpaca
+    return alpaca.snapshots(tickers)
+
+
 def market_status(key):
     try:
         r = requests.get(f"{API}/stock/market-status", params={"exchange": "US", "token": key}, timeout=10)
@@ -270,7 +282,25 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         if q:
             quotes[t] = q
             fresh[t] = q
-        elif common.valid_quote(prev.get(t)):
+    # Yedek zincir (yalnız ABD): Finnhub'dan gelmeyenler -> TradingView tarayıcısı (tek istek) -> Alpaca (anahtar varsa)
+    missing = [t for t in tickers if t not in fresh]
+    if missing and not BIST:
+        for name, fn in (("TV scanner", backup_tv), ("Alpaca", backup_alpaca)):
+            if not missing:
+                break
+            try:
+                got = fn(missing)
+            except Exception as ex:
+                print(f"[WARN] {name} yedeği: {type(ex).__name__}")
+                got = {}
+            for t, q in got.items():
+                if common.valid_quote(q):
+                    quotes[t] = fresh[t] = q
+            if got:
+                print(f"{name} yedeği: {len(got)}/{len(missing)} fiyat")
+            missing = [t for t in tickers if t not in fresh]
+    for t in tickers:
+        if t not in quotes and common.valid_quote(prev.get(t)):
             quotes[t] = {**prev[t], "stale": True}
     if not fresh:
         print("[ERROR] Hiç fiyat alınamadı (API anahtarı / limit?).")

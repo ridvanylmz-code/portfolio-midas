@@ -18,6 +18,7 @@ import requests
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  # noqa: E402
+import tvscan  # noqa: E402
 
 OUT = "docs/data/technicals.json"
 PORTFOLIO = "docs/data/portfolio.json"
@@ -171,6 +172,20 @@ def fetch_tv(symbol):
     raise RuntimeError(f"{type(last_err).__name__}: {str(last_err)[:160]}")
 
 
+TV_PICK = {"RSI": "RSI", "MACD.macd": "MACD.macd", "MACD.signal": "MACD.signal", "SMA20": "SMA20",
+           "SMA50": "SMA50", "SMA200": "SMA200", "EMA20": "EMA20", "ADX": "ADX", "close": "close"}
+
+
+def tv_from_scan(rec):
+    """Tarayıcı satırını tradingview-ta çıktısıyla aynı biçime çevir (mini uygulama değişmeden okur)."""
+    return {"exchange": (rec.get("symbol") or ":").split(":")[0] or None,
+            "recommendation": tvscan.rec_label(rec.get("Recommend.All")),
+            "oscillators": tvscan.rec_label(rec.get("Recommend.Other")),
+            "moving_averages": tvscan.rec_label(rec.get("Recommend.MA")),
+            "indicators": {k: r(rec.get(c), 3) for k, c in TV_PICK.items() if isinstance(rec.get(c), (int, float))},
+            "via": "scanner"}
+
+
 def fetch_tv_retry(symbol):
     """TradingView 429 (istek sınırı) verirse bekleyip en çok 2 kez yeniden dener."""
     for attempt in range(3):
@@ -215,6 +230,11 @@ def main():
 
     result, n_td, n_tv = {}, 0, 0
     tv_429 = 0  # art arda TradingView 429 sayısı
+    # Önce tarayıcı: TÜM semboller tek istekte (sembol başına istek yok -> 429 yok). Eksik kalana tradingview-ta.
+    scan = tvscan.fetch(tickers, ["name", "close", "RSI", "MACD.macd", "MACD.signal", "SMA20", "SMA50", "SMA200",
+                                  "EMA20", "ADX", "Recommend.All", "Recommend.MA", "Recommend.Other",
+                                  "market_cap_basic"], log=log) or {}
+    log(f"TV scanner: {len(scan)}/{len(tickers)} sembol tek istekte")
     for i, t in enumerate(tickers):
         prev = old.get(t, {})
         entry = {"tv": None, "td": None}
@@ -226,7 +246,10 @@ def main():
                     entry[k] = dict(prev[k], stale=True)
             result[t] = entry
             continue
-        if tv_ok:
+        if t in scan:
+            entry["tv"] = tv_from_scan(scan[t])
+            n_tv += 1
+        elif tv_ok:
             try:
                 entry["tv"] = fetch_tv_retry(t)
                 n_tv += 1
