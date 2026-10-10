@@ -25,7 +25,7 @@ IST = ZoneInfo("Europe/Istanbul")
 BIST = common.MARKET == "bist"
 CUR = common.CUR
 PRICE_DAYS = 30
-SNAPSHOT_LIMIT = 400
+SNAPSHOT_LIMIT = 4000  # ~15 yıl günlük kayıt (performans geçmişi)
 
 # Telegram rapor saatleri ABD saatine (ET) bağlı: yaz/kış saati geçişinde kendiliğinden kayar.
 # (saat, dakika, ET hafta günleri 0=Pzt). İstanbul karşılığı yazın: 03:01, 07:01, 11:01, 16:16, 16:31, 22:55, 23:01
@@ -239,6 +239,9 @@ def market_lines(summary):
         return []
 
 
+history_for_report = None  # run() doldurur (rapor dönem satırı için)
+
+
 def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, now, dashboard_url, ext_sess=None):
     e = common.e
     ist = now.astimezone(IST).strftime("%d.%m %H:%M")
@@ -256,6 +259,10 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
         f"💵 Nakit: {CUR}{summary['cash']:,.2f} (%{summary['cash_pct']:.1f})",
     ]
     lines += market_lines(summary)
+    perf = common.perf_summary(history_for_report, summary["total_value"], now.astimezone(IST if BIST else ET).date().isoformat()) \
+        if history_for_report else None
+    if perf:
+        lines.append("📆 " + " · ".join(f"{k}: {v['gain']:+,.0f}{CUR} ({v['twr']:+.2f}%)" for k, v in perf.items()))
     if month:
         lines.append(f"🎯 Aylık hedef: {month['gain']:+,.0f}{CUR} / {month['target']:,.0f}{CUR} (%{max(month['pct'], 0):.0f})")
     lines += ["", "<b>Pozisyonlar</b>"]
@@ -403,6 +410,8 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         rq, ext_sess = apply_extended(quotes, tickers, now)
         rsummary = common.summarize(portfolio, rq) if ext_sess else summary
         month = common.month_progress(history, portfolio["monthly_target"], rsummary["total_value"], et_date) if ext_sess else month
+        global history_for_report
+        history_for_report = history
         text = build_report(portfolio, rq, fresh, rsummary, market_open, alerts, month, now, dashboard_url, ext_sess)
         if common.send_telegram(text):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in alerts})
