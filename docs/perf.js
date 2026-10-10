@@ -7,7 +7,8 @@
   function el(tag, c, t) { var e = document.createElement(tag); if (c) e.className = c; if (t !== undefined && t !== null) e.textContent = t; return e }
   function n(x, d) { return (x === null || x === undefined || isNaN(+x)) ? "–" : (+x).toLocaleString("tr-TR", { minimumFractionDigits: d, maximumFractionDigits: d }) }
   function sgn(x) { return x > 0 ? "+" : x < 0 ? "−" : "" }
-  function usd(x, hide) { return hide ? "*****" : sgn(x) + "$" + n(Math.abs(x), 0) }
+  var CUR = "$";
+  function usd(x, hide) { return hide ? "*****" : sgn(x) + CUR + n(Math.abs(x), 0) }
   function pc(x) { return x === null || x === undefined ? "–" : sgn(x) + "%" + n(Math.abs(x), 2) }
   function cls(x) { return x > 0 ? "up" : x < 0 ? "dn" : "" }
 
@@ -87,7 +88,7 @@
   var view = "ozet";
   function render(box, ctx) {
     css(); box.textContent = "";
-    var H = ctx.H, P = ctx.P, hide = ctx.hide;
+    var H = ctx.H, P = ctx.P, hide = ctx.hide; CUR = ctx.cur || "$";
     if (!H || !P) { return }
     var now = new Date(), today = ctx.today || iso(now);
     var S = series(H, P, ctx.total, today), sn = S.snaps;
@@ -132,7 +133,7 @@
     kv("Açık pozisyon K/Z", unreal === null ? "–" : usd(unreal, hide), cls(unreal));
     var t = trades(ctx.H); kv("Gerçekleşen K/Z", usd(t.total, hide), cls(t.total));
     var tgt = +(ctx.P.monthly_target || 0), mp = period(S, iso(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 0))));
-    if (tgt && mp) kv("Aylık hedefe ilerleme", (hide ? "*****" : usd(mp.gain) + " / $" + n(tgt, 0)) + " (" + sgn(mp.gain) + "%" + n(Math.abs(mp.gain / tgt * 100), 0) + ")", cls(mp.gain));
+    if (tgt && mp) kv("Aylık hedefe ilerleme", (hide ? "*****" : usd(mp.gain) + " / " + CUR + n(tgt, 0)) + " (" + sgn(mp.gain) + "%" + n(Math.abs(mp.gain / tgt * 100), 0) + ")", cls(mp.gain));
     kv("Hisse / nakit", "%" + n(100 - (last.cashPct || 0), 1) + " / %" + n(last.cashPct, 1));
     c.appendChild(k);
     chart(c, sn, hide);
@@ -151,7 +152,7 @@
     sn.forEach(function (s, i) { d1 += (i ? "L" : "M") + x(i).toFixed(1) + " " + y(s.value).toFixed(1) + " "; if (s.cashPct != null) d2 += (d2 ? "L" : "M") + x(i).toFixed(1) + " " + yc(s.cashPct).toFixed(1) + " " });
     svg.appendChild(mk("path", { d: d2, fill: "none", stroke: "#f5b942", "stroke-width": 1.5, "stroke-dasharray": "4 3" }));
     svg.appendChild(mk("path", { d: d1, fill: "none", stroke: "#5aa9ff", "stroke-width": 2.2 }));
-    [[hi, "start"], [lo, "start"]].forEach(function (p) { var t = mk("text", { x: W - R + 4, y: y(p[0]) + 4, fill: "#7d8798", "font-size": 12 }); t.textContent = hide ? "" : "$" + n(p[0] / 1000, 1) + " bin"; svg.appendChild(t) });
+    [[hi, "start"], [lo, "start"]].forEach(function (p) { var t = mk("text", { x: W - R + 4, y: y(p[0]) + 4, fill: "#7d8798", "font-size": 12 }); t.textContent = hide ? "" : CUR + n(p[0] / 1000, 1) + " bin"; svg.appendChild(t) });
     [[0, "start"], [sn.length - 1, "end"]].forEach(function (p) { var t = mk("text", { x: x(p[0]), y: H - 3, fill: "#7d8798", "font-size": 12, "text-anchor": p[1] }); t.textContent = sn[p[0]].date.slice(5).split("-").reverse().join("."); svg.appendChild(t) });
     var w = el("div", "pf-chart"); w.appendChild(svg);
     var lg = el("div", "pf-s", "— mavi: toplam değer · kesikli sarı: nakit oranı (0–%60 ölçek)"); w.appendChild(lg);

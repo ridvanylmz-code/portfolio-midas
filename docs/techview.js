@@ -72,7 +72,7 @@
   var range = 120;
   function chart(box, t, ctx) {
     var B = ctx.BARS && ctx.BARS.bars && ctx.BARS.bars[t];
-    if (!B || B.length < 30) { box.appendChild(el("div", "sub", "Grafik verisi henüz yok (Piyasa & Sektör iş akışı günlük mumları yazınca gelir).")); return }
+    if (!B || B.length < 30) { box.appendChild(el("div", "sub", ctx.noBarsMsg || "Grafik verisi henüz yok (Piyasa & Sektör iş akışı günlük mumları yazınca gelir).")); return }
     var wrap = el("div", "tx-chart"); box.appendChild(wrap);
     var rg = el("div", "tx-rg");
     [[60, "3A"], [120, "6A"], [180, "9A"]].forEach(function (x) {
@@ -131,7 +131,7 @@
       });
       wrap.appendChild(svg);
       var leg = el("div", "tx-leg");
-      [["#5aa9ff", "EMA20"], ["#b58cff", "SMA50"]].concat(lines.map(function (l) { return [l[1], l[2].split(" ")[0] + (l[2].indexOf("ATR") === 0 ? " stop" : "")] })).forEach(function (k) {
+      (ctx.plainLegend ? [["#5aa9ff", "20 günlük çizgi"], ["#b58cff", "50 günlük çizgi"]] : [["#5aa9ff", "EMA20"], ["#b58cff", "SMA50"]]).concat(lines.map(function (l) { return [l[1], l[2].split(" ")[0] + (l[2].indexOf("ATR") === 0 ? " stop" : "")] })).forEach(function (k) {
         var sp = el("span"); var i = el("i"); i.style.background = k[0]; sp.appendChild(i); sp.appendChild(document.createTextNode(k[1])); leg.appendChild(sp);
       });
       wrap.appendChild(leg);
@@ -141,7 +141,7 @@
 
   function render(box, t, ctx) {
     css();
-    matrix(box, t, ctx);
+    if (!ctx.chartOnly) matrix(box, t, ctx);
     chart(box, t, ctx);
   }
 
