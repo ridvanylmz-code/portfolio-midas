@@ -24,3 +24,4 @@ pozisyon büyüklüğü ve risk.
 - 5 ✔ scripts/alpaca.py (isteğe bağlı; ALPACA_KEY_ID/ALPACA_SECRET_KEY): intraday/trend 15dk mumda Twelve Data'dan önce.
 - Not: PORTFOLIO_KEY kullanıcı tarafından eklendi; repodaki portföy şifreli (17:24 UTC). Testlerde 0a46479'daki düz kopya kullanıldı.
 - Sıradaki: 6 (mini uygulama Sektör sekmesi + risk), 7 (sector_notes + analiz), 8.
+- 6 (kısmen) ✔ docs/sector.js + tg.html Sektör sekmesi, Portföy sekmesinde nakit/ısı şeridi. Test edilmedi, push edilmedi (yerelde). Sıradaki: Playwright testi, sector_notes.json.
