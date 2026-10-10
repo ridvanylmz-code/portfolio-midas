@@ -1,0 +1,82 @@
+name: BIST Pozisyon Güncelle
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'İşlem türü'
+        required: true
+        type: choice
+        options:
+          - buy
+          - sell
+          - deposit
+          - withdraw
+          - watch_add
+          - watch_remove
+      symbol:
+        description: 'Hisse kodu (buy/sell/watch_* için; deposit/withdraw için boş bırak)'
+        required: false
+        type: string
+      quantity:
+        description: 'buy/sell: adet | deposit/withdraw: tutar (₺)'
+        required: false
+        type: string
+      price:
+        description: 'Fiyat ₺ (sadece buy/sell için)'
+        required: false
+        type: string
+      commission:
+        description: 'Komisyon ₺ (isteğe bağlı; buy/sell için, boşsa 0)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portfolio-data-bist
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Pozisyon güncelle
+        env:
+          MARKET: bist
+          TELEGRAM_BOT_TOKEN: ${{ secrets.BIST_TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.BIST_TELEGRAM_CHAT_ID }}
+          IN_ACTION: ${{ inputs.action }}
+          IN_TICKER: ${{ inputs.symbol }}
+          IN_PRICE: ${{ inputs.price }}
+          IN_COMMISSION: ${{ inputs.commission }}
+          QUANTITY: ${{ inputs.quantity }}
+        run: |
+          case "$IN_ACTION" in
+            deposit|withdraw) export IN_AMOUNT="$QUANTITY" ;;
+            *) export IN_SHARES="$QUANTITY" ;;
+          esac
+          python scripts/update_position.py
+
+      - name: Değişikliği commit'le
+        run: |
+          git config user.name "portfolio-bot"
+          git config user.email "portfolio-bot@users.noreply.github.com"
+          git add bist/portfolio.json bist/history.json docs/bist/data
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -m "pozisyon(bist): ${{ inputs.action }} ${{ inputs.symbol }}"
+          for i in 1 2 3; do
+            git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep 5
+          done
+          exit 1

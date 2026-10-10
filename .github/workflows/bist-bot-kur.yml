@@ -1,0 +1,27 @@
+name: BIST Bot Kur
+
+# Bir kez elle çalıştırılır: BIST botunun menü düğmesini mini uygulamaya bağlar ve bir hoş geldin mesajı yollar.
+# Gerekli secret'lar: BIST_TELEGRAM_BOT_TOKEN, BIST_TELEGRAM_CHAT_ID
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Menü düğmesini kur
+        env:
+          BOT_TOKEN: ${{ secrets.BIST_TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.BIST_TELEGRAM_CHAT_ID }}
+          APP_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/bist/tg.html
+          DASH_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/bist/
+        run: python scripts/bist_bot_setup.py

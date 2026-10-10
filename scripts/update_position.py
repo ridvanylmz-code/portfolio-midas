@@ -20,7 +20,8 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  # noqa: E402
 
-ET = ZoneInfo("America/New_York")
+ET = ZoneInfo("Europe/Istanbul" if common.MARKET == "bist" else "America/New_York")
+C = common.CUR
 ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove")
 EPS = 1e-9
 
@@ -78,12 +79,12 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
     if action in ("deposit", "withdraw"):
         amt = common.finite_positive(amount, "amount")
         if action == "withdraw" and amt > portfolio["cash"] + EPS:
-            raise ValueError(f"Yetersiz nakit: ${portfolio['cash']:,.2f} < ${amt:,.2f}")
+            raise ValueError(f"Yetersiz nakit: {C}{portfolio['cash']:,.2f} < {C}{amt:,.2f}")
         portfolio["cash"] = round(portfolio["cash"] + (amt if action == "deposit" else -amt), 2)
         tx.update(amount=round(amt, 2), cash_after=portfolio["cash"])
         history["transactions"].append(tx)
         verb = "yatırıldı" if action == "deposit" else "çekildi"
-        return f"💵 ${amt:,.2f} {verb}. Nakit: ${portfolio['cash']:,.2f}"
+        return f"💵 {C}{amt:,.2f} {verb}. Nakit: {C}{portfolio['cash']:,.2f}"
 
     # buy / sell
     qty = common.finite_positive(shares, "shares")
@@ -93,12 +94,12 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
     gross = qty * px
     # Alış: nakit çıkışı = tutar + komisyon. Satış: nakit girişi = tutar - komisyon.
     total = gross + fee if action == "buy" else gross - fee
-    fee_txt = f" (komisyon ${fee:,.2f})" if fee else ""
+    fee_txt = f" (komisyon {C}{fee:,.2f})" if fee else ""
 
     if action == "buy":
         if update_cash and total > portfolio["cash"] + EPS:
             raise ValueError(
-                f"Yetersiz nakit: ${portfolio['cash']:,.2f} < ${total:,.2f}. "
+                f"Yetersiz nakit: {C}{portfolio['cash']:,.2f} < {C}{total:,.2f}. "
                 "Önce deposit yapın ya da update_cash=false seçin.")
         if pos:
             new_shares = pos["shares"] + qty
@@ -109,8 +110,8 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
         tx.update(shares=_num(qty), price=px, cost_basis_after=round(new_cost, 4), realized_pnl=0.0)
         if fee:
             tx["commission"] = fee
-        msg = (f"🟢 ALIŞ {ticker}: {_num(qty)} adet @ ${px:,.2f}{fee_txt}\n"
-               f"Yeni pozisyon: {_num(new_shares)} adet, ort. maliyet ${new_cost:,.4f}")
+        msg = (f"🟢 ALIŞ {ticker}: {_num(qty)} adet @ {C}{px:,.2f}{fee_txt}\n"
+               f"Yeni pozisyon: {_num(new_shares)} adet, ort. maliyet {C}{new_cost:,.4f}")
         lv = portfolio["position_levels"].get(ticker)
         if lv and not pos:  # kapatılmış pozisyon yeniden açıldı: saklı seviyeler geri geçerli
             msg += f"\n🎯 Kayıtlı seviyeler geri yüklendi ({_lv_txt(lv)})"
@@ -134,16 +135,16 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
             rest = "Pozisyon kapandı." + (f" Seviyeler saklandı ({_lv_txt(lv)}), yeniden alımda geçerli olur." if lv else "")
         else:
             portfolio["portfolio"][ticker] = {"shares": _num(remaining), "cost_basis": pos["cost_basis"]}
-            rest = f"Kalan: {_num(remaining)} adet (maliyet ${pos['cost_basis']:,.4f})"
+            rest = f"Kalan: {_num(remaining)} adet (maliyet {C}{pos['cost_basis']:,.4f})"
         tx.update(shares=_num(qty), price=px, cost_basis_after=pos["cost_basis"],
                   realized_pnl=round(realized, 2))
         if fee:
             tx["commission"] = fee
-        msg = f"🔴 SATIŞ {ticker}: {_num(qty)} adet @ ${px:,.2f}{fee_txt}\nGerçekleşen K/Z: {realized:+,.2f}$ · {rest}"
+        msg = f"🔴 SATIŞ {ticker}: {_num(qty)} adet @ {C}{px:,.2f}{fee_txt}\nGerçekleşen K/Z: {realized:+,.2f}{C} · {rest}"
 
     if update_cash:
         portfolio["cash"] = round(portfolio["cash"] + (-total if action == "buy" else total), 2)
-        msg += f"\nNakit: ${portfolio['cash']:,.2f}"
+        msg += f"\nNakit: {C}{portfolio['cash']:,.2f}"
     else:
         msg += "\n(Nakit güncellenmedi)"
     tx["cash_after"] = portfolio["cash"]
@@ -153,8 +154,8 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
 
 def _lv_txt(lv):
     st, tg = lv.get("stop_loss"), lv.get("target")
-    return ", ".join(x for x in (f"stop ${float(st):,.2f}" if st is not None else "",
-                                 f"hedef ${float(tg):,.2f}" if tg is not None else "") if x) or "boş"
+    return ", ".join(x for x in (f"stop {C}{float(st):,.2f}" if st is not None else "",
+                                 f"hedef {C}{float(tg):,.2f}" if tg is not None else "") if x) or "boş"
 
 
 def _env_or(args, name, env):
@@ -194,11 +195,12 @@ def main(argv=None):
         common.send_telegram(f"⚠️ Pozisyon güncellemesi reddedildi: {common.e(ex)}")
         return 1
 
-    common.save_json("portfolio.json", portfolio)
-    common.save_json("history.json", history)
+    common.save_json(common.F_PORTFOLIO, portfolio)
+    common.save_json(common.F_HISTORY, history)
     common.sync_public()
     print(msg)
-    common.send_telegram("<b>✅ Portföy güncellendi</b>\n" + common.e(msg))
+    head = "<b>✅ BIST portföyü güncellendi</b>" if common.MARKET == "bist" else "<b>✅ Portföy güncellendi</b>"
+    common.send_telegram(head + "\n" + common.e(msg))
     return 0
 
 

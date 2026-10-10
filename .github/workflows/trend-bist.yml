@@ -1,11 +1,14 @@
-name: BIST Trend Tara (elle)
+name: BIST Trend Tara
 
-# Elle tetiklenir: Actions -> "BIST Trend Tara (elle)" -> Run workflow.
+# Seans içinde 15 dk'da bir (10:10-18:10 İstanbul, Pzt-Cum) ve elle: Actions -> "BIST Trend Tara" -> Run workflow.
 # Sembol kutusu doluysa onu, boşsa trend/bist_tickers.txt'yi kullanır.
 # Sonuç `trend-bist-data` dalına trend-bist.json olarak yazılır (ABD'nin `trend-data` ve `data` dallarına dokunmaz).
 # Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/bist/
 # Kaynak sırası: Yahoo (ham istek) -> yfinance -> Twelve Data XIST (TWELVEDATA_API_KEY varsa). Sembol soneki .IS.
 on:
+  schedule:
+    - cron: "10,25,40,55 7-14 * * 1-5"
+    - cron: "10 15 * * 1-5"
   workflow_dispatch:
     inputs:
       tickers:
@@ -39,7 +42,8 @@ jobs:
           TICKERS: ${{ github.event.inputs.tickers }}
         run: |
           mkdir -p data-out
-          python scripts/trend_bist.py --tickers "$TICKERS" --file trend/bist_tickers.txt --out data-out/trend-bist.json
+          git fetch -q --depth=1 origin trend-bist-data 2>/dev/null && git show FETCH_HEAD:trend-bist.json > prev.json 2>/dev/null || echo "önceki veri yok"
+          python scripts/trend_bist.py --tickers "$TICKERS" --file trend/bist_tickers.txt --prev prev.json --out data-out/trend-bist.json
 
       - name: trend-bist-data dalına yaz (tek commit)
         if: always()
