@@ -1,0 +1,80 @@
+{
+ "updated": "2026-10-11",
+ "summary": "BIST rejimi Risk-off (2/7). XU100 SMA50 ve SMA200'ün altında, evrenin yalnızca ~%18'i SMA50 üstünde; son 1 ayda endeks %14,7 geriledi, dolar bazında 3 aylık getiri −%17. 7 Eki'de endeks %2,03 düşüp 12.122,94'e indi (genele yayılan satış, tek bir tetikleyici haberde belirtilmemiş); 15 Eyl'deki düşüşte (−%2,41) Orta Doğu gerilimi/petrol, tahvil faizlerindeki yükseliş ve Fed beklentisi öne çıkmıştı, bankalar düşüşe öncülük etti. Makro: Eylül TÜFE aylık %1,84, yıllık %29,73 (beklentinin altında, Kasım 2021'den beri ilk kez %30 altı); politika faizi %37, sonraki PPK 22 Eki 14:00. USD/TRY 49,26 (1A +%1,6, 3A +%4,9). Not: düşen piyasada 'lider' gruplar yalnızca endeksten az düşenlerdir; hiçbiri mutlak olarak güçlü değil. Sonuç: nakit %35-40 bandında, yeni alımlar yalnızca trendi 5/7 üstü bireysel hisselerde ve kademeli; sektör bazlı genel alım yok.",
+ "groups": {
+  "METAL": {
+   "note": "Göreli lider (3A +%8, endeksten ~21 puan iyi) ama 1A −%9,6 ve evrenin yalnızca %25'i SMA50 üstünde. Dirençli ama mutlak getiri negatif; yeni alım için kapanış üstü teyit bekle."
+  },
+  "PERAKENDE": {
+   "note": "3A +%9,7 ile endeksin 23 puan üstünde; grupta BIMAS, SOKM, MGROS gibi marketler ve DOHOL, DOAS var (TradingView sınıflaması). Grup trendi 4/7: izle, geri çekilmede kademeli."
+  },
+  "ENERJI": {
+   "note": "3A +%12,4 ile en güçlü 3 aylık getiri; grupta yalnızca 3 hisse var (TUPRS, TRENJ ve TradingView'in enerji saydığı KCHOL), bu yüzden medyan dar bir tabana dayanıyor. 15 Eyl haberinde Brent yükselişi gündemdi: petrol yönü ana risk ve destekleyici."
+  },
+  "GYO": {
+   "note": "1A −%5,2 ile endeksten az düşüyor; trend 3/7. Faiz kararı (22 Eki) gayrimenkul için belirleyici; karar öncesi yeni pozisyon açma."
+  },
+  "TELEKOM": {
+   "note": "Yalnızca 2 hisse (TCELL, TTKOM); 1A −%3,8 ile endeksten güçlü ama günlük trend 0/7. TCELL bilançosu 5 Kas."
+  },
+  "BANKA": {
+   "note": "Yalnız piyasa okuması için: banka kuralı gereği yatırım önerilmez. 15 Eyl'de bankacılık endeksi düşüşün başını çekti; 1A −%12,5."
+  },
+  "INSAAT": {
+   "note": "1A −%8, 6A −%21: zayıf ama 15 hissede dağılım geniş. Çimento ve inşaat içinde bireysel güçlüler (TKFEN, AKFIS) var; grup olarak değil hisse bazında bak."
+  },
+  "ULASTIRMA": {
+   "note": "Haftalık +%5 ile toparlanıyor (Toparlanan). THYAO bilançosu 11 Kas; havayolu 3A −%13. Lojistik tarafında HRKET ve RYSAS grubun dışında güçlü (trend 7/7)."
+  },
+  "SAVUNMA": {
+   "note": "En zayıf grup: 1A −%28, 3A −%29, tüm üyeler SMA50 altında. ASELS bilançosu 27 Eki; bilançoya kadar yeni alım yok, takipteki küçük savunma hisseleri (ALTNY, SDTTR) de aynı zayıflıkta."
+  },
+  "HOLDING": {
+   "note": "1A −%17,5, trend 1/7: uzak dur. Holding indeksi 15 Eyl'de de %2,29 düşmüştü; faiz/TL beklentilerine duyarlı grup."
+  },
+  "TEKNOLOJI": {
+   "note": "1A −%25, 6A −%36; 5 hissenin medyanı. Zayıflayan çeyrek: kâr alma sonrası toparlanma teyidi yok."
+  },
+  "SANAYI": {
+   "note": "3A −%27: en derin 3 aylık kayıp ikinci grup; trend 1/7, uzak dur."
+  },
+  "KIMYA": {
+   "note": "1A −%18, 3A −%20: SASA bu grupta ve grubun da gerisinde. Dönüş sinyali yok."
+  }
+ },
+ "stocks": {
+  "SASA": {
+   "note": "Geride: endeksin 7 puan gerisinde, trend 0/7, grup da zayıf. Yeni alım yok; ATR stopa (≈1,80) yakın."
+  },
+  "MIATK": {
+   "note": "Zayıflayan: 3A hâlâ hafif artıda ama 1A −%13, trend 0/7. Kâr alma bölgesi; yeni alım yok."
+  },
+  "ALTNY": {
+   "note": "Geride: 1A −%14, trend 0/7. Savunma grubu zayıf; uzak dur."
+  },
+  "TCELL": {
+   "note": "Endeksten 6 puan güçlü (1A +%11) ama günlük trend 0/7: göreli güç var, mutlak trend yok. Bilanço 5 Kas; öncesinde kademeli bile olsa alım için erken."
+  },
+  "THYAO": {
+   "note": "Toparlanan: 1A'da endeksin ~10 puan üstünde ama trend 1/7 (günlük). Bilanço 11 Kas. Geri çekilme yerine 20 günlük çizgi (≈290) üstü kapanış bekle."
+  },
+  "RYSAS": {
+   "note": "Lider, trend 7/7, 3A endeksin 38 puan üstünde. Güçlü ama oynak: ATR stop ≈24,1; kovalamak yerine geri çekilmede."
+  },
+  "HRKET": {
+   "note": "Evrenin en güçlü hissesi (RS +58, trend 7/7). Çok hızlı yükseldiği için geri çekilme riski yüksek; ATR stop ≈8,46 (fiyatın %12 altı)."
+  },
+  "SDTTR": {
+   "note": "Geride: endeksin 12 puan gerisinde, trend 1/7, savunma grubu zayıf. Uzak dur."
+  },
+  "DOHOL": {
+   "note": "Perakende grubunda (TradingView sınıflaması) endeksten 1,9 puan güçlü ama günlük trend 1/7. Yeni alım yok; ATR stop ≈18,0 fiyata çok yakın."
+  },
+  "TRENJ": {
+   "note": "Enerji grubunda lider (RS +9,6) ama trend 2/7. İzle; 3A'da +%14,5 ile dirençli."
+  },
+  "AKSGY": {
+   "note": "GYO'da lider: RS +11, trend 5/7. Faiz kararı (22 Eki) öncesi pozisyon büyütme; ATR stop ≈9,26."
+  }
+ }
+}

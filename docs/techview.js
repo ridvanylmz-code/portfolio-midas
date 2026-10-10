@@ -17,6 +17,8 @@
       ".tx-mx td{padding:8px 4px;border-bottom:1px solid var(--line);vertical-align:top}.tx-mx tr:last-child td{border-bottom:0}" +
       ".tx-mx td:first-child{color:var(--mut);white-space:nowrap;width:70px}.tx-mx td:nth-child(2){font-weight:700;white-space:nowrap;width:92px}" +
       ".tx-mx td:last-child{color:#c9d1de}" +
+      "@media (max-width:520px){.tx-mx tr{display:grid;grid-template-columns:auto 1fr;column-gap:8px;border-bottom:1px solid var(--line);padding:6px 0}.tx-mx tr:last-child{border-bottom:0}" +
+      ".tx-mx td{border:0;padding:2px 0;width:auto!important}.tx-mx td:last-child{grid-column:1/-1;font-size:12.5px}}" +
       ".tx-sum{font-weight:700;margin:4px 0 8px}.tx-chart{margin:10px -4px 4px}.tx-chart svg{width:100%;height:auto;display:block}" +
       ".tx-leg{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;color:var(--mut);margin:2px 2px 8px}" +
       ".tx-leg i{display:inline-block;width:12px;height:2px;margin-right:4px;vertical-align:middle}" +
@@ -33,26 +35,30 @@
   function matrix(box, t, ctx) {
     var s = ctx.M && ctx.M.stocks && ctx.M.stocks[t], it = ctx.INTRA && ctx.INTRA.tickers && ctx.INTRA.tickers[t],
       tr = ctx.TREND && ctx.TREND.tickers && ctx.TREND.tickers[t];
-    var rows = [], ups = 0, known = 0;
+    var rows = [], ups = 0, known = 0, pl = !!ctx.plain, BN = ctx.bench || "SPY";  // plain: gösterge adı yerine sade dil (BIST)
     function add(lbl, up, txt, det) { var a = arrow(up); rows.push([lbl, a, txt, det]); if (up !== null && up !== undefined) { known++; if (up) ups++ } }
     if (s && s.trend) {
       var ck = {}; (s.trend.checks || []).forEach(function (k) { ck[k[0]] = k[1] });
       var wUp = ck["Fiyat > EMA20 (haftalık)"], wCross = ck["EMA20 > SMA50 (haftalık)"];
       add("Haftalık", wUp === undefined ? null : wUp, wUp ? "yükseliş" : wUp === false ? "düşüş" : "–",
-        "Fiyat haftalık EMA20 " + (wUp ? "üstünde" : "altında") + (wCross === undefined ? "" : ", EMA20 " + (wCross ? ">" : "<") + " SMA50") + " · haftalık RSI " + n(s.rsi_w, 0));
+        (pl ? "Fiyat haftalık çizginin " + (wUp ? "üstünde" : "altında") + (wCross === undefined ? "" : ", kısa çizgi uzun çizginin " + (wCross ? "üstünde" : "altında"))
+          : "Fiyat haftalık EMA20 " + (wUp ? "üstünde" : "altında") + (wCross === undefined ? "" : ", EMA20 " + (wCross ? ">" : "<") + " SMA50")) + " · haftalık RSI " + n(s.rsi_w, 0));
       var dUp = s.trend.points >= 4;
       add("Günlük", s.trend.points === 3 ? null : dUp, s.trend.points + "/7 " + (s.trend.label || ""),
-        "EMA20 " + n(s.ema20, 2) + " · SMA50 " + n(s.sma50, 2) + " · SMA200 " + n(s.sma200, 2) + " · RSI " + n(s.rsi, 0) +
+        (pl ? "20g çizgi " + n(s.ema20, 2) + " · 50g çizgi " + n(s.sma50, 2) + " · 200g çizgi " + n(s.sma200, 2)
+          : "EMA20 " + n(s.ema20, 2) + " · SMA50 " + n(s.sma50, 2) + " · SMA200 " + n(s.sma200, 2)) + " · RSI " + n(s.rsi, 0) +
         " · MACD " + (s.macd !== null && s.macd_sig !== null ? (s.macd > s.macd_sig ? "sinyal üstünde (olumlu)" : "sinyal altında (olumsuz)") : "–") + " · ADX " + n(s.adx, 0));
     }
-    if (it && it.h4) add("4 saat", it.h4.dir === "up", it.h4.dir === "up" ? "yükseliş" : "düşüş",
-      "EMA8 " + n(it.h4.ema8, 2) + " / EMA20 " + n(it.h4.ema20, 2) + (it.h4.cross_bars_ago != null ? " · kesişim " + it.h4.cross_bars_ago + " mum önce" : "") +
+    if (it && it.h4) add(pl ? "4S Trend" : "4 saat", it.h4.dir === "up", it.h4.dir === "up" ? "yükseliş" : "düşüş",
+      (pl ? "kısa çizgi " + n(it.h4.ema8, 2) + " / uzun çizgi " + n(it.h4.ema20, 2) : "EMA8 " + n(it.h4.ema8, 2) + " / EMA20 " + n(it.h4.ema20, 2)) +
+      (it.h4.cross_bars_ago != null ? " · kesişim " + it.h4.cross_bars_ago + " mum önce" : "") +
       (it.elliott && it.elliott.label ? " · Elliott: " + it.elliott.label : ""));
     if (it && it.m15) {
       var st = tr && tr.st15;
-      add("15 dk", it.m15.dir === "up", it.m15.dir === "up" ? "yükseliş" : "düşüş",
-        "EMA34 " + n(it.m15.ema34, 2) + " / EMA89 " + n(it.m15.ema89, 2) +
-        (st ? " · Supertrend " + (st.dir === "up" ? "▲" : "▼") + " " + n(st.line, 2) : ""));
+      add(pl ? "15dk Trend" : "15 dk", it.m15.dir === "up", it.m15.dir === "up" ? "yükseliş" : "düşüş",
+        (pl ? "kısa çizgi " + n(it.m15.ema34, 2) + " / uzun çizgi " + n(it.m15.ema89, 2) : "EMA34 " + n(it.m15.ema34, 2) + " / EMA89 " + n(it.m15.ema89, 2)) +
+        (st && !pl ? " · Supertrend " + (st.dir === "up" ? "▲" : "▼") + " " + n(st.line, 2) : ""));
+      if (st && pl) add("15dk Tamam yada Devam", st.dir === "up", st.dir === "up" ? "Devam" : "Tamam", "çizgi " + n(st.line, 2) + (st.bars_since_flip != null ? " · " + st.bars_since_flip + " mumdur bu yönde" : ""));
     }
     if (!rows.length) { box.appendChild(el("div", "sub", "Sinyal verisi yok")); return }
     var verdict = known ? (ups === known ? "Tüm zaman dilimleri yükselişte" : ups === 0 ? "Tüm zaman dilimleri düşüşte" :
@@ -65,7 +71,7 @@
     });
     box.appendChild(tb);
     if (s && s.verdict) box.appendChild(el("div", "sub", "Sektör/RS görünümü: " + s.verdict + (s.group_name ? " · grup " + s.group_name : "") +
-      " · SPY'ye göre RS " + (s.rs && s.rs.score != null ? (s.rs.score > 0 ? "+" : "") + n(s.rs.score, 1) : "–")));
+      " · " + BN + "'e göre RS " + (s.rs && s.rs.score != null ? (s.rs.score > 0 ? "+" : "") + n(s.rs.score, 1) : "–")));
   }
 
   /* ---- grafik ---- */

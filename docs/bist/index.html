@@ -59,6 +59,9 @@ svg.spark{width:100%;height:30px;display:block;margin:6px 0 2px;overflow:visible
 .legend b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
 .motto{margin-top:22px}
 .rank{color:var(--muted);font-size:11px;margin-right:6px}
+.reg{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between}
+.reg .big{font-size:17px}
+.mt{font-size:11px;margin-top:3px;display:flex;flex-wrap:wrap;gap:3px 8px;align-items:center}
 #modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
 #modal.show{display:flex}
 #modal .card{max-width:420px;width:100%;max-height:90vh;overflow:auto}
@@ -91,6 +94,7 @@ const num=(v,d=2)=>Number(v).toLocaleString("tr-TR",{minimumFractionDigits:d,max
 const usd=(v,d=2)=>(v<0?"-":"")+"₺"+num(Math.abs(v),d);
 const sUsd=(v,d=2)=>(v>0?"+":v<0?"-":"")+"₺"+num(Math.abs(v),d);
 const sPct=v=>(v>0?"+":"")+num(v,2)+"%";
+const sNum=(v,d=1)=>(v>0?"+":v<0?"\u2212":"")+num(Math.abs(v),d);
 const cls=v=>v>0?"up":v<0?"down":"";
 const bg=v=>v>0?"up-bg":v<0?"down-bg":"flat-bg";
 const pct=(a,b)=>b?a/b*100:0;
@@ -195,7 +199,7 @@ const seriesOf=(prices,t)=>{const h=(prices||{})[t]||{};return Object.keys(h).so
 /* ---- render ---- */
 let STATE=null;
 function render(){
-  const {P,Q,H,PR}=STATE,S=compute(P,Q,H);
+  const {P,Q,H,PR,MK}=STATE,S=compute(P,Q,H);
   const mp=monthProgress(P,H,S.total);
   let h="";
 
@@ -206,6 +210,19 @@ function render(){
    <div class="card"><div class="label">Nakit</div><div class="big">${usd(S.cash)}</div><div class="sub">%${num(pct(S.cash,S.total),1)} portföy</div></div>
    <div class="card"><div class="label">Gerçekleşen K/Z</div><div class="big ${cls(S.realized)}">${sUsd(S.realized)}</div><div class="sub">satışlardan</div></div>
   </div>`;
+
+  const rg=MK&&MK.regime;
+  if(rg&&rg.score!=null&&rg.max){
+    const ct=Array.isArray(rg.cash_target)&&rg.cash_target.length>=2?rg.cash_target.map(Number):null;
+    const cp=pct(S.cash,S.total);
+    let ctx="";
+    if(ct){
+      const st=cp<ct[0]?["warn","hedefin altında"]:cp>ct[1]?["warn","hedefin üstünde"]:["good","hedef aralığında"];
+      ctx=`<div><div class="label">Önerilen nakit</div><div class="big">%${num(ct[0],0)}–${num(ct[1],0)}</div><div class="sub">Şu an %${num(cp,1)} <span class="chip ${st[0]}">${st[1]}</span></div></div>`;
+    }
+    h+=`<div class="card reg"><div><div class="label">Piyasa rejimi (BIST)</div><div class="big">${esc(rg.label||"–")}</div></div>
+     <div><div class="label">Skor</div><div class="big">${esc(rg.score)}/${esc(rg.max)}</div></div>${ctx}</div>`;
+  }
 
   if(mp){
     const w=Math.max(0,Math.min(100,mp.pct));
@@ -236,16 +253,24 @@ function render(){
   }
   h+=`</div>`;
 
-  const wl=P.watchlist.map(t=>({t,q:Q.quotes[t]})).filter(x=>validQ(x.q)).sort((a,b)=>(b.q.dp||0)-(a.q.dp||0));
+  const MS=(MK&&MK.stocks)||null;
+  const rsOf=t=>{const m=MS&&MS[t];return m&&m.rs&&typeof m.rs.score==="number"?m.rs.score:null};
+  const wl=P.watchlist.map(t=>({t,q:Q.quotes[t]})).filter(x=>validQ(x.q)).sort((a,b)=>{
+    if(MS){const x=rsOf(a.t),y=rsOf(b.t);
+      if(x!=null&&y!=null&&x!==y)return y-x;
+      if((x==null)!==(y==null))return x==null?1:-1;}
+    return (b.q.dp||0)-(a.q.dp||0);});
   const lost=P.watchlist.filter(t=>!validQ(Q.quotes[t]));
   h+=`<h2>İzleme listesi · momentuma göre</h2><div class="grid wl">`;
   wl.forEach((x,i)=>{
     let z0=(P.buy_zones||{})[x.t]; if(typeof z0==="number")z0={below:z0};
     const zb=z0&&z0.below!=null?+z0.below:null, za=z0&&z0.above!=null?+z0.above:null, zone=z0?1:null,
       inZone=(zb!=null&&x.q.c<=zb)||(za!=null&&x.q.c>=za),dp=+x.q.dp||0;
+    const m=MS&&MS[x.t],rs=rsOf(x.t);
+    const mtl=m?`<div class="mt">${m.trend&&m.trend.label?`<span class="chip">${esc(m.trend.label)}</span>`:""}${rs!=null?`<span class="${cls(rs)}"><b>RS ${sNum(rs,1)}</b></span>`:""}${m.verdict?`<span class="sub">${esc(m.verdict)}</span>`:""}</div>`:"";
     h+=`<div class="card ${inZone?"":""}" style="${inZone?"border-color:var(--up)":""}">
       <div class="row"><span><span class="rank">#${i+1}</span><b>${esc(x.t)}</b></span><span class="${cls(dp)}"><b>${sPct(dp)}</b></span></div>
-      <div class="sub">${usd(+x.q.c)}${extTag(x.q)}</div>
+      <div class="sub">${usd(+x.q.c)}${extTag(x.q)}</div>${mtl}
       ${zone!=null?`<span class="chip ${inZone?"good":""}">${inZone?(za!=null&&x.q.c>=za?"🚀 kırılım":"🎯 alım bölgesinde"):[zb!=null?"alım ≤ "+usd(zb):"",za!=null?"kırılım ≥ "+usd(za):""].filter(Boolean).join(" · ")}</span>`:""}</div>`;
   });
   h+=`</div>`;
@@ -290,12 +315,18 @@ function closeModal(){$("#modal").classList.remove("show")}
 $("#modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
+const MARKET_URL="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/market-bist-data/market-bist.json";
 async function load(){
   try{
     const [P,Q,H,PR]=await Promise.all([getJson("portfolio.json"),getJson("quotes.json"),
       getJson("history.json",true),getJson("prices.json",true)]);
     if(Q&&Q.quotes)for(const t of Object.keys(Q.quotes))Q.quotes[t]=eff(Q.quotes[t]);
-    STATE={P,Q,H:H||{transactions:[],snapshots:[]},PR:PR||{}};
+    let MK=null;
+    try{
+      const r=await fetch(MARKET_URL+"?t="+Date.now(),{cache:"no-store"});
+      if(r.ok){const j=await r.json();if(j&&typeof j==="object"&&j.stocks)MK=j;}
+    }catch(e){MK=null}
+    STATE={P,Q,H:H||{transactions:[],snapshots:[]},PR:PR||{},MK};
     render();
   }catch(e){
     $("#app").innerHTML=`<div class="err">${esc(e.message)}. İlk kurulumda "Portföy İzleme" workflow'unu bir kez elle çalıştırın.</div>`;
