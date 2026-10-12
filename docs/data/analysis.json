@@ -1,12 +1,12 @@
 {
- "updated": "2026-10-12",
- "note": "Yeni takip hisseleri: fiyatlar 12 Ekim 2026 gün içi (~11:45 ET), TradingView. Diğer hisselerin notları 9-10 Eki tarihlidir. Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR.",
+ "updated": "2026-10-13",
+ "note": "Fiyatlar 12 Ekim 2026 normal seans kapanışı (TradingView; seans sonrası ayrıca belirtildi). Adil değer = analist ortalama hedefi. Diğer hisselerin notları 9-10 Eki tarihlidir. Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR.",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
    "momentum": {
     "status": "Nötr (karışık)",
-    "text": "9 Eki kapanışı $68,21 (−%0,28). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 1. Günlük RSI 46,3. Gün içi $66,98'e indi ve {stop:RKLB} stop seviyesine çok yaklaştı (kapanış $68,21, stopa %1,8). Barclays 'Overweight' başlattı, TD Cowen 'Al' tuttu, ama fiyat tepki vermedi; günlük SMA50 (70,53) ve EMA20 (70,15) üstüne dönmeden toparlanma sayılmaz. Maliyetin ({cost:RKLB}) %12 altında. Momentum zayıf; {stop:RKLB} kapanış altı planlı çıkış. Satış kararı sende."
+    "text": "12 Eki kapanış $65,71 (−3,67%): trend 0/7, EMA20 (69,7) ve SMA50 (70,5) altında; ATR stop $61,82. | 9 Eki kapanışı $68,21 (−%0,28). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 1. Günlük RSI 46,3. Gün içi $66,98'e indi ve {stop:RKLB} stop seviyesine çok yaklaştı (kapanış $68,21, stopa %1,8). Barclays 'Overweight' başlattı, TD Cowen 'Al' tuttu, ama fiyat tepki vermedi; günlük SMA50 (70,53) ve EMA20 (70,15) üstüne dönmeden toparlanma sayılmaz. Maliyetin ({cost:RKLB}) %12 altında. Momentum zayıf; {stop:RKLB} kapanış altı planlı çıkış. Satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $68,21 (−%0,28); trend verisi son fiyatı $68,22",
@@ -77,7 +77,7 @@
    "name": "CoreWeave",
    "momentum": {
     "status": "Zayıf",
-    "text": "9 Eki kapanışı $82,08 (+%0,61). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 1. Günlük RSI 43,7. Kapanış $82,08, {stop:CRWV} stopun %2,6 üstünde; maliyetin ({cost:CRWV}) %8,5 altında. CEO'nun $347 mn'lık hisse satışı ve OpenAI gelir açıklamasıyla bağlantılı satış baskısı var; günlük SMA50 (88,43) üstü geri alınmadıkça trend aşağı. Yüksek borç yapısı riskli. Momentum zayıf; satış kararı sende."
+    "text": "12 Eki kapanış $80,26 (−2,22%): trend 0/7; ATR stop $75,37. Serbest nakit akışı −$13,7 mlr: finansman ihtiyacı yüksek. | 9 Eki kapanışı $82,08 (+%0,61). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 1. Günlük RSI 43,7. Kapanış $82,08, {stop:CRWV} stopun %2,6 üstünde; maliyetin ({cost:CRWV}) %8,5 altında. CEO'nun $347 mn'lık hisse satışı ve OpenAI gelir açıklamasıyla bağlantılı satış baskısı var; günlük SMA50 (88,43) üstü geri alınmadıkça trend aşağı. Yüksek borç yapısı riskli. Momentum zayıf; satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $82,08 (+%0,61); trend verisi son fiyatı $82,37",
@@ -148,7 +148,7 @@
    "name": "WhiteFiber",
    "momentum": {
     "status": "Zayıf (stop altı)",
-    "text": "9 Eki kapanışı $15,69 (−%0,38). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 34,8. Fiyat {stop:WYFI} stop seviyesinin altında kapandı (gün içi dip $15,39), maliyetin ({cost:WYFI}) yaklaşık %11 altında; günlük SMA50 (20,72) ve SMA200 (21,56) çok uzakta. Tepki gelirse maliyet ({cost:WYFI}) ve 4s EMA20 bölgesi direnç. Momentum kırık; elde tutma önerisi yok, satış kararı sende."
+    "text": "12 Eki kapanış $14,80 (−5,67%): trend 1/7, RSI 31,8; ATR stop $13,43. Nakit çok düşük, nakit yakımı sürüyor: sermaye artırımı riski yüksek. | 9 Eki kapanışı $15,69 (−%0,38). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 34,8. Fiyat {stop:WYFI} stop seviyesinin altında kapandı (gün içi dip $15,39), maliyetin ({cost:WYFI}) yaklaşık %11 altında; günlük SMA50 (20,72) ve SMA200 (21,56) çok uzakta. Tepki gelirse maliyet ({cost:WYFI}) ve 4s EMA20 bölgesi direnç. Momentum kırık; elde tutma önerisi yok, satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $15,69 (−%0,38); trend verisi son fiyatı $15,80",
@@ -213,7 +213,7 @@
    "name": "Sigma Lithium",
    "momentum": {
     "status": "Zayıf",
-    "text": "9 Eki kapanışı $9,35 (−%2,20). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 44,0. Kapanış $9,35 (−%2,2), {stop:SGML} stopun %3,9 üstünde; maliyet ({cost:SGML}) altında. Maden faaliyeti mahkeme kararıyla yeniden başladı ama ATB Cormark 'Sektör Performansı'na indirdi. 4s EMA'lar yeni yukarı kesişti ama 15dk ve Supertrend aşağı; kırılgan. Satış kararı sende."
+    "text": "12 Eki kapanış $8,81 (−5,78%): $9,00 geçersizlik seviyesinin altında kapanış. Trend 0/7. Satış kararı sende. | 9 Eki kapanışı $9,35 (−%2,20). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 44,0. Kapanış $9,35 (−%2,2), {stop:SGML} stopun %3,9 üstünde; maliyet ({cost:SGML}) altında. Maden faaliyeti mahkeme kararıyla yeniden başladı ama ATB Cormark 'Sektör Performansı'na indirdi. 4s EMA'lar yeni yukarı kesişti ama 15dk ve Supertrend aşağı; kırılgan. Satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $9,35 (−%2,20); trend verisi son fiyatı $9,36",
@@ -1511,7 +1511,7 @@
    "name": "CrowdStrike",
    "momentum": {
     "status": "Güçlü",
-    "text": "Takip giriş fiyatı: 12 Eki gün içi $264,73 (−3,75%). Lider grup (siber güvenlik), 7/7 trend, RSI 58: aşırı alım soğudu. Giriş tetikleyicisi: EMA20 (~$257) üstünde günlük kapanış ve yeniden yukarı dönüş. Stop $252,19 (2×ATR)."
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $264,73 (−3,75%). Lider grup (siber güvenlik), 7/7 trend, RSI 58: aşırı alım soğudu. Giriş tetikleyicisi: EMA20 (~$257) üstünde günlük kapanış ve yeniden yukarı dönüş. Stop $252,19 (2×ATR). | 12 Eki kapanış $263,01 (−4,37%): EMA20 (256,7) desteğine yaklaştı, trend 7/7 korunuyor."
    },
    "technical": [
     "12 Eki gün içi $264,73; EMA20 256,89, SMA50 230,18 üstünde",
@@ -1556,7 +1556,7 @@
    "name": "ServiceNow",
    "momentum": {
     "status": "Güçlü",
-    "text": "Takip giriş fiyatı: 12 Eki gün içi $142,36 (+1,06%). Yazılım/yapay zekâ, 7/7 trend, RSI 59. Giriş tetikleyicisi: $144 üstü günlük kapanış ya da EMA20 (~$137) geri çekilmesinde tutunma. Stop $132,70. Bilanço 28 Eki (kesin): bilanço öncesi tam boyut alınmamalı."
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $142,36 (+1,06%). Yazılım/yapay zekâ, 7/7 trend, RSI 59. Giriş tetikleyicisi: $144 üstü günlük kapanış ya da EMA20 (~$137) geri çekilmesinde tutunma. Stop $132,70. Bilanço 28 Eki (kesin): bilanço öncesi tam boyut alınmamalı. | 12 Eki: trend 7/7 sürüyor ama market.json adaylarında yok; takip listesinden çıkarıldı (yerine TEAM/ILMN/HPE)."
    },
    "technical": [
     "12 Eki gün içi $142,36; EMA20 137,12, SMA50 132,85 üstünde",
@@ -1594,7 +1594,7 @@
    "name": "Corcept Therapeutics",
    "momentum": {
     "status": "Güçlü",
-    "text": "Takip giriş fiyatı: 12 Eki gün içi $121,39 (+0,16%). Sağlık (savunmacı, faizden az etkilenir), 7/7 trend, RSI 59,5, haftalık +5%. Giriş tetikleyicisi: $123 üstü günlük kapanış. Stop $111,22. Dikkat: tek ürün/FDA haber riski var, pozisyon küçük tutulmalı."
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $121,39 (+0,16%). Sağlık (savunmacı, faizden az etkilenir), 7/7 trend, RSI 59,5, haftalık +5%. Giriş tetikleyicisi: $123 üstü günlük kapanış. Stop $111,22. Dikkat: tek ürün/FDA haber riski var, pozisyon küçük tutulmalı. | 12 Eki: trend 7/7 sürüyor ama market.json adaylarında yok; takip listesinden çıkarıldı (yerine TEAM/ILMN/HPE)."
    },
    "technical": [
     "12 Eki gün içi $121,39; EMA20 117,20, SMA50 115,32 üstünde",
@@ -1632,7 +1632,7 @@
    "name": "Dell Technologies",
    "momentum": {
     "status": "Güçlü",
-    "text": "Takip giriş fiyatı: 12 Eki gün içi $567,29 (−3,2%). Yapay zekâ sunucu talebi; 7/7 trend, RSI 56. Yarı iletken zayıflığıyla aynı sürücüye bağlı, 15 Eki TSMC bilançosu etkileyebilir. Giriş tetikleyicisi: EMA20 (~$553) üstünde tutunup $575 üstü kapanış. Stop $521,15."
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $567,29 (−3,2%). Yapay zekâ sunucu talebi; 7/7 trend, RSI 56. Yarı iletken zayıflığıyla aynı sürücüye bağlı, 15 Eki TSMC bilançosu etkileyebilir. Giriş tetikleyicisi: EMA20 (~$553) üstünde tutunup $575 üstü kapanış. Stop $521,15. | 12 Eki: trend 7/7 sürüyor ama market.json adaylarında yok; takip listesinden çıkarıldı (yerine TEAM/ILMN/HPE)."
    },
    "technical": [
     "12 Eki gün içi $567,29; EMA20 553,47, SMA50 508,89 üstünde",
@@ -1670,7 +1670,7 @@
    "name": "Marathon Petroleum",
    "momentum": {
     "status": "Güçlü (aşırı alım)",
-    "text": "Takip giriş fiyatı: 12 Eki gün içi $459,49 (+0,98%). Enerji/rafineri: teknolojiden farklı sürücü (petrol ve rafineri marjı), portföy çeşitlendirmesi. RSI 74,6 aşırı alım: giriş tetikleyicisi EMA20 (~$420-430) bölgesine geri çekilmede tutunma. Stop $426,50."
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $459,49 (+0,98%). Enerji/rafineri: teknolojiden farklı sürücü (petrol ve rafineri marjı), portföy çeşitlendirmesi. RSI 74,6 aşırı alım: giriş tetikleyicisi EMA20 (~$420-430) bölgesine geri çekilmede tutunma. Stop $426,50. | 12 Eki kapanış $458,81 (+0,83%; seans sonrası $461,83). RSI 74,4 aşırı alım: kovalamak yerine EMA20 (~$420) yönüne geri çekilme beklenir. Stop $427,18."
    },
    "technical": [
     "12 Eki gün içi $459,49; EMA20 420,47, SMA50 381,83 üstünde",
@@ -1702,6 +1702,108 @@
    "dilution": {
     "risk": "Düşük",
     "text": "Güçlü nakit üretimi, düzenli geri alım; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "TEAM": {
+   "name": "Atlassian",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takip giriş fiyatı: 12 Eki kapanış $207,75 (+0,46%). Yazılım (IGV) grubunun en güçlüsü: 7/7 trend, 3A RS +127 puan, RSI 66,7. Giriş tetikleyicisi: EMA20'ye geri çekilmede tutunma ya da $210 üstü günlük kapanış. Stop $190,78 (2×ATR)."
+   },
+   "technical": [
+    "12 Eki kapanış $207,75; günlük RSI 66,7",
+    "1A RS +14,6, 3A RS +127,2 puan (SPY'ye göre)",
+    "ATR %4,1: günlük oynaklık orta"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$52,6 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$1,32 mlr"
+     ],
+     [
+      "Nakit",
+      "$1,24 mlr"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $206,48 (fiyatla aynı). Değerleme dolu, momentum güçlü."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Yıllık $1,3 mlr serbest nakit ve hisse geri alımı var; bilinen ATM programı yok, sermaye artırımı ihtimali düşük."
+   }
+  },
+  "HPE": {
+   "name": "Hewlett Packard Enterprise",
+   "momentum": {
+    "status": "Güçlü (bugün geri çekildi)",
+    "text": "Takip giriş fiyatı: 12 Eki kapanış $70,33 (−4,26%; seans sonrası $70,06). Teknoloji donanım (XLK) adayı: 7/7 trend, RSI 63. Giriş tetikleyicisi: $68-70 bölgesinde tutunup yeniden yukarı dönüş. Stop $63,27 (2×ATR)."
+   },
+   "technical": [
+    "12 Eki kapanış $70,33; seans sonrası $70,06",
+    "Günlük RSI 63,1; ATR %5,0",
+    "1A RS +23,0, 3A RS +40,3 puan"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$93,4 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$4,16 mlr"
+     ],
+     [
+      "Nakit",
+      "$6,28 mlr"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $73,37 (fiyatın %4 üstünde)."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Serbest nakit akışı güçlü; Juniper satın alımından kalan borç yüksek ama hisse ihracı yerine borç/nakitle yönetiliyor. Bilinen ATM yok."
+   }
+  },
+  "ILMN": {
+   "name": "Illumina",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takip giriş fiyatı: 12 Eki kapanış $276,67 (−0,54%). Sağlık (XLV) lider adayı: 7/7 trend, RSI 61,9, 1A RS +35. Giriş tetikleyicisi: $280 üstü günlük kapanış ya da EMA20'ye geri çekilmede tutunma. Stop $262,90 (2×ATR)."
+   },
+   "technical": [
+    "12 Eki kapanış $276,67; günlük RSI 61,9",
+    "1A RS +35,3, 3A RS +42,4 puan",
+    "Faizden çok şirkete özel haberle hareket eder: yazılım/donanımla korelasyonu düşük"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$41,8 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$0,93 mlr"
+     ],
+     [
+      "Nakit",
+      "$1,17 mlr"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $237,16 (fiyatın %14 altında): fiyat hedefleri geçti, kovalamak riskli."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Pozitif serbest nakit ve geri alım; bilinen ATM programı yok."
    }
   }
  }
