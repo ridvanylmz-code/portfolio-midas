@@ -33,7 +33,10 @@
 
   /* ---- hesaplar ---- */
   function series(H, P, liveTotal, today) {
-    var snaps = ((H && H.snapshots) || []).slice().sort(function (a, b) { return a.date < b.date ? -1 : 1 });
+    // Değeri 0/boş kayıtlar (portföy girilmeden önce alınmış anlık görüntüler) başlangıç sayılmaz:
+    // sayılırsa tüm portföy değeri "kazanç", getiri %0 ve nakit oranı "–" görünür.
+    var snaps = ((H && H.snapshots) || []).filter(function (s) { return s && +s.value > 0 })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1 });
     if (liveTotal && today) {
       var last = snaps[snaps.length - 1];
       var live = { date: today, value: liveTotal, cash: +(P && P.cash) || 0, live: true };
