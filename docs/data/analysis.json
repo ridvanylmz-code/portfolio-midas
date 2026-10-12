@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-10",
- "note": "Fiyatlar 9 Ekim 2026 (Cuma) seans kapanışı, TradingView; trend verisi (EMA/Supertrend/Elliott) 9 Eki ~17:25 ET, Twelve Data (kapanışa göre ±%0,5). Günlük göstergeler TradingView 1D. Adil değer = analist ortalama hedefi, kendi tahminim değil. Kısa sözlük: EMA = son fiyata ağırlık veren hareketli ortalama; Supertrend = ATR tabanlı trend çizgisi; RSI = ivme (30 altı aşırı satım, 70 üstü aşırı alım); MACD = ivme/trend dönüşü; ADX = trend gücü; Elliott = fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı, kural tabanlı ve kesin değil. Yazılı notlar sabittir; gün içi sinyaller (Teknik sekmesi) canlı güncellenir.",
+ "updated": "2026-10-12",
+ "note": "Yeni takip hisseleri: fiyatlar 12 Ekim 2026 gün içi (~11:45 ET), TradingView. Diğer hisselerin notları 9-10 Eki tarihlidir. Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR.",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
@@ -1505,6 +1505,203 @@
    "dilution": {
     "risk": "Yüksek",
     "text": "Net zarar −$619 mn, serbest nakit akışı −$1,6 mlr; uydu fırlatma yatırımı sürüyor. Tarihsel olarak hisse ve dönüştürülebilir ihracı yaptı; yeni ihraç ihtimali yüksek (bu turda yeni ihraç haberi yok)."
+   }
+  },
+  "CRWD": {
+   "name": "CrowdStrike",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $264,73 (−3,75%). Lider grup (siber güvenlik), 7/7 trend, RSI 58: aşırı alım soğudu. Giriş tetikleyicisi: EMA20 (~$257) üstünde günlük kapanış ve yeniden yukarı dönüş. Stop $252,19 (2×ATR)."
+   },
+   "technical": [
+    "12 Eki gün içi $264,73; EMA20 256,89, SMA50 230,18 üstünde",
+    "Günlük RSI 57,9; haftalık −2,4%",
+    "1A RS +26,5, 3A RS +36,1 puan (SPY'ye göre)"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$271 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$1,53 mlr"
+     ],
+     [
+      "Nakit / borç",
+      "$5,1 mlr / $0,8 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "1 Ara 2026"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $245,98 (fiyatın %7 altında); Needham 9 Eki'de hedefi $310'a çıkardı. Değerleme pahalı, momentum güçlü."
+   },
+   "news": [
+    {
+     "date": "9 Eki 2026",
+     "title": "Needham maintains Buy rating on CrowdStrike Holdings, $310 price target",
+     "src": "TradingView",
+     "url": "https://www.tradingview.com/news/tradingview:6dd530f952a8d:0-needham-maintains-buy-rating-on-crowdstrike-holdings-310-price-target/"
+    }
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Net nakit pozisyonu ve yıllık $1,5 mlr serbest nakit; sermaye artırımı ihtimali düşük (hisse bazlı ücret seyrelmesi sürekli ama küçük)."
+   }
+  },
+  "NOW": {
+   "name": "ServiceNow",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $142,36 (+1,06%). Yazılım/yapay zekâ, 7/7 trend, RSI 59. Giriş tetikleyicisi: $144 üstü günlük kapanış ya da EMA20 (~$137) geri çekilmesinde tutunma. Stop $132,70. Bilanço 28 Eki (kesin): bilanço öncesi tam boyut alınmamalı."
+   },
+   "technical": [
+    "12 Eki gün içi $142,36; EMA20 137,12, SMA50 132,85 üstünde",
+    "Günlük RSI 59,4; haftalık +5,3%",
+    "3A RS +33,7 puan"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$147 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$4,58 mlr"
+     ],
+     [
+      "Nakit / borç",
+      "$4,7 mlr / $8,5 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "28 Eki 2026"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $149,33 (+5%)."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Güçlü serbest nakit, geri alım yapıyor; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "CORT": {
+   "name": "Corcept Therapeutics",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $121,39 (+0,16%). Sağlık (savunmacı, faizden az etkilenir), 7/7 trend, RSI 59,5, haftalık +5%. Giriş tetikleyicisi: $123 üstü günlük kapanış. Stop $111,22. Dikkat: tek ürün/FDA haber riski var, pozisyon küçük tutulmalı."
+   },
+   "technical": [
+    "12 Eki gün içi $121,39; EMA20 117,20, SMA50 115,32 üstünde",
+    "Günlük RSI 59,5",
+    "3A RS +35,5, 1A RS +2,6 (kısa vadede yavaşladı)"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$13,1 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$107 mn"
+     ],
+     [
+      "Nakit / borç",
+      "$308 mn / $9 mn"
+     ],
+     [
+      "Sonraki bilanço",
+      "~4 Kas 2026 (teyitsiz)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $141 (+16%)."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Kârlı, borcu yok denecek kadar az, nakit üretiyor; sermaye artırımı ihtimali düşük."
+   }
+  },
+  "DELL": {
+   "name": "Dell Technologies",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $567,29 (−3,2%). Yapay zekâ sunucu talebi; 7/7 trend, RSI 56. Yarı iletken zayıflığıyla aynı sürücüye bağlı, 15 Eki TSMC bilançosu etkileyebilir. Giriş tetikleyicisi: EMA20 (~$553) üstünde tutunup $575 üstü kapanış. Stop $521,15."
+   },
+   "technical": [
+    "12 Eki gün içi $567,29; EMA20 553,47, SMA50 508,89 üstünde",
+    "Günlük RSI 56,1",
+    "3A RS +26,5 puan"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$361 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$8,56 mlr"
+     ],
+     [
+      "Nakit / borç",
+      "$11,7 mlr / $35,3 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "1 Ara 2026"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $600,81 (+6%)."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Yüksek borç ama güçlü serbest nakit ve geri alım; hisse ihracı ihtimali düşük."
+   }
+  },
+  "MPC": {
+   "name": "Marathon Petroleum",
+   "momentum": {
+    "status": "Güçlü (aşırı alım)",
+    "text": "Takip giriş fiyatı: 12 Eki gün içi $459,49 (+0,98%). Enerji/rafineri: teknolojiden farklı sürücü (petrol ve rafineri marjı), portföy çeşitlendirmesi. RSI 74,6 aşırı alım: giriş tetikleyicisi EMA20 (~$420-430) bölgesine geri çekilmede tutunma. Stop $426,50."
+   },
+   "technical": [
+    "12 Eki gün içi $459,49; EMA20 420,47, SMA50 381,83 üstünde",
+    "Günlük RSI 74,6 (aşırı alım); haftalık +8,7%",
+    "3A RS +49,1 puan"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$129 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$12,9 mlr"
+     ],
+     [
+      "Nakit / borç",
+      "$7,8 mlr / $34,3 mlr"
+     ],
+     [
+      "Sonraki bilanço",
+      "~3 Kas 2026"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $425,94 (fiyatın %7 altında): momentum hedefi geçti."
+   },
+   "news": [],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Güçlü nakit üretimi, düzenli geri alım; sermaye artırımı ihtimali düşük."
    }
   }
  }
