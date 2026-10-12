@@ -311,13 +311,17 @@ def trail_stops(portfolio, quotes, market, today):
         cur = float(cur) if cur is not None else 0.0
         if target is not None and new >= float(target):
             continue
-        if new < cur + price * TRAIL_MIN_STEP:
+        # Kullanıcı stop girmediyse ve varsayılan stop (maliyet −%X) zaten fiyatın üstünde kaldıysa (pozisyon girildiği
+        # gün maliyetinden çok aşağıdaydı) "yalnız yukarı" kuralı uygulanmaz: stop ATR seviyesine ilk kez ayarlanır.
+        unset_above = (lv.get("stop_loss") is None) and cur >= price * (1 - TRAIL_MIN_STEP)
+        if not unset_above and new < cur + price * TRAIL_MIN_STEP:
             continue
         new = round(new, 4)
         portfolio["position_levels"].setdefault(t, {}).update(stop_loss=new, stop_auto=today.isoformat())
         was = f"{CUR}{cur:,.2f}" if cur > 0 else "yok"
+        verb = "stop ATR seviyesine çekildi" if unset_above else "stop yükseltildi"
         out.append({"key": f"{t}:trail:{new}", "once": True, "t": t, "old": cur, "new": new,
-                    "text": f"🔼 {t} stop yükseltildi: {was} → {CUR}{new:,.2f} (ATR takip; fiyat {CUR}{price:,.2f})"})
+                    "text": f"🔼 {t} {verb}: {was} → {CUR}{new:,.2f} (ATR takip; fiyat {CUR}{price:,.2f})"})
     return out
 
 
