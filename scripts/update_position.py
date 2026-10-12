@@ -23,7 +23,7 @@ import common  # noqa: E402
 
 ET = ZoneInfo("Europe/Istanbul" if common.MARKET == "bist" else "America/New_York")
 C = common.CUR
-ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove", "undo",
+ACTIONS = ("buy", "sell", "deposit", "withdraw", "watch_add", "watch_remove", "watch_set", "undo",
            "zone_below", "zone_above", "zone_clear", "trail_off", "trail_on")
 PRICE_TOL = 0.15  # girilen fiyat son kapanıştan bu orandan fazla saparsa onaysız kabul edilmez
 EPS = 1e-9
@@ -122,6 +122,35 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
     if action in ("buy", "sell"):
         p0 = portfolio["portfolio"].get(t0)
         tx["before"]["position"] = dict(p0) if p0 else None
+
+    if action == "watch_set":
+        # Takip listesini tek işlemde ayarlar (tek Telegram mesajı). Eldeki hisseler listeye girmez, hiçbir zaman çıkarılmaz/silinmez.
+        want = [t for t in dict.fromkeys(x.strip().upper() for x in (ticker or "").replace(";", ",").replace(" ", ",").split(",")) if t]
+        bad = [t for t in want if not common.TICKER_RE.match(t)]
+        if bad or not want:
+            raise ValueError(f"Geçersiz ticker listesi: {', '.join(bad) or 'boş'}")
+        held = [t for t in want if t in portfolio["portfolio"]]
+        new = [t for t in want if t not in portfolio["portfolio"]]
+        old = list(portfolio["watchlist"])
+        added = [t for t in new if t not in old]
+        removed = [t for t in old if t not in new]
+        tx["before"]["buy_zones"] = dict(portfolio["buy_zones"])
+        portfolio["watchlist"] = new
+        for t in removed:
+            portfolio["buy_zones"].pop(t, None)
+        tx["ticker"] = ",".join(new)
+        tx["added"], tx["removed"] = added, removed
+        history["transactions"].append(tx)
+        lines = [f"👀 Takip listesi ({len(new)}): {', '.join(new) or '—'}"]
+        if added:
+            lines.append(f"➕ Eklendi: {', '.join(added)}")
+        if removed:
+            lines.append(f"🗑 Çıkarıldı: {', '.join(removed)}")
+        if not added and not removed:
+            lines.append("Değişiklik yok")
+        if held:
+            lines.append(f"ℹ️ Elde olduğu için listeye eklenmedi (portföyde kalıyor): {', '.join(held)}")
+        return "\n".join(lines)
 
     if action in ("buy", "sell", "watch_add", "watch_remove", "zone_below", "zone_above", "zone_clear", "trail_off", "trail_on"):
         ticker = (ticker or "").strip().upper()

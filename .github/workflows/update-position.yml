@@ -14,6 +14,7 @@ on:
           - withdraw
           - watch_add
           - watch_remove
+          - watch_set
           - undo
           - zone_below
           - zone_above
@@ -21,7 +22,7 @@ on:
           - trail_off
           - trail_on
       symbol:
-        description: 'Hisse kodu (buy/sell/watch_*/zone_*/trail_* için; deposit/withdraw için boş bırak)'
+        description: 'Hisse kodu (buy/sell/watch_*/zone_*/trail_* için; watch_set: virgülle liste, ör. CRWD,NOW; deposit/withdraw için boş bırak)'
         required: false
         type: string
       quantity:
