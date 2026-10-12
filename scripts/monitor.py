@@ -311,8 +311,10 @@ def update_prices(prices, fresh_quotes, et_date):
 def upsert_snapshot(history, et_date, summary):
     snap = {"date": et_date, "value": round(summary["total_value"], 2),
             "cost": round(summary["cost"], 2), "cash": round(summary["cash"], 2)}
-    snaps = [s for s in history["snapshots"] if s["date"] != et_date]
-    snaps.append(snap)
+    # Değeri 0 olan kayıtlar (portföy girilmeden önceki çalışmalar) performans başlangıcını bozar: tutulmaz.
+    snaps = [s for s in history["snapshots"] if s["date"] != et_date and (s.get("value") or 0) > 0]
+    if snap["value"] > 0:
+        snaps.append(snap)
     history["snapshots"] = sorted(snaps, key=lambda s: s["date"])[-SNAPSHOT_LIMIT:]
 
 
