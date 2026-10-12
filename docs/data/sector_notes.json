@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-12",
- "summary": "12 Eki gün içi (~11:00 ET, TradingView): rejim 'Nötr / seçici' (4/7). SPY ve QQQ ortalamalarının üstünde ama katılım zayıf: taranan hisselerin yalnız %24'ü SMA50 üstünde, küçük şirketler (IWM) SMA50 altında, eşit ağırlıklı endeks geride. Liderlik dar: siber güvenlik, yazılım, enerji (rafineri), sağlık. Yarı iletken bu hafta −6%, veri merkezi/BTC madencileri, uranyum, nadir toprak sert zayıf. Bu hafta: 13-14 Eki banka bilançoları, 14 Eki CPI, 15 Eki TSMC bilançosu. Sonuç: nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
+ "updated": "2026-10-13",
+ "summary": "12 Eki kapanış (TradingView/market.json 21:37 UTC): rejim 'Nötr / seçici' (4/7). SPY ve QQQ ortalamalarının üstünde; küçük şirketler (IWM) SMA50 altında, eşit ağırlık geride, yükselen hisse oranı %31 (SMA50 üstü). Lider: siber güvenlik (CIBR 1A +14%), yazılım (IGV 3A +23%), enerji/rafineri (XLE haftalık +5,2%), sağlık (XLV). Zayıf: yarı iletken (SMH haftalık −6,4%), BTC madencileri/HPC (WGMI −14,5%), nadir toprak (REMX RSI 22), uranyum/nükleer, savunma. Bu hafta: 13-14 Eki banka bilançoları, 14 Eki CPI, 15 Eki TSMC. Nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
  "groups": {
   "CIBR": {
    "note": "12 Eki: Lider #1 (7/7 trend, 1A +14,8%). CRWD bugün −3,8% geri çekildi (EMA20 ~257 desteği); OKTA/ZS RSI 70+ aşırı alım: kovalamak yerine geri çekilmede giriş."
@@ -18,10 +18,10 @@
    "note": "12 Eki: Zayıflıyor: haftalık −6,4%, fiyat EMA20 altına indi. MU, AVGO, STX zayıf. 15 Eki TSMC bilançosu kısa vadeli karar noktası; teyit gelmeden yeni alım yok."
   },
   "XLE": {
-   "note": "12 Eki: Lider #4, bu hafta +4,8%; taşıyan rafineriler (MPC, DINO, CVI) ama RSI 74 civarı: yeni giriş için EMA20'ye geri çekilme beklenmeli. Petrol haberine bağımlı."
+   "note": "13 Eki: Haftalık +5,2%, RSI 65,5; rafineriler (MPC, CVI, DINO) RSI 74-76 aşırı alım: yeni alımda geri çekilme beklenir."
   },
   "XLV": {
-   "note": "12 Eki: Sessiz lider, 7/7 trend, haftalık +3,1%. Savunmacı; rejim bozulursa sığınak. CORT ve ILMN öne çıkıyor."
+   "note": "13 Eki: 12 Eki kapanışta haftalık +3,6%, RSI 60. Adaylar GRAL, ILMN, HAE; GRAL nakit yakımı nedeniyle elendi, HAE RSI 77 aşırı alım. Takipte ILMN."
   },
   "IBIT": {
    "note": "12 Eki: 3A güçlü ama haftalık −4,3%; oynak, küçük pozisyon dışında uygun değil."
