@@ -1,6 +1,6 @@
 {
  "updated": "2026-10-13",
- "summary": "12 Eki kapanış (TradingView/market.json 21:37 UTC): rejim 'Nötr / seçici' (4/7). SPY ve QQQ ortalamalarının üstünde; küçük şirketler (IWM) SMA50 altında, eşit ağırlık geride, yükselen hisse oranı %31 (SMA50 üstü). Lider: siber güvenlik (CIBR 1A +14%), yazılım (IGV 3A +23%), enerji/rafineri (XLE haftalık +5,2%), sağlık (XLV). Zayıf: yarı iletken (SMH haftalık −6,4%), BTC madencileri/HPC (WGMI −14,5%), nadir toprak (REMX RSI 22), uranyum/nükleer, savunma. Bu hafta: 13-14 Eki banka bilançoları, 14 Eki CPI, 15 Eki TSMC. Nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
+ "summary": "13 Eki kapanış (TradingView/market.json 20:06 UTC): rejim 'Nötr / seçici' (4/7), değişmedi. SPY yatay (−0,01%), QQQ −0,33%, IWM −0,43% ve SMA50 altında; yükselen hisse oranı %31. Lider: enerji/rafineri (XLE +1,8%, haftalık +6,7%), siber güvenlik ve yazılım (yatay, 1A +9-14%), sağlık. Zayıf: BTC madencileri/HPC (haftalık −15,5%), nadir toprak (−9,4%), uranyum/nükleer (−7/−8%), uzay (−7,2%). Yarın 14 Eki CPI, 15 Eki TSMC. Nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
  "groups": {
   "CIBR": {
    "note": "12 Eki: Lider #1 (7/7 trend, 1A +14,8%). CRWD bugün −3,8% geri çekildi (EMA20 ~257 desteği); OKTA/ZS RSI 70+ aşırı alım: kovalamak yerine geri çekilmede giriş."
@@ -18,7 +18,7 @@
    "note": "12 Eki: Zayıflıyor: haftalık −6,4%, fiyat EMA20 altına indi. MU, AVGO, STX zayıf. 15 Eki TSMC bilançosu kısa vadeli karar noktası; teyit gelmeden yeni alım yok."
   },
   "XLE": {
-   "note": "13 Eki: Haftalık +5,2%, RSI 65,5; rafineriler (MPC, CVI, DINO) RSI 74-76 aşırı alım: yeni alımda geri çekilme beklenir."
+   "note": "13 Eki: Günün lideri (+1,8%, haftalık +6,7%). Rafineriler sert yükseldi (CVI +7,1%, DINO +4,5%, MPC +4,0%); RSI 78-81 aşırı alım. Yeni alımda geri çekilme beklenmeli."
   },
   "XLV": {
    "note": "13 Eki: 12 Eki kapanışta haftalık +3,6%, RSI 60. Adaylar GRAL, ILMN, HAE; GRAL nakit yakımı nedeniyle elendi, HAE RSI 77 aşırı alım. Takipte ILMN."
@@ -51,7 +51,7 @@
    "note": "12 Eki: En zayıf grup: 1A −19%, RSI 22 aşırı satım ama trend 0/7; dip avı için teyit yok."
   },
   "WGMI": {
-   "note": "12 Eki: Haftalık −14%, 3A −28%: en zayıf gruplardan. WYFI ve CRWV bu tarafta; uzak dur."
+   "note": "13 Eki: Haftalık −15,5%, 1A −18,6%. En zayıf grup; WYFI ve CRWV bu sürücüye bağlı."
   },
   "GDX": {
    "note": "Altın madencileri: 3A güçlü ama 1A'da sert düzeltme (−13 puan). Kâr alma bölgesi; yeni alım için trendin yeniden kurulması beklenir."
