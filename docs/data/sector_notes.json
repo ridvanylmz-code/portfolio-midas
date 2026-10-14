@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-13",
- "summary": "13 Eki kapanış (TradingView/market.json 20:06 UTC): rejim 'Nötr / seçici' (4/7), değişmedi. SPY yatay (−0,01%), QQQ −0,33%, IWM −0,43% ve SMA50 altında; yükselen hisse oranı %31. Lider: enerji/rafineri (XLE +1,8%, haftalık +6,7%), siber güvenlik ve yazılım (yatay, 1A +9-14%), sağlık. Zayıf: BTC madencileri/HPC (haftalık −15,5%), nadir toprak (−9,4%), uranyum/nükleer (−7/−8%), uzay (−7,2%). Yarın 14 Eki CPI, 15 Eki TSMC. Nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
+ "updated": "2026-10-14",
+ "summary": "14 Eki gün içi (~16:50 İstanbul; grup verisi market.json 12:59 UTC, 13 Eki kapanışı): rejim 'Nötr / seçici' (4/7). TÜFE sıcak geldi: yıllık %3,7 (beklenti %3,6), çekirdek %2,6 (beklenti %2,5), aylık çekirdek %0,3 (beklenti %0,2). Gün içi SPY −0,4%, QQQ −0,7%, IWM −1,1%: faize duyarlı gruplar baskıda. Lider: enerji (haftalık +6,6%), temel tüketim (+3,9%), elektrik (+3,6%). Zayıf: BTC madencileri/HPC (haftalık −15,6%; yüksek getirili borç ve 'özel kredi' endişesi), nadir toprak, uranyum/nükleer, uzay, yarı iletken (−7,9%). Yarın 15 Eki TSMC bilançosu. Nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
  "groups": {
   "CIBR": {
    "note": "12 Eki: Lider #1 (7/7 trend, 1A +14,8%). CRWD bugün −3,8% geri çekildi (EMA20 ~257 desteği); OKTA/ZS RSI 70+ aşırı alım: kovalamak yerine geri çekilmede giriş."
@@ -9,7 +9,7 @@
    "note": "12 Eki: Lider #2 (3A +23,9%, 7/7). TEAM, NOW, GTLB güçlü; GTLB RSI 75 aşırı alım. Faiz yükselirse en hassas grup, kademeli giriş."
   },
   "XLK": {
-   "note": "12 Eki: 7/7 trend ama bugün −1,3%; donanım tarafında DELL ve HPE güçlü, P (Everpure) RSI 79 aşırı alım."
+   "note": "14 Eki: Barclays DELL, HPE, NTAP'ı 'Eşit ağırlık'a düşürdü (anlamlı yapay zekâ dönüşü yok). Donanım adayları zayıfladı; HPE takipten çıktı."
   },
   "AIQ": {
    "note": "Yapay zekâ teması lider ama SPY'ye farkı küçük (1A +1,8, 3A +1,3). Yazılım/siber kadar güçlü değil."
@@ -51,7 +51,7 @@
    "note": "12 Eki: En zayıf grup: 1A −19%, RSI 22 aşırı satım ama trend 0/7; dip avı için teyit yok."
   },
   "WGMI": {
-   "note": "13 Eki: Haftalık −15,5%, 1A −18,6%. En zayıf grup; WYFI ve CRWV bu sürücüye bağlı."
+   "note": "14 Eki: Haftalık −15,6%. En zayıf grup; CRWV tahvil getirisi %15 ve özel kredi endişeleriyle bir günde −13%."
   },
   "GDX": {
    "note": "Altın madencileri: 3A güçlü ama 1A'da sert düzeltme (−13 puan). Kâr alma bölgesi; yeni alım için trendin yeniden kurulması beklenir."
@@ -88,6 +88,9 @@
   },
   "KWEB": {
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
+  },
+  "XLP": {
+   "note": "14 Eki: Haftalık +3,9%, savunmacı liderlik. ELF takip listesine alındı (faiz/yapay zekâ sürücüsünden bağımsız)."
   }
  },
  "stocks": {
