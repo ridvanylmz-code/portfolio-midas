@@ -1,10 +1,17 @@
-name: Trend Tara (elle)
+name: Trend Tara
 
 # Elle tetiklenir: Actions -> "Trend Tara (elle)" -> Run workflow.
 # Sembol kutusu doluysa onu, boşsa trend/tickers.txt'yi kullanır. Sonuç `trend-data` dalına trend.json olarak yazılır
 # (intraday'in `data` dalına dokunmaz). Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/
 # Kaynak: Yahoo Finance (anahtarsız); TWELVEDATA_API_KEY varsa eksik kalan semboller için yedek.
 on:
+  # Otomatik (UTC; Türkiye sabit UTC+3): İst. 11:17, 17:17, 19:17, 21:17, 23:17, 03:17, 07:17.
+  # Ön/sonrası seans verisi trend.py içinde (Alpaca + extended.py) zaten alınıyor; extended.yml gerekmez.
+  # GitHub cron'u 5-35 dk gecikebilir. 16:47 ve 17:02'deki çalışmaları günlük Claude görevi tetikler.
+  schedule:
+    - cron: "17 8,14,16,18,20 * * 1-5"   # İst. 11:17 17:17 19:17 21:17 23:17
+    - cron: "17 0 * * 2-6"               # İst. 03:17 (seansın ertesi gecesi)
+    - cron: "17 4 * * 1-5"               # İst. 07:17
   workflow_dispatch:
     inputs:
       tickers:
@@ -42,7 +49,7 @@ jobs:
           ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
           TICKERS: ${{ github.event.inputs.tickers }}
-          INCLUDE_PF: ${{ github.event.inputs.include_portfolio }}
+          INCLUDE_PF: ${{ github.event_name == 'schedule' && 'true' || github.event.inputs.include_portfolio }}
         run: |
           mkdir -p data-out
           ARGS=""
