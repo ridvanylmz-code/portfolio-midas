@@ -7,7 +7,8 @@ name: Piyasa & Sektör Rotasyonu
 on:
   schedule:
     - cron: "17 9,12 * * 1-5"        # ön piyasa (ET 05:17/08:17 yazın)
-    - cron: "32 13,14 * * 1-5"       # açılış sonrası (ET 09:32: yazın 13:32, kışın 14:32 UTC); günlük Claude görevinden önce
+    # 09:32 ET cron'u kaldırıldı: TV verisi ~15 dk gecikmeli + GitHub cron'u 20-35 dk gecikiyor.
+    # Açılış sonrası ilk güncellemeyi günlük Claude görevi 09:47 ET'de workflow_dispatch ile tetikler.
     - cron: "47 13-20 * * 1-5"       # seans içi saatlik
     - cron: "27 21,23 * * 1-5"       # kapanış sonrası
   workflow_dispatch:

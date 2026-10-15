@@ -19,7 +19,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import requests
 
@@ -31,6 +31,7 @@ import technicals as tk  # noqa: E402  (saf Python göstergeler: rsi, atr, ema_s
 UNIVERSE = "market/universe.json"
 TD_MAX = 12
 LOG = []
+TV_DELAY_MIN = 15  # anahtarsız TV scanner gecikmesi (dk)
 W = {"w": 0.15, "m1": 0.35, "m3": 0.35, "m6": 0.15}
 
 
@@ -393,7 +394,10 @@ def main(argv=None):
                  "sma50": num(data[b].get("SMA50"))} for b in bench if b in data], sout)
     out = {
         "updated": now.isoformat(timespec="seconds"), "checked": now.isoformat(timespec="seconds"),
-        "session": __import__("extended").session_name(now),
+        # TV tarayıcısı (anahtarsız) ~15 dk gecikmeli: seans etiketi verinin ait olduğu ana göre (2026-10-15 ölçüldü)
+        "session": __import__("extended").session_name(now - timedelta(minutes=TV_DELAY_MIN)),
+        "data_asof": (now - timedelta(minutes=TV_DELAY_MIN)).isoformat(timespec="seconds"),
+        "data_delay_min": TV_DELAY_MIN,
         "sources": {k: sum(1 for v in src.values() if v == k) for k in set(src.values())},
         "missing": [s for s in allsyms if s not in data],
         "benchmarks": {b: {"name": uni["benchmarks"][b], **compact(data[b], src[b]), "trend": trend_points(data[b])}
