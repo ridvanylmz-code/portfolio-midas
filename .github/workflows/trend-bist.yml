@@ -1,6 +1,6 @@
 name: BIST Trend Tara
 
-# Otomatik: İstanbul 10:17, 12:17, 16:17, 18:27 (Pzt-Cum) ve elle: Actions -> "BIST Trend Tara" -> Run workflow.
+# Otomatik: İstanbul 10:17, 12:17, 14:17, 16:17, 18:27 (Pzt-Cum) ve elle: Actions -> "BIST Trend Tara" -> Run workflow.
 # Sembol kutusu doluysa onu, boşsa trend/bist_tickers.txt'yi kullanır.
 # Sonuç `trend-bist-data` dalına trend-bist.json olarak yazılır (ABD'nin `trend-data` ve `data` dallarına dokunmaz).
 # Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/bist/
@@ -9,7 +9,7 @@ on:
   # Cron UTC'dir; Türkiye sabit UTC+3 (yaz/kış saati yok). GitHub cron'u 5-35 dk gecikebilir.
   # Repo herkese açık olduğu için GitHub Actions ücretsizdir; Claude kullanımı/limiti harcanmaz.
   schedule:
-    - cron: "17 7,9,13 * * 1-5"   # İst. 10:17, 12:17, 16:17
+    - cron: "17 7,9,11,13 * * 1-5"   # İst. 10:17, 12:17, 14:17, 16:17
     - cron: "27 15 * * 1-5"       # İst. 18:27
   workflow_dispatch:
     inputs:
