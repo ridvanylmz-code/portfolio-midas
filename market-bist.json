@@ -1,0 +1,4147 @@
+{
+ "market": "BIST",
+ "bench": "XU100",
+ "cur": "₺",
+ "updated": "2026-10-16T17:52:18+00:00",
+ "checked": "2026-10-16T17:52:18+00:00",
+ "sources": {
+  "tv": 28
+ },
+ "missing": [],
+ "benchmarks": {
+  "XU100": {
+   "name": "BIST 100",
+   "close": 11721.72,
+   "chg": -2.89,
+   "perf": {
+    "w": -4.43,
+    "m1": -15.48,
+    "m3": -17.14,
+    "m6": -17.66
+   },
+   "rsi": 28.2,
+   "rsi_w": 34.2,
+   "adx": 51.7,
+   "atr": 266.5144,
+   "atr_pct": 2.27,
+   "ema20": 12484.3625,
+   "sma50": 13470.9772,
+   "sma200": 13622.3519,
+   "macd": -436.3094,
+   "macd_sig": -437.3502,
+   "rec": "STRONG_SELL",
+   "rvol": 1.01,
+   "high3m": 14730.2,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   }
+  },
+  "XU030": {
+   "name": "BIST 30",
+   "close": 14558.43,
+   "chg": -2.86,
+   "perf": {
+    "w": -4.25,
+    "m1": -12.67,
+    "m3": -9.88,
+    "m6": -10.72
+   },
+   "rsi": 33.0,
+   "rsi_w": 40.6,
+   "adx": 44.3,
+   "atr": 351.5457,
+   "atr_pct": 2.41,
+   "ema20": 15363.8553,
+   "sma50": 16045.3924,
+   "sma200": 15609.9305,
+   "macd": -365.0928,
+   "macd_sig": -326.6115,
+   "rec": "STRONG_SELL",
+   "rvol": 1.01,
+   "high3m": 17516.1,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   }
+  }
+ },
+ "fx": {
+  "usdtry": 49.5186,
+  "perf": {
+   "w": 0.43,
+   "m1": 1.85,
+   "m3": 5.21,
+   "m6": 10.45
+  },
+  "xu100_usd": {
+   "m1": -17.02,
+   "m3": -21.24
+  }
+ },
+ "regime": {
+  "score": 1,
+  "max": 7,
+  "label": "Risk-off (savunma)",
+  "cash_target": [
+   35,
+   40
+  ],
+  "breadth50": 9,
+  "checks": [
+   [
+    "XU100 > SMA50",
+    false
+   ],
+   [
+    "XU100 > SMA200",
+    false
+   ],
+   [
+    "XU100 SMA50 > SMA200",
+    false
+   ],
+   [
+    "XU030 (büyükler) > SMA50",
+    false
+   ],
+   [
+    "Genişlik: evrenin %9'i SMA50 üstünde (>%50)",
+    false
+   ],
+   [
+    "TL sakin: USD/TRY son 1A %1.9 (< %3)",
+    true
+   ],
+   [
+    "XU100 dolar bazında 3A getirisi pozitif (%-21.2)",
+    false
+   ]
+  ]
+ },
+ "groups": [
+  {
+   "sym": "ENERJI",
+   "name": "Petrol & Rafineri",
+   "kind": "sektör",
+   "bank": false,
+   "n": 3,
+   "members": [
+    "KCHOL",
+    "TRENJ",
+    "TUPRS"
+   ],
+   "close": null,
+   "chg": -2.69,
+   "perf": {
+    "w": -4.33,
+    "m1": -8.75,
+    "m3": 3.71,
+    "m6": 0.0
+   },
+   "rsi": 40.9,
+   "rsi_w": 50.1,
+   "atr_pct": 4.08,
+   "breadth50": 0,
+   "rs": {
+    "w": 0.1,
+    "m1": 6.73,
+    "m3": 20.85,
+    "m6": 17.66,
+    "score": 12.31
+   },
+   "trend": {
+    "points": 4,
+    "label": "Yükseliş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %67'i SMA200 üstünde (>%50)",
+      true
+     ],
+     [
+      "Üyelerin %33'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 4/7 (≥4)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "src": "tv",
+   "rank": 1
+  },
+  {
+   "sym": "PERAKENDE",
+   "name": "Perakende",
+   "kind": "sektör",
+   "bank": false,
+   "n": 9,
+   "members": [
+    "BIMAS",
+    "CITAS",
+    "CRFSA",
+    "DOAS",
+    "DOHOL",
+    "EBEBK",
+    "GMTAS",
+    "MGROS",
+    "SOKM"
+   ],
+   "close": null,
+   "chg": -1.93,
+   "perf": {
+    "w": -4.89,
+    "m1": -12.01,
+    "m3": -2.93,
+    "m6": 11.29
+   },
+   "rsi": 39.6,
+   "rsi_w": 49.0,
+   "atr_pct": 3.62,
+   "breadth50": 25,
+   "rs": {
+    "w": -0.46,
+    "m1": 3.47,
+    "m3": 14.21,
+    "m6": 28.95,
+    "score": 10.46
+   },
+   "trend": {
+    "points": 3,
+    "label": "Kararsız",
+    "checks": [
+     [
+      "Üyelerin %25'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %62'i SMA200 üstünde (>%50)",
+      true
+     ],
+     [
+      "Üyelerin %25'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 3/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "src": "tv",
+   "rank": 2
+  },
+  {
+   "sym": "BANKA",
+   "name": "Bankacılık",
+   "kind": "sektör",
+   "bank": true,
+   "n": 12,
+   "members": [
+    "AKBNK",
+    "ALBRK",
+    "GARAN",
+    "HALKB",
+    "ICBCT",
+    "ISBTR",
+    "ISCTR",
+    "QNBTR",
+    "SAHOL",
+    "SKBNK",
+    "VAKBN",
+    "YKBNK"
+   ],
+   "close": null,
+   "chg": -2.51,
+   "perf": {
+    "w": -2.82,
+    "m1": -4.99,
+    "m3": -3.78,
+    "m6": -7.8
+   },
+   "rsi": 42.5,
+   "rsi_w": 45.6,
+   "atr_pct": 3.1,
+   "breadth50": 8,
+   "rs": {
+    "w": 1.61,
+    "m1": 10.49,
+    "m3": 13.36,
+    "m6": 9.86,
+    "score": 10.07
+   },
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %8'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %17'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %25'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 2/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı) · banka kuralı: yatırım yok",
+   "src": "tv",
+   "rank": 3
+  },
+  {
+   "sym": "GYO",
+   "name": "GYO & Gayrimenkul",
+   "kind": "sektör",
+   "bank": false,
+   "n": 15,
+   "members": [
+    "AKSGY",
+    "ALARK",
+    "AVPGY",
+    "DMLKT",
+    "EKGYO",
+    "HLGYO",
+    "ISGYO",
+    "OZKGY",
+    "PSGYO",
+    "RGYAS",
+    "RYGYO",
+    "SNGYO",
+    "TRGYO",
+    "YGGYO",
+    "ZRGYO"
+   ],
+   "close": null,
+   "chg": -2.27,
+   "perf": {
+    "w": -2.89,
+    "m1": -5.99,
+    "m3": -8.78,
+    "m6": -3.89
+   },
+   "rsi": 39.6,
+   "rsi_w": 42.8,
+   "atr_pct": 3.27,
+   "breadth50": 13,
+   "rs": {
+    "w": 1.54,
+    "m1": 9.49,
+    "m3": 8.36,
+    "m6": 13.77,
+    "score": 8.54
+   },
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %13'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %40'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %20'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 2/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "src": "tv",
+   "rank": 4
+  },
+  {
+   "sym": "METAL",
+   "name": "Demir-Çelik & Madencilik",
+   "kind": "sektör",
+   "bank": false,
+   "n": 12,
+   "members": [
+    "BRSAN",
+    "CELHA",
+    "CVKMD",
+    "EREGL",
+    "ISDMR",
+    "KARCL",
+    "KCAER",
+    "KRDMA",
+    "KRDMB",
+    "KRDMD",
+    "TRALT",
+    "TRMET"
+   ],
+   "close": null,
+   "chg": -4.1,
+   "perf": {
+    "w": -5.46,
+    "m1": -11.54,
+    "m3": -6.42,
+    "m6": 5.85
+   },
+   "rsi": 38.0,
+   "rsi_w": 46.6,
+   "atr_pct": 5.18,
+   "breadth50": 17,
+   "rs": {
+    "w": -1.03,
+    "m1": 3.94,
+    "m3": 10.72,
+    "m6": 23.51,
+    "score": 8.5
+   },
+   "trend": {
+    "points": 3,
+    "label": "Kararsız",
+    "checks": [
+     [
+      "Üyelerin %17'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %45'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %27'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 3/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "src": "tv",
+   "rank": 5
+  },
+  {
+   "sym": "TELEKOM",
+   "name": "Telekomünikasyon",
+   "kind": "sektör",
+   "bank": false,
+   "n": 2,
+   "members": [
+    "TCELL",
+    "TTKOM"
+   ],
+   "close": null,
+   "chg": -1.87,
+   "perf": {
+    "w": -3.31,
+    "m1": -5.13,
+    "m3": -13.17,
+    "m6": -18.38
+   },
+   "rsi": 42.0,
+   "rsi_w": 41.9,
+   "atr_pct": 2.97,
+   "breadth50": 0,
+   "rs": {
+    "w": 1.12,
+    "m1": 10.35,
+    "m3": 3.97,
+    "m6": -0.72,
+    "score": 5.07
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 0/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "src": "tv",
+   "rank": 6
+  },
+  {
+   "sym": "ULASTIRMA",
+   "name": "Ulaştırma & Havacılık",
+   "kind": "sektör",
+   "bank": false,
+   "n": 7,
+   "members": [
+    "CLEBI",
+    "HRKET",
+    "PASEU",
+    "PGSUS",
+    "RYSAS",
+    "TAVHL",
+    "THYAO"
+   ],
+   "close": null,
+   "chg": -1.17,
+   "perf": {
+    "w": -2.92,
+    "m1": -4.79,
+    "m3": -16.22,
+    "m6": -13.99
+   },
+   "rsi": 35.4,
+   "rsi_w": 38.3,
+   "atr_pct": 3.2,
+   "breadth50": 29,
+   "rs": {
+    "w": 1.51,
+    "m1": 10.69,
+    "m3": 0.92,
+    "m6": 3.67,
+    "score": 4.84
+   },
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %29'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %29'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %29'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 2/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "src": "tv",
+   "rank": 7
+  },
+  {
+   "sym": "HIZMET",
+   "name": "Tüketici Hizmetleri",
+   "kind": "sektör",
+   "bank": false,
+   "n": 6,
+   "members": [
+    "DOCO",
+    "FENER",
+    "GRSEL",
+    "GSRAY",
+    "NTHOL",
+    "TABGD"
+   ],
+   "close": null,
+   "chg": -2.16,
+   "perf": {
+    "w": -2.67,
+    "m1": -10.11,
+    "m3": -18.76,
+    "m6": -17.81
+   },
+   "rsi": 34.5,
+   "rsi_w": 34.7,
+   "atr_pct": 3.84,
+   "breadth50": 17,
+   "rs": {
+    "w": 1.76,
+    "m1": 5.37,
+    "m3": -1.62,
+    "m6": -0.15,
+    "score": 1.55
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %17'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %17'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %17'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Toparlanan",
+   "verdict": "İzle",
+   "src": "tv",
+   "rank": 8
+  },
+  {
+   "sym": "INSAAT",
+   "name": "İnşaat & Çimento",
+   "kind": "sektör",
+   "bank": false,
+   "n": 14,
+   "members": [
+    "AKCNS",
+    "AKFIS",
+    "BTCIM",
+    "CIMSA",
+    "CMENT",
+    "ENKAI",
+    "GLRMK",
+    "KONYA",
+    "LMKDC",
+    "MASFN",
+    "NUHCM",
+    "OYAKC",
+    "SARAE",
+    "TKFEN"
+   ],
+   "close": null,
+   "chg": -3.03,
+   "perf": {
+    "w": -8.56,
+    "m1": -11.82,
+    "m3": -18.59,
+    "m6": -26.78
+   },
+   "rsi": 34.8,
+   "rsi_w": 37.2,
+   "atr_pct": 4.62,
+   "breadth50": 0,
+   "rs": {
+    "w": -4.13,
+    "m1": 3.66,
+    "m3": -1.45,
+    "m6": -9.12,
+    "score": -1.22
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %17'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %8'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Toparlanan",
+   "verdict": "İzle",
+   "src": "tv",
+   "rank": 9
+  },
+  {
+   "sym": "ELEKTRIK",
+   "name": "Elektrik & Doğalgaz",
+   "kind": "sektör",
+   "bank": false,
+   "n": 21,
+   "members": [
+    "AHGAZ",
+    "AKFYE",
+    "AKSEN",
+    "ALFAS",
+    "ARASE",
+    "AYDEM",
+    "AYGAZ",
+    "BASGZ",
+    "CANTE",
+    "ECOGR",
+    "ENERY",
+    "ENJSA",
+    "ENTRA",
+    "GWIND",
+    "LYDHO",
+    "MAGEN",
+    "METEN",
+    "MOGAN",
+    "TRCAS",
+    "VEYAS",
+    "YEOTK"
+   ],
+   "close": null,
+   "chg": -3.5,
+   "perf": {
+    "w": -5.46,
+    "m1": -15.47,
+    "m3": -21.54,
+    "m6": -15.77
+   },
+   "rsi": 36.5,
+   "rsi_w": 37.4,
+   "atr_pct": 4.85,
+   "breadth50": 25,
+   "rs": {
+    "w": -1.03,
+    "m1": 0.01,
+    "m3": -4.4,
+    "m6": 1.89,
+    "score": -1.41
+   },
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %25'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %26'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %21'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 2/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Toparlanan",
+   "verdict": "İzle",
+   "src": "tv",
+   "rank": 10
+  },
+  {
+   "sym": "SAGLIK",
+   "name": "Sağlık",
+   "kind": "sektör",
+   "bank": false,
+   "n": 4,
+   "members": [
+    "DEVA",
+    "ECILC",
+    "GENIL",
+    "MPARK"
+   ],
+   "close": null,
+   "chg": -2.41,
+   "perf": {
+    "w": -7.21,
+    "m1": -19.46,
+    "m3": -15.53,
+    "m6": -24.32
+   },
+   "rsi": 33.0,
+   "rsi_w": 39.5,
+   "atr_pct": 5.01,
+   "breadth50": 0,
+   "rs": {
+    "w": -2.78,
+    "m1": -3.98,
+    "m3": 1.61,
+    "m6": -6.66,
+    "score": -2.25
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %25'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Zayıflayan",
+   "verdict": "Azalt / kâr al",
+   "src": "tv",
+   "rank": 11
+  },
+  {
+   "sym": "OTOMOTIV",
+   "name": "Otomotiv & Dayanıklı Tüketim",
+   "kind": "sektör",
+   "bank": false,
+   "n": 8,
+   "members": [
+    "ARCLK",
+    "ASUZU",
+    "BRISA",
+    "FROTO",
+    "OTKAR",
+    "SISE",
+    "SSAAT",
+    "TOASO"
+   ],
+   "close": null,
+   "chg": -2.85,
+   "perf": {
+    "w": -6.91,
+    "m1": -14.32,
+    "m3": -19.2,
+    "m6": -29.53
+   },
+   "rsi": 33.4,
+   "rsi_w": 32.3,
+   "atr_pct": 3.51,
+   "breadth50": 0,
+   "rs": {
+    "w": -2.48,
+    "m1": 1.16,
+    "m3": -2.06,
+    "m6": -11.87,
+    "score": -2.47
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 0/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Toparlanan",
+   "verdict": "İzle",
+   "src": "tv",
+   "rank": 12
+  },
+  {
+   "sym": "TEKNOLOJI",
+   "name": "Teknoloji & Yazılım",
+   "kind": "sektör",
+   "bank": false,
+   "n": 4,
+   "members": [
+    "ARDYZ",
+    "LOGO",
+    "MIATK",
+    "NETCD"
+   ],
+   "close": null,
+   "chg": -4.66,
+   "perf": {
+    "w": -12.4,
+    "m1": -21.56,
+    "m3": -19.07,
+    "m6": -22.08
+   },
+   "rsi": 37.2,
+   "rsi_w": 39.8,
+   "atr_pct": 7.3,
+   "breadth50": 0,
+   "rs": {
+    "w": -7.97,
+    "m1": -6.08,
+    "m3": -1.93,
+    "m6": -4.42,
+    "score": -4.66
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %33'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "src": "tv",
+   "rank": 13
+  },
+  {
+   "sym": "HOLDING",
+   "name": "Holding, Sigorta & Aracı Kurum",
+   "kind": "sektör",
+   "bank": false,
+   "n": 22,
+   "members": [
+    "ADGYO",
+    "AGESA",
+    "ANHYT",
+    "ANSGR",
+    "DSTKF",
+    "ECZYT",
+    "GLYHO",
+    "HEDEF",
+    "INVES",
+    "ISFIN",
+    "ISMEN",
+    "KLNMA",
+    "KTLEV",
+    "QNBFK",
+    "QUICK",
+    "RAYSG",
+    "TERA",
+    "TRHOL",
+    "TSKB",
+    "TURSG",
+    "UFUK",
+    "VERUS"
+   ],
+   "close": null,
+   "chg": -3.26,
+   "perf": {
+    "w": -10.0,
+    "m1": -16.73,
+    "m3": -23.02,
+    "m6": -28.63
+   },
+   "rsi": 31.4,
+   "rsi_w": 32.4,
+   "atr_pct": 5.39,
+   "breadth50": 5,
+   "rs": {
+    "w": -5.57,
+    "m1": -1.25,
+    "m3": -5.88,
+    "m6": -10.97,
+    "score": -4.98
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %5'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %10'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %5'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "src": "tv",
+   "rank": 14
+  },
+  {
+   "sym": "GIDA",
+   "name": "Gıda & İçecek",
+   "kind": "sektör",
+   "bank": false,
+   "n": 15,
+   "members": [
+    "AEFES",
+    "AGHOL",
+    "ARMGD",
+    "CCOLA",
+    "CEMZY",
+    "EFOR",
+    "KENT",
+    "KLRHO",
+    "LILAK",
+    "LYDYE",
+    "MAVI",
+    "OBAMS",
+    "SUNTK",
+    "TBORG",
+    "ULKER"
+   ],
+   "close": null,
+   "chg": -3.15,
+   "perf": {
+    "w": -6.49,
+    "m1": -18.91,
+    "m3": -23.74,
+    "m6": -34.98
+   },
+   "rsi": 34.9,
+   "rsi_w": 35.1,
+   "atr_pct": 4.43,
+   "breadth50": 0,
+   "rs": {
+    "w": -2.06,
+    "m1": -3.43,
+    "m3": -6.6,
+    "m6": -17.32,
+    "score": -6.42
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %7'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "src": "tv",
+   "rank": 15
+  },
+  {
+   "sym": "KIMYA",
+   "name": "Kimya & Tekstil",
+   "kind": "sektör",
+   "bank": false,
+   "n": 12,
+   "members": [
+    "AKSA",
+    "BANVT",
+    "EGPRO",
+    "GUBRF",
+    "HEKTS",
+    "IEYHO",
+    "KORDS",
+    "MRSHL",
+    "PETKM",
+    "POLHO",
+    "POLTK",
+    "SASA"
+   ],
+   "close": null,
+   "chg": -3.22,
+   "perf": {
+    "w": -7.7,
+    "m1": -23.97,
+    "m3": -28.29,
+    "m6": -24.75
+   },
+   "rsi": 31.9,
+   "rsi_w": 36.5,
+   "atr_pct": 5.31,
+   "breadth50": 0,
+   "rs": {
+    "w": -3.27,
+    "m1": -8.49,
+    "m3": -11.15,
+    "m6": -7.09,
+    "score": -8.43
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "src": "tv",
+   "rank": 16
+  },
+  {
+   "sym": "SANAYI",
+   "name": "Sanayi Üretimi",
+   "kind": "sektör",
+   "bank": false,
+   "n": 17,
+   "members": [
+    "ASTOR",
+    "BFREN",
+    "BMSTL",
+    "BRYAT",
+    "DOFRB",
+    "EGEEN",
+    "EUPWR",
+    "GRTHO",
+    "KLYPV",
+    "MOBTL",
+    "OZATD",
+    "PAHOL",
+    "SARKY",
+    "SELEC",
+    "TCKRC",
+    "TTRAK",
+    "ULUSE"
+   ],
+   "close": null,
+   "chg": -2.91,
+   "perf": {
+    "w": -7.39,
+    "m1": -25.0,
+    "m3": -30.77,
+    "m6": -26.38
+   },
+   "rsi": 27.5,
+   "rsi_w": 32.1,
+   "atr_pct": 6.31,
+   "breadth50": 0,
+   "rs": {
+    "w": -2.96,
+    "m1": -9.52,
+    "m3": -13.63,
+    "m6": -8.72,
+    "score": -9.86
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "src": "tv",
+   "rank": 17
+  },
+  {
+   "sym": "SAVUNMA",
+   "name": "Savunma & Elektronik",
+   "kind": "sektör",
+   "bank": false,
+   "n": 4,
+   "members": [
+    "ALTNY",
+    "ASELS",
+    "CWENE",
+    "GESAN"
+   ],
+   "close": null,
+   "chg": -4.04,
+   "perf": {
+    "w": -10.27,
+    "m1": -34.82,
+    "m3": -40.18,
+    "m6": -25.06
+   },
+   "rsi": 29.8,
+   "rsi_w": 34.3,
+   "atr_pct": 7.23,
+   "breadth50": 0,
+   "rs": {
+    "w": -5.84,
+    "m1": -19.34,
+    "m3": -23.04,
+    "m6": -7.4,
+    "score": -16.82
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Üyelerin %0'i SMA50 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i SMA200 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üyelerin %0'i haftalık EMA20 üstünde (>%50)",
+      false
+     ],
+     [
+      "Üye trend puanı ortalaması 1/7 (≥4)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "src": "tv",
+   "rank": 18
+  }
+ ],
+ "stocks": {
+  "AKSGY": {
+   "name": "Akis Gayrimenkul Yatirim Ortakligi A.S.",
+   "sector": "Finance",
+   "industry": "Real Estate Investment Trusts",
+   "group": "GYO",
+   "group_name": "GYO & Gayrimenkul",
+   "close": 9.22,
+   "chg": 0.0,
+   "perf": {
+    "w": -1.07,
+    "m1": -6.21,
+    "m3": -4.46,
+    "m6": -3.76
+   },
+   "rsi": 39.6,
+   "rsi_w": 47.3,
+   "adx": 28.3,
+   "atr": 0.2562,
+   "atr_pct": 2.78,
+   "ema20": 9.4516,
+   "sma50": 9.7122,
+   "sma200": 9.1472,
+   "macd": -0.1068,
+   "macd_sig": -0.0973,
+   "rec": "STRONG_SELL",
+   "rvol": 1.49,
+   "high3m": 10.34,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 3.35,
+    "m1": 9.27,
+    "m3": 12.68,
+    "m6": 13.9,
+    "score": 10.27
+   },
+   "rs_group": {
+    "w": 1.82,
+    "m1": -0.22,
+    "m3": 4.32,
+    "m6": 0.13,
+    "score": 1.73
+   },
+   "trend": {
+    "points": 3,
+    "label": "Kararsız",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      true
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 8.96
+  },
+  "ALTIN": {
+   "name": "DARPHANE ALTIN SERTIFIKASI",
+   "sector": null,
+   "industry": null,
+   "group": null,
+   "group_name": null,
+   "close": 71.67,
+   "chg": 0.83,
+   "perf": {
+    "w": 0.24,
+    "m1": -2.85,
+    "m3": 6.34,
+    "m6": -11.96
+   },
+   "rsi": 47.2,
+   "rsi_w": 43.4,
+   "adx": 14.5,
+   "atr": 0.9803,
+   "atr_pct": 1.37,
+   "ema20": 71.8251,
+   "sma50": 73.7448,
+   "sma200": 79.1178,
+   "macd": -0.7138,
+   "macd_sig": -0.7429,
+   "rec": "SELL",
+   "rvol": 1.37,
+   "high3m": 80.25,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 4.66,
+    "m1": 12.63,
+    "m3": 23.47,
+    "m6": 5.7,
+    "score": 14.19
+   },
+   "rs_group": null,
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 70.69
+  },
+  "ALTNY": {
+   "name": "Altinay Savunma Teknolojileri A.S.",
+   "sector": "Electronic Technology",
+   "industry": "Aerospace & Defense",
+   "group": "SAVUNMA",
+   "group_name": "Savunma & Elektronik",
+   "close": 11.97,
+   "chg": -4.16,
+   "perf": {
+    "w": -7.21,
+    "m1": -28.58,
+    "m3": -23.85,
+    "m6": -25.84
+   },
+   "rsi": 32.4,
+   "rsi_w": 36.2,
+   "adx": 32.0,
+   "atr": 0.639,
+   "atr_pct": 5.34,
+   "ema20": 13.2379,
+   "sma50": 15.4052,
+   "sma200": 15.9662,
+   "macd": -0.8548,
+   "macd_sig": -0.9097,
+   "rec": "STRONG_SELL",
+   "rvol": 0.99,
+   "high3m": 19.73,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -2.78,
+    "m1": -13.1,
+    "m3": -6.72,
+    "m6": -8.18,
+    "score": -8.58
+   },
+   "rs_group": {
+    "w": 3.06,
+    "m1": 6.24,
+    "m3": 16.33,
+    "m6": -0.78,
+    "score": 8.24
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 11.33
+  },
+  "BASGZ": {
+   "name": "Baskent Dogalgaz Dagitim Gayrimenkul Yatirim Ortakligi AS",
+   "sector": "Utilities",
+   "industry": "Gas Distributors",
+   "group": "ELEKTRIK",
+   "group_name": "Elektrik & Doğalgaz",
+   "close": 39.08,
+   "chg": -1.61,
+   "perf": {
+    "w": -0.05,
+    "m1": -10.65,
+    "m3": -16.5,
+    "m6": -22.23
+   },
+   "rsi": 37.9,
+   "rsi_w": 33.4,
+   "adx": 20.4,
+   "atr": 1.3335,
+   "atr_pct": 3.41,
+   "ema20": 40.4919,
+   "sma50": 42.5236,
+   "sma200": 46.5005,
+   "macd": -0.9273,
+   "macd_sig": -0.9879,
+   "rec": "SELL",
+   "rvol": 0.59,
+   "high3m": 48.4,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 4.38,
+    "m1": 4.82,
+    "m3": 0.64,
+    "m6": -4.57,
+    "score": 1.88
+   },
+   "rs_group": {
+    "w": 5.41,
+    "m1": 4.82,
+    "m3": 5.04,
+    "m6": -6.46,
+    "score": 3.29
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 37.75
+  },
+  "BIENY": {
+   "name": "Bien Yapi Urunleri Sanayi Turizm Ve Ticaret Anonim Sirketi",
+   "sector": "Non-Energy Minerals",
+   "industry": "Construction Materials",
+   "group": "INSAAT",
+   "group_name": "İnşaat & Çimento",
+   "close": 12.5,
+   "chg": -3.77,
+   "perf": {
+    "w": -10.84,
+    "m1": -37.47,
+    "m3": -42.13,
+    "m6": -52.18
+   },
+   "rsi": 20.5,
+   "rsi_w": 23.4,
+   "adx": 50.3,
+   "atr": 0.7493,
+   "atr_pct": 5.99,
+   "ema20": 14.9619,
+   "sma50": 18.3874,
+   "sma200": 22.205,
+   "macd": -1.5531,
+   "macd_sig": -1.531,
+   "rec": "STRONG_SELL",
+   "rvol": 0.99,
+   "high3m": 25.04,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -6.42,
+    "m1": -21.99,
+    "m3": -24.99,
+    "m6": -34.52,
+    "score": -22.59
+   },
+   "rs_group": {
+    "w": -2.28,
+    "m1": -25.65,
+    "m3": -23.54,
+    "m6": -25.4,
+    "score": -21.37
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 11.75
+  },
+  "DOFER": {
+   "name": "Dofer Yapi Maizemeleri Sanayi ve Ticaret A.S.",
+   "sector": "Non-Energy Minerals",
+   "industry": "Steel",
+   "group": "METAL",
+   "group_name": "Demir-Çelik & Madencilik",
+   "close": 19.9,
+   "chg": -5.15,
+   "perf": {
+    "w": -9.55,
+    "m1": -25.86,
+    "m3": -36.3,
+    "m6": -43.27
+   },
+   "rsi": 27.7,
+   "rsi_w": 23.3,
+   "adx": 43.9,
+   "atr": 1.0348,
+   "atr_pct": 5.2,
+   "ema20": 22.3186,
+   "sma50": 25.7256,
+   "sma200": 31.9895,
+   "macd": -1.3475,
+   "macd_sig": -1.3946,
+   "rec": "STRONG_SELL",
+   "rvol": 1.29,
+   "high3m": 32.2,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -5.12,
+    "m1": -10.38,
+    "m3": -19.16,
+    "m6": -25.61,
+    "score": -14.95
+   },
+   "rs_group": {
+    "w": -4.09,
+    "m1": -14.32,
+    "m3": -29.88,
+    "m6": -49.12,
+    "score": -23.45
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 18.87
+  },
+  "DOHOL": {
+   "name": "Dogan Sirketler Grubu Holding A.S.",
+   "sector": "Retail Trade",
+   "industry": "Specialty Stores",
+   "group": "PERAKENDE",
+   "group_name": "Perakende",
+   "close": 17.5,
+   "chg": -1.69,
+   "perf": {
+    "w": -4.89,
+    "m1": -17.99,
+    "m3": -18.68,
+    "m6": -19.06
+   },
+   "rsi": 28.5,
+   "rsi_w": 33.1,
+   "adx": 40.5,
+   "atr": 0.5798,
+   "atr_pct": 3.31,
+   "ema20": 18.9486,
+   "sma50": 20.443,
+   "sma200": 20.9737,
+   "macd": -0.7736,
+   "macd_sig": -0.6924,
+   "rec": "STRONG_SELL",
+   "rvol": 0.85,
+   "high3m": 22.86,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -0.46,
+    "m1": -2.52,
+    "m3": -1.54,
+    "m6": -1.4,
+    "score": -1.7
+   },
+   "rs_group": {
+    "w": -0.0,
+    "m1": -5.98,
+    "m3": -15.75,
+    "m6": -30.35,
+    "score": -12.16
+   },
+   "trend": {
+    "points": 1,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 16.92
+  },
+  "EMKEL": {
+   "name": "Emek Elektrik Endustrisi A.S.",
+   "sector": "Producer Manufacturing",
+   "industry": "Industrial Machinery",
+   "group": "SANAYI",
+   "group_name": "Sanayi Üretimi",
+   "close": 6.38,
+   "chg": -3.63,
+   "perf": {
+    "w": -8.73,
+    "m1": -46.88,
+    "m3": -68.45,
+    "m6": -76.83
+   },
+   "rsi": 24.0,
+   "rsi_w": 23.9,
+   "adx": 57.5,
+   "atr": 0.6363,
+   "atr_pct": 9.97,
+   "ema20": 8.2117,
+   "sma50": 11.8904,
+   "sma200": 19.5343,
+   "macd": -1.4264,
+   "macd_sig": -1.5814,
+   "rec": "SELL",
+   "rvol": 0.59,
+   "high3m": 22.5,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -4.3,
+    "m1": -31.4,
+    "m3": -51.31,
+    "m6": -59.17,
+    "score": -38.47
+   },
+   "rs_group": {
+    "w": -1.34,
+    "m1": -21.88,
+    "m3": -37.68,
+    "m6": -50.45,
+    "score": -28.61
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 5.74
+  },
+  "EMPAE": {
+   "name": "Empa Elektronik Sanayi ve Ticaret A.S.",
+   "sector": "Electronic Technology",
+   "industry": "Electronic Production Equipment",
+   "group": "SAVUNMA",
+   "group_name": "Savunma & Elektronik",
+   "close": 41.58,
+   "chg": -3.3,
+   "perf": {
+    "w": -7.6,
+    "m1": -27.69,
+    "m3": -38.45,
+    "m6": 7.44
+   },
+   "rsi": 32.2,
+   "rsi_w": 42.8,
+   "adx": 28.2,
+   "atr": 3.4291,
+   "atr_pct": 8.25,
+   "ema20": 47.1918,
+   "sma50": 59.8148,
+   "sma200": null,
+   "macd": -4.3812,
+   "macd_sig": -4.8455,
+   "rec": "STRONG_SELL",
+   "rvol": 0.57,
+   "high3m": 89.5,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -3.17,
+    "m1": -12.21,
+    "m3": -21.31,
+    "m6": 25.1,
+    "score": -8.44
+   },
+   "rs_group": {
+    "w": 2.67,
+    "m1": 7.13,
+    "m3": 1.73,
+    "m6": 32.5,
+    "score": 8.38
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 38.15
+  },
+  "FROTO": {
+   "name": "Ford Otomotiv Sanayi A.S.",
+   "sector": "Consumer Durables",
+   "industry": "Motor Vehicles",
+   "group": "OTOMOTIV",
+   "group_name": "Otomotiv & Dayanıklı Tüketim",
+   "close": 69.3,
+   "chg": -2.05,
+   "perf": {
+    "w": -7.04,
+    "m1": -11.72,
+    "m3": -17.89,
+    "m6": -34.81
+   },
+   "rsi": 29.9,
+   "rsi_w": 32.3,
+   "adx": 30.8,
+   "atr": 1.9591,
+   "atr_pct": 2.83,
+   "ema20": 74.172,
+   "sma50": 77.247,
+   "sma200": 93.1245,
+   "macd": -1.8819,
+   "macd_sig": -1.4677,
+   "rec": "STRONG_SELL",
+   "rvol": 1.22,
+   "high3m": 84.85,
+   "earn_next": "2026-10-28",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -2.62,
+    "m1": 3.76,
+    "m3": -0.75,
+    "m6": -17.15,
+    "score": -1.91
+   },
+   "rs_group": {
+    "w": -0.13,
+    "m1": 2.6,
+    "m3": 1.31,
+    "m6": -5.28,
+    "score": 0.56
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Toparlanan",
+   "verdict": "İzle",
+   "stop_atr": 67.34
+  },
+  "GMSTR": {
+   "name": "Istanbul Silver B Tipi Gumus Borsa Yatirim Fonu",
+   "sector": "Miscellaneous",
+   "industry": "Investment Trusts/Mutual Funds",
+   "group": "SANAYI",
+   "group_name": "Sanayi Üretimi",
+   "close": 563.5,
+   "chg": 0.45,
+   "perf": {
+    "w": -3.63,
+    "m1": -7.74,
+    "m3": 7.8,
+    "m6": -19.47
+   },
+   "rsi": 39.6,
+   "rsi_w": 43.4,
+   "adx": 18.0,
+   "atr": 14.6067,
+   "atr_pct": 2.59,
+   "ema20": 582.7601,
+   "sma50": 607.105,
+   "sma200": 661.6525,
+   "macd": -11.3747,
+   "macd_sig": -9.2328,
+   "rec": "SELL",
+   "rvol": 0.48,
+   "high3m": 664.25,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 0.79,
+    "m1": 7.74,
+    "m3": 24.93,
+    "m6": -1.81,
+    "score": 11.28
+   },
+   "rs_group": {
+    "w": 3.76,
+    "m1": 17.26,
+    "m3": 38.57,
+    "m6": 6.91,
+    "score": 21.14
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 548.89
+  },
+  "HRKET": {
+   "name": "Hareket Proje Tasimaciligi ve Yuk Muhendisligi AS",
+   "sector": "Transportation",
+   "industry": "Trucking",
+   "group": "ULASTIRMA",
+   "group_name": "Ulaştırma & Havacılık",
+   "close": 9.39,
+   "chg": -9.97,
+   "perf": {
+    "w": 7.93,
+    "m1": 62.0,
+    "m3": 29.26,
+    "m6": 105.89
+   },
+   "rsi": 62.6,
+   "rsi_w": 68.1,
+   "adx": 43.6,
+   "atr": 0.5741,
+   "atr_pct": 6.11,
+   "ema20": 8.7442,
+   "sma50": 7.4248,
+   "sma200": 6.3302,
+   "macd": 0.7894,
+   "macd_sig": 0.6687,
+   "rec": "BUY",
+   "rvol": 1.76,
+   "high3m": 10.43,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 12.36,
+    "m1": 77.48,
+    "m3": 46.4,
+    "m6": 123.55,
+    "score": 63.74
+   },
+   "rs_group": {
+    "w": 10.85,
+    "m1": 66.79,
+    "m3": 45.48,
+    "m6": 119.88,
+    "score": 58.9
+   },
+   "trend": {
+    "points": 7,
+    "label": "Güçlü yükseliş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      true
+     ],
+     [
+      "EMA20 > EMA50",
+      true
+     ],
+     [
+      "Fiyat > SMA50",
+      true
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      true
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      true
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": true,
+    "weekly_up": true
+   },
+   "quadrant": "Lider",
+   "verdict": "Ol",
+   "stop_atr": 8.71
+  },
+  "KAYSE": {
+   "name": "Kayseri Seker Fabrikasi AS",
+   "sector": "Health Technology",
+   "industry": "Biotechnology",
+   "group": "SAGLIK",
+   "group_name": "Sağlık",
+   "close": 2.74,
+   "chg": -2.84,
+   "perf": {
+    "w": -10.16,
+    "m1": -28.83,
+    "m3": -33.98,
+    "m6": -46.8
+   },
+   "rsi": 21.0,
+   "rsi_w": 24.6,
+   "adx": 50.6,
+   "atr": 0.1275,
+   "atr_pct": 4.65,
+   "ema20": 3.1429,
+   "sma50": 3.6176,
+   "sma200": 4.4261,
+   "macd": -0.2304,
+   "macd_sig": -0.2206,
+   "rec": "STRONG_SELL",
+   "rvol": 1.26,
+   "high3m": 4.33,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -5.74,
+    "m1": -13.35,
+    "m3": -16.84,
+    "m6": -29.14,
+    "score": -15.8
+   },
+   "rs_group": {
+    "w": -2.95,
+    "m1": -9.37,
+    "m3": -18.45,
+    "m6": -22.48,
+    "score": -13.55
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 2.61
+  },
+  "KBORU": {
+   "name": "Kuzey Boru A.S.",
+   "sector": "Producer Manufacturing",
+   "industry": "Miscellaneous Manufacturing",
+   "group": "SANAYI",
+   "group_name": "Sanayi Üretimi",
+   "close": 9.61,
+   "chg": -7.06,
+   "perf": {
+    "w": -16.94,
+    "m1": -40.79,
+    "m3": -63.9,
+    "m6": -62.02
+   },
+   "rsi": 26.8,
+   "rsi_w": 26.6,
+   "adx": 29.9,
+   "atr": 1.0364,
+   "atr_pct": 10.78,
+   "ema20": 12.232,
+   "sma50": 16.7134,
+   "sma200": 20.5956,
+   "macd": -1.7657,
+   "macd_sig": -1.8927,
+   "rec": "STRONG_SELL",
+   "rvol": 1.05,
+   "high3m": 27.2,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -12.51,
+    "m1": -25.31,
+    "m3": -46.76,
+    "m6": -44.36,
+    "score": -33.76
+   },
+   "rs_group": {
+    "w": -9.55,
+    "m1": -15.79,
+    "m3": -33.13,
+    "m6": -35.64,
+    "score": -23.9
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 8.57
+  },
+  "KLSER": {
+   "name": "Kaleseramik Canakkale Kalebodur Seramik A.S.",
+   "sector": "Producer Manufacturing",
+   "industry": "Building Products",
+   "group": "SANAYI",
+   "group_name": "Sanayi Üretimi",
+   "close": 17.61,
+   "chg": -2.87,
+   "perf": {
+    "w": -5.98,
+    "m1": -22.01,
+    "m3": -32.48,
+    "m6": -34.58
+   },
+   "rsi": 27.6,
+   "rsi_w": 21.9,
+   "adx": 38.8,
+   "atr": 0.6016,
+   "atr_pct": 3.42,
+   "ema20": 19.3307,
+   "sma50": 21.9096,
+   "sma200": 25.803,
+   "macd": -1.0698,
+   "macd_sig": -1.1189,
+   "rec": "STRONG_SELL",
+   "rvol": 0.98,
+   "high3m": 26.9,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -1.55,
+    "m1": -6.53,
+    "m3": -15.34,
+    "m6": -16.92,
+    "score": -10.43
+   },
+   "rs_group": {
+    "w": 1.41,
+    "m1": 2.99,
+    "m3": -1.71,
+    "m6": -8.2,
+    "score": -0.57
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 17.01
+  },
+  "MIATK": {
+   "name": "MIA Teknoloji AS",
+   "sector": "Technology Services",
+   "industry": "Information Technology Services",
+   "group": "TEKNOLOJI",
+   "group_name": "Teknoloji & Yazılım",
+   "close": 25.68,
+   "chg": -6.62,
+   "perf": {
+    "w": -11.63,
+    "m1": -24.91,
+    "m3": -24.87,
+    "m6": -34.89
+   },
+   "rsi": 46.1,
+   "rsi_w": 40.0,
+   "adx": 14.9,
+   "atr": 2.6205,
+   "atr_pct": 10.2,
+   "ema20": 26.8935,
+   "sma50": 28.9988,
+   "sma200": 36.8677,
+   "macd": -0.758,
+   "macd_sig": -0.9678,
+   "rec": "SELL",
+   "rvol": 1.76,
+   "high3m": 40.26,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -7.2,
+    "m1": -9.43,
+    "m3": -7.73,
+    "m6": -17.23,
+    "score": -9.67
+   },
+   "rs_group": {
+    "w": 0.77,
+    "m1": -3.35,
+    "m3": -5.8,
+    "m6": -12.81,
+    "score": -5.01
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 23.06
+  },
+  "RYSAS": {
+   "name": "Reysas Tasimacilik ve Lojistik Ticaret Anonim Sirketi",
+   "sector": "Transportation",
+   "industry": "Air Freight/Couriers",
+   "group": "ULASTIRMA",
+   "group_name": "Ulaştırma & Havacılık",
+   "close": 25.94,
+   "chg": -0.54,
+   "perf": {
+    "w": 6.75,
+    "m1": 2.13,
+    "m3": 22.36,
+    "m6": 17.38
+   },
+   "rsi": 52.5,
+   "rsi_w": 56.5,
+   "adx": 10.6,
+   "atr": 1.4884,
+   "atr_pct": 5.74,
+   "ema20": 25.5611,
+   "sma50": 25.5252,
+   "sma200": 21.5133,
+   "macd": 0.0504,
+   "macd_sig": -0.0469,
+   "rec": "BUY",
+   "rvol": 1.02,
+   "high3m": 30.54,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 11.18,
+    "m1": 17.6,
+    "m3": 39.49,
+    "m6": 35.03,
+    "score": 26.92
+   },
+   "rs_group": {
+    "w": 9.67,
+    "m1": 6.92,
+    "m3": 38.58,
+    "m6": 31.37,
+    "score": 22.08
+   },
+   "trend": {
+    "points": 7,
+    "label": "Güçlü yükseliş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      true
+     ],
+     [
+      "EMA20 > EMA50",
+      true
+     ],
+     [
+      "Fiyat > SMA50",
+      true
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      true
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      true
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": true,
+    "weekly_up": true
+   },
+   "quadrant": "Lider",
+   "verdict": "Ol",
+   "stop_atr": 24.45
+  },
+  "SASA": {
+   "name": "Sasa Polyester Sanayi A.S.",
+   "sector": "Process Industries",
+   "industry": "Textiles",
+   "group": "KIMYA",
+   "group_name": "Kimya & Tekstil",
+   "close": 1.73,
+   "chg": -3.35,
+   "perf": {
+    "w": -8.95,
+    "m1": -38.43,
+    "m3": -31.62,
+    "m6": -43.65
+   },
+   "rsi": 29.4,
+   "rsi_w": 35.9,
+   "adx": 28.3,
+   "atr": 0.1105,
+   "atr_pct": 6.38,
+   "ema20": 1.9722,
+   "sma50": 2.2474,
+   "sma200": 2.511,
+   "macd": -0.151,
+   "macd_sig": -0.1459,
+   "rec": "STRONG_SELL",
+   "rvol": 0.95,
+   "high3m": 3.06,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -4.52,
+    "m1": -22.96,
+    "m3": -14.48,
+    "m6": -25.99,
+    "score": -17.68
+   },
+   "rs_group": {
+    "w": -1.25,
+    "m1": -14.46,
+    "m3": -3.33,
+    "m6": -18.9,
+    "score": -9.25
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 1.62
+  },
+  "SDTTR": {
+   "name": "SDT Uzay ve Savunma Teknolojileri A.S.",
+   "sector": "Electronic Technology",
+   "industry": "Aerospace & Defense",
+   "group": "SAVUNMA",
+   "group_name": "Savunma & Elektronik",
+   "close": 14.08,
+   "chg": -5.38,
+   "perf": {
+    "w": -8.57,
+    "m1": -27.83,
+    "m3": -37.24,
+    "m6": -36.55
+   },
+   "rsi": 26.3,
+   "rsi_w": 31.1,
+   "adx": 32.5,
+   "atr": 0.87,
+   "atr_pct": 6.18,
+   "ema20": 16.2124,
+   "sma50": 19.5143,
+   "sma200": 20.5443,
+   "macd": -1.325,
+   "macd_sig": -1.3511,
+   "rec": "STRONG_SELL",
+   "rvol": 0.87,
+   "high3m": 25.7,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -4.14,
+    "m1": -12.35,
+    "m3": -20.11,
+    "m6": -18.89,
+    "score": -14.82
+   },
+   "rs_group": {
+    "w": 1.7,
+    "m1": 6.99,
+    "m3": 2.94,
+    "m6": -11.49,
+    "score": 2.0
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 13.21
+  },
+  "SMRTG": {
+   "name": "Smart Gunes Enerjisi Teknolojileri Arastirma Gelistirme Uretim Sanayi ve Ticaret",
+   "sector": "Electronic Technology",
+   "industry": "Semiconductors",
+   "group": "SAVUNMA",
+   "group_name": "Savunma & Elektronik",
+   "close": 4.3,
+   "chg": -6.11,
+   "perf": {
+    "w": -12.78,
+    "m1": -48.26,
+    "m3": -62.71,
+    "m6": -42.2
+   },
+   "rsi": 25.0,
+   "rsi_w": 24.4,
+   "adx": 52.2,
+   "atr": 0.3896,
+   "atr_pct": 9.06,
+   "ema20": 5.333,
+   "sma50": 7.5992,
+   "sma200": 8.8247,
+   "macd": -0.8634,
+   "macd_sig": -0.9698,
+   "rec": "STRONG_SELL",
+   "rvol": 0.87,
+   "high3m": 12.47,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -8.35,
+    "m1": -32.78,
+    "m3": -45.57,
+    "m6": -24.55,
+    "score": -32.36
+   },
+   "rs_group": {
+    "w": -2.51,
+    "m1": -13.44,
+    "m3": -22.53,
+    "m6": -17.14,
+    "score": -15.53
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Geride",
+   "verdict": "Uzak dur",
+   "stop_atr": 3.91
+  },
+  "SOKM": {
+   "name": "Sok Marketler Ticaret AS",
+   "sector": "Retail Trade",
+   "industry": "Food Retail",
+   "group": "PERAKENDE",
+   "group_name": "Perakende",
+   "close": 57.6,
+   "chg": -0.69,
+   "perf": {
+    "w": 1.77,
+    "m1": -0.95,
+    "m3": 13.27,
+    "m6": 12.83
+   },
+   "rsi": 51.9,
+   "rsi_w": 56.8,
+   "adx": 11.4,
+   "atr": 2.0839,
+   "atr_pct": 3.62,
+   "ema20": 57.3022,
+   "sma50": 56.95,
+   "sma200": 54.8396,
+   "macd": 0.2229,
+   "macd_sig": 0.1087,
+   "rec": "BUY",
+   "rvol": 1.32,
+   "high3m": 61.9,
+   "earn_next": "2026-11-05",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 6.19,
+    "m1": 14.53,
+    "m3": 30.41,
+    "m6": 30.49,
+    "score": 21.23
+   },
+   "rs_group": {
+    "w": 6.66,
+    "m1": 11.06,
+    "m3": 16.2,
+    "m6": 1.54,
+    "score": 10.77
+   },
+   "trend": {
+    "points": 7,
+    "label": "Güçlü yükseliş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      true
+     ],
+     [
+      "EMA20 > EMA50",
+      true
+     ],
+     [
+      "Fiyat > SMA50",
+      true
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      true
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      true
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": true,
+    "weekly_up": true
+   },
+   "quadrant": "Lider",
+   "verdict": "Ol",
+   "stop_atr": 55.52
+  },
+  "TCELL": {
+   "name": "Turkcell Iletisim Hizmetleri A.S.",
+   "sector": "Communications",
+   "industry": "Wireless Telecommunications",
+   "group": "TELEKOM",
+   "group_name": "Telekomünikasyon",
+   "close": 96.8,
+   "chg": -1.07,
+   "perf": {
+    "w": -3.49,
+    "m1": -2.81,
+    "m3": -13.34,
+    "m6": -17.62
+   },
+   "rsi": 43.2,
+   "rsi_w": 42.3,
+   "adx": 24.6,
+   "atr": 2.6991,
+   "atr_pct": 2.79,
+   "ema20": 98.8062,
+   "sma50": 100.312,
+   "sma200": 107.8693,
+   "macd": -0.6749,
+   "macd_sig": -0.6156,
+   "rec": "STRONG_SELL",
+   "rvol": 1.57,
+   "high3m": 112.3,
+   "earn_next": "2026-11-05",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 0.94,
+    "m1": 12.67,
+    "m3": 3.8,
+    "m6": 0.04,
+    "score": 5.91
+   },
+   "rs_group": {
+    "w": -0.18,
+    "m1": 2.32,
+    "m3": -0.17,
+    "m6": 0.76,
+    "score": 0.84
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 94.1
+  },
+  "THYAO": {
+   "name": "Turk Hava Yollari A.O.",
+   "sector": "Transportation",
+   "industry": "Airlines",
+   "group": "ULASTIRMA",
+   "group_name": "Ulaştırma & Havacılık",
+   "close": 273.5,
+   "chg": -1.17,
+   "perf": {
+    "w": -4.37,
+    "m1": -4.79,
+    "m3": -17.0,
+    "m6": -13.99
+   },
+   "rsi": 35.4,
+   "rsi_w": 37.2,
+   "adx": 34.7,
+   "atr": 7.1212,
+   "atr_pct": 2.6,
+   "ema20": 286.1767,
+   "sma50": 294.45,
+   "sma200": 305.175,
+   "macd": -4.6847,
+   "macd_sig": -3.7182,
+   "rec": "STRONG_SELL",
+   "rvol": 1.05,
+   "high3m": 330.25,
+   "earn_next": "2026-11-11",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 0.06,
+    "m1": 10.69,
+    "m3": 0.14,
+    "m6": 3.67,
+    "score": 4.35
+   },
+   "rs_group": {
+    "w": -1.45,
+    "m1": 0.0,
+    "m3": -0.78,
+    "m6": -0.0,
+    "score": -0.49
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 266.38
+  },
+  "TKFEN": {
+   "name": "Tekfen Holding Anonim Sirketi",
+   "sector": "Industrial Services",
+   "industry": "Engineering & Construction",
+   "group": "INSAAT",
+   "group_name": "İnşaat & Çimento",
+   "close": 202.0,
+   "chg": -5.3,
+   "perf": {
+    "w": -20.94,
+    "m1": -12.36,
+    "m3": 40.77,
+    "m6": 71.33
+   },
+   "rsi": 36.9,
+   "rsi_w": 53.5,
+   "adx": 25.4,
+   "atr": 16.7513,
+   "atr_pct": 8.29,
+   "ema20": 238.1149,
+   "sma50": 232.685,
+   "sma200": 142.758,
+   "macd": -2.0252,
+   "macd_sig": 5.691,
+   "rec": "SELL",
+   "rvol": 0.73,
+   "high3m": 282.0,
+   "earn_next": "2026-12-08",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -16.51,
+    "m1": 3.11,
+    "m3": 57.9,
+    "m6": 88.99,
+    "score": 32.23
+   },
+   "rs_group": {
+    "w": -12.38,
+    "m1": -0.54,
+    "m3": 59.36,
+    "m6": 98.11,
+    "score": 33.44
+   },
+   "trend": {
+    "points": 5,
+    "label": "Yükseliş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      true
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      true
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      true
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": true
+   },
+   "quadrant": "Lider",
+   "verdict": "Ol",
+   "stop_atr": 185.25
+  },
+  "TOASO": {
+   "name": "Tofas Turk Otomobil Fabrikasi A.S.",
+   "sector": "Consumer Durables",
+   "industry": "Motor Vehicles",
+   "group": "OTOMOTIV",
+   "group_name": "Otomotiv & Dayanıklı Tüketim",
+   "close": 244.4,
+   "chg": -0.77,
+   "perf": {
+    "w": -10.15,
+    "m1": -14.25,
+    "m3": -19.34,
+    "m6": -15.29
+   },
+   "rsi": 34.9,
+   "rsi_w": 39.1,
+   "adx": 21.6,
+   "atr": 10.2385,
+   "atr_pct": 4.19,
+   "ema20": 264.1361,
+   "sma50": 272.654,
+   "sma200": 291.7827,
+   "macd": -7.6491,
+   "macd_sig": -5.0454,
+   "rec": "SELL",
+   "rvol": 1.6,
+   "high3m": 309.25,
+   "earn_next": "2026-10-28",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -5.72,
+    "m1": 1.23,
+    "m3": -2.2,
+    "m6": 2.37,
+    "score": -0.84
+   },
+   "rs_group": {
+    "w": -3.24,
+    "m1": 0.07,
+    "m3": -0.14,
+    "m6": 14.24,
+    "score": 1.63
+   },
+   "trend": {
+    "points": 0,
+    "label": "Güçlü düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      false
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      false
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Toparlanan",
+   "verdict": "İzle",
+   "stop_atr": 234.16
+  },
+  "TRENJ": {
+   "name": "TR Dogal Enerji Kaynaklari Arastirma ve Uretim Anonim Sirketi",
+   "sector": "Energy Minerals",
+   "industry": "Integrated Oil",
+   "group": "ENERJI",
+   "group_name": "Petrol & Rafineri",
+   "close": 88.65,
+   "chg": -2.69,
+   "perf": {
+    "w": -5.64,
+    "m1": -14.76,
+    "m3": -6.09,
+    "m6": -8.61
+   },
+   "rsi": 38.6,
+   "rsi_w": 44.6,
+   "adx": 21.8,
+   "atr": 4.9095,
+   "atr_pct": 5.54,
+   "ema20": 96.5937,
+   "sma50": 101.053,
+   "sma200": 98.5475,
+   "macd": -2.6859,
+   "macd_sig": -2.0573,
+   "rec": "STRONG_SELL",
+   "rvol": 0.99,
+   "high3m": 115.5,
+   "earn_next": null,
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": -1.21,
+    "m1": 0.72,
+    "m3": 11.04,
+    "m6": 9.05,
+    "score": 5.29
+   },
+   "rs_group": {
+    "w": -1.31,
+    "m1": -6.01,
+    "m3": -9.8,
+    "m6": -8.61,
+    "score": -7.02
+   },
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 83.74
+  },
+  "TRGYO": {
+   "name": "Torunlar Gayrimenkul Yatirim Ortakligi A.S.",
+   "sector": "Finance",
+   "industry": "Real Estate Investment Trusts",
+   "group": "GYO",
+   "group_name": "GYO & Gayrimenkul",
+   "close": 88.25,
+   "chg": -2.27,
+   "perf": {
+    "w": -3.39,
+    "m1": -4.23,
+    "m3": -11.26,
+    "m6": -1.73
+   },
+   "rsi": 37.0,
+   "rsi_w": 42.8,
+   "adx": 10.6,
+   "atr": 2.0271,
+   "atr_pct": 2.3,
+   "ema20": 91.4493,
+   "sma50": 92.922,
+   "sma200": 91.0092,
+   "macd": -0.7961,
+   "macd_sig": -0.6321,
+   "rec": "STRONG_SELL",
+   "rvol": 1.03,
+   "high3m": 99.4,
+   "earn_next": "2026-11-05",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 1.03,
+    "m1": 11.25,
+    "m3": 5.87,
+    "m6": 15.93,
+    "score": 8.54
+   },
+   "rs_group": {
+    "w": -0.5,
+    "m1": 1.76,
+    "m3": -2.48,
+    "m6": 2.16,
+    "score": -0.0
+   },
+   "trend": {
+    "points": 2,
+    "label": "Düşüş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      false
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      false
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      false
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": false
+   },
+   "quadrant": "Lider",
+   "verdict": "İzle (trend zayıfladı)",
+   "stop_atr": 86.22
+  },
+  "TUPRS": {
+   "name": "Tupras Turkiye Petrol Rafinerileri A.S.",
+   "sector": "Energy Minerals",
+   "industry": "Oil Refining/Marketing",
+   "group": "ENERJI",
+   "group_name": "Petrol & Rafineri",
+   "close": 375.5,
+   "chg": -2.34,
+   "perf": {
+    "w": -4.33,
+    "m1": -8.75,
+    "m3": 30.84,
+    "m6": 40.24
+   },
+   "rsi": 43.6,
+   "rsi_w": 62.5,
+   "adx": 28.2,
+   "atr": 15.3198,
+   "atr_pct": 4.08,
+   "ema20": 388.1794,
+   "sma50": 389.71,
+   "sma200": 281.9175,
+   "macd": -1.7802,
+   "macd_sig": 0.2421,
+   "rec": "SELL",
+   "rvol": 1.0,
+   "high3m": 424.25,
+   "earn_next": "2026-10-29",
+   "pre": null,
+   "pre_pct": null,
+   "post": null,
+   "post_pct": null,
+   "src": "tv",
+   "rs": {
+    "w": 0.1,
+    "m1": 6.73,
+    "m3": 47.97,
+    "m6": 57.9,
+    "score": 27.85
+   },
+   "rs_group": {
+    "w": -0.0,
+    "m1": 0.0,
+    "m3": 27.13,
+    "m6": 40.24,
+    "score": 15.53
+   },
+   "trend": {
+    "points": 5,
+    "label": "Yükseliş",
+    "checks": [
+     [
+      "Fiyat > EMA20 (günlük)",
+      false
+     ],
+     [
+      "EMA20 > EMA50",
+      true
+     ],
+     [
+      "Fiyat > SMA50",
+      false
+     ],
+     [
+      "SMA50 > SMA200",
+      true
+     ],
+     [
+      "Fiyat > SMA200",
+      true
+     ],
+     [
+      "Fiyat > EMA20 (haftalık)",
+      true
+     ],
+     [
+      "EMA20 > SMA50 (haftalık)",
+      true
+     ]
+    ],
+    "daily_up": false,
+    "weekly_up": true
+   },
+   "quadrant": "Lider",
+   "verdict": "Ol",
+   "stop_atr": 360.18
+  }
+ },
+ "picks": {
+  "SAVUNMA": [],
+  "ENERJI": [
+   {
+    "t": "TUPRS",
+    "name": "Tupras Turkiye Petrol Rafinerileri A.S.",
+    "close": 375.5,
+    "chg": -2.34,
+    "rs": 27.85,
+    "rs_m1": 6.73,
+    "rs_m3": 47.97,
+    "rs_group": 15.53,
+    "trend": 5,
+    "label": "Yükseliş",
+    "rsi": 43.6,
+    "atr_pct": 4.08,
+    "stop_atr": 360.18,
+    "mcap_bn": 740.9,
+    "dvol_mn": 5554.0,
+    "earn_next": "2026-10-29",
+    "industry": "Oil Refining/Marketing",
+    "tracked": true
+   }
+  ],
+  "PERAKENDE": [
+   {
+    "t": "GMTAS",
+    "name": "Gimat Magazacilik Insaat Sanayi ve Ticaret A.S.",
+    "close": 49.5,
+    "chg": 0.16,
+    "rs": 25.86,
+    "rs_m1": 17.0,
+    "rs_m3": 29.69,
+    "rs_group": 15.4,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 53.8,
+    "atr_pct": 5.86,
+    "stop_atr": 45.04,
+    "mcap_bn": 14.8,
+    "dvol_mn": 240.0,
+    "earn_next": null,
+    "industry": "Food Retail",
+    "tracked": false
+   },
+   {
+    "t": "SOKM",
+    "name": "Sok Marketler Ticaret AS",
+    "close": 57.6,
+    "chg": -0.69,
+    "rs": 21.23,
+    "rs_m1": 14.53,
+    "rs_m3": 30.41,
+    "rs_group": 10.77,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 51.9,
+    "atr_pct": 3.62,
+    "stop_atr": 55.52,
+    "mcap_bn": 34.4,
+    "dvol_mn": 150.0,
+    "earn_next": "2026-11-05",
+    "industry": "Food Retail",
+    "tracked": true
+   }
+  ],
+  "INSAAT": [
+   {
+    "t": "TKFEN",
+    "name": "Tekfen Holding Anonim Sirketi",
+    "close": 202.0,
+    "chg": -5.3,
+    "rs": 32.23,
+    "rs_m1": 3.11,
+    "rs_m3": 57.9,
+    "rs_group": 33.44,
+    "trend": 5,
+    "label": "Yükseliş",
+    "rsi": 36.9,
+    "atr_pct": 8.29,
+    "stop_atr": 185.25,
+    "mcap_bn": 76.1,
+    "dvol_mn": 664.0,
+    "earn_next": "2026-12-08",
+    "industry": "Engineering & Construction",
+    "tracked": true
+   }
+  ],
+  "ULASTIRMA": [
+   {
+    "t": "HRKET",
+    "name": "Hareket Proje Tasimaciligi ve Yuk Muhendisligi AS",
+    "close": 9.39,
+    "chg": -9.97,
+    "rs": 63.74,
+    "rs_m1": 77.48,
+    "rs_m3": 46.4,
+    "rs_group": 58.9,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 62.6,
+    "atr_pct": 6.11,
+    "stop_atr": 8.71,
+    "mcap_bn": 16.8,
+    "dvol_mn": 253.0,
+    "earn_next": null,
+    "industry": "Trucking",
+    "tracked": true
+   },
+   {
+    "t": "RYSAS",
+    "name": "Reysas Tasimacilik ve Lojistik Ticaret Anonim Sirketi",
+    "close": 25.94,
+    "chg": -0.54,
+    "rs": 26.92,
+    "rs_m1": 17.6,
+    "rs_m3": 39.49,
+    "rs_group": 22.08,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 52.5,
+    "atr_pct": 5.74,
+    "stop_atr": 24.45,
+    "mcap_bn": 52.1,
+    "dvol_mn": 228.0,
+    "earn_next": null,
+    "industry": "Air Freight/Couriers",
+    "tracked": true
+   }
+  ],
+  "METAL": [
+   {
+    "t": "CELHA",
+    "name": "Celik Halat ve Tel Sanayii A.S.",
+    "close": 27.04,
+    "chg": -9.99,
+    "rs": 39.97,
+    "rs_m1": 6.83,
+    "rs_m3": 30.46,
+    "rs_group": 31.47,
+    "trend": 6,
+    "label": "Güçlü yükseliş",
+    "rsi": 44.7,
+    "atr_pct": 8.35,
+    "stop_atr": 24.78,
+    "mcap_bn": 11.6,
+    "dvol_mn": 86.0,
+    "earn_next": null,
+    "industry": "Steel",
+    "tracked": false
+   },
+   {
+    "t": "BRSAN",
+    "name": "BORUSAN BIRLESIK BORU FABRIKALARI SANAYI VE TICARET ANONIM SIRKETI",
+    "close": 662.5,
+    "chg": 0.3,
+    "rs": 24.36,
+    "rs_m1": 18.35,
+    "rs_m3": 33.16,
+    "rs_group": 15.86,
+    "trend": 5,
+    "label": "Yükseliş",
+    "rsi": 48.9,
+    "atr_pct": 3.86,
+    "stop_atr": 636.93,
+    "mcap_bn": 93.6,
+    "dvol_mn": 787.0,
+    "earn_next": null,
+    "industry": "Steel",
+    "tracked": false
+   },
+   {
+    "t": "ISDMR",
+    "name": "Iskenderun Demir ve Celik AS",
+    "close": 58.65,
+    "chg": -4.24,
+    "rs": 17.79,
+    "rs_m1": 11.63,
+    "rs_m3": 17.74,
+    "rs_group": 9.29,
+    "trend": 6,
+    "label": "Güçlü yükseliş",
+    "rsi": 43.9,
+    "atr_pct": 4.69,
+    "stop_atr": 55.9,
+    "mcap_bn": 177.6,
+    "dvol_mn": 105.0,
+    "earn_next": "2026-10-27",
+    "industry": "Steel",
+    "tracked": false
+   }
+  ],
+  "OTOMOTIV": [],
+  "GIDA": [],
+  "TELEKOM": [],
+  "SANAYI": [],
+  "ELEKTRIK": [
+   {
+    "t": "AHGAZ",
+    "name": "Ahlatci Dogal Gaz Dagitim Enerji ve Yatirim AS",
+    "close": 46.48,
+    "chg": -2.96,
+    "rs": 41.65,
+    "rs_m1": 28.51,
+    "rs_m3": 45.46,
+    "rs_group": 43.06,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 59.9,
+    "atr_pct": 3.55,
+    "stop_atr": 44.1,
+    "mcap_bn": 124.5,
+    "dvol_mn": 272.0,
+    "earn_next": null,
+    "industry": "Gas Distributors",
+    "tracked": false
+   },
+   {
+    "t": "ENERY",
+    "name": "Enerya Enerji A.S.",
+    "close": 13.85,
+    "chg": -4.48,
+    "rs": 39.66,
+    "rs_m1": 24.1,
+    "rs_m3": 59.04,
+    "rs_group": 41.08,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 58.3,
+    "atr_pct": 4.14,
+    "stop_atr": 13.03,
+    "mcap_bn": 127.4,
+    "dvol_mn": 665.0,
+    "earn_next": null,
+    "industry": "Gas Distributors",
+    "tracked": false
+   },
+   {
+    "t": "ENJSA",
+    "name": "Enerjisa Enerji A.S.",
+    "close": 111.3,
+    "chg": -2.96,
+    "rs": 15.72,
+    "rs_m1": 14.85,
+    "rs_m3": 26.47,
+    "rs_group": 17.13,
+    "trend": 6,
+    "label": "Güçlü yükseliş",
+    "rsi": 49.6,
+    "atr_pct": 3.21,
+    "stop_atr": 107.72,
+    "mcap_bn": 135.5,
+    "dvol_mn": 269.0,
+    "earn_next": "2026-10-30",
+    "industry": "Electric Utilities",
+    "tracked": false
+   }
+  ],
+  "HOLDING": [
+   {
+    "t": "GLYHO",
+    "name": "Global Yatirim Holding A.S.",
+    "close": 17.51,
+    "chg": 0.57,
+    "rs": 19.11,
+    "rs_m1": 23.23,
+    "rs_m3": 17.42,
+    "rs_group": 24.09,
+    "trend": 7,
+    "label": "Güçlü yükseliş",
+    "rsi": 60.0,
+    "atr_pct": 3.58,
+    "stop_atr": 16.76,
+    "mcap_bn": 33.7,
+    "dvol_mn": 62.0,
+    "earn_next": null,
+    "industry": "Investment Banks/Brokers",
+    "tracked": false
+   }
+  ],
+  "KIMYA": [],
+  "HIZMET": [],
+  "GYO": [
+   {
+    "t": "RYGYO",
+    "name": "Reysas Gayrimenkul Yatirim Ortakligi A.S.",
+    "close": 47.0,
+    "chg": -3.45,
+    "rs": 42.0,
+    "rs_m1": 26.07,
+    "rs_m3": 64.19,
+    "rs_group": 33.45,
+    "trend": 6,
+    "label": "Güçlü yükseliş",
+    "rsi": 48.1,
+    "atr_pct": 6.69,
+    "stop_atr": 43.86,
+    "mcap_bn": 97.2,
+    "dvol_mn": 128.0,
+    "earn_next": null,
+    "industry": "Real Estate Investment Trusts",
+    "tracked": false
+   },
+   {
+    "t": "ALARK",
+    "name": "Alarko Holding A.S.",
+    "close": 107.0,
+    "chg": -1.92,
+    "rs": 17.3,
+    "rs_m1": 13.91,
+    "rs_m3": 20.02,
+    "rs_group": 8.76,
+    "trend": 5,
+    "label": "Yükseliş",
+    "rsi": 49.6,
+    "atr_pct": 3.27,
+    "stop_atr": 103.5,
+    "mcap_bn": 44.7,
+    "dvol_mn": 310.0,
+    "earn_next": "2026-11-06",
+    "industry": "Real Estate Development",
+    "tracked": false
+   }
+  ],
+  "SAGLIK": [],
+  "TEKNOLOJI": []
+ },
+ "picks_pool": 187,
+ "log": [
+  "TV scanner: endeks 2/2, kur var, hisse havuzu 187"
+ ],
+ "method": "RS = performans − XU100 (puan). Sektör = üye hisselerin medyanı. Bileşik: 0.15·1H+0.35·1A+0.35·3A+0.15·6A. Trend 0-7 (5 günlük + 2 haftalık koşul). Çeyrek: 3A RS (uzun) ve 1A RS (kısa). Stop önerisi: fiyattan 2×ATR ya da 3A tepeden 3×ATR (yüksek olan). Banka ve alkol önerilmez."
+}
