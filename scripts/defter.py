@@ -123,7 +123,7 @@ def yahoo_closes(symbol, rng="10d"):
     params = ({"period1": 1577836800, "period2": int(datetime.now(timezone.utc).timestamp()), "interval": "1d"}
               if rng == "max" else {"range": rng, "interval": "1d"})
     last = None
-    for i, host in enumerate(("query1", "query2", "query1", "query2")):
+    for i, host in enumerate(("query1", "query2")):
         try:
             r = requests.get(f"https://{host}.finance.yahoo.com/v8/finance/chart/{symbol}",
                              params=params, headers=UA, timeout=30)
