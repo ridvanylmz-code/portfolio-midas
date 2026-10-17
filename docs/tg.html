@@ -396,6 +396,9 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     $("foot").textContent=(Q&&Q.market_open?"Piyasa Açık":"Piyasa Kapalı")+(rows.some(function(r){return r.x&&r.x.extp})?" · "+(rows.filter(function(r){return r.x&&r.x.extp})[0].x.extp==="pre"?"🌅 ön piyasa fiyatı":"🌙 kapanış sonrası fiyat"):"")+
       (upd?" · Son güncelleme "+upd.toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,
         day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"")+" · Gecikmeli veri";
+    if(!$("defterBtn")){var db=el("a","","📒 Portföy Defteri (4 hesap) →");db.id="defterBtn";db.href="defter/index.html";
+      db.style.cssText="display:block;margin:10px 0 4px;padding:10px 12px;border:1px solid rgba(62,224,143,.35);border-radius:10px;color:#3ee08f;text-decoration:none;font-weight:600;text-align:center";
+      $("foot").parentNode.insertBefore(db,$("foot"))}
     if(window.Vault&&Vault.unlocked()&&!$("lockBtn")){var lb=el("a","","🔒 Kilitle");lb.id="lockBtn";lb.href="#";
       lb.style.cssText="display:block;margin-top:6px;color:inherit;opacity:.7;text-decoration:underline";
       lb.onclick=function(e){e.preventDefault();Vault.forget()};$("foot").parentNode.insertBefore(lb,$("foot").nextSibling)}

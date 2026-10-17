@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Portföy Defteri</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040705;--surf:#08100b;--surf2:#0c1710;--line:#16301f;--line2:#1f4a2e;
+  --ink:#d5ecdd;--ink2:#9dbfaa;--mute:#62806d;--acc:#3ee08f;--acc2:#22a862;
+  --up:#3ee08f;--dn:#ff6b72;--warn:#f2c14e;--idx:#6f86d6;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);-webkit-text-size-adjust:100%}
+body{min-height:100vh;padding-bottom:40px}
+#rain{position:fixed;inset:0;z-index:0;opacity:.55;transition:opacity 1.2s;pointer-events:none}
+body.open #rain{opacity:.07}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:12px 16px}
+.mono,.num,table,.tick{font-family:var(--mono);font-variant-numeric:tabular-nums}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 10px}
+h1{font:600 17px/1 var(--mono);letter-spacing:.08em;color:var(--acc);margin:0}
+h1 .cur{display:inline-block;width:.55em;height:1em;background:var(--acc);vertical-align:-2px;margin-left:3px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sub{color:var(--mute);font:12px var(--mono)}
+.sp{flex:1}
+.btn{font:500 12px var(--mono);color:var(--acc);background:transparent;border:1px solid var(--line2);border-radius:8px;padding:7px 10px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--surf2)}
+.btn:disabled{opacity:.5}
+.tape{position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -16px 14px;background:rgba(8,16,11,.85)}
+.tape .run{display:inline-flex;gap:28px;white-space:nowrap;padding:6px 0;animation:tape 40s linear infinite}
+.tape .run span{font:12px var(--mono);color:var(--ink2)}
+@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tape .run,h1 .cur{animation:none}}
+.lbl{font:600 11px var(--mono);letter-spacing:.12em;color:var(--mute);text-transform:uppercase;margin:18px 0 8px}
+.lbl b{color:var(--acc2);font-weight:600}
+.grid{display:grid;gap:10px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.g2{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--surf2),var(--surf));border:1px solid var(--line);border-radius:12px;padding:12px;min-width:0}
+.card.big{border-color:var(--line2)}
+.card .t{display:flex;justify-content:space-between;align-items:center;gap:6px;font:600 12px var(--mono);color:var(--ink2);letter-spacing:.04em}
+.card .v{font:600 20px var(--mono);margin:6px 0 2px;color:var(--ink);overflow-wrap:anywhere}
+.card.big .v{font-size:24px}
+.card .c{font:500 13px var(--mono)}
+.card .m{font:11.5px var(--mono);color:var(--mute);margin-top:6px;line-height:1.6}
+.card .m b{color:var(--ink2);font-weight:500}
+.up{color:var(--up)}.dn{color:var(--dn)}.fl{color:var(--mute)}
+.warn{color:var(--warn)}
+.pill{font:500 10.5px var(--mono);border:1px solid var(--line2);border-radius:20px;padding:1px 7px;color:var(--mute)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:16px 0 8px;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{font:500 12.5px var(--mono);color:var(--ink2);background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.tab.on{color:#041008;background:var(--acc);border-color:var(--acc)}
+.tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0 8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:500 12px var(--mono);background:transparent;color:var(--ink2);border:0;padding:6px 10px;cursor:pointer}
+.seg button.on{background:var(--surf2);color:var(--acc)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surf)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:7px 9px;text-align:right;white-space:nowrap;border-bottom:1px solid #0f2116}
+th{position:sticky;top:0;background:#0b160f;color:var(--mute);font-weight:500;font-size:11px;letter-spacing:.04em;z-index:1}
+th.g{color:var(--acc2)}
+td:first-child,th:first-child{position:sticky;left:0;text-align:left;background:#09130d;z-index:2}
+th:first-child{z-index:3}
+tr:hover td{background:#0d1c13}
+tr:hover td:first-child{background:#0f2016}
+td.sep,th.sep{border-left:1px solid var(--line2)}
+td .wd{color:var(--mute);margin-left:6px;font-size:11px}
+td.na{color:#2f4a39}
+.ar{font-size:9px;margin-right:3px;vertical-align:1px}
+.nb{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;border:1px solid var(--line2);color:var(--warn);font-size:11px;cursor:pointer;background:transparent;padding:0;margin-left:4px;vertical-align:middle}
+.more{display:block;margin:10px auto 0}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;gap:14px;font:11.5px var(--mono);color:var(--ink2);margin:4px 0 2px;flex-wrap:wrap}
+.legend i{display:inline-block;width:14px;height:0;border-top:2px solid;vertical-align:middle;margin-right:5px}
+.legend i.d{border-top-style:dashed}
+.tip{position:absolute;pointer-events:none;background:#0b160f;border:1px solid var(--line2);border-radius:8px;padding:6px 8px;font:11.5px var(--mono);color:var(--ink);white-space:nowrap;display:none;z-index:5}
+.pop{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(2,5,3,.7);padding:16px}
+.pop.on{display:flex}
+.pop .box{max-width:420px;width:100%;background:var(--surf2);border:1px solid var(--line2);border-radius:14px;padding:16px;font:13px/1.55 var(--mono)}
+.pop .box h3{margin:0 0 8px;font:600 13px var(--mono);color:var(--acc)}
+.pop .box p{margin:6px 0;white-space:pre-wrap}
+.note{font:11.5px var(--mono);color:var(--mute);margin-top:8px}
+.hide{display:none!important}
+#vault{background:rgba(4,7,5,.55)!important;-webkit-backdrop-filter:blur(2px)!important;backdrop-filter:blur(2px)!important}
+#vault .vc{background:rgba(8,16,11,.92)!important;border-color:var(--line2)!important;font-family:var(--mono)!important}
+#vault h2{color:var(--acc);font-family:var(--mono);letter-spacing:.06em}
+#vault input[type=password]{background:#040705!important;border-color:var(--line2)!important;font-family:var(--mono)!important}
+#vault input[type=password]:focus{border-color:var(--acc)!important}
+#vault button{background:var(--acc2)!important;color:#041008!important;font-family:var(--mono)!important}
+#status{font:12px var(--mono);color:var(--mute);margin:30vh auto 0;text-align:center}
+</style>
+</head>
+<body>
+<canvas id="rain" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header>
+    <h1>PORTFÖY_DEFTERİ<span class="cur"></span></h1>
+    <span class="sub" id="upd"></span>
+    <span class="sp"></span>
+    <button class="btn hide" id="xlsBtn" type="button">⤓ Excel</button>
+    <a class="btn" href="https://github.com/ridvanylmz-code/portfolio-midas/actions/workflows/defter.yml" target="_blank" rel="noopener">＋ Kayıt</a>
+  </header>
+  <div class="tape" id="tape"><div class="run" id="tapeRun"><span>XU100 · S&amp;P 500 · USD/TRY · MIDAS-TR · INFO-TR · MIDAS-USD · IBKR ·</span><span>XU100 · S&amp;P 500 · USD/TRY · MIDAS-TR · INFO-TR · MIDAS-USD · IBKR ·</span></div></div>
+  <div id="status">şifreli defter açılıyor…</div>
+
+  <main id="app" class="hide">
+    <div class="lbl">SON GÜN · <b id="lastDay"></b></div>
+    <div class="grid g2" id="groups"></div>
+    <div class="grid g4" id="accs" style="margin-top:10px"></div>
+
+    <div class="lbl">PERFORMANS · <b>portföy vs endeks</b></div>
+    <div class="tools"><div class="seg" id="rng"></div></div>
+    <div class="grid g2">
+      <div class="card"><div class="t">TL HESAPLAR <span class="pill">vs XU100</span></div><div class="chart" id="chTL"></div></div>
+      <div class="card"><div class="t">USD HESAPLAR <span class="pill">vs S&amp;P 500</span></div><div class="chart" id="chUSD"></div></div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+    <div class="tools" id="tblTools"></div>
+    <div id="tbl"></div>
+    <div class="note" id="tblNote"></div>
+  </main>
+</div>
+<div class="pop" id="pop" role="dialog" aria-modal="true"><div class="box"><h3 id="popT"></h3><div id="popB"></div><button class="btn" type="button" id="popX" style="margin-top:10px">Kapat</button></div></div>
+
+<script src="../vault.js?v=1"></script>
+<script>
+(function(){
+"use strict";
+var tg=window.Telegram&&Telegram.WebApp; if(tg){try{tg.ready();tg.expand();tg.setHeaderColor("#040705");tg.setBackgroundColor("#040705")}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+var ACC=[["midas_tr","Midas-TR","TRY"],["info_tr","Info-TR","TRY"],["midas_usd","Midas-USD","USD"],["ibkr","IBKR","USD"]];
+var GRP={tl:{name:"TL TOPLAM",accs:["midas_tr","info_tr"],cur:"TRY",idx:"xu",idxName:"XU100"},
+         usd:{name:"USD TOPLAM",accs:["midas_usd","ibkr"],cur:"USD",idx:"sp",idxName:"S&P 500"}};
+var GUN=["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"];
+var AY=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
+var D=null, ROWS=null, state={tab:"g",mode:"p",limit:40,rng:"3a",wd:"all"};
+try{var s=JSON.parse(localStorage.getItem("defter_ui")||"{}");["tab","mode","rng","wd"].forEach(function(k){if(s[k])state[k]=s[k]})}catch(e){}
+function saveUi(){try{localStorage.setItem("defter_ui",JSON.stringify({tab:state.tab,mode:state.mode,rng:state.rng,wd:state.wd}))}catch(e){}}
+
+/* ---------- matrix yağmuru (yalnız kilitliyken belirgin) ---------- */
+(function rain(){
+  var c=$("rain"),x=c.getContext("2d"),cols,drops,fs=14,run=true;
+  var glyph="0123456789$₺%▲▼+-.XU100SPXMIDASIBKRINFOUSDTRY".split("");
+  function size(){c.width=innerWidth;c.height=innerHeight;cols=Math.ceil(c.width/fs);drops=[];for(var i=0;i<cols;i++)drops[i]=Math.random()*-50}
+  size();addEventListener("resize",size);
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var last=0;
+  function f(t){
+    if(!run)return; requestAnimationFrame(f);
+    if(t-last<70)return; last=t;
+    x.fillStyle="rgba(4,7,5,.18)";x.fillRect(0,0,c.width,c.height);
+    x.font=fs+"px IBM Plex Mono, monospace";
+    for(var i=0;i<cols;i++){
+      var ch=glyph[(Math.random()*glyph.length)|0];
+      x.fillStyle=Math.random()<.04?"#c8ffe0":"#1f9e5a";
+      x.fillText(ch,i*fs,drops[i]*fs);
+      if(drops[i]*fs>c.height&&Math.random()>.975)drops[i]=0;
+      drops[i]++;
+    }
+  }
+  requestAnimationFrame(f);
+  document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run)requestAnimationFrame(f)});
+  window.__stopRainSoon=function(){setTimeout(function(){run=false},1500)};
+})();
+
+/* ---------- biçim ---------- */
+function nf(v,dec){return v==null||!isFinite(v)?"—":v.toLocaleString("tr-TR",{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0})}
+function money(v,cur,dec){return v==null?"—":(cur==="USD"?"$":"₺")+nf(v,dec)}
+function sgnMoney(v,cur){return v==null?"—":(v>0?"+":v<0?"−":"")+(cur==="USD"?"$":"₺")+nf(Math.abs(v))}
+function pct(v,dec){return v==null||!isFinite(v)?"—":(v>0?"+":v<0?"−":"")+nf(Math.abs(v*100),dec==null?2:dec)+"%"}
+function cls(v){return v==null?"fl":v>0?"up":v<0?"dn":"fl"}
+function arrow(v){return v==null?"":'<span class="ar">'+(v>0?"▲":v<0?"▼":"■")+"</span>"}
+function trDate(ds){var p=ds.split("-");return p[2]+"."+p[1]+"."+p[0]}
+function wday(ds){return GUN[new Date(ds+"T12:00:00Z").getUTCDay()]}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+/* ---------- hesap ---------- */
+function build(){
+  var prev={},pidx={xu:null,sp:null},out=[];
+  D.days.forEach(function(x){
+    var r={d:x.d,a:{},n:x.n||null};
+    Object.keys(x.a||{}).forEach(function(k){
+      var st=(D.accounts[k]||{}).start;if(st&&x.d<st)return;
+      var e=x.a[k],p=prev[k];
+      var pc=(p&&p.v&&e.c!=null)?e.c/p.v:null;
+      r.a[k]={v:e.v,h:e.h,c:e.c,f:e.f,n:e.n,r:e.r,s:e.s,pct:pc,pv:p?p.v:null};
+      prev[k]=e;
+    });
+    ["xu","sp"].forEach(function(k){if(x[k]){r[k]=x[k];r[k+"p"]=pidx[k]?x[k]/pidx[k]-1:null;pidx[k]=x[k]}});
+    Object.keys(GRP).forEach(function(g){
+      var es=GRP[g].accs.map(function(a){return r.a[a]}).filter(Boolean);
+      if(!es.length)return;
+      var ok=es.filter(function(e){return e.pct!=null}),num=0,den=0;
+      ok.forEach(function(e){num+=e.c;den+=e.pv});
+      r[g]={v:es.reduce(function(s,e){return s+e.v},0),c:ok.length?num:null,pct:den?num/den:null,pv:den};
+    });
+    out.push(r);
+  });
+  return out;
+}
+function pkey(ds,kind){
+  if(kind==="m")return ds.slice(0,7);
+  if(kind==="y")return ds.slice(0,4);
+  var d=new Date(ds+"T12:00:00Z"),day=(d.getUTCDay()+6)%7;d.setUTCDate(d.getUTCDate()-day+3);
+  var y=d.getUTCFullYear(),f=new Date(Date.UTC(y,0,4)),w=1+Math.round(((d-f)/864e5-3+((f.getUTCDay()+6)%7))/7);
+  return y+"-H"+(w<10?"0":"")+w;
+}
+function periods(kind){
+  var groups=[],map={},lastIdx={xu:null,sp:null};
+  ROWS.forEach(function(r){var k=pkey(r.d,kind);if(!map[k]){map[k]={k:k,rows:[]};groups.push(map[k])}map[k].rows.push(r)});
+  return groups.map(function(g){
+    var rec={k:g.k,from:g.rows[0].d,to:g.rows[g.rows.length-1].d,a:{},notes:0};
+    ACC.forEach(function(A){
+      var es=g.rows.map(function(r){return r.a[A[0]]}).filter(Boolean);if(!es.length)return;
+      var gr=1,ch=0,n=0;es.forEach(function(e){if(e.pct!=null){gr*=1+e.pct;ch+=e.c;n++}});
+      rec.a[A[0]]={v:es[es.length-1].v,c:n?ch:null,pct:n?gr-1:null};
+    });
+    Object.keys(GRP).forEach(function(G){
+      var gr=1,ch=0,n=0,last=null;g.rows.forEach(function(r){var e=r[G];if(!e)return;last=e;if(e.pct!=null){gr*=1+e.pct;ch+=e.c;n++}});
+      if(last)rec[G]={v:last.v,c:n?ch:null,pct:n?gr-1:null};
+    });
+    ["xu","sp"].forEach(function(k){
+      var vs=g.rows.filter(function(r){return r[k]});if(!vs.length)return;
+      var v=vs[vs.length-1][k];rec[k]=v;rec[k+"p"]=lastIdx[k]?v/lastIdx[k]-1:null;lastIdx[k]=v;
+    });
+    return rec;
+  });
+}
+
+/* ---------- son gün kartları ---------- */
+function lastEntry(acc){for(var i=ROWS.length-1;i>=0;i--)if(ROWS[i].a[acc])return ROWS[i];return null}
+function cards(){
+  var lastRow=ROWS[ROWS.length-1];
+  $("lastDay").textContent=trDate(lastRow.d)+" "+wday(lastRow.d);
+  var h="";
+  Object.keys(GRP).forEach(function(g){
+    var G=GRP[g],r=null;for(var i=ROWS.length-1;i>=0;i--)if(ROWS[i][g]){r=ROWS[i];break}
+    if(!r)return;var e=r[g],ip=r[G.idx+"p"];
+    var miss=G.accs.filter(function(a){return !r.a[a]}).map(function(a){return ACC.filter(function(A){return A[0]===a})[0][1]});
+    h+='<div class="card big"><div class="t">'+G.name+'<span class="pill">'+trDate(r.d)+"</span></div>"+
+      '<div class="v">'+money(e.v,G.cur)+'</div><div class="c '+cls(e.c)+'">'+arrow(e.c)+sgnMoney(e.c,G.cur)+" · "+pct(e.pct)+"</div>"+
+      '<div class="m">'+G.idxName+' <span class="'+cls(ip)+'">'+arrow(ip)+pct(ip)+"</span> · "+nf(r[G.idx],2)+
+      (miss.length?'<br><span class="warn">⚠ '+miss.join(", ")+" bu gün girilmedi</span>":"")+"</div></div>";
+  });
+  $("groups").innerHTML=h;h="";
+  ACC.forEach(function(A){
+    var r=lastEntry(A[0]);if(!r){h+='<div class="card"><div class="t">'+A[1]+'</div><div class="v fl">—</div></div>';return}
+    var e=r.a[A[0]],stale=r.d!==lastRow.d,res=(D.accounts[A[0]]||{}).reserve||0,m="";
+    if(A[2]==="TRY"){
+      var R=e.r!=null?e.r:res;
+      if(e.h){m+="Hisse <b>"+money(e.h,"TRY")+"</b> · Hissede <b>"+nf(e.h/e.v*100,0)+"%</b><br>";
+        var cash=e.v+R-e.h;m+="Nakit <b>"+money(cash,"TRY")+"</b> · Yedek <b>"+money(R,"TRY")+"</b>"+(cash<R?' <span class="warn">(yedek kullanımda)</span>':"")}
+      else m+="Yedek <b>"+money(R,"TRY")+"</b>";
+    }else if(e.h){m+="Hisse <b>"+money(e.h,"USD")+"</b> · Nakit <b>"+money(e.v-e.h,"USD")+"</b>"}
+    h+='<div class="card"><div class="t">'+A[1]+'<span class="pill'+(stale?' warn':"")+'">'+(stale?"⚠ ":"")+trDate(r.d)+"</span></div>"+
+      '<div class="v">'+money(e.v,A[2])+'</div><div class="c '+cls(e.c)+'">'+arrow(e.c)+sgnMoney(e.c,A[2])+" · "+pct(e.pct)+"</div>"+
+      (m?'<div class="m">'+m+"</div>":"")+"</div>";
+  });
+  $("accs").innerHTML=h;
+  var t=[];
+  [["XU100",lastRow.xu,lastRow.xup],["S&P 500",lastRow.sp,lastRow.spp]].forEach(function(z){if(z[1])t.push(z[0]+" "+nf(z[1],2)+" "+(z[2]>0?"▲":"▼")+pct(z[2]))});
+  ACC.forEach(function(A){var r=lastEntry(A[0]);if(r){var e=r.a[A[0]];t.push(A[1].toUpperCase()+" "+(e.pct>0?"▲":e.pct<0?"▼":"■")+pct(e.pct))}});
+  ["tl","usd"].forEach(function(g){var r=lastRow[g];if(r)t.push(GRP[g].name+" "+pct(r.pct))});
+  var line=t.map(function(s){return '<span>'+esc(s)+"</span>"}).join("");
+  $("tapeRun").innerHTML=line+line;
+}
+
+/* ---------- grafik ---------- */
+var RNG=[["1a","1A"],["3a","3A"],["yb","YB"],["1y","1Y"],["3y","3Y"],["all","Tümü"]];
+function rngStart(){
+  var last=new Date(ROWS[ROWS.length-1].d+"T12:00:00Z"),d=new Date(last);
+  if(state.rng==="all")return "0000";
+  if(state.rng==="yb")return last.getUTCFullYear()+"-01-01";
+  var m={"1a":1,"3a":3,"1y":12,"3y":36}[state.rng];d.setUTCMonth(d.getUTCMonth()-m);return d.toISOString().slice(0,10);
+}
+function chart(el,g){
+  var G=GRP[g],from=rngStart(),pts=[],cp=1,ci=1,base=null,started=false;
+  ROWS.forEach(function(r){
+    if(r.d<from)return;
+    var e=r[g];
+    if(!started){if(!e)return;started=true;base=r[G.idx]||null;pts.push({d:r.d,p:0,i:base?0:null});return}
+    if(e&&e.pct!=null)cp*=1+e.pct;
+    if(r[G.idx]&&base)ci=r[G.idx]/base;else if(r[G.idx]&&!base){base=r[G.idx]}
+    pts.push({d:r.d,p:cp-1,i:base?ci-1:null});
+  });
+  if(pts.length<2){el.innerHTML='<div class="note">Bu aralıkta veri yok.</div>';return}
+  var W=520,H=210,L=44,R=8,T=12,B=24;
+  var vals=[];pts.forEach(function(p){vals.push(p.p);if(p.i!=null)vals.push(p.i)});
+  var mn=Math.min.apply(null,vals.concat([0])),mx=Math.max.apply(null,vals.concat([0])),pad=(mx-mn)*.08||.01;mn-=pad;mx+=pad;
+  var X=function(i){return L+(W-L-R)*i/(pts.length-1)},Y=function(v){return T+(H-T-B)*(1-(v-mn)/(mx-mn))};
+  function path(k){var s="",pen=false;pts.forEach(function(p,i){if(p[k]==null){pen=false;return}s+=(pen?"L":"M")+X(i).toFixed(1)+" "+Y(p[k]).toFixed(1);pen=true});return s}
+  var ticks=[],step=niceStep((mx-mn)/4);for(var v=Math.ceil(mn/step)*step;v<=mx+1e-12;v+=step)ticks.push(Math.abs(v)<step/1e3?0:v);
+  var svg='<svg viewBox="0 0 '+W+" "+H+'" role="img" aria-label="'+G.name+' kümülatif getiri ve '+G.idxName+'">';
+  ticks.forEach(function(v){var y=Y(v).toFixed(1);svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="'+(Math.abs(v)<1e-9?"#2a5a3a":"#0f2116")+'" stroke-width="1"/>'+
+    '<text x="'+(L-6)+'" y="'+(+y+4)+'" fill="#62806d" font-size="10" text-anchor="end" font-family="IBM Plex Mono,monospace">'+pct(v,0)+"</text>"});
+  [0,Math.floor((pts.length-1)/2),pts.length-1].forEach(function(i,j){svg+='<text x="'+X(i).toFixed(1)+'" y="'+(H-6)+'" fill="#62806d" font-size="10" text-anchor="'+(j===0?"start":j===2?"end":"middle")+'" font-family="IBM Plex Mono,monospace">'+trDate(pts[i].d)+"</text>"});
+  svg+='<path d="'+path("i")+'" fill="none" stroke="var(--idx)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>';
+  svg+='<path d="'+path("p")+'" fill="none" stroke="var(--acc2)" stroke-width="2" stroke-linejoin="round"/>';
+  svg+='<line class="xh" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" stroke="#2f6b46" stroke-width="1" visibility="hidden"/>';
+  svg+='<circle class="d1" r="4" fill="var(--acc2)" stroke="#08100b" stroke-width="2" visibility="hidden"/><circle class="d2" r="4" fill="var(--idx)" stroke="#08100b" stroke-width="2" visibility="hidden"/>';
+  svg+="</svg>";
+  var lp=pts[pts.length-1];
+  el.innerHTML='<div class="legend"><span><i style="border-color:var(--acc2)"></i>Portföy <b class="'+cls(lp.p)+'">'+pct(lp.p)+'</b></span><span><i class="d" style="border-color:var(--idx)"></i>'+G.idxName+' <b class="'+cls(lp.i)+'">'+pct(lp.i)+"</b></span></div>"+svg+'<div class="tip"></div>';
+  var s=el.querySelector("svg"),tip=el.querySelector(".tip"),xh=s.querySelector(".xh"),d1=s.querySelector(".d1"),d2=s.querySelector(".d2");
+  function mv(ev){
+    var rc=s.getBoundingClientRect(),cx=(ev.touches?ev.touches[0].clientX:ev.clientX)-rc.left,vx=cx*W/rc.width;
+    var i=Math.round((vx-L)/(W-L-R)*(pts.length-1));i=Math.max(0,Math.min(pts.length-1,i));var p=pts[i];
+    xh.setAttribute("x1",X(i));xh.setAttribute("x2",X(i));xh.setAttribute("visibility","visible");
+    d1.setAttribute("cx",X(i));d1.setAttribute("cy",Y(p.p));d1.setAttribute("visibility","visible");
+    if(p.i!=null){d2.setAttribute("cx",X(i));d2.setAttribute("cy",Y(p.i));d2.setAttribute("visibility","visible")}else d2.setAttribute("visibility","hidden");
+    tip.innerHTML=trDate(p.d)+" "+wday(p.d)+"<br>Portföy <span class='"+cls(p.p)+"'>"+pct(p.p)+"</span><br>"+G.idxName+" <span class='"+cls(p.i)+"'>"+pct(p.i)+"</span>";
+    tip.style.display="block";var px=X(i)*rc.width/W;tip.style.left=Math.min(Math.max(px-tip.offsetWidth/2,0),rc.width-tip.offsetWidth)+"px";tip.style.top="0px";
+  }
+  function out(){tip.style.display="none";[xh,d1,d2].forEach(function(n){n.setAttribute("visibility","hidden")})}
+  s.addEventListener("mousemove",mv);s.addEventListener("touchmove",mv,{passive:true});s.addEventListener("touchstart",mv,{passive:true});
+  s.addEventListener("mouseleave",out);s.addEventListener("touchend",function(){setTimeout(out,1600)});
+}
+function niceStep(x){var p=Math.pow(10,Math.floor(Math.log10(x||1e-3))),n=x/p;return (n<1.5?1:n<3?2:n<7?5:10)*p}
+function charts(){
+  $("rng").innerHTML=RNG.map(function(z){return '<button type="button" data-r="'+z[0]+'" class="'+(state.rng===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("");
+  chart($("chTL"),"tl");chart($("chUSD"),"usd");
+}
+$("rng").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;state.rng=b.dataset.r;saveUi();charts()});
+
+/* ---------- tablolar ---------- */
+var TABS=[["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"],["wd","Gün Analizi"]];
+function cell(e,cur,isPct,x){
+  x=x?x+" ":"";
+  if(!e)return '<td class="'+x+'na">·</td>';
+  if(isPct)return '<td class="'+x+cls(e.pct)+'">'+arrow(e.pct)+pct(e.pct)+"</td>";
+  return '<td class="'+x+cls(e.c)+'">'+sgnMoney(e.c,cur)+"</td>";
+}
+function idxCell(v){return v==null?'<td class="na">·</td>':'<td class="'+cls(v)+'">'+arrow(v)+pct(v)+"</td>"}
+function head(first){
+  var h="<thead><tr><th>"+first+"</th>";
+  ACC.forEach(function(A,i){h+='<th class="'+(i===0||i===2?"sep":"")+'">'+A[1]+"</th>"});
+  h+='<th class="g sep">TL Σ</th><th>XU100</th><th class="g sep">USD Σ</th><th>S&amp;P</th>';
+  return h;
+}
+function tableDaily(){
+  var p=state.mode==="p",rows=ROWS.slice(-state.limit).reverse();
+  var h='<table>'+head("Tarih")+"<th></th></tr></thead><tbody>";
+  rows.forEach(function(r){
+    var notes=noteList(r);
+    h+="<tr><td>"+trDate(r.d)+'<span class="wd">'+wday(r.d)+"</span></td>";
+    ACC.forEach(function(A,i){h+=cell(r.a[A[0]],A[2],p,(i===0||i===2)?"sep":"")});
+    h+=cell(r.tl,"TRY",p,"sep")+idxCell(r.xup)+cell(r.usd,"USD",p,"sep")+idxCell(r.spp);
+    h+="<td>"+(notes.length?'<button class="nb" type="button" data-d="'+r.d+'" aria-label="Notu aç">✎</button>':"")+"</td></tr>";
+  });
+  h+="</tbody></table>";
+  return h;
+}
+function tablePeriod(kind){
+  var p=state.mode==="p",ps=periods(kind).reverse();
+  var first=kind==="h"?"Hafta":kind==="m"?"Ay":"Yıl";
+  var h='<table>'+head(first)+"</tr></thead><tbody>";
+  ps.forEach(function(r){
+    var lab=kind==="m"?AY[+r.k.slice(5,7)-1]+" "+r.k.slice(0,4):kind==="y"?r.k:trDate(r.from).slice(0,5)+"–"+trDate(r.to).slice(0,5)+'<span class="wd">'+r.k.slice(0,4)+"</span>";
+    h+="<tr><td>"+lab+"</td>";
+    ACC.forEach(function(A,i){h+=cell(r.a[A[0]],A[2],p,(i===0||i===2)?"sep":"")});
+    h+=cell(r.tl,"TRY",p,"sep")+idxCell(r.xup)+cell(r.usd,"USD",p,"sep")+idxCell(r.spp)+"</tr>";
+  });
+  return h+"</tbody></table>";
+}
+function tableWd(){
+  var since=state.wd==="all"?"0000":(function(){var d=new Date(ROWS[ROWS.length-1].d+"T12:00:00Z");d.setUTCFullYear(d.getUTCFullYear()-(state.wd==="1y"?1:3));return d.toISOString().slice(0,10)})();
+  var S={};for(var w=1;w<=5;w++)S[w]={xu:[],tl:[],sp:[],usd:[],same:0,n2:0};
+  ROWS.forEach(function(r){
+    if(r.d<since)return;var w=new Date(r.d+"T12:00:00Z").getUTCDay();if(!S[w])return;
+    if(r.xup!=null)S[w].xu.push(r.xup);if(r.spp!=null)S[w].sp.push(r.spp);
+    if(r.tl&&r.tl.pct!=null){S[w].tl.push(r.tl.pct);if(r.xup!=null){S[w].n2++;if((r.tl.pct>0)===(r.xup>0))S[w].same++}}
+    if(r.usd&&r.usd.pct!=null)S[w].usd.push(r.usd.pct);
+  });
+  function avg(a){return a.length?a.reduce(function(s,x){return s+x},0)/a.length:null}
+  function up(a){return a.length?a.filter(function(x){return x>0}).length/a.length:null}
+  var h='<table><thead><tr><th>Gün</th><th class="sep">XU100 ort.</th><th>XU100 ↑ oranı</th><th>gün</th><th class="g sep">TL Σ ort.</th><th>TL ↑ oranı</th><th>XU100 ile aynı yön</th><th class="sep">S&amp;P ort.</th><th>S&amp;P ↑ oranı</th><th class="g">USD Σ ort.</th></tr></thead><tbody>';
+  var best=null,worst=null;
+  for(var w2=1;w2<=5;w2++){var a=avg(S[w2].xu);if(a!=null){if(best==null||a>avg(S[best].xu))best=w2;if(worst==null||a<avg(S[worst].xu))worst=w2}}
+  for(var w3=1;w3<=5;w3++){
+    var s=S[w3],xa=avg(s.xu);
+    h+="<tr><td>"+GUN[w3]+(w3===best?' <span class="up">★</span>':w3===worst?' <span class="dn">↓</span>':"")+'</td><td class="sep '+cls(xa)+'">'+arrow(xa)+pct(xa,3)+"</td><td>"+pct(up(s.xu),0).replace("+","")+"</td><td class='fl'>"+s.xu.length+"</td>"+
+      '<td class="sep '+cls(avg(s.tl))+'">'+arrow(avg(s.tl))+pct(avg(s.tl),3)+"</td><td>"+pct(up(s.tl),0).replace("+","")+"</td><td>"+(s.n2?pct(s.same/s.n2,0).replace("+",""):"—")+"</td>"+
+      '<td class="sep '+cls(avg(s.sp))+'">'+arrow(avg(s.sp))+pct(avg(s.sp),3)+"</td><td>"+pct(up(s.sp),0).replace("+","")+"</td>"+
+      '<td class="'+cls(avg(s.usd))+'">'+arrow(avg(s.usd))+pct(avg(s.usd),3)+"</td></tr>";
+  }
+  return h+"</tbody></table>";
+}
+function tables(){
+  $("tabs").innerHTML=TABS.map(function(t){return '<button type="button" class="tab'+(state.tab===t[0]?" on":"")+'" data-t="'+t[0]+'">'+t[1]+"</button>"}).join("");
+  var tools="",note="";
+  if(state.tab==="wd"){
+    tools='<div class="seg" id="wdSeg">'+[["1y","Son 1 yıl"],["3y","Son 3 yıl"],["all","Tümü"]].map(function(z){return '<button type="button" data-w="'+z[0]+'" class="'+(state.wd===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("")+"</div>";
+    note="Ort. = o günün ortalama günlük değişimi. ↑ oranı = yükselişle kapanan gün oranı. “XU100 ile aynı yön” = TL portföyünün endeksle aynı yönde kapandığı günlerin oranı. ★ en güçlü, ↓ en zayıf gün (XU100).";
+  }else{
+    tools='<div class="seg" id="modeSeg"><button type="button" data-m="p" class="'+(state.mode==="p"?"on":"")+'">%</button><button type="button" data-m="t" class="'+(state.mode==="t"?"on":"")+'">Tutar</button></div>';
+    note="▲▼ portföy ve endeksin yönü. Yüzdeler para giriş/çıkışı ve yedek akçe değişimi ayıklanmış performanstır. Σ = hesapların ağırlıklı toplamı.";
+  }
+  $("tblTools").innerHTML=tools;
+  var h=state.tab==="g"?tableDaily():state.tab==="wd"?tableWd():tablePeriod(state.tab);
+  $("tbl").innerHTML='<div class="tw">'+h+"</div>"+(state.tab==="g"&&state.limit<ROWS.length?'<button class="btn more" type="button" id="moreBtn">daha fazla göster</button>':"");
+  $("tblNote").textContent=note;
+}
+$("tabs").addEventListener("click",function(e){var b=e.target.closest(".tab");if(!b)return;state.tab=b.dataset.t;saveUi();tables()});
+$("tblTools").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.m){state.mode=b.dataset.m}else if(b.dataset.w){state.wd=b.dataset.w}saveUi();tables()});
+$("tbl").addEventListener("click",function(e){
+  if(e.target.id==="moreBtn"){state.limit+=60;tables();return}
+  var b=e.target.closest(".nb");if(b)openNote(b.dataset.d);
+});
+
+/* ---------- notlar ---------- */
+function noteList(r){
+  var out=[];if(r.n)out.push(["Gün",r.n]);
+  ACC.forEach(function(A){var e=r.a[A[0]];if(!e)return;
+    if(e.n)out.push([A[1],e.n]);
+    if(e.f)out.push([A[1],"Para "+(e.f>0?"girişi ":"çıkışı ")+money(Math.abs(e.f),A[2])+" (performansa dahil edilmedi)"]);
+  });
+  return out;
+}
+function openNote(ds){
+  var r=ROWS.filter(function(x){return x.d===ds})[0];if(!r)return;
+  $("popT").textContent="✎ "+trDate(ds)+" "+wday(ds);
+  $("popB").innerHTML=noteList(r).map(function(n){return "<p><b>"+esc(n[0])+":</b> "+esc(n[1])+"</p>"}).join("");
+  $("pop").classList.add("on");
+}
+$("popX").onclick=function(){$("pop").classList.remove("on")};
+$("pop").addEventListener("click",function(e){if(e.target.id==="pop")$("pop").classList.remove("on")});
+
+/* ---------- Excel (tarayıcıda üretilir; hiçbir yere gönderilmez) ---------- */
+function loadXlsx(){return new Promise(function(ok,no){if(window.XLSX)return ok();var s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+function aoa(kind){
+  var hdr=[kind==="g"?"Tarih":"Dönem"];if(kind==="g")hdr.push("Gün");else hdr.push("Başlangıç","Bitiş");
+  ACC.forEach(function(A){hdr.push(A[1]+" Değer",A[1]+" Δ",A[1]+" %")});
+  hdr.push("TL Toplam","TL Δ","TL %","USD Toplam","USD Δ","USD %","XU100","XU100 %","S&P 500","S&P %");if(kind==="g")hdr.push("Not");
+  var out=[hdr],src=kind==="g"?ROWS:periods(kind);
+  src.slice().reverse().forEach(function(r){
+    var row=kind==="g"?[trDate(r.d),wday(r.d)]:[r.k,trDate(r.from),trDate(r.to)];
+    ACC.forEach(function(A){var e=r.a[A[0]];row.push(e?e.v:null,e?e.c:null,e&&e.pct!=null?+e.pct.toFixed(6):null)});
+    ["tl","usd"].forEach(function(g){var e=r[g];row.push(e?e.v:null,e?e.c:null,e&&e.pct!=null?+e.pct.toFixed(6):null)});
+    row.push(r.xu||null,r.xup!=null?+r.xup.toFixed(6):null,r.sp||null,r.spp!=null?+r.spp.toFixed(6):null);
+    if(kind==="g")row.push(noteList(r).map(function(n){return n[0]+": "+n[1]}).join(" | ")||null);
+    out.push(row);
+  });
+  return out;
+}
+$("xlsBtn").onclick=function(){
+  var b=this;b.disabled=true;b.textContent="hazırlanıyor…";
+  loadXlsx().then(function(){
+    var wb=XLSX.utils.book_new();
+    [["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"]].forEach(function(z){
+      var ws=XLSX.utils.aoa_to_sheet(aoa(z[0]));
+      var rng=XLSX.utils.decode_range(ws["!ref"]);
+      for(var R=1;R<=rng.e.r;R++)for(var C=0;C<=rng.e.c;C++){var c=ws[XLSX.utils.encode_cell({r:R,c:C})];if(c&&c.t==="n"){var h=String(ws[XLSX.utils.encode_cell({r:0,c:C})].v);c.z=/%$/.test(h)?"0.00%":/XU100|S&P/.test(h)?"#,##0.00":"#,##0"}}
+      ws["!cols"]=[{wch:12}];XLSX.utils.book_append_sheet(wb,ws,z[1]);
+    });
+    var name="portfoy_defteri_"+ROWS[ROWS.length-1].d.replace(/-/g,"")+".xlsx";
+    XLSX.writeFile(wb,name);
+    b.textContent="⤓ Excel";b.disabled=false;
+    if(tg)try{tg.showAlert("Telegram içinde indirme engellenebilir. Excel her cumartesi bota gelir; anında almak için ＋ Kayıt → excel_gonder.")}catch(e){}
+  }).catch(function(){b.textContent="⤓ Excel";b.disabled=false;alert("Excel kütüphanesi yüklenemedi.")});
+};
+
+/* ---------- aç ---------- */
+fetch("data/defter.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("veri yok");return r.json()})
+  .then(function(env){return Vault.open(env)})
+  .then(function(d){
+    D=d;ROWS=build();
+    if(!ROWS.length)throw new Error("defter boş");
+    $("status").classList.add("hide");$("app").classList.remove("hide");$("xlsBtn").classList.remove("hide");
+    document.body.classList.add("open");if(window.__stopRainSoon)window.__stopRainSoon();
+    if(d.updated){var u=new Date(d.updated);$("upd").textContent="güncelleme "+u.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
+    cards();charts();tables();
+  })
+  .catch(function(e){$("status").textContent="Defter açılamadı: "+e.message});
+})();
+</script>
+</body>
+</html>
