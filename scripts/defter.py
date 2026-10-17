@@ -473,12 +473,24 @@ def cmd_ibkr(_):
     if not nav:
         raise ValueError("IBKR raporunda 'Net Asset Value (NAV) in Base' bölümü yok; Flex Query'ye ekle.")
     start = ACCOUNTS["ibkr"]["start"]
+    last_x = max([ds for ds, e in series(d, "ibkr") if e.get("s") == "x"] or [""])
+    # Excel döneminin arasına gün eklenmez (Excel değişimleri bir önceki Excel gününe göredir; araya giren gün çift sayım yapar)
+    for x in list(d["days"]):
+        e = x.get("a", {}).get("ibkr")
+        if e and e.get("s") == "a" and x["d"] < last_x:
+            del x["a"]["ibkr"]
+            if not x["a"] and not x.get("xu") and not x.get("sp") and not x.get("n"):
+                d["days"].remove(x)
     new, cmp_lines = 0, []
     for ds in sorted(nav):
         if ds < start:
             continue
+        if ds < last_x and not day(d, ds, create=False):
+            continue
         x = day(d, ds)
         old = x["a"].get("ibkr")
+        if not old and ds < last_x:
+            continue
         if old and old.get("s") == "x":
             diff = nav[ds]["v"] - old["v"]
             if abs(diff) >= 1:

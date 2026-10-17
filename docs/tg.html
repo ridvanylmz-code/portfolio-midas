@@ -203,7 +203,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 (function(){
   try{
     var tg=window.Telegram&&window.Telegram.WebApp;
-    if(tg){tg.ready();tg.expand();
+    if(tg){tg.ready();tg.expand();try{if(tg.disableVerticalSwipes)tg.disableVerticalSwipes()}catch(e){}
       try{tg.setHeaderColor("#0a0d14");tg.setBackgroundColor("#0a0d14");}catch(e){}}
   }catch(e){}
 

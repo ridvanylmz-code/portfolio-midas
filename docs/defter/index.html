@@ -77,6 +77,8 @@ td .wd{color:var(--mute);margin-left:6px;font-size:11px}
 td.na{color:#2f4a39}
 .ar{font-size:9px;margin-right:3px;vertical-align:1px}
 .nb{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;border:1px solid var(--line2);color:var(--warn);font-size:11px;cursor:pointer;background:transparent;padding:0;margin-left:4px;vertical-align:middle}
+td.val{color:var(--ink)}
+td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
 .more{display:block;margin:10px auto 0}
 .chart{position:relative}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
@@ -137,7 +139,7 @@ td.na{color:#2f4a39}
 <script>
 (function(){
 "use strict";
-var tg=window.Telegram&&Telegram.WebApp; if(tg){try{tg.ready();tg.expand();tg.setHeaderColor("#040705");tg.setBackgroundColor("#040705")}catch(e){}}
+var tg=window.Telegram&&Telegram.WebApp; if(tg){try{tg.ready();tg.expand();if(tg.disableVerticalSwipes)tg.disableVerticalSwipes();tg.setHeaderColor("#040705");tg.setBackgroundColor("#040705")}catch(e){}}
 var $=function(id){return document.getElementById(id)};
 var ACC=[["midas_tr","Midas-TR","TRY"],["info_tr","Info-TR","TRY"],["midas_usd","Midas-USD","USD"],["ibkr","IBKR","USD"]];
 var GRP={tl:{name:"TL TOPLAM",accs:["midas_tr","info_tr"],cur:"TRY",idx:"xu",idxName:"XU100"},
@@ -194,7 +196,9 @@ function build(){
       var st=(D.accounts[k]||{}).start;if(st&&x.d<st)return;
       var e=x.a[k],p=prev[k];
       var pc=(p&&p.v&&e.c!=null)?e.c/p.v:null;
-      r.a[k]={v:e.v,h:e.h,c:e.c,f:e.f,n:e.n,r:e.r,s:e.s,pct:pc,pv:p?p.v:null};
+      var A0=(D.accounts[k]||{}),R0=A0.cur==="TRY"?(e.r!=null?e.r:(e.s==="x"?0:(A0.reserve||0))):0;
+      r.a[k]={v:e.v,h:e.h,c:e.c,f:e.f,n:e.n,r:e.r,s:e.s,pct:pc,pv:p?p.v:null,
+        tot:(A0.cur==="TRY"&&e.s==="x"&&e.h)?e.h:e.v+R0};
       prev[k]=e;
     });
     ["xu","sp"].forEach(function(k){if(x[k]){r[k]=x[k];r[k+"p"]=pidx[k]?x[k]/pidx[k]-1:null;pidx[k]=x[k]}});
@@ -203,7 +207,7 @@ function build(){
       if(!es.length)return;
       var ok=es.filter(function(e){return e.pct!=null}),num=0,den=0;
       ok.forEach(function(e){num+=e.c;den+=e.pv});
-      r[g]={v:es.reduce(function(s,e){return s+e.v},0),c:ok.length?num:null,pct:den?num/den:null,pv:den};
+      r[g]={v:es.reduce(function(s,e){return s+e.v},0),tot:es.reduce(function(s,e){return s+e.tot},0),c:ok.length?num:null,pct:den?num/den:null,pv:den};
     });
     out.push(r);
   });
@@ -224,11 +228,11 @@ function periods(kind){
     ACC.forEach(function(A){
       var es=g.rows.map(function(r){return r.a[A[0]]}).filter(Boolean);if(!es.length)return;
       var gr=1,ch=0,n=0;es.forEach(function(e){if(e.pct!=null){gr*=1+e.pct;ch+=e.c;n++}});
-      rec.a[A[0]]={v:es[es.length-1].v,c:n?ch:null,pct:n?gr-1:null};
+      rec.a[A[0]]={v:es[es.length-1].v,tot:es[es.length-1].tot,c:n?ch:null,pct:n?gr-1:null};
     });
     Object.keys(GRP).forEach(function(G){
       var gr=1,ch=0,n=0,last=null;g.rows.forEach(function(r){var e=r[G];if(!e)return;last=e;if(e.pct!=null){gr*=1+e.pct;ch+=e.c;n++}});
-      if(last)rec[G]={v:last.v,c:n?ch:null,pct:n?gr-1:null};
+      if(last)rec[G]={v:last.v,tot:last.tot,c:n?ch:null,pct:n?gr-1:null};
     });
     ["xu","sp"].forEach(function(k){
       var vs=g.rows.filter(function(r){return r[k]});if(!vs.length)return;
@@ -250,7 +254,7 @@ function cards(){
     var miss=G.accs.filter(function(a){return !r.a[a]}).map(function(a){return ACC.filter(function(A){return A[0]===a})[0][1]});
     h+='<div class="card big"><div class="t">'+G.name+'<span class="pill">'+trDate(r.d)+"</span></div>"+
       '<div class="v">'+money(e.v,G.cur)+'</div><div class="c '+cls(e.c)+'">'+arrow(e.c)+sgnMoney(e.c,G.cur)+" · "+pct(e.pct)+"</div>"+
-      '<div class="m">'+G.idxName+' <span class="'+cls(ip)+'">'+arrow(ip)+pct(ip)+"</span> · "+nf(r[G.idx],2)+
+      '<div class="m">'+(g==="tl"?"Yedek dahil toplam <b>"+money(e.tot,"TRY")+"</b> · Yedek <b>"+money(e.tot-e.v,"TRY")+"</b><br>":"")+G.idxName+' <span class="'+cls(ip)+'">'+arrow(ip)+pct(ip)+"</span> · "+nf(r[G.idx],2)+
       (miss.length?'<br><span class="warn">⚠ '+miss.join(", ")+" bu gün girilmedi</span>":"")+"</div></div>";
   });
   $("groups").innerHTML=h;h="";
@@ -338,10 +342,14 @@ var TABS=[["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"],["w
 function cell(e,cur,isPct,x){
   x=x?x+" ":"";
   if(!e)return '<td class="'+x+'na">·</td>';
+  if(state.mode==="v"){
+    var sub=(cur==="TRY"&&e.tot!=null&&Math.abs(e.tot-e.v)>=1)?'<span class="tot">'+money(e.tot,cur)+"</span>":"";
+    return '<td class="'+x+'val">'+money(e.v,cur)+sub+"</td>";
+  }
   if(isPct)return '<td class="'+x+cls(e.pct)+'">'+arrow(e.pct)+pct(e.pct)+"</td>";
   return '<td class="'+x+cls(e.c)+'">'+sgnMoney(e.c,cur)+"</td>";
 }
-function idxCell(v){return v==null?'<td class="na">·</td>':'<td class="'+cls(v)+'">'+arrow(v)+pct(v)+"</td>"}
+function idxCell(v,lvl){if(state.mode==="v")return lvl==null?'<td class="na">·</td>':'<td class="val">'+nf(lvl,2)+"</td>";return v==null?'<td class="na">·</td>':'<td class="'+cls(v)+'">'+arrow(v)+pct(v)+"</td>"}
 function head(first){
   var h="<thead><tr><th>"+first+"</th>";
   ACC.forEach(function(A,i){h+='<th class="'+(i===0||i===2?"sep":"")+'">'+A[1]+"</th>"});
@@ -355,7 +363,7 @@ function tableDaily(){
     var notes=noteList(r);
     h+="<tr><td>"+trDate(r.d)+'<span class="wd">'+wday(r.d)+"</span></td>";
     ACC.forEach(function(A,i){h+=cell(r.a[A[0]],A[2],p,(i===0||i===2)?"sep":"")});
-    h+=cell(r.tl,"TRY",p,"sep")+idxCell(r.xup)+cell(r.usd,"USD",p,"sep")+idxCell(r.spp);
+    h+=cell(r.tl,"TRY",p,"sep")+idxCell(r.xup,r.xu)+cell(r.usd,"USD",p,"sep")+idxCell(r.spp,r.sp);
     h+="<td>"+(notes.length?'<button class="nb" type="button" data-d="'+r.d+'" aria-label="Notu aç">✎</button>':"")+"</td></tr>";
   });
   h+="</tbody></table>";
@@ -369,7 +377,7 @@ function tablePeriod(kind){
     var lab=kind==="m"?AY[+r.k.slice(5,7)-1]+" "+r.k.slice(0,4):kind==="y"?r.k:trDate(r.from).slice(0,5)+"–"+trDate(r.to).slice(0,5)+'<span class="wd">'+r.k.slice(0,4)+"</span>";
     h+="<tr><td>"+lab+"</td>";
     ACC.forEach(function(A,i){h+=cell(r.a[A[0]],A[2],p,(i===0||i===2)?"sep":"")});
-    h+=cell(r.tl,"TRY",p,"sep")+idxCell(r.xup)+cell(r.usd,"USD",p,"sep")+idxCell(r.spp)+"</tr>";
+    h+=cell(r.tl,"TRY",p,"sep")+idxCell(r.xup,r.xu)+cell(r.usd,"USD",p,"sep")+idxCell(r.spp,r.sp)+"</tr>";
   });
   return h+"</tbody></table>";
 }
@@ -403,8 +411,8 @@ function tables(){
     tools='<div class="seg" id="wdSeg">'+[["1y","Son 1 yıl"],["3y","Son 3 yıl"],["all","Tümü"]].map(function(z){return '<button type="button" data-w="'+z[0]+'" class="'+(state.wd===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("")+"</div>";
     note="Ort. = o günün ortalama günlük değişimi. ↑ oranı = yükselişle kapanan gün oranı. “XU100 ile aynı yön” = TL portföyünün endeksle aynı yönde kapandığı günlerin oranı. ★ en güçlü, ↓ en zayıf gün (XU100).";
   }else{
-    tools='<div class="seg" id="modeSeg"><button type="button" data-m="p" class="'+(state.mode==="p"?"on":"")+'">%</button><button type="button" data-m="t" class="'+(state.mode==="t"?"on":"")+'">Tutar</button></div>';
-    note="▲▼ portföy ve endeksin yönü. Yüzdeler para giriş/çıkışı ve yedek akçe değişimi ayıklanmış performanstır. Σ = hesapların ağırlıklı toplamı.";
+    tools='<div class="seg" id="modeSeg"><button type="button" data-m="p" class="'+(state.mode==="p"?"on":"")+'">%</button><button type="button" data-m="t" class="'+(state.mode==="t"?"on":"")+'">Tutar Δ</button><button type="button" data-m="v" class="'+(state.mode==="v"?"on":"")+'">Değer</button></div>';
+    note=state.mode==="v"?"Değer = portföye ayrılan tutar (anapara). TL hesaplarda altındaki küçük rakam yedek akçe dahil toplam varlık. Dönem tablolarında dönem sonu değeri; endeks sütunlarında kapanış seviyesi.":"▲▼ portföy ve endeksin yönü. Yüzdeler para giriş/çıkışı ve yedek akçe değişimi ayıklanmış performanstır. Σ = hesapların ağırlıklı toplamı.";
   }
   $("tblTools").innerHTML=tools;
   var h=state.tab==="g"?tableDaily():state.tab==="wd"?tableWd():tablePeriod(state.tab);
