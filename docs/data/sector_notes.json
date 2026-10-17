@@ -1,30 +1,30 @@
 {
- "updated": "2026-10-14",
- "summary": "14 Eki gün içi (~16:50 İstanbul; grup verisi market.json 12:59 UTC, 13 Eki kapanışı): rejim 'Nötr / seçici' (4/7). TÜFE sıcak geldi: yıllık %3,7 (beklenti %3,6), çekirdek %2,6 (beklenti %2,5), aylık çekirdek %0,3 (beklenti %0,2). Gün içi SPY −0,4%, QQQ −0,7%, IWM −1,1%: faize duyarlı gruplar baskıda. Lider: enerji (haftalık +6,6%), temel tüketim (+3,9%), elektrik (+3,6%). Zayıf: BTC madencileri/HPC (haftalık −15,6%; yüksek getirili borç ve 'özel kredi' endişesi), nadir toprak, uranyum/nükleer, uzay, yarı iletken (−7,9%). Yarın 15 Eki TSMC bilançosu. Nakit %20-25 bandında olmalı; alımlar yalnız lider gruplardan ve kademeli olmalı.",
+ "updated": "2026-10-17",
+ "summary": "16 Eki normal seans kapanışı (market.json 23:43 UTC, TradingView, 15 dk gecikmeli): rejim 'Risk-off (savunma)' 3/7 (14 Eki: 4/7). SPY $763,25 (−1,1%, haftalık −1,7%), QQQ $709,80 (−2,5%, haftalık −5,7%); SPY ve QQQ SMA50 altında, SMA200 üstünde. Taranan hisselerin yalnız %15'i SMA50 üstünde. Neden: sıcak enflasyon (TÜFE, ardından ÜFE ve perakende satış güçlü), Fed'in faiz artırma ihtimali yükseldi; Brent $110, WTI $100 üstü. Faize duyarlı teknoloji, yarı iletken, siber ve spekülatif temalar sert satıldı. Lider: enerji (rafineri, orta akış), sağlık, temel tüketim. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum/nükleer, güneş, uzay, yarı iletken. Nakit %35-40 bandında olmalı; yeni alım yalnız lider gruplardan, küçük ve kademeli olmalı. Teknoloji ağırlığı artırılmamalı.",
  "groups": {
   "CIBR": {
-   "note": "12 Eki: Lider #1 (7/7 trend, 1A +14,8%). CRWD bugün −3,8% geri çekildi (EMA20 ~257 desteği); OKTA/ZS RSI 70+ aşırı alım: kovalamak yerine geri çekilmede giriş."
+   "note": "16 Eki: Zayıflayan. OKTA −10%, CRWD −7%, ZS −6%. CRWD trend 5/7, EMA20 altında; takipten çıktı."
   },
   "IGV": {
-   "note": "12 Eki: Lider #2 (3A +23,9%, 7/7). TEAM, NOW, GTLB güçlü; GTLB RSI 75 aşırı alım. Faiz yükselirse en hassas grup, kademeli giriş."
+   "note": "16 Eki: Zayıflayan (haftalık RS −4,2). TEAM grubun en güçlüsü (7/7) ama faize en hassas grup; yeni alım yok, mevcut takip yalnız tetikleyiciyle."
   },
   "XLK": {
-   "note": "14 Eki: Barclays DELL, HPE, NTAP'ı 'Eşit ağırlık'a düşürdü (anlamlı yapay zekâ dönüşü yok). Donanım adayları zayıfladı; HPE takipten çıktı."
+   "note": "16 Eki: Zayıflayan, trend 4/7. Donanım (NTAP, P) −5/−7%."
   },
   "AIQ": {
-   "note": "Yapay zekâ teması lider ama SPY'ye farkı küçük (1A +1,8, 3A +1,3). Yazılım/siber kadar güçlü değil."
+   "note": "16 Eki: Zayıflayan. PLTR −7%, SNOW −8%. Yapay zekâ değerleme kaygısı ve faiz baskısı."
   },
   "SMH": {
-   "note": "12 Eki: Zayıflıyor: haftalık −6,4%, fiyat EMA20 altına indi. MU, AVGO, STX zayıf. 15 Eki TSMC bilançosu kısa vadeli karar noktası; teyit gelmeden yeni alım yok."
+   "note": "16 Eki: Geride, haftalık RS −10,6. MU −6%, STX −8,6%, WDC −8%, ARM −7%. TSMC iyi bilançosuna rağmen satış: teyit gelmeden alım yok."
   },
   "XLE": {
-   "note": "13 Eki: Günün lideri (+1,8%, haftalık +6,7%). Rafineriler sert yükseldi (CVI +7,1%, DINO +4,5%, MPC +4,0%); RSI 78-81 aşırı alım. Yeni alımda geri çekilme beklenmeli."
+   "note": "16 Eki: Lider #1 (7/7, haftalık RS +6,7). Brent $110 / WTI $100 üstü. Rafineriler (MPC, CVI, DINO) RSI 71-75 aşırı alım: kovalama, EMA20'ye geri çekilme bekle. Petrol dönerse hızlı düzeltme riski."
   },
   "XLV": {
-   "note": "13 Eki: 12 Eki kapanışta haftalık +3,6%, RSI 60. Adaylar GRAL, ILMN, HAE; GRAL nakit yakımı nedeniyle elendi, HAE RSI 77 aşırı alım. Takipte ILMN."
+   "note": "16 Eki: Lider (7/7, 1A RS +4,9). Savunma rotasyonu sağlığa geldi. Adaylar AVTR, ILMN, CORT. ILMN bilançosu 29 Eki."
   },
   "IBIT": {
-   "note": "12 Eki: 3A güçlü ama haftalık −4,3%; oynak, küçük pozisyon dışında uygun değil."
+   "note": "16 Eki: Bileşik puanda en üstte (3A RS +26,9) ama oynak; risk-off'ta küçük pozisyon dışında uygun değil."
   },
   "QTUM": {
    "note": "1A toparlanma işareti, 3A hâlâ SPY gerisinde. Erken; teyit için 3A RS'nin pozitife dönmesi beklenir."
@@ -33,13 +33,13 @@
    "note": "12 Eki: Kararsız (3/7), 1A ve 3A SPY gerisinde."
   },
   "URA": {
-   "note": "12 Eki: Haftalık −4,8%, 1A −15,8%, trend 0/7: uzak dur."
+   "note": "16 Eki: Trend 0/7, 1A RS −16. Uzak dur."
   },
   "NLR": {
-   "note": "Nükleer enerji: uranyumla aynı neden. 1A'da SPY'nin 18 puan gerisinde."
+   "note": "16 Eki: Uranyumla aynı neden; 1A RS −14."
   },
   "UFO": {
-   "note": "Uzay: SpaceX'in 8 Eki spektrum duyurusu (ASTS −10%) ve yüksek değerleme baskısı. 3A'da SPY'nin 15 puan gerisinde, trend 1/7. RKLB grubundan biraz iyi ama grup kötü."
+   "note": "16 Eki: Geride, 6A RS −37; RKLB ve ASTS −8%."
   },
   "ITA": {
    "note": "Savunma: ADX 51 ile güçlü bir DÜŞÜŞ trendi, 0/7. KTOS dahil uzak dur."
@@ -48,10 +48,10 @@
    "note": "Lityum & batarya geride, 1/7. SGML'nin maden durdurma/yeniden başlama haberleri gruba rağmen şirkete özgü oynaklık yaratıyor."
   },
   "REMX": {
-   "note": "12 Eki: En zayıf grup: 1A −19%, RSI 22 aşırı satım ama trend 0/7; dip avı için teyit yok."
+   "note": "16 Eki: Geride, 6A RS −56. Trend 0/7."
   },
   "WGMI": {
-   "note": "14 Eki: Haftalık −15,6%. En zayıf grup; CRWV tahvil getirisi %15 ve özel kredi endişeleriyle bir günde −13%."
+   "note": "16 Eki: En zayıf grup (haftalık RS −21,7, 1A −29). WYFI dahil uzak dur."
   },
   "GDX": {
    "note": "Altın madencileri: 3A güçlü ama 1A'da sert düzeltme (−13 puan). Kâr alma bölgesi; yeni alım için trendin yeniden kurulması beklenir."
@@ -66,7 +66,7 @@
    "note": "Konut inşaat: 10 yıllık faiz %5,24 iken en olumsuz grup; 0/7."
   },
   "XLU": {
-   "note": "Kamu hizmetleri: faizin yükselmesi baskılıyor; 3A'da SPY'nin 12 puan gerisinde."
+   "note": "16 Eki: Toparlanan (haftalık RS +4,7) ama 3A hâlâ SPY gerisinde. TRGP (doğalgaz/NGL orta akış) +4,4% ile ayrıştı."
   },
   "XLRE": {
    "note": "Gayrimenkul: faiz baskısı (9 Eki'deki +1,9% kule şirketleri kaynaklı, kalıcı değil)."
@@ -90,21 +90,24 @@
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "14 Eki: Haftalık +3,9%, savunmacı liderlik. ELF takip listesine alındı (faiz/yapay zekâ sürücüsünden bağımsız)."
+   "note": "16 Eki: Toparlanan (7/7, haftalık RS +7,3). Savunma talebi. ELF ve EL güçlü; ikisi aynı alt sektör (kozmetik), birini seç."
+  },
+  "XBI": {
+   "note": "16 Eki: Grup geride; MRNA ve IOVA tek başına güçlü ama günde −7/−8% oynak. Uygun değil."
   }
  },
  "stocks": {
   "RKLB": {
-   "note": "12 Eki: Elimde. Gün içi $65,81 (−3,5%), trend 0/7, RSI 42; EMA20 (69,7) ve SMA50 (70,6) altında, ATR stop $61,95'e %6 mesafe. Momentum kırık; satış kararı sende. Bilanço ~16 Kas."
+   "note": "16 Eki kapanış $50,84 (−8,0%); seans sonrası $50,80. Elimde. Trend 0/7, RSI 25 (aşırı satım), EMA20 65,5 ve SMA50 69,2 çok altında. Momentum kırık; ATR stop önerisi $46,49. Satış kararı sende. Bilanço ~16 Kas."
   },
   "CRWV": {
-   "note": "12 Eki: Elimde. Gün içi $79,50 (−3,2%), haftalık −12%, trend 0/7, RSI 41. Momentum kırık; ATR stop $74,61. Satış kararı sende. Bilanço ~16 Kas."
+   "note": "16 Eki kapanış $61,39 (−11,9%); seans sonrası $60,86. Elimde. Trend 0/7, RSI 29,5; EMA20 80,1 altında. Momentum kırık; ATR stop önerisi $55,31. Satış kararı sende. Bilanço ~16 Kas."
   },
   "WYFI": {
-   "note": "12 Eki: Elimde. Gün içi $14,97 (−4,6%), haftalık −17%, 3A −61%, RSI 32, trend 1/7; EMA20 17,75 çok üstte. Momentum kırık; satış kararı sende. Bilanço ~12 Kas."
+   "note": "16 Eki kapanış $11,76 (−9,6%). Elimde. Trend 0/7, RSI 24,8; BTC madencileri/HPC en zayıf grup. Momentum kırık; ATR stop önerisi $10,38. Satış kararı sende. Bilanço ~12 Kas."
   },
   "SGML": {
-   "note": "12 Eki: Elimde. Gün içi $8,93 (−4,5%), trend 0/7, RSI 41; EMA20 9,69 ve SMA50 10,67 altında, ATR stop $8,27. Momentum kırık; satış kararı sende."
+   "note": "16 Eki kapanış $8,53 (−3,0%). Elimde. Trend 0/7, RSI 38,8. Daha önce belirlenen $9,00 günlük kapanış geçersizlik seviyesinin altında. ATR stop önerisi $7,89. Satış kararı sende. Bilanço ~13 Kas."
   },
   "SN": {
    "note": "Döngüsel tüketimde (grup geride) tek başına lider: grubunun 21 puan üstü, 7/7. Günlük Stochastic aşırı alımda; geri çekilmede giriş. Bilanço 5 Kas."
