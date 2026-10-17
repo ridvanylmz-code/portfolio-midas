@@ -15,6 +15,7 @@ Komutlar:
   kutu-anahtar  Claude'un repoya şifreli veri bırakabilmesi için RSA anahtar çifti üretir
                 (özel anahtar PORTFOLIO_KEY ile şifreli saklanır; açık anahtar defter/box_pub.pem).
   ice-aktar     defter/inbox/*.box.json kutularını açar ve deftere işler (sonra kutular silinir).
+  ibkr          IBKR Flex raporundan (salt okunur token) günlük net değer + para hareketleri.
   oto           Belirtilen gün (vars. bugün, UTC) için Midas-TR / Midas-USD değerini repodan, endeksleri piyasadan yazar.
   gir           Elle kayıt (iş akışı formundan): IN_* ortam değişkenleri.
   excel         Excel dosyası üretip Telegram'dan gönderir (+ haftalık özet).
@@ -393,6 +394,116 @@ def cmd_auto(args):
         recompute(d, acc)
     save(d)
     print(f"{ds}: otomatik kayıt tamam ({len(got)} hesap).")
+    return 0
+
+
+# ------------------------------------------------------------------ IBKR Flex (salt okunur rapor)
+FLEX_HOSTS = ("https://ndcdyn.interactivebrokers.com/AccountManagement/FlexWebService",
+              "https://gdcdyn.interactivebrokers.com/AccountManagement/FlexWebService")
+
+
+def _flex_date(s):
+    s = (s or "").strip()[:10].replace(";", "")
+    for fmt in ("%Y%m%d", "%Y-%m-%d", "%m/%d/%Y", "%d/%m/%Y"):
+        try:
+            return datetime.strptime(s[:8] if fmt == "%Y%m%d" else s, fmt).date().isoformat()
+        except ValueError:
+            continue
+    return None
+
+
+def flex_fetch(token, qid):
+    """Flex raporunu XML olarak döndürür. Token/URL asla yazdırılmaz."""
+    import time
+    import xml.etree.ElementTree as ET
+    hdr = {"User-Agent": "portfolio-defter/1.0"}
+    ref = url = None
+    for host in FLEX_HOSTS:
+        try:
+            r = requests.get(f"{host}/SendRequest", params={"t": token, "q": qid, "v": 3}, headers=hdr, timeout=30)
+            root = ET.fromstring(r.text)
+            if root.findtext("Status") == "Success":
+                ref, url = root.findtext("ReferenceCode"), root.findtext("Url")
+                break
+            raise ValueError(f"IBKR Flex isteği reddedildi: {root.findtext('ErrorCode')} {root.findtext('ErrorMessage')}")
+        except ValueError:
+            raise
+        except Exception as ex:
+            DIAG.append(f"ibkr SendRequest: {type(ex).__name__}")
+    if not ref:
+        raise ValueError("IBKR Flex sunucusuna ulaşılamadı")
+    for i in range(10):
+        time.sleep(5 + 3 * i)
+        r = requests.get(url, params={"t": token, "q": ref, "v": 3}, headers=hdr, timeout=60)
+        if "<FlexQueryResponse" in r.text[:500]:
+            return ET.fromstring(r.text)
+        root = ET.fromstring(r.text)
+        code = root.findtext("ErrorCode")
+        if code not in ("1019", "1018", "1021"):
+            raise ValueError(f"IBKR Flex raporu alınamadı: {code} {root.findtext('ErrorMessage')}")
+    raise ValueError("IBKR Flex raporu zamanında hazırlanmadı (1019)")
+
+
+def flex_parse(root):
+    nav, flows = {}, {}
+    for el in root.iter("EquitySummaryByReportDateInBase"):
+        ds = _flex_date(el.get("reportDate"))
+        tot = el.get("total")
+        if ds and tot not in (None, ""):
+            stock = sum(float(el.get(k) or 0) for k in ("stock", "options", "funds", "bonds", "commodities", "crypto"))
+            nav[ds] = {"v": round(float(tot), 2), "h": round(stock, 2)}
+    for el in root.iter("CashTransaction"):
+        if "deposit" not in (el.get("type") or "").lower():
+            continue
+        ds = _flex_date(el.get("reportDate") or el.get("dateTime") or el.get("settleDate"))
+        if not ds:
+            continue
+        amt = float(el.get("amount") or 0) * float(el.get("fxRateToBase") or 1)
+        flows[ds] = round(flows.get(ds, 0) + amt, 2)
+    return nav, flows
+
+
+def cmd_ibkr(_):
+    token, qid = os.environ.get("IBKR_FLEX_TOKEN", "").strip(), os.environ.get("IBKR_FLEX_QUERY_ID", "").strip()
+    if not token or not qid:
+        print("IBKR Flex secret'ları tanımlı değil; atlandı.")
+        return 0
+    d = load()
+    nav, flows = flex_parse(flex_fetch(token, qid))
+    if not nav:
+        raise ValueError("IBKR raporunda 'Net Asset Value (NAV) in Base' bölümü yok; Flex Query'ye ekle.")
+    start = ACCOUNTS["ibkr"]["start"]
+    new, cmp_lines = 0, []
+    for ds in sorted(nav):
+        if ds < start:
+            continue
+        x = day(d, ds)
+        old = x["a"].get("ibkr")
+        if old and old.get("s") == "x":
+            diff = nav[ds]["v"] - old["v"]
+            if abs(diff) >= 1:
+                cmp_lines.append((ds, old["v"], nav[ds]["v"]))
+            continue
+        e = {"v": nav[ds]["v"], "h": nav[ds]["h"], "s": "a"}
+        if flows.get(ds):
+            e["f"] = flows[ds]
+        if old and old.get("n"):
+            e["n"] = old["n"]
+        if old != e:
+            x["a"]["ibkr"] = e
+            new += 1
+    recompute(d, "ibkr")
+    save(d)
+    msg = [f"🏦 <b>IBKR Flex</b>: {new} gün yazıldı · son rapor günü {_tr_date(max(nav))}"]
+    if flows:
+        msg.append("💵 Para hareketi olan günler: " + ", ".join(_tr_date(k) for k in sorted(flows)[-5:]))
+    if cmp_lines and not d.get("ibkr_cmp_sent"):
+        big = sorted(cmp_lines, key=lambda t: -abs(t[2] - t[1]))[:6]
+        msg.append("🔎 Excel ↔ IBKR (en büyük farklar): " + "; ".join(
+            f"{_tr_date(a)} ${b:,.0f}→${c:,.0f}" for a, b, c in big))
+        d["ibkr_cmp_sent"] = True
+        save(d)
+    common.send_telegram("\n".join(msg))
     return 0
 
 
@@ -794,6 +905,7 @@ def main(argv=None):
     sp.add_parser("ice-aktar").set_defaults(fn=cmd_import)
     a = sp.add_parser("oto"); a.add_argument("--date"); a.set_defaults(fn=cmd_auto)
     sp.add_parser("gir").set_defaults(fn=cmd_enter)
+    sp.add_parser("ibkr").set_defaults(fn=cmd_ibkr)
     e = sp.add_parser("excel"); e.add_argument("--summary", action="store_true"); e.set_defaults(fn=cmd_excel)
     args = ap.parse_args(argv)
     try:

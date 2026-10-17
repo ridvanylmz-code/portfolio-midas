@@ -9,6 +9,7 @@ on:
   schedule:
     - cron: "20 22 * * 1-5"
     - cron: "10 7 * * 6"
+    - cron: "15 6 * * 2-6"       # İst. 09:15: IBKR Flex (rapor kapanıştan sonra hazırlanır)
   workflow_dispatch:
     inputs:
       islem:
@@ -20,6 +21,7 @@ on:
           - gun_kaydi
           - excel_gonder
           - otomatik_yenile
+          - ibkr_cek
           - ice_aktar
           - kutu_anahtar
       tarih:
@@ -83,11 +85,11 @@ jobs:
           IN_ISLEM: ${{ inputs.islem }}
         run: |
           if [ "$EVENT" = "schedule" ]; then
-            if [ "$SCHED" = "10 7 * * 6" ]; then c=excel; else c=oto; fi
+            case "$SCHED" in "10 7 * * 6") c=excel ;; "15 6 * * 2-6") c=ibkr ;; *) c=oto ;; esac
           else
             case "$IN_ISLEM" in
               gun_kaydi) c=gir ;; excel_gonder) c=excel ;; otomatik_yenile) c=oto ;;
-              ice_aktar) c=ice-aktar ;; kutu_anahtar) c=kutu-anahtar ;; *) c=gir ;;
+              ibkr_cek) c=ibkr ;; ice_aktar) c=ice-aktar ;; kutu_anahtar) c=kutu-anahtar ;; *) c=gir ;;
             esac
           fi
           echo "c=$c" >> "$GITHUB_OUTPUT"
@@ -99,6 +101,8 @@ jobs:
           CMD: ${{ steps.cmd.outputs.c }}
           PORTFOLIO_KEY: ${{ secrets.PORTFOLIO_KEY }}
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          IBKR_FLEX_TOKEN: ${{ secrets.IBKR_FLEX_TOKEN }}
+          IBKR_FLEX_QUERY_ID: ${{ secrets.IBKR_FLEX_QUERY_ID }}
           TELEGRAM_OUTBOX: ${{ runner.temp }}/outbox.jsonl
           IN_DATE: ${{ inputs.tarih }}
           IN_INFO_TR: ${{ inputs.info_tr }}
