@@ -150,6 +150,23 @@ def stooq_closes(symbol):
         return {}
 
 
+def fred_closes(series="SP500"):
+    """Yedek kaynak: FRED (St. Louis Fed) günlük S&P 500 kapanışı, ~10 yıl, anahtarsız."""
+    try:
+        r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv", params={"id": series},
+                         headers=UA, timeout=30)
+        r.raise_for_status()
+        out = {}
+        for line in r.text.splitlines()[1:]:
+            p = line.split(",")
+            if len(p) == 2 and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p[0]) and p[1] not in (".", ""):
+                out[p[0]] = round(float(p[1]), 2)
+        return out
+    except Exception as ex:
+        print(f"[WARN] fred {series}: {type(ex).__name__}")
+        return {}
+
+
 def tv_close(symbol):
     try:
         r = requests.post("https://scanner.tradingview.com/global/scan",
@@ -165,7 +182,7 @@ def tv_close(symbol):
 def fill_indices(d, rng="10d", today=None):
     xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("^GSPC", rng)
     if len(sp) < 3:
-        sp = {**stooq_closes("^spx"), **sp}
+        sp = {**fred_closes("SP500"), **stooq_closes("^spx"), **sp}
     if len(xu) < 3:
         xu = {**stooq_closes("^xu100"), **xu}
     if today and today not in xu:
