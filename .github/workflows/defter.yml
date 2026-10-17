@@ -98,6 +98,7 @@ jobs:
         env:
           CMD: ${{ steps.cmd.outputs.c }}
           PORTFOLIO_KEY: ${{ secrets.PORTFOLIO_KEY }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
           TELEGRAM_OUTBOX: ${{ runner.temp }}/outbox.jsonl
           IN_DATE: ${{ inputs.tarih }}
           IN_INFO_TR: ${{ inputs.info_tr }}

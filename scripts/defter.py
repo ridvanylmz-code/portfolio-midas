@@ -119,22 +119,44 @@ def recompute(d, acc):
 
 # ------------------------------------------------------------------ piyasa verisi
 def yahoo_closes(symbol, rng="10d"):
+    import time
+    params = ({"period1": 1577836800, "period2": int(datetime.now(timezone.utc).timestamp()), "interval": "1d"}
+              if rng == "max" else {"range": rng, "interval": "1d"})
+    last = None
+    for i, host in enumerate(("query1", "query2", "query1", "query2")):
+        try:
+            r = requests.get(f"https://{host}.finance.yahoo.com/v8/finance/chart/{symbol}",
+                             params=params, headers=UA, timeout=30)
+            r.raise_for_status()
+            res = r.json()["chart"]["result"][0]
+            off = res["meta"].get("gmtoffset", 0)
+            out = {}
+            for ts, c in zip(res["timestamp"], res["indicators"]["quote"][0]["close"]):
+                if c:
+                    out[datetime.fromtimestamp(ts + off, timezone.utc).date().isoformat()] = round(float(c), 2)
+            return out
+        except Exception as ex:
+            last = ex
+            time.sleep(4 * (i + 1))
+    print(f"[WARN] yahoo {symbol}: {type(last).__name__}")
+    DIAG.append(f"yahoo {symbol}: {type(last).__name__} {getattr(getattr(last, 'response', None), 'status_code', '')}")
+    return {}
+
+
+def twelvedata_closes(symbol, n=5000):
+    key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
+    if not key:
+        return {}
     try:
-        r = requests.get(f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
-                         params=({"period1": 1577836800, "period2": int(datetime.now(timezone.utc).timestamp()),
-                                  "interval": "1d"} if rng == "max" else {"range": rng, "interval": "1d"}),
-                         headers=UA, timeout=30)
-        r.raise_for_status()
-        res = r.json()["chart"]["result"][0]
-        off = res["meta"].get("gmtoffset", 0)
-        out = {}
-        for ts, c in zip(res["timestamp"], res["indicators"]["quote"][0]["close"]):
-            if c:
-                out[datetime.fromtimestamp(ts + off, timezone.utc).date().isoformat()] = round(float(c), 2)
-        return out
+        r = requests.get("https://api.twelvedata.com/time_series",
+                         params={"symbol": symbol, "interval": "1day", "outputsize": n, "apikey": key}, timeout=30)
+        j = r.json()
+        if j.get("status") != "ok":
+            DIAG.append(f"twelvedata {symbol}: {str(j.get('code', ''))} {str(j.get('message', ''))[:60].replace(key, '***')}")
+            return {}
+        return {v["datetime"][:10]: round(float(v["close"]), 2) for v in j.get("values", [])}
     except Exception as ex:
-        print(f"[WARN] yahoo {symbol}: {type(ex).__name__}")
-        DIAG.append(f"yahoo {symbol}: {type(ex).__name__} {getattr(getattr(ex, 'response', None), 'status_code', '')}")
+        DIAG.append(f"twelvedata {symbol}: {type(ex).__name__}")
         return {}
 
 
@@ -188,7 +210,9 @@ def tv_close(symbol):
 
 def fill_indices(d, rng="10d", today=None):
     xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("^GSPC", rng)
-    if len(sp) < 3 or rng == "max":
+    if len(sp) < 3:
+        sp = {**twelvedata_closes("SPX", 5000 if rng == "max" else 15), **sp}
+    if len(sp) < 3 and rng == "max":
         sp = {**fred_closes("SP500"), **sp}
     if len(sp) < 3:
         sp = {**stooq_closes("^spx"), **sp}
