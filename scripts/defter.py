@@ -209,13 +209,15 @@ def tv_close(symbol):
 
 
 def fill_indices(d, rng="10d", today=None):
-    xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("^GSPC", rng)
+    # S&P 500 karşılaştırması SPY fiyatıyla yapılır (endeks verisi ücretsiz kaynaklarda kısıtlı; tek kaynak = tutarlı seri)
+    if d.get("sp_src") != "SPY":
+        for x in d["days"]:
+            x.pop("sp", None)
+        d["sp_src"] = "SPY"
+        rng = "max"
+    xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("SPY", rng)
     if len(sp) < 3:
-        sp = {**twelvedata_closes("SPX", 5000 if rng == "max" else 15), **sp}
-    if len(sp) < 3 and rng == "max":
-        sp = {**fred_closes("SP500"), **sp}
-    if len(sp) < 3:
-        sp = {**stooq_closes("^spx"), **sp}
+        sp = {**twelvedata_closes("SPY", 5000 if rng == "max" else 15), **sp}
     if len(xu) < 3:
         xu = {**stooq_closes("^xu100"), **xu}
     if today and today not in xu:
@@ -223,7 +225,7 @@ def fill_indices(d, rng="10d", today=None):
         if v:
             xu[today] = v
     if today and today not in sp:
-        v = tv_close("SP:SPX")
+        v = tv_close("AMEX:SPY")
         if v:
             sp[today] = v
     n = 0
