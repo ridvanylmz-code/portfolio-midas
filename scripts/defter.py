@@ -74,6 +74,13 @@ def save(d):
     if not common.vault_key():
         raise common.VaultError("PORTFOLIO_KEY yok: defter düz yazılmaz")
     common.save_json(F_DEFTER, d)
+    # Tutar içermeyen durum dosyası (izleme / hata ayıklama için)
+    st = {"updated": d["updated"], "days": len(d["days"]),
+          "first": d["days"][0]["d"] if d["days"] else None, "last": d["days"][-1]["d"] if d["days"] else None,
+          "with_xu": sum(1 for x in d["days"] if "xu" in x), "with_sp": sum(1 for x in d["days"] if "sp" in x),
+          "last_by_account": {a: next((x["d"] for x in reversed(d["days"]) if a in x.get("a", {})), None)
+                              for a in ACCOUNTS}}
+    common.save_json("docs/defter/data/status.json", st)
 
 
 def day(d, ds, create=True):
@@ -127,6 +134,22 @@ def yahoo_closes(symbol, rng="10d"):
         return {}
 
 
+def stooq_closes(symbol):
+    """Yedek kaynak: Stooq günlük CSV (anahtarsız). ^spx, ^xu100"""
+    try:
+        r = requests.get("https://stooq.com/q/d/l/", params={"s": symbol, "i": "d"}, headers=UA, timeout=30)
+        r.raise_for_status()
+        out = {}
+        for line in r.text.splitlines()[1:]:
+            p = line.split(",")
+            if len(p) >= 5 and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p[0]):
+                out[p[0]] = round(float(p[4]), 2)
+        return out
+    except Exception as ex:
+        print(f"[WARN] stooq {symbol}: {type(ex).__name__}")
+        return {}
+
+
 def tv_close(symbol):
     try:
         r = requests.post("https://scanner.tradingview.com/global/scan",
@@ -141,6 +164,10 @@ def tv_close(symbol):
 
 def fill_indices(d, rng="10d", today=None):
     xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("^GSPC", rng)
+    if len(sp) < 3:
+        sp = {**stooq_closes("^spx"), **sp}
+    if len(xu) < 3:
+        xu = {**stooq_closes("^xu100"), **xu}
     if today and today not in xu:
         v = tv_close("BIST:XU100")
         if v:
@@ -305,7 +332,8 @@ def cmd_auto(args):
             e["n"] = e0["n"]
         x["a"][acc] = e
         got.append(a["name"])
-    fill_indices(d, today=ds)
+    gaps = sum(1 for y in d["days"] if y["d"] >= "2023-06-16" and "sp" not in y)
+    fill_indices(d, rng="max" if gaps > 20 else "10d", today=ds)
     if not x["a"] and "xu" not in x and "sp" not in x:
         d["days"].remove(x)
         print(f"{ds}: piyasa kapalı / veri yok; kayıt açılmadı.")
