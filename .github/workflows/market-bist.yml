@@ -1,4 +1,4 @@
-name: BIST Piyasa & Sektör Rotasyonu
+name: Sektör Rotasyonu - BIST piyasaları
 
 # scripts/market_bist.py: BIST rejimi (nakit hedefi), sektör göreli gücü (XU100'e göre), hisse günlük/haftalık trend, sektör başına 3 aday.
 # Kaynak: TradingView Türkiye tarayıcısı (anahtarsız) -> eksik izleme hisseleri yfinance günlük -> önceki değer (stale).

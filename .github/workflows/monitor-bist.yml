@@ -1,4 +1,4 @@
-name: BIST Portföy İzleme
+name: Portföy İzle - Midas-TR
 
 # Cron saatleri UTC. İstanbul = UTC+3 (yaz/kış farkı yok). BIST: Pzt-Cum 10:00-18:00 (kapanış seansı ~18:10'a kadar).
 # Telegram raporları (İstanbul): 10:05, 13:00, 17:55 (Pzt-Cum).

@@ -1,4 +1,4 @@
-name: Info-TR Pozisyon Güncelle
+name: Portföy Güncelle - Info-TR
 
 # Info Yatırım hesabı: alım/satım, para giriş/çıkışı. Veri defter/info_portfolio.json (PORTFOLIO_KEY ile şifreli).
 # Hesap değeri her gece "Portföy Defteri" iş akışında bu pozisyonlardan hesaplanır.

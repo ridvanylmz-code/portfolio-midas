@@ -1,4 +1,4 @@
-name: Trend Tara
+name: Trend Tara - USD piyasaları
 
 # Elle tetiklenir: Actions -> "Trend Tara (elle)" -> Run workflow.
 # Sembol kutusu doluysa onu, boşsa trend/tickers.txt'yi kullanır. Sonuç `trend-data` dalına trend.json olarak yazılır

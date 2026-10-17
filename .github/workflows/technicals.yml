@@ -1,4 +1,4 @@
-name: Teknik Veri
+name: Teknik Veri - USD piyasaları
 
 # DENEME: monitor.yml'den bağımsız. Sadece docs/data/technicals.json yazar.
 # Semboller: portföy + takip listesi + trend/tickers.txt (en fazla 40; ~12 sn/hisse).

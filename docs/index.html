@@ -329,7 +329,7 @@ async function load(){
     STATE={P,Q,H:H||{transactions:[],snapshots:[]},PR:PR||{},MK};
     render();
   }catch(e){
-    $("#app").innerHTML=`<div class="err">${esc(e.message)}. İlk kurulumda "Portföy İzleme" workflow'unu bir kez elle çalıştırın.</div>`;
+    $("#app").innerHTML=`<div class="err">${esc(e.message)}. İlk kurulumda "Portföy İzle - Midas-USD" workflow'unu bir kez elle çalıştırın.</div>`;
     $("#status").textContent="";
   }
 }

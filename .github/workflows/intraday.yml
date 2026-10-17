@@ -1,4 +1,4 @@
-name: Gün İçi Teknik (4s EMA, 15dk EMA, Elliott)
+name: Gün İçi Teknik - USD piyasaları
 
 # Sonuç main'e DEĞİL, tek commit'lik `data` dalına (intraday.json) yazılır; main temiz kalır.
 # Seans kontrolü scripts/intraday.py içinde (ET saati, yaz/kış saatinden bağımsız):

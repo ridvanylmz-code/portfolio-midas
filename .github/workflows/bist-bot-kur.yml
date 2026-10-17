@@ -1,4 +1,4 @@
-name: BIST Bot Kur
+name: Kurulum - BIST bot
 
 # Bir kez elle çalıştırılır: BIST botunun menü düğmesini mini uygulamaya bağlar ve bir hoş geldin mesajı yollar.
 # Gerekli secret'lar: BIST_TELEGRAM_BOT_TOKEN, BIST_TELEGRAM_CHAT_ID

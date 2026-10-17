@@ -508,7 +508,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
         addKV(box,"Gün aralığı",usd(+q.l)+" – "+usd(+q.h));
       }
       if(window.TechView)TechView.render(box,cur,{M:M,BARS:BARS,INTRA:INTRA,TREND:INTRA,P:P,bench:"XU100",plain:true,plainLegend:true,
-        noBarsMsg:"Günlük mum grafiği henüz yok (BIST Trend Tara çalışınca gelir)."});
+        noBarsMsg:"Günlük mum grafiği henüz yok ("Trend Tara - BIST piyasaları" çalışınca gelir)."});
       function det(title,open){var x=document.createElement("details");x.className="tx-d";if(open)x.open=true;x.appendChild(el("summary","",title));box.appendChild(x);return x}
       if((d.technical||[]).length){
         var wn=det("Yazılı notlar ("+(A&&A.updated||"")+")");

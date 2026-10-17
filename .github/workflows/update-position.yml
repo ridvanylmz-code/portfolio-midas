@@ -1,4 +1,4 @@
-name: Pozisyon Güncelle
+name: Portföy Güncelle - Midas-USD
 
 on:
   workflow_dispatch:

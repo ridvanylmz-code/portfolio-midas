@@ -1,4 +1,4 @@
-name: Piyasa & Sektör Rotasyonu
+name: Sektör Rotasyonu - USD piyasaları
 
 # scripts/market.py: rejim (nakit hedefi), sektör/tema ETF göreli güç sıralaması, hisse günlük/haftalık trend.
 # Kaynak: TradingView tarayıcısı (tek istek, anahtarsız) -> eksikler Twelve Data günlük -> önceki değer.

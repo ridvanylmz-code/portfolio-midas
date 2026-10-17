@@ -1,4 +1,4 @@
-name: Portföy Defteri
+name: Portföy Defteri - Tüm hesaplar
 
 # 4 hesabın günlük kaydı (docs/defter). Veri PORTFOLIO_KEY ile şifreli; Telegram ana bot.
 # Otomatik: hafta içi 22:20 UTC (İst. 01:20) Midas-TR / Midas-USD değeri + XU100 / S&P 500 kapanışı.

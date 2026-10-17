@@ -1,4 +1,4 @@
-name: Portföy İzleme
+name: Portföy İzle - Midas-USD
 
 # Zamanlama UTC, ama rapor/sessiz seçimi scripts/monitor.py içinde ABD saatine (ET) göre yapılır (--auto):
 # yaz/kış saati geçişinde (1 Kasım 2026, Mart 2027) elle değişiklik gerekmez. Her rapor saati için iki cron

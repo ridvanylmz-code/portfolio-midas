@@ -1,4 +1,4 @@
-name: BIST Pozisyon Güncelle
+name: Portföy Güncelle - Midas-TR
 
 on:
   workflow_dispatch:

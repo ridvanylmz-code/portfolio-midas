@@ -1,4 +1,4 @@
-name: BIST Trend Tara
+name: Trend Tara - BIST piyasaları
 
 # Otomatik: İstanbul 10:17, 12:17, 14:17, 16:17, 18:27 (Pzt-Cum) ve elle: Actions -> "BIST Trend Tara" -> Run workflow.
 # Sembol kutusu doluysa onu, boşsa trend/bist_tickers.txt'yi kullanır.
