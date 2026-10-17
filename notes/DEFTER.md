@@ -7,7 +7,7 @@ Kod: `scripts/defter.py`, iş akışı: `.github/workflows/defter.yml`.
 | Hesap | Para | Kaynak | Not |
 |---|---|---|---|
 | Midas-TR | ₺ | otomatik: `bist/history.json` snapshot | v = toplam − yedek (90.000) |
-| Info-TR | ₺ | elle (iş akışı formu) | yedek 25.000 |
+| Info-TR | ₺ | otomatik: `defter/info_portfolio.json` pozisyonları × BIST fiyatı | yedek 25.000; işlem: Info-TR Pozisyon Güncelle |
 | Midas-USD | $ | otomatik: `history.json` snapshot | seri 2025-10-14'te başlar |
 | IBKR | $ | IBKR Flex (secret: IBKR_FLEX_TOKEN, IBKR_FLEX_QUERY_ID), 09:15 İst.; yoksa elle | seri 2026-04-17; Excel günlerinin üstüne yazmaz |
 
@@ -18,3 +18,5 @@ Kod: `scripts/defter.py`, iş akışı: `.github/workflows/defter.yml`.
 - Claude → repo şifreli veri: `defter/box_pub.pem` ile `scripts/defter.py:box_seal` → `defter/inbox/*.box.json`, sonra iş akışı `ice_aktar`.
   Özel anahtar `defter/box_key.json` (PORTFOLIO_KEY ile şifreli). Düz tutar asla commit edilmez.
 - 2026-10-18: 16.09.2026 Midas-TR değişimi −41.063 → −21.063 (yedek 70k→90k iç ayrım). Diğer yedek değişim günleri gerçek para hareketi; dokunulmadı.
+- 2026-10-18: Info-TR pozisyonları repoda (defter/info_portfolio.json, şifreli; 6 hisse + nakit). Değer her gece `oto` içinde
+  BIST fiyatlarıyla hesaplanır (v = toplam − 25.000 yedek). İşlem girişi: `.github/workflows/info-pozisyon.yml` (buy/sell/deposit/withdraw/undo).

@@ -38,11 +38,12 @@ F_DEFTER = "docs/defter/data/defter.json"
 F_BOX_PRIV = "defter/box_key.json"
 F_BOX_PUB = "defter/box_pub.pem"
 INBOX = "defter/inbox"
-common.SECRET_FILES.update({F_DEFTER, F_BOX_PRIV})
+F_INFO = "defter/info_portfolio.json"
+common.SECRET_FILES.update({F_DEFTER, F_BOX_PRIV, F_INFO})
 
 ACCOUNTS = {
     "midas_tr": {"name": "Midas-TR", "cur": "TRY", "bench": "xu", "reserve": 90000, "src": "bist/history.json"},
-    "info_tr": {"name": "Info-TR", "cur": "TRY", "bench": "xu", "reserve": 25000, "src": None},
+    "info_tr": {"name": "Info-TR", "cur": "TRY", "bench": "xu", "reserve": 25000, "src": "info"},
     "midas_usd": {"name": "Midas-USD", "cur": "USD", "bench": "sp", "reserve": 0, "src": "history.json",
                   "start": "2025-10-14"},
     "ibkr": {"name": "IBKR", "cur": "USD", "bench": "sp", "reserve": 0, "src": None, "start": "2026-04-17"},
@@ -304,6 +305,10 @@ def cmd_import(_):
             for acc, val in (item.get("reserves") or {}).items():
                 d["accounts"][acc]["reserve"] = val
             msgs.append(f"📥 {n} gün işlendi ({item['days'][0]['d']} → {item['days'][-1]['d']}).")
+        elif kind == "info_portfolio":
+            common.save_json(F_INFO, {"cash": round(float(item["cash"]), 2), "positions": item["positions"],
+                                      "transactions": [], "as_of": item.get("as_of")})
+            msgs.append(f"🏦 Info-TR pozisyonları kaydedildi ({len(item['positions'])} hisse).")
         elif kind == "settings":
             for acc, kv in item.get("accounts", {}).items():
                 d["accounts"].setdefault(acc, {}).update(kv)
@@ -360,6 +365,27 @@ def cmd_auto(args):
     got = []
     for acc, a in ACCOUNTS.items():
         if not a["src"]:
+            continue
+        if a["src"] == "info":
+            e0 = x["a"].get(acc)
+            if e0 and e0.get("s") in ("m", "x"):
+                continue
+            iv = info_value()
+            if not iv:
+                continue
+            res = d["accounts"][acc].get("reserve", 0)
+            e = {"v": round(iv["total"] - res, 2), "h": round(iv["stocks"], 2), "r": res, "s": "a"}
+            f = round(sum(t.get("amount", 0) * (1 if t["action"] == "deposit" else -1)
+                          for t in iv["pf"].get("transactions", [])
+                          if t.get("date") == ds and t.get("action") in ("deposit", "withdraw")), 2)
+            if f:
+                e["f"] = f
+            if (e0 or {}).get("n"):
+                e["n"] = e0["n"]
+            if iv["missing"]:
+                e["n"] = (e.get("n", "") + f" [fiyat yok: {', '.join(iv['missing'])}]").strip()
+            x["a"][acc] = e
+            got.append(a["name"])
             continue
         e0 = x["a"].get(acc)
         if e0 and e0.get("s") in ("m", "x"):
@@ -516,6 +542,93 @@ def cmd_ibkr(_):
         d["ibkr_cmp_sent"] = True
         save(d)
     common.send_telegram("\n".join(msg))
+    return 0
+
+
+# ------------------------------------------------------------------ Info-TR pozisyonları
+def info_prices(tickers):
+    import bist_data
+    f = bist_data.make_fetch(sorted(tickers))
+    return {t: (f(t) or {}).get("c") for t in tickers}
+
+
+def info_value():
+    pf = common.load_json(F_INFO)
+    if not pf:
+        return None
+    pos = pf.get("positions", {})
+    px = info_prices(list(pos)) if pos else {}
+    missing = [t for t, q in px.items() if not q]
+    stocks = sum(p["shares"] * (px.get(t) or p.get("last") or p["cost"]) for t, p in pos.items())
+    for t, q in px.items():   # son bilinen fiyatı sakla (fiyat alınamazsa yedek)
+        if q:
+            pos[t]["last"] = round(q, 4)
+    common.save_json(F_INFO, pf)
+    return {"total": stocks + pf.get("cash", 0), "stocks": stocks, "missing": missing, "pf": pf}
+
+
+def cmd_info_trade(_):
+    env = os.environ.get
+    pf = common.load_json(F_INFO)
+    if not pf:
+        raise ValueError("Info-TR pozisyon dosyası yok")
+    act = (env("IN_ACTION") or "").strip()
+    sym = (env("IN_SYMBOL") or "").strip().upper()
+    ds = (env("IN_DATE") or "").strip() or datetime.now(timezone(timedelta(hours=3))).date().isoformat()
+    datetime.strptime(ds, "%Y-%m-%d")
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    pos, txs = pf.setdefault("positions", {}), pf.setdefault("transactions", [])
+    if act == "undo":
+        if not txs:
+            raise ValueError("Geri alınacak işlem yok")
+        t = txs.pop()
+        pf["cash"], pf["positions"] = t["before"]["cash"], t["before"]["positions"]
+        common.save_json(F_INFO, pf)
+        common.send_telegram(f"↩️ Info-TR: son işlem geri alındı ({t['action']} {t.get('symbol', '')}).")
+        return 0
+    before = {"cash": pf.get("cash", 0), "positions": json.loads(json.dumps(pos))}
+    tx = {"date": ds, "time": now, "action": act, "before": before}
+    if act in ("deposit", "withdraw"):
+        amt = _amt(env("IN_QTY"))
+        if not amt or amt <= 0:
+            raise ValueError("Tutar gir")
+        pf["cash"] = round(pf.get("cash", 0) + (amt if act == "deposit" else -amt), 2)
+        tx["amount"] = amt
+        msg = f"💵 Info-TR: ₺{amt:,.2f} {'yatırıldı' if act == 'deposit' else 'çekildi'}. Nakit ₺{pf['cash']:,.2f}"
+    elif act in ("buy", "sell"):
+        if not re.fullmatch(r"[A-Z0-9]{2,8}", sym):
+            raise ValueError("Geçersiz hisse kodu")
+        qty, px, com = _amt(env("IN_QTY")), _amt(env("IN_PRICE")), _amt(env("IN_COMMISSION")) or 0
+        if not qty or qty <= 0 or not px or px <= 0:
+            raise ValueError("Adet ve fiyat gir")
+        ref = info_prices([sym]).get(sym)
+        if ref and abs(px / ref - 1) > 0.15 and (env("IN_CONFIRM") or "").lower() != "true":
+            raise ValueError(f"{sym} fiyatı ₺{px:,.2f}, son fiyat ₺{ref:,.2f} (%15+ fark). Doğruysa 'confirm' ile tekrar gönder.")
+        p = pos.get(sym, {"shares": 0, "cost": 0})
+        if act == "buy":
+            tot = p["shares"] * p["cost"] + qty * px + com
+            p["shares"] = qty + p["shares"]
+            p["cost"] = round(tot / p["shares"], 4)
+            pos[sym] = p
+            pf["cash"] = round(pf.get("cash", 0) - qty * px - com, 2)
+        else:
+            if qty > p["shares"] + 1e-9:
+                raise ValueError(f"{sym}: elde {p['shares']:g} lot var")
+            p["shares"] = round(p["shares"] - qty, 6)
+            pf["cash"] = round(pf.get("cash", 0) + qty * px - com, 2)
+            if p["shares"] <= 1e-9:
+                pos.pop(sym, None)
+        tx.update(symbol=sym, shares=qty, price=px, commission=com)
+        verb = "alındı" if act == "buy" else "satıldı"
+        msg = f"🧾 Info-TR: {sym} {qty:g} lot × ₺{px:,.2f} {verb}. Nakit ₺{pf['cash']:,.2f}"
+    else:
+        raise ValueError("İşlem türü: buy / sell / deposit / withdraw / undo")
+    txs.append(tx)
+    pf["transactions"] = txs[-500:]
+    common.save_json(F_INFO, pf)
+    if pf["cash"] < 0:
+        msg += "\n⚠️ Nakit eksiye düştü; yatırma girmeyi unutma."
+    common.send_telegram(msg)
     return 0
 
 
@@ -918,6 +1031,7 @@ def main(argv=None):
     a = sp.add_parser("oto"); a.add_argument("--date"); a.set_defaults(fn=cmd_auto)
     sp.add_parser("gir").set_defaults(fn=cmd_enter)
     sp.add_parser("ibkr").set_defaults(fn=cmd_ibkr)
+    sp.add_parser("info-islem").set_defaults(fn=cmd_info_trade)
     e = sp.add_parser("excel"); e.add_argument("--summary", action="store_true"); e.set_defaults(fn=cmd_excel)
     args = ap.parse_args(argv)
     try:
