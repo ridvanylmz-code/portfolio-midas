@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17T21:50:04+00:00",
+  "updated": "2026-10-17T21:51:34+00:00",
   "days": 1261,
   "first": "2020-10-01",
   "last": "2026-10-16",
@@ -10,5 +10,10 @@
     "info_tr": "2026-10-16",
     "midas_usd": "2026-10-16",
     "ibkr": "2026-10-16"
-  }
+  },
+  "diag": [
+    "yahoo XU100.IS: HTTPError 429",
+    "yahoo ^GSPC: HTTPError 429",
+    "fred SP500: ReadTimeout "
+  ]
 }
