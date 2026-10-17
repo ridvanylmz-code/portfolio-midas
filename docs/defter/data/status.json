@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-17T21:54:10+00:00",
+  "updated": "2026-10-17T21:56:09+00:00",
   "days": 1261,
   "first": "2020-10-01",
   "last": "2026-10-16",
   "with_xu": 1215,
-  "with_sp": 1,
+  "with_sp": 1212,
   "last_by_account": {
     "midas_tr": "2026-10-16",
     "info_tr": "2026-10-16",
@@ -13,8 +13,6 @@
   },
   "diag": [
     "yahoo XU100.IS: HTTPError 429",
-    "yahoo ^GSPC: HTTPError 429",
-    "twelvedata SPX: 404 This symbol is available starting with the Pro or Venture pl",
-    "fred SP500: ReadTimeout "
+    "yahoo SPY: HTTPError 429"
   ]
 }
