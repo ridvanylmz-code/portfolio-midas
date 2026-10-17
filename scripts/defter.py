@@ -120,7 +120,9 @@ def recompute(d, acc):
 def yahoo_closes(symbol, rng="10d"):
     try:
         r = requests.get(f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
-                         params={"range": rng, "interval": "1d"}, headers=UA, timeout=20)
+                         params=({"period1": 1577836800, "period2": int(datetime.now(timezone.utc).timestamp()),
+                                  "interval": "1d"} if rng == "max" else {"range": rng, "interval": "1d"}),
+                         headers=UA, timeout=30)
         r.raise_for_status()
         res = r.json()["chart"]["result"][0]
         off = res["meta"].get("gmtoffset", 0)
@@ -181,8 +183,10 @@ def tv_close(symbol):
 
 def fill_indices(d, rng="10d", today=None):
     xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("^GSPC", rng)
+    if len(sp) < 3 or rng == "max":
+        sp = {**fred_closes("SP500"), **sp}
     if len(sp) < 3:
-        sp = {**fred_closes("SP500"), **stooq_closes("^spx"), **sp}
+        sp = {**stooq_closes("^spx"), **sp}
     if len(xu) < 3:
         xu = {**stooq_closes("^xu100"), **xu}
     if today and today not in xu:
