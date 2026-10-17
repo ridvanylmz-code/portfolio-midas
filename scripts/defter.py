@@ -49,6 +49,7 @@ ACCOUNTS = {
 ALIASES = {"midas_tr": "midas_tr", "midastr": "midas_tr", "midas-tr": "midas_tr", "info": "info_tr",
            "info_tr": "info_tr", "info-tr": "info_tr", "midas_usd": "midas_usd", "midasusd": "midas_usd",
            "midas-usd": "midas_usd", "midas": "midas_usd", "ibkr": "ibkr"}
+DIAG = []   # kaynak hataları (tutar içermez; status.json'a yazılır)
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
 GUN = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"]
 
@@ -79,7 +80,7 @@ def save(d):
           "first": d["days"][0]["d"] if d["days"] else None, "last": d["days"][-1]["d"] if d["days"] else None,
           "with_xu": sum(1 for x in d["days"] if "xu" in x), "with_sp": sum(1 for x in d["days"] if "sp" in x),
           "last_by_account": {a: next((x["d"] for x in reversed(d["days"]) if a in x.get("a", {})), None)
-                              for a in ACCOUNTS}}
+                              for a in ACCOUNTS}, "diag": DIAG[-10:]}
     common.save_json("docs/defter/data/status.json", st)
 
 
@@ -133,6 +134,7 @@ def yahoo_closes(symbol, rng="10d"):
         return out
     except Exception as ex:
         print(f"[WARN] yahoo {symbol}: {type(ex).__name__}")
+        DIAG.append(f"yahoo {symbol}: {type(ex).__name__} {getattr(getattr(ex, 'response', None), 'status_code', '')}")
         return {}
 
 
@@ -149,6 +151,7 @@ def stooq_closes(symbol):
         return out
     except Exception as ex:
         print(f"[WARN] stooq {symbol}: {type(ex).__name__}")
+        DIAG.append(f"stooq {symbol}: {type(ex).__name__} {getattr(getattr(ex, 'response', None), 'status_code', '')}")
         return {}
 
 
@@ -166,6 +169,7 @@ def fred_closes(series="SP500"):
         return out
     except Exception as ex:
         print(f"[WARN] fred {series}: {type(ex).__name__}")
+        DIAG.append(f"fred {series}: {type(ex).__name__} {getattr(getattr(ex, 'response', None), 'status_code', '')}")
         return {}
 
 
@@ -178,6 +182,7 @@ def tv_close(symbol):
         return round(float(rows[0]["d"][0]), 2) if rows and rows[0]["d"][0] else None
     except Exception as ex:
         print(f"[WARN] tradingview {symbol}: {type(ex).__name__}")
+        DIAG.append(f"tradingview {symbol}: {type(ex).__name__} {getattr(getattr(ex, 'response', None), 'status_code', '')}")
         return None
 
 
