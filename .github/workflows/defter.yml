@@ -121,7 +121,8 @@ jobs:
             git fetch -q origin "$BRANCH" && git reset -q --hard "origin/$BRANCH"
             rm -f "$TELEGRAM_OUTBOX"
             set +e; python scripts/defter.py $CMD $ARGS; rc=$?; set -e
-            git add -A docs/defter/data defter
+            git add -A docs/defter; [ -d defter ] && git add -A defter
+            git add -u defter 2>/dev/null || true
             if git diff --cached --quiet; then ok=1; break; fi
             git commit -q -m "defter: $CMD"
             if git push -q origin "HEAD:$BRANCH"; then ok=1; break; fi
