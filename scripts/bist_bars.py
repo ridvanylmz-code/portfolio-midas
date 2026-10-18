@@ -109,10 +109,12 @@ def main(argv=None):
         except Exception as ex:  # ağ/kütüphane hatası tek hisseyi düşürür
             print(scrub(f"{t}: {type(ex).__name__}: {str(ex)[:60]}"))
             rows = None
-        if not rows:  # Yahoo vermediyse TradingView yedeği
+        if not rows or len(rows) < 30:  # Yahoo vermediyse / çok azsa TradingView yedeği
             try:
-                rows = tv_fetch(t, a.days)
-                print(f"{t}: TradingView yedeğinden {len(rows)} mum")
+                tv = tv_fetch(t, a.days)
+                print(f"{t}: TradingView yedeğinden {len(tv)} mum (Yahoo: {len(rows or [])})")
+                if len(tv) > len(rows or []):
+                    rows = tv
             except Exception as ex:
                 print(scrub(f"{t}: TV yedeği: {type(ex).__name__}: {str(ex)[:60]}"))
                 rows = None
