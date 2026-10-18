@@ -154,6 +154,20 @@ def fetch_td(symbol, key):
     return compute(list(reversed(data["values"])))
 
 
+BARS_FILE = os.environ.get("BIST_BARS_FILE", "bars-bist.json")
+
+
+def bars_from_file(symbol, cache={}):
+    """BIST: 'Trend Tara - BIST piyasaları'nın ürettiği günlük mumlar (trend-bist-data dalı, bars-bist.json)."""
+    if "d" not in cache:
+        cache["d"] = (load_json(BARS_FILE, {}) or {}).get("bars", {})
+    rows = [{"datetime": b[0], "open": b[1], "high": b[2], "low": b[3], "close": b[4],
+             "volume": b[5] if len(b) > 5 else 0} for b in cache["d"].get(symbol, [])]
+    if len(rows) < 30:
+        raise RuntimeError(f"mum dosyasında yetersiz bar ({len(rows)})")
+    return compute(rows)
+
+
 def fetch_yahoo_daily(symbol):
     """BIST: günlük mumlar Yahoo (anahtarsız, .IS) -> Twelve Data ile aynı compute()."""
     r = requests.get(f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}.IS",
@@ -294,15 +308,19 @@ def main():
         elif prev.get("tv"):
             entry["tv"] = dict(prev["tv"], stale=True)
         if BIST:
-            if yf_fail < 3:
-                try:
-                    entry["td"] = fetch_yahoo_daily(t)
-                    n_td += 1
-                    yf_fail = 0
-                except Exception as e:
-                    yf_fail += 1
-                    log(f"YF  {t}: HATA {err(e)}")
-                time.sleep(1.5)
+            try:
+                entry["td"] = bars_from_file(t)
+                n_td += 1
+            except Exception:
+                if yf_fail < 3:
+                    try:
+                        entry["td"] = fetch_yahoo_daily(t)
+                        n_td += 1
+                        yf_fail = 0
+                    except Exception as e:
+                        yf_fail += 1
+                        log(f"YF  {t}: HATA {type(e).__name__}")
+                    time.sleep(1.5)
             if not entry["td"] and prev.get("td"):
                 entry["td"] = dict(prev["td"], stale=True)
         elif key:
@@ -323,7 +341,7 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump({
             "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "source_note": ("TV = TradingView tarayıcı, TD = Yahoo günlük mumlardan hesaplandı" if BIST else
+            "source_note": ("TV = TradingView tarayıcı, TD = BIST günlük mumlarından (bars-bist.json / Yahoo) hesaplandı" if BIST else
                             "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı"),
             "log": LOG[-60:],
             "tickers": result,

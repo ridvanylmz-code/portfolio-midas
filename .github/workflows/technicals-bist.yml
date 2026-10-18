@@ -1,7 +1,7 @@
 name: Teknik Veri - BIST piyasaları
 
 # Midas-TR mini uygulamasının teknik verisi: docs/bist/data/technicals.json
-# (TradingView "turkey" tarayıcısı + Yahoo .IS günlük mumlardan RSI/SMA/MACD/ATR). Anahtar gerekmez.
+# (TradingView "turkey" tarayıcısı + trend-bist-data dalındaki günlük mumlardan RSI/SMA/MACD/ATR). Anahtar gerekmez.
 # Semboller: Midas-TR portföy + takip listesi + trend/bist_tickers.txt (en fazla 40).
 # Zamanlama: hafta içi 15:35 UTC (= 18:35 İstanbul, BIST kapanışından sonra); elle de çalışır.
 on:
@@ -34,9 +34,14 @@ jobs:
         continue-on-error: true
         run: pip install tradingview-ta
 
+      - name: Günlük mumları al (Trend Tara - BIST piyasaları çıktısı)
+        run: |
+          git fetch -q --depth=1 origin trend-bist-data 2>/dev/null && git show FETCH_HEAD:bars-bist.json > "$RUNNER_TEMP/bars-bist.json" || echo "mum dosyası yok; Yahoo denenecek"
+
       - name: Teknik veriyi çek
         env:
           MARKET: bist
+          BIST_BARS_FILE: ${{ runner.temp }}/bars-bist.json
         run: python scripts/technicals.py
 
       - name: Sadece BIST technicals.json'u commit et
