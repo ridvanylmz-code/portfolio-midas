@@ -36,7 +36,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install requests yfinance pandas
+      - run: pip install requests yfinance pandas websocket-client
 
       - name: Hesapla
         env:
