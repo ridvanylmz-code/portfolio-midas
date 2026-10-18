@@ -1,10 +1,8 @@
 name: Teknik Veri - USD piyasaları
 
-# DENEME: monitor.yml'den bağımsız. Sadece docs/data/technicals.json yazar.
-# Semboller: portföy + takip listesi + trend/tickers.txt (en fazla 40; ~12 sn/hisse).
-# Zamanlama: hafta içi 22:30 UTC (= 01:30 İstanbul, ABD kapanışından en az 1,5 saat sonra).
-# Yaz/kış saati geçişinde (kapanış 20:00 -> 21:00 UTC) değişiklik gerekmez.
-# Ayrıca Actions sekmesinden elle (workflow_dispatch) çalıştırılabilir.
+# Midas-USD mini uygulamasının teknik verisi: docs/data/technicals.json (TradingView tarayıcı + Twelve Data).
+# Semboller: portföy + takip listesi + trend/tickers.txt (en fazla 40).
+# Zamanlama: hafta içi 22:30 UTC (= 01:30 İstanbul, ABD kapanışından en az 1,5 saat sonra); elle de çalışır.
 # TradingView 429 verirse script bekleyip yeniden dener; olmazsa önceki değer "eski" olarak korunur.
 on:
   schedule:

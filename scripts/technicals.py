@@ -20,12 +20,17 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  # noqa: E402
 import tvscan  # noqa: E402
 
-OUT = "docs/data/technicals.json"
-PORTFOLIO = "docs/data/portfolio.json"
-TICKERS_FILE = "trend/tickers.txt"  # portföy + takip listesine ek olarak bu dosyadaki semboller de alınır
+# MARKET=bist -> BIST (docs/bist/data, TradingView "turkey", günlük mumlar Yahoo .IS). Varsayılan ABD davranışı değişmez.
+BIST = common.MARKET == "bist"
+DATA_DIR = "docs/bist/data" if BIST else "docs/data"
+OUT = f"{DATA_DIR}/technicals.json"
+PORTFOLIO = f"{DATA_DIR}/portfolio.json"
+TICKERS_FILE = "trend/bist_tickers.txt" if BIST else "trend/tickers.txt"  # portföy + takip listesine ek semboller
 MAX_TICKERS = 40
 TIME_BUDGET = 15 * 60  # sn; aşılırsa kalan hisselerde önceki veri korunur, dosya yine yazılır
-EXCHANGES = ["NASDAQ", "NYSE", "AMEX"]
+EXCHANGES = ["BIST"] if BIST else ["NASDAQ", "NYSE", "AMEX"]
+SCREENER = "turkey" if BIST else "america"
+YF_HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
 LOG = []
 
 
@@ -149,13 +154,32 @@ def fetch_td(symbol, key):
     return compute(list(reversed(data["values"])))
 
 
+def fetch_yahoo_daily(symbol):
+    """BIST: günlük mumlar Yahoo (anahtarsız, .IS) -> Twelve Data ile aynı compute()."""
+    r = requests.get(f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}.IS",
+                     params={"range": "1y", "interval": "1d"}, headers=YF_HEADERS, timeout=30)
+    r.raise_for_status()
+    res = r.json()["chart"]["result"][0]
+    q = res["indicators"]["quote"][0]
+    rows = []
+    for i, ts in enumerate(res.get("timestamp") or []):
+        if q["close"][i] is None:
+            continue
+        rows.append({"datetime": datetime.fromtimestamp(ts, timezone.utc).date().isoformat(),
+                     "open": q["open"][i], "high": q["high"][i], "low": q["low"][i],
+                     "close": q["close"][i], "volume": q["volume"][i]})
+    if len(rows) < 30:
+        raise RuntimeError(f"yetersiz bar ({len(rows)})")
+    return compute(rows)
+
+
 def fetch_tv(symbol):
     from tradingview_ta import TA_Handler, Interval  # noqa
 
     last_err = None
     for ex in EXCHANGES:
         try:
-            a = TA_Handler(symbol=symbol, screener="america", exchange=ex,
+            a = TA_Handler(symbol=symbol, screener=SCREENER, exchange=ex,
                            interval=Interval.INTERVAL_1_DAY).get_analysis()
             ind = a.indicators or {}
             pick = ["RSI", "MACD.macd", "MACD.signal", "SMA20", "SMA50", "SMA200", "EMA20", "ADX", "close"]
@@ -213,7 +237,7 @@ def read_tickers_file(path):
 
 def main():
     t0 = time.time()
-    tickers = list(dict.fromkeys(common.public_symbols("docs/data") + read_tickers_file(TICKERS_FILE)))
+    tickers = list(dict.fromkeys(common.public_symbols(DATA_DIR) + read_tickers_file(TICKERS_FILE)))
     if len(tickers) > MAX_TICKERS:
         log(f"Liste {len(tickers)} sembol; ilk {MAX_TICKERS} alındı")
         tickers = tickers[:MAX_TICKERS]
@@ -225,15 +249,18 @@ def main():
     except Exception as e:
         tv_ok = False
         log(f"tradingview-ta yüklenemedi: {e}")
-    if not key:
+    if BIST:
+        key = ""   # BIST günlük mumları Yahoo'dan (Twelve Data ücretsiz planda BIST yok)
+    elif not key:
         log("TWELVEDATA_API_KEY yok: Twelve Data adımı atlandı")
+    yf_fail = 0
 
     result, n_td, n_tv = {}, 0, 0
     tv_429 = 0  # art arda TradingView 429 sayısı
     # Önce tarayıcı: TÜM semboller tek istekte (sembol başına istek yok -> 429 yok). Eksik kalana tradingview-ta.
     scan = tvscan.fetch(tickers, ["name", "close", "RSI", "MACD.macd", "MACD.signal", "SMA20", "SMA50", "SMA200",
                                   "EMA20", "ADX", "Recommend.All", "Recommend.MA", "Recommend.Other",
-                                  "market_cap_basic"], log=log) or {}
+                                  "market_cap_basic"], log=log, market=SCREENER) or {}
     log(f"TV scanner: {len(scan)}/{len(tickers)} sembol tek istekte")
     for i, t in enumerate(tickers):
         prev = old.get(t, {})
@@ -266,7 +293,19 @@ def main():
             time.sleep(2.5)
         elif prev.get("tv"):
             entry["tv"] = dict(prev["tv"], stale=True)
-        if key:
+        if BIST:
+            if yf_fail < 3:
+                try:
+                    entry["td"] = fetch_yahoo_daily(t)
+                    n_td += 1
+                    yf_fail = 0
+                except Exception as e:
+                    yf_fail += 1
+                    log(f"YF  {t}: HATA {err(e)}")
+                time.sleep(1.5)
+            if not entry["td"] and prev.get("td"):
+                entry["td"] = dict(prev["td"], stale=True)
+        elif key:
             try:
                 entry["td"] = fetch_td(t, key)
                 n_td += 1
@@ -284,7 +323,8 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump({
             "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
+            "source_note": ("TV = TradingView tarayıcı, TD = Yahoo günlük mumlardan hesaplandı" if BIST else
+                            "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı"),
             "log": LOG[-60:],
             "tickers": result,
         }, f, ensure_ascii=False, indent=2)
