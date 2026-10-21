@@ -533,8 +533,11 @@ def cmd_ibkr(_):
     recompute(d, "ibkr")
     save(d)
     msg = [f"🏦 <b>IBKR Flex</b>: {new} gün yazıldı · son rapor günü {_tr_date(max(nav))}"]
-    if flows:
-        msg.append("💵 Para hareketi olan günler: " + ", ".join(_tr_date(k) for k in sorted(flows)[-5:]))
+    # Rapor tüm dönemi kapsar; mesajda yalnızca son 3 takvim günündeki para hareketleri gösterilir
+    cut = (datetime.strptime(max(nav), "%Y-%m-%d") - timedelta(days=2)).strftime("%Y-%m-%d")
+    recent = [(k, flows[k]) for k in sorted(flows) if k >= cut and flows[k]]
+    if recent:
+        msg.append("💵 Para hareketi: " + ", ".join(f"{_tr_date(k)} {v:+,.0f}$" for k, v in recent))
     if cmp_lines and not d.get("ibkr_cmp_sent"):
         big = sorted(cmp_lines, key=lambda t: -abs(t[2] - t[1]))[:6]
         msg.append("🔎 Excel ↔ IBKR (en büyük farklar): " + "; ".join(
