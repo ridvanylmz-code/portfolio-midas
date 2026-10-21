@@ -507,10 +507,18 @@ def cmd_ibkr(_):
             del x["a"]["ibkr"]
             if not x["a"] and not x.get("xu") and not x.get("sp") and not x.get("n"):
                 d["days"].remove(x)
-    new, cmp_lines = 0, []
+    new, cmp_lines, warns = 0, [], []
+    # Güvenlik: rapor tüm dönemi kapsasa da yalnızca son 3 takvim günü güncellenir. Daha eski günlere
+    # yalnızca defterde hiç IBKR kaydı yoksa (boşluk doldurma) yazılır; var olan eski kayıt asla değişmez.
+    win = (datetime.strptime(max(nav), "%Y-%m-%d") - timedelta(days=2)).strftime("%Y-%m-%d")
     for ds in sorted(nav):
         if ds < start:
             continue
+        cur = day(d, ds, create=False)
+        if ds < win and cur and cur.get("a", {}).get("ibkr") and cur["a"]["ibkr"].get("s") != "x":
+            continue
+        if cur and (cur.get("a", {}).get("ibkr") or {}).get("s") == "m":
+            continue  # elle girilen değer korunur
         if ds < last_x and not day(d, ds, create=False):
             continue
         x = day(d, ds)
@@ -521,6 +529,12 @@ def cmd_ibkr(_):
             diff = nav[ds]["v"] - old["v"]
             if abs(diff) >= 1:
                 cmp_lines.append((ds, old["v"], nav[ds]["v"]))
+            continue
+        prev = [en["v"] for pd, en in series(d, "ibkr") if pd < ds and en.get("v")]
+        if prev and not flows.get(ds) and prev[-1] > 0 and abs(nav[ds]["v"] / prev[-1] - 1) > 0.25:
+            warns.append(f"{_tr_date(ds)}: ${prev[-1]:,.0f} → ${nav[ds]['v']:,.0f} (%25+ sıçrama, yazılmadı)")
+            if not x["a"] and not x.get("xu") and not x.get("sp") and not x.get("n"):
+                d["days"].remove(x)
             continue
         e = {"v": nav[ds]["v"], "h": nav[ds]["h"], "s": "a"}
         if flows.get(ds):
@@ -538,6 +552,8 @@ def cmd_ibkr(_):
     recent = [(k, flows[k]) for k in sorted(flows) if k >= cut and flows[k]]
     if recent:
         msg.append("💵 Para hareketi: " + ", ".join(f"{_tr_date(k)} {v:+,.0f}$" for k, v in recent))
+    if warns:
+        msg.append("⚠️ Şüpheli değer, elle kontrol et: " + "; ".join(warns))
     if cmp_lines and not d.get("ibkr_cmp_sent"):
         big = sorted(cmp_lines, key=lambda t: -abs(t[2] - t[1]))[:6]
         msg.append("🔎 Excel ↔ IBKR (en büyük farklar): " + "; ".join(
