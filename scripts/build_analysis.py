@@ -178,7 +178,7 @@ def fundamental(t, tv, no_div=()):
     return {"metrics": m, "fair_value": fv}
 
 
-NOTE = ("Fiyatlar 9 Ekim 2026 (Cuma) seans kapanışı, TradingView; trend verisi (4S Trend / 15dk Trend / 15dk Tamam yada Devam / Elliott) "
+NOTE = ("Fiyatlar {SRC}; trend verisi (4S Trend / 15dk Trend / 15dk Tamam yada Devam / Elliott) "
         "Yahoo Finance 15dk mumlarından (gecikmeli). Günlük göstergeler TradingView 1D. Adil değer = analist ortalama hedefi, kendi tahminim değil. "
         "Kısa sözlük: 4S Trend = 4 saatlik mumlarda kısa/uzun hareketli ortalama ilişkisi (yukarı = kısa üstte); "
         "15dk Trend = 15 dakikalık mumlarda aynı mantık, daha kısa vade; "
@@ -214,7 +214,7 @@ def main(argv=None):
         item["news"] = [{"date": tr_date(x["ts"]), "title": x["title"], "src": x["src"], "url": x["url"]}
                         for x in snap["news"].get(t, [])]
         out[t] = item
-    data = {"updated": snap["asof"], "note": NOTE, "tickers": out}
+    data = {"updated": snap["asof"], "note": NOTE.replace("{SRC}", f"{ASOF} {y} ({snap.get('source', 'TradingView')})"), "tickers": out}
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     with open(a.out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
