@@ -32,10 +32,13 @@ def fetch(sym, days):
     return out or None
 
 
-def tv_fetch(sym, days, exchange="BIST", timeout=25):
-    """Yedek: TradingView websocket'inden günlük mum (Yahoo'nun vermediği ALTIN, GMSTR gibi semboller için).
+def tv_fetch(sym, days, exchange="BIST", timeout=25, resolution="1D", raw=False):
+    """Yedek: TradingView websocket'inden mum (Yahoo'nun vermediği ALTIN, GMSTR gibi semboller için).
+    resolution="1D" (varsayılan, günlük; `days` mum) ya da "15" (15 dakikalık; `days` = mum sayısı).
+    raw=True: [(unix_ts, o, h, l, c, v)] döner (trend taraması biçimi), değilse [[tarih,o,h,l,c]].
     Gayriresmi, anahtarsız; çalışmazsa istisna fırlatır (çağıran yakalar)."""
     import websocket  # websocket-client
+    raw_out = raw
     ws = websocket.create_connection("wss://data.tradingview.com/socket.io/websocket",
                                      origin="https://www.tradingview.com", timeout=timeout)
     try:
@@ -45,14 +48,15 @@ def tv_fetch(sym, days, exchange="BIST", timeout=25):
         send("set_auth_token", ["unauthorized_user_token"])
         send("chart_create_session", ["cs", ""])
         send("resolve_symbol", ["cs", "sds_sym_1", "=" + json.dumps({"symbol": f"{exchange}:{sym}", "adjustment": "splits"})])
-        send("create_series", ["cs", "s1", "s1", "sds_sym_1", "1D", min(days, 300), ""])
+        count = min(days, 300) if resolution == "1D" else min(days, 5000)
+        send("create_series", ["cs", "s1", "s1", "sds_sym_1", resolution, count, ""])
         raw, rows = "", []
         for _ in range(60):
             raw = ws.recv()
             if raw.startswith("~h~") or re.fullmatch(r"~m~\d+~m~~h~\d+", raw):
                 ws.send(raw)  # kalp atışını aynen geri yolla
                 continue
-            rows = parse_tv_series(raw) or rows
+            rows = parse_tv_series(raw, raw_ts=raw_out) or rows
             if "series_completed" in raw or "symbol_error" in raw or "critical_error" in raw:
                 break
         if not rows:
@@ -65,8 +69,9 @@ def tv_fetch(sym, days, exchange="BIST", timeout=25):
             pass
 
 
-def parse_tv_series(raw):
-    """Websocket çerçevelerinden timescale_update mumlarını çıkar -> [[tarih,o,h,l,c,v?]]."""
+def parse_tv_series(raw, raw_ts=False):
+    """Websocket çerçevelerinden timescale_update mumlarını çıkar -> [[tarih,o,h,l,c]]
+    (raw_ts=True: [(unix_ts,o,h,l,c,v)])."""
     out = []
     for body in re.split(r"~m~\d+~m~", raw):
         if not body.startswith("{"):
@@ -79,7 +84,10 @@ def parse_tv_series(raw):
             continue
         for b in (((msg.get("p") or [None, {}])[1] or {}).get("s1") or {}).get("s") or []:
             t, o, h, l, c = b["v"][:5]
-            if c and c > 0 and h >= l > 0:
+            if c and c > 0 and h >= l > 0 and raw_ts:
+                v = b["v"][5] if len(b["v"]) > 5 and b["v"][5] is not None else 0
+                out.append((int(t), float(o), float(h), float(l), float(c), float(v)))
+            elif c and c > 0 and h >= l > 0:
                 day = datetime.fromtimestamp(t, timezone.utc).strftime("%Y-%m-%d")
                 out.append([day, round(o, 4), round(h, 4), round(l, 4), round(c, 4)])
     return out

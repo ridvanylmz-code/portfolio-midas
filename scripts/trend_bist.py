@@ -7,7 +7,7 @@ Hesap fonksiyonları (EMA, Supertrend, Elliott) ABD tarafındaki scripts/intrada
 aynen kullanılır; burada yalnızca BIST'e özgü kısımlar vardır:
   - Kaynak: Yahoo Finance chart API, sembol soneki .IS (BIST'te ön/sonrası seans yok)
   - 4S mumlar İstanbul saatiyle 10:00-14:00 ve 14:00-18:00 dilimlerinde 15dk mumlardan birleştirilir
-  - Kaynak sırası: ham Yahoo -> yfinance -> Twelve Data (XIST, yalnız TWELVEDATA_API_KEY varsa)
+  - Kaynak sırası: ham Yahoo -> yfinance -> Twelve Data (XIST, yalnız TWELVEDATA_API_KEY varsa) -> TradingView websocket
 
 Kullanım: python scripts/trend_bist.py --file trend/bist_tickers.txt --out trend-bist.json
 """
@@ -111,12 +111,26 @@ def _twelvedata(sym, key):
         return None
 
 
+def _tradingview(sym):
+    """TradingView websocket (gayriresmi, anahtarsız): Yahoo'nun vermediği ALTIN/GMSTR gibi semboller için 15dk mum.
+    BIST verisi gecikmeli olabilir. Liste ya da None."""
+    try:
+        from bist_bars import tv_fetch
+        rows = tv_fetch(sym, 2000, resolution="15", raw=True)
+        rows = sorted({r[0]: r for r in rows}.values(), key=lambda x: x[0])
+        return rows or None
+    except Exception as ex:
+        log(f"{sym}: TradingView {type(ex).__name__}: {str(ex)[:60]}")
+        return None
+
+
 def fetch_bars(sym, td_key, state):
-    """Sırayla: ham Yahoo -> yfinance -> Twelve Data. (rows, kaynak). Çalışmayan kaynak 2 hisse üst üste
+    """Sırayla: ham Yahoo -> yfinance -> Twelve Data -> TradingView. (rows, kaynak). Çalışmayan kaynak 2 hisse üst üste
     başarısız olursa atlanır (state['off'])."""
     chain = [("Yahoo", _yahoo_raw), ("yfinance", _yahoo_lib)]
     if td_key:
         chain.append(("TwelveData", lambda s: _twelvedata(s, td_key)))
+    chain.append(("TradingView", _tradingview))
     for name, fn in chain:
         if state["fail"].get(name, 0) >= 2 and name != chain[-1][0]:
             continue
