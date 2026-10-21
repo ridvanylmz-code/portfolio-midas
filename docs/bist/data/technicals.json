@@ -1,34 +1,51 @@
 {
-  "updated": "2026-10-21T13:30:26+00:00",
+  "updated": "2026-10-21T16:08:07+00:00",
   "source_note": "TV = TradingView tarayıcı, TD = BIST günlük mumlarından (bars-bist.json / Yahoo) hesaplandı",
   "log": [
     "TV scanner: 32/32 sembol tek istekte",
-    "YF  AHGAZ: HATA HTTPError",
-    "YF  ENERY: HATA HTTPError",
-    "YF  GMTAS: HATA HTTPError",
-    "Özet: 32 hisse, TV başarılı 32, TD başarılı 28"
+    "Özet: 32 hisse, TV başarılı 32, TD başarılı 32"
   ],
   "tickers": {
     "AHGAZ": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "BUY",
-        "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_BUY",
+        "recommendation": "SELL",
+        "oscillators": "SELL",
+        "moving_averages": "SELL",
         "indicators": {
-          "RSI": 56.323,
-          "MACD.macd": 1.638,
-          "MACD.signal": 2.01,
-          "SMA20": 45.995,
-          "SMA50": 41.119,
-          "SMA200": 31.527,
-          "EMA20": 45.684,
-          "ADX": 20.709,
-          "close": 46.46
+          "RSI": 48.59,
+          "MACD.macd": 1.458,
+          "MACD.signal": 1.974,
+          "SMA20": 45.882,
+          "SMA50": 41.074,
+          "SMA200": 31.515,
+          "EMA20": 45.468,
+          "ADX": 20.072,
+          "close": 44.2
         },
         "via": "scanner"
       },
-      "td": null
+      "td": {
+        "date": "2026-10-21",
+        "close": 44.2,
+        "rsi14": 48.6,
+        "sma20": 45.88,
+        "sma50": 41.07,
+        "sma200": 31.52,
+        "above_sma20": false,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 1.458,
+          "signal": 1.974,
+          "hist": -0.516
+        },
+        "atr14": 1.94,
+        "support20": 40.66,
+        "resistance20": 49.06,
+        "vol_ratio": null,
+        "bars": 200
+      }
     },
     "AKSGY": {
       "tv": {
@@ -37,22 +54,22 @@
         "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 38.906,
-          "MACD.macd": -0.124,
-          "MACD.signal": -0.108,
-          "SMA20": 9.383,
+          "RSI": 39.831,
+          "MACD.macd": -0.121,
+          "MACD.signal": -0.107,
+          "SMA20": 9.385,
           "SMA50": 9.681,
           "SMA200": 9.173,
-          "EMA20": 9.382,
+          "EMA20": 9.385,
           "ADX": 30.218,
-          "close": 9.08
+          "close": 9.12
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 9.08,
-        "rsi14": 38.9,
+        "close": 9.12,
+        "rsi14": 39.8,
         "sma20": 9.38,
         "sma50": 9.68,
         "sma200": 9.17,
@@ -60,9 +77,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.124,
-          "signal": -0.108,
-          "hist": -0.016
+          "macd": -0.121,
+          "signal": -0.107,
+          "hist": -0.014
         },
         "atr14": 0.27,
         "support20": 8.91,
@@ -78,22 +95,22 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 44.443,
-          "MACD.macd": -0.609,
-          "MACD.signal": -0.692,
-          "SMA20": 71.414,
-          "SMA50": 73.625,
+          "RSI": 43.583,
+          "MACD.macd": -0.622,
+          "MACD.signal": -0.695,
+          "SMA20": 71.406,
+          "SMA50": 73.622,
           "SMA200": 78.698,
-          "EMA20": 71.651,
+          "EMA20": 71.636,
           "ADX": 14.795,
-          "close": 71.1
+          "close": 70.94
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 71.08,
-        "rsi14": 44.3,
+        "close": 70.94,
+        "rsi14": 43.6,
         "sma20": 71.41,
         "sma50": 73.62,
         "sma200": 78.7,
@@ -101,9 +118,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.611,
-          "signal": -0.692,
-          "hist": 0.081
+          "macd": -0.622,
+          "signal": -0.695,
+          "hist": 0.073
         },
         "atr14": 0.93,
         "support20": 70.02,
@@ -115,39 +132,39 @@
     "ALTNY": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "recommendation": "STRONG_SELL",
+        "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 30.747,
-          "MACD.macd": -0.912,
-          "MACD.signal": -0.908,
-          "SMA20": 12.546,
-          "SMA50": 15.123,
-          "SMA200": 15.917,
-          "EMA20": 12.787,
-          "ADX": 35.164,
-          "close": 11.47
+          "RSI": 28.644,
+          "MACD.macd": -0.941,
+          "MACD.signal": -0.914,
+          "SMA20": 12.528,
+          "SMA50": 15.116,
+          "SMA200": 15.915,
+          "EMA20": 12.752,
+          "ADX": 35.339,
+          "close": 11.11
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 11.52,
-        "rsi14": 31.1,
-        "sma20": 12.55,
+        "close": 11.11,
+        "rsi14": 28.6,
+        "sma20": 12.53,
         "sma50": 15.12,
         "sma200": 15.92,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.908,
-          "signal": -0.907,
-          "hist": -0.001
+          "macd": -0.941,
+          "signal": -0.914,
+          "hist": -0.027
         },
-        "atr14": 0.6,
-        "support20": 11.32,
+        "atr14": 0.61,
+        "support20": 11.11,
         "resistance20": 13.82,
         "vol_ratio": null,
         "bars": 200
@@ -160,35 +177,35 @@
         "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 31.448,
-          "MACD.macd": -1.131,
-          "MACD.signal": -1.029,
-          "SMA20": 39.707,
-          "SMA50": 42.212,
-          "SMA200": 46.388,
-          "EMA20": 39.819,
-          "ADX": 22.86,
-          "close": 37.46
+          "RSI": 28.213,
+          "MACD.macd": -1.208,
+          "MACD.signal": -1.044,
+          "SMA20": 39.659,
+          "SMA50": 42.193,
+          "SMA200": 46.383,
+          "EMA20": 39.728,
+          "ADX": 23.209,
+          "close": 36.5
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 37.5,
-        "rsi14": 31.6,
-        "sma20": 39.71,
-        "sma50": 42.21,
-        "sma200": 46.39,
+        "close": 36.5,
+        "rsi14": 28.2,
+        "sma20": 39.66,
+        "sma50": 42.19,
+        "sma200": 46.38,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.128,
-          "signal": -1.028,
-          "hist": -0.099
+          "macd": -1.208,
+          "signal": -1.044,
+          "hist": -0.163
         },
-        "atr14": 1.33,
-        "support20": 37.16,
+        "atr14": 1.37,
+        "support20": 36.5,
         "resistance20": 42.14,
         "vol_ratio": null,
         "bars": 200
@@ -201,22 +218,22 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 16.092,
-          "MACD.macd": -1.744,
-          "MACD.signal": -1.613,
-          "SMA20": 13.962,
-          "SMA50": 17.868,
+          "RSI": 15.984,
+          "MACD.macd": -1.747,
+          "MACD.signal": -1.614,
+          "SMA20": 13.96,
+          "SMA50": 17.867,
           "SMA200": 21.993,
-          "EMA20": 14.023,
-          "ADX": 54.67,
-          "close": 11.1
+          "EMA20": 14.02,
+          "ADX": 54.681,
+          "close": 11.06
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 11.13,
-        "rsi14": 16.2,
+        "close": 11.06,
+        "rsi14": 16.0,
         "sma20": 13.96,
         "sma50": 17.87,
         "sma200": 21.99,
@@ -224,12 +241,12 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.741,
-          "signal": -1.613,
-          "hist": -0.128
+          "macd": -1.747,
+          "signal": -1.614,
+          "hist": -0.133
         },
         "atr14": 0.76,
-        "support20": 11.01,
+        "support20": 10.97,
         "resistance20": 16.74,
         "vol_ratio": null,
         "bars": 200
@@ -242,32 +259,32 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 25.284,
-          "MACD.macd": -1.521,
-          "MACD.signal": -1.439,
-          "SMA20": 21.245,
-          "SMA50": 25.122,
-          "SMA200": 31.468,
-          "EMA20": 21.5,
+          "RSI": 26.143,
+          "MACD.macd": -1.503,
+          "MACD.signal": -1.436,
+          "SMA20": 21.256,
+          "SMA50": 25.127,
+          "SMA200": 31.47,
+          "EMA20": 21.522,
           "ADX": 47.684,
-          "close": 19.02
+          "close": 19.25
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 19.01,
-        "rsi14": 25.2,
-        "sma20": 21.24,
-        "sma50": 25.12,
+        "close": 19.25,
+        "rsi14": 26.1,
+        "sma20": 21.26,
+        "sma50": 25.13,
         "sma200": 31.47,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.522,
-          "signal": -1.439,
-          "hist": -0.083
+          "macd": -1.503,
+          "signal": -1.436,
+          "hist": -0.067
         },
         "atr14": 0.98,
         "support20": 18.73,
@@ -283,22 +300,22 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 30.709,
-          "MACD.macd": -0.808,
-          "MACD.signal": -0.748,
-          "SMA20": 18.59,
-          "SMA50": 20.22,
+          "RSI": 30.292,
+          "MACD.macd": -0.813,
+          "MACD.signal": -0.749,
+          "SMA20": 18.587,
+          "SMA50": 20.219,
           "SMA200": 20.978,
-          "EMA20": 18.556,
+          "EMA20": 18.55,
           "ADX": 42.662,
-          "close": 17.35
+          "close": 17.29
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 17.39,
-        "rsi14": 31.0,
+        "close": 17.29,
+        "rsi14": 30.3,
         "sma20": 18.59,
         "sma50": 20.22,
         "sma200": 20.98,
@@ -306,11 +323,11 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.805,
-          "signal": -0.747,
-          "hist": -0.058
+          "macd": -0.813,
+          "signal": -0.749,
+          "hist": -0.064
         },
-        "atr14": 0.55,
+        "atr14": 0.56,
         "support20": 17.21,
         "resistance20": 20.44,
         "vol_ratio": null,
@@ -321,25 +338,25 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 23.285,
-          "MACD.macd": -1.398,
-          "MACD.signal": -1.499,
-          "SMA20": 7.324,
-          "SMA50": 11.174,
-          "SMA200": 19.098,
-          "EMA20": 7.646,
+          "RSI": 22.915,
+          "MACD.macd": -1.404,
+          "MACD.signal": -1.5,
+          "SMA20": 7.32,
+          "SMA50": 11.172,
+          "SMA200": 19.097,
+          "EMA20": 7.638,
           "ADX": 53.351,
-          "close": 5.93
+          "close": 5.85
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 5.94,
-        "rsi14": 23.3,
+        "close": 5.85,
+        "rsi14": 22.9,
         "sma20": 7.32,
         "sma50": 11.17,
         "sma200": 19.1,
@@ -347,12 +364,12 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.397,
-          "signal": -1.499,
-          "hist": 0.102
+          "macd": -1.404,
+          "signal": -1.5,
+          "hist": 0.096
         },
         "atr14": 0.59,
-        "support20": 5.85,
+        "support20": 5.88,
         "resistance20": 9.28,
         "vol_ratio": null,
         "bars": 200
@@ -362,34 +379,34 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 32.734,
-          "MACD.macd": -4.172,
-          "MACD.signal": -4.553,
-          "SMA20": 44.346,
-          "SMA50": 57.389,
-          "EMA20": 45.604,
+          "RSI": 32.246,
+          "MACD.macd": -4.199,
+          "MACD.signal": -4.558,
+          "SMA20": 44.329,
+          "SMA50": 57.382,
+          "EMA20": 45.571,
           "ADX": 29.785,
-          "close": 40.58
+          "close": 40.24
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 40.54,
-        "rsi14": 32.7,
-        "sma20": 44.34,
-        "sma50": 57.39,
+        "close": 40.24,
+        "rsi14": 32.2,
+        "sma20": 44.33,
+        "sma50": 57.38,
         "sma200": null,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": null,
         "macd": {
-          "macd": -4.175,
-          "signal": -4.554,
-          "hist": 0.379
+          "macd": -4.199,
+          "signal": -4.558,
+          "hist": 0.359
         },
         "atr14": 3.27,
         "support20": 39.72,
@@ -401,59 +418,79 @@
     "ENERY": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "BUY",
-        "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_BUY",
-        "indicators": {
-          "RSI": 55.499,
-          "MACD.macd": 0.555,
-          "MACD.signal": 0.713,
-          "SMA20": 13.766,
-          "SMA50": 11.854,
-          "SMA200": 9.896,
-          "EMA20": 13.577,
-          "ADX": 20.318,
-          "close": 13.79
-        },
-        "via": "scanner"
-      },
-      "td": null
-    },
-    "FROTO": {
-      "tv": {
-        "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_SELL",
+        "oscillators": "SELL",
+        "moving_averages": "SELL",
         "indicators": {
-          "RSI": 30.587,
-          "MACD.macd": -2.505,
-          "MACD.signal": -1.915,
-          "SMA20": 72.99,
-          "SMA50": 76.58,
-          "SMA200": 92.733,
-          "EMA20": 72.459,
-          "ADX": 36.459,
-          "close": 67.4
+          "RSI": 46.536,
+          "MACD.macd": 0.475,
+          "MACD.signal": 0.697,
+          "SMA20": 13.716,
+          "SMA50": 11.834,
+          "SMA200": 9.891,
+          "EMA20": 13.482,
+          "ADX": 21.263,
+          "close": 12.79
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 67.45,
-        "rsi14": 30.7,
-        "sma20": 72.99,
-        "sma50": 76.58,
+        "close": 12.79,
+        "rsi14": 46.5,
+        "sma20": 13.72,
+        "sma50": 11.83,
+        "sma200": 9.89,
+        "above_sma20": false,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 0.475,
+          "signal": 0.697,
+          "hist": -0.222
+        },
+        "atr14": 0.67,
+        "support20": 12.33,
+        "resistance20": 14.75,
+        "vol_ratio": null,
+        "bars": 200
+      }
+    },
+    "FROTO": {
+      "tv": {
+        "exchange": "BIST",
+        "recommendation": "SELL",
+        "oscillators": "SELL",
+        "moving_averages": "STRONG_SELL",
+        "indicators": {
+          "RSI": 29.622,
+          "MACD.macd": -2.549,
+          "MACD.signal": -1.924,
+          "SMA20": 72.963,
+          "SMA50": 76.569,
+          "SMA200": 92.73,
+          "EMA20": 72.407,
+          "ADX": 36.459,
+          "close": 66.85
+        },
+        "via": "scanner"
+      },
+      "td": {
+        "date": "2026-10-21",
+        "close": 66.85,
+        "rsi14": 29.6,
+        "sma20": 72.96,
+        "sma50": 76.57,
         "sma200": 92.73,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -2.501,
-          "signal": -1.914,
-          "hist": -0.586
+          "macd": -2.549,
+          "signal": -1.924,
+          "hist": -0.625
         },
-        "atr14": 1.99,
+        "atr14": 2.0,
         "support20": 66.5,
         "resistance20": 79.0,
         "vol_ratio": null,
@@ -463,36 +500,36 @@
     "GMSTR": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "recommendation": "STRONG_SELL",
+        "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 39.32,
-          "MACD.macd": -12.051,
-          "MACD.signal": -10.604,
-          "SMA20": 576.488,
-          "SMA50": 604.315,
-          "SMA200": 660.335,
-          "EMA20": 576.602,
+          "RSI": 38.4,
+          "MACD.macd": -12.27,
+          "MACD.signal": -10.648,
+          "SMA20": 576.35,
+          "SMA50": 604.26,
+          "SMA200": 660.321,
+          "EMA20": 576.34,
           "ADX": 21.133,
-          "close": 558.75
+          "close": 556
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 558.25,
-        "rsi14": 39.1,
-        "sma20": 576.46,
-        "sma50": 604.3,
-        "sma200": 660.33,
+        "close": 556.0,
+        "rsi14": 38.4,
+        "sma20": 576.35,
+        "sma50": 604.26,
+        "sma200": 660.32,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -12.091,
-          "signal": -10.612,
-          "hist": -1.478
+          "macd": -12.27,
+          "signal": -10.648,
+          "hist": -1.622
         },
         "atr14": 14.04,
         "support20": 550.75,
@@ -508,53 +545,73 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 51.739,
-          "MACD.macd": 0.564,
-          "MACD.signal": 0.513,
-          "SMA20": 48.593,
-          "SMA50": 47.19,
-          "SMA200": 38.91,
-          "EMA20": 48.461,
-          "ADX": 15.581,
-          "close": 48.8
-        },
-        "via": "scanner"
-      },
-      "td": null
-    },
-    "HRKET": {
-      "tv": {
-        "exchange": "BIST",
-        "recommendation": "NEUTRAL",
-        "oscillators": "NEUTRAL",
-        "moving_averages": "NEUTRAL",
-        "indicators": {
-          "RSI": 46.692,
-          "MACD.macd": 0.481,
-          "MACD.signal": 0.622,
-          "SMA20": 8.827,
-          "SMA50": 7.547,
-          "SMA200": 6.382,
-          "EMA20": 8.683,
-          "ADX": 36.495,
-          "close": 8.16
+          "RSI": 52.648,
+          "MACD.macd": 0.59,
+          "MACD.signal": 0.518,
+          "SMA20": 48.609,
+          "SMA50": 47.197,
+          "SMA200": 38.912,
+          "EMA20": 48.491,
+          "ADX": 15.51,
+          "close": 49.12
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 8.15,
-        "rsi14": 46.6,
-        "sma20": 8.83,
-        "sma50": 7.55,
-        "sma200": 6.38,
-        "above_sma20": false,
+        "close": 49.12,
+        "rsi14": 52.6,
+        "sma20": 48.61,
+        "sma50": 47.2,
+        "sma200": 38.91,
+        "above_sma20": true,
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 0.48,
-          "signal": 0.622,
-          "hist": -0.142
+          "macd": 0.59,
+          "signal": 0.518,
+          "hist": 0.072
+        },
+        "atr14": 2.62,
+        "support20": 42.82,
+        "resistance20": 53.05,
+        "vol_ratio": null,
+        "bars": 200
+      }
+    },
+    "HRKET": {
+      "tv": {
+        "exchange": "BIST",
+        "recommendation": "BUY",
+        "oscillators": "NEUTRAL",
+        "moving_averages": "STRONG_BUY",
+        "indicators": {
+          "RSI": 55.244,
+          "MACD.macd": 0.54,
+          "MACD.signal": 0.634,
+          "SMA20": 8.864,
+          "SMA50": 7.562,
+          "SMA200": 6.386,
+          "EMA20": 8.754,
+          "ADX": 36.495,
+          "close": 8.9
+        },
+        "via": "scanner"
+      },
+      "td": {
+        "date": "2026-10-21",
+        "close": 8.9,
+        "rsi14": 55.2,
+        "sma20": 8.86,
+        "sma50": 7.56,
+        "sma200": 6.39,
+        "above_sma20": true,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 0.54,
+          "signal": 0.634,
+          "hist": -0.094
         },
         "atr14": 0.68,
         "support20": 7.15,
@@ -567,25 +624,25 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 22.554,
-          "MACD.macd": -0.251,
-          "MACD.signal": -0.235,
-          "SMA20": 2.998,
-          "SMA50": 3.548,
-          "SMA200": 4.4,
-          "EMA20": 3.012,
+          "RSI": 19.935,
+          "MACD.macd": -0.256,
+          "MACD.signal": -0.236,
+          "SMA20": 2.995,
+          "SMA50": 3.547,
+          "SMA200": 4.399,
+          "EMA20": 3.006,
           "ADX": 54.582,
-          "close": 2.66
+          "close": 2.6
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 2.65,
-        "rsi14": 21.7,
+        "close": 2.6,
+        "rsi14": 19.9,
         "sma20": 3.0,
         "sma50": 3.55,
         "sma200": 4.4,
@@ -593,9 +650,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.252,
-          "signal": -0.235,
-          "hist": -0.017
+          "macd": -0.256,
+          "signal": -0.236,
+          "hist": -0.02
         },
         "atr14": 0.12,
         "support20": 2.59,
@@ -611,22 +668,22 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 24.439,
-          "MACD.macd": -1.8,
+          "RSI": 24.371,
+          "MACD.macd": -1.801,
           "MACD.signal": -1.845,
-          "SMA20": 11.223,
+          "SMA20": 11.222,
           "SMA50": 15.908,
-          "SMA200": 20.517,
-          "EMA20": 11.436,
+          "SMA200": 20.516,
+          "EMA20": 11.434,
           "ADX": 31.947,
-          "close": 8.94
+          "close": 8.92
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 8.95,
-        "rsi14": 24.5,
+        "close": 8.92,
+        "rsi14": 24.4,
         "sma20": 11.22,
         "sma50": 15.91,
         "sma200": 20.52,
@@ -634,9 +691,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.799,
+          "macd": -1.801,
           "signal": -1.845,
-          "hist": 0.046
+          "hist": 0.044
         },
         "atr14": 0.95,
         "support20": 8.86,
@@ -652,34 +709,34 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 26.193,
-          "MACD.macd": -1.203,
-          "MACD.signal": -1.149,
-          "SMA20": 18.557,
-          "SMA50": 21.453,
+          "RSI": 25.871,
+          "MACD.macd": -1.209,
+          "MACD.signal": -1.15,
+          "SMA20": 18.553,
+          "SMA50": 21.452,
           "SMA200": 25.653,
-          "EMA20": 18.684,
+          "EMA20": 18.678,
           "ADX": 41.885,
-          "close": 16.77
+          "close": 16.7
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 16.77,
-        "rsi14": 26.2,
-        "sma20": 18.56,
+        "close": 16.7,
+        "rsi14": 25.9,
+        "sma20": 18.55,
         "sma50": 21.45,
         "sma200": 25.65,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.203,
-          "signal": -1.149,
-          "hist": -0.054
+          "macd": -1.209,
+          "signal": -1.15,
+          "hist": -0.059
         },
-        "atr14": 0.59,
+        "atr14": 0.6,
         "support20": 16.61,
         "resistance20": 20.26,
         "vol_ratio": null,
@@ -689,36 +746,36 @@
     "MIATK": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "recommendation": "STRONG_SELL",
+        "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 42.37,
-          "MACD.macd": -0.985,
-          "MACD.signal": -0.94,
-          "SMA20": 25.817,
-          "SMA50": 28.671,
-          "SMA200": 36.645,
-          "EMA20": 26.282,
+          "RSI": 41.701,
+          "MACD.macd": -1.01,
+          "MACD.signal": -0.945,
+          "SMA20": 25.801,
+          "SMA50": 28.664,
+          "SMA200": 36.644,
+          "EMA20": 26.251,
           "ADX": 12.522,
-          "close": 23.96
+          "close": 23.64
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 23.94,
-        "rsi14": 42.3,
-        "sma20": 25.82,
-        "sma50": 28.67,
-        "sma200": 36.65,
+        "close": 23.64,
+        "rsi14": 41.7,
+        "sma20": 25.8,
+        "sma50": 28.66,
+        "sma200": 36.64,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.986,
-          "signal": -0.941,
-          "hist": -0.046
+          "macd": -1.01,
+          "signal": -0.945,
+          "hist": -0.065
         },
         "atr14": 2.43,
         "support20": 20.86,
@@ -734,19 +791,39 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 54.435,
-          "MACD.macd": 0.618,
-          "MACD.signal": 0.859,
-          "SMA20": 48.818,
-          "SMA50": 46.574,
-          "SMA200": 35.137,
-          "EMA20": 48.216,
-          "ADX": 24.18,
-          "close": 49.62
+          "RSI": 54.188,
+          "MACD.macd": 0.609,
+          "MACD.signal": 0.857,
+          "SMA20": 48.812,
+          "SMA50": 46.572,
+          "SMA200": 35.136,
+          "EMA20": 48.205,
+          "ADX": 24.232,
+          "close": 49.5
         },
         "via": "scanner"
       },
-      "td": null
+      "td": {
+        "date": "2026-10-21",
+        "close": 49.5,
+        "rsi14": 54.2,
+        "sma20": 48.81,
+        "sma50": 46.57,
+        "sma200": 35.14,
+        "above_sma20": true,
+        "above_sma50": true,
+        "above_sma200": true,
+        "macd": {
+          "macd": 0.609,
+          "signal": 0.857,
+          "hist": -0.248
+        },
+        "atr14": 3.11,
+        "support20": 44.3,
+        "resistance20": 54.05,
+        "vol_ratio": null,
+        "bars": 200
+      }
     },
     "RYSAS": {
       "tv": {
@@ -755,22 +832,22 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "SELL",
         "indicators": {
-          "RSI": 47.146,
-          "MACD.macd": -0.029,
-          "MACD.signal": -0.027,
-          "SMA20": 25.423,
-          "SMA50": 25.582,
+          "RSI": 46.54,
+          "MACD.macd": -0.038,
+          "MACD.signal": -0.029,
+          "SMA20": 25.417,
+          "SMA50": 25.58,
           "SMA200": 21.672,
-          "EMA20": 25.474,
+          "EMA20": 25.463,
           "ADX": 9.448,
-          "close": 24.98
+          "close": 24.86
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 25.0,
-        "rsi14": 47.2,
+        "close": 24.86,
+        "rsi14": 46.5,
         "sma20": 25.42,
         "sma50": 25.58,
         "sma200": 21.67,
@@ -778,11 +855,11 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -0.027,
-          "signal": -0.027,
-          "hist": -0.0
+          "macd": -0.038,
+          "signal": -0.029,
+          "hist": -0.009
         },
-        "atr14": 1.38,
+        "atr14": 1.39,
         "support20": 23.5,
         "resistance20": 27.9,
         "vol_ratio": null,
@@ -796,22 +873,22 @@
         "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 30.999,
-          "MACD.macd": -0.154,
+          "RSI": 30.266,
+          "MACD.macd": -0.156,
           "MACD.signal": -0.15,
-          "SMA20": 1.863,
-          "SMA50": 2.206,
+          "SMA20": 1.862,
+          "SMA50": 2.205,
           "SMA200": 2.494,
-          "EMA20": 1.901,
+          "EMA20": 1.899,
           "ADX": 31.1,
-          "close": 1.68
+          "close": 1.66
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 1.68,
-        "rsi14": 31.0,
+        "close": 1.66,
+        "rsi14": 30.3,
         "sma20": 1.86,
         "sma50": 2.21,
         "sma200": 2.49,
@@ -819,9 +896,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.154,
+          "macd": -0.156,
           "signal": -0.15,
-          "hist": -0.004
+          "hist": -0.005
         },
         "atr14": 0.11,
         "support20": 1.64,
@@ -834,25 +911,25 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 25.633,
-          "MACD.macd": -1.4,
-          "MACD.signal": -1.373,
-          "SMA20": 15.358,
-          "SMA50": 18.971,
+          "RSI": 26.067,
+          "MACD.macd": -1.397,
+          "MACD.signal": -1.372,
+          "SMA20": 15.36,
+          "SMA50": 18.972,
           "SMA200": 20.505,
-          "EMA20": 15.531,
+          "EMA20": 15.535,
           "ADX": 35.647,
-          "close": 13.62
+          "close": 13.66
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 13.62,
-        "rsi14": 25.6,
+        "close": 13.66,
+        "rsi14": 26.1,
         "sma20": 15.36,
         "sma50": 18.97,
         "sma200": 20.5,
@@ -860,9 +937,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.4,
-          "signal": -1.373,
-          "hist": -0.027
+          "macd": -1.397,
+          "signal": -1.372,
+          "hist": -0.025
         },
         "atr14": 0.81,
         "support20": 13.32,
@@ -878,32 +955,32 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 24.263,
-          "MACD.macd": -0.835,
-          "MACD.signal": -0.91,
-          "SMA20": 4.768,
-          "SMA50": 7.208,
+          "RSI": 23.695,
+          "MACD.macd": -0.84,
+          "MACD.signal": -0.911,
+          "SMA20": 4.764,
+          "SMA50": 7.207,
           "SMA200": 8.77,
-          "EMA20": 5.005,
+          "EMA20": 4.998,
           "ADX": 53.164,
-          "close": 4.05
+          "close": 3.98
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 4.07,
-        "rsi14": 24.4,
-        "sma20": 4.77,
+        "close": 3.98,
+        "rsi14": 23.7,
+        "sma20": 4.76,
         "sma50": 7.21,
         "sma200": 8.77,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.833,
-          "signal": -0.91,
-          "hist": 0.077
+          "macd": -0.84,
+          "signal": -0.911,
+          "hist": 0.071
         },
         "atr14": 0.37,
         "support20": 3.91,
@@ -917,34 +994,34 @@
         "exchange": "BIST",
         "recommendation": "BUY",
         "oscillators": "BUY",
-        "moving_averages": "NEUTRAL",
+        "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 49.35,
-          "MACD.macd": 0.234,
-          "MACD.signal": 0.184,
-          "SMA20": 57.04,
-          "SMA50": 57.31,
-          "SMA200": 54.949,
-          "EMA20": 57.426,
+          "RSI": 51.556,
+          "MACD.macd": 0.274,
+          "MACD.signal": 0.192,
+          "SMA20": 57.065,
+          "SMA50": 57.32,
+          "SMA200": 54.951,
+          "EMA20": 57.474,
           "ADX": 9.669,
-          "close": 57.15
+          "close": 57.65
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 56.95,
-        "rsi14": 48.5,
-        "sma20": 57.03,
-        "sma50": 57.31,
+        "close": 57.65,
+        "rsi14": 51.6,
+        "sma20": 57.06,
+        "sma50": 57.32,
         "sma200": 54.95,
-        "above_sma20": false,
-        "above_sma50": false,
+        "above_sma20": true,
+        "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 0.218,
-          "signal": 0.181,
-          "hist": 0.037
+          "macd": 0.274,
+          "signal": 0.192,
+          "hist": 0.082
         },
         "atr14": 2.1,
         "support20": 53.5,
@@ -960,35 +1037,35 @@
         "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 40.481,
-          "MACD.macd": -0.946,
-          "MACD.signal": -0.732,
-          "SMA20": 98.283,
-          "SMA50": 99.843,
-          "SMA200": 107.902,
-          "EMA20": 98.16,
-          "ADX": 25.246,
-          "close": 95.2
+          "RSI": 40.064,
+          "MACD.macd": -0.962,
+          "MACD.signal": -0.735,
+          "SMA20": 98.273,
+          "SMA50": 99.839,
+          "SMA200": 107.901,
+          "EMA20": 98.141,
+          "ADX": 25.303,
+          "close": 95
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 95.1,
-        "rsi14": 40.3,
-        "sma20": 98.28,
+        "close": 95.0,
+        "rsi14": 40.1,
+        "sma20": 98.27,
         "sma50": 99.84,
         "sma200": 107.9,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.954,
-          "signal": -0.733,
-          "hist": -0.221
+          "macd": -0.962,
+          "signal": -0.735,
+          "hist": -0.227
         },
-        "atr14": 2.7,
-        "support20": 94.9,
+        "atr14": 2.71,
+        "support20": 94.85,
         "resistance20": 102.2,
         "vol_ratio": null,
         "bars": 200
@@ -997,39 +1074,39 @@
     "THYAO": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "SELL",
+        "recommendation": "STRONG_SELL",
         "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 36.384,
-          "MACD.macd": -6.275,
-          "MACD.signal": -4.83,
-          "SMA20": 283.513,
-          "SMA50": 292.365,
-          "SMA200": 305.165,
-          "EMA20": 281.875,
-          "ADX": 39.671,
-          "close": 269
+          "RSI": 34.165,
+          "MACD.macd": -6.594,
+          "MACD.signal": -4.893,
+          "SMA20": 283.313,
+          "SMA50": 292.285,
+          "SMA200": 305.145,
+          "EMA20": 281.495,
+          "ADX": 39.797,
+          "close": 265
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 269.5,
-        "rsi14": 36.7,
-        "sma20": 283.54,
-        "sma50": 292.38,
-        "sma200": 305.17,
+        "close": 265.0,
+        "rsi14": 34.2,
+        "sma20": 283.31,
+        "sma50": 292.29,
+        "sma200": 305.14,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -6.235,
-          "signal": -4.822,
-          "hist": -1.413
+          "macd": -6.594,
+          "signal": -4.893,
+          "hist": -1.7
         },
-        "atr14": 7.48,
-        "support20": 263.75,
+        "atr14": 7.82,
+        "support20": 263.0,
         "resistance20": 300.5,
         "vol_ratio": null,
         "bars": 200
@@ -1079,39 +1156,39 @@
     "TOASO": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "recommendation": "STRONG_SELL",
+        "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 30.756,
-          "MACD.macd": -10.683,
-          "MACD.signal": -7.428,
-          "SMA20": 260.463,
-          "SMA50": 270.75,
-          "SMA200": 291.532,
-          "EMA20": 256.488,
-          "ADX": 26.796,
-          "close": 231.6
+          "RSI": 29.412,
+          "MACD.macd": -10.978,
+          "MACD.signal": -7.487,
+          "SMA20": 260.278,
+          "SMA50": 270.676,
+          "SMA200": 291.514,
+          "EMA20": 256.136,
+          "ADX": 27.021,
+          "close": 227.9
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 233.1,
-        "rsi14": 31.3,
-        "sma20": 260.54,
-        "sma50": 270.78,
-        "sma200": 291.54,
+        "close": 227.9,
+        "rsi14": 29.4,
+        "sma20": 260.28,
+        "sma50": 270.68,
+        "sma200": 291.51,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -10.564,
-          "signal": -7.404,
-          "hist": -3.159
+          "macd": -10.978,
+          "signal": -7.487,
+          "hist": -3.491
         },
-        "atr14": 9.93,
-        "support20": 231.5,
+        "atr14": 10.2,
+        "support20": 227.9,
         "resistance20": 291.5,
         "vol_ratio": null,
         "bars": 200
@@ -1124,32 +1201,32 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 37.86,
-          "MACD.macd": -3.654,
-          "MACD.signal": -2.741,
-          "SMA20": 94.497,
-          "SMA50": 100.376,
-          "SMA200": 98.436,
-          "EMA20": 94.02,
+          "RSI": 36.901,
+          "MACD.macd": -3.738,
+          "MACD.signal": -2.758,
+          "SMA20": 94.445,
+          "SMA50": 100.355,
+          "SMA200": 98.43,
+          "EMA20": 93.92,
           "ADX": 24.651,
-          "close": 86.35
+          "close": 85.25
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 86.3,
-        "rsi14": 37.9,
-        "sma20": 94.5,
-        "sma50": 100.38,
-        "sma200": 98.44,
+        "close": 85.25,
+        "rsi14": 36.9,
+        "sma20": 94.45,
+        "sma50": 100.36,
+        "sma200": 98.43,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -3.654,
-          "signal": -2.741,
-          "hist": -0.912
+          "macd": -3.738,
+          "signal": -2.758,
+          "hist": -0.979
         },
         "atr14": 4.71,
         "support20": 84.6,
@@ -1162,25 +1239,25 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "SELL",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 37.781,
-          "MACD.macd": -1.359,
-          "MACD.signal": -0.933,
-          "SMA20": 90.558,
-          "SMA50": 92.648,
+          "RSI": 37.991,
+          "MACD.macd": -1.351,
+          "MACD.signal": -0.931,
+          "SMA20": 90.563,
+          "SMA50": 92.65,
           "SMA200": 91.213,
-          "EMA20": 90.311,
+          "EMA20": 90.321,
           "ADX": 15.419,
-          "close": 86.75
+          "close": 86.85
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 86.75,
-        "rsi14": 37.8,
+        "close": 86.85,
+        "rsi14": 38.0,
         "sma20": 90.56,
         "sma50": 92.65,
         "sma200": 91.21,
@@ -1188,9 +1265,9 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.359,
-          "signal": -0.933,
-          "hist": -0.426
+          "macd": -1.351,
+          "signal": -0.931,
+          "hist": -0.419
         },
         "atr14": 2.15,
         "support20": 85.55,
@@ -1206,32 +1283,32 @@
         "oscillators": "SELL",
         "moving_averages": "SELL",
         "indicators": {
-          "RSI": 38.48,
-          "MACD.macd": -6.373,
-          "MACD.signal": -2.5,
-          "SMA20": 383.35,
-          "SMA50": 390.72,
-          "SMA200": 284.52,
-          "EMA20": 380.742,
+          "RSI": 38.389,
+          "MACD.macd": -6.393,
+          "MACD.signal": -2.504,
+          "SMA20": 383.337,
+          "SMA50": 390.715,
+          "SMA200": 284.518,
+          "EMA20": 380.718,
           "ADX": 30.915,
-          "close": 359.5
+          "close": 359.25
         },
         "via": "scanner"
       },
       "td": {
         "date": "2026-10-21",
-        "close": 360.25,
-        "rsi14": 38.8,
-        "sma20": 383.39,
-        "sma50": 390.74,
+        "close": 359.25,
+        "rsi14": 38.4,
+        "sma20": 383.34,
+        "sma50": 390.71,
         "sma200": 284.52,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -6.313,
-          "signal": -2.488,
-          "hist": -3.826
+          "macd": -6.393,
+          "signal": -2.504,
+          "hist": -3.889
         },
         "atr14": 15.38,
         "support20": 350.75,
