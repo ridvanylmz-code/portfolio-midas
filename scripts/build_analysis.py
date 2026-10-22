@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASOF = ""
+LBL = ""  # "22 Eki kapanışı" ya da snapshot["asof_label"] (ör. "22 Eki 14:40 (seans içi)")
 AY = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
 
 
@@ -83,7 +84,7 @@ def dirw(d):
 
 def momentum(t, tv, tr):
     close, chg = tv["close"], tv.get("change") or 0
-    head = f"{ASOF} kapanışı {tl(close)} ({pn(chg)})."
+    head = f"{LBL} {tl(close)} ({pn(chg)})."
     if not tr or tr.get("state") == "n/a":
         status = "Karışık"
         body = " Trend verisi bu hisse için alınamadı (4S Trend / 15dk Trend / 15dk Tamam yada Devam hesaplanamadı)."
@@ -104,7 +105,7 @@ def momentum(t, tv, tr):
 
 def technical(t, tv, tr):
     out, close = [], tv["close"]
-    out.append(f"{ASOF} kapanışı {tl(close)} ({pn(tv.get('change') or 0)})" + (f"; trend verisi son fiyatı {tl(tr['price'])}" if tr and tr.get("price") else ""))
+    out.append(f"{LBL} {tl(close)} ({pn(tv.get('change') or 0)})" + (f"; trend verisi son fiyatı {tl(tr['price'])}" if tr and tr.get("price") else ""))
     if tr and tr.get("state") != "n/a":
         h, m, st, el = tr.get("h4") or {}, tr.get("m15") or {}, tr.get("st15") or {}, tr.get("elliott") or {}
         if h:
@@ -201,6 +202,8 @@ def main(argv=None):
     global ASOF
     y, mo, dd = (int(x) for x in snap["asof"].split("-"))
     ASOF = f"{dd} {AY[mo - 1]}"
+    global LBL
+    LBL = snap.get("asof_label") or f"{ASOF} kapanışı"
     trd = (json.load(open(a.trend, encoding="utf-8")) or {}).get("tickers", {})
     out = {}
     for t, tv in snap["symbols"].items():
