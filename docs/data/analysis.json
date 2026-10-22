@@ -1,12 +1,12 @@
 {
- "updated": "2026-10-21",
- "note": "Fiyatlar 21 Eki normal seans ~13:55 UTC (TradingView, gecikmeli olabilir). Takip listesi 21 Eki: TEAM, MPC, ELF, ILMN, AVTR (TRGP çıktı, AVTR girdi). Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR. Elliott etiketleri trend sayfasından (4s, kural tabanlı). Diğer hisselerin notları daha eski tarihlidir.",
+ "updated": "2026-10-22",
+ "note": "Fiyatlar 21 Ekim 2026 normal seans kapanışı (TradingView); 22 Eki seans öncesi ayrıca belirtildi. Takip listesi 22 Eki: TEAM, MPC, ELF, ILMN, OKTA (AVTR çıktı). Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Elliott etiketleri trend sayfasından (4 saatlik, kural tabanlı): 'Dalga 3' genelde en güçlü itki, 'Dalga 2/4' düzeltme, 'Dalga 5' olgun ve dönüş riski taşır. Diğer hisselerin notları daha eski tarihlidir.",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
    "momentum": {
     "status": "Kırık",
-    "text": "21 Eki 21 Eki normal seans ~13:55 UTC (TradingView, gecikmeli olabilir) $53,00 (+4,1%). Elimde. Trend 0/7, RSI 31; EMA20 61,9 ve SMA50 67,5 altında. Momentum kırık. Bilanço 9-16 Kas. Satış kararı sende. | 16 Eki kapanış $50,84 (−8,0%); seans sonrası $50,80. Elimde. Trend 0/7, RSI 25 (aşırı satım), EMA20 65,5 ve SMA50 69,2 çok altında. Momentum kırık; ATR stop önerisi $46,49. Satış kararı sende. Bilanço ~16 Kas. | 14 Eki gün içi (~16:50 İstanbul) $62,86 (−2,1%): ATR stop $60,42. | 13 Eki kapanış $64,22 (−2,27%): trend 0/7; ATR stop $60,33. | 12 Eki kapanış $65,71 (−3,67%): trend 0/7, EMA20 (69,7) ve SMA50 (70,5) altında; ATR stop $61,82. | 9 Eki kapanışı $68,21 (−%0,28). 4s EMA aşağı, 15dk EMA aşağı, Supertrend yukarı; Elliott düşüş Dalga 1. Günlük RSI 46,3. Gün içi $66,98'e indi ve {stop:RKLB} stop seviyesine çok yaklaştı (kapanış $68,21, stopa %1,8). Barclays 'Overweight' başlattı, TD Cowen 'Al' tuttu, ama fiyat tepki vermedi; günlük SMA50 (70,53) ve EMA20 (70,15) üstüne dönmeden toparlanma sayılmaz. "
+    "text": "22 Eki: Elimde. 21 Eki kapanış $53,67 (+5,4%), seans öncesi $51,65 (−3,8%). Trend 0/7, RSI 33; EMA20 62,0, SMA50 67,5 altında. Uzay grubu en zayıflar arasında. Momentum kırık; ATR stop önerisi $49,61. Satış kararı sende. Bilanço 9 Kas."
    },
    "technical": [
     "9 Eki kapanışı $68,21 (−%0,28); trend verisi son fiyatı $68,22",
@@ -77,7 +77,7 @@
    "name": "CoreWeave",
    "momentum": {
     "status": "Kırık",
-    "text": "21 Eki 21 Eki normal seans ~13:55 UTC (TradingView, gecikmeli olabilir) $60,60 (−2,5%); seans öncesi $64,30'u geri verdi. Elimde. Trend 0/7, RSI 30; Piper hedefi $153→$124. Momentum kırık; ATR stop önerisi $55,93. Satış kararı sende. Bilanço ~16 Kas. | 16 Eki kapanış $61,39 (−11,9%); seans sonrası $60,86. Elimde. Trend 0/7, RSI 29,5; EMA20 80,1 altında. Momentum kırık; ATR stop önerisi $55,31. Satış kararı sende. Bilanço ~16 Kas. | 14 Eki gün içi (~16:50 İstanbul) $67,42 (−13,4%): ATR stopun ($72,97) altında. Haber akışı: tahvil getirisi %15'e çıktı, 'özel kredi balonu' uyarıları, sigortacılardan finansman arayışı, Avustralya'daki büyük halka arzın başarısızlığı. Finansman riski öne çıktı. Satış kararı sende. | 13 Eki kapanış $77,81 (−3,05%): trend 0/7; ATR stop $72,66. | 12 Eki kapanış $80,26 (−2,22%): trend 0/7; ATR stop $75,37. Serbest nakit akışı −$13,7 mlr: finansman ihtiyacı yüksek. | 9 Eki kapanışı $82,08 (+%0,61). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 1. Günlük RSI 43,7. Kapanış $82,"
+    "text": "22 Eki: 21 Eki satış işlemi kaydı var; pozisyonda kalan varsa: 21 Eki kapanış $61,82 (−0,5%), seans öncesi $58,39 (−5,6%). Trend 0/7, RSI 30,6; EMA20 75,3 altında. Momentum kırık; ATR stop önerisi $55,69. Satış kararı sende. Bilanço 16 Kas."
    },
    "technical": [
     "9 Eki kapanışı $82,08 (+%0,61); trend verisi son fiyatı $82,37",
@@ -148,7 +148,7 @@
    "name": "WhiteFiber",
    "momentum": {
     "status": "Kırık",
-    "text": "21 Eki 21 Eki normal seans ~13:55 UTC (TradingView, gecikmeli olabilir) $11,35 (−0,3%). Elimde. Trend 0/7, RSI 24; en zayıf grup. Momentum kırık; ATR stop önerisi $10,04. Satış kararı sende. Bilanço ~12 Kas. | 16 Eki kapanış $11,76 (−9,6%). Elimde. Trend 0/7, RSI 24,8; BTC madencileri/HPC en zayıf grup. Momentum kırık; ATR stop önerisi $10,38. Satış kararı sende. Bilanço ~12 Kas. | 14 Eki gün içi (~16:50 İstanbul) $13,68 (−5,9%): ATR stop $13,21'e %3,5 mesafede. | 13 Eki kapanış $14,54 (−1,76%; seans sonrası $14,43): trend 1/7, RSI 31; ATR stop $13,26. | 12 Eki kapanış $14,80 (−5,67%): trend 1/7, RSI 31,8; ATR stop $13,43. Nakit çok düşük, nakit yakımı sürüyor: sermaye artırımı riski yüksek. | 9 Eki kapanışı $15,69 (−%0,38). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott düşüş Dalga 3. Günlük RSI 34,8. Fiyat {stop:WYFI} stop seviyesinin altında kapandı (gün içi dip $15,39), maliyetin ({cost:WYFI}) yaklaşık %11 altında; günlük SMA50 (20,72) ve SMA200 (21,56) çok "
+    "text": "22 Eki: Elimde. 21 Eki kapanış $11,66 (+2,5%), seans öncesi $11,22 (−3,8%). Trend 0/7, RSI 26; BTC madencileri/HPC en zayıf grup. Momentum kırık; ATR stop önerisi $10,36. Satış kararı sende. Bilanço 12 Kas."
    },
    "technical": [
     "9 Eki kapanışı $15,69 (−%0,38); trend verisi son fiyatı $15,80",
@@ -213,7 +213,7 @@
    "name": "Sigma Lithium",
    "momentum": {
     "status": "Kırık",
-    "text": "21 Eki 21 Eki normal seans ~13:55 UTC (TradingView, gecikmeli olabilir) $8,33 (−1,5%). Elimde. Trend 0/7, RSI 37; $9,00 geçersizlik seviyesinin altında. ATR stop önerisi $7,86. Satış kararı sende. Bilanço ~13 Kas. | 16 Eki kapanış $8,53 (−3,0%). Elimde. Trend 0/7, RSI 38,8. Daha önce belirlenen $9,00 günlük kapanış geçersizlik seviyesinin altında. ATR stop önerisi $7,89. Satış kararı sende. Bilanço ~13 Kas. | 14 Eki gün içi (~16:50 İstanbul) $8,98 (+3,2%): $9,00 geçersizlik seviyesine geri yaklaştı, günlük kapanış teyidi yok. Satış kararı sende. | 13 Eki kapanış $8,70 (−1,25%): $9,00 geçersizlik seviyesinin altında ikinci kapanış. Trend 0/7, ATR stop $8,06. Satış kararı sende. | 12 Eki kapanış $8,81 (−5,78%): $9,00 geçersizlik seviyesinin altında kapanış. Trend 0/7. Satış kararı sende. | 9 Eki kapanışı $9,35 (−%2,20). 4s EMA aşağı, 15dk EMA aşağı, Supertrend aşağı; Elliott yükseliş Dalga 2. Günlük RSI 44,0. Kapanış $9,35 (−%2,2), {stop:SGML} stopun %3,9 üstünde; maliyet ({cost:SGML}) altında. Maden"
+    "text": "22 Eki: Elimde. 21 Eki kapanış $8,14 (−3,8%), seans öncesi $7,91. Trend 0/7, RSI 35. $9,00 geçersizlik seviyesinin %10 altında; Elliott 'Düşüş · Dalga 3'. ATR stop önerisi $7,54. Satış kararı sende. Bilanço 13 Kas."
    },
    "technical": [
     "9 Eki kapanışı $9,35 (−%2,20); trend verisi son fiyatı $9,36",
@@ -1669,31 +1669,31 @@
   "MPC": {
    "name": "Marathon Petroleum",
    "momentum": {
-    "status": "Güçlü (aşırı alım)",
-    "text": "21 Eki $476,60 (+0,3%). Takip girişi 12 Eki kapanış $458,81 → +3,9%. 52 hafta zirvesi bölgesi; trend 7/7, RSI 72. Dizel marjları rafinerileri taşıyor. Giriş tetikleyicisi: EMA20'ye (~$449) geri çekilmede tutunma; kovalama yok. Stop $446 (2×ATR). Bilanço 3 Kas."
+    "status": "Güçlü (soğuyor)",
+    "text": "21 Eki kapanış $467,98 (−1,5%); 22 Eki seans öncesi $475,75 (+1,7%). Takip girişi 12 Eki kapanış $458,81 → +2,0%. Trend 7/7, RSI 66,8; EMA20 448,2 üstünde. $494 tepesinden geri çekiliyor. Giriş tetikleyicisi: EMA20'ye (~$448-455) geri çekilmede tutunma. Stop $445,31. Bilanço 3 Kas."
    },
    "technical": [
-    "21 Eki $476,60; RSI 72,4; trend 7/7",
-    "4s EMA8 > EMA20 (yukarı); 15 dk aşağı; Supertrend yeni yukarı döndü, çizgi $469",
-    "Elliott dalga sayımı, fiyatın 5 dalga yükselip 3 dalga düzeldiğini varsayar; 'Dalga 2' bir hareketten sonraki ilk düzeltmedir. MPC'de 4s sayım 'Düşüş · Dalga 1 oluşuyor' ($494 tepeden $464'e): kısa vadeli düzeltme başladı; $464 altı kapanış düzeltmeyi derinleştirir.",
-    "1A RS +12, 3A RS +42 puan"
+    "21 Eki kapanış $467,98; RSI 66,8; trend 7/7",
+    "4 saatlik EMA8 471,7 < EMA20 472,4: 1 mum önce aşağı kesişim; 15 dk EMA34 < EMA89",
+    "Supertrend (15 dk) yukarı, çizgi 467,59",
+    "Elliott (kısa vade): 'Düşüş · Dalga 3', $494 tepesinden başlayan düzeltmenin güçlü bacağı. Günlük trend sağlam ama kısa vadede düzeltme sürüyor; EMA20 bölgesine kadar sarkma normal."
    ],
    "fundamental": {
     "metrics": [
      [
       "Piyasa değeri",
-      "$133,8 mlr"
+      "$131,4 mlr"
      ],
      [
       "Serbest nakit akışı (TTM)",
       "$12,9 mlr"
      ],
      [
-      "F/K",
-      "16,4"
+      "Net borç",
+      "$26,5 mlr (MPLX dahil)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $474 (fiyatla aynı). Bir analist +%16 potansiyel görüyor."
+    "fair_value": "Analist ortalama hedefi $475,60 (+1,6%)."
    },
    "news": [
     "20 Eki: XOM, CVX, MPC 52 hafta zirvesi",
@@ -1708,20 +1708,21 @@
   "TEAM": {
    "name": "Atlassian",
    "momentum": {
-    "status": "Güçlü (grup zayıf)",
-    "text": "21 Eki $225,09 (+1,8%). Takip girişi 12 Eki kapanış $207,75 → +8,3%. Trend 7/7, RSI 69 (aşırı alıma yakın); EMA20 203,7, SMA50 188,1 üstünde. 20 günlük direnç $223,70 aşılıyor. Giriş tetikleyicisi: $224 üstü günlük kapanış (kırılım teyidi) ya da EMA20'ye (~$204) geri çekilmede tutunma. Stop $206 (2×ATR ≈ $18,7). Bilanço 5 Kas."
+    "status": "Güçlü",
+    "text": "21 Eki kapanış $225,51 (+2,0%); 22 Eki seans öncesi $223,50 (−0,9%). Takip girişi 12 Eki kapanış $207,75 → +8,5%. Trend 7/7, RSI 69,5 (aşırı alıma yakın); EMA20 203,7, SMA50 188,1 üstünde. $224 kırılımı kapanışla teyit edildi; şimdi geri çekilmede giriş daha iyi. Giriş tetikleyicisi: $220-222 bölgesinde tutunma ya da EMA20'ye (~$204) geri çekilme. Stop $207,03. Bilanço 5 Kas."
    },
    "technical": [
-    "21 Eki $225,09; RSI 69,3; trend 7/7; ADX 30 (güçlü trend)",
-    "4s EMA8 217,6 > EMA20 213,4 (yukarı); 15 dk EMA34 > EMA89 (yukarı); Supertrend yukarı, çizgi $218,6",
-    "Elliott dalga sayımı, fiyatın 5 dalga yükselip 3 dalga düzeldiğini varsayar; 'Dalga 2' bir hareketten sonraki ilk düzeltmedir. TEAM'de 4s sayım 'Düşüş · Dalga 2': $223,70 tepeden küçük düzeltme bitmek üzere; $223,70 üstü kapanış yeni yükseliş dalgası demek.",
-    "1A RS +13,3, 3A RS +141 puan (SPY'ye göre)"
+    "21 Eki kapanış $225,51; RSI 69,5; trend 7/7",
+    "4 saatlik EMA8 221,8 > EMA20 216,6; 15 dk EMA34 224,8 > EMA89 221,8: yukarı",
+    "Supertrend (15 dk) 2 mum önce aşağı döndü, çizgi 226,52: seans öncesi kısa duraklama",
+    "Elliott: 'Yükseliş · Dalga 3 (güçlü itki)', $200 dibinden başladı. Dalga 3 genelde en uzun ve en güçlü dalgadır; $216 (4s EMA20) altına inmedikçe sayım geçerli.",
+    "1A RS +15,1, 3A RS +93 puan"
    ],
    "fundamental": {
     "metrics": [
      [
       "Piyasa değeri",
-      "$56,7 mlr"
+      "$56,8 mlr"
      ],
      [
       "Serbest nakit akışı (TTM)",
@@ -1732,7 +1733,7 @@
       "≈0 (net nakit)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $217,86 (fiyatın %3 altında); BTIG $260, KeyBanc $235. Değerleme dolu."
+    "fair_value": "Analist ortalama hedefi $220,10, fiyatın %2 altında. Değerleme dolu, momentum güçlü."
    },
    "news": [
     "21 Eki: Truist 'Al' korudu",
@@ -1781,20 +1782,20 @@
   "ILMN": {
    "name": "Illumina",
    "momentum": {
-    "status": "Güçlü (kısa vade zayıf)",
-    "text": "21 Eki $276,70 (+3,3%). Takip girişi 12 Eki kapanış $276,67 → %0,0. Trend 7/7, RSI 61; EMA20 264,7, SMA50 238,6 üstünde. Bilanço 29 Eki: öncesinde yeni giriş küçük olmalı. Giriş tetikleyicisi: $279,20 üstü kapanış. Stop $250 (2×ATR)."
+    "status": "Güçlü",
+    "text": "21 Eki kapanış $282,86 (+5,6%); 22 Eki seans öncesi $275,30 (−2,7%). Takip girişi 12 Eki kapanış $276,67 → +2,2%. Trend 7/7, RSI 63,1; EMA20 265,3 üstünde. $279,20 tetikleyicisi 21 Eki kapanışla geldi; seans öncesi geri veriyor. Bilanço 29 Eki: öncesinde yeni giriş küçük olmalı. Stop $267,78."
    },
    "technical": [
-    "21 Eki $276,70; RSI 60,5; trend 7/7",
-    "4s EMA8 < EMA20 (aşağı, 18 mum önce); 15 dk yukarı; Supertrend seans öncesi aşağı döndü",
-    "Elliott dalga sayımı, fiyatın 5 dalga yükselip 3 dalga düzeldiğini varsayar; 'Dalga 2' bir hareketten sonraki ilk düzeltmedir. ILMN'de 4s sayım 'Düşüş · Dalga 2': $279,18 tepeden düzeltme sürüyor; $264 altı kapanış düzeltmeyi derinleştirir.",
-    "1A RS +6,5, 3A RS +38 puan"
+    "21 Eki kapanış $282,86; RSI 63,1; trend 7/7",
+    "4 saatlik EMA8 275,0 > EMA20 271,1 (2 mum önce yukarı kesişim); 15 dk EMA34 > EMA89",
+    "Supertrend (15 dk) az önce aşağı döndü, çizgi 281,59",
+    "Elliott: 'Yükseliş · Dalga 3 (güçlü itki)', $258 dibinden. $271 (4s EMA20) üstü korunursa sayım geçerli."
    ],
    "fundamental": {
     "metrics": [
      [
       "Piyasa değeri",
-      "$41,8 mlr"
+      "$42,7 mlr"
      ],
      [
       "Serbest nakit akışı (TTM)",
@@ -1805,7 +1806,7 @@
       "$1,36 mlr"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $250,05 (fiyatın %10 altında). Değerleme dolu."
+    "fair_value": "Analist ortalama hedefi $250,10, fiyatın %12 altında: momentum değerlemeyi aştı."
    },
    "news": [
     "21 Eki: BioInsight platformuna yeni yapay zekâ yazılımları",
@@ -1820,20 +1821,20 @@
   "ELF": {
    "name": "e.l.f. Beauty",
    "momentum": {
-    "status": "Güçlü",
-    "text": "21 Eki $115,86 (+1,0%). Takip girişi 13 Eki kapanış $108,16 → +7,1%. Trend 7/7, RSI 69; EMA20 108,3 üstünde. Giriş tetikleyicisi: $118,30 (son tepe) üstü kapanış ya da $108-110'a geri çekilmede tutunma. Stop $108 (2×ATR). Bilanço 11 Kas."
+    "status": "Güçlü (yatay)",
+    "text": "21 Eki kapanış $113,78 (−0,8%); 22 Eki seans öncesi $112,40 (−1,2%). Takip girişi 13 Eki kapanış $108,16 → +5,2%. Trend 7/7, RSI 65,4; EMA20 108,1 üstünde. $111,6-118,3 aralığında yatay. Giriş tetikleyicisi: $118,29 üstü kapanış ya da EMA20'ye (~$108) geri çekilmede tutunma. Stop $106,46. Bilanço 11 Kas."
    },
    "technical": [
-    "21 Eki $115,86; RSI 69,3; trend 7/7",
-    "4s ve 15 dk EMA yukarı; Supertrend yukarı, çizgi $113,5",
-    "Elliott dalga sayımı, fiyatın 5 dalga yükselip 3 dalga düzeldiğini varsayar; 'Dalga 2' bir hareketten sonraki ilk düzeltmedir. ELF'te 4s sayım 'Düşüş · Dalga 2': $118,29 tepeden küçük düzeltme; $113,5 korunursa yükseliş sürer.",
-    "1A RS +21, 3A RS +39 puan"
+    "21 Eki kapanış $113,78; RSI 65,4",
+    "4 saatlik EMA8 113,9 > EMA20 112,9 (yukarı); 15 dk EMA34 2 mum önce aşağı kesti",
+    "Supertrend (15 dk) aşağı, çizgi 113,47",
+    "Elliott: 'Yükseliş · Dalga 2 (düzeltme)', $111,61 dibi. Bu dip korunursa Dalga 3 başlayabilir; altı kapanış düzeltmenin uzadığını gösterir."
    ],
    "fundamental": {
     "metrics": [
      [
       "Piyasa değeri",
-      "$6,8 mlr"
+      "$6,7 mlr"
      ],
      [
       "Serbest nakit akışı (TTM)",
@@ -1844,7 +1845,7 @@
       "$585 mn"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $114,06 (fiyatla aynı); JPM $130."
+    "fair_value": "Analist ortalama hedefi $114,90 (+1%)."
    },
    "news": [
     "19 Eki: JPM hedefi $106→$130",
@@ -1897,8 +1898,8 @@
   "AVTR": {
    "name": "Avantor",
    "momentum": {
-    "status": "Güçlü (aşırı alım)",
-    "text": "Takibe girdi 21 Eki: $16,90 (+1,7%, 21 Eki normal seans ~13:55 UTC (TradingView, gecikmeli olabilir)); resmi giriş fiyatı 21 Eki kapanışıyla kaydedilir. Market.json adayı (Sağlık/XLV, lider grup). Trend 7/7, RSI 72; EMA20 15,8, SMA50 15,0 üstünde, 1A +10%. Yaşam bilimleri sarf malzemesi; aktivist baskısı ve analist hedef artışları. Giriş tetikleyicisi: $17 üstü kapanış ya da EMA20'ye (~$15,8) geri çekilmede tutunma. Bilanço 28 Eki: öncesinde küçük. Stop $15,68 (2×ATR)."
+    "status": "Takipten çıktı",
+    "text": "22 Eki takipten çıktı. Giriş 21 Eki kapanış $17,26 → çıkış aynı fiyat (%0). Neden: RSI 74,5 aşırı alım, analist hedefinin ($15,50) %11 üstünde, 28 Eki bilanço öncesi; ILMN ile aynı grup ve aynı hafta bilanço. Sağlıkta tek isim (ILMN) yeterli."
    },
    "technical": [
     "21 Eki $16,90; RSI 72; trend 7/7",
@@ -1932,6 +1933,44 @@
    "dilution": {
     "risk": "Düşük",
     "text": "Yıllık ~$455 mn serbest nakit; borç yüksek ($3,7 mlr) ama azaltılıyor. Bilinen shelf ile hisse satışı ya da ATM yok."
+   }
+  },
+  "OKTA": {
+   "name": "Okta",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "Takibe girdi: 21 Eki kapanış $208,64 (+7,5%) giriş fiyatı; 22 Eki seans öncesi $203,32 (−2,6%). Market.json adayı (Siber güvenlik/CIBR, lider #1). Trend 7/7, RSI 54,6 (aşırı alım değil); EMA20 204,3, SMA50 182,8 üstünde. 3A tepe $235. Giriş tetikleyicisi: EMA20 (~$204) üzerinde tutunup $212 üstü kapanış. Stop $197,23. Bilanço 8 Ara. TEAM ile aynı makro sürücü (faiz hassas yazılım): ikisine birden tam boyut girme."
+   },
+   "technical": [
+    "21 Eki kapanış $208,64; RSI 54,6; trend 7/7",
+    "4 saatlik EMA8 201,26 ≈ EMA20 201,29: yön kararsız; 15 dk EMA34 205,2 > EMA89 201,8 (yukarı)",
+    "Supertrend (15 dk) aşağı, çizgi 206,28",
+    "Elliott: 'Yükseliş · Dalga 1 oluşuyor', $183,60 dibinden. Yeni bir yükseliş dalgasının başı; Dalga 2 düzeltmesi (genelde ilk dalganın %50-62'si) daha iyi giriş verebilir.",
+    "1A RS +12,6, bileşik RS +44,5 puan"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$36,5 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$979 mn"
+     ],
+     [
+      "Net borç",
+      "−$2,25 mlr (net nakit)"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $217,10 (+4%)."
+   },
+   "news": [
+    "21 Eki: siber güvenlik grubunda toplu yükseliş (OKTA +7,5%, ZS +7,8%)"
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "$2,25 mlr net nakit ve ~$1 mlr yıllık serbest nakit; hisse geri alımı var. Bilinen ATM ya da shelf üzerinden hisse satışı yok (çalışan hisse ödemeleri hariç)."
    }
   }
  }

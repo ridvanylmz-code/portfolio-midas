@@ -5,6 +5,6 @@ RKLB, CRWV, WYFI, SGML
 # Takip listesi
 TEAM, MPC, ELF, ILMN, AVTR
 # Lider grup adayları (market.json picks)
-GRAL, CVI, DINO, EL, SXT, MSTR
+GRAL, AVTR, ZS, CVI, DINO, EL, SXT, MSTR
 # Diğer güçlü adaylar
 OKTA, QLYS, RNG, PAYC, NOW, PLTR, CRM, ZBRA, NTAP, IT, CRL, SHOP, ANF, SN, CLF, MRVL, AMD, NVDA, TRGP
