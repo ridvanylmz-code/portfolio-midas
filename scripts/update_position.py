@@ -109,7 +109,13 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
           note="", date=None, update_cash=True, now=None, commission=None, confirm=False, quotes=None):
     """portfolio/history'yi yerinde günceller, kullanıcıya mesaj döndürür. Hata -> ValueError."""
     now = now or datetime.now(timezone.utc)
-    date = date or now.astimezone(ET).date().isoformat()
+    date = (date or "").strip() or now.astimezone(ET).date().isoformat()
+    try:
+        d = datetime.strptime(date, "%Y-%m-%d").date()
+    except ValueError:
+        raise ValueError(f"Geçersiz tarih: {date} (YYYY-AA-GG olmalı)")
+    if d > now.astimezone(ET).date():
+        raise ValueError(f"İleri tarih olamaz: {date}")
     if action not in ACTIONS:
         raise ValueError(f"Geçersiz işlem: {action}")
     if action == "undo":
