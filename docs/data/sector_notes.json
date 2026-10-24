@@ -1,36 +1,36 @@
 {
- "updated": "2026-10-22",
- "summary": "22 Eki seans öncesi (market.json 09:52 UTC; fiyatlar 21 Eki normal seans kapanışı, TradingView): rejim 'Nötr / seçici' 5/7 (21 Eki: 4/7). SPY $773,09 (+0,5%) SMA50 (768,3) üstünde; QQQ $725,20 (+1,1%) SMA50'nin (726,8) hemen altında; IWM $276,48 SMA50 altında. Taranan hisselerin %54'ü SMA50 üstünde (17 Eki: %15): katılım belirgin düzeldi. Bugün seans öncesi Nasdaq vadelileri düşüşte: QQQ −1,8%, SPY −1,1% (yarı iletken ve yapay zekâ altyapısı en çok düşenler). Enflasyon ve 10 yıllık faiz hâlâ ana risk. Lider: siber güvenlik, yazılım (yeniden lider), sağlık (rekor), enerji, temel tüketim. Zayıf: BTC madencileri, nadir toprak, uranyum/nükleer, güneş, lityum, veri merkezi altyapısı, yarı iletken. Nakit %20-25 bandında olmalı. Alımlar yalnız lider gruplardan ve kademeli olmalı; seans öncesi zayıflık nedeniyle bugün açılışta kovalama yok, kapanış teyidi beklenmeli.",
+ "updated": "2026-10-25",
+ "summary": "25 Eki (Pazar) güncelleme; fiyatlar 23 Eki Cuma normal seans kapanışı (TradingView, Twelve Data ile teyitli; market.json 23:47 UTC). Rejim 'Risk-off (savunma)' 3/7'ye düştü (22 Eki: 5/7). SPY $759,97 (−0,5%, hafta −1,7%) SMA50 (767,8) altına indi; QQQ ve IWM de SMA50 altında. Taranan hisselerin %49'u SMA50 üstünde (22 Eki: %54). Sürücüler: ABD-İran gerilimiyle petrol $100 üstü, sıcak çekirdek enflasyon, Nvidia'nın yapay zekâ uyarısıyla yarı iletken satışı; Cuma Dow −1,2%, S&P −0,5%. Bu hafta: Fed kararı 28 Eki (beklenti %4 sabit), Q3 GSYH ve çekirdek PCE 29 Eki. Lider: siber güvenlik, yazılım, enerji, sağlık, temel tüketim. Zayıf: BTC madencileri, nadir toprak, uranyum/nükleer, güneş, lityum, gümüş/bakır madencileri, veri merkezi, yarı iletken, iletişim. Nakit %35-40 bandında olmalı. Yeni alım yalnız lider gruplardan, küçük ve kademeli; Fed (28 Eki) öncesi kovalama yok.",
  "groups": {
   "CIBR": {
-   "note": "22 Eki: Lider #1 (7/7, 1A RS +2,2, bileşik +11,1). 21 Eki OKTA +7,5%, ZS +7,8%, QLYS +3,3%. OKTA takibe girdi. Seans öncesi OKTA/ZS −2,5/−2,8%."
+   "note": "25 Eki: Lider #1 (7/7, bileşik RS +16). 23 Eki ZS +7,3%, QLYS +4,1%, CRWD +8,3%: kritik PHP açığı sonrası güvenlik talebi. ZS takibe girdi, OKTA aday listesinden düştü. Analist hedefleri fiyatın altında kaldı: kovalamak yerine geri çekilme beklenmeli."
   },
   "IGV": {
-   "note": "22 Eki: Yeniden lider (7/7, bileşik +9,9). TEAM grubun en güçlüsü (RS +93); RNG, GTLB, NOW güçlü. Faize en hassas grup: TEAM ve OKTA aynı makro sürücü, ikisine birden tam boyut girme."
+   "note": "25 Eki: Lider #2 (7/7, bileşik +13,5). TEAM en güçlü (RS +104). Faize en hassas grup: TEAM ve ZS aynı makro sürücü, ikisine birden tam boyut girme. NOW bilançosu 28 Eki grup yönünü etkiler."
   },
   "XLK": {
-   "note": "22 Eki: Zayıflayan (1A RS −2,6). Donanım adayları (ZBRA, NTAP) güçlü ama grup zayıf."
+   "note": "25 Eki: Zayıf (trend 4/7, 1A −6,8%). Depolama adayları (P, NTAP) güçlü ama grup zayıf."
   },
   "AIQ": {
-   "note": "22 Eki: Zayıflayan. PLTR, NOW güçlü (7/7); grup yapay zekâ değerleme kaygısıyla baskıda."
+   "note": "25 Eki: Zayıflayan (trend 4/7, 1A −6,4%). Yazılım tarafı (NOW, PLTR) güçlü, donanım tarafı zayıf."
   },
   "SMH": {
-   "note": "22 Eki: Geride (1A RS −5,2, trend 3/7). Seans öncesi MRVL −4,7%, AMD −3,9%, NVDA −2,0%. Yeni alım yok."
+   "note": "25 Eki: Geride (1A −12,8%, trend 3/7). Nvidia uyarısı sonrası sert satış; 23 Eki küçük tepki (+0,7%). Yeni alım yok."
   },
   "XLE": {
-   "note": "22 Eki: Lider (1A RS +7,0). MPC 21 Eki −1,5%, seans öncesi +1,7%. Rafineriler aynı sürücü (crack spread): birden fazla rafineri alma."
+   "note": "25 Eki: Lider (1A +11,5%, RSI 69). Petrol $100 üstü (ABD-İran). MPC hafta −4,9% ama EMA20 üstünde. Rafineriler aynı sürücü: birden fazla rafineri alma. Petrol sert geri dönerse ilk düşen grup olur."
   },
   "XLV": {
-   "note": "22 Eki: Lider (haftalık RS +4,9, 1A +6,1); sağlık hisseleri rekor seviyede. ILMN +5,6%, GRAL +6,4%. ILMN bilançosu 29 Eki, AVTR 28 Eki. AVTR takipten çıktı (RSI 74,5, analist hedefinin %11 üstünde)."
+   "note": "25 Eki: Lider (7/7, 1A +5,5%); 23 Eki −1,1% geri çekilme. ILMN bilançosu 29 Eki (bu hafta)."
   },
   "IBIT": {
-   "note": "22 Eki: Zayıflayan (1A RS −1,4). MSTR 21 Eki +7,5%, seans öncesi −5,3%: oynak, uygun değil."
+   "note": "25 Eki: Kararsız (6/7 ama 1A −5,1%). MSTR oynak, uygun değil."
   },
   "QTUM": {
    "note": "1A toparlanma işareti, 3A hâlâ SPY gerisinde. Erken; teyit için 3A RS'nin pozitife dönmesi beklenir."
   },
   "DTCR": {
-   "note": "12 Eki: Kararsız (3/7), 1A ve 3A SPY gerisinde."
+   "note": "25 Eki: Geride (2/7, 1A −11%). CRWV dahil yapay zekâ altyapısı baskıda."
   },
   "URA": {
    "note": "21 Eki: Trend 0/7, 1A −17,7%."
@@ -39,19 +39,19 @@
    "note": "21 Eki: Trend 0/7, 1A −15,9%."
   },
   "UFO": {
-   "note": "21 Eki: Geride, 1A −9,8%, trend 0/7. RKLB +4% tepki (Mars manevrası haberi, bilanço tarihi açıklandı) ama trend kırık."
+   "note": "25 Eki: Geride (0/7, 1A −9,4%). RKLB trend kırık."
   },
   "ITA": {
    "note": "Savunma: ADX 51 ile güçlü bir DÜŞÜŞ trendi, 0/7. KTOS dahil uzak dur."
   },
   "LIT": {
-   "note": "21 Eki: Geride, 0/7, RSI 29."
+   "note": "25 Eki: Geride (0/7, RSI 22). SGML dahil."
   },
   "REMX": {
-   "note": "21 Eki: Geride, 1A −22%, RSI 20. Trend 0/7."
+   "note": "25 Eki: En zayıflardan (1A −26%, RSI 17)."
   },
   "WGMI": {
-   "note": "22 Eki: En zayıf grup (1A RS −37). WYFI dahil uzak dur."
+   "note": "25 Eki: En zayıf grup (1A −43,5%, RSI 24). WYFI dahil uzak dur."
   },
   "GDX": {
    "note": "21 Eki: Zayıflayan, 1A −10,5%, trend 1/7."
@@ -90,7 +90,7 @@
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "22 Eki: Lider ama zayıflıyor (21 Eki −0,7%). ELF ve EL geri çekiliyor; IFF RSI 73."
+   "note": "25 Eki: Savunma lideri (7/7, 1A +6,8%). ELF ve EL güçlü; aynı sürücü (güzellik), tek isim yeterli."
   },
   "XBI": {
    "note": "21 Eki: Geride ama MRNA (+52% 1A), IOVA, KOD çok güçlü; nakit yakımı yüksek şirketler, dilüsyon riski nedeniyle takip yok."
@@ -100,20 +100,26 @@
   },
   "XLB": {
    "note": "22 Eki: Toparlanan (haftalık RS +4,1, trend 6/7). CLF, SSL güçlü."
+  },
+  "XLC": {
+   "note": "25 Eki: Zayıf (0/7, hafta −6,3%). Uzak dur."
+  },
+  "XLI": {
+   "note": "25 Eki: Zayıf (1/7, 1A −3%)."
   }
  },
  "stocks": {
   "RKLB": {
-   "note": "22 Eki: Elimde. 21 Eki kapanış $53,67 (+5,4%), seans öncesi $51,65 (−3,8%). Trend 0/7, RSI 33; EMA20 62,0, SMA50 67,5 altında. Uzay grubu en zayıflar arasında. Momentum kırık; ATR stop önerisi $49,61. Satış kararı sende. Bilanço 9 Kas."
+   "note": "25 Eki: Elimde. 23 Eki kapanış $52,60 (+2,7%; hafta −3,5%). Trend 0/7, RSI 33; EMA20 60,2, SMA50 66,3 altında. Momentum kırık; ATR stop önerisi $48,61. Satış kararı sende. Bilanço 9 Kas."
   },
   "CRWV": {
-   "note": "22 Eki: 21 Eki satış işlemi kaydı var; pozisyonda kalan varsa: 21 Eki kapanış $61,82 (−0,5%), seans öncesi $58,39 (−5,6%). Trend 0/7, RSI 30,6; EMA20 75,3 altında. Momentum kırık; ATR stop önerisi $55,69. Satış kararı sende. Bilanço 16 Kas."
+   "note": "25 Eki: Pozisyonda kalan varsa: 23 Eki kapanış $54,24 (−2,5%; hafta −16,8%). Trend 0/7, RSI 26. 22 Eki ATR stop önerisi ($55,69) kapanışla kırıldı; yeni ATR stop $48,25. Satış kararı sende. Bilanço 16 Kas."
   },
   "WYFI": {
-   "note": "22 Eki: Elimde. 21 Eki kapanış $11,66 (+2,5%), seans öncesi $11,22 (−3,8%). Trend 0/7, RSI 26; BTC madencileri/HPC en zayıf grup. Momentum kırık; ATR stop önerisi $10,36. Satış kararı sende. Bilanço 12 Kas."
+   "note": "25 Eki: Elimde. 23 Eki kapanış $9,98 (−5,4%; hafta −21%). Trend 0/7, RSI 22. 22 Eki ATR stop önerisi ($10,36) kapanışla kırıldı; yeni ATR stop $8,72. En zayıf grup. Satış kararı sende. Bilanço 12 Kas."
   },
   "SGML": {
-   "note": "22 Eki: Elimde. 21 Eki kapanış $8,14 (−3,8%), seans öncesi $7,91. Trend 0/7, RSI 35. $9,00 geçersizlik seviyesinin %10 altında; Elliott 'Düşüş · Dalga 3'. ATR stop önerisi $7,54. Satış kararı sende. Bilanço 13 Kas."
+   "note": "25 Eki: Elimde. 23 Eki kapanış $7,83 (+4,7%; hafta −11%). Trend 0/7, RSI 36. $9,00 geçersizlik seviyesinin %13 altında. ATR stop önerisi $7,22. Satış kararı sende. Bilanço 13 Kas."
   }
  }
 }
