@@ -1,98 +1,98 @@
 {
- "updated": "2026-10-22",
- "summary": "22 Eki (seans içi ~14:40, PPK sonrası): TCMB politika faizini 100 bp indirdi (%37→%36; gecelik borç verme %39, borçlanma %34,5). 9 ay sonra ilk indirim, beklentiyle uyumlu. Metin: ana eğilimde düşüş teyit edildi, iç talep zayıf; enerji fiyatları yukarı yönlü risk; adımlar 'toplantı bazlı ve ihtiyatlı', bozulmada sıkılaştırma. Piyasa tepkisi zayıf: XU100 11.464 (gün −%1,0, hafta −%4,9, 1A −%13,4), dolar bazında 3A −%22,3; bankacılık −%1,4. İndirim zaten fiyatlıydı; asıl baskı MSCI dondurma kararı ve fon tasfiyeleri. Rejim Risk-off 1/7 (değişmedi), nakit hedefi %35-40. Genişlik %8 (evrenin yalnız %8'i SMA50 üstünde). USD/TRY 49,63, 1A +%1,7 (sakin). Gündem: bilanço dönemi 27 Eki (FROTO/TOASO 28 Eki, TUPRS 29 Eki), 28 Eki yarım gün, 29 Eki tatil. Sonuç: faiz indirimi tek başına dönüş sinyali değil; XU100 SMA50'nin (13.281) çok altında. Yeni alım yok; önce endeksin 11.500 üstünde tutunması ve günlük trendin dönmesi beklenmeli. Göreli güç sırası: Bankacılık (yatırım dışı) > Perakende > Petrol & Rafineri > GYO > Telekom; en zayıf Savunma, Sanayi, Kimya, Holding.",
+ "updated": "2026-10-25",
+ "summary": "25 Eki (23 Eki kapanışıyla): XU100 haftayı −%5,2 ile 11.117'de kapattı; Cuma gün içi 10.707 (Kasım 2025'ten beri en düşük, dolar bazında Haziran 2023'ten beri en düşük). 1A −%15,5, dolar bazında 3A −%24,8. Baskının kaynağı yurt içi yapısal: MSCI'ın 16 Eki'de Türkiye endekslerine koyduğu dondurma (Haziran 2027'ye kadar iyileşme yoksa sınır pazara düşürme riski) ve SPK'nın 131 fonu tasfiye kararı sonrası satışlar. 22 Eki'deki 100 bp faiz indirimi (%36) piyasayı taşımadı. Rejim Risk-off 1/7, nakit hedefi %35-40. Genişlik %5 (hisselerin yalnız %5'i 50 günlük ortalama üstünde): kapitülasyona yakın. USD/TRY 49,69, 1A +%1,9 (TL sakin). Tek olumlu işaret: Cuma dipten dönüşle izlenen hisselerin çoğunda 15dk Tamam yada Devam 'Devam'a döndü ve XU100 günlük RSI 27 (aşırı satım). Bu kısa vadeli tepki işaretidir, trend dönüşü değil: 4S Trend ve 15dk Trend hâlâ neredeyse her yerde aşağı. Gündem: 27 Eki işsizlik, 28 Eki dış ticaret + FROTO/TOASO bilançoları; 28 Eki yarım gün, 29 Eki tatil (resmî takvimden teyit edin); TUPRS bilanço 29 Eki civarı; 3 Kas Ekim TÜFE (Eylül yıllık %29,7); 5 Kas SOKM/TRGYO, 9 Kas TCELL, 11 Kas THYAO. Karar: yeni alım yok. Dönüş için XU100'ün önce 11.500 üstünde kapanış yapması, sonra 20 günlük ortalamaya (≈12.060) dönmesi beklenmeli. Göreli güç sırası: Petrol & Rafineri > Perakende > Bankacılık (yatırım dışı) > GYO > Ulaştırma; en zayıf Savunma, Sanayi, Kimya, Holding.",
  "groups": {
   "ENERJI": {
-   "note": "22 Eki: Karar 'Azalt / kâr al'a döndü: grup 3/7, hafta −%8,2, üyelerin hiçbiri SMA50 üstünde değil. TUPRS 5/7 ama 4S Trend aşağı, bilanço 29 Eki. TRENJ −%4,8, 2/7."
+   "note": "25 Eki: Göreli güçte 1. ama mutlak trend 3/7, hafta −%5,5. TUPRS 5/7, Cuma +%2,4; 3Ç beklentisi güçlü (anket 60,1 mlr TL, geçen yıl 15,8). Bilanço 29 Eki civarı: öncesinde giriş yok. TRENJ 2/7, RSI 29."
   },
   "METAL": {
-   "note": "22 Eki: 'Uzak dur'a geriledi (1A −%13,8, 3A −%18,6, grup 2/7). BRSAN 5/7 tek dayanıklı aday. DOFER 0/7."
+   "note": "25 Eki: Hafta −%14,4, 'Uzak dur'. DOFER 0/7, Cuma −%5,3; Elliott Dalga 5 (olgun)."
   },
   "PERAKENDE": {
-   "note": "22 Eki: Savunmacı lider. SOKM 7/7 ve 4S Trend yukarı, hafta −%1,5 (endeks −%4,9). GMTAS bugün −%4,4 ile 5/7'ye indi. DOHOL 0/7. Faiz indirimi tüketim için orta vadede olumlu."
+   "note": "25 Eki: Savunmacı lider. GMTAS 7/7, Cuma +%6,7, RSI 54. SOKM 5/7, haftayı yatay kapattı (endeks −%5,2), bilanço 5 Kas. DOHOL 0/7."
   },
   "GYO": {
-   "note": "22 Eki: Faiz indiriminin doğrudan kazananı olması beklenen grup ama tepki yok (gün yatay, grup 2/7). RYGYO 7/7 ve 3A +%52 ile grubun ve takip listesinin en güçlülerinden. TRGYO, AKSGY zayıf."
+   "note": "25 Eki: RYGYO 7/7, endeksten 49 puan güçlü (takip listesinin en güçlüsü); 4S Trend ve 15dk Trend yukarı. TRGYO 2/7, AKSGY 3/7: zayıf. Faiz indirimi henüz grupta fiyatlanmadı."
   },
   "ELEKTRIK": {
-   "note": "22 Eki: Grup 2/7. AHGAZ ve ENERY 7→6/7, bugün −%2,5/−%4; RSI 43-45'e soğudu, 4S Trend aşağı. ENJSA 7/7, bilanço 30 Eki. BASGZ 0/7, RSI 27."
+   "note": "25 Eki: Grup 2/7, hafta −%11,9. AHGAZ ve ENERY 6/7'de tutunuyor ama hafta −%8/−%15 ve 4S Trend aşağı: soğuma. BASGZ 0/7, RSI 22."
   },
   "INSAAT": {
-   "note": "22 Eki: Grup 1/7, hafta −%9,8. TKFEN 4/7'ye indi (hafta −%17, 'Azalt'). BIENY RSI 16, aşırı satımda ama dönüş yok. AKFIS 6/7 istisna."
+   "note": "25 Eki: 1/7. BIENY RSI 15 (aşırı satım), 0/7. TKFEN 3/7, hafta −%16,5. AKFIS 5/7 tek istisna."
   },
   "ULASTIRMA": {
-   "note": "22 Eki: Lojistik güçlü, havayolu zayıf. HRKET 7/7 (taban sonrası toparlanma, 1A +%27); RYSAS 7→5/7, 4S Trend aşağı döndü. THYAO 0/7, bilanço 11 Kas."
+   "note": "25 Eki: Lojistik güçlü, havayolu zayıf. HRKET 6/7 ama Cuma −%10 (taban), 15dk Tamam yada Devam: Tamam. RYSAS 4/7. THYAO 0/7, F/K 3,2 ile ucuz; bilanço 11 Kas."
   },
   "TELEKOM": {
-   "note": "22 Eki: Trend 0/7. Endeksten az düşüyor ama mutlak düşüş sürüyor. TCELL 94,20, bilanço 9 Kas."
+   "note": "25 Eki: Trend 0/7, hafta −%9,2. TCELL 16,5 mlr TL'lik gayrimenkul alımı (İFM) piyasada olumsuz karşılandı (Cuma −%3,4). Bilanço 9 Kas."
   },
   "OTOMOTIV": {
-   "note": "22 Eki: Trend 0/7, 6A −%30. Faiz indirimi kredi talebi için olumlu ama bilanço (28 Eki) öncesi alım yok. FROTO RSI 31, TOASO 29."
+   "note": "25 Eki: 0/7, 1A −%17,9. FROTO ve TOASO bilançoları 28 Eki; FROTO 3Ç kâr beklentisi y/y düşük (7,4 mlr TL). Öncesinde alım yok. Temettü verimi yüksek (FROTO %14,9, TOASO %9,0)."
   },
   "BANKA": {
-   "note": "22 Eki: Yalnız piyasa okuması (banka kuralı: yatırım yok). İndirim beklenen ölçüde geldi, XBANK −%1,4: 'haberi sat'. Göreli güçte hâlâ birinci."
+   "note": "25 Eki: Yalnız piyasa okuması (banka kuralı: yatırım yok). Cuma gün içi −%5'e kadar indi, göreli güçte hâlâ üst sırada."
   },
   "HOLDING": {
-   "note": "22 Eki: 1/7, hafta −%10,7. MSCI ve fon tasfiyesi baskısı. GLYHO 6/7 tek istisna."
+   "note": "25 Eki: 1/7, hafta −%10,6. MSCI dondurma ve fon tasfiyesinin en çok vurduğu grup."
   },
   "GIDA": {
-   "note": "22 Eki: 1/7, uzak dur. AEFES/AGHOL alkol nedeniyle değerlendirme dışı."
+   "note": "25 Eki: 1/7, 3A −%21,8. Uzak dur (AEFES/AGHOL alkol nedeniyle değerlendirme dışı)."
   },
   "KIMYA": {
-   "note": "22 Eki: 1/7, 3A −%27,5. SASA 1,66 ₺, dönüş yok, sulandırma riski yüksek."
+   "note": "25 Eki: 1/7, hafta −%12,5. SASA ₺1,60, RSI 28; Elliott Dalga 5 (olgun): düşüş yorgunluğu var ama dönüş teyidi yok."
   },
   "SANAYI": {
-   "note": "22 Eki: 1/7, 3A −%33. KBORU, EMKEL, KLSER RSI 23-25, dipte ama trend yok. GMSTR (gümüş fonu) −%2,2."
+   "note": "25 Eki: 1/7, 3A −%36,6. KBORU, EMKEL, KLSER RSI 20-23, aşırı satımda; dönüş yok. GMSTR (gümüş) 0/7."
   },
   "TEKNOLOJI": {
-   "note": "22 Eki: Günün tek pozitif grubu (+%2,9). MIATK tavan (+%10), ama trend 0/7 ve 3A −%27: tepki, dönüş değil."
+   "note": "25 Eki: 1/7. MIATK (satıldı) Cuma +%3,5, 15dk Trend yukarı: tepki sürüyor ama 4S Trend aşağı."
   },
   "SAVUNMA": {
-   "note": "22 Eki: En zayıf grup (3A −%48). SMRTG, SDTTR, ALTNY, EMPAE 0/7."
+   "note": "25 Eki: En zayıf grup (hafta −%15, 3A −%50,8). SMRTG, SDTTR, ALTNY, EMPAE 0/7; RSI 21-29."
   },
   "SAGLIK": {
-   "note": "22 Eki: 1/7, 'Azalt'. KAYSE 0/7, RSI 21."
+   "note": "25 Eki: 1/7. KAYSE 0/7, RSI 17."
   },
   "HIZMET": {
-   "note": "22 Eki: Grup 1/7. Uzak dur."
+   "note": "25 Eki: 1/7. Uzak dur."
   }
  },
  "stocks": {
   "TUPRS": {
-   "note": "22 Eki: 355,75 ₺, 5/7 ama karar 'Azalt'; 4S Trend aşağı. ATR stop ≈341,5. Bilanço 29 Eki: öncesinde giriş yok."
+   "note": "25 Eki: ₺360,75, 5/7, endeksten 24 puan güçlü. ATR stop ≈345,8. Bilanço 29 Eki civarı: sonrasına kadar bekle; güçlü gelirse ilk aday."
   },
   "TKFEN": {
-   "note": "22 Eki: 177,20 ₺, 4/7, karar 'Azalt'. 16 Eki'deki 185 desteği kırıldı. Bekle."
+   "note": "25 Eki: ₺174,80, 3/7, karar 'Azalt'. Bekle."
   },
   "SOKM": {
-   "note": "22 Eki: 57,60 ₺, 7/7, 4S Trend yukarı, endeksten 18 puan güçlü. ATR stop ≈55,6. Bilanço 5 Kas. Alım sırası: ilk aday."
+   "note": "25 Eki: ₺57,40, 5/7 (7'den indi), haftayı yatay kapattı. ATR stop ≈55,3. Bilanço 5 Kas."
   },
   "HRKET": {
-   "note": "22 Eki: 8,98 ₺, 7/7, 15dk Trend yukarı; 16 Eki tabanından sonra toparlanıyor. ATR stop ≈8,24. Zararda şirket, oynak: küçük boyut."
+   "note": "25 Eki: ₺7,68, Cuma taban (−%10); 15dk Tamam yada Devam: Tamam. ATR stop ≈7,0. Bekle."
   },
   "RYSAS": {
-   "note": "22 Eki: 24,60 ₺, 7→5/7, 4S Trend aşağı döndü. ATR stop ≈23,3. Bekle."
+   "note": "25 Eki: ₺24,06, 4/7, karar 'İzle'. ATR stop ≈22,7."
   },
   "TRENJ": {
-   "note": "12 Eki: Trend 5/7, bugün +%3,2. Enerji grubu destekliyor; stop ≈96,6."
+   "note": "25 Eki: ₺75,10, 2/7, RSI 29. Uzak dur."
   },
   "TRGYO": {
-   "note": "12 Eki: Trend 4/7, endeksten 9 puan güçlü. Bilanço 5 Kas; faiz kararını (22 Eki) bekle."
+   "note": "25 Eki: ₺86,70, 2/7. Bilanço 5 Kas. Bekle."
   },
   "AKSGY": {
-   "note": "12 Eki: Trend 3/7, kararsız. Faiz kararına kadar izle."
+   "note": "25 Eki: ₺9,19, 3/7, PD/DD 0,50. Bekle."
   },
   "DOHOL": {
-   "note": "12 Eki: Trend 1/7, 1A −%13,9. Göreli güç sınırda; izle."
+   "note": "25 Eki: ₺16,38, 0/7. Uzak dur."
   },
   "FROTO": {
-   "note": "12 Eki: Trend 0/7, bilanço 28 Eki. Öncesinde alım yok."
+   "note": "25 Eki: ₺65,05, 0/7, bilanço 28 Eki. Öncesinde alım yok."
   },
   "TOASO": {
-   "note": "12 Eki: Trend 0/7, bilanço 28 Eki. Öncesinde alım yok."
+   "note": "25 Eki: ₺222,60, 0/7, bilanço 28 Eki. Öncesinde alım yok."
   },
   "BASGZ": {
-   "note": "12 Eki: Trend 0/7, 3A −%13,9. Dönüş sinyali yok."
+   "note": "25 Eki: ₺34,00, 0/7, RSI 22. Uzak dur."
   },
   "KBORU": {
    "note": "12 Eki: Trend 0/7, 3A −%57, endeksin 31 puan gerisinde. Takip listesinden çıkarma adayı."
@@ -107,52 +107,52 @@
    "note": "12 Eki: Trend 0/7, 1A −%29. Takip listesinden çıkarma adayı."
   },
   "THYAO": {
-   "note": "22 Eki: 265,25 ₺, 16 Eki ATR seviyesi (266,4) kırıldı; yeni ATR stop ≈258,3. Bilanço 11 Kas."
+   "note": "25 Eki: ₺258,00, 0/7, F/K 3,2 ile çok ucuz ama trend yok. ATR stop ≈249,8; Cuma dibi 247,8 kritik. Bilanço 11 Kas."
   },
   "TCELL": {
-   "note": "22 Eki: 94,20 ₺, 16 Eki ATR seviyesine (94,1) dayandı; yeni ATR stop ≈91,6. Bilanço 9 Kas."
+   "note": "25 Eki: ₺90,10, 0/7, gayrimenkul alımı sonrası −%3,4. ATR stop ≈86,9. Bilanço 9 Kas."
   },
   "ALTIN": {
-   "note": "22 Eki: 70,33 ₺, ATR stop ≈69,45'e %1,3 mesafe; 16 Eki ATR seviyesi (70,69) kırıldı."
+   "note": "25 Eki: ₺69,97, 0/7; 15dk Tamam yada Devam: Tamam. ATR stop ≈69,1 çok yakın."
   },
   "GMSTR": {
-   "note": "22 Eki: 543,50 ₺, 16 Eki ATR seviyesi (548,9) kırıldı; yeni ATR stop ≈529,5."
+   "note": "25 Eki: ₺530,00, 0/7; 15dk Tamam yada Devam: Tamam. ATR stop ≈515,3."
   },
   "SASA": {
-   "note": "12 Eki pozisyon: Trend 0/7, momentum kırık; 1A −%33. Stop ≈1,74. Sermaye artırımı riski yüksek (bkz. araştırma)."
+   "note": "25 Eki: ₺1,60, 0/7, RSI 28. ATR stop ≈1,49."
   },
   "MIATK": {
    "note": "22 Eki: Tavan (+%10, 26 ₺) ama trend 0/7, SMA50 28,56'nın altında. Tepki satışı fırsatı olabilir."
   },
   "SMRTG": {
-   "note": "12 Eki pozisyon: Trend 0/7, 3A −%56, momentum kırık. Stop ≈4,36."
+   "note": "25 Eki: ₺3,79, 0/7. ATR stop ≈3,43."
   },
   "BIENY": {
-   "note": "12 Eki pozisyon: Trend 0/7, RSI 25 (aşırı satım), 3A −%34. Stop ≈13,1."
+   "note": "25 Eki: ₺10,72, 0/7, RSI 15 (aşırı satım). ATR stop ≈9,96."
   },
   "EMKEL": {
-   "note": "12 Eki pozisyon: Bugün +%9,9 tepki ama trend 0/7, 3A −%58. Stop ≈7,86."
+   "note": "25 Eki: ₺5,48, 0/7, 6A −%80. ATR stop ≈4,93."
   },
   "KLSER": {
-   "note": "12 Eki pozisyon: Trend 0/7, 3A −%26. Stop ≈18,15 (fiyata %3,5)."
+   "note": "25 Eki: ₺15,36, 0/7. ATR stop ≈14,7."
   },
   "DOFER": {
-   "note": "12 Eki pozisyon: Trend 0/7, 3A −%27. Stop ≈21,2 (fiyata %4)."
+   "note": "25 Eki: ₺17,66, 0/7. ATR stop ≈16,6."
   },
   "EMPAE": {
-   "note": "12 Eki pozisyon: Trend 0/7, 3A −%38. Stop ≈41,2."
+   "note": "25 Eki: ₺37,80, 0/7. ATR stop ≈34,6."
   },
   "GMTAS": {
-   "note": "22 Eki: 46,96 ₺, 7→5/7, bugün −%4,4. Küçük ve zararda: uzak."
+   "note": "25 Eki: ₺49,60, 7/7, Cuma +%6,7. ATR stop ≈45,3. Zararda şirket: küçük boyut."
   },
   "AHGAZ": {
-   "note": "22 Eki: 43,08 ₺, 7→6/7, bugün −%2,5. ATR stop ≈41,2. Bekle."
+   "note": "25 Eki: ₺43,80, 6/7, 4S Trend aşağı. ATR stop ≈41,8. Analist hedefi 65."
   },
   "ENERY": {
-   "note": "22 Eki: 12,27 ₺, 7→6/7, bugün −%4,1. ATR stop ≈11,6. Bekle."
+   "note": "25 Eki: ₺12,25, 6/7 ama hafta −%15. ATR stop ≈11,5."
   },
   "RYGYO": {
-   "note": "22 Eki: 48,90 ₺, 7/7, RS +41, F/K 5,4. Faiz indiriminden en doğrudan yararlanacak takip hissesi. ATR stop ≈45,1. 4S Trend aşağı: dönüş beklenmeli."
+   "note": "25 Eki: ₺51,10, 7/7, 4S Trend yukarı, F/K 5,7. ATR stop ≈44,8. Rejim düzelince ilk aday; şimdi bekle."
   }
  }
 }
