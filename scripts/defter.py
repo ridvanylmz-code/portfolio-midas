@@ -492,8 +492,10 @@ def flex_parse(root):
 def flex_trades(root):
     """Flex 'Trades' ve 'Open Positions' bölümleri (sorguda yoksa None döner)."""
     trades, pos = None, None
+    lods = {(el.get("levelOfDetail") or "EXECUTION").upper() for el in root.iter("Trade")}
+    keep = "EXECUTION" if "EXECUTION" in lods else "ORDER"
     for el in root.iter("Trade"):
-        if (el.get("levelOfDetail") or "EXECUTION").upper() not in ("EXECUTION", "ORDER"):
+        if (el.get("levelOfDetail") or "EXECUTION").upper() != keep:
             continue
         ds = _flex_date(el.get("tradeDate") or el.get("dateTime"))
         qty = float(el.get("quantity") or 0)
@@ -888,7 +890,7 @@ def periods(d, kind):
 
 # ------------------------------------------------------------------ Excel
 # ------------------------------------------------------------------ işlem kaydı (4 hesap) + kontrol
-ACT_TR = {"buy": "Alış", "sell": "Satış", "deposit": "Para yatırma", "withdraw": "Para çekme"}
+ACT_TR = {"open": "Açılış", "buy": "Alış", "sell": "Satış", "deposit": "Para yatırma", "withdraw": "Para çekme"}
 TX_SRC = {  # hesap -> (işlem dosyası, portföy dosyası, pozisyon anahtarı)
     "midas_usd": ("history.json", "portfolio.json", "portfolio"),
     "midas_tr": ("bist/history.json", "bist/portfolio.json", "portfolio"),
@@ -921,6 +923,9 @@ def trade_rows(d):
             rows.append({"acc": acc, "d": t.get("date"), "act": t["action"], "sym": t.get("ticker") or t.get("symbol"),
                          "qty": t.get("shares"), "px": t.get("price"), "amt": t.get("amount"),
                          "fee": t.get("commission"), "ts": t.get("time")})
+    for acc, m in (d.get("openings") or {}).items():
+        for sym, o in m.items():
+            rows.append({"acc": acc, "d": o["d"], "act": "open", "sym": sym, "qty": o["qty"]})
     ib = d.get("ibkr_trades") or []
     for t in ib:
         rows.append(dict(t, acc="ibkr"))
@@ -939,9 +944,9 @@ def recon_rows(rows, held):
     """Eldeki adet ↔ işlem kayıtlarından çıkan net adet. Fark = kayda geçmemiş işlem (veya kayıt öncesi açılış)."""
     net = {}
     for r in rows:
-        if r["act"] in ("buy", "sell") and r.get("sym") and r.get("qty"):
+        if r["act"] in ("open", "buy", "sell") and r.get("sym") and r.get("qty"):
             k = (r["acc"], r["sym"])
-            net[k] = net.get(k, 0) + (r["qty"] if r["act"] == "buy" else -r["qty"])
+            net[k] = net.get(k, 0) + (-r["qty"] if r["act"] == "sell" else r["qty"])
     out = []
     for acc in held:
         for sym in sorted(set(held[acc]) | {s for a, s in net if a == acc}):
@@ -950,6 +955,33 @@ def recon_rows(rows, held):
                 continue
             out.append((acc, sym, h, n, round(h - n, 6)))
     return out
+
+
+def cmd_open(_):
+    """Bir kerelik açılış kaydı: kayıt başlamadan önce elde olan adetleri (eldeki − işlemlerden net, yalnız pozitif)
+    'Açılış' olarak yazar. Açılışı zaten olan hisseye dokunmaz; eksik satış (negatif fark) işaretli kalır."""
+    d = load()
+    rows, held, warns = trade_rows(d)
+    op = d.setdefault("openings", {})
+    first = {}
+    for r in rows:
+        if r["act"] != "open" and r.get("d"):
+            first[r["acc"]] = min(first.get(r["acc"], r["d"]), r["d"])
+    today = datetime.now(timezone(timedelta(hours=3))).date().isoformat()
+    done, left = [], []
+    for acc, sym, h, n, diff in recon_rows(rows, held):
+        if diff <= 0 or sym in op.get(acc, {}):
+            left.append(f"{ACCOUNTS[acc]['name']} {sym} ({diff:+g})")
+            continue
+        op.setdefault(acc, {})[sym] = {"qty": diff, "d": first.get(acc, today)}
+        done.append(f"{ACCOUNTS[acc]['name']} {sym}")
+    save(d)
+    msg = ["📒 <b>Açılış kaydı</b>: " + (", ".join(done) if done else "yazılacak fark yok")]
+    if left:
+        msg.append("⚠️ Hâlâ fark var, elle kontrol et (girilmemiş işlem olabilir): " + "; ".join(left))
+    msg += [f"⚠️ {w}" for w in warns]
+    common.send_telegram("\n".join(msg))
+    return 0
 
 
 def missing_days(d, back=60):
@@ -1098,8 +1130,6 @@ def build_xlsx(d, out_path):
             if dt:
                 lag = (ts.date() - dt).days
                 put(ws, i, 12, lag)
-                if lag >= 3:
-                    ws.cell(i, 12).font = DN
     ws.auto_filter.ref = f"A1:{get_column_letter(len(cols))}{len(rows) + 1}"
 
     # Kontrol: eksik kayıt ipuçları
@@ -1210,6 +1240,7 @@ def main(argv=None):
     a = sp.add_parser("oto"); a.add_argument("--date"); a.set_defaults(fn=cmd_auto)
     sp.add_parser("gir").set_defaults(fn=cmd_enter)
     sp.add_parser("ibkr").set_defaults(fn=cmd_ibkr)
+    sp.add_parser("acilis").set_defaults(fn=cmd_open)
     sp.add_parser("info-islem").set_defaults(fn=cmd_info_trade)
     e = sp.add_parser("excel"); e.add_argument("--summary", action="store_true"); e.set_defaults(fn=cmd_excel)
     args = ap.parse_args(argv)

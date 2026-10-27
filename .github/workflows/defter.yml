@@ -24,6 +24,7 @@ on:
           - ibkr_cek
           - ice_aktar
           - kutu_anahtar
+          - acilis_kaydi
       tarih:
         description: 'Tarih YYYY-AA-GG (boş = bugün)'
         required: false
@@ -89,7 +90,7 @@ jobs:
           else
             case "$IN_ISLEM" in
               gun_kaydi) c=gir ;; excel_gonder) c=excel ;; otomatik_yenile) c=oto ;;
-              ibkr_cek) c=ibkr ;; ice_aktar) c=ice-aktar ;; kutu_anahtar) c=kutu-anahtar ;; *) c=gir ;;
+              ibkr_cek) c=ibkr ;; ice_aktar) c=ice-aktar ;; kutu_anahtar) c=kutu-anahtar ;; acilis_kaydi) c=acilis ;; *) c=gir ;;
             esac
           fi
           echo "c=$c" >> "$GITHUB_OUTPUT"
