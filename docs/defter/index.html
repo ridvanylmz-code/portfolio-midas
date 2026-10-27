@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Portföy Defteri</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="../tgfs.js?v=1" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -142,7 +143,7 @@ td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
 <script>
 (function(){
 "use strict";
-var tg=window.Telegram&&Telegram.WebApp; if(tg){try{tg.ready();tg.expand();if(tg.disableVerticalSwipes)tg.disableVerticalSwipes();tg.setHeaderColor("#13241a");tg.setBackgroundColor("#040705")}catch(e){}}
+var tg=window.Telegram&&Telegram.WebApp; if(tg){try{tg.ready();tg.expand();if(tg.disableVerticalSwipes)tg.disableVerticalSwipes();tg.setHeaderColor("#040705");tg.setBackgroundColor("#040705")}catch(e){}}
 var $=function(id){return document.getElementById(id)};
 var ACC=[["midas_tr","Midas-TR","TRY"],["info_tr","Info-TR","TRY"],["midas_usd","Midas-USD","USD"],["ibkr","IBKR","USD"]];
 var GRP={tl:{name:"TL TOPLAM",accs:["midas_tr","info_tr"],cur:"TRY",idx:"xu",idxName:"XU100"},
