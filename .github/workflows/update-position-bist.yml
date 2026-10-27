@@ -41,6 +41,10 @@ on:
         description: 'Komisyon ₺ (isteğe bağlı; buy/sell için, boşsa 0)'
         required: false
         type: string
+      date:
+        description: 'İşlem tarihi YYYY-AA-GG (TR saati; boşsa bugün). Ör. 2026-10-22'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -70,6 +74,7 @@ jobs:
           IN_TICKER: ${{ inputs.symbol }}
           IN_PRICE: ${{ inputs.price }}
           IN_COMMISSION: ${{ inputs.commission }}
+          IN_DATE: ${{ inputs.date }}
           IN_CONFIRM: ${{ inputs.confirm }}
           QUANTITY: ${{ inputs.quantity }}
           BRANCH: ${{ github.ref_name }}
