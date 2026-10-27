@@ -489,13 +489,46 @@ def flex_parse(root):
     return nav, flows
 
 
+def flex_trades(root):
+    """Flex 'Trades' ve 'Open Positions' bölümleri (sorguda yoksa None döner)."""
+    trades, pos = None, None
+    for el in root.iter("Trade"):
+        if (el.get("levelOfDetail") or "EXECUTION").upper() not in ("EXECUTION", "ORDER"):
+            continue
+        ds = _flex_date(el.get("tradeDate") or el.get("dateTime"))
+        qty = float(el.get("quantity") or 0)
+        if not ds or not qty:
+            continue
+        trades = trades or []
+        trades.append({"id": el.get("tradeID") or el.get("transactionID") or f"{ds}{el.get('symbol')}{qty}",
+                       "d": ds, "act": "buy" if qty > 0 else "sell", "sym": el.get("symbol"),
+                       "qty": abs(qty), "px": float(el.get("tradePrice") or 0) or None,
+                       "amt": abs(float(el.get("tradeMoney") or el.get("proceeds") or 0)) or None,
+                       "fee": abs(float(el.get("ibCommission") or 0)) or None})
+    for el in root.iter("OpenPosition"):
+        if (el.get("levelOfDetail") or "SUMMARY").upper() != "SUMMARY":
+            continue
+        pos = pos or {}
+        pos[el.get("symbol")] = float(el.get("position") or 0)
+    if pos is None and any(True for _ in root.iter("OpenPositions")):
+        pos = {}
+    return trades, pos
+
+
 def cmd_ibkr(_):
     token, qid = os.environ.get("IBKR_FLEX_TOKEN", "").strip(), os.environ.get("IBKR_FLEX_QUERY_ID", "").strip()
     if not token or not qid:
         print("IBKR Flex secret'ları tanımlı değil; atlandı.")
         return 0
     d = load()
-    nav, flows = flex_parse(flex_fetch(token, qid))
+    root = flex_fetch(token, qid)
+    nav, flows = flex_parse(root)
+    trades, positions = flex_trades(root)
+    if trades:   # rapor dönemi kısa olabilir: eski işlemler silinmez, yeni gelenler eklenir
+        known = {t["id"] for t in d.get("ibkr_trades", [])}
+        d.setdefault("ibkr_trades", []).extend(t for t in trades if t["id"] not in known)
+    if positions is not None:
+        d["ibkr_positions"] = positions
     if not nav:
         raise ValueError("IBKR raporunda 'Net Asset Value (NAV) in Base' bölümü yok; Flex Query'ye ekle.")
     start = ACCOUNTS["ibkr"]["start"]
@@ -854,6 +887,87 @@ def periods(d, kind):
 
 
 # ------------------------------------------------------------------ Excel
+# ------------------------------------------------------------------ işlem kaydı (4 hesap) + kontrol
+ACT_TR = {"buy": "Alış", "sell": "Satış", "deposit": "Para yatırma", "withdraw": "Para çekme"}
+TX_SRC = {  # hesap -> (işlem dosyası, portföy dosyası, pozisyon anahtarı)
+    "midas_usd": ("history.json", "portfolio.json", "portfolio"),
+    "midas_tr": ("bist/history.json", "bist/portfolio.json", "portfolio"),
+    "info_tr": (F_INFO, F_INFO, "positions"),
+}
+
+
+def _ist(ts):
+    try:
+        return datetime.fromisoformat(ts.replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=3)))
+    except Exception:
+        return None
+
+
+def trade_rows(d):
+    """4 hesabın alım/satım/para hareketleri (geri alınanlar hariç), yeni → eski.
+    Dönüş: (satırlar, eldeki pozisyonlar {hesap: {hisse: adet}}, uyarılar)."""
+    rows, held, warns = [], {}, []
+    for acc, (f_tx, f_pf, key) in TX_SRC.items():
+        try:
+            txs = (common.load_json(f_tx, {}) or {}).get("transactions", [])
+            pf = common.load_json(f_pf, {}) or {}
+        except Exception as ex:
+            warns.append(f"{ACCOUNTS[acc]['name']}: okunamadı ({type(ex).__name__})")
+            continue
+        held[acc] = {t: float(p.get("shares") or 0) for t, p in (pf.get(key) or {}).items()}
+        for t in txs:
+            if t.get("action") not in ACT_TR or t.get("undone"):
+                continue
+            rows.append({"acc": acc, "d": t.get("date"), "act": t["action"], "sym": t.get("ticker") or t.get("symbol"),
+                         "qty": t.get("shares"), "px": t.get("price"), "amt": t.get("amount"),
+                         "fee": t.get("commission"), "ts": t.get("time")})
+    ib = d.get("ibkr_trades") or []
+    for t in ib:
+        rows.append(dict(t, acc="ibkr"))
+    if d.get("ibkr_positions") is not None:
+        held["ibkr"] = dict(d["ibkr_positions"])
+    elif not ib:
+        warns.append("IBKR: Flex sorgusunda 'Trades' ve 'Open Positions' bölümü yok; işlemler listelenmedi")
+    for r in rows:
+        if r.get("amt") is None and r.get("qty") and r.get("px"):
+            r["amt"] = round(r["qty"] * r["px"], 2)
+    rows.sort(key=lambda r: (r.get("d") or "", r.get("ts") or ""), reverse=True)
+    return rows, held, warns
+
+
+def recon_rows(rows, held):
+    """Eldeki adet ↔ işlem kayıtlarından çıkan net adet. Fark = kayda geçmemiş işlem (veya kayıt öncesi açılış)."""
+    net = {}
+    for r in rows:
+        if r["act"] in ("buy", "sell") and r.get("sym") and r.get("qty"):
+            k = (r["acc"], r["sym"])
+            net[k] = net.get(k, 0) + (r["qty"] if r["act"] == "buy" else -r["qty"])
+    out = []
+    for acc in held:
+        for sym in sorted(set(held[acc]) | {s for a, s in net if a == acc}):
+            h, n = held[acc].get(sym, 0), round(net.get((acc, sym), 0), 6)
+            if abs(h - n) < 1e-6:
+                continue
+            out.append((acc, sym, h, n, round(h - n, 6)))
+    return out
+
+
+def missing_days(d, back=60):
+    """Son `back` gün içinde defterde değeri olmayan iş günleri (resmî tatil olabilir)."""
+    have = {x["d"]: set(x.get("a", {})) for x in d.get("days", [])}
+    end = date.today() - timedelta(days=1)
+    out = {}
+    for acc, a in ACCOUNTS.items():
+        start = max(end - timedelta(days=back), date.fromisoformat(a.get("start", "2000-01-01")))
+        miss, cur = [], start
+        while cur <= end:
+            if cur.weekday() < 5 and acc not in have.get(cur.isoformat(), ()):
+                miss.append(cur.strftime("%d.%m"))
+            cur += timedelta(days=1)
+        out[acc] = miss
+    return out
+
+
 def build_xlsx(d, out_path):
     from openpyxl import Workbook
     from openpyxl.comments import Comment
@@ -963,6 +1077,52 @@ def build_xlsx(d, out_path):
         put(ws, i, 2, s["xu_avg"], "0.000%", True); put(ws, i, 3, s["xu_up"], "0%"); put(ws, i, 4, s["xu_n"])
         put(ws, i, 5, s["tl_avg"], "0.000%", True); put(ws, i, 6, s["tl_up"], "0%")
         put(ws, i, 7, s["sp_avg"], "0.000%", True); put(ws, i, 8, s["sp_up"], "0%")
+
+    # İşlemler: 4 hesabın alım/satım/para hareketi kaydı
+    rows, held, warns = trade_rows(d)
+    ws = wb.create_sheet("İşlemler", 1)
+    cols = ["İşlem tarihi", "Gün", "Hesap", "İşlem", "Hisse", "Adet", "Fiyat", "Tutar", "Komisyon",
+            "Para", "Kayda girildi (İst.)", "Gecikme (gün)"]
+    header(ws, cols, {3: 11, 4: 13, 11: 17})
+    for i, r in enumerate(rows, 2):
+        dt = datetime.strptime(r["d"], "%Y-%m-%d").date() if r.get("d") else None
+        cur = ACCOUNTS[r["acc"]]["cur"]
+        put(ws, i, 1, dt, "dd.mm.yyyy"); put(ws, i, 2, GUN[dt.weekday()] if dt else None)
+        put(ws, i, 3, ACCOUNTS[r["acc"]]["name"]); put(ws, i, 4, ACT_TR.get(r["act"], r["act"]))
+        put(ws, i, 5, r.get("sym")); put(ws, i, 6, r.get("qty"), "#,##0.####")
+        put(ws, i, 7, r.get("px"), "#,##0.00##"); put(ws, i, 8, r.get("amt"), NUM2)
+        put(ws, i, 9, r.get("fee"), NUM2); put(ws, i, 10, "₺" if cur == "TRY" else "$")
+        ts = _ist(r["ts"]) if r.get("ts") else None
+        if ts:
+            put(ws, i, 11, ts.replace(tzinfo=None), "dd.mm.yyyy hh:mm")
+            if dt:
+                lag = (ts.date() - dt).days
+                put(ws, i, 12, lag)
+                if lag >= 3:
+                    ws.cell(i, 12).font = DN
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(cols))}{len(rows) + 1}"
+
+    # Kontrol: eksik kayıt ipuçları
+    ws = wb.create_sheet("Kontrol", 2)
+    header(ws, ["Hesap", "Hisse", "Eldeki adet", "İşlemlerden net adet", "Fark", "Olası neden"], {6: 48})
+    i = 2
+    for acc, sym, h, n, diff in recon_rows(rows, held):
+        why = ("Kayıt başlamadan önce açılmış pozisyon ya da girilmemiş alış" if diff > 0
+               else "Girilmemiş satış ya da kayıt öncesi alış")
+        for c, v in enumerate((ACCOUNTS[acc]["name"], sym, h, n, diff, why), 1):
+            put(ws, i, c, v, "#,##0.####" if c in (3, 4, 5) else None)
+        ws.cell(i, 5).font = DN
+        i += 1
+    if i == 2:
+        put(ws, i, 1, "✅ Eldeki adetler işlem kayıtlarıyla tutarlı"); i += 1
+    i += 1
+    put(ws, i, 1, "Son 60 günde defter kaydı olmayan iş günleri (tatil olabilir)").font = Font(bold=True)
+    for acc, miss in missing_days(d).items():
+        i += 1
+        put(ws, i, 1, ACCOUNTS[acc]["name"]); put(ws, i, 2, ", ".join(miss) if miss else "✅ eksik yok")
+    for w in warns:
+        i += 2
+        put(ws, i, 1, f"⚠️ {w}")
     wb.save(out_path)
 
 
