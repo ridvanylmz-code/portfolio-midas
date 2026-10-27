@@ -93,6 +93,9 @@ td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
 .pop .box p{margin:6px 0;white-space:pre-wrap}
 .note{font:11.5px var(--mono);color:var(--mute);margin-top:8px}
 .hide{display:none!important}
+.ck{border:1px solid var(--line);border-radius:12px;background:var(--surf);padding:10px 12px;margin-bottom:10px;font:12px/1.6 var(--mono);color:var(--ink2)}
+.ck b{color:var(--ink);font-weight:500}.ck .w{color:var(--warn)}.ck .ok{color:var(--acc)}
+.tools select{font:500 12px var(--mono);background:var(--surf);color:var(--ink2);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
 #vault{background:rgba(4,7,5,.55)!important;-webkit-backdrop-filter:blur(2px)!important;backdrop-filter:blur(2px)!important}
 #vault .vc{background:rgba(8,16,11,.92)!important;border-color:var(--line2)!important;font-family:var(--mono)!important}
 #vault h2{color:var(--acc);font-family:var(--mono);letter-spacing:.06em}
@@ -146,7 +149,7 @@ var GRP={tl:{name:"TL TOPLAM",accs:["midas_tr","info_tr"],cur:"TRY",idx:"xu",idx
          usd:{name:"USD TOPLAM",accs:["midas_usd","ibkr"],cur:"USD",idx:"sp",idxName:"S&P 500 (SPY)"}};
 var GUN=["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"];
 var AY=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
-var D=null, ROWS=null, state={tab:"g",mode:"p",limit:40,rng:"3a",wd:"all"};
+var D=null, ROWS=null, state={tab:"g",mode:"p",limit:40,rng:"3a",wd:"all",acc:"all",sym:"",ilimit:50};
 try{var s=JSON.parse(localStorage.getItem("defter_ui")||"{}");["tab","mode","rng","wd"].forEach(function(k){if(s[k])state[k]=s[k]})}catch(e){}
 function saveUi(){try{localStorage.setItem("defter_ui",JSON.stringify({tab:state.tab,mode:state.mode,rng:state.rng,wd:state.wd}))}catch(e){}}
 
@@ -338,7 +341,7 @@ function charts(){
 $("rng").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;state.rng=b.dataset.r;saveUi();charts()});
 
 /* ---------- tablolar ---------- */
-var TABS=[["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"],["wd","Gün Analizi"]];
+var TABS=[["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"],["wd","Gün Analizi"],["i","İşlemler"]];
 function cell(e,cur,isPct,x){
   x=x?x+" ":"";
   if(!e)return '<td class="'+x+'na">·</td>';
@@ -404,9 +407,51 @@ function tableWd(){
   }
   return h+"</tbody></table>";
 }
+/* ---------- İşlemler ---------- */
+var ACT={open:"Açılış",buy:"Alış",sell:"Satış",deposit:"Para yatırma",withdraw:"Para çekme"};
+function accName(k){var a=ACC.filter(function(A){return A[0]===k})[0];return a?a[1]:k}
+function accCur(k){var a=ACC.filter(function(A){return A[0]===k})[0];return a?a[2]:"USD"}
+function trRows(){
+  var I=D.islem||{rows:[]};
+  return I.rows.filter(function(r){return (state.acc==="all"||r.acc===state.acc)&&(!state.sym||r.sym===state.sym)});
+}
+function checkBox(){
+  var I=D.islem;if(!I)return '<div class="ck w">İşlem kaydı henüz oluşmadı (bir sonraki form ya da gece kaydından sonra görünür).</div>';
+  var out=[],rc=I.recon.filter(function(x){return state.acc==="all"||x.acc===state.acc});
+  if(rc.length)out.push('<span class="w">⚠ Adet farkı:</span> '+rc.map(function(x){return "<b>"+esc(accName(x.acc))+" "+esc(x.sym)+"</b> eldeki "+nf(x.held,4)+" · kayıt "+nf(x.net,4)+" ("+(x.diff>0?"+":"")+nf(x.diff,4)+")"}).join("; "));
+  else out.push('<span class="ok">✓ Eldeki adetler kayıtlarla tutarlı</span>');
+  var ms=[];Object.keys(I.miss||{}).forEach(function(k){if((state.acc==="all"||k===state.acc)&&I.miss[k].length){var m=I.miss[k];ms.push("<b>"+esc(accName(k))+"</b> "+m.length+" gün ("+m.slice(-6).join(", ")+(m.length>6?" …":"")+")")}});
+  out.push(ms.length?'<span class="w">⚠ Son 60 günde kaydı olmayan iş günü:</span> '+ms.join("; ")+' <span class="w">(tatil olabilir)</span>':'<span class="ok">✓ Son 60 günde eksik gün yok</span>');
+  (I.warns||[]).forEach(function(w){out.push('<span class="w">⚠ '+esc(w)+"</span>")});
+  return '<div class="ck">'+out.join("<br>")+"</div>";
+}
+function tableTrades(){
+  var rs=trRows(),h='<table><thead><tr><th>Tarih</th><th>Hesap</th><th>İşlem</th><th>Hisse</th><th>Adet</th><th>Fiyat</th><th>Tutar</th><th>Kom.</th><th class="sep">Girildi</th><th>Gecikme</th></tr></thead><tbody>';
+  if(!rs.length)h+='<tr><td colspan="10" class="na">kayıt yok</td></tr>';
+  rs.slice(0,state.ilimit).forEach(function(r){
+    var c=accCur(r.acc),lag="";
+    if(r.ts&&r.d){lag=Math.round((new Date(r.ts.slice(0,10)+"T12:00:00Z")-new Date(r.d+"T12:00:00Z"))/864e5)}
+    var cl=r.act==="buy"?"up":r.act==="sell"?"dn":"";
+    h+="<tr><td>"+(r.d?trDate(r.d)+'<span class="wd">'+wday(r.d)+"</span>":"—")+"</td><td>"+esc(accName(r.acc))+'</td><td class="'+cl+'">'+(ACT[r.act]||esc(r.act))+"</td><td>"+esc(r.sym||"")+
+       "</td><td>"+(r.qty!=null?nf(r.qty,r.qty%1?4:0):"")+"</td><td>"+(r.px!=null?money(r.px,c,2):"")+"</td><td>"+(r.amt!=null?money(r.amt,c,2):"")+"</td><td>"+(r.fee?money(r.fee,c,2):"")+
+       '</td><td class="sep">'+(r.ts?esc(trDate(r.ts.slice(0,10))+" "+r.ts.slice(11,16)):"")+"</td><td>"+(lag!==""?lag:"")+"</td></tr>";
+  });
+  h+="</tbody></table>";
+  return {html:h,more:rs.length>state.ilimit};
+}
 function tables(){
   $("tabs").innerHTML=TABS.map(function(t){return '<button type="button" class="tab'+(state.tab===t[0]?" on":"")+'" data-t="'+t[0]+'">'+t[1]+"</button>"}).join("");
   var tools="",note="";
+  if(state.tab==="i"){
+    var syms={};((D.islem||{}).rows||[]).forEach(function(r){if(r.sym&&(state.acc==="all"||r.acc===state.acc))syms[r.sym]=1});
+    tools='<div class="seg" id="accSeg">'+[["all","Tümü"]].concat(ACC.map(function(A){return [A[0],A[1]]})).map(function(z){return '<button type="button" data-a="'+z[0]+'" class="'+(state.acc===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("")+"</div>"+
+      '<select id="symSel"><option value="">tüm hisseler</option>'+Object.keys(syms).sort().map(function(k){return '<option'+(state.sym===k?" selected":"")+">"+esc(k)+"</option>"}).join("")+"</select>";
+    $("tblTools").innerHTML=tools;
+    var T=tableTrades();
+    $("tbl").innerHTML=checkBox()+'<div class="tw">'+T.html+"</div>"+(T.more?'<button class="btn more" type="button" id="moreBtn">daha fazla göster</button>':"");
+    $("tblNote").textContent="Geri alınan işlemler ve takip listesi hareketleri gösterilmez. Gecikme = işlem tarihi ile kayda girildiği gün arası. Açılış = kayıt başlamadan önce eldeki adet.";
+    return;
+  }
   if(state.tab==="wd"){
     tools='<div class="seg" id="wdSeg">'+[["1y","Son 1 yıl"],["3y","Son 3 yıl"],["all","Tümü"]].map(function(z){return '<button type="button" data-w="'+z[0]+'" class="'+(state.wd===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("")+"</div>";
     note="Ort. = o günün ortalama günlük değişimi. ↑ oranı = yükselişle kapanan gün oranı. “XU100 ile aynı yön” = TL portföyünün endeksle aynı yönde kapandığı günlerin oranı. ★ en güçlü, ↓ en zayıf gün (XU100).";
@@ -420,9 +465,10 @@ function tables(){
   $("tblNote").textContent=note;
 }
 $("tabs").addEventListener("click",function(e){var b=e.target.closest(".tab");if(!b)return;state.tab=b.dataset.t;saveUi();tables()});
-$("tblTools").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.m){state.mode=b.dataset.m}else if(b.dataset.w){state.wd=b.dataset.w}saveUi();tables()});
+$("tblTools").addEventListener("change",function(e){if(e.target.id==="symSel"){state.sym=e.target.value;state.ilimit=50;tables()}});
+$("tblTools").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.a){state.acc=b.dataset.a;state.sym="";state.ilimit=50}else if(b.dataset.m){state.mode=b.dataset.m}else if(b.dataset.w){state.wd=b.dataset.w}saveUi();tables()});
 $("tbl").addEventListener("click",function(e){
-  if(e.target.id==="moreBtn"){state.limit+=60;tables();return}
+  if(e.target.id==="moreBtn"){if(state.tab==="i")state.ilimit+=100;else state.limit+=60;tables();return}
   var b=e.target.closest(".nb");if(b)openNote(b.dataset.d);
 });
 

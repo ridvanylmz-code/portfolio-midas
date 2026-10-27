@@ -76,6 +76,10 @@ def save(d):
     d["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     if not common.vault_key():
         raise common.VaultError("PORTFOLIO_KEY yok: defter düz yazılmaz")
+    try:   # mini uygulama "İşlemler" sekmesi (defter.json içinde, şifreli)
+        d["islem"] = trade_snapshot(d)
+    except Exception as ex:
+        DIAG.append(f"islem: {type(ex).__name__}")
     common.save_json(F_DEFTER, d)
     # Tutar içermeyen durum dosyası (izleme / hata ayıklama için)
     st = {"updated": d["updated"], "days": len(d["days"]),
@@ -957,6 +961,28 @@ def recon_rows(rows, held):
     return out
 
 
+def trade_snapshot(d):
+    rows, held, warns = trade_rows(d)
+    for r in rows:
+        r.pop("id", None)
+        if r.get("ts"):
+            t = _ist(r["ts"])
+            r["ts"] = t.strftime("%Y-%m-%d %H:%M") if t else None
+    return {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "rows": rows,
+            "recon": [{"acc": a, "sym": s, "held": h, "net": n, "diff": f} for a, s, h, n, f in recon_rows(rows, held)],
+            "miss": missing_days(d), "warns": warns}
+
+
+def cmd_trades(_):
+    """Yalnız İşlemler sekmesini yeniler (pozisyon formlarından çağrılır; hata olsa da formu bozmaz)."""
+    try:
+        save(load())
+        print("islemler yenilendi")
+    except Exception as ex:
+        print(f"::warning::islemler yenilenemedi ({type(ex).__name__})")
+    return 0
+
+
 def cmd_open(_):
     """Bir kerelik açılış kaydı: kayıt başlamadan önce elde olan adetleri (eldeki − işlemlerden net, yalnız pozitif)
     'Açılış' olarak yazar. Açılışı zaten olan hisseye dokunmaz; eksik satış (negatif fark) işaretli kalır."""
@@ -1241,6 +1267,7 @@ def main(argv=None):
     sp.add_parser("gir").set_defaults(fn=cmd_enter)
     sp.add_parser("ibkr").set_defaults(fn=cmd_ibkr)
     sp.add_parser("acilis").set_defaults(fn=cmd_open)
+    sp.add_parser("islemler").set_defaults(fn=cmd_trades)
     sp.add_parser("info-islem").set_defaults(fn=cmd_info_trade)
     e = sp.add_parser("excel"); e.add_argument("--summary", action="store_true"); e.set_defaults(fn=cmd_excel)
     args = ap.parse_args(argv)
