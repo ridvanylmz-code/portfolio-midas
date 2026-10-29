@@ -1,12 +1,12 @@
 {
- "updated": "2026-10-25",
- "note": "Fiyatlar 23 Ekim 2026 Cuma normal seans kapanışı (TradingView; Twelve Data ile teyitli). Takip listesi 25 Eki: TEAM, MPC, ELF, ILMN, ZS (OKTA çıktı, ZS girdi). Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim risk-off: yeni alımlar küçük ve kademeli, Fed (28 Eki) öncesi kovalama yok. Diğer hisselerin notları daha eski tarihlidir.",
+ "updated": "2026-10-29",
+ "note": "Fiyatlar 29 Eki seans içi (~15:15 UTC, 15 dk gecikmeli) (TradingView). Takip listesi 29 Eki: TEAM, MPC, ELF, ILMN, KNSA (ZS çıktı, KNSA girdi). Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim risk-on 6/7: nakit %10-15 bandında olabilir, alımlar kademeli. Diğer hisselerin notları daha eski tarihlidir.",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
    "momentum": {
     "status": "Kırık",
-    "text": "22 Eki: Elimde. 21 Eki kapanış $53,67 (+5,4%), seans öncesi $51,65 (−3,8%). Trend 0/7, RSI 33; EMA20 62,0, SMA50 67,5 altında. Uzay grubu en zayıflar arasında. Momentum kırık; ATR stop önerisi $49,61. Satış kararı sende. Bilanço 9 Kas."
+    "text": "29 Eki seans içi $60,30 (+%2,9; hafta +%16,7). Trend 1/7: EMA20 (59,5) üstüne çıktı ama SMA50 (64,6) altında. Toparlanma erken; ATR stop $56,46. Bilanço 9 Kas. Satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $68,21 (−%0,28); trend verisi son fiyatı $68,22",
@@ -77,7 +77,7 @@
    "name": "CoreWeave",
    "momentum": {
     "status": "Kırık",
-    "text": "22 Eki: 21 Eki satış işlemi kaydı var; pozisyonda kalan varsa: 21 Eki kapanış $61,82 (−0,5%), seans öncesi $58,39 (−5,6%). Trend 0/7, RSI 30,6; EMA20 75,3 altında. Momentum kırık; ATR stop önerisi $55,69. Satış kararı sende. Bilanço 16 Kas."
+    "text": "29 Eki seans içi $63,21 (−%1,1). Trend 0/7, SMA50 80,2 altında. Momentum kırık; ATR stop $57,46. Bilanço 10 Kas. Satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $82,08 (+%0,61); trend verisi son fiyatı $82,37",
@@ -148,7 +148,7 @@
    "name": "WhiteFiber",
    "momentum": {
     "status": "Kırık",
-    "text": "22 Eki: Elimde. 21 Eki kapanış $11,66 (+2,5%), seans öncesi $11,22 (−3,8%). Trend 0/7, RSI 26; BTC madencileri/HPC en zayıf grup. Momentum kırık; ATR stop önerisi $10,36. Satış kararı sende. Bilanço 12 Kas."
+    "text": "29 Eki seans içi $11,84 (−%0,3; hafta +%6,8). Trend 0/7, SMA50 16,75 altında. ATR stop $10,63. Bilanço 12 Kas. Satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $15,69 (−%0,38); trend verisi son fiyatı $15,80",
@@ -213,7 +213,7 @@
    "name": "Sigma Lithium",
    "momentum": {
     "status": "Kırık",
-    "text": "22 Eki: Elimde. 21 Eki kapanış $8,14 (−3,8%), seans öncesi $7,91. Trend 0/7, RSI 35. $9,00 geçersizlik seviyesinin %10 altında; Elliott 'Düşüş · Dalga 3'. ATR stop önerisi $7,54. Satış kararı sende. Bilanço 13 Kas."
+    "text": "29 Eki seans içi $7,90 (−%4,8). Trend 0/7, $9 geçersizlik seviyesinin altında. ATR stop $7,33. Bilanço 13 Kas. Satış kararı sende."
    },
    "technical": [
     "9 Eki kapanışı $9,35 (−%2,20); trend verisi son fiyatı $9,36",
@@ -1669,8 +1669,8 @@
   "MPC": {
    "name": "Marathon Petroleum",
    "momentum": {
-    "status": "Güçlü (soğuyor)",
-    "text": "23 Eki kapanış $457,22 (−0,5%; hafta −4,9%). Takip girişi 12 Eki $458,81 → −0,3%. Trend 7/7, RSI 59,6; EMA20 450,0 üstünde ama MACD sinyalin altında (ivme zayıflıyor). $494 tepesinden −7%. Petrol $100 üstü destek veriyor. Giriş tetikleyicisi: EMA20'de (~$450) tutunup $470 üstü kapanış. Stop $440,78. Bilanço 3 Kas."
+    "status": "Zayıflıyor",
+    "text": "29 Eki seans içi $420,30 (−%4,6; hafta −%10,8). EMA20 (446,9) altında, SMA50 (415,9) testinde; trend 6/7, RSI 43. Temettü %10 artırıldı ($1,10). Analist ortalaması $475,6. Tetikleyici: bilanço (3 Kas) sonrası SMA50 üstünde tutunma. Stop $403,87; altında listeden çıkar."
    },
    "technical": [
     "23 Eki kapanış $457,22; RSI 59,6; ADX 38; MACD 19,2 < sinyal 21,6",
@@ -1707,8 +1707,8 @@
   "TEAM": {
    "name": "Atlassian",
    "momentum": {
-    "status": "Güçlü",
-    "text": "23 Eki kapanış $227,61 (+2,0%; hafta +4,0%). Takip girişi 12 Eki $207,75 → +9,6%. Trend 7/7, RSI 69,3 (aşırı alıma yakın); EMA20 207,7, SMA50 190,7 üstünde; 3A tepe $229,96'ya çok yakın. Giriş tetikleyicisi: $230 üstü kapanış ya da $215-220'ye geri çekilmede tutunma. Stop $209,56. Bilanço 5 Kas: öncesinde tam boyut yok."
+    "status": "Zayıflıyor",
+    "text": "29 Eki seans içi $201,03 (−%8,7; hafta −%10,7). Takip girişi 12 Eki $207,75 → −%3,2. ServiceNow şoku yazılımı düşürdü. Trend 6/7: EMA20 (210,3) altında, SMA50 (194,9) üstünde; RSI 47. Analist ortalaması $225,5 (WF $270, Oppenheimer $275). Tetikleyici: bilanço (5 Kas) sonrası $210 üstü kapanış. Stop $192,56."
    },
    "technical": [
     "23 Eki kapanış $227,61; RSI 69,3; ADX 34,5 (güçlü trend); MACD sinyal üstünde",
@@ -1779,8 +1779,8 @@
   "ILMN": {
    "name": "Illumina",
    "momentum": {
-    "status": "Güçlü (bilanço öncesi)",
-    "text": "23 Eki kapanış $269,42 (0,0%; hafta +0,7%). Takip girişi 12 Eki $276,67 → −2,6%. Trend 7/7, RSI 54,7; EMA20 266,0 hemen üstünde, MACD sinyalin altında; TradingView özeti 'Nötr'. Bilanço 29 Eki (bu hafta): öncesinde giriş yok; bilanço sonrası $280 üstü kapanış tetikleyici. Stop $255,22."
+    "status": "Güçlü",
+    "text": "29 Eki seans içi $289,66 (+%0,3). Trend 7/7, RSI 63; analist ortalaması $253,3 fiyatın altında. Bilanço bugün kapanış sonrası: sonuç görülmeden giriş yok. Stop $268,87."
    },
    "technical": [
     "23 Eki kapanış $269,42; RSI 54,7; ADX 36; MACD 7,7 < sinyal 10,1 (ivme zayıf)",
@@ -1817,8 +1817,8 @@
   "ELF": {
    "name": "e.l.f. Beauty",
    "momentum": {
-    "status": "Güçlü (yatay)",
-    "text": "23 Eki kapanış $114,24 (−0,7%; hafta −1,7%). Takip girişi 13 Eki $108,16 → +5,6%. Trend 7/7, RSI 65,0; EMA20 109,3 üstünde. $111,6-118,3 aralığında yatay; savunma grubu (XLP) lider, risk-off rejimde avantajlı. Giriş tetikleyicisi: $118,29 üstü kapanış ya da EMA20'de (~$109) tutunma. Stop $106,62. Bilanço 4 Kas."
+    "status": "Güçlü",
+    "text": "29 Eki seans içi $114,99 (−%0,4; hafta +%2,7). Trend 7/7, RSI 64; EMA20 110,9 üstünde. Analist ortalaması $114,9 (fiyatla aynı: değerleme dolu). Tetikleyici: bilanço (4 Kas) sonrası $118 üstü kapanış. Stop $107,28."
    },
    "technical": [
     "23 Eki kapanış $114,24; RSI 65; ADX 38; MACD sinyal üstünde",
@@ -1971,8 +1971,8 @@
   "ZS": {
    "name": "Zscaler",
    "momentum": {
-    "status": "Güçlü (aşırı alıma yakın)",
-    "text": "Takibe girdi: 23 Eki kapanış $255,15 (+7,3%) giriş fiyatı. Market.json adayı (Siber güvenlik/CIBR, lider #1), RS +49,5. Hafta +14,3%, 3A tepe ($255,55) kırılmak üzere, hacim normalin 1,5 katı; TradingView özeti 'Güçlü Al'. RSI 72: kovalamak yerine geri çekilme beklenmeli. Giriş tetikleyicisi: Fed (28 Eki) sonrası $240-245'e geri çekilmede tutunma ya da $256 üstü hacimli kapanış. Stop $231,69. Bilanço 1 Ara. TEAM ile aynı makro sürücü (faiz hassas yazılım): ikisine birden tam boyut girme."
+    "status": "İzleme dışı",
+    "text": "29 Eki: takip listesinden çıktı. Seans içi $244,55 (−%4,4); Fortinet şoku siber güvenliği düşürdü, fiyat analist ortalamasının ($238) üstünde ve TEAM ile aynı makro sürücü."
    },
    "technical": [
     "23 Eki kapanış $255,15; RSI 72; trend 7/7; ADX 23,6",
@@ -2006,6 +2006,44 @@
     "risk": "Düşük-orta",
     "text": "2025'te $1,5 mlr %0 kuponlu, 2028 vadeli dönüştürülebilir tahvil ihracı var (dönüşümde sınırlı dilüsyon). Serbest nakit akışı pozitif; bilinen ATM programı ya da shelf üzerinden hisse satışı yok. 12 ayda sermaye artırımı beklentisi düşük."
    }
+  },
+  "KNSA": {
+   "name": "Kiniksa Pharmaceuticals",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "29 Eki seans içi $97,75 (+%2,7). Takip girişi 29 Eki $97,75. Trend 7/7, RSI 72 (aşırı alıma yakın), 1A RS +29. Giriş tetikleyicisi: $92-95'e geri çekilmede tutunma ya da $100 üstü kapanış. Stop $88,72. Sonraki bilanço Şubat: yakın tarihli olay riski yok."
+   },
+   "technical": [
+    "29 Eki seans içi $97,75; RSI 72; trend 7/7 (günlük ve haftalık yukarı)",
+    "Grup: sağlık (XLV) lider, gün +%2,2"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$7,7 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$197 mn"
+     ],
+     [
+      "Nakit / borç",
+      "$569 mn / $8 mn"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $106,5, fiyatın %9 üstünde. 3Ç gelir $286 mn, net kâr $47 mn (ARCALYST büyümesi)."
+   },
+   "news": [
+    "29 Eki: Wells Fargo hedefi $87→$110",
+    "28 Eki: Goldman 'Al', Wedbush 'Üstün performans' ($102) korudu",
+    "27 Eki: 3Ç bilanço; KPL-387 faz 3'e geçti"
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Pozitif serbest nakit akışı, borç neredeyse yok; 12 ayda sermaye artırımı ihtiyacı görünmüyor."
+   },
+   "macro": "Faize ve yapay zekâya duyarsız; yazılım ağırlıklı listeyi dengeler."
   }
  }
 }

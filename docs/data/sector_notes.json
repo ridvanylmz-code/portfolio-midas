@@ -1,15 +1,15 @@
 {
  "updated": "2026-10-29",
- "summary": "29 Eki güncelleme; fiyatlar 28 Eki normal seans kapanışı + 29 Eki seans öncesi (market.json 10:04 UTC, veri 15 dk gecikmeli). Rejim 'Risk-on (yükseliş)' 6/7'ye çıktı (25 Eki: 3/7). SPY $772,31 (+%0,3) SMA50 (767,6) üstüne döndü; QQQ ve DIA da yukarıda, yalnız IWM SMA50 testi zayıf. Taranan hisselerin %61'i SMA50 üstünde (25 Eki: %49). Fed 28 Eki'de faizi %3,75-4,00'te sabit tuttu; Cook ve Hammack 25 bp artış yönünde karşı oy verdi: Aralık'ta artış riski masada. 28 Eki: yapay zekâ altyapısı güçlü (Vertiv +%17, Micron +%5,5), güneş zayıf (Enphase −%17). Brent ~114 $. Lider: siber güvenlik, yazılım, enerji, sağlık, Bitcoin, yapay zekâ, biyoteknoloji. Zayıf: BTC madencileri/HPC, nadir toprak, güneş, Çin internet, nükleer, temiz enerji, lityum. Nakit %10-15 bandına inebilir; yeni alım yalnız lider gruplardan ve kademeli. Elimizdeki CRWV, WYFI, RKLB, SGML zayıf gruplarda, trend 0/7: 4S Trend yukarı dönse de günlük trend kırık.",
+ "summary": "29 Eki akşam güncellemesi; fiyatlar 29 Eki seans içi (~15:15 UTC, 15 dk gecikmeli). Rejim 'Risk-on (yükseliş)' 6/7, nakit %10-15 bandında olabilir; tek eksik QQQ'nun SMA50 altına inmesi. SPY $770 (−%0,3), QQQ $716,6 (−%1,2), IWM +%1,3, eşit ağırlık RSP +%1,0: para büyük teknolojiden geniş piyasaya dönüyor. Yükselen hisse oranı (SMA50 üstü) %60. Bilanço şoku: ServiceNow −%25 (cRPO büyüme rehberi %18,5'e yavaşladı), Fortinet −%21, Alphabet −%12; Meta +%3. Yazılım (IGV −%4,1) ve siber güvenlik (CIBR −%3,8) bugün sert düştü ama haftalık trendleri yukarı. Makro: 3Ç GSYH %3,4, PCE beklentiyle uyumlu; ABD 10 yıllık %4,99, VIX 16,3. Lider: siber güvenlik, enerji, sağlık, yazılım, biyoteknoloji. Zayıf: BTC madencileri/HPC, nadir toprak, lityum, güneş, Çin internet, uranyum. Alımlar yalnız lider gruplardan ve kademeli olmalı; yazılımda bilanço haftası bitmeden kovalama yok. Elimizdeki CRWV, WYFI, SGML trend 0/7, RKLB 1/7: momentum kırık.",
  "groups": {
   "CIBR": {
-   "note": "25 Eki: Lider #1 (7/7, bileşik RS +16). 23 Eki ZS +7,3%, QLYS +4,1%, CRWD +8,3%: kritik PHP açığı sonrası güvenlik talebi. ZS takibe girdi, OKTA aday listesinden düştü. Analist hedefleri fiyatın altında kaldı: kovalamak yerine geri çekilme beklenmeli."
+   "note": "29 Eki: Lider #1 (bileşik RS +11,2) ama gün −%3,8: Fortinet −%21 bilanço şoku tüm gruba yayıldı. Fiyat EMA20 altına indi, SMA50 (101,1) üstünde. ZS takipten çıktı; grup SMA50'yi korursa geri çekilme alım fırsatı olur."
   },
   "IGV": {
-   "note": "25 Eki: Lider #2 (7/7, bileşik +13,5). TEAM en güçlü (RS +104). Faize en hassas grup: TEAM ve ZS aynı makro sürücü, ikisine birden tam boyut girme. NOW bilançosu 28 Eki grup yönünü etkiler."
+   "note": "29 Eki: Lider #4, gün −%4,1. ServiceNow −%25 (büyüme rehberi yavaşladı) yazılımı aşağı çekti. TEAM −%8,7 ama SMA50 (194,9) üstünde; TEAM bilançosu 5 Kas. Faize en hassas grup, 10 yıllık %5'e yakın."
   },
   "XLK": {
-   "note": "25 Eki: Zayıf (trend 4/7, 1A −6,8%). Depolama adayları (P, NTAP) güçlü ama grup zayıf."
+   "note": "29 Eki: Zayıflayan (1A −%3,6). Alphabet −%12 büyük teknolojiyi bastırıyor. Depolama (P, NTAP) güçlü ama grup zayıf: yeni alım yok."
   },
   "AIQ": {
    "note": "25 Eki: Zayıflayan (trend 4/7, 1A −6,4%). Yazılım tarafı (NOW, PLTR) güçlü, donanım tarafı zayıf."
@@ -18,10 +18,10 @@
    "note": "25 Eki: Geride (1A −12,8%, trend 3/7). Nvidia uyarısı sonrası sert satış; 23 Eki küçük tepki (+0,7%). Yeni alım yok."
   },
   "XLE": {
-   "note": "25 Eki: Lider (1A +11,5%, RSI 69). Petrol $100 üstü (ABD-İran). MPC hafta −4,9% ama EMA20 üstünde. Rafineriler aynı sürücü: birden fazla rafineri alma. Petrol sert geri dönerse ilk düşen grup olur."
+   "note": "29 Eki: Lider #2 (1A +%11,5) ama hafta −%0,9; MPC hafta −%10,8, EMA20 altında. Rafineri marjı zirve sonrası soğuyor. MPC bilançosu 3 Kas, temettü %10 artırıldı. Petrol sert dönerse ilk düşen grup."
   },
   "XLV": {
-   "note": "25 Eki: Lider (7/7, 1A +5,5%); 23 Eki −1,1% geri çekilme. ILMN bilançosu 29 Eki (bu hafta)."
+   "note": "29 Eki: Lider #3, gün +%2,2, 1A +%7,7. Bilanço sezonunda en sağlam grup. KNSA (kârlı, hedefler yükseldi) takibe girdi; ILMN bilançosu bugün kapanış sonrası."
   },
   "IBIT": {
    "note": "25 Eki: Kararsız (6/7 ama 1A −5,1%). MSTR oynak, uygun değil."
@@ -93,7 +93,7 @@
    "note": "25 Eki: Savunma lideri (7/7, 1A +6,8%). ELF ve EL güçlü; aynı sürücü (güzellik), tek isim yeterli."
   },
   "XBI": {
-   "note": "21 Eki: Geride ama MRNA (+52% 1A), IOVA, KOD çok güçlü; nakit yakımı yüksek şirketler, dilüsyon riski nedeniyle takip yok."
+   "note": "29 Eki: Lider, hafta +%4,4. Adaylar güçlü ama KOD nakit yakıyor (dilüsyon riski yüksek), MRNA ve GMAB analist hedeflerinin üstünde."
   },
   "XLY": {
    "note": "22 Eki: Lider sınıfına geçti (haftalık RS +3,5) ama trend 3/7; teyit bekle."
