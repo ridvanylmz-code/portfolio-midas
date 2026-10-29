@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-09",
+ "asof": "2026-10-29",
  "dilution": {
   "SASA": {
    "risk": "Yüksek",
@@ -38,8 +38,8 @@
    "text": "Birleşme süreci: SPK onayı 23 Temmuz 2026, genel kurul 28 Ağustos, tescil 31 Ağustos 2026. Kaynakta birleşme nedeniyle yeni pay çıkarılıp çıkarılmadığı belirtilmiyor; pay değişim oranı ve olası yeni pay için KAP'a bakın. Net zarar −1,6 mlr ₺. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
   },
   "KLSER": {
-   "risk": "Orta",
-   "text": "Son 12 ayda pay ihracı bulamadım. Ancak net zarar −1,9 mlr ₺, borç/özsermaye 1,27 ve serbest nakit akışı −2,3 mlr ₺: finansman ihtiyacı var, artırım ya da borçlanma ihtimali orta düzeyde (çıkarım). (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
+   "risk": "Yüksek",
+   "text": "27 Eki: şirket bankalara Finansal Yeniden Yapılandırma başvurusu yaptı (KAP bildirimi 1688409); amaç kredi vadelerini nakit akışına uydurmak. Hisse 28 Eki taban (−%9,95). Net zarar −1,9 mlr ₺, borç/özsermaye 1,27, serbest nakit akışı −2,3 mlr ₺. Yapılandırma sürecinde bedelli sermaye artırımı ya da borcun paya dönüşmesi ihtimali yükseldi (çıkarım). KAP'tan takip edin."
   },
   "DOFER": {
    "risk": "Bilinmiyor",
