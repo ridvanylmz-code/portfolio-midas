@@ -431,20 +431,29 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     var out=[];
     Object.keys(pos||{}).forEach(function(t){
       var p=pos[t]||{}, s=+p.shares||0; if(!s)return;
-      var cb=+p[costKey]||0, x=quotes[t]||{}, px=+x.c||+p.last||0;
+      var cb=p[costKey]==null?null:+p[costKey], x=quotes[t]||{}, px=+x.c||+p.last||0;
       out.push({t:t,s:s,cb:cb,v:px?s*px:null});
     });
     return out.sort(function(a,b){return (b.v||0)-(a.v||0)});
+  }
+  /* IBKR: Flex 'Open Positions' (defter.json → ibkr_pos_detail; eski kayıtta yalnız adet: ibkr_positions) */
+  function ibkrRows(d){
+    if(!d)return null; var det=d.ibkr_pos_detail, q=d.ibkr_positions, pos={};
+    if(det)Object.keys(det).forEach(function(t){pos[t]={shares:det[t].shares,cost:det[t].cost,last:det[t].mark}});
+    else if(q)Object.keys(q).forEach(function(t){pos[t]={shares:q[t],cost:null}});
+    else return null;
+    return pozRows(pos,(Q&&Q.quotes)||{},"cost");
   }
   function loadPoz(){
     if(POZ||pozLoading||!P)return;
     var j=function(u){return fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null})
       .catch(function(){return null}).then(function(o){return o&&window.Vault?Vault.open(o):o})};
-    pozLoading=Promise.all([j("bist/data/portfolio.json"),j("bist/data/quotes.json"),j(RAW+"defter/info_portfolio.json")]).then(function(r){
+    pozLoading=Promise.all([j("bist/data/portfolio.json"),j("bist/data/quotes.json"),j(RAW+"defter/info_portfolio.json"),j("defter/data/defter.json")]).then(function(r){
       var bq=(r[1]&&r[1].quotes)||{};
       POZ=[{n:"Midas-USD",rows:pozRows(P.portfolio,(Q&&Q.quotes)||{},"cost_basis")},
            {n:"Midas-TR",rows:r[0]?pozRows(r[0].portfolio,bq,"cost_basis"):null},
-           {n:"Info-TR",rows:r[2]?pozRows(r[2].positions,bq,"cost"):null}];
+           {n:"Info-TR",rows:r[2]?pozRows(r[2].positions,bq,"cost"):null},
+           {n:"IBKR",rows:ibkrRows(r[3])}];
       pozLoading=null; renderPoz();
     });
   }
@@ -459,7 +468,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
       g.rows.forEach(function(r){
         var tr=el("tr"); tr.appendChild(el("td","",r.t));
         tr.appendChild(el("td","",mk(num(r.s,r.s%1?2:0))));
-        tr.appendChild(el("td","",mk(num(r.cb,2))));
+        tr.appendChild(el("td","",r.cb==null?"–":mk(num(r.cb,2))));
         tr.appendChild(el("td","",r.v==null?"fiyat yok":mk(num(r.v,2))));
         if(r.v==null)miss=true; else tot+=r.v; tb.appendChild(tr);
       });

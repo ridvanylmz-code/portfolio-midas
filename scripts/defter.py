@@ -494,8 +494,9 @@ def flex_parse(root):
 
 
 def flex_trades(root):
-    """Flex 'Trades' ve 'Open Positions' bölümleri (sorguda yoksa None döner)."""
-    trades, pos = None, None
+    """Flex 'Trades' ve 'Open Positions' bölümleri (sorguda yoksa None döner).
+    det: sembol -> {shares, cost, mark, d} (Pozisyonlar sekmesi; cost=costBasisPrice, mark=markPrice)."""
+    trades, pos, det = None, None, None
     lods = {(el.get("levelOfDetail") or "EXECUTION").upper() for el in root.iter("Trade")}
     keep = "EXECUTION" if "EXECUTION" in lods else "ORDER"
     for el in root.iter("Trade"):
@@ -514,11 +515,15 @@ def flex_trades(root):
     for el in root.iter("OpenPosition"):
         if (el.get("levelOfDetail") or "SUMMARY").upper() != "SUMMARY":
             continue
-        pos = pos or {}
-        pos[el.get("symbol")] = float(el.get("position") or 0)
+        pos, det = pos or {}, det or {}
+        sym = el.get("symbol")
+        pos[sym] = float(el.get("position") or 0)
+        num = lambda k: (float(el.get(k)) if (el.get(k) or "").strip() else None)
+        det[sym] = {"shares": pos[sym], "cost": num("costBasisPrice"), "mark": num("markPrice"),
+                    "d": _flex_date(el.get("reportDate"))}
     if pos is None and any(True for _ in root.iter("OpenPositions")):
-        pos = {}
-    return trades, pos
+        pos, det = {}, {}
+    return trades, pos, det
 
 
 def cmd_ibkr(_):
@@ -529,12 +534,13 @@ def cmd_ibkr(_):
     d = load()
     root = flex_fetch(token, qid)
     nav, flows = flex_parse(root)
-    trades, positions = flex_trades(root)
+    trades, positions, pos_det = flex_trades(root)
     if trades:   # rapor dönemi kısa olabilir: eski işlemler silinmez, yeni gelenler eklenir
         known = {t["id"] for t in d.get("ibkr_trades", [])}
         d.setdefault("ibkr_trades", []).extend(t for t in trades if t["id"] not in known)
     if positions is not None:
         d["ibkr_positions"] = positions
+        d["ibkr_pos_detail"] = pos_det
     if not nav:
         raise ValueError("IBKR raporunda 'Net Asset Value (NAV) in Base' bölümü yok; Flex Query'ye ekle.")
     start = ACCOUNTS["ibkr"]["start"]
