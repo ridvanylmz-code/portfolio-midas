@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28T16:24:09+00:00",
+  "updated": "2026-10-29T16:24:53+00:00",
   "source_note": "TV = TradingView tarayıcı, TD = BIST günlük mumlarından (bars-bist.json / Yahoo) hesaplandı",
   "log": [
     "TV scanner: 32/32 sembol tek istekte",
