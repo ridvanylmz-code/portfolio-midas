@@ -451,9 +451,9 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     pozLoading=Promise.all([j("bist/data/portfolio.json"),j("bist/data/quotes.json"),j(RAW+"defter/info_portfolio.json"),j("defter/data/defter.json")]).then(function(r){
       var bq=(r[1]&&r[1].quotes)||{};
       POZ=[{n:"Midas-USD",rows:pozRows(P.portfolio,(Q&&Q.quotes)||{},"cost_basis")},
+           {n:"IBKR",rows:ibkrRows(r[3])},
            {n:"Midas-TR",rows:r[0]?pozRows(r[0].portfolio,bq,"cost_basis"):null},
-           {n:"Info-TR",rows:r[2]?pozRows(r[2].positions,bq,"cost"):null},
-           {n:"IBKR",rows:ibkrRows(r[3])}];
+           {n:"Info-TR",rows:r[2]?pozRows(r[2].positions,bq,"cost"):null}];
       pozLoading=null; renderPoz();
     });
   }
