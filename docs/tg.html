@@ -34,6 +34,11 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 .seg button.on{background:var(--on);color:var(--txt)}
 .h1{font-size:22px;font-weight:700;margin:22px 4px 6px}
 .sec{display:flex;align-items:center;gap:8px;margin:20px 4px 8px;font-size:17px;font-weight:700}
+.ptbl{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.ptbl th{color:var(--mut);font-weight:600;font-size:11.5px;text-align:right;padding:6px 6px;border-bottom:1px solid var(--line)}
+.ptbl td{text-align:right;padding:8px 6px;border-bottom:1px solid var(--line)}
+.ptbl th:first-child,.ptbl td:first-child{text-align:left;font-weight:700}
+.ptbl tr.tot td{border-bottom:0;font-weight:700;color:var(--mut)}
 .badge{background:var(--chip);color:var(--mut);font-size:12px;font-weight:600;padding:2px 8px;border-radius:8px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:8px;
   display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
@@ -168,6 +173,13 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <div id="sbody"><div class="empty">Yükleniyor…</div></div>
 </section>
 
+<!-- POZİSYONLAR -->
+<section class="tab" id="t-poz">
+  <div class="h1">Pozisyonlar</div>
+  <div id="pozBody"><div class="empty">Yükleniyor…</div></div>
+  <div class="note">Değer = adet × son fiyat. Hesaplar ayrı tutulur, birbirine eklenmez.</div>
+</section>
+
 <div id="msg"></div>
 <script>
 (function(){
@@ -198,6 +210,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   <button data-t="haber"><svg viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg>Haberler</button>
   <button data-t="analiz"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 5-6"/></svg>Analiz</button>
   <button data-t="sektor"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/></svg>Sektör</button>
+  <button data-t="poz"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><path d="M9 4v16"/></svg>Pozisyon</button>
 </nav></div>
 
 <script>
@@ -303,7 +316,8 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
 
   /* ---------- sekmeler ---------- */
   function showTab(t){
-    var ok=["portfoy","takip","haber","analiz","sektor"]; if(ok.indexOf(t)<0)t="portfoy";
+    var ok=["portfoy","takip","haber","analiz","sektor","poz"]; if(ok.indexOf(t)<0)t="portfoy";
+    if(t==="poz")loadPoz();
     [].forEach.call(document.querySelectorAll(".tab"),function(s){s.classList.toggle("on",s.id==="t-"+t)});
     [].forEach.call($("nav").children,function(b){b.classList.toggle("on",b.getAttribute("data-t")===t)});
     try{history.replaceState(null,"","#"+t)}catch(e){}
@@ -331,7 +345,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   $("eye").addEventListener("click",function(){
     hide=!hide; document.body.classList.toggle("hide",hide);
     try{localStorage.setItem("pm_hide",hide?"1":"0")}catch(e){}
-    if(P){renderPortfolio();renderAnaliz();renderSector();renderPerf()}
+    if(P){renderPortfolio();renderAnaliz();renderSector();renderPerf();if(POZ)renderPoz()}
   });
 
   function trendChip(t){
@@ -409,6 +423,51 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
     mode=m; [].forEach.call($("seg").children,function(b){b.classList.toggle("on",b.getAttribute("data-m")===m)});
     renderPortfolio();
   });
+
+  /* ---------- pozisyonlar: hesap bazında adet / maliyet / değer (şifreli dosyalar tarayıcıda açılır) ---------- */
+  var POZ=null, pozLoading=null;
+  var RAW="https://raw.githubusercontent.com/ridvanylmz-code/portfolio-midas/main/";
+  function pozRows(pos,quotes,costKey){
+    var out=[];
+    Object.keys(pos||{}).forEach(function(t){
+      var p=pos[t]||{}, s=+p.shares||0; if(!s)return;
+      var cb=+p[costKey]||0, x=quotes[t]||{}, px=+x.c||+p.last||0;
+      out.push({t:t,s:s,cb:cb,v:px?s*px:null});
+    });
+    return out.sort(function(a,b){return (b.v||0)-(a.v||0)});
+  }
+  function loadPoz(){
+    if(POZ||pozLoading||!P)return;
+    var j=function(u){return fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null})
+      .catch(function(){return null}).then(function(o){return o&&window.Vault?Vault.open(o):o})};
+    pozLoading=Promise.all([j("bist/data/portfolio.json"),j("bist/data/quotes.json"),j(RAW+"defter/info_portfolio.json")]).then(function(r){
+      var bq=(r[1]&&r[1].quotes)||{};
+      POZ=[{n:"Midas-USD",rows:pozRows(P.portfolio,(Q&&Q.quotes)||{},"cost_basis")},
+           {n:"Midas-TR",rows:r[0]?pozRows(r[0].portfolio,bq,"cost_basis"):null},
+           {n:"Info-TR",rows:r[2]?pozRows(r[2].positions,bq,"cost"):null}];
+      pozLoading=null; renderPoz();
+    });
+  }
+  function renderPoz(){
+    var box=$("pozBody"); box.textContent="";
+    POZ.forEach(function(g){
+      var h=el("div","sec",g.n); if(g.rows)h.appendChild(el("span","badge",String(g.rows.length))); box.appendChild(h);
+      if(!g.rows){box.appendChild(el("div","empty","Veri okunamadı"));return}
+      if(!g.rows.length){box.appendChild(el("div","empty","Pozisyon yok"));return}
+      var wrap=el("div","box"), tb=el("table","ptbl"), hr=el("tr"), tot=0, miss=false;
+      ["Hisse","Adet","Maliyet","Değer"].forEach(function(k){hr.appendChild(el("th","",k))}); tb.appendChild(hr);
+      g.rows.forEach(function(r){
+        var tr=el("tr"); tr.appendChild(el("td","",r.t));
+        tr.appendChild(el("td","",mk(num(r.s,r.s%1?2:0))));
+        tr.appendChild(el("td","",mk(num(r.cb,2))));
+        tr.appendChild(el("td","",r.v==null?"fiyat yok":mk(num(r.v,2))));
+        if(r.v==null)miss=true; else tot+=r.v; tb.appendChild(tr);
+      });
+      var tt=el("tr","tot"); tt.appendChild(el("td","","Toplam")); tt.appendChild(el("td")); tt.appendChild(el("td"));
+      tt.appendChild(el("td","",mk(num(tot,2))+(miss?"*":""))); tb.appendChild(tt);
+      wrap.appendChild(tb); box.appendChild(wrap);
+    });
+  }
 
   /* ---------- takip ---------- */
   function renderWatch(){
