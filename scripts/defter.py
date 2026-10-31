@@ -1116,7 +1116,7 @@ def build_xlsx(d, out_path):
             cols += [f"{names[a]}\nDeğer", f"{names[a]}\nΔ", f"{names[a]}\n%"]
         cols += ["TL Toplam", "TL Δ", "TL %", "USD Toplam", "USD Δ", "USD %", "XU100", "XU100 %", "S&P 500", "S&P %"]
         header(ws, cols)
-        for i, p in enumerate(reversed(periods(d, kind)), 2):
+        for i, p in enumerate(periods(d, kind), 2):   # eskiden yeniye (Günlük ile aynı)
             put(ws, i, 1, p["k"])
             put(ws, i, 2, datetime.strptime(p["from"], "%Y-%m-%d").date(), "dd.mm.yyyy")
             put(ws, i, 3, datetime.strptime(p["to"], "%Y-%m-%d").date(), "dd.mm.yyyy")
@@ -1148,6 +1148,7 @@ def build_xlsx(d, out_path):
     cols = ["İşlem tarihi", "Gün", "Hesap", "İşlem", "Hisse", "Adet", "Fiyat", "Tutar", "Komisyon",
             "Para", "Kayda girildi (İst.)", "Gecikme (gün)"]
     header(ws, cols, {3: 11, 4: 13, 11: 17})
+    rows = rows[::-1]   # Excel'de eskiden yeniye (mini uygulama sırası değişmez)
     for i, r in enumerate(rows, 2):
         dt = datetime.strptime(r["d"], "%Y-%m-%d").date() if r.get("d") else None
         cur = ACCOUNTS[r["acc"]]["cur"]
