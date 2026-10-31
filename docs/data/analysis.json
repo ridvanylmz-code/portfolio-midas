@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-29",
- "note": "Fiyatlar 29 Eki seans içi (~15:15 UTC, 15 dk gecikmeli) (TradingView). Takip listesi 29 Eki: TEAM, MPC, ELF, ILMN, KNSA (ZS çıktı, KNSA girdi). Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim risk-on 6/7: nakit %10-15 bandında olabilir, alımlar kademeli. Diğer hisselerin notları daha eski tarihlidir.",
+ "updated": "2026-11-01",
+ "note": "Fiyatlar 30 Eki (Cuma) kapanış, TradingView (15 dk gecikmeli). Takip listesi 1 Kas: KNSA, ELF, RRC, TRGP, CROX (TEAM, ILMN, MPC çıktı; RRC, TRGP, CROX girdi). Takip girişi = 30 Eki kapanış. Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim risk-off 3/7: tetikleyici gelmeden alım yok, kademe küçük.",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
@@ -1818,7 +1818,7 @@
    "name": "e.l.f. Beauty",
    "momentum": {
     "status": "Güçlü",
-    "text": "29 Eki seans içi $114,99 (−%0,4; hafta +%2,7). Trend 7/7, RSI 64; EMA20 110,9 üstünde. Analist ortalaması $114,9 (fiyatla aynı: değerleme dolu). Tetikleyici: bilanço (4 Kas) sonrası $118 üstü kapanış. Stop $107,28."
+    "text": "30 Eki kapanış $111,69 (−%1,1; hafta −%1,6). Trend 7/7, RSI 56; EMA20 110,8, SMA50 105,5 üstünde. Bilanço 4 Kas: tetikleyici bilanço sonrası SMA50 üstünde tutunma. Stop $106,32."
    },
    "technical": [
     "23 Eki kapanış $114,24; RSI 65; ADX 38; MACD sinyal üstünde",
@@ -1840,7 +1840,7 @@
       "$585 mn"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $114,90 (+1%)."
+    "fair_value": "Analist ortalama hedefi $117,1, fiyatın %5 üstünde. F/K 114 yüksek: bilanço ıskasında sert tepki riski."
    },
    "news": [
     "19 Eki: JPM hedefi $106→$130",
@@ -1848,47 +1848,49 @@
     "Rhode markası büyümeyi taşıyor"
    ],
    "dilution": {
-    "risk": "Düşük",
-    "text": "Serbest nakit pozitif; satın alma borçla finanse edildi, bilinen ATM ya da yeni hisse ihracı yok."
+    "risk": "Düşük-orta",
+    "text": "Serbest nakit akışı +$280 mn, nakit $344 mn, borç $929 mn (satın alma kaynaklı). Nakit yakımı yok; shelf/ATM bu oturumda SEC kaydından doğrulanmadı."
    }
   },
   "TRGP": {
    "name": "Targa Resources",
    "momentum": {
-    "status": "Takipten çıktı",
-    "text": "21 Eki $293,34 (gün içi). Takip girişi 16 Eki $294,90 → −0,5%. RS +3'e geriledi, 3A yatay, grubu (XLU) lider değil. Daha güçlü lider grup adayı (AVTR) ile değiştirildi."
+    "status": "Güçlü",
+    "text": "30 Eki kapanış $314,99 (+%0,8; hafta +%8,5). Takip girişi 30 Eki $314,99. Trend 7/7, RSI 68, ATR %2,4 (düşük oynaklık). Bilanço 5 Kas: tetikleyici bilanço sonrası $300 (EMA20 ~297) üstünde tutunma. Stop $299,64."
    },
    "technical": [
-    "16 Eki kapanış $294,90; RSI 58,1; trend 7/7",
-    "1A RS +2,6, 3A RS +4,5 puan",
-    "Trend taramasına (EMA/Supertrend/Elliott) bir sonraki zamanlı çalışmada eklenecek"
+    "30 Eki kapanış $314,99; RSI 68,4; EMA20 297,3, SMA50 290,3 üstünde",
+    "Kamu hizmetleri grubunun adayı (doğalgaz orta akım)"
    ],
    "fundamental": {
     "metrics": [
      [
       "Piyasa değeri",
-      "$63,2 mlr"
+      "$67,5 mlr"
      ],
      [
       "Serbest nakit akışı (TTM)",
       "$741 mn"
      ],
      [
-      "Net borç",
-      "$19,4 mlr"
+      "Borç",
+      "$19,6 mlr"
+     ],
+     [
+      "Temettü",
+      "%1,4"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $327,90 (+11%)."
+    "fair_value": "Analist ortalama hedefi $330,2, fiyatın %5 üstünde."
    },
    "news": [
-    "13 Eki: Citigroup hedefi $303'ten $325'e yükseltti",
-    "13 Eki: çeyreklik $1,25 temettü açıklandı",
-    "16 Eki: Brent $110, WTI $100 üstü"
+    "Orta akım ücret bazlı gelir; savunma rejiminde tercih ediliyor"
    ],
    "dilution": {
     "risk": "Düşük",
-    "text": "Büyüme yatırımları borç ve iç kaynakla finanse ediliyor; net borç yüksek ($19,4 mlr) ama bilinen ATM ya da hisse ihracı yok, geri alım sürüyor."
-   }
+    "text": "Pozitif serbest nakit akışı, hisse geri alımı geçmişi; büyüme borçla finanse ediliyor (borç yüksek, faiz hassasiyeti var). Hisse ihracı ihtiyacı görünmüyor; ATM SEC kaydından doğrulanmadı."
+   },
+   "macro": "Doğalgaz hacmi + faiz. RRC ile kısmen aynı sürücü."
   },
   "AVTR": {
    "name": "Avantor",
@@ -2011,11 +2013,11 @@
    "name": "Kiniksa Pharmaceuticals",
    "momentum": {
     "status": "Güçlü",
-    "text": "29 Eki seans içi $97,75 (+%2,7). Takip girişi 29 Eki $97,75. Trend 7/7, RSI 72 (aşırı alıma yakın), 1A RS +29. Giriş tetikleyicisi: $92-95'e geri çekilmede tutunma ya da $100 üstü kapanış. Stop $88,72. Sonraki bilanço Şubat: yakın tarihli olay riski yok."
+    "text": "30 Eki kapanış $92,24 (−%5,5; hafta +%15,1). Takip girişi 29 Eki $97,75 → −%5,6. Trend 7/7, RSI 63, 1A RS +21,9. Tetikleyici: $88-90 üstünde tutunup $95 üstü kapanış. Stop $84,35. Bilanço Mart 2027: yakın olay riski yok."
    },
    "technical": [
-    "29 Eki seans içi $97,75; RSI 72; trend 7/7 (günlük ve haftalık yukarı)",
-    "Grup: sağlık (XLV) lider, gün +%2,2"
+    "30 Eki kapanış $92,24; RSI 63; EMA20 83,2, SMA50 79,2 üstünde",
+    "Grup: sağlık (XLV) lider #2, trend 7/7"
    ],
    "fundamental": {
     "metrics": [
@@ -2032,7 +2034,7 @@
       "$569 mn / $8 mn"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi $106,5, fiyatın %9 üstünde. 3Ç gelir $286 mn, net kâr $47 mn (ARCALYST büyümesi)."
+    "fair_value": "Analist ortalama hedefi $109,4, fiyatın %19 üstünde."
    },
    "news": [
     "29 Eki: Wells Fargo hedefi $87→$110",
@@ -2044,6 +2046,87 @@
     "text": "Pozitif serbest nakit akışı, borç neredeyse yok; 12 ayda sermaye artırımı ihtiyacı görünmüyor."
    },
    "macro": "Faize ve yapay zekâya duyarsız; yazılım ağırlıklı listeyi dengeler."
+  },
+  "RRC": {
+   "name": "Range Resources",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "30 Eki kapanış $54,63 (+%1,4). Takip girişi 30 Eki $54,63. Trend 7/7, RSI 77 (aşırı alım), 1A RS +49 (enerjide en güçlü). Tetikleyici: $51-52 (EMA20 civarı) geri çekilmede tutunma; kovalamak yok. Stop $51,36. Bilanço Şubat 2027."
+   },
+   "technical": [
+    "30 Eki kapanış $54,63; RSI 76,8; ATR %3,4",
+    "Grup: enerji (XLE) lider #1, 3A zirve"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$12,8 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$727 mn"
+     ],
+     [
+      "Net borç",
+      "~$0,9 mlr"
+     ],
+     [
+      "F/K",
+      "14,5"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $49,6, fiyatın %9 altında: fiyat analistlerin önünde, değerleme desteği yok, yalnız momentum."
+   },
+   "news": [
+    "Petrol/gaz fiyatları İran gerginliğiyle yüksek",
+    "Enerji Ekim'de en iyi grup"
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Pozitif serbest nakit akışı, düşük borç; 12 ayda sermaye artırımı ihtiyacı görünmüyor. Shelf/ATM SEC kaydından doğrulanmadı."
+   },
+   "macro": "Doğalgaz fiyatına bağlı; teknoloji ve faizle ters korelasyon. TRGP ile ortak sürücü (doğalgaz hacmi): ikisine birden tam boyut verme."
+  },
+  "CROX": {
+   "name": "Crocs",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "30 Eki kapanış $150,52 (+%0,2). Takip girişi 30 Eki $150,52. Trend 7/7, RSI 78 (aşırı alım), 1A RS +23. Tetikleyici: $140-143'e geri çekilmede tutunma. Stop $138,47. Bilanço Şubat 2027: yakın olay riski yok."
+   },
+   "technical": [
+    "30 Eki kapanış $150,52; RSI 77,7; ATR %4,0",
+    "Temel tüketim (XLP) adayı"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$6,9 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$754 mn"
+     ],
+     [
+      "F/K",
+      "11,2"
+     ],
+     [
+      "Borç",
+      "$1,66 mlr"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $164,7, fiyatın %9 üstünde. Serbest nakit getirisi ~%11: ucuz."
+   },
+   "news": [
+    "Ekim'de tüketim hisseleri teknolojiden çıkan parayı aldı"
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "Güçlü serbest nakit akışı, hisse geri alımı yapıyor; 12 ayda sermaye artırımı ihtiyacı yok."
+   },
+   "macro": "Tüketici harcaması; faiz artırımında risk iştahına bağlı kısmı var. Teknolojiden bağımsız."
   }
  }
 }
