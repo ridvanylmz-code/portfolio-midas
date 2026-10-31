@@ -1190,8 +1190,10 @@ def build_xlsx(d, out_path):
     # Pozisyonlar: mini uygulama Pozisyon sekmesiyle aynı kaynak/mantık (docs/tg.html loadPoz), ilk sayfa
     ws = wb.create_sheet("Pozisyonlar", 0)
     cols = ["Hesap", "Hisse", "Adet", "Ort. maliyet", "Son fiyat", "Fiyat zamanı (İst.)", "Maliyet tutarı",
-            "Değer", "K/Z", "K/Z %", "Para"]
-    header(ws, cols, {6: 17})
+            "Değer", "K/Z", "K/Z %", "Para", "Kurum maliyeti\n(komisyonsuz)", "Maliyetteki\nkomisyon"]
+    header(ws, cols, {6: 17, 12: 15, 13: 12})
+    fees = fee_left(rows)   # yalnız Excel: kurum gibi komisyonsuz ort. maliyet (mini uygulamada yok)
+    key_of = {ACCOUNTS[a]["name"]: a for a in ACCOUNTS}
     i = 2
     for name, cur, rows_p, cash, warn in position_groups(d):
         sym = "₺" if cur == "TRY" else "$"
@@ -1215,6 +1217,11 @@ def build_xlsx(d, out_path):
             if val is not None:
                 tv += val
             put(ws, i, 11, sym)
+            f = fees.get((key_of.get(name), r["t"]))
+            if f and r["cb"] and abs(f[1] - r["s"]) < 1e-6:
+                put(ws, i, 12, r["cb"] - f[0] / r["s"], "#,##0.00##"); put(ws, i, 13, f[0], NUM2)
+            elif key_of.get(name) != "ibkr":
+                put(ws, i, 12, "işlem kaydı eksik" if f else None)
             i += 1
         if not rows_p:
             put(ws, i, 1, name); put(ws, i, 2, "Pozisyon yok"); i += 1
@@ -1224,9 +1231,32 @@ def build_xlsx(d, out_path):
         put(ws, i, 7, tc or None, NUM2)
         put(ws, i, 8, tv + (cash or 0), NUM2).font = Font(bold=True)
         i += 2
+    put(ws, i, 1, "Kurum maliyeti (komisyonsuz): alış komisyonları maliyetten çıkarılmış hâli (aracı kurum ekranıyla "
+                  "karşılaştırma için). K/Z hesabı komisyonlu maliyetle yapılır. IBKR: Flex maliyeti, ayrılmadı.")
+    i += 1
     put(ws, i, 1, "Not: hesaplar kendi para biriminde; TL ve USD toplanmaz. Fiyat: Midas-USD/IBKR "
                   "docs/data/quotes.json (yoksa IBKR mark), TR hesapları docs/bist/data/quotes.json (yoksa son bilinen).")
     wb.save(out_path)
+
+
+def fee_left(rows):
+    """Maliyete katılmış ve hâlâ eldeki adetlere düşen komisyon: (hesap, hisse) -> (komisyon, işlemlerden adet).
+    Ağırlıklı ortalama: satışta ortalama değişmez, komisyon payı kalan adetle orantılı küçülür."""
+    st = {}
+    for r in sorted(rows, key=lambda r: (r.get("d") or "", r.get("ts") or "")):
+        if r["act"] not in ("open", "buy", "sell") or not r.get("sym") or not r.get("qty"):
+            continue
+        k = (r["acc"], r["sym"])
+        fee, sh = st.get(k, (0.0, 0.0))
+        q = float(r["qty"])
+        if r["act"] == "sell":
+            fee = fee * max(sh - q, 0) / sh if sh else 0.0
+            sh = max(sh - q, 0)
+        else:
+            fee += float(r.get("fee") or 0) if r["act"] == "buy" else 0
+            sh += q
+        st[k] = (fee, round(sh, 6))
+    return st
 
 
 def position_groups(d):
