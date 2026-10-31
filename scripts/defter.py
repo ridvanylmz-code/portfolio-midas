@@ -1185,7 +1185,94 @@ def build_xlsx(d, out_path):
     for w in warns:
         i += 2
         put(ws, i, 1, f"⚠️ {w}")
+
+    # Pozisyonlar: mini uygulama Pozisyon sekmesiyle aynı kaynak/mantık (docs/tg.html loadPoz), ilk sayfa
+    ws = wb.create_sheet("Pozisyonlar", 0)
+    cols = ["Hesap", "Hisse", "Adet", "Ort. maliyet", "Son fiyat", "Fiyat zamanı (İst.)", "Maliyet tutarı",
+            "Değer", "K/Z", "K/Z %", "Para"]
+    header(ws, cols, {6: 17})
+    i = 2
+    for name, cur, rows_p, cash, warn in position_groups(d):
+        sym = "₺" if cur == "TRY" else "$"
+        tv, tc = 0.0, 0.0
+        if warn:
+            put(ws, i, 1, name); put(ws, i, 2, f"⚠️ {warn}"); i += 2
+            continue
+        for r in rows_p:
+            put(ws, i, 1, name); put(ws, i, 2, r["t"]); put(ws, i, 3, r["s"], "#,##0.####")
+            put(ws, i, 4, r["cb"], "#,##0.00##"); put(ws, i, 5, r["px"], "#,##0.00##")
+            if r.get("ts"):
+                put(ws, i, 6, r["ts"], "dd.mm.yyyy hh:mm")
+            else:
+                put(ws, i, 6, r.get("src"))
+            cost = r["s"] * r["cb"] if r["cb"] else None
+            val = r["s"] * r["px"] if r["px"] else None
+            put(ws, i, 7, cost, NUM2); put(ws, i, 8, val if val is not None else "fiyat yok", NUM2)
+            if cost and val is not None:
+                put(ws, i, 9, val - cost, NUM2, True); put(ws, i, 10, val / cost - 1, PCT, True)
+                tc += cost
+            if val is not None:
+                tv += val
+            put(ws, i, 11, sym)
+            i += 1
+        if not rows_p:
+            put(ws, i, 1, name); put(ws, i, 2, "Pozisyon yok"); i += 1
+        if cash is not None:
+            put(ws, i, 1, name); put(ws, i, 2, "Nakit"); put(ws, i, 8, cash, NUM2); put(ws, i, 11, sym); i += 1
+        put(ws, i, 1, name).font = Font(bold=True); put(ws, i, 2, "Toplam").font = Font(bold=True)
+        put(ws, i, 7, tc or None, NUM2)
+        put(ws, i, 8, tv + (cash or 0), NUM2).font = Font(bold=True)
+        i += 2
+    put(ws, i, 1, "Not: hesaplar kendi para biriminde; TL ve USD toplanmaz. Fiyat: Midas-USD/IBKR "
+                  "docs/data/quotes.json (yoksa IBKR mark), TR hesapları docs/bist/data/quotes.json (yoksa son bilinen).")
     wb.save(out_path)
+
+
+def position_groups(d):
+    """4 hesabın eldeki pozisyonları: (hesap adı, para, satırlar, nakit, uyarı). Satır: t, s, cb, px, ts/src."""
+    def quotes(f):
+        try:
+            return (json.loads(Path(common.path(f)).read_text(encoding="utf-8")) or {}).get("quotes") or {}
+        except Exception:
+            return {}
+    uq, bq = quotes("docs/data/quotes.json"), quotes("docs/bist/data/quotes.json")
+
+    def rows(pos, qs, cost_key):
+        out = []
+        for t, p in (pos or {}).items():
+            s = float(p.get("shares") or 0)
+            if not s:
+                continue
+            q = qs.get(t) or {}
+            px = float(q.get("c") or 0) or float(p.get("last") or 0) or None
+            r = {"t": t, "s": s, "cb": float(p[cost_key]) if p.get(cost_key) is not None else None, "px": px}
+            if q.get("c") and q.get("t"):
+                r["ts"] = datetime.fromtimestamp(int(q["t"]), timezone(timedelta(hours=3))).replace(tzinfo=None)
+            elif px:
+                r["src"] = "son bilinen"
+            out.append(r)
+        return sorted(out, key=lambda r: -(r["s"] * (r["px"] or 0)))
+
+    out = []
+    for name, cur, f, key, ck, qs in (("Midas-USD", "USD", "portfolio.json", "portfolio", "cost_basis", uq),
+                                      ("Midas-TR", "TRY", "bist/portfolio.json", "portfolio", "cost_basis", bq),
+                                      ("Info-TR", "TRY", F_INFO, "positions", "cost", bq)):
+        try:
+            pf = common.load_json(f, {}) or {}
+            cash = pf.get("cash", pf.get("cash_reserve"))
+            out.append((name, cur, rows(pf.get(key), qs, ck), float(cash) if cash is not None else None, None))
+        except Exception as ex:
+            out.append((name, cur, [], None, f"okunamadı ({type(ex).__name__})"))
+    det, q = d.get("ibkr_pos_detail"), d.get("ibkr_positions")
+    if det:
+        pos = {t: {"shares": v.get("shares"), "cost": v.get("cost"), "last": v.get("mark")} for t, v in det.items()}
+        ib = ("IBKR", "USD", rows(pos, uq, "cost"), None, None)
+    elif q:
+        ib = ("IBKR", "USD", rows({t: {"shares": s} for t, s in q.items()}, uq, "cost"), None, None)
+    else:
+        ib = ("IBKR", "USD", [], None, "Flex raporunda pozisyon bölümü yok")
+    out.insert(1, ib)   # sıra mini uygulamayla aynı: Midas-USD, IBKR, Midas-TR, Info-TR
+    return out
 
 
 def weekday_stats(d, since=None):
