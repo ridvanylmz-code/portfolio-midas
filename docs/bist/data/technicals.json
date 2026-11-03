@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T16:32:00+00:00",
+  "updated": "2026-11-03T21:14:05+00:00",
   "source_note": "TV = TradingView tarayıcı, TD = BIST günlük mumlarından (bars-bist.json / Yahoo) hesaplandı",
   "log": [
     "TV scanner: 32/32 sembol tek istekte",
@@ -13,15 +13,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 56.399,
-          "MACD.macd": 0.731,
-          "MACD.signal": 1.009,
-          "SMA20": 46.379,
-          "SMA50": 42.716,
-          "SMA200": 32.319,
-          "EMA20": 45.397,
-          "ADX": 15.145,
-          "close": 46.52
+          "RSI": 56.535,
+          "MACD.macd": 0.746,
+          "MACD.signal": 0.957,
+          "SMA20": 46.408,
+          "SMA50": 42.977,
+          "SMA200": 32.443,
+          "EMA20": 45.508,
+          "ADX": 14.807,
+          "close": 46.56
         },
         "via": "scanner"
       },
@@ -54,15 +54,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 34.84,
-          "MACD.macd": -0.175,
-          "MACD.signal": -0.139,
-          "SMA20": 9.231,
-          "SMA50": 9.56,
-          "SMA200": 9.207,
-          "EMA20": 9.183,
-          "ADX": 32.199,
-          "close": 8.8
+          "RSI": 32.877,
+          "MACD.macd": -0.191,
+          "MACD.signal": -0.15,
+          "SMA20": 9.188,
+          "SMA50": 9.532,
+          "SMA200": 9.209,
+          "EMA20": 9.138,
+          "ADX": 32.859,
+          "close": 8.71
         },
         "via": "scanner"
       },
@@ -95,34 +95,34 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 39.857,
-          "MACD.macd": -0.838,
-          "MACD.signal": -0.759,
-          "SMA20": 70.622,
-          "SMA50": 72.897,
-          "SMA200": 77.65,
-          "EMA20": 70.641,
-          "ADX": 23.456,
-          "close": 69.49
+          "RSI": 39.647,
+          "MACD.macd": -0.83,
+          "MACD.signal": -0.773,
+          "SMA20": 70.525,
+          "SMA50": 72.682,
+          "SMA200": 77.587,
+          "EMA20": 70.528,
+          "ADX": 24.466,
+          "close": 69.45
         },
         "via": "scanner"
       },
       "td": {
-        "date": "2026-11-02",
-        "close": 69.49,
-        "rsi14": 39.9,
-        "sma20": 70.62,
-        "sma50": 72.9,
-        "sma200": 77.65,
+        "date": "2026-11-03",
+        "close": 69.45,
+        "rsi14": 39.6,
+        "sma20": 70.52,
+        "sma50": 72.68,
+        "sma200": 77.59,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.838,
-          "signal": -0.759,
-          "hist": -0.079
+          "macd": -0.83,
+          "signal": -0.773,
+          "hist": -0.057
         },
-        "atr14": 0.95,
+        "atr14": 0.98,
         "support20": 68.15,
         "resistance20": 71.77,
         "vol_ratio": null,
@@ -136,15 +136,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 24.741,
-          "MACD.macd": -1.095,
-          "MACD.signal": -1.043,
-          "SMA20": 11.663,
-          "SMA50": 14.164,
-          "SMA200": 15.714,
-          "EMA20": 11.511,
-          "ADX": 46.768,
-          "close": 10.05
+          "RSI": 25.879,
+          "MACD.macd": -1.074,
+          "MACD.signal": -1.049,
+          "SMA20": 11.509,
+          "SMA50": 13.99,
+          "SMA200": 15.681,
+          "EMA20": 11.377,
+          "ADX": 47.926,
+          "close": 10.11
         },
         "via": "scanner"
       },
@@ -177,15 +177,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 22.339,
-          "MACD.macd": -2.499,
-          "MACD.signal": -1.925,
-          "SMA20": 37.138,
-          "SMA50": 40.669,
-          "SMA200": 46.016,
-          "EMA20": 36.282,
-          "ADX": 39.397,
-          "close": 31.82
+          "RSI": 23.722,
+          "MACD.macd": -2.527,
+          "MACD.signal": -2.045,
+          "SMA20": 36.71,
+          "SMA50": 40.409,
+          "SMA200": 45.967,
+          "EMA20": 35.874,
+          "ADX": 40.556,
+          "close": 32
         },
         "via": "scanner"
       },
@@ -218,15 +218,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 19.157,
-          "MACD.macd": -1.637,
-          "MACD.signal": -1.685,
-          "SMA20": 12.393,
-          "SMA50": 16.413,
-          "SMA200": 21.528,
-          "EMA20": 12.379,
-          "ADX": 57.898,
-          "close": 10.46
+          "RSI": 27.537,
+          "MACD.macd": -1.553,
+          "MACD.signal": -1.659,
+          "SMA20": 12.201,
+          "SMA50": 16.19,
+          "SMA200": 21.469,
+          "EMA20": 12.245,
+          "ADX": 57.126,
+          "close": 10.97
         },
         "via": "scanner"
       },
@@ -259,15 +259,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 23.322,
-          "MACD.macd": -1.946,
-          "MACD.signal": -1.727,
-          "SMA20": 19.738,
-          "SMA50": 23.324,
-          "SMA200": 30.48,
-          "EMA20": 19.281,
-          "ADX": 54.151,
-          "close": 16.18
+          "RSI": 32.523,
+          "MACD.macd": -1.874,
+          "MACD.signal": -1.757,
+          "SMA20": 19.48,
+          "SMA50": 23.083,
+          "SMA200": 30.395,
+          "EMA20": 19.083,
+          "ADX": 53.507,
+          "close": 17.2
         },
         "via": "scanner"
       },
@@ -300,15 +300,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 32.509,
-          "MACD.macd": -0.949,
-          "MACD.signal": -0.903,
-          "SMA20": 17.53,
-          "SMA50": 19.562,
-          "SMA200": 20.91,
-          "EMA20": 17.445,
-          "ADX": 49.506,
-          "close": 16.37
+          "RSI": 32.665,
+          "MACD.macd": -0.918,
+          "MACD.signal": -0.906,
+          "SMA20": 17.386,
+          "SMA50": 19.456,
+          "SMA200": 20.896,
+          "EMA20": 17.344,
+          "ADX": 49.993,
+          "close": 16.38
         },
         "via": "scanner"
       },
@@ -337,19 +337,19 @@
     "EMKEL": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "STRONG_SELL",
+        "recommendation": "SELL",
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 31.773,
-          "MACD.macd": -1.065,
-          "MACD.signal": -1.25,
-          "SMA20": 6.598,
-          "SMA50": 9.633,
-          "SMA200": 18.344,
-          "EMA20": 6.782,
-          "ADX": 44.244,
-          "close": 5.51
+          "RSI": 28.71,
+          "MACD.macd": -1.088,
+          "MACD.signal": -1.218,
+          "SMA20": 6.471,
+          "SMA50": 9.421,
+          "SMA200": 18.261,
+          "EMA20": 6.609,
+          "ADX": 43.767,
+          "close": 4.96
         },
         "via": "scanner"
       },
@@ -379,17 +379,17 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "STRONG_SELL",
-        "oscillators": "SELL",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 29.896,
-          "MACD.macd": -4.234,
-          "MACD.signal": -4.223,
-          "SMA20": 41.496,
-          "SMA50": 51.997,
-          "EMA20": 41.448,
-          "ADX": 29.981,
-          "close": 34.62
+          "RSI": 28.861,
+          "MACD.macd": -4.338,
+          "MACD.signal": -4.246,
+          "SMA20": 40.853,
+          "SMA50": 51.258,
+          "EMA20": 40.722,
+          "ADX": 30.127,
+          "close": 33.82
         },
         "via": "scanner"
       },
@@ -408,8 +408,8 @@
           "signal": -4.223,
           "hist": -0.012
         },
-        "atr14": 3.56,
-        "support20": 32.7,
+        "atr14": 3.57,
+        "support20": 32.58,
         "resistance20": 50.25,
         "vol_ratio": null,
         "bars": 169
@@ -418,19 +418,19 @@
     "ENERY": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "STRONG_BUY",
+        "recommendation": "BUY",
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 55.312,
-          "MACD.macd": 0.152,
-          "MACD.signal": 0.266,
-          "SMA20": 13.61,
-          "SMA50": 12.408,
-          "SMA200": 10.013,
-          "EMA20": 13.262,
-          "ADX": 18.311,
-          "close": 13.65
+          "RSI": 56.19,
+          "MACD.macd": 0.177,
+          "MACD.signal": 0.248,
+          "SMA20": 13.608,
+          "SMA50": 12.506,
+          "SMA200": 10.036,
+          "EMA20": 13.309,
+          "ADX": 17.221,
+          "close": 13.75
         },
         "via": "scanner"
       },
@@ -463,15 +463,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 39.223,
+          "RSI": 37.848,
           "MACD.macd": -2.436,
-          "MACD.signal": -2.405,
-          "SMA20": 70.173,
-          "SMA50": 74.87,
-          "SMA200": 91.644,
-          "EMA20": 69.831,
-          "ADX": 39.622,
-          "close": 66.8
+          "MACD.signal": -2.411,
+          "SMA20": 69.75,
+          "SMA50": 74.59,
+          "SMA200": 91.466,
+          "EMA20": 69.476,
+          "ADX": 39.904,
+          "close": 66.1
         },
         "via": "scanner"
       },
@@ -501,38 +501,38 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 30.349,
-          "MACD.macd": -21.212,
-          "MACD.signal": -16.7,
-          "SMA20": 554.453,
-          "SMA50": 590.826,
-          "SMA200": 654.19,
-          "EMA20": 548.878,
-          "ADX": 35.976,
-          "close": 507.75
+          "RSI": 28.975,
+          "MACD.macd": -22.309,
+          "MACD.signal": -17.821,
+          "SMA20": 550.515,
+          "SMA50": 587.826,
+          "SMA200": 652.804,
+          "EMA20": 544.389,
+          "ADX": 38.463,
+          "close": 501.75
         },
         "via": "scanner"
       },
       "td": {
-        "date": "2026-11-02",
-        "close": 507.75,
-        "rsi14": 30.3,
-        "sma20": 554.45,
-        "sma50": 590.83,
-        "sma200": 654.19,
+        "date": "2026-11-03",
+        "close": 501.75,
+        "rsi14": 29.0,
+        "sma20": 550.51,
+        "sma50": 587.83,
+        "sma200": 652.8,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -21.212,
-          "signal": -16.7,
-          "hist": -4.512
+          "macd": -22.309,
+          "signal": -17.822,
+          "hist": -4.488
         },
-        "atr14": 15.72,
-        "support20": 490.7,
+        "atr14": 15.89,
+        "support20": 489.6,
         "resistance20": 591.0,
         "vol_ratio": null,
         "bars": 200
@@ -541,19 +541,19 @@
     "GMTAS": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "BUY",
+        "recommendation": "NEUTRAL",
         "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_BUY",
+        "moving_averages": "BUY",
         "indicators": {
-          "RSI": 57.0,
-          "MACD.macd": 1.423,
-          "MACD.signal": 0.914,
-          "SMA20": 49.382,
-          "SMA50": 47.934,
-          "SMA200": 39.852,
-          "EMA20": 50.238,
-          "ADX": 17.44,
-          "close": 53
+          "RSI": 49.394,
+          "MACD.macd": 1.172,
+          "MACD.signal": 0.966,
+          "SMA20": 49.499,
+          "SMA50": 48.073,
+          "SMA200": 39.973,
+          "EMA20": 50.155,
+          "ADX": 16.403,
+          "close": 49.36
         },
         "via": "scanner"
       },
@@ -586,15 +586,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 40.343,
-          "MACD.macd": -0.337,
-          "MACD.signal": 0.044,
-          "SMA20": 8.434,
-          "SMA50": 7.531,
-          "SMA200": 6.449,
-          "EMA20": 7.803,
-          "ADX": 37.012,
-          "close": 6.93
+          "RSI": 43.215,
+          "MACD.macd": -0.339,
+          "MACD.signal": -0.032,
+          "SMA20": 8.372,
+          "SMA50": 7.532,
+          "SMA200": 6.459,
+          "EMA20": 7.743,
+          "ADX": 35.824,
+          "close": 7.17
         },
         "via": "scanner"
       },
@@ -627,15 +627,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 15.483,
-          "MACD.macd": -0.287,
-          "MACD.signal": -0.272,
-          "SMA20": 2.725,
-          "SMA50": 3.342,
-          "SMA200": 4.316,
-          "EMA20": 2.689,
-          "ADX": 65.116,
-          "close": 2.29
+          "RSI": 19.652,
+          "MACD.macd": -0.281,
+          "MACD.signal": -0.274,
+          "SMA20": 2.684,
+          "SMA50": 3.304,
+          "SMA200": 4.304,
+          "EMA20": 2.655,
+          "ADX": 66.348,
+          "close": 2.33
         },
         "via": "scanner"
       },
@@ -665,18 +665,18 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 32.977,
-          "MACD.macd": -1.585,
-          "MACD.signal": -1.726,
-          "SMA20": 9.956,
-          "SMA50": 13.998,
-          "SMA200": 20.306,
-          "EMA20": 9.95,
-          "ADX": 37.072,
-          "close": 8.77
+          "RSI": 37.204,
+          "MACD.macd": -1.461,
+          "MACD.signal": -1.673,
+          "SMA20": 9.808,
+          "SMA50": 13.741,
+          "SMA200": 20.279,
+          "EMA20": 9.875,
+          "ADX": 36.021,
+          "close": 9.17
         },
         "via": "scanner"
       },
@@ -706,18 +706,18 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 13.553,
-          "MACD.macd": -1.978,
-          "MACD.signal": -1.565,
-          "SMA20": 16.799,
-          "SMA50": 19.976,
-          "SMA200": 25.203,
-          "EMA20": 16.265,
-          "ADX": 54.725,
-          "close": 12.14
+          "RSI": 26.571,
+          "MACD.macd": -1.965,
+          "MACD.signal": -1.645,
+          "SMA20": 16.509,
+          "SMA50": 19.744,
+          "SMA200": 25.137,
+          "EMA20": 15.988,
+          "ADX": 55.063,
+          "close": 13.35
         },
         "via": "scanner"
       },
@@ -747,17 +747,17 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
           "RSI": 41.585,
-          "MACD.macd": -1.068,
-          "MACD.signal": -0.949,
-          "SMA20": 25.928,
-          "SMA50": 27.719,
-          "SMA200": 36.198,
-          "EMA20": 25.288,
-          "ADX": 11.163,
+          "MACD.macd": -1.121,
+          "MACD.signal": -0.983,
+          "SMA20": 25.703,
+          "SMA50": 27.584,
+          "SMA200": 36.136,
+          "EMA20": 25.07,
+          "ADX": 10.379,
           "close": 23
         },
         "via": "scanner"
@@ -791,15 +791,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 51.876,
-          "MACD.macd": 1.218,
-          "MACD.signal": 1.111,
-          "SMA20": 49.743,
-          "SMA50": 47.937,
-          "SMA200": 36.106,
-          "EMA20": 49.92,
-          "ADX": 21.406,
-          "close": 50.05
+          "RSI": 54.812,
+          "MACD.macd": 1.181,
+          "MACD.signal": 1.125,
+          "SMA20": 49.837,
+          "SMA50": 48.091,
+          "SMA200": 36.238,
+          "EMA20": 50.052,
+          "ADX": 20.074,
+          "close": 51.3
         },
         "via": "scanner"
       },
@@ -832,15 +832,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_BUY",
         "indicators": {
-          "RSI": 51.029,
-          "MACD.macd": -0.07,
-          "MACD.signal": -0.099,
-          "SMA20": 25.231,
-          "SMA50": 25.85,
-          "SMA200": 22.022,
-          "EMA20": 25.276,
-          "ADX": 11.077,
-          "close": 25.48
+          "RSI": 61.531,
+          "MACD.macd": 0.144,
+          "MACD.signal": -0.05,
+          "SMA20": 25.389,
+          "SMA50": 25.925,
+          "SMA200": 22.081,
+          "EMA20": 25.52,
+          "ADX": 10.986,
+          "close": 27.84
         },
         "via": "scanner"
       },
@@ -873,15 +873,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 26.1,
-          "MACD.macd": -0.174,
+          "RSI": 28.312,
+          "MACD.macd": -0.17,
           "MACD.signal": -0.166,
-          "SMA20": 1.719,
-          "SMA50": 2.094,
-          "SMA200": 2.456,
-          "EMA20": 1.709,
-          "ADX": 41.259,
-          "close": 1.48
+          "SMA20": 1.697,
+          "SMA50": 2.078,
+          "SMA200": 2.452,
+          "EMA20": 1.689,
+          "ADX": 42.274,
+          "close": 1.5
         },
         "via": "scanner"
       },
@@ -911,18 +911,18 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 19.078,
-          "MACD.macd": -1.629,
-          "MACD.signal": -1.533,
-          "SMA20": 13.928,
-          "SMA50": 17.428,
-          "SMA200": 20.298,
-          "EMA20": 13.72,
-          "ADX": 47.111,
-          "close": 11.24
+          "RSI": 26.879,
+          "MACD.macd": -1.584,
+          "MACD.signal": -1.543,
+          "SMA20": 13.697,
+          "SMA50": 17.172,
+          "SMA200": 20.265,
+          "EMA20": 13.537,
+          "ADX": 48.027,
+          "close": 11.8
         },
         "via": "scanner"
       },
@@ -955,15 +955,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 23.431,
-          "MACD.macd": -0.718,
-          "MACD.signal": -0.783,
-          "SMA20": 4.32,
-          "SMA50": 6.321,
-          "SMA200": 8.639,
-          "EMA20": 4.375,
-          "ADX": 53.347,
-          "close": 3.5
+          "RSI": 32.512,
+          "MACD.macd": -0.678,
+          "MACD.signal": -0.762,
+          "SMA20": 4.258,
+          "SMA50": 6.193,
+          "SMA200": 8.62,
+          "EMA20": 4.322,
+          "ADX": 52.643,
+          "close": 3.82
         },
         "via": "scanner"
       },
@@ -993,18 +993,18 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "BUY",
+        "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 35.524,
-          "MACD.macd": -0.79,
-          "MACD.signal": -0.19,
-          "SMA20": 56.655,
-          "SMA50": 57.34,
-          "SMA200": 55.023,
-          "EMA20": 56.2,
-          "ADX": 11.957,
-          "close": 52.9
+          "RSI": 34.25,
+          "MACD.macd": -0.982,
+          "MACD.signal": -0.349,
+          "SMA20": 56.453,
+          "SMA50": 57.212,
+          "SMA200": 55.008,
+          "EMA20": 55.843,
+          "ADX": 13.374,
+          "close": 52.45
         },
         "via": "scanner"
       },
@@ -1023,7 +1023,7 @@
           "signal": -0.19,
           "hist": -0.599
         },
-        "atr14": 2.26,
+        "atr14": 2.27,
         "support20": 51.5,
         "resistance20": 60.0,
         "vol_ratio": null,
@@ -1037,15 +1037,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 39.48,
-          "MACD.macd": -2.327,
-          "MACD.signal": -1.851,
-          "SMA20": 95.798,
-          "SMA50": 98.107,
-          "SMA200": 107.622,
-          "EMA20": 94.606,
-          "ADX": 37.382,
-          "close": 91.95
+          "RSI": 45.362,
+          "MACD.macd": -2.1,
+          "MACD.signal": -1.9,
+          "SMA20": 95.463,
+          "SMA50": 97.921,
+          "SMA200": 107.582,
+          "EMA20": 94.529,
+          "ADX": 37.492,
+          "close": 93.8
         },
         "via": "scanner"
       },
@@ -1078,15 +1078,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 42.11,
-          "MACD.macd": -10.266,
-          "MACD.signal": -8.758,
-          "SMA20": 271.535,
-          "SMA50": 285.599,
-          "SMA200": 303.957,
-          "EMA20": 267.871,
-          "ADX": 50.303,
-          "close": 261
+          "RSI": 45.187,
+          "MACD.macd": -9.22,
+          "MACD.signal": -8.85,
+          "SMA20": 270.173,
+          "SMA50": 284.889,
+          "SMA200": 303.881,
+          "EMA20": 267.598,
+          "ADX": 48.344,
+          "close": 265
         },
         "via": "scanner"
       },
@@ -1115,19 +1115,19 @@
     "TKFEN": {
       "tv": {
         "exchange": "BIST",
-        "recommendation": "NEUTRAL",
+        "recommendation": "SELL",
         "oscillators": "NEUTRAL",
-        "moving_averages": "NEUTRAL",
+        "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 45.389,
-          "MACD.macd": -13.069,
-          "MACD.signal": -11.859,
-          "SMA20": 213.735,
-          "SMA50": 224.061,
-          "SMA200": 148.427,
-          "EMA20": 205.628,
-          "ADX": 26.966,
-          "close": 199.4
+          "RSI": 42.361,
+          "MACD.macd": -12.571,
+          "MACD.signal": -12.002,
+          "SMA20": 210.505,
+          "SMA50": 223.535,
+          "SMA200": 149.032,
+          "EMA20": 204.226,
+          "ADX": 25.984,
+          "close": 190.9
         },
         "via": "scanner"
       },
@@ -1160,15 +1160,15 @@
         "oscillators": "NEUTRAL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 36.548,
-          "MACD.macd": -13.775,
-          "MACD.signal": -12.204,
-          "SMA20": 242.67,
-          "SMA50": 264.013,
-          "SMA200": 289.594,
-          "EMA20": 239.189,
-          "ADX": 36.685,
-          "close": 221.3
+          "RSI": 35.422,
+          "MACD.macd": -13.712,
+          "MACD.signal": -12.506,
+          "SMA20": 240.358,
+          "SMA50": 262.838,
+          "SMA200": 289.291,
+          "EMA20": 237.219,
+          "ADX": 37.399,
+          "close": 218.5
         },
         "via": "scanner"
       },
@@ -1201,15 +1201,15 @@
         "oscillators": "BUY",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 28.557,
-          "MACD.macd": -7.541,
-          "MACD.signal": -5.84,
-          "SMA20": 85.895,
-          "SMA50": 96.883,
-          "SMA200": 97.559,
-          "EMA20": 83.306,
-          "ADX": 37.711,
-          "close": 69.6
+          "RSI": 28.159,
+          "MACD.macd": -7.727,
+          "MACD.signal": -6.218,
+          "SMA20": 84.572,
+          "SMA50": 96.074,
+          "SMA200": 97.415,
+          "EMA20": 81.949,
+          "ADX": 39.206,
+          "close": 69.05
         },
         "via": "scanner"
       },
@@ -1239,18 +1239,18 @@
       "tv": {
         "exchange": "BIST",
         "recommendation": "SELL",
-        "oscillators": "NEUTRAL",
+        "oscillators": "SELL",
         "moving_averages": "STRONG_SELL",
         "indicators": {
-          "RSI": 38.199,
-          "MACD.macd": -1.721,
-          "MACD.signal": -1.516,
-          "SMA20": 88.898,
-          "SMA50": 91.669,
-          "SMA200": 91.492,
-          "EMA20": 88.217,
-          "ADX": 20.729,
-          "close": 85.95
+          "RSI": 38.44,
+          "MACD.macd": -1.685,
+          "MACD.signal": -1.55,
+          "SMA20": 88.488,
+          "SMA50": 91.443,
+          "SMA200": 91.536,
+          "EMA20": 88.006,
+          "ADX": 21.434,
+          "close": 86
         },
         "via": "scanner"
       },
@@ -1281,17 +1281,17 @@
         "exchange": "BIST",
         "recommendation": "SELL",
         "oscillators": "NEUTRAL",
-        "moving_averages": "STRONG_SELL",
+        "moving_averages": "SELL",
         "indicators": {
-          "RSI": 32.392,
-          "MACD.macd": -10.961,
-          "MACD.signal": -7.748,
-          "SMA20": 370.138,
-          "SMA50": 387.245,
-          "SMA200": 289.904,
-          "EMA20": 366.312,
-          "ADX": 36.854,
-          "close": 337
+          "RSI": 33.281,
+          "MACD.macd": -11.78,
+          "MACD.signal": -8.554,
+          "SMA20": 367.488,
+          "SMA50": 386.0,
+          "SMA200": 290.503,
+          "EMA20": 363.639,
+          "ADX": 37.486,
+          "close": 338.25
         },
         "via": "scanner"
       },
