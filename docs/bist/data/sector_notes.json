@@ -1,9 +1,9 @@
 {
- "updated": "2026-10-30",
- "summary": "30 Eki: XU100 10.760 (−%3,64), hafta −%4,2 → 1987'den beri ilk kez üst üste 7. haftalık düşüş. 1A −%11,9, 3A −%19,2; dolar bazında 3A −%23,3. Hacim 138 mlr ₺ (tatil sonrası arttı, satış baskısı gerçek). Rejim Risk-off 1/7, nakit %35-40. Genişlik %4. Günlük RSI 24, ADX 63: aşırı satım derin ama düşüş trendi güçlü, dönüş teyidi yok. USD/TRY 49,94 (1A +%1,9, TL sakin). Düşüşün nedenleri: fon krizi/olağanüstü tasfiye ödemeleri başladı (satış baskısı), Ekim ekonomik güven 100 altına indi, ABD'de yapay zekâ bilançolarına şüphe + Fed artış riski (S&P −%1,8), altında sert düşüş (ons −%3,6). Yalnız sigorta endeksi artıda; madencilik −%9,9, sınai −%4,6. Bu hafta: 2 Kas İSO PMI; 3 Kas Ekim TÜFE (beklenti aylık ≈%2,3, yıllık ≈%29,5) + ABD ara seçimleri; 3 Kas KLSER bilanço; 5 Kas TOASO, FROTO, DOHOL, SOKM, TRGYO; 6 Kas TUPRS + ABD tarım dışı istihdam; 9 Kas TCELL (3Ç son tarih); 11 Kas THYAO. Karar: yeni alım yok. Seviyeler: destek 10.600 ve 10.450-10.500 (kırılırsa 10.200); dönüş için önce 11.000, sonra 20 günlük ortalama (≈11.720) üstünde kapanış. Göreli güç: Petrol & Rafineri > Bankacılık (yatırım dışı) > GYO > Perakende > Telekom; en zayıf Savunma, Kimya, Sanayi, Sağlık, Metal.",
+ "updated": "2026-11-04",
+ "summary": "4 Kas: XU100 11.478 (+%4,12), hacim 215,5 mlr ₺ (30 Eki'nin 1,5 katı), hafta +%2,9. 7 haftalık düşüşten sonra en güçlü gün. Neden: ABD ara seçiminde Demokratlar Kongre'yi aldı; piyasa bunu İran'la uzlaşı olarak okudu, petrol −%7 (Türkiye için cari açık ve enflasyon rahatlaması), küresel risk iştahı açıldı. Yükselişin öncüsü bankacılık (+%5,4, yatırım dışı); ulaştırma +%4,3 (THYAO +%9,9: yakıt maliyeti ve 3Ç bilanço sonrası AL tavsiyeleri). USD/TRY 50,02, sakin. Rejim hâlâ Risk-off 1/7: XU100 20 günlük ortalamanın (≈11.580) hemen altında, 50 günlük ortalama ≈12.396 uzakta, hisselerin yalnız %10'u 50 günlük ortalama üstünde. Nakit %35-40 bandında kalmalı. Tek günlük sıçrama dönüş teyidi değil: teyit için 11.580 üstü kapanış, sonra 12.000. Destek 11.000 ve 10.600. Bilanço: TUPRS, TOASO 4 Kas (sonuç haberi henüz görülmedi); FROTO, SOKM, TRGYO 5 Kas; TCELL 9 Kas; THYAO açıkladı. Göreli güç: Bankacılık (yatırım dışı) > Ulaştırma > Petrol & Rafineri > GYO > Tüketici Hizmetleri; en zayıf Savunma, Sanayi, Kimya, Sağlık, Teknoloji. Takip listesinin güçlüleri ENERY ve AHGAZ (7/7, 4S Trend ve 15dk Trend yukarı, Devam). GMTAS ATR stopun altına indi. Pozisyonlarda yalnız THYAO'da 4S Trend yukarı döndü.",
  "groups": {
   "ENERJI": {
-   "note": "30 Eki: Göreli güçte 1. ama grup 2/7. TUPRS ₺343,5 (−%3,2), 3/7, RSI 35; bilanço 6 Kas (3Ç beklenti ≈60 mlr ₺). Sonucu görmeden giriş yok. TRENJ −%9,4, 0/7, RSI 26: uzak dur."
+   "note": "4 Kas: +%3,8 ama Zayıflayan; petrolün sert düşüşü rafineri marjlarına ve arama-üretime olumsuz. TUPRS bilanço bekleniyor, TRENJ 0/7."
   },
   "METAL": {
    "note": "30 Eki: Hafta −%10, madencilik günün en kötüsü (−%9,9). DOFER −%7,3, 0/7, RSI 20; 9 ayda zarar. Uzak dur."
@@ -15,13 +15,13 @@
    "note": "30 Eki: RYGYO −%5,4 ama hâlâ 7/7, hafta +%2,9; 4S Trend yukarı, 15dk Trend aşağı. TRGYO/AKSGY 2/7; TRGYO bilanço 5 Kas. TÜFE yüksek gelirse GYO baskı görebilir."
   },
   "ELEKTRIK": {
-   "note": "30 Eki: Ayrışma sürüyor: AHGAZ (+%0,1) ve ENERY (+%0,4) düşüş gününde artıda kaldı, ikisi de 7/7, hafta +%8-10. BASGZ hafta −%11, RSI 16, 0/7."
+   "note": "4 Kas: +%6,5 ama Geride (RS −2,5). Doğalgaz dağıtım şirketleri (ENERY, AHGAZ) grubun tersine güçlü; elektrik üreticileri zayıf."
   },
   "INSAAT": {
    "note": "30 Eki: BIENY −%6,1, 0/7, RSI 19. TKFEN hafta +%12, 3/7, 15dk Trend yukarı."
   },
   "ULASTIRMA": {
-   "note": "30 Eki: Grup hafta −%6,8. THYAO −%4,1 ₺242,2 (20 günün dibi), 0/7, RSI 23, Elliott olgun 5. dalga; bilanço 11 Kas (beklenti 52,6 mlr ₺, geçen yıl 56,1). RYSAS 5/7, 4S Trend ve 15dk Trend yukarı döndü. HRKET hafta −%26."
+   "note": "4 Kas: +%4,3, Lider (RS +7,5). Petrol −%7 havayollarına yakıt maliyeti avantajı; THYAO +%9,9, RYSAS 7/7."
   },
   "TELEKOM": {
    "note": "30 Eki: Göreli olarak en az düşenlerden (hafta −%2,2). TCELL ₺90,1 (−%1,2), RSI 33; 15dk Trend yukarı döndü, Devam; 4S Trend aşağı. Bilanço 9 Kas."
@@ -30,7 +30,7 @@
    "note": "30 Eki: 0/7. TOASO −%8,2 (₺211,2), FROTO −%5,4; ikisinin de bilançosu 5 Kas. FROTO 3,1 ₺ brüt temettü önerisi. Doğuş Otomotiv Alman üreticiyle yerli üretim anlaşması imzaladı."
   },
   "BANKA": {
-   "note": "30 Eki: Yalnız piyasa okuması (yatırım yok). −%3,1, hafta −%5,3; göreli güçte 2. Fon tasfiye ödemeleri İş Bankası/Ziraat üzerinden başladı."
+   "note": "4 Kas: +%5,4, rallinin öncüsü, RS +9,6 (Lider). Yatırım dışı (banka hariç kuralı)."
   },
   "HOLDING": {
    "note": "30 Eki: −%3,1, 0/7. Fon tasfiyesi ve MSCI baskısı sürüyor; sigorta endeksi günün tek yükseleni (+%2)."
@@ -48,7 +48,7 @@
    "note": "30 Eki: MIATK +%1,3 (düşüş gününde artıda), RSI 44; 15dk Tamam yada Devam: Devam, 4S Trend aşağı."
   },
   "SAVUNMA": {
-   "note": "30 Eki: Göreli güçte son sıra, 3A −%47. ALTNY, SDTTR, EMPAE, SMRTG hepsi 0/7. Uzak dur."
+   "note": "4 Kas: +%8,6 tepki ama en zayıf grup (RS −15,3). Barış beklentisi savunmaya olumsuz; SDTTR, ALTNY, EMPAE 0/7."
   },
   "SAGLIK": {
    "note": "30 Eki: Hafta −%9,5, 1A −%29. KAYSE RSI 15, 0/7."
@@ -59,100 +59,100 @@
  },
  "stocks": {
   "TUPRS": {
-   "note": "30 Eki: ₺343,5 (−%3,2), 3/7, RSI 35. ATR stop ≈329. Bilanço 6 Kas: sonucu gör, güçlü gelirse ilk aday."
+   "note": "4 Kas: ₺343,25 (+%1,5), 3/7. Petrol −%7 marj için olumsuz. 4S Trend aşağı, Tamam. ATR stop ≈328,9. Bilanço 4 Kas: sonucu gör."
   },
   "TKFEN": {
-   "note": "30 Eki: ₺191,4, 3/7, hafta +%12; 15dk Trend yukarı, 4S Trend aşağı. ATR stop ≈175. Bekle."
+   "note": "4 Kas: ₺190,8 (−%0,1): ralli gününde yatay, 3/7, Tamam. ATR stop ≈175,2. Bekle."
   },
   "SOKM": {
-   "note": "30 Eki: ₺51,85 (−%4,9), 3/7, RSI 30; 15dk Tamam yada Devam 'Tamam'a döndü. ATR stop ≈49,6. Bilanço 5 Kas."
+   "note": "4 Kas: ₺54,30 (+%3,5), 2/7. Bilanço 5 Kas. ATR stop ≈52,1."
   },
   "HRKET": {
-   "note": "30 Eki: ₺6,30 (+%1,1), hafta −%26, 3/7. ATR stop ≈5,6. Bekle."
+   "note": "4 Kas: ₺7,17 (0,0), 4/7, Tamam. ATR stop ≈6,47. Bekle."
   },
   "RYSAS": {
-   "note": "30 Eki: ₺24,76 (−%4,3), 5/7; 4S Trend ve 15dk Trend yukarı döndü, Devam. ATR stop ≈23,4. Risk-off: alım ancak küçük ve kademeli."
+   "note": "4 Kas: ₺28,38 (+%1,9), 7/7, RS +28. 4S ve 15dk Trend yukarı ama 15dk Tamam yada Devam: Tamam (çizgi ≈29,0). ATR stop ≈26,3. Devam'a dönerse aday."
   },
   "TRENJ": {
-   "note": "30 Eki: ₺68,25 (−%9,4), 0/7, RSI 26. Uzak dur."
+   "note": "4 Kas: ₺72,75 (+%5,4), 0/7. Petrol düşüşü arama-üretime olumsuz. ATR stop ≈68,1."
   },
   "TRGYO": {
-   "note": "30 Eki: ₺85,25, 2/7, RSI 35. Bilanço 5 Kas."
+   "note": "4 Kas: ₺89,45 (+%4,0), 2/7; 4S ve 15dk Trend yukarı, Devam; Elliott dalga 3. Bilanço 5 Kas. ATR stop ≈87,3."
   },
   "AKSGY": {
-   "note": "30 Eki: ₺8,73, 2/7, 20 günün dibinde."
+   "note": "4 Kas: ₺9,04 (+%3,8), 2/7, Devam. ATR stop ≈8,78."
   },
   "DOHOL": {
-   "note": "30 Eki: ₺15,85, 0/7, RSI 24. Bilanço 5 Kas. Uzak dur."
+   "note": "4 Kas: ₺17,27 (+%5,4), 0/7. Bilanço 5 Kas. ATR stop ≈16,7."
   },
   "FROTO": {
-   "note": "30 Eki: ₺65,45 (−%5,4), 0/7; 15dk Trend aşağı döndü. 3,1 ₺ brüt temettü önerisi; bilanço 5 Kas."
+   "note": "4 Kas: ₺68,65 (+%3,9), 0/7. Bilanço 5 Kas. ATR stop ≈66,0. Hedef ortalaması 140,6 TL."
   },
   "TOASO": {
-   "note": "30 Eki: ₺211,2 (−%8,2), 0/7, RSI 29, 20 günün dibi. Bilanço 5 Kas."
+   "note": "4 Kas: ₺226,0 (+%3,4), 0/7. Bilanço 4 Kas. ATR stop ≈215,2."
   },
   "BASGZ": {
-   "note": "30 Eki: ₺31,0, RSI 16, 0/7."
+   "note": "4 Kas: ₺35,20 (+%10, tavan), 0/7. ATR stop ≈33,6."
   },
   "KBORU": {
-   "note": "30 Eki: ₺7,98 (−%5,9), RSI 24, 0/7."
+   "note": "4 Kas: ₺10,08 (+%9,9), 1/7; 4S ve 15dk Trend yukarı döndü, Devam. ATR stop ≈9,28. İlk dönüş işareti, teyit yok."
   },
   "KAYSE": {
-   "note": "30 Eki: ₺2,28, RSI 15, 0/7."
+   "note": "4 Kas: ₺2,35 (+%0,9), 0/7, RSI 22, Tamam. Zayıf; listede kalıyor (karar gereği)."
   },
   "SDTTR": {
-   "note": "30 Eki: ₺11,50 (−%4,7), RSI 20, 0/7; kısa tepki söndü."
+   "note": "4 Kas: ₺12,58 (+%6,6), 0/7. Savunma zayıf. Listede kalıyor (karar gereği)."
   },
   "ALTNY": {
-   "note": "30 Eki: ₺10,07, RSI 25, 0/7; 15dk Tamam yada Devam: Devam (zayıf tepki)."
+   "note": "4 Kas: ₺10,85 (+%7,3), 0/7. Savunma zayıf. Listede kalıyor (karar gereği)."
   },
   "THYAO": {
-   "note": "30 Eki: ₺242,2 (−%4,1), 0/7, RSI 23; 29 Eki ATR stop önerisi (≈244,9) altında kapandı. Yeni ATR stop ≈234. Elliott olgun 5. dalga (tepki ihtimali artıyor). Bilanço 11 Kas."
+   "note": "4 Kas: ₺291,25 (+%9,9), 3/7. 4S Trend ve 15dk Trend yukarı, 15dk Tamam yada Devam: Devam (çizgi ≈287). 3Ç bilanço sonrası Tacirler 414, Şeker 445 TL hedefle AL. ATR stop ≈280,8. Pozisyondaki tek toparlanan hisse."
   },
   "TCELL": {
-   "note": "30 Eki: ₺90,1 (−%1,2), RSI 33; 15dk Trend yukarı döndü, Devam; 4S Trend aşağı. ATR stop ≈87,3. Bilanço 9 Kas."
+   "note": "4 Kas: ₺93,95 (+%0,2), 0/7; 4S Trend aşağı, Devam. ATR stop ≈91,0 (%3 uzakta). Bilanço 9 Kas."
   },
   "ALTIN": {
-   "note": "30 Eki: ₺68,55 (−%2,0), ons altın −%3,6; ATR stop önerisi (≈69,1) altında kapandı. Yeni ATR stop ≈67,6."
+   "note": "4 Kas: ₺71,12 (+%2,4), 1/7. Ons altın +%3 tepki. ATR stop ≈70,1: %1,5 mesafe, çok yakın."
   },
   "GMSTR": {
-   "note": "30 Eki: ₺495,8 (−%6,8), RSI 24; ATR stop önerisi (≈518) altında kapandı. Yeni ATR stop ≈480."
+   "note": "4 Kas: ₺520,5 (+%3,7), 0/7. 4S Trend aşağı, Devam. ATR stop ≈504,3."
   },
   "SASA": {
-   "note": "30 Eki: ₺1,45 (−%2,7), RSI 23, 20 günün dibi; 15dk Tamam yada Devam 'Tamam'. ATR stop ≈1,35."
+   "note": "4 Kas: ₺1,65 (+%10, tavan), 0/7. Tavan tepkisi; 4S Trend aşağı. ATR stop ≈1,55. Serbest nakit akışı −25 mlr ₺, zayıf temel."
   },
   "MIATK": {
-   "note": "30 Eki: ₺24,04 (+%1,3), düşüş gününde artıda; RSI 44, Devam. ATR stop ≈21,7."
+   "note": "4 Kas: ₺24,28 (+%5,6), 0/7. 4S Trend aşağı, Devam. ATR stop ≈22,1."
   },
   "SMRTG": {
-   "note": "30 Eki: ₺3,58 (−%6,5), RSI 24; stop önerisine (≈3,51) çok yakın. Yeni ATR stop ≈3,26."
+   "note": "4 Kas: ₺3,80 (−%0,5): ralli gününde ekside, 0/7, RS −30. 15dk Tamam yada Devam: Tamam. ATR stop ≈3,48."
   },
   "BIENY": {
-   "note": "30 Eki: ₺10,45 (−%6,1), RSI 19; stop önerisine (≈10,36) çok yakın. Yeni ATR stop ≈9,68."
+   "note": "4 Kas: ₺11,95 (+%8,9), 0/7. 15dk Trend yukarı, 4S Trend aşağı; Elliott yeni yükseliş dalga 1 oluşuyor (teyitsiz). ATR stop ≈11,16."
   },
   "EMKEL": {
-   "note": "30 Eki: ₺6,12 (−%9,9), önceki tepkiyi geri verdi; ATR stop önerisi (≈6,24) altında. Yeni ATR stop ≈5,53."
+   "note": "4 Kas: ₺4,86 (−%2,0): ralli gününde ekside, 0/7, RS −44 (listenin en zayıfı). 4S ve 15dk Trend aşağı, Tamam; Elliott düşüş dalga 3. ATR stop ≈4,25."
   },
   "KLSER": {
-   "note": "30 Eki: ₺12,06 ikinci taban (−%10), RSI 13; ATR stop önerisi (≈12,69) altında. Bilanço 3 Kas; yeniden yapılandırma şartları (seyreltme/borç dönüşümü) belirleyici. En öncelikli gözden geçirme."
+   "note": "4 Kas: ₺13,86 (+%3,8), 0/7, RS −22. ATR stop ≈13,0. Zarar ve borç yükü yüksek."
   },
   "DOFER": {
-   "note": "30 Eki: ₺15,80 (−%7,3), RSI 20; ATR stop önerisi (≈15,99) altında. 9 ayda zarar. Yeni ATR stop ≈14,7."
+   "note": "4 Kas: ₺18,81 (+%9,4), 0/7. ATR stop ≈17,6."
   },
   "EMPAE": {
-   "note": "30 Eki: ₺36,18 (−%2,0), RSI 32; 15dk Tamam yada Devam: Devam. ATR stop ≈32,7."
+   "note": "4 Kas: ₺36,14 (+%6,9), 0/7, savunma zayıf. ATR stop ≈32,7."
   },
   "GMTAS": {
-   "note": "30 Eki: ₺55,15 (+%5,6), 7/7, hafta +%17; takip listesinin en güçlüsü. ATR stop ≈48,9. Risk-off: kovalama yok."
+   "note": "4 Kas: ₺47,18 (−%4,4): ralli gününde ekside; 30 Eki ATR stop önerisi (≈48,9) altında kapandı. 15dk Trend aşağı, Tamam. Çıkarma adayı (teyit bekleniyor)."
   },
   "AHGAZ": {
-   "note": "30 Eki: ₺46,06 (+%0,1), 7/7, düşüş gününde tutundu; 4S Trend yukarı döndü. ATR stop ≈43,4."
+   "note": "4 Kas: ₺47,10 (+%1,2), 7/7, RS +39,6. 4S ve 15dk Trend yukarı, Devam; Elliott dalga 3. ATR stop ≈43,8. Hedef 65 TL."
   },
   "ENERY": {
-   "note": "30 Eki: ₺13,36 (+%0,4), 7/7, hafta +%10. ATR stop ≈12,7."
+   "note": "4 Kas: ₺14,19 (+%3,2), 7/7, RS +45,8 (listenin en güçlüsü). 4S ve 15dk Trend yukarı, Devam; Elliott yükseliş dalga 3. ATR stop ≈12,9. Risk-off: ancak küçük kademe."
   },
   "RYGYO": {
-   "note": "30 Eki: ₺51,25 (−%5,4), hâlâ 7/7; 15dk Tamam yada Devam: Devam. ATR stop ≈45,3. Tek aday olarak küçük, kademeli; kovalama yok."
+   "note": "4 Kas: ₺49,32 (−%3,9): ralli gününde ekside, 6/7. 15dk Trend aşağı, Tamam. ATR stop ≈45,6. Bekle."
   }
  }
 }
