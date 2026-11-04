@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-01",
- "note": "Fiyatlar 30 Eki (Cuma) kapanış, TradingView (15 dk gecikmeli). Takip listesi 1 Kas: KNSA, ELF, RRC, TRGP, CROX (TEAM, ILMN, MPC çıktı; RRC, TRGP, CROX girdi). Takip girişi = 30 Eki kapanış. Adil değer = analist ortalama hedefi, kendi tahminim değil. RSI = ivme (70 üstü aşırı alım); EMA20/SMA50 = kısa/orta vadeli ortalama; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim risk-off 3/7: tetikleyici gelmeden alım yok, kademe küçük.",
+ "updated": "2026-11-04",
+ "note": "Fiyatlar 4 Kas seans içi ~15:50 ET, TradingView (15 dk gecikmeli). Takip listesi 4 Kas: CROX, ELF, KNSA, RRC, ANF (TRGP stop altında çıktı; ANF girdi). Adil değer = analist ortalama hedefi. RSI 70 üstü aşırı alım; stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim nötr 5/7: kademeli alım.",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
@@ -1818,7 +1818,7 @@
    "name": "e.l.f. Beauty",
    "momentum": {
     "status": "Güçlü",
-    "text": "30 Eki kapanış $111,69 (−%1,1; hafta −%1,6). Trend 7/7, RSI 56; EMA20 110,8, SMA50 105,5 üstünde. Bilanço 4 Kas: tetikleyici bilanço sonrası SMA50 üstünde tutunma. Stop $106,32."
+    "text": "4 Kas seans içi $116,99 (+%4,9). Takip girişi 30 Eki $111,69 → +%4,7. Trend 7/7, RSI 65. Bilanço bu akşam (4 Kas kapanış sonrası): tetikleyici bilanço sonrası $111 (EMA20) üstünde tutunma. Stop $108,51."
    },
    "technical": [
     "23 Eki kapanış $114,24; RSI 65; ADX 38; MACD sinyal üstünde",
@@ -1855,8 +1855,8 @@
   "TRGP": {
    "name": "Targa Resources",
    "momentum": {
-    "status": "Güçlü",
-    "text": "30 Eki kapanış $314,99 (+%0,8; hafta +%8,5). Takip girişi 30 Eki $314,99. Trend 7/7, RSI 68, ATR %2,4 (düşük oynaklık). Bilanço 5 Kas: tetikleyici bilanço sonrası $300 (EMA20 ~297) üstünde tutunma. Stop $299,64."
+    "status": "Zayıf",
+    "text": "4 Kas seans içi $285,74 (−%4,3). Takip stopu $299,64 kırıldı; 30 Eki girişine ($314,99) göre −%9,3. Takipten çıktı. Bilanço 5 Kas."
    },
    "technical": [
     "30 Eki kapanış $314,99; RSI 68,4; EMA20 297,3, SMA50 290,3 üstünde",
@@ -2013,7 +2013,7 @@
    "name": "Kiniksa Pharmaceuticals",
    "momentum": {
     "status": "Güçlü",
-    "text": "30 Eki kapanış $92,24 (−%5,5; hafta +%15,1). Takip girişi 29 Eki $97,75 → −%5,6. Trend 7/7, RSI 63, 1A RS +21,9. Tetikleyici: $88-90 üstünde tutunup $95 üstü kapanış. Stop $84,35. Bilanço Mart 2027: yakın olay riski yok."
+    "text": "4 Kas seans içi $94,79 (+%1,6). Takip girişi 29 Eki $97,75 → −%3,0. Trend 7/7, RSI 65. Tetikleyici: $95 üstü kapanış. Stop $85,68."
    },
    "technical": [
     "30 Eki kapanış $92,24; RSI 63; EMA20 83,2, SMA50 79,2 üstünde",
@@ -2051,7 +2051,7 @@
    "name": "Range Resources",
    "momentum": {
     "status": "Güçlü",
-    "text": "30 Eki kapanış $54,63 (+%1,4). Takip girişi 30 Eki $54,63. Trend 7/7, RSI 77 (aşırı alım), 1A RS +49 (enerjide en güçlü). Tetikleyici: $51-52 (EMA20 civarı) geri çekilmede tutunma; kovalamak yok. Stop $51,36. Bilanço Şubat 2027."
+    "text": "4 Kas seans içi $52,24 (−%3,3, petrol çöküşüyle). Takip girişi 30 Eki $54,63 → −%4,4. Trend 7/7 korunuyor, RSI 66. Takip stopu $51,36: %1,7 mesafe. Kapanış stop altına inerse çıkar. Tetikleyici: $51,5 üstünde tutunup $54 üstü kapanış."
    },
    "technical": [
     "30 Eki kapanış $54,63; RSI 76,8; ATR %3,4",
@@ -2092,7 +2092,7 @@
    "name": "Crocs",
    "momentum": {
     "status": "Güçlü",
-    "text": "30 Eki kapanış $150,52 (+%0,2). Takip girişi 30 Eki $150,52. Trend 7/7, RSI 78 (aşırı alım), 1A RS +23. Tetikleyici: $140-143'e geri çekilmede tutunma. Stop $138,47. Bilanço Şubat 2027: yakın olay riski yok."
+    "text": "4 Kas seans içi $159,43 (+%3,8). Takip girişi 30 Eki $150,52 → +%5,9. Trend 7/7, RSI 82 (aşırı alım). Tetikleyici: $140-145'e geri çekilmede tutunma; kovalamak yok. Stop $147,14 (yukarı çekildi)."
    },
    "technical": [
     "30 Eki kapanış $150,52; RSI 77,7; ATR %4,0",
@@ -2127,6 +2127,46 @@
     "text": "Güçlü serbest nakit akışı, hisse geri alımı yapıyor; 12 ayda sermaye artırımı ihtiyacı yok."
    },
    "macro": "Tüketici harcaması; faiz artırımında risk iştahına bağlı kısmı var. Teknolojiden bağımsız."
+  },
+  "ANF": {
+   "name": "Abercrombie & Fitch",
+   "momentum": {
+    "status": "Güçlü",
+    "text": "4 Kas seans içi $170,37 (+%4,5). Takip girişi 4 Kas $170,37. Trend 7/7, RSI 66, bileşik RS +45,5 (döngüsel tüketimde en güçlü). Tetikleyici: $160-163 (EMA20 civarı) geri çekilmede tutunma ya da $172 üstü kapanış. Stop $157,44. Bilanço 24 Kas."
+   },
+   "technical": [
+    "4 Kas seans içi $170,37; RSI 65,7; trend 7/7",
+    "Grup: döngüsel tüketim (XLY) lider, +%4,5"
+   ],
+   "fundamental": {
+    "metrics": [
+     [
+      "Piyasa değeri",
+      "$7,2 mlr"
+     ],
+     [
+      "Serbest nakit akışı (TTM)",
+      "$566 mn"
+     ],
+     [
+      "F/K",
+      "14,6"
+     ],
+     [
+      "Borç",
+      "$1,29 mlr"
+     ]
+    ],
+    "fair_value": "Analist ortalama hedefi $165,8, fiyatın %2,5 altında (aralık $134-185). Değerleme ucuz (F/K 14,6) ama hedef büyük ölçüde fiyatlanmış; getiri momentumdan."
+   },
+   "news": [
+    "4 Kas: Petrol −%7 ve düşen faiz döngüsel tüketimi destekledi"
+   ],
+   "dilution": {
+    "risk": "Düşük",
+    "text": "4 Kas: Serbest nakit akışı pozitif (TTM $566 mn, son çeyrek $201 mn), geri alım yapan şirket. SEC shelf/ATM kaydı okunamadı (EDGAR erişimi engelli), doğrulanamadı. Kaynak: TradingView."
+   },
+   "macro": "Tüketici harcaması ve petrol fiyatına duyarlı. CROX ile aynı sürücü (giyim/ayakkabı tüketimi): ikisine birden tam boyut verme."
   }
  }
 }

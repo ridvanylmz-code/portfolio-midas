@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-01",
- "summary": "1 Kas güncellemesi; fiyatlar 30 Eki (Cuma) kapanış, kapanış sonrası 23:38 UTC (TradingView, 15 dk gecikmeli). Rejim 'Risk-off (savunma)' 3/7 (29 Eki 6/7 idi): nakit %35-40 bandında olmalı, yeni alım yalnız savunma liderlerinden ve küçük kademelerle. 30 Eki: SPY $755,72 (−%1,8), QQQ $690,49 (−%3,5), IWM −%1,7, RSP −%0,8; SPY ve QQQ SMA50 altına indi, yükselen hisse oranı (SMA50 üstü) %40. Neden: Fed üyeleri ve Hazine'den faiz artırımı sinyalleri (Aralık'ta artırım konuşuluyor), 10 yıllık %5 civarı; yarı iletken −%7, teknoloji −%4,9. İran gerginliğiyle petrol yüksek; enerji lider. Ekim'de para teknolojiden sağlık, temel tüketim ve enerjiye döndü. Bu hafta: 2 Kas ISM imalat, 3 Kas ara seçim + JOLTS, 4 Kas ISM hizmet, 6 Kas tarım dışı istihdam. Lider: enerji, sağlık, temel tüketim, malzeme, kamu hizmetleri. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, nükleer, yarı iletken, iletişim. Elimizdeki CRWV, WYFI, SGML, RKLB trend 0/7: momentum kırık, satış kararı sende.",
+ "updated": "2026-11-04",
+ "summary": "4 Kas güncellemesi; fiyatlar 4 Kas seans içi ~15:50 ET (TradingView, 15 dk gecikmeli). Ara seçimde Demokratlar Kongre'yi aldı; piyasa bunu İran'la uzlaşı ve daha az faiz baskısı olarak fiyatladı: Dow +%3, SPY $767,8 (+%1,8), QQQ +%1,1, IWM +%1,5, petrol −%7 (4 haftanın dibi), 10 yıllık %4,89'a geriledi, altın +%3. Rejim 'Nötr / seçici' 5/7 (1 Kas'ta 3/7 risk-off idi): nakit %20-25 bandına inebilir, ama QQQ hâlâ SMA50 altında ve yükselen hisse oranı %42, bu yüzden yeni alımlar kademeli. Lider: sağlık, temel tüketim, döngüsel tüketim (petrol düşüşünün kazananı), malzeme, finans (banka hariç). Enerji 1 günde liderlikten düştü (XLE −%5). Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, nükleer, yarı iletken, uzay. Elimizdeki CRWV, WYFI, SGML, RKLB trend 0/7; CRWV ve WYFI bugün −%9/−%11. Takip listesi: TRGP stop altında çıktı, ANF girdi. Yakın olaylar: ELF bilanço bu akşam, CRWV/WYFI 10 Kas, RKLB 9 Kas, SGML 11 Kas; 6 Kas tarım dışı istihdam.",
  "groups": {
   "CIBR": {
    "note": "30 Eki: Lider #3 ama gün −%3,8, SMA50 (101,3) altına indi ($101,03). Faiz hassas; SMA50 geri alınmadan alım yok."
@@ -15,13 +15,13 @@
    "note": "25 Eki: Zayıflayan (trend 4/7, 1A −6,4%). Yazılım tarafı (NOW, PLTR) güçlü, donanım tarafı zayıf."
   },
   "SMH": {
-   "note": "30 Eki: −%7,0, 1A −%14,3, SMA50 (572,6) altında. AMD −%10,9, MRVL −%10,1, NVDA −%4,2. Dip avcılığı yok."
+   "note": "4 Kas: Hâlâ geride (RS −13,8, trend 2/7). Endeks günü artıda kapatsa da SMA50 altında; dip avcılığı yok."
   },
   "XLE": {
-   "note": "30 Eki: Lider #1 (bileşik RS +13,8), kapanış $70,02 (+%1,9), trend 7/7, 3A zirvede. İran kaynaklı petrol primi sürüyor; üreticiler analist hedeflerinin üstünde, kovalamadan geri çekilmede kademeli."
+   "note": "4 Kas: Petrol −%7 (Demokrat zaferi + İran'la uzlaşı beklentisi), XLE −%5,1, trend 7/7'den 5/7'ye. Rafineri ve orta akım (TRGP −%4,3) zayıf; doğalgaz üreticisi RRC trendini koruyor. Yeni enerji alımı yok."
   },
   "XLV": {
-   "note": "30 Eki: Lider #2 (RS +11,6), $184,87 (+%0,5), trend 7/7, RSI 72. Sağlık bilançolarında EPS beklentiyi aşma oranı yüksek; teknolojiden çıkan para buraya geliyor. ILMN (−%18,6) Çin listesi ve gelir ıskası nedeniyle istisna."
+   "note": "4 Kas: Lider #1 (RS +14,9), +%2,8, trend 7/7, RSI 75 (aşırı alım). Kovalamak yerine geri çekilmede alım."
   },
   "IBIT": {
    "note": "25 Eki: Kararsız (6/7 ama 1A −5,1%). MSTR oynak, uygun değil."
@@ -51,7 +51,7 @@
    "note": "25 Eki: En zayıflardan (1A −26%, RSI 17)."
   },
   "WGMI": {
-   "note": "30 Eki: En zayıf grup, −%8,6, 1A −%39,6. WYFI bu grupta."
+   "note": "4 Kas: En zayıf grup (RS −40,8, hafta −%15). CRWV −%9, WYFI −%11: piyasa yükselirken düşüyorlar."
   },
   "GDX": {
    "note": "21 Eki: Zayıflayan, 1A −10,5%, trend 1/7."
@@ -90,13 +90,13 @@
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "30 Eki: Lider #5, $89,42 (+%1,4), trend 7/7. Risk-off rejiminde savunma tercihi; ELF bilançosu 4 Kas, EL 2 Kas."
+   "note": "4 Kas: Lider #2 (RS +9,3), +%3,5, trend 7/7. CROX ve ELF buradan; ELF bilançosu bu akşam."
   },
   "XBI": {
    "note": "29 Eki: Lider, hafta +%4,4. Adaylar güçlü ama KOD nakit yakıyor (dilüsyon riski yüksek), MRNA ve GMAB analist hedeflerinin üstünde."
   },
   "XLY": {
-   "note": "22 Eki: Lider sınıfına geçti (haftalık RS +3,5) ama trend 3/7; teyit bekle."
+   "note": "4 Kas: +%4,5, lider (RS +6,1). Düşen petrol ve faiz tüketiciyi rahatlatır; ANF takibe alındı."
   },
   "XLB": {
    "note": "22 Eki: Toparlanan (haftalık RS +4,1, trend 6/7). CLF, SSL güçlü."
