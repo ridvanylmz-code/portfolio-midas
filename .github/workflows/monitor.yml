@@ -3,19 +3,18 @@ name: Portföy İzle - Midas-USD
 # Zamanlama UTC, ama rapor/sessiz seçimi scripts/monitor.py içinde ABD saatine (ET) göre yapılır (--auto):
 # yaz/kış saati geçişinde (1 Kasım 2026, Mart 2027) elle değişiklik gerekmez. Her rapor saati için iki cron
 # vardır (EDT ve EST karşılığı); saatine denk gelmeyen çalışma sessiz yenilemeye döner.
-# Telegram raporları (ET): 20:01 (Paz-Cum), 00:01, 04:01, 09:16, 09:31, 15:55, 16:01 (Pzt-Cum).
-#   İstanbul karşılığı yazın 03:01, 07:01, 11:01, 16:16, 16:31, 22:55, 23:01; kışın birer saat sonra.
-# Sessiz yenileme: normal seansta 15 dk'da bir, ön/sonrası seansında 30 dk'da bir (dashboard + alarm).
+# Telegram raporları (ET): 22:17 (Paz-Cum), 04:17, 09:27, 09:47, 15:57, 16:17 (Pzt-Cum).
+#   İstanbul karşılığı kışın 06:17, 12:17, 17:27, 17:47, 23:57, 00:17; yazın birer saat önce.
+# Sessiz yenileme: 30 dk'da bir (:17 / :47), ET 04:17-20:47 (kışın İst. 12:17-04:47); dışı atlanır (monitor.py).
+# :17/:47 rapor saatleri sessiz cron'larla zaten kapsanır; :27/:57 ve 22:17 için EDT+EST çift cron var.
 # Not: GitHub zamanlanmış işleri birkaç dk-20 dk geciktirebilir; rapor penceresi 25 dk.
 on:
   schedule:
-    - cron: "7,22,37,52 8-23 * * 1-5"    # sessiz yenileme (ön piyasa -> kapanış sonrası, EDT+EST)
-    - cron: "7,22,37,52 0 * * 2-6"       # kapanış sonrası sonu (EST)
-    - cron: "1 0,1 * * 1-6"              # 20:01 ET raporu (EDT/EST)
-    - cron: "1 4,5,8,9 * * 1-5"          # 00:01 ve 04:01 ET raporları
-    - cron: "16,31 13,14 * * 1-5"        # 09:16 ve 09:31 ET raporları
-    - cron: "55 19,20 * * 1-5"           # 15:55 ET raporu
-    - cron: "1 20,21 * * 1-5"            # 16:01 ET raporu
+    - cron: "17,47 8-23 * * 1-5"         # sessiz yenileme + 04:17, 09:47, 16:17 ET raporları (EDT+EST)
+    - cron: "17,47 0,1 * * 2-6"          # kapanış sonrası sonu (ET 20:47'ye kadar)
+    - cron: "17 2,3 * * 1-6"             # 22:17 ET raporu (EDT/EST)
+    - cron: "27 13,14 * * 1-5"           # 09:27 ET raporu
+    - cron: "57 19,20 * * 1-5"           # 15:57 ET raporu
   workflow_dispatch:
     inputs:
       report:

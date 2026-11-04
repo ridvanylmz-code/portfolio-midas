@@ -10,7 +10,7 @@ planda yoksa normal seans mumlarına düşülür ve bu `prepost: false` olarak d
 Hisse listesi docs/data/portfolio.json'dan okunur (pozisyonlar + izleme listesi).
 
 Çalışma kuralı (ET seansı): normal seans -> her çalışmada; ön/kapanış sonrası -> son güncellemeden
-en az 50 dk geçmişse; seans dışı -> atla. --force hepsini atlar.
+en az 25 dk geçmişse; seans dışı -> atla. --force hepsini atlar.
 Bir hisse için istek başarısız olursa önceki veri korunur (stale=true).
 """
 import argparse
@@ -31,7 +31,7 @@ ET = ZoneInfo("America/New_York")
 TD_URL = "https://api.twelvedata.com/time_series"
 TD_PAUSE = 8.0  # ücretsiz plan: dakikada 8 istek
 OUTPUTSIZE = 2000
-EXT_MIN_AGE_MIN = 50
+EXT_MIN_AGE_MIN = 25  # 30 dk cron düzeni; gecikmeli çift çalışmayı önler
 LOG = []
 
 

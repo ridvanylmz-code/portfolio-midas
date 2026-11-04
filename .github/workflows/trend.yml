@@ -5,11 +5,13 @@ name: Trend Tara - USD piyasaları
 # (intraday'in `data` dalına dokunmaz). Sayfa: https://<kullanıcı>.github.io/portfolio-midas/trend/
 # Kaynak: Yahoo Finance (anahtarsız); TWELVEDATA_API_KEY varsa eksik kalan semboller için yedek.
 on:
-  # Otomatik (UTC; Türkiye sabit UTC+3): İst. 11:17, 17:17, 19:17, 21:17, 23:17, 03:17, 07:17.
+  # Otomatik (UTC; Türkiye sabit UTC+3). KIŞ (EST, 1 Kas 2026 - 8 Mar 2027):
+  #   İst. 11:17 18:17 20:17 22:17 00:17 = ET 03:17 10:17 12:17 14:17 16:17; ayrıca İst. 03:17 ve 07:17.
+  # 8 Mart 2027'de yaz satırına dön: "17 8,14,16,18,20 * * 1-5"
   # Ön/sonrası seans verisi trend.py içinde (Alpaca + extended.py) zaten alınıyor; extended.yml gerekmez.
-  # GitHub cron'u 5-35 dk gecikebilir. 16:47 ve 17:02'deki çalışmaları günlük Claude görevi tetikler.
+  # GitHub cron'u 5-35 dk gecikebilir.
   schedule:
-    - cron: "17 8,14,16,18,20 * * 1-5"   # İst. 11:17 17:17 19:17 21:17 23:17
+    - cron: "17 8,15,17,19,21 * * 1-5"   # KIŞ: ET 03:17 10:17 12:17 14:17 16:17
     - cron: "17 0 * * 2-6"               # İst. 03:17 (seansın ertesi gecesi)
     - cron: "17 4 * * 1-5"               # İst. 07:17
   workflow_dispatch:

@@ -6,9 +6,8 @@ name: Sektör Rotasyonu - USD piyasaları
 # Zamanlama (UTC, hafta içi): ön piyasa, seans boyunca saatte bir, kapanış sonrası. Yaz/kış saatini kapsar.
 on:
   schedule:
-    - cron: "17 9,12 * * 1-5"        # ön piyasa (ET 05:17/08:17 yazın)
-    # 09:32 ET cron'u kaldırıldı: TV verisi ~15 dk gecikmeli + GitHub cron'u 20-35 dk gecikiyor.
-    # Açılış sonrası ilk güncellemeyi günlük Claude görevi 09:47 ET'de workflow_dispatch ile tetikler.
+    # Kış (EST) İst.: 12:17, 15:17 · 17:47-23:47 saatlik · 00:27, 02:27 (ilk seans güncellemesi 09:47 ET)
+    - cron: "17 9,12 * * 1-5"        # ön piyasa (ET 04:17/07:17 kışın, 05:17/08:17 yazın)
     - cron: "47 13-20 * * 1-5"       # seans içi saatlik
     - cron: "27 21,23 * * 1-5"       # kapanış sonrası
   workflow_dispatch:

@@ -28,12 +28,13 @@ PRICE_DAYS = 30
 SNAPSHOT_LIMIT = 4000  # ~15 yıl günlük kayıt (performans geçmişi)
 
 # Telegram rapor saatleri ABD saatine (ET) bağlı: yaz/kış saati geçişinde kendiliğinden kayar.
-# (saat, dakika, ET hafta günleri 0=Pzt). İstanbul karşılığı yazın: 03:01, 07:01, 11:01, 16:16, 16:31, 22:55, 23:01
-# (kışın 1 saat sonra). 20:01 ET Pazar dahil: Pazartesi sabahı (İstanbul) yeni hafta ilk raporu.
+# (saat, dakika, ET hafta günleri 0=Pzt). İstanbul karşılığı kışın: 06:17, 12:17, 17:27, 17:47, 23:57, 00:17
+# (yazın 1 saat önce). 22:17 ET Pazar dahil: Pazartesi sabahı (İstanbul) yeni hafta ilk raporu.
 WEEK = (0, 1, 2, 3, 4)
-REPORT_SLOTS_ET = [(20, 1, (6,) + WEEK), (0, 1, WEEK), (4, 1, WEEK), (9, 16, WEEK), (9, 31, WEEK),
-                   (15, 55, WEEK), (16, 1, WEEK)]
+REPORT_SLOTS_ET = [(22, 17, (6,) + WEEK), (4, 17, WEEK), (9, 27, WEEK), (9, 47, WEEK),
+                   (15, 57, WEEK), (16, 17, WEEK)]
 SLOT_WINDOW_MIN = 25  # GitHub zamanlanmış işleri geciktirebilir
+QUIET_ET = (4 * 60 + 15, 21 * 60 + 15)  # sessiz yenileme ET 04:17-20:47 (+25 dk cron gecikme payı)
 
 
 def due_slots(now):
@@ -329,9 +330,10 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         due = [x for x in due_slots(now) if x not in done]
         report = bool(due)
         if not report and not BIST:
-            import extended
-            if extended.session_name(now) in ("pre", "post") and now.astimezone(ET).minute % 30 >= 15:
-                print("Ön/sonrası seansı: yarım saatte bir yenilenir; atlandı.")
+            t = now.astimezone(ET)
+            m = t.hour * 60 + t.minute
+            if t.weekday() >= 5 or not (QUIET_ET[0] <= m <= QUIET_ET[1]):
+                print("Sessiz yenileme penceresi dışında (ET 04:17-20:47); atlandı.")
                 return 0
         print(f"Otomatik mod: {'rapor ' + ','.join(due) if report else 'sessiz yenileme'}")
     portfolio = common.load_portfolio()
