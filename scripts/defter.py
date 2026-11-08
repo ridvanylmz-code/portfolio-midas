@@ -214,6 +214,15 @@ def tv_close(symbol):
         return None
 
 
+def last_session(close_utc_hour, now=None):
+    """Son TAMAMLANMIŞ seansın tarihi (hafta içi; kapanış saati UTC, +15 dk pay). BIST 15, ABD 21 (EST/EDT güvenli)."""
+    now = now or datetime.now(timezone.utc)
+    t = now.date() if now.hour * 60 + now.minute >= close_utc_hour * 60 + 15 else now.date() - timedelta(days=1)
+    while t.weekday() >= 5:
+        t -= timedelta(days=1)
+    return t.isoformat()
+
+
 def fill_indices(d, rng="10d", today=None):
     # S&P 500 karşılaştırması SPY fiyatıyla yapılır (endeks verisi ücretsiz kaynaklarda kısıtlı; tek kaynak = tutarlı seri)
     if d.get("sp_src") != "SPY":
@@ -226,16 +235,26 @@ def fill_indices(d, rng="10d", today=None):
         sp = {**twelvedata_closes("SPY", 5000 if rng == "max" else 15), **sp}
     if len(xu) < 3:
         xu = {**stooq_closes("^xu100"), **xu}
-    if today and today not in xu:
+    xu0, sp0 = set(xu), set(sp)   # tarihli kaynaktan gelen günler
+    # TradingView anlık kapanışı yalnızca 'today' gerçekten son tamamlanan seanssa kullanılır
+    # (3–6 Kas 2026: gecikmeli çalışmada önceki günün kapanışı yanlış güne yazılmıştı).
+    if today and today not in xu and today == last_session(15):
         v = tv_close("BIST:XU100")
         if v:
             xu[today] = v
-    if today and today not in sp:
+    if today and today not in sp and today == last_session(21):
         v = tv_close("AMEX:SPY")
         if v:
             sp[today] = v
+    # Tarihli geçmiş kaynak (Yahoo/Twelve Data/Stooq) yetkilidir: Excel sonrası günlerde farklı değeri düzeltir.
+    xl = max((x["d"] for x in d["days"] if any(e.get("s") == "x" for e in x.get("a", {}).values())), default="")
+    hist_xu, hist_sp = {k: v for k, v in xu.items() if k != today or k in xu0}, {k: v for k, v in sp.items() if k != today or k in sp0}
     n = 0
     for x in d["days"]:
+        for key, src in (("xu", hist_xu), ("sp", hist_sp)):
+            v = src.get(x["d"])
+            if v is not None and x["d"] > xl and x.get(key) != v:
+                x[key] = v; n += 1
         if "xu" not in x and x["d"] in xu:
             x["xu"] = xu[x["d"]]; n += 1
         if "sp" not in x and x["d"] in sp:
@@ -476,7 +495,7 @@ def cmd_auto(args):
             got.append(a["name"])
     healed = heal_gaps(d, ds)
     gaps = sum(1 for y in d["days"] if y["d"] >= "2023-06-16" and "sp" not in y)
-    fill_indices(d, rng="max" if gaps > 20 else "10d", today=ds)
+    fill_indices(d, rng="max" if gaps > 20 else "1mo", today=ds)
     if not x["a"] and "xu" not in x and "sp" not in x:
         d["days"].remove(x)
         print(f"{ds}: piyasa kapalı / veri yok; kayıt açılmadı.")
@@ -485,6 +504,11 @@ def cmd_auto(args):
     save(d)
     miss = [ACCOUNTS[k]["name"] for k in ("midas_tr", "midas_usd")
             if not (x["a"].get(k) or {}).get("s")]
+    xd = day(d, ds, create=False)
+    miss_idx = [n for k, n in (("xu", "XU100"), ("sp", "SPY")) if xd and xd.get("a") and k not in xd]
+    if miss_idx:
+        common.send_telegram(f"⚠️ Defter {_tr_date(ds)}: {', '.join(miss_idx)} kapanışı alınamadı; "
+                             "sonraki çalışmada tarihli kaynaktan tekrar denenecek.")
     if healed:
         common.send_telegram("🩹 Defter boşlukları dolduruldu: " + ", ".join(healed))
     if miss and x in d["days"]:
