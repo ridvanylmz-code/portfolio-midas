@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-08T22:27:52+00:00",
+  "updated": "2026-11-08T22:36:01+00:00",
   "days": 1276,
   "first": "2020-10-01",
   "last": "2026-11-06",
-  "with_xu": 1229,
+  "with_xu": 1230,
   "with_sp": 1227,
   "last_by_account": {
     "midas_tr": "2026-11-06",
@@ -12,7 +12,6 @@
     "ibkr": "2026-11-06"
   },
   "diag": [
-    "fix: Info-TR 3–7 Kas kayması düzeltildi",
     "yahoo XU100.IS: HTTPError 429",
     "yahoo SPY: HTTPError 429"
   ]
