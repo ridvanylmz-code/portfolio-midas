@@ -362,15 +362,96 @@ def flows_on(hist, ds):
     return round(f, 2)
 
 
+def target_day(now=None):
+    """Kaydın ait olduğu işlem günü. 22:20 UTC cron'u GitHub'da saatlerce gecikip ertesi UTC gününe
+    sarkabiliyor (3–7 Kas 2026); bu yüzden 'şu an − 8 sa' alınır ve hafta sonu Cuma'ya çekilir."""
+    t = ((now or datetime.now(timezone.utc)) - timedelta(hours=8)).date()
+    while t.weekday() >= 5:
+        t -= timedelta(days=1)
+    return t.isoformat()
+
+
+def snap_fill(d, acc, ds, x=None):
+    """Midas-TR/USD: o günün snapshot'ını deftere yazar. Elle/Excel kayda dokunmaz. Yazdıysa True."""
+    a = ACCOUNTS[acc]
+    hist = common.load_json(a["src"], {}) or {}
+    snap = next((s for s in hist.get("snapshots", []) if s["date"] == ds), None)
+    if not snap:
+        return False
+    x = x or day(d, ds)
+    e0 = x["a"].get(acc)
+    if e0 and e0.get("s") in ("m", "x"):
+        return False
+    res = d["accounts"][acc].get("reserve", 0) if a["cur"] == "TRY" else 0
+    e = {"v": round(snap["value"] - res, 2), "h": round(snap["value"] - snap.get("cash", 0), 2), "s": "a"}
+    if a["cur"] == "TRY":
+        e["r"] = res
+    prev_snap = [s for s in hist.get("snapshots", []) if s["date"] < ds]
+    if prev_snap:
+        e["pt"] = round(prev_snap[-1]["value"], 2)
+    fm = (e0 or {}).get("fm", 0)
+    f = round(flows_on(hist, ds) + fm, 2)
+    if f:
+        e["f"] = f
+    if fm:
+        e["fm"] = fm
+    if (e0 or {}).get("n"):
+        e["n"] = e0["n"]
+    x["a"][acc] = e
+    return True
+
+
+def heal_gaps(d, ds, back=14):
+    """Kendini onarma: son `back` gündeki hafta içi boşlukları (Midas-TR/USD) snapshot varsa doldurur.
+    Cron gecikse/atlansa da bir sonraki başarılı çalışma eksik günleri tamamlar."""
+    out, t0 = [], date.fromisoformat(ds)
+    for i in range(1, back + 1):
+        t = t0 - timedelta(days=i)
+        if t.weekday() >= 5:
+            continue
+        ts = t.isoformat()
+        x = day(d, ts, create=False)
+        for acc in ("midas_tr", "midas_usd"):
+            if x and acc in x["a"]:
+                continue
+            if snap_fill(d, acc, ts, x):
+                x = day(d, ts, create=False)
+                out.append(f"{ACCOUNTS[acc]['name']} {_tr_date(ts)}")
+    return out
+
+
+def fix_info_shift(d):
+    """Tek seferlik: 3–7 Kas 2026 cron gecikmesiyle Info-TR otomatik kayıtları 1 gün ileri yazıldı; geri kaydırır."""
+    tag = "info_shift_2026_11"
+    fixes = d.setdefault("fixes", [])
+    if tag in fixes:
+        return
+    for src, dst in (("2026-11-04", "2026-11-03"), ("2026-11-05", "2026-11-04"),
+                     ("2026-11-06", "2026-11-05"), ("2026-11-07", "2026-11-06")):
+        xs, xd = day(d, src, create=False), day(d, dst)
+        e = (xs or {}).get("a", {}).get("info_tr")
+        if e and e.get("s") == "a" and "info_tr" not in xd["a"]:
+            xd["a"]["info_tr"] = xs["a"].pop("info_tr")
+    sat = day(d, "2026-11-07", create=False)
+    if sat and not sat["a"]:
+        d["days"].remove(sat)
+    fixes.append(tag)
+    DIAG.append("fix: Info-TR 3–7 Kas kayması düzeltildi")
+
+
 def cmd_auto(args):
     d = load()
-    ds = args.date or datetime.now(timezone.utc).date().isoformat()
+    fix_info_shift(d)   # canlı Info-TR yazımından ÖNCE
+    live = target_day()
+    ds = args.date or live
     x = day(d, ds)
     got = []
     for acc, a in ACCOUNTS.items():
         if not a["src"]:
             continue
         if a["src"] == "info":
+            if ds != live:
+                continue  # geçmiş gün: Info-TR canlı fiyatla hesaplanır, eski güne yazılmaz
             e0 = x["a"].get(acc)
             if e0 and e0.get("s") in ("m", "x"):
                 continue
@@ -391,30 +472,9 @@ def cmd_auto(args):
             x["a"][acc] = e
             got.append(a["name"])
             continue
-        e0 = x["a"].get(acc)
-        if e0 and e0.get("s") in ("m", "x"):
-            continue  # elle ya da Excel'den girilmiş değere dokunma
-        hist = common.load_json(a["src"], {}) or {}
-        snap = next((s for s in hist.get("snapshots", []) if s["date"] == ds), None)
-        if not snap:
-            continue
-        res = d["accounts"][acc].get("reserve", 0) if a["cur"] == "TRY" else 0
-        e = {"v": round(snap["value"] - res, 2), "h": round(snap["value"] - snap.get("cash", 0), 2), "s": "a"}
-        if a["cur"] == "TRY":
-            e["r"] = res
-        prev_snap = [s for s in hist.get("snapshots", []) if s["date"] < ds]
-        if prev_snap:
-            e["pt"] = round(prev_snap[-1]["value"], 2)
-        fm = (e0 or {}).get("fm", 0)
-        f = round(flows_on(hist, ds) + fm, 2)
-        if f:
-            e["f"] = f
-        if fm:
-            e["fm"] = fm
-        if (e0 or {}).get("n"):
-            e["n"] = e0["n"]
-        x["a"][acc] = e
-        got.append(a["name"])
+        if snap_fill(d, acc, ds):
+            got.append(a["name"])
+    healed = heal_gaps(d, ds)
     gaps = sum(1 for y in d["days"] if y["d"] >= "2023-06-16" and "sp" not in y)
     fill_indices(d, rng="max" if gaps > 20 else "10d", today=ds)
     if not x["a"] and "xu" not in x and "sp" not in x:
@@ -423,6 +483,13 @@ def cmd_auto(args):
     for acc in ACCOUNTS:
         recompute(d, acc)
     save(d)
+    miss = [ACCOUNTS[k]["name"] for k in ("midas_tr", "midas_usd")
+            if not (x["a"].get(k) or {}).get("s")]
+    if healed:
+        common.send_telegram("🩹 Defter boşlukları dolduruldu: " + ", ".join(healed))
+    if miss and x in d["days"]:
+        common.send_telegram(f"⚠️ Defter {_tr_date(ds)}: {', '.join(miss)} snapshot yok, girilmedi. "
+                             "Monitor o gün çalıştı mı? Elle: Defter → otomatik_yenile + tarih.")
     print(f"{ds}: otomatik kayıt tamam ({len(got)} hesap).")
     return 0
 

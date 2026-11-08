@@ -8,6 +8,7 @@ name: Portföy Defteri - Tüm hesaplar
 on:
   schedule:
     - cron: "20 22 * * 1-5"
+    - cron: "40 4 * * 2-6"       # yedek: 22:20 gecikir/atlanırsa aynı günü tamamlar (idempotent)
     - cron: "10 7 * * 6"
     - cron: "15 6 * * 2-6"       # İst. 09:15: IBKR Flex (rapor kapanıştan sonra hazırlanır)
   workflow_dispatch:
