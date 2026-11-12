@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-07",
- "summary": "7 Kas güncellemesi; fiyatlar 6 Kas (Cuma) kapanış, TradingView (15 dk gecikmeli; market.json 7 Kas 00:59 UTC). Hafta kötü: SPY −%3,4 ($735,29), QQQ −%5,9, SMH −%12,9, XLK −%9,5. Cuma tepki: SPY +%0,3, QQQ +%1,4. Nedenler: ara seçimde Demokrat süpürmesi teknolojide satış dalgası yarattı; Ekim tarım dışı istihdam 165 bin (beklenti 65 bin), işsizlik %4,1: faiz indirimi uzaklaştı, artırım korkusu var. Rejim 'Risk-off (savunma)' 3/7 (4 Kas'ta 5/7 idi): nakit %35-40 bandında olmalı. Yükselen hisse oranı %28 (SMA50 üstü). QQQ ve IWM SMA50 altında, SPY SMA200 ($730) üstünde tutunuyor. Lider: sağlık, temel tüketim, döngüsel tüketim, gayrimenkul, malzeme. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, nükleer, yarı iletken, kuantum, teknoloji. Enerji haftada −%11 ile liderlikten düştü. Takip listesi: RRC ve ANF stop altında çıktı; GMAB ve GKOS (sağlık) girdi. Haftaya: 10 Kas TÜFE (beklenti yıllık %3,9), 13 Kas ÜFE; bilanço RKLB 9 Kas, CRWV/WYFI 10 Kas, SGML 11 Kas.",
+ "updated": "2026-11-12",
+ "summary": "12 Kas güncellemesi; fiyatlar 12 Kas seans içi ~14:50 ET (TradingView, 15 dk gecikmeli; market.json 17:37 UTC). SPY $757,84 (−%0,3), QQQ $688,13 (−%0,3), IWM $279,09 (−%1,4), VIX 18,5 (+%5,8). SPY SMA50 ($764,8) altında, SMA200 ($731,6) üstünde. Makro: Ekim TÜFE aylık +%0,4 ile beklentiyi aştı (10 Kas); BofA Fed'in geride kaldığını, 50 bp artırım ihtimalini konuşuyor. Faiz artırım korkusu teknoloji/yarı iletkeni baskılıyor. Rejim 'Risk-off (savunma)' 3/7: nakit %35-40 bandında olmalı. Yükselen hisse oranı %38 (SMA50 üstü; 7 Kas %28'den iyileşme). Lider: sağlık, temel tüketim, döngüsel tüketim, havayolları, malzeme. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, lityum, nükleer, bakır, yarı iletken. Takip listesi değişmedi: CROX, ELF, KNSA, GMAB, GKOS (stop altında kapanış yok). Yedek aday: HNGE. Yarın 13 Kas ÜFE (beklenti aylık +%0,4), SGML bilançosu; 17 Kas perakende satışlar.",
  "groups": {
   "CIBR": {
    "note": "7 Kas: Geride, hafta −%12,1, 1A −%15,2."
@@ -9,19 +9,19 @@
    "note": "7 Kas: Zayıflayan, hafta −%7,4, 1A −%10,6. Azalt / kâr al."
   },
   "XLK": {
-   "note": "7 Kas: Geride, 2/7, hafta −%9,5, 1A −%17,8. Seçim sonrası teknoloji satışı; Cuma +%1,5 tepki trendi değiştirmedi. Uzak dur."
+   "note": "12 Kas: #22, trend 3/7, 1A −%10,5. TÜFE sonrası faiz baskısı; EMA20 (178) altında. Uzak dur."
   },
   "AIQ": {
    "note": "25 Eki: Zayıflayan (trend 4/7, 1A −6,4%). Yazılım tarafı (NOW, PLTR) güçlü, donanım tarafı zayıf."
   },
   "SMH": {
-   "note": "7 Kas: Geride, 2/7, hafta −%12,9, 1A −%25. Cuma +%3,6 tepki. SMA50 geri alınmadan alım yok."
+   "note": "12 Kas: #27, trend 2/7, 1A −%13,4; hafta +%3,8 tepki SMA50'yi (561) geri almadı. Alım yok."
   },
   "XLE": {
-   "note": "7 Kas: Haftada −%11,4, trend 4/7, 'İzle'. İran uzlaşısıyla petrol düştü; RRC stop altında çıktı."
+   "note": "12 Kas: #7, trend 5/7, bugün +%1,8 tepki; 1A hâlâ −%3. İzle."
   },
   "XLV": {
-   "note": "7 Kas: Lider #1, trend 7/7, bileşik RS +16. 6 Kas $184,80; 1A +%10. Risk-off'ta ana sığınak; yeni alımlar önce buradan."
+   "note": "12 Kas: Lider #1, trend 7/7, bileşik RS +13,6, 1A +%10. Hafta −%1 kâr satışı; EMA20 (183) üstünde. Risk-off'ta ana sığınak; yeni alımlar önce buradan."
   },
   "IBIT": {
    "note": "25 Eki: Kararsız (6/7 ama 1A −5,1%). MSTR oynak, uygun değil."
@@ -30,28 +30,28 @@
    "note": "1A toparlanma işareti, 3A hâlâ SPY gerisinde. Erken; teyit için 3A RS'nin pozitife dönmesi beklenir."
   },
   "DTCR": {
-   "note": "25 Eki: Geride (2/7, 1A −11%). CRWV dahil yapay zekâ altyapısı baskıda."
+   "note": "12 Kas: #24, trend 1/7. CRWV bugün −%7,8 (Barclays hedef 105→85). Yapay zekâ altyapısı baskıda."
   },
   "URA": {
-   "note": "21 Eki: Trend 0/7, 1A −17,7%."
+   "note": "12 Kas: #35, 0/7, 3A −%27,7."
   },
   "NLR": {
-   "note": "21 Eki: Trend 0/7, 1A −15,9%."
+   "note": "12 Kas: #33, 0/7, 3A −%24."
   },
   "UFO": {
-   "note": "25 Eki: Geride (0/7, 1A −9,4%). RKLB trend kırık."
+   "note": "12 Kas: #23, trend 1/7 ama hafta +%7,2. RKLB dipten ~%50 toparlandı; grup trendi henüz dönmedi."
   },
   "ITA": {
    "note": "Savunma: ADX 51 ile güçlü bir DÜŞÜŞ trendi, 0/7. KTOS dahil uzak dur."
   },
   "LIT": {
-   "note": "25 Eki: Geride (0/7, RSI 22). SGML dahil."
+   "note": "12 Kas: #34, 0/7, 1A −%11,9. SGML bilançosu 13 Kas."
   },
   "REMX": {
-   "note": "25 Eki: En zayıflardan (1A −26%, RSI 17)."
+   "note": "12 Kas: #36, 0/7, 3A −%34, bugün −%4. UAMY dahil uzak dur."
   },
   "WGMI": {
-   "note": "7 Kas: En zayıf grup, 1A −%41. Cuma +%10,5 tepki; trend 0/7. CRWV/WYFI bu gruba bağlı."
+   "note": "12 Kas: En zayıf (#37), 1A −%24,9, 3A −%40. Haftalık +%8 tepki trendi değiştirmedi. WYFI dahil uzak dur."
   },
   "GDX": {
    "note": "7 Kas: Hafta +%12 ama trend 2/7: sıçrama, trend değil. İzle."
@@ -60,7 +60,7 @@
    "note": "21 Eki: Zayıflayan, 1A −15%."
   },
   "COPX": {
-   "note": "Bakır: 3A güçlü, 1A zayıf. 9 Eki'de +4,3% tepki; izle."
+   "note": "12 Kas: #32, 0/7, 1A −%16,3."
   },
   "XHB": {
    "note": "Konut inşaat: 10 yıllık faiz %5,24 iken en olumsuz grup; 0/7."
@@ -84,22 +84,22 @@
    "note": "Temiz enerji: 0/7."
   },
   "JETS": {
-   "note": "Havayolları: petrol ~92$ maliyet baskısı, 3A'da SPY'nin 19 puan gerisinde."
+   "note": "12 Kas: #5, trend 6/7, 1A +%9. Bugün −%2,1; oynak."
   },
   "KWEB": {
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "7 Kas: Lider #2, 7/7, RS +10,7. 6 Kas $90,08 (−%1,3). Ekim'den beri teknolojiden çıkan para buraya akıyor."
+   "note": "12 Kas: Lider #2, trend 7/7, RS +7,2, 1A +%7,8. Savunma rotasyonunun ikinci ayağı."
   },
   "XBI": {
    "note": "7 Kas: Lider ama trend 4/7, Cuma +%2,6. Seçici: güçlü nakitli isimler (GMAB)."
   },
   "XLY": {
-   "note": "7 Kas: Lider #4, 5/7, hafta +%2,3. Petrol düşüşü destek ama güçlü istihdam/faiz baskısı riski; ANF stop altında çıktı."
+   "note": "12 Kas: #4, trend 5/7, 1A +%7,7. Güçlü ama faiz artırım korkusuna duyarlı; seçici ol."
   },
   "XLB": {
-   "note": "7 Kas: Lider, 6/7, 1A +%5,4."
+   "note": "12 Kas: #6, trend 6/7, ama hafta −%2,8. İzle."
   },
   "XLC": {
    "note": "25 Eki: Zayıf (0/7, hafta −6,3%). Uzak dur."
