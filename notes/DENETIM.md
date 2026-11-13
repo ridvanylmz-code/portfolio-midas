@@ -114,3 +114,18 @@ Düzeltmeleri Sonnet alt ajanları yaptı; her paketin farkını Fable okudu, te
 | B37 | Kısmen | Ekran eski bloğu "ESKİ" diye işaretliyor. Verinin kendisi skill güncellenince düzelir. |
 
 Kullanıcıda kalanlar: dalı main'e birleştirmek ve saati başlatmak; hesaptaki iki skill'i `notes/yontem/` altındaki dosyalarla değiştirmek; TradingView alarmları; depo görünürlüğü ve parola yenileme kararı.
+
+## İkinci tur (13.11.2026 akşam): main'de ve canlıda
+
+Birinci turun tamamı main'e alındı ve saat zamanlayıcısı başlatıldı. Canlıda görülen: saat 20 sn içinde izleme, sektör, gün içi, trend ve teknik veri işlerini tetikledi; ilk izleme çalışması kökteki eski portföy/geçmiş dosyalarını taşıdı, `holdings.json` oluştu, fiyat geçmişi temizlendi. Henüz canlıda görülmeyen: BIST seansı ve gece defter kaydı.
+
+| Bulgu | Yeni durum | Not |
+|---|---|---|
+| B26 | Yapıldı | Parola tarayıcıda saklanmıyor; tuz başına dışa aktarılamayan anahtar IndexedDB'de. Dosya biçimi aynı; Python yeniden yazarken tuzu koruyor. Yalnız Chromium'da denendi. |
+| B15 | Yapıldı (sınamayla) | Python ve JavaScript getiri hesapları aynı veriyle karşılaştırılıyor (`tests/test_js_parity.py`). Bulunan fark: haftalık taban (rapor t−8, uygulama t−7) ve sıfır değerli kayıtta çökme; Python tarafı düzeltildi. Defterde fark yok. |
+| B32 | Yapıldı | ABD genişliği hisse havuzundan; havuz 30'dan küçükse eski hesap. Canlı veride yeni yüzde henüz görülmedi. |
+| B30 | Yapıldı | "Seçim başarısı" kartı Bugün ekranında; kayıt skill tarafından yazılınca dolar. |
+| Tek uygulama | Yapıldı | `docs/bugun.html` ana ekran (veri durumu, yapılacaklar, rejim/nakit, hesaplar, seçim başarısı), dört sayfada ortak gezinme, ana ekrana eklenebilir (`manifest.webmanifest`). Sayfalar ayrı dosya olarak duruyor. |
+| Skill'ler | Paket hazır | Hesaptaki skill'ler bu oturumdan değiştirilemiyor. `notes/yontem/paket/*.skill` yüklenmeli; paketler repodaki sürümü esas alma kuralı içerir. |
+
+Bilerek yapılmayanlar: TradingView alarmları (seviyeler şifreli); ABD/BIST iş akışlarının tek dosyada birleştirilmesi (form adları ve skill'ler bu dosyalara bağlı); `market.json`'da trend etiketi tekrarının kaldırılması (kazanç küçük, üç okuyucu değişir).
