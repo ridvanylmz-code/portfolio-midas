@@ -103,6 +103,9 @@ td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
 #vault input[type=password]{background:#040705!important;border-color:var(--line2)!important;font-family:var(--mono)!important}
 #vault input[type=password]:focus{border-color:var(--acc)!important}
 #vault button{background:var(--acc2)!important;color:#041008!important;font-family:var(--mono)!important}
+.dv .tools{margin:0 0 6px}
+.dv .seg button{padding:6px 9px}
+.legend i.sq{width:10px;height:10px;border:0;border-radius:2px;vertical-align:-1px}
 #status{font:12px var(--mono);color:var(--mute);margin:30vh auto 0;text-align:center}
 </style>
 </head>
@@ -129,6 +132,14 @@ td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
     <div class="grid g2">
       <div class="card"><div class="t">TL HESAPLAR <span class="pill">vs XU100</span></div><div class="chart" id="chTL"></div></div>
       <div class="card"><div class="t">USD HESAPLAR <span class="pill">vs S&amp;P 500</span></div><div class="chart" id="chUSD"></div></div>
+    </div>
+
+    <div class="lbl">DEĞİŞİM · <b id="dvLbl"></b></div>
+    <div class="card dv">
+      <div class="tools"><div class="seg" id="dvKind"></div><span class="sp"></span><div class="seg" id="dvGrp"></div></div>
+      <div class="tools"><div class="seg" id="dvPer"></div></div>
+      <div class="chart" id="chDv"></div>
+      <div class="note" id="dvNote"></div>
     </div>
 
     <div class="tabs" id="tabs"></div>
@@ -341,6 +352,102 @@ function charts(){
 }
 $("rng").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;state.rng=b.dataset.r;saveUi();charts()});
 
+/* ---------- değişim grafikleri (büyüme · değişim · dağılım) ---------- */
+var DVK=[["b","Büyüme"],["c","Değişim"],["a","Dağılım"]],DVP=[["g","Gün"],["h","Hafta"],["m","Ay"],["y","Yıl"]];
+var DVMAX={g:22,h:20,m:24,y:99},C_PRIN="#3d5446",C_CASH="#2c4a63";
+var dv={k:"b",p:"m",g:"usd"};
+try{var s2=JSON.parse(localStorage.getItem("defter_dv")||"{}");["k","p","g"].forEach(function(k){if(s2[k])dv[k]=s2[k]})}catch(e){}
+function dvSeries(g,per){
+  var G=GRP[g],cum=0,map={},out=[],lastIdx=null,prevPerIdx=null;
+  ROWS.forEach(function(r){
+    var e=r[g];if(!e)return;
+    if(e.c!=null)cum+=e.c;
+    var k=per==="g"?r.d:pkey(r.d,per),o=map[k];
+    if(!o){o=map[k]={k:k,from:r.d,gr:1,ch:0,n:0};out.push(o);prevPerIdx=lastIdx}
+    o.to=r.d;o.v=e.v;o.tot=e.tot;o.gain=cum;o.prin=e.v-cum;
+    if(e.pct!=null){o.gr*=1+e.pct;o.ch+=e.c;o.n++}
+    o.pct=o.n?o.gr-1:null;o.c=o.n?o.ch:null;
+    if(r[G.idx]){lastIdx=r[G.idx];o.ip=prevPerIdx?lastIdx/prevPerIdx-1:null}
+    var hs=0,cs=0,ok=true;
+    G.accs.forEach(function(a){var x=r.a[a];if(!x)return;if(x.h==null){ok=false;return}hs+=x.h;cs+=x.tot-x.h});
+    o.hs=ok&&hs+cs>0?hs:null;o.cs=ok&&hs+cs>0?cs:null;
+  });
+  return out.slice(-DVMAX[per]);
+}
+function dvLab(o,per,long){
+  if(per==="y")return o.k;
+  if(per==="m")return AY[+o.k.slice(5,7)-1]+(long?" "+o.k.slice(0,4):" "+o.k.slice(2,4));
+  if(per==="h")return long?trDate(o.from).slice(0,5)+"–"+trDate(o.to).slice(0,5)+" "+o.k.slice(0,4):trDate(o.from).slice(0,5);
+  return long?trDate(o.d||o.k)+" "+wday(o.k):trDate(o.k).slice(0,5);
+}
+function bars(el,S,cfg){
+  if(!S.length){el.innerHTML='<div class="note">Bu dönemde veri yok.</div>';return}
+  var W=520,H=200,L=50,R=6,T=10,B=24,n=S.length,bw=(W-L-R)/n,gap=Math.min(bw*.28,10);
+  var mn=0,mx=0;S.forEach(function(o){cfg.range(o).forEach(function(v){if(v==null)return;if(v<mn)mn=v;if(v>mx)mx=v})});
+  if(mx===mn)mx=mn+1;var pad=(mx-mn)*.06;if(mn<0)mn-=pad;mx+=pad;
+  var Y=function(v){return T+(H-T-B)*(1-(v-mn)/(mx-mn))},X=function(i){return L+i*bw+gap/2},w=bw-gap;
+  var step=niceStep((mx-mn)/4),svg='<svg viewBox="0 0 '+W+" "+H+'" role="img" aria-label="'+esc(cfg.aria)+'">';
+  for(var v=Math.ceil(mn/step)*step;v<=mx+1e-9;v+=step){var y=Y(v).toFixed(1),z=Math.abs(v)<step/1e3;
+    svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="'+(z?"#2a5a3a":"#0f2116")+'"/><text x="'+(L-6)+'" y="'+(+y+4)+'" fill="#62806d" font-size="10" text-anchor="end" font-family="IBM Plex Mono,monospace">'+cfg.axis(z?0:v)+"</text>"}
+  var every=Math.ceil(n/8);
+  S.forEach(function(o,i){
+    var x=X(i),segs=cfg.segs(o),rx=Math.min(3,w/4);
+    segs.forEach(function(s){if(s.a==null||s.b==null||s.a===s.b)return;var y1=Y(Math.max(s.a,s.b)),y2=Y(Math.min(s.a,s.b));
+      svg+='<rect x="'+x.toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+Math.max(1,y2-y1).toFixed(1)+'" rx="'+(s.top?rx:0)+'" fill="'+s.col+'"'+(s.op?' fill-opacity="'+s.op+'"':"")+(s.dash?' stroke="'+s.col+'" stroke-dasharray="3 2"':"")+"/>"});
+    if(cfg.mark){var m=cfg.mark(o);if(m!=null)svg+='<line x1="'+(x-1).toFixed(1)+'" x2="'+(x+w+1).toFixed(1)+'" y1="'+Y(m).toFixed(1)+'" y2="'+Y(m).toFixed(1)+'" stroke="var(--idx)" stroke-width="2.5" stroke-linecap="round"/>'}
+    if(i%every===0||i===n-1&&n<=8)svg+='<text x="'+(x+w/2).toFixed(1)+'" y="'+(H-7)+'" fill="#62806d" font-size="10" text-anchor="middle" font-family="IBM Plex Mono,monospace">'+esc(dvLab(o,dv.p))+"</text>";
+  });
+  svg+='<rect class="hl" x="0" y="'+T+'" width="'+bw.toFixed(1)+'" height="'+(H-T-B)+'" fill="#3ee08f" fill-opacity=".07" visibility="hidden"/></svg>';
+  el.innerHTML='<div class="legend">'+cfg.legend+"</div>"+svg+'<div class="tip"></div>';
+  var s=el.querySelector("svg"),tip=el.querySelector(".tip"),hl=s.querySelector(".hl");
+  function mv(ev){
+    var rc=s.getBoundingClientRect(),cx=(ev.touches?ev.touches[0].clientX:ev.clientX)-rc.left,i=Math.floor((cx*W/rc.width-L)/bw);
+    i=Math.max(0,Math.min(n-1,i));hl.setAttribute("x",(L+i*bw).toFixed(1));hl.setAttribute("visibility","visible");
+    tip.innerHTML="<b>"+esc(dvLab(S[i],dv.p,true))+"</b><br>"+cfg.tip(S[i]);tip.style.display="block";
+    var px=(L+(i+.5)*bw)*rc.width/W;tip.style.left=Math.min(Math.max(px-tip.offsetWidth/2,0),rc.width-tip.offsetWidth)+"px";tip.style.top="18px";
+  }
+  function out(){tip.style.display="none";hl.setAttribute("visibility","hidden")}
+  s.addEventListener("mousemove",mv);s.addEventListener("touchstart",mv,{passive:true});s.addEventListener("touchmove",mv,{passive:true});
+  s.addEventListener("mouseleave",out);s.addEventListener("touchend",function(){setTimeout(out,1800)});
+}
+function sq(c,t){return '<span><i class="sq" style="background:'+c+'"></i>'+t+"</span>"}
+function short(v,cur){var a=Math.abs(v),sg=v<0?"−":"",c=cur==="USD"?"$":"₺";return a>=1e6?sg+c+nf(a/1e6,a>=1e7?0:1)+"M":a>=1e3?sg+c+nf(a/1e3,a>=1e4?0:1)+"K":sg+c+nf(a)}
+function dvChart(){
+  var G=GRP[dv.g],cur=G.cur,S=dvSeries(dv.g,dv.p),el=$("chDv"),last=S[S.length-1];
+  $("dvLbl").textContent=G.name.replace(" TOPLAM","")+" · "+{g:"günlük",h:"haftalık",m:"aylık",y:"yıllık"}[dv.p];
+  if(dv.k==="b"){
+    bars(el,S,{aria:"Anapara ve kümülatif kâr",axis:function(v){return short(v,cur)},
+      range:function(o){return [o.prin,o.v]},
+      segs:function(o){return o.gain>=0?[{a:0,b:o.prin,col:C_PRIN},{a:o.prin,b:o.v,col:"var(--acc2)",top:1}]
+                                       :[{a:0,b:o.v,col:C_PRIN},{a:o.v,b:o.prin,col:"var(--dn)",op:.35,dash:1,top:1}]},
+      legend:sq(C_PRIN,"Anapara")+sq("var(--acc2)","Kâr")+sq("var(--dn)","Zarar")+(last?'<span>Toplam <b class="'+cls(last.gain)+'">'+sgnMoney(last.gain,cur)+"</b></span>":""),
+      tip:function(o){return "Değer "+money(o.v,cur)+"<br>Anapara "+money(o.prin,cur)+"<br>Kümülatif <span class='"+cls(o.gain)+"'>"+sgnMoney(o.gain,cur)+"</span>"+(o.prin>0?" ("+pct(o.gain/o.prin)+")":"")}});
+    $("dvNote").textContent="Anapara = değer − kayıt başından beri biriken kâr/zarar (para giriş/çıkışları anaparaya yansır). Dönem sonu değeri.";
+  }else if(dv.k==="c"){
+    bars(el,S,{aria:"Dönem getirisi ve "+G.idxName,axis:function(v){return pct(v,Math.abs(v)<.02?1:0)},
+      range:function(o){return [o.pct,o.ip]},
+      segs:function(o){return o.pct==null?[]:[{a:0,b:o.pct,col:o.pct>=0?"var(--up)":"var(--dn)",op:.85,top:1}]},
+      mark:function(o){return o.ip},
+      legend:sq("var(--up)","Portföy")+'<span><i style="border-color:var(--idx);border-top-width:3px"></i>'+G.idxName+"</span>"+
+        (function(){var w=S.filter(function(o){return o.pct!=null&&o.ip!=null}),b=w.filter(function(o){return o.pct>o.ip}).length;return w.length?"<span>Endeksi geçti <b>"+b+"/"+w.length+"</b></span>":""})(),
+      tip:function(o){return "Portföy <span class='"+cls(o.pct)+"'>"+pct(o.pct)+"</span> · "+sgnMoney(o.c,cur)+"<br>"+G.idxName+" <span class='"+cls(o.ip)+"'>"+pct(o.ip)+"</span>"+(o.pct!=null&&o.ip!=null?"<br>Fark <span class='"+cls(o.pct-o.ip)+"'>"+pct(o.pct-o.ip)+"</span>":"")}});
+    $("dvNote").textContent="Çubuk: dönem getirisi (para giriş/çıkışı ayıklanmış). Mavi çizgi: aynı dönemde "+G.idxName+".";
+  }else{
+    var A=S.filter(function(o){return o.hs!=null});
+    bars(el,A,{aria:"Hisse ve nakit oranı",axis:function(v){return nf(v*100,0)+"%"},
+      range:function(){return [0,1]},
+      segs:function(o){var t=o.hs+o.cs,h=o.hs/t;return [{a:0,b:h,col:"var(--acc2)"},{a:h,b:1,col:C_CASH,top:1}]},
+      legend:sq("var(--acc2)","Hisse")+sq(C_CASH,cur==="TRY"?"Nakit + yedek":"Nakit")+(A.length?'<span>Son <b>%'+nf(A[A.length-1].hs/(A[A.length-1].hs+A[A.length-1].cs)*100,0)+"</b> hissede</span>":""),
+      tip:function(o){var t=o.hs+o.cs;return "Hisse "+money(o.hs,cur)+" · %"+nf(o.hs/t*100,0)+"<br>"+(cur==="TRY"?"Nakit+yedek ":"Nakit ")+money(o.cs,cur)+" · %"+nf(o.cs/t*100,0)}});
+    $("dvNote").textContent=A.length<S.length?"Hisse tutarı girilmeyen dönemler gösterilmez.":"Dönem sonundaki hisse / nakit oranı.";
+  }
+}
+function dvTools(){
+  function seg(id,arr,key){$(id).innerHTML=arr.map(function(z){return '<button type="button" data-v="'+z[0]+'" class="'+(dv[key]===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("")}
+  seg("dvKind",DVK,"k");seg("dvPer",DVP,"p");seg("dvGrp",[["tl","TL"],["usd","USD"]],"g");dvChart();
+}
+[["dvKind","k"],["dvPer","p"],["dvGrp","g"]].forEach(function(z){$(z[0]).addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;dv[z[1]]=b.dataset.v;try{localStorage.setItem("defter_dv",JSON.stringify(dv))}catch(x){}dvTools()})});
+
 /* ---------- tablolar ---------- */
 var TABS=[["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"],["wd","Gün Analizi"],["i","İşlemler"]];
 function cell(e,cur,isPct,x){
@@ -534,7 +641,7 @@ fetch("data/defter.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!
     $("status").classList.add("hide");$("app").classList.remove("hide");$("xlsBtn").classList.remove("hide");
     document.body.classList.add("open");if(window.__stopRainSoon)window.__stopRainSoon();
     if(d.updated){var u=new Date(d.updated);$("upd").textContent="güncelleme "+u.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
-    cards();charts();tables();
+    cards();charts();dvTools();tables();
   })
   .catch(function(e){$("status").textContent="Defter açılamadı: "+e.message});
 })();
