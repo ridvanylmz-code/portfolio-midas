@@ -43,7 +43,7 @@ def once(wf, tz, at, days=MON_FRI, komut=None, idempotent=False):
 
 
 ENTRIES = [
-    every("monitor.yml", ET, "04:00", "20:45", 15),
+    every("monitor.yml", ET, "04:00", "20:45", 15),        # seans içi yalnız kotasyon/fiyat yazılır (küçük, düz dosyalar)
     every("monitor-bist.yml", IST, "09:45", "18:30", 15),
     every("market.yml", ET, "04:00", "20:00", 60),
     every("market-bist.yml", IST, "09:15", "18:45", 60),

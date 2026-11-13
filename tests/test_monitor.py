@@ -224,3 +224,34 @@ def test_monthly_target_uses_same_base_as_month_line(load):
     # önceki ay sonu tabanı (1000): kazanç +110. Ay içi ilk kayıt (1050) olsaydı +60 çıkardı.
     assert "Aylık hedef: +110" in text and "(%22)" in text
     assert "Aylık hedef: +60" not in text
+
+
+# ------------------------------------------------------------------ depo şişmesi: seans içinde günlük kayıt yazılmaz
+def test_snapshot_written_only_when_market_not_open(load, tmp_path, outbox):
+    mon = load().monitor
+    setup_root(tmp_path)
+    mon.attach_ext = lambda *a, **k: None
+    mon.apply_extended = lambda quotes, tickers, now: (quotes, None)
+    hist_file = tmp_path / "docs/data/history.json"
+    before = hist_file.read_bytes() if hist_file.exists() else None
+    now = at(2026, 11, 12, 11, 0)                      # seans içi
+    t = epoch(2026, 11, 12, 10, 59)
+    quotes = {"AAA": q(110, t), "BBB": q(20, t)}
+    mon.run(report=False, fetch=lambda tk, k: quotes.get(tk), status_fn=lambda k: {"isOpen": True}, now=now)
+    assert (hist_file.read_bytes() if hist_file.exists() else None) == before      # geçmiş dosyasına dokunulmadı
+    now = at(2026, 11, 12, 16, 30)                     # kapanış sonrası rapor çalışması
+    t = epoch(2026, 11, 12, 16, 0)
+    quotes = {"AAA": q(111, t), "BBB": q(21, t)}
+    mon.run(report=True, fetch=lambda tk, k: quotes.get(tk), status_fn=lambda k: {"isOpen": False}, now=now)
+    snaps = read_json(tmp_path, "docs/data/history.json")["snapshots"]
+    assert snaps[-1]["date"] == "2026-11-12"
+
+
+def test_encrypted_file_not_rewritten_when_content_unchanged(load, tmp_path):
+    c = load(key="test-anahtar").common
+    c.save_json(c.F_STATE, {"date": "2026-11-12", "sent": []})
+    first = (tmp_path / c.F_STATE).read_bytes()
+    c.save_json(c.F_STATE, {"date": "2026-11-12", "sent": []})
+    assert (tmp_path / c.F_STATE).read_bytes() == first          # aynı içerik: dosya (ve commit) değişmez
+    c.save_json(c.F_STATE, {"date": "2026-11-13", "sent": []})
+    assert (tmp_path / c.F_STATE).read_bytes() != first

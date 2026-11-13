@@ -105,6 +105,12 @@ def save_json(name, data):
     """Atomik yazım: yarım dosya kalmasın. Hassas dosyalar anahtar varsa şifreli yazılır."""
     p = path(name)
     if str(name) in SECRET_FILES and vault_key():
+        # İçerik değişmediyse yazma: rastgele IV yüzünden her yazım dosyayı (ve commit'i) değiştirirdi (depo şişmesi).
+        try:
+            if p.exists() and load_json(name) == data:
+                return
+        except (VaultError, ValueError, OSError):
+            pass
         data = vault_encrypt(data, vault_key())
     p.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=p.parent, suffix=".tmp")

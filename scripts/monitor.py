@@ -455,7 +455,12 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
                                    keep=set(tickers)))
 
     snap_day = snapshot_date(holdings, fresh, et_date)
-    if snap_day:
+    if market_open is True and not force:
+        # Seans içinde günlük kayıt yazılmaz: kayıt gün sonu değeridir (mini uygulama canlı değeri kotasyondan hesaplar).
+        # Her seans içi çalışmada şifreli geçmiş dosyasını yeniden yazmak depoyu şişirirdi; kapanış sonrası ilk çalışma
+        # (ya da ertesi sabah, kotasyonun işlem gününe göre) kaydı yazar.
+        pass
+    elif snap_day:
         upsert_snapshot(history, snap_day, summary)
         common.save_json(common.F_HISTORY, history)
     else:

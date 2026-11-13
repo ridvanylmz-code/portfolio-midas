@@ -84,3 +84,33 @@ Haberler sekmesi (Analiz → Haber ile aynı) · Dashboard sayfaları (`index.ht
 3. B37, B14, B25, B26
 4. Sadeleştirme (B15–B22) ve tek uygulamaya geçiş
 5. Etki artıranlar: B29 (kur), B30 (seçim başarısı)
+
+## Uygulama durumu (13.11.2026, dal `claude/zen-hypatia-d79gk9`)
+
+Düzeltmeleri Sonnet alt ajanları yaptı; her paketin farkını Fable okudu, testleri ve tarayıcı denetimini yeniden çalıştırdı. 101 otomatik test geçiyor (`python -m pytest -q`). Hepsi sentetik veriyle denendi; gerçek anahtar, gerçek GitHub Actions ve canlı veri kaynaklarıyla **denenmedi**.
+
+| Bulgu | Durum | Not |
+|---|---|---|
+| B1 | Yapıldı, canlıda denenmedi | Depo içi saat (`scripts/saat.py`, `saat.yml`); kullanım `notes/SAAT.md`. Birleştirince bir kez elle başlatılmalı. |
+| B2 | Kısmen | Saat ile 15 dk'da bir izleme gelir. TradingView alarmları kurulmadı (seviyeler şifreli). |
+| B3, B4, B23 | Yapıldı | Piyasa başına 2 rapor, saat penceresine göre; kaçan rapor "⏰ Gecikmiş" etiketiyle. |
+| B5 | Yapıldı | `stop_atr = kapanış − 2×ATR`; takip eden stop yalnız piyasa kapalıyken yükselir. |
+| B6, B7 | Yapıldı | İçerik değişmeyen şifreli dosya yazılmaz; işlem listesi `islem.json`; portföy/geçmiş tek kopya; günlük kayıt yalnız seans dışında. |
+| B8, B9, B10 | Yapıldı | Geri alınan akış düşer; eksik hesap toplamda taşınır; yalnız tamamlanmış seans yazılır; Info-TR tarihli kapanışla. |
+| B11, B12, B13, B24 | Yapıldı | Tek aylık taban; kapalıyken hareket alarmı yok; kayıt kotasyonun işlem gününe; hafta sonu ve listeden çıkan hisse temizliği. |
+| B14 | Yapıldı | `holdings.json` üretiliyor. |
+| B15 | Kısmen | Aylık hedef ve grup toplamı tek kurala bağlandı. Getiri hesabı hâlâ Python ve JS'te ayrı duruyor. |
+| B16 | Yapıldı | Tek kod tabanı `docs/app.js`; dashboard sayfaları yönlendirme oldu. İş akışları hâlâ ABD/BIST ayrı. |
+| B17, B19, B20, B27, B35, B38 | Yapıldı | Hızlı açılış, yalnız elde/takip çipleri, sade Teknik, bayat veri uyarısı. |
+| B18 | Kısmen | Girintisiz yazım. Trend etiketi tekrarı duruyor. |
+| B21, B22 | Yapıldı | |
+| B25 | Kısmen | Commit mesajı ve yorum satırı düzeltildi. Geçmiş commit'ler ve depo görünürlüğü kullanıcıda. |
+| B26 | Kısmen | CDN betiği ve Google Fonts kaldırıldı. Parola hâlâ tarayıcıda düz saklanıyor (biçim değişikliği gerçek anahtarla denenemedi). |
+| B28 | Yapıldı | `batch` alanı: tek çalışmada çok işlem, hepsi ya da hiçbiri. |
+| B29 | Yapıldı | USD/TRY, "TOPLAM SERVET" kartı, TL hesapların dolar bazlı çizgisi. |
+| B30 | Kısmen | `picks_log.json` ve skill kuralı hazır. Ekran kartı yok; kayıt birikince eklenmeli. |
+| B31, B33, B34, B36, B39 | Yapıldı | |
+| B32 | Kısmen | "sınırda" notu. Genişlik tanımı değişmedi. |
+| B37 | Kısmen | Ekran eski bloğu "ESKİ" diye işaretliyor. Verinin kendisi skill güncellenince düzelir. |
+
+Kullanıcıda kalanlar: dalı main'e birleştirmek ve saati başlatmak; hesaptaki iki skill'i `notes/yontem/` altındaki dosyalarla değiştirmek; TradingView alarmları; depo görünürlüğü ve parola yenileme kararı.
