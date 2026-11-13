@@ -235,7 +235,7 @@
       d.appendChild(el("div", "", cfg.bench + "'e göre: 1A " + sp(rs.m1) + " · 3A " + sp(rs.m3) + " · bileşik " + sp(rs.score) +
         (s.rs_group ? " · kendi grubuna (" + s.group + ") göre " + sp(s.rs_group.score) : "")));
       d.appendChild(el("div", "", "RSI " + n(s.rsi, 0) + " (haftalık " + n(s.rsi_w, 0) + ") · ADX " + n(s.adx, 0) + " · ATR " + n(s.atr, 2) + " (%" + n(s.atr_pct, 1) + ")"));
-      d.appendChild(el("div", "", "ATR tabanlı stop önerisi: " + n(s.stop_atr, 2) + " (fiyattan 2×ATR ya da 3A tepeden 3×ATR, yüksek olan)"));
+      d.appendChild(el("div", "", "ATR tabanlı stop önerisi: " + n(s.stop_atr, 2) + " (kapanış − 2×ATR)"));
       (tr.checks || []).forEach(function (k) { d.appendChild(el("div", k[1] ? "up" : "dn", (k[1] ? "✓ " : "✗ ") + k[0])) });
       if (sn[t] && sn[t].note) d.appendChild(el("div", "sx-note", sn[t].note));
       row.appendChild(d); row.onclick = function () { row.classList.toggle("open") };

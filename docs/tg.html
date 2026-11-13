@@ -266,7 +266,9 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
   var cls=function(n){return n>=0?"up":"dn"};
   function el(tag,c,t){var e=document.createElement(tag);if(c)e.className=c;if(t!==undefined)e.textContent=t;return e}
   var TRMON=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
-  function fmtT(ms){return new Date(ms).toLocaleString("tr-TR",{timeZone:"Europe/Istanbul",hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
+  function fmtT(ms){var o={};  /* İstanbul saati: gg.aa ss:dd */
+    new Intl.DateTimeFormat("tr-TR",{timeZone:"Europe/Istanbul",hourCycle:"h23",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).formatToParts(new Date(ms)).forEach(function(p){o[p.type]=p.value});
+    return o.day+"."+o.month+" "+o.hour+":"+o.minute}
   function dayTxt(iso){var y=+iso.slice(0,4);return (+iso.slice(8,10))+" "+TRMON[+iso.slice(5,7)-1]+(y!==new Date().getFullYear()?" "+y:"")}
   function pad2(n){return (n<10?"0":"")+n}
   /* Yazılı teknik bloğun tarihi: technical_date (ISO) varsa o; yoksa ilk satırın başındaki "9 Eki" gibi tarih (gelecekte olmayan en yakın gün). */
@@ -579,7 +581,7 @@ body{padding:0 14px calc(92px + env(safe-area-inset-bottom));max-width:560px;mar
        ["MACD","İki ortalama farkı. Sinyal çizgisinin üstüne çıkması ivmenin yukarı döndüğünü gösterir."],
        ["ADX","Trendin gücü (yönü değil). 20 altı trend yok, 25 üstü güçlü trend."],
        ["Supertrend","ATR'ye göre çizilen iz süren çizgi. Fiyat çizginin altına inince yön düşüşe döner; geçici stop gibi okunur."],
-       ["ATR stop","Hissenin günlük ortalama oynaklığına (ATR) göre stop: fiyattan 2×ATR ya da 3 aylık tepeden 3×ATR aşağısı."],
+       ["ATR stop","Hissenin günlük ortalama oynaklığına (ATR) göre stop: günlük kapanışın 2×ATR aşağısı. Takip eden stop yalnız kapanışla ve yalnız yukarı taşınır."],
        ["Elliott","Fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı. Kural tabanlı tahmindir, kesin sayım değildir; tek başına al/sat sinyali değildir."],
        ["Zaman dilimi uyumu","Haftalık ve günlük yön trendi, 4s ve 15dk giriş zamanlamasını gösterir. Hepsi aynı yöndeyse sinyal güçlüdür."]
       ].forEach(function(k){var r=el("div","kv");r.appendChild(el("span","",k[0]));r.appendChild(el("span","",k[1]));r.lastChild.style.fontWeight="400";gl.appendChild(r)});

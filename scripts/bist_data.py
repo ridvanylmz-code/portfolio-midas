@@ -105,16 +105,21 @@ def tradingview_batch(tickers, now=None):
         return {}
 
 
-def make_fetch(tickers):
+def make_fetch(tickers, now=None):
     stale_y = {}
-    got = yahoo_batch(tickers, stale_out=stale_y)
+    got = yahoo_batch(tickers, now=now, stale_out=stale_y)
     missing = [t for t in tickers if t not in got]
     if missing:
-        for t, q in tradingview_batch(missing).items():
-            old = stale_y.get(t)
-            # TradingView de Yahoo'nun bayat kapanışını veriyorsa (tatil ya da henüz yeni seans verisi yok) kotasyon
-            # bayattır: tarihi mumun kendi tarihidir, "şimdi" değil.
-            got[t] = old if old and abs(q["c"] - old["c"]) < 1e-9 else q
+        tv = tradingview_batch(missing, now)
+        # Yeni seans verisi var mı? Bayat Yahoo mumlarıyla karşılaştırılan hisselerin en az %10'unda (en az 1) TradingView
+        # kapanışı farklıysa yeni seans vardır: TradingView yetkilidir, kapanışı değişmeyen hisse de günceldir.
+        # Hiçbiri (ya da neredeyse hiçbiri) farklı değilse tatil / veri henüz yok demektir: kotasyonlar bayattır ve
+        # tarihleri mumun kendi tarihidir, "şimdi" değil.
+        both = [t for t in tv if t in stale_y]
+        diff = sum(1 for t in both if abs(tv[t]["c"] - stale_y[t]["c"]) >= 1e-9)
+        new_session = bool(both) and diff >= max(1, -(-len(both) // 10))
+        for t, q in tv.items():
+            got[t] = q if (new_session or t not in stale_y) else stale_y[t]
         for t, q in stale_y.items():
             got.setdefault(t, q)  # TradingView'de hiç yoksa bayat Yahoo kotasyonu (stale=True) kalır
     print(f"BIST fiyat: {len(got)}/{len(tickers)}" + (f" (eksik: {', '.join(t for t in tickers if t not in got)})"
