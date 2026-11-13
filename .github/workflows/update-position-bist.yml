@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: 'İşlem türü'
-        required: true
+        description: 'İşlem türü (batch doluysa yok sayılır)'
+        required: false
         type: choice
         options:
           - buy
@@ -32,6 +32,10 @@ on:
         description: 'Fiyat ₺ (buy/sell) · zone_below: bu fiyata inince alarm · zone_above: bu fiyatı geçince alarm'
         required: false
         type: string
+      batch:
+        description: "Toplu giriş (doluysa yukarıdaki tekil girdiler yok sayılır; hepsi ya da hiçbiri). Satır sonu ya da ';' ile ayrılır: buy T adet fiyat [komisyon] · sell T adet fiyat [komisyon] · deposit tutar · withdraw tutar · watch_add T · watch_remove T · zone_below T fiyat · zone_above T fiyat · zone_clear T · trail_off T · trail_on T. Ör. buy EMPAE 10 52.3; sell ASELS 5 56"
+        required: false
+        type: string
       confirm:
         description: 'Fiyat son fiyattan %15+ sapıyorsa yine de kaydet (yazım hatası koruması)'
         required: false
@@ -56,9 +60,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -76,6 +80,7 @@ jobs:
           IN_COMMISSION: ${{ inputs.commission }}
           IN_DATE: ${{ inputs.date }}
           IN_CONFIRM: ${{ inputs.confirm }}
+          IN_BATCH: ${{ inputs.batch }}
           QUANTITY: ${{ inputs.quantity }}
           BRANCH: ${{ github.ref_name }}
         run: |
@@ -84,7 +89,6 @@ jobs:
             deposit|withdraw) export IN_AMOUNT="$QUANTITY" ;;
             *) export IN_SHARES="$QUANTITY" ;;
           esac
-          SAFE_MSG=$(printf '%s %s' "$IN_ACTION" "$IN_TICKER" | tr -cd 'A-Za-z0-9 ._-' | cut -c1-40)
           git config user.name "portfolio-bot"
           git config user.email "portfolio-bot@users.noreply.github.com"
           ok=0; rc=0
@@ -93,10 +97,12 @@ jobs:
             rm -f "$TELEGRAM_OUTBOX"
             set +e; python scripts/update_position.py; rc=$?; set -e
             [ "$rc" = "0" ] && python scripts/defter.py islemler || true
-            git add bist/portfolio.json bist/history.json docs/bist/data
+            git add -A docs/bist/data
+            # eski kök kopyalar kod tarafından docs/bist/data'a taşınıp silinir; silinmeleri de commit'e girsin
+            for f in bist/portfolio.json bist/history.json; do git add -A "$f" 2>/dev/null || true; done
             git add docs/defter/data
             if git diff --cached --quiet; then ok=1; break; fi
-            git commit -q -m "pozisyon(bist): $SAFE_MSG"
+            git commit -q -m "pozisyon(bist): güncellendi"
             if git push -q origin "HEAD:$BRANCH"; then ok=1; break; fi
             echo "push reddedildi (deneme $i); en güncel veriyle yeniden uygulanıyor"; sleep $((i * 5))
           done

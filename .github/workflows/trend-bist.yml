@@ -17,6 +17,13 @@ on:
         description: "Semboller (virgül/boşluk, .IS yazma). Boşsa trend/bist_tickers.txt"
         type: string
         default: ""
+      mode:
+        description: "manual: elle çalıştırma | auto: zamanlanmış çalışma gibi davran (dış zamanlayıcı için)"
+        type: choice
+        options:
+          - manual
+          - auto
+        default: manual
 
 permissions:
   contents: write
@@ -30,9 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -42,8 +49,11 @@ jobs:
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
           TICKERS: ${{ github.event.inputs.tickers }}
+          MODE: ${{ github.event.inputs.mode }}
         run: |
           mkdir -p data-out
+          # mode=auto: zamanlanmış çalışma gibi (dosyadaki semboller)
+          if [ "$MODE" = "auto" ]; then TICKERS=""; fi
           git fetch -q --depth=1 origin trend-bist-data 2>/dev/null && git show FETCH_HEAD:trend-bist.json > prev.json 2>/dev/null || echo "önceki veri yok"
           python scripts/trend_bist.py --tickers "$TICKERS" --file trend/bist_tickers.txt --prev prev.json --out data-out/trend-bist.json
           # Teknik sekmesi grafiği için günlük mumlar (gün içinde değişmez; hata trend taramasını etkilemez)

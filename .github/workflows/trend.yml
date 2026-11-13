@@ -24,6 +24,13 @@ on:
         description: "Portföy + izleme listesini de ekle"
         type: boolean
         default: true
+      mode:
+        description: "manual: elle çalıştırma | auto: zamanlanmış çalışma gibi davran (dış zamanlayıcı için)"
+        type: choice
+        options:
+          - manual
+          - auto
+        default: manual
 
 permissions:
   contents: write
@@ -37,9 +44,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -52,8 +59,11 @@ jobs:
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
           TICKERS: ${{ github.event.inputs.tickers }}
           INCLUDE_PF: ${{ github.event_name == 'schedule' && 'true' || github.event.inputs.include_portfolio }}
+          MODE: ${{ github.event.inputs.mode }}
         run: |
           mkdir -p data-out
+          # mode=auto: zamanlanmış çalışma gibi (dosyadaki semboller + portföy)
+          if [ "$MODE" = "auto" ]; then TICKERS=""; INCLUDE_PF=true; fi
           ARGS=""
           if [ "$INCLUDE_PF" = "true" ]; then ARGS="--include-portfolio"; fi
           python scripts/trend.py --tickers "$TICKERS" --file trend/tickers.txt --out data-out/trend.json $ARGS

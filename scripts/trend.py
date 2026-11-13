@@ -191,6 +191,9 @@ def overlay_extended(out):
             continue
         v["close"] = v.get("price")
         v["price"] = round(p, 4)
+        st = v.get("st15")
+        if st and st.get("line") is not None:  # türev alan: Supertrend uzaklığı bindirilen fiyata göre yeniden hesaplanır
+            st["dist_pct"] = round((v["price"] - st["line"]) / v["price"] * 100, 2)
         if sess == "pre":
             pct = x.get("pre_pct")
         else:  # kapanış sonrası: bugünkü normal seans değişimi + sonrası hareketi

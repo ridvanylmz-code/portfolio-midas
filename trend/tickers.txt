@@ -1,6 +1,5 @@
 # Trend sayfası için sembol listesi (virgül/satır ayrılabilir, # yorum). 30-50 sembol, en fazla 80.
 # Workflow'da "tickers" kutusu doluysa o kullanılır; boşsa bu dosya.
-# 21 Eki: elimdekiler
 RKLB, CRWV, WYFI, SGML
 # Takip listesi
 TEAM, MPC, ELF, ILMN, AVTR

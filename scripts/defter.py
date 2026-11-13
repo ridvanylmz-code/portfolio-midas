@@ -42,9 +42,9 @@ F_INFO = "defter/info_portfolio.json"
 common.SECRET_FILES.update({F_DEFTER, F_BOX_PRIV, F_INFO})
 
 ACCOUNTS = {
-    "midas_tr": {"name": "Midas-TR", "cur": "TRY", "bench": "xu", "reserve": 90000, "src": "bist/history.json"},
+    "midas_tr": {"name": "Midas-TR", "cur": "TRY", "bench": "xu", "reserve": 90000, "src": "docs/bist/data/history.json"},
     "info_tr": {"name": "Info-TR", "cur": "TRY", "bench": "xu", "reserve": 25000, "src": "info"},
-    "midas_usd": {"name": "Midas-USD", "cur": "USD", "bench": "sp", "reserve": 0, "src": "history.json",
+    "midas_usd": {"name": "Midas-USD", "cur": "USD", "bench": "sp", "reserve": 0, "src": "docs/data/history.json",
                   "start": "2025-10-14"},
     "ibkr": {"name": "IBKR", "cur": "USD", "bench": "sp", "reserve": 0, "src": None, "start": "2026-04-17"},
 }
@@ -993,8 +993,8 @@ def periods(d, kind):
 # ------------------------------------------------------------------ işlem kaydı (4 hesap) + kontrol
 ACT_TR = {"open": "Açılış", "buy": "Alış", "sell": "Satış", "deposit": "Para yatırma", "withdraw": "Para çekme"}
 TX_SRC = {  # hesap -> (işlem dosyası, portföy dosyası, pozisyon anahtarı)
-    "midas_usd": ("history.json", "portfolio.json", "portfolio"),
-    "midas_tr": ("bist/history.json", "bist/portfolio.json", "portfolio"),
+    "midas_usd": ("docs/data/history.json", "docs/data/portfolio.json", "portfolio"),
+    "midas_tr": ("docs/bist/data/history.json", "docs/bist/data/portfolio.json", "portfolio"),
     "info_tr": (F_INFO, F_INFO, "positions"),
 }
 
@@ -1376,8 +1376,8 @@ def position_groups(d):
         return sorted(out, key=lambda r: -(r["s"] * (r["px"] or 0)))
 
     out = []
-    for name, cur, f, key, ck, qs in (("Midas-USD", "USD", "portfolio.json", "portfolio", "cost_basis", uq),
-                                      ("Midas-TR", "TRY", "bist/portfolio.json", "portfolio", "cost_basis", bq),
+    for name, cur, f, key, ck, qs in (("Midas-USD", "USD", "docs/data/portfolio.json", "portfolio", "cost_basis", uq),
+                                      ("Midas-TR", "TRY", "docs/bist/data/portfolio.json", "portfolio", "cost_basis", bq),
                                       ("Info-TR", "TRY", F_INFO, "positions", "cost", bq)):
         try:
             pf = common.load_json(f, {}) or {}
@@ -1487,6 +1487,7 @@ def main(argv=None):
     e = sp.add_parser("excel"); e.add_argument("--summary", action="store_true"); e.set_defaults(fn=cmd_excel)
     args = ap.parse_args(argv)
     try:
+        common.migrate_legacy()  # eski kök portfolio/history kopyaları varsa docs altına taşı (okumadan önce)
         return args.fn(args)
     except (ValueError, common.VaultError) as ex:
         common.send_telegram(f"❌ Defter: {ex}")

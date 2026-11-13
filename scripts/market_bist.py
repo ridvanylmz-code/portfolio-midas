@@ -215,7 +215,8 @@ def regime(bench, fx, pool):
         label, cash = "Nötr / seçici", [20, 25]
     else:
         label, cash = "Risk-off (savunma)", [35, 40]
-    return {"score": score, "max": mxp, "label": label, "cash_target": cash, "breadth50": br50, "checks": checks}, usd
+    return {"score": score, "max": mxp, "label": label, "cash_target": cash, "breadth50": br50, "checks": checks,
+            "borderline": mk.borderline(score, mxp)}, usd
 
 
 # ------------------------------------------------------------------ ana akış
@@ -237,7 +238,7 @@ def main(argv=None):
             prev["checked"] = now.isoformat(timespec="seconds")
             prev["log"] = LOG
             with open(args.out, "w", encoding="utf-8") as f:
-                json.dump(prev, f, ensure_ascii=False, indent=1)
+                json.dump(prev, f, ensure_ascii=False, separators=(",", ":"))
         return 1
 
     bsyms = [f"BIST:{b}" for b in uni["benchmarks"]]
@@ -311,10 +312,10 @@ def main(argv=None):
         "regime": reg, "groups": gout, "stocks": sout, "picks": picks, "picks_pool": len(pool), "log": LOG,
         "method": "RS = performans − XU100 (puan). Sektör = üye hisselerin medyanı. Bileşik: 0.15·1H+0.35·1A+0.35·3A+0.15·6A. "
                   "Trend 0-7 (5 günlük + 2 haftalık koşul). Çeyrek: 3A RS (uzun) ve 1A RS (kısa). "
-                  "Stop önerisi: fiyattan 2×ATR ya da 3A tepeden 3×ATR (yüksek olan). Banka ve alkol önerilmez.",
+                  "Stop önerisi: kapanış − 2×ATR. Banka ve alkol önerilmez.",
     }
     with open(args.out, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")
     top = ", ".join(f"{x['sym']}({x['verdict']})" for x in gout[:5])
     print(f"Rejim: {reg and reg['label']} · ilk 5: {top} · izlenen hisse {len(sout)} · aday grubu {len(picks)}")

@@ -167,11 +167,10 @@ def compact(x, src):
 
 
 def atr_stop(c):
-    """Fiyattan 2×ATR ya da 3A tepeden 3×ATR (yüksek olan; fiyatın en az 1×ATR altında)."""
+    """Stop önerisi: kapanış − 2×ATR (başka kıskaç ya da tepe bacağı yok)."""
     if not (c.get("atr") and c.get("close")):
         return None
-    ref = max(v for v in (c["close"], c.get("high3m") or 0) if v)
-    return rnd(max(c["close"] - 2 * c["atr"], min(ref - 3 * c["atr"], c["close"] - 1 * c["atr"])), 2)
+    return rnd(c["close"] - 2 * c["atr"], 2)
 
 
 def build_picks(uni, gmap, spy_p, held):  # held: izlenen semboller (pozisyon + izleme listesi)
@@ -256,6 +255,17 @@ def write_bars(path, stocks, sout):
     log(f"Grafik mumları: {len(out['bars'])}/{len(stocks)} hisse")
 
 
+def regime_band(score, mx):
+    """Rejim bandı: 0 risk-off, 1 nötr, 2 risk-on (oran eşikleri 0.45 / 0.8)."""
+    ratio = score / mx
+    return 2 if ratio >= 0.8 else 1 if ratio >= 0.45 else 0
+
+
+def borderline(score, mx):
+    """Bir puan fazla ya da eksik olsa rejim bandı değişir mi?"""
+    return any(0 <= score + d <= mx and regime_band(score + d, mx) != regime_band(score, mx) for d in (-1, 1))
+
+
 def regime(data, groups_out, stocks_out):
     """0-7 puan: SPY/QQQ/IWM trendi, piyasa genişliği, eşit ağırlık katılımı."""
     def g(s, k):
@@ -288,7 +298,8 @@ def regime(data, groups_out, stocks_out):
         label, cash = "Nötr / seçici", [20, 25]
     else:
         label, cash = "Risk-off (savunma)", [35, 40]
-    return {"score": score, "max": mx, "label": label, "cash_target": cash, "breadth50": br50, "checks": checks}
+    return {"score": score, "max": mx, "label": label, "cash_target": cash, "breadth50": br50, "checks": checks,
+            "borderline": borderline(score, mx)}
 
 
 # ------------------------------------------------------------------ ana akış
@@ -338,7 +349,7 @@ def main(argv=None):
             prev["checked"] = now.isoformat(timespec="seconds")
             prev["log"] = LOG
             with open(args.out, "w", encoding="utf-8") as f:
-                json.dump(prev, f, ensure_ascii=False, indent=1)
+                json.dump(prev, f, ensure_ascii=False, separators=(",", ":"))
         return 1
 
     spy_p = perf_of(data["SPY"])
@@ -383,7 +394,7 @@ def main(argv=None):
         sout[s] = {"name": x.get("description") or s, "sector": x.get("sector"), "industry": x.get("industry"),
                    "group": grp, "group_name": (gmap.get(grp) or {}).get("name"),
                    **c, "rs": rs, "rs_group": rel(perf_of(x), gp) if gp else None, "trend": tr, "quadrant": q,
-                   "verdict": verdict(q, tr), "stop_atr": stop}
+                   "verdict": verdict(q, tr, bool((gmap.get(grp) or {}).get("bank"))), "stop_atr": stop}
 
     try:
         picks, pool_n = build_picks(uni, gmap, spy_p, set(common.public_symbols("docs/data")))
@@ -404,10 +415,10 @@ def main(argv=None):
                        for b in bench if b in data},
         "regime": reg, "groups": gout, "stocks": sout, "picks": picks, "picks_pool": pool_n, "log": LOG,
         "method": "RS = performans − SPY (puan). Bileşik: 0.15·1H+0.35·1A+0.35·3A+0.15·6A. Trend 0-7 (5 günlük + 2 haftalık koşul). "
-                  "Çeyrek: 3A RS (uzun) ve 1A RS (kısa). Stop önerisi: fiyattan 2×ATR ya da 3A tepeden 3×ATR (yüksek olan).",
+                  "Çeyrek: 3A RS (uzun) ve 1A RS (kısa). Stop önerisi: kapanış − 2×ATR.",
     }
     with open(args.out, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")
     if args.bars_out:
         write_bars(args.bars_out, stocks, sout)

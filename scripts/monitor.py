@@ -11,7 +11,7 @@ import argparse
 import os
 import sys
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import requests
@@ -27,25 +27,57 @@ CUR = common.CUR
 PRICE_DAYS = 30
 SNAPSHOT_LIMIT = 4000  # ~15 yıl günlük kayıt (performans geçmişi)
 
-# Telegram rapor saatleri ABD saatine (ET) bağlı: yaz/kış saati geçişinde kendiliğinden kayar.
-# (saat, dakika, ET hafta günleri 0=Pzt). İstanbul karşılığı kışın: 06:17, 12:17, 17:27, 17:47, 23:57, 00:17
-# (yazın 1 saat önce). 22:17 ET Pazar dahil: Pazartesi sabahı (İstanbul) yeni hafta ilk raporu.
+# Telegram raporları: piyasa başına 2 (açılış öncesi, kapanış sonrası); saatler piyasanın kendi saat diliminde,
+# böylece yaz/kış saati geçişinde kendiliğinden kayar. (saat, dakika, hafta günleri 0=Pzt).
+# ABD: 09:27 ET (açılıştan 3 dk önce) ve 16:17 ET (kapanıştan sonra). BIST: 09:50 ve 18:20 (İstanbul).
 WEEK = (0, 1, 2, 3, 4)
-REPORT_SLOTS_ET = [(22, 17, (6,) + WEEK), (4, 17, WEEK), (9, 27, WEEK), (9, 47, WEEK),
-                   (15, 57, WEEK), (16, 17, WEEK)]
-SLOT_WINDOW_MIN = 25  # GitHub zamanlanmış işleri geciktirebilir
+REPORT_SLOTS = {"us": [(9, 27, WEEK), (16, 17, WEEK)], "bist": [(9, 50, WEEK), (18, 20, WEEK)]}
+SLOT_WINDOW_MIN = 25  # bu süre içinde gelen çalışma "zamanında" sayılır; daha geç gelen "gecikmiş" etiketiyle gider
 QUIET_ET = (4 * 60 + 15, 21 * 60 + 15)  # sessiz yenileme ET 04:17-20:47 (+25 dk cron gecikme payı)
 
 
-def due_slots(now):
-    """Şu an penceresinde olan rapor saatleri (kimlik: ET tarih + saat)."""
-    t = now.astimezone(ET)
-    out = []
-    for h, m, days in REPORT_SLOTS_ET:
-        s = t.replace(hour=h, minute=m, second=0, microsecond=0)
-        if t.weekday() in days and s <= t < s + timedelta(minutes=SLOT_WINDOW_MIN):
-            out.append(f"{s:%Y-%m-%dT%H%M}")
-    return out
+def _slot_times(now, market=None):
+    market = market or ("bist" if BIST else "us")
+    tz = IST if market == "bist" else ET
+    t = now.astimezone(tz)
+    return t, [(t.replace(hour=h, minute=m, second=0, microsecond=0), days) for h, m, days in REPORT_SLOTS[market]]
+
+
+def due_slots(now, done=(), market=None):
+    """Gönderilmesi gereken rapor saatleri (kimlik: piyasa tarihi + saat): bugün (piyasanın yerel tarihi) saati
+    geçmiş, `done`da olmayan slotlar. Zamanında gelen çalışma kendi slotunu, geç gelen (GitHub zamanlayıcı gecikmesi)
+    kaçmış slotları yakalar; çağıran bunların HEPSİ için tek rapor gönderip hepsini işaretler."""
+    t, slots = _slot_times(now, market)
+    return [f"{s:%Y-%m-%dT%H%M}" for s, days in slots
+            if t.weekday() in days and s <= t and f"{s:%Y-%m-%dT%H%M}" not in done]
+
+
+def late_label(now, due, market=None):
+    """Geç kalmış rapor için ilk satır (en son kaçmış slot pencereyi aşmışsa), yoksa None."""
+    if not due:
+        return None
+    market = market or ("bist" if BIST else "us")
+    last = max(due)
+    t, slots = _slot_times(now, market)
+    s = next(s for s, _ in slots if f"{s:%Y-%m-%dT%H%M}" == last)
+    if t < s + timedelta(minutes=SLOT_WINDOW_MIN):
+        return None
+    return f"⏰ Gecikmiş rapor (planlanan {s:%H:%M} {'ET' if market == 'us' else 'İstanbul'})"
+
+
+def trade_date(q, run_date):
+    """Kotasyonun işlem günü (ISO): q["t"] (epoch sn) piyasanın saat diliminde; t yoksa çalışma günü.
+    Hafta sonuna düşerse önceki cuma (hafta sonu tarihli kayıt yazılmaz)."""
+    d = None
+    try:
+        if q.get("t"):
+            d = datetime.fromtimestamp(float(q["t"]), IST if BIST else ET).date()
+    except (TypeError, ValueError, OverflowError, OSError):
+        d = None
+    d = d or date.fromisoformat(run_date)
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d.isoformat()
 
 
 # ------------------------------------------------------------------ Finnhub
@@ -232,7 +264,7 @@ def market_lines(summary):
         lbl = (lambda x: x.get("name") or x["sym"]) if BIST else (lambda x: x["sym"])  # BIST'te grup adı okunur, ABD'de ETF kodu
         lead = [lbl(x) for x in g if str(x.get("verdict", "")).startswith(("Ol", "Erken")) and not x.get("bank")][:5]
         weak = [lbl(x) for x in g if str(x.get("verdict", "")).startswith("Uzak")][-4:]
-        out = [f"🧭 Rejim: {common.e(r.get('label', '–'))} ({r.get('score')}/{r.get('max')}) · önerilen nakit %{lo}–{hi}, şu an %{cp:.1f}{gap}"]
+        out = [f"🧭 Rejim: {common.e(r.get('label', '–'))}{' (sınırda)' if r.get('borderline') else ''} ({r.get('score')}/{r.get('max')}) · önerilen nakit %{lo}–{hi}, şu an %{cp:.1f}{gap}"]
         if lead:
             out.append("📈 Güçlü: " + ", ".join(common.e(x) for x in lead) + (" · 📉 Zayıf: " + ", ".join(common.e(x) for x in weak) if weak else ""))
         return out
@@ -244,12 +276,13 @@ def market_lines(summary):
 history_for_report = None  # run() doldurur (rapor dönem satırı için)
 
 
-def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, now, dashboard_url, ext_sess=None):
+def build_report(portfolio, quotes, fresh, summary, market_open, alerts, now, dashboard_url, ext_sess=None, late=None):
     e = common.e
     ist = now.astimezone(IST).strftime("%d.%m %H:%M")
     state = {True: "🟢 Piyasa açık", False: "🔴 Piyasa kapalı"}.get(market_open, "⚪ Piyasa durumu bilinmiyor")
     ico = lambda v: "🟢" if v >= 0 else "🔴"  # noqa: E731
     lines = [
+        *([late] if late else []),
         f"<b>{'🇹🇷 BIST Portföy Raporu' if BIST else '📊 Portföy Raporu'}</b> · {ist} (İstanbul)",
         state,
         *(["🌙 Kapanış sonrası fiyatlar (TradingView)"] if ext_sess == "post" else
@@ -265,8 +298,10 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
         if history_for_report else None
     if perf:
         lines.append("📆 " + " · ".join(f"{k}: {v['gain']:+,.0f}{CUR} ({v['twr']:+.2f}%)" for k, v in perf.items()))
-    if month:
-        lines.append(f"🎯 Aylık hedef: {month['gain']:+,.0f}{CUR} / {month['target']:,.0f}{CUR} (%{max(month['pct'], 0):.0f})")
+    target = portfolio.get("monthly_target")
+    if target and perf and "Ay" in perf:  # "Ay" satırıyla AYNI taban: önceki ay sonu son kaydı
+        gain = perf["Ay"]["gain"]
+        lines.append(f"🎯 Aylık hedef: {gain:+,.0f}{CUR} / {target:,.0f}{CUR} (%{max(common.pct(gain, target), 0):.0f})")
     lines += ["", "<b>Pozisyonlar</b>"]
     for m in sorted(summary["positions"], key=lambda x: -x["value"]):
         stale = " ⏱" if m["stale"] else ""
@@ -300,13 +335,32 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, month, 
 
 
 # --------------------------------------------------------------- ana akış
-def update_prices(prices, fresh_quotes, et_date):
+def update_prices(prices, fresh_quotes, run_date, keep=None):
+    """Fiyat geçmişi: her kayıt kotasyonun KENDİ işlem gününe yazılır (trade_date); hafta sonu tarihli eski kayıtlar
+    silinir; keep verilmişse listede (pozisyon+izleme) olmayan hisseler atılır."""
+    if keep is not None:
+        for t in [t for t in prices if t not in keep]:
+            del prices[t]
+    for hist in prices.values():
+        for d in [d for d in hist if date.fromisoformat(d).weekday() >= 5]:
+            del hist[d]
     for t, q in fresh_quotes.items():
         hist = prices.setdefault(t, {})
-        hist[et_date] = round(float(q["c"]), 4)
+        hist[trade_date(q, run_date)] = round(float(q["c"]), 4)
         for d in sorted(hist)[:-PRICE_DAYS]:
             del hist[d]
     return prices
+
+
+def snapshot_date(holdings, fresh, run_date):
+    """Günlük kayıt tarihi: eldeki hisselerin güncel kotasyonlarının ortak işlem günü. Hepsi güncel değilse ya da
+    tarihler birbirini tutmuyorsa None (o çalışmada kayıt yazılmaz). Eldeki hisse yoksa çalışma günü."""
+    if not all(t in fresh for t in holdings):
+        return None
+    days = {trade_date(fresh[t], run_date) for t in holdings}
+    if not holdings:
+        return trade_date({}, run_date)
+    return days.pop() if len(days) == 1 else None
 
 
 def upsert_snapshot(history, et_date, summary):
@@ -327,7 +381,7 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     if report == "auto":  # zamanlanmış çalışma: rapor mu sessiz yenileme mi, ET saatine göre burada seçilir
         st0 = common.load_json(common.F_STATE, {}) or {}
         done = set(st0.get("reports", [])) if st0.get("date") == et_date else set()
-        due = [x for x in due_slots(now) if x not in done]
+        due = due_slots(now, done)
         report = bool(due)
         if not report and not BIST:
             t = now.astimezone(ET)
@@ -353,10 +407,12 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         return 0
 
     prev = (common.load_json(f"{common.DATA_DIR}/quotes.json", {}) or {}).get("quotes", {})
-    quotes, fresh = {}, {}
+    quotes, fresh, stale_q = {}, {}, {}
     for t in tickers:
         q = fetch(t, key)
-        if q:
+        if q and q.get("stale"):  # kaynak bayat kotasyon verdi (BIST: mum tarihi eski): güncel sayılmaz
+            stale_q[t] = q
+        elif q:
             quotes[t] = q
             fresh[t] = q
     # Yedek zincir (yalnız ABD): Finnhub'dan gelmeyenler -> TradingView tarayıcısı (tek istek) -> Alpaca (anahtar varsa)
@@ -377,8 +433,10 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
                 print(f"{name} yedeği: {len(got)}/{len(missing)} fiyat")
             missing = [t for t in tickers if t not in fresh]
     for t in tickers:
-        if t not in quotes and common.valid_quote(prev.get(t)):
-            quotes[t] = {**prev[t], "stale": True}
+        if t not in quotes:  # güncel yok: önceki dosyadaki ya da bayat gelen kotasyonlardan işlem günü yeni olanı
+            cands = [x for x in (prev.get(t), stale_q.get(t)) if common.valid_quote(x)]
+            if cands:
+                quotes[t] = {**max(cands, key=lambda x: x.get("t") or 0), "stale": True}
     if not fresh:
         print("[ERROR] Hiç fiyat alınamadı (API anahtarı / limit?).")
         return 1
@@ -393,15 +451,20 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         "quotes": quotes,
     })
     common.save_json(f"{common.DATA_DIR}/prices.json",
-                     update_prices(common.load_json(f"{common.DATA_DIR}/prices.json", {}) or {}, fresh, et_date))
+                     update_prices(common.load_json(f"{common.DATA_DIR}/prices.json", {}) or {}, fresh, et_date,
+                                   keep=set(tickers)))
 
-    if all(t in fresh for t in holdings):
-        upsert_snapshot(history, et_date, summary)
+    snap_day = snapshot_date(holdings, fresh, et_date)
+    if snap_day:
+        upsert_snapshot(history, snap_day, summary)
         common.save_json(common.F_HISTORY, history)
+    else:
+        print("Günlük kayıt yazılmadı (eldeki hisselerden biri güncel değil ya da işlem günleri farklı).")
     # Takip eden stop (tam otomatik, yalnız yukarı): kayıtlı stopu ATR stopa göre yükseltir; sync_public'ten ÖNCE
     # kaydedilir ki dashboard/mini uygulama yeni stopu görsün. Hata monitor'ü durdurmaz.
     try:
-        trail = common.trail_stops(portfolio, fresh, _market(), now.astimezone(IST if BIST else ET).date())
+        trail = common.trail_stops(portfolio, fresh, _market(), now.astimezone(IST if BIST else ET).date(),
+                                  market_open=market_open)
         if trail:
             common.save_json(common.F_PORTFOLIO, portfolio)
             print("Takip eden stop: " + ", ".join(f"{a['t']} {a['old']:.2f}->{a['new']:.2f}" for a in trail))
@@ -410,7 +473,7 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
         trail = []
     common.sync_public()
 
-    alerts = common.check_alerts(portfolio, fresh) + earnings_alerts(portfolio, now) + trail
+    alerts = common.check_alerts(portfolio, fresh, market_open) + earnings_alerts(portfolio, now) + trail
     state = common.load_json(common.F_STATE, {}) or {}
     once = list(state.get("once", []))[-300:]  # tek seferlik alarmlar (bilanço) gün değişse de tekrarlanmaz
     if state.get("date") != et_date:
@@ -421,13 +484,12 @@ def run(report=False, force=False, key=None, fetch=fetch_quote, status_fn=market
     new_alerts = [a for a in alerts if a["key"] not in state["sent"]]
 
     if report:
-        month = common.month_progress(history, portfolio["monthly_target"], summary["total_value"], et_date)
         rq, ext_sess = apply_extended(quotes, tickers, now)
         rsummary = common.summarize(portfolio, rq) if ext_sess else summary
-        month = common.month_progress(history, portfolio["monthly_target"], rsummary["total_value"], et_date) if ext_sess else month
         global history_for_report
         history_for_report = history
-        text = build_report(portfolio, rq, fresh, rsummary, market_open, alerts, month, now, dashboard_url, ext_sess)
+        text = build_report(portfolio, rq, fresh, rsummary, market_open, alerts, now, dashboard_url, ext_sess,
+                            late_label(now, due))
         if common.send_telegram(text):
             state["sent"] = sorted(set(state["sent"]) | {a["key"] for a in alerts})
             state["once"] = once + [a["key"] for a in alerts if a.get("once")]

@@ -10,12 +10,14 @@ Komisyon ($) isteğe bağlıdır; boşsa 0 sayılır. Alışta toplam maliyete e
 satışta net tutardan düşer (gerçekleşen K/Z ve nakit buna göre).
   python scripts/update_position.py --action deposit --amount 1000
   python scripts/update_position.py --action watch_add --ticker AMD
+Toplu giriş (hepsi ya da hiçbiri; satır sonu ya da ';' ile ayrılır; IN_BATCH ya da --batch):
+  python scripts/update_position.py --batch "buy RKLB 10 52.3; sell CRWV 5 56; deposit 1000"
 """
 import argparse
 import copy
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -295,6 +297,55 @@ def apply(portfolio, history, action, ticker=None, shares=None, price=None, amou
     return msg + warn
 
 
+# Toplu giriş: işlem -> (parametre adları). buy/sell son parametre (komisyon) isteğe bağlıdır.
+BATCH_SPEC = {
+    "buy": ("ticker", "shares", "price", "commission"), "sell": ("ticker", "shares", "price", "commission"),
+    "deposit": ("amount",), "withdraw": ("amount",),
+    "watch_add": ("ticker",), "watch_remove": ("ticker",),
+    "zone_below": ("ticker", "price"), "zone_above": ("ticker", "price"), "zone_clear": ("ticker",),
+    "trail_off": ("ticker",), "trail_on": ("ticker",),
+}
+
+
+def parse_batch(text):
+    """Toplu giriş metnini [(satır no, ham satır, {action, ticker, ...}), ...] listesine çevirir.
+    Satırlar yeni satır ya da ';' ile ayrılır; boş satırlar ve '#' ile başlayanlar atlanır. Hata -> ValueError (satır adıyla)."""
+    ops = []
+    for n, raw in enumerate((x.strip() for x in (text or "").replace(";", "\n").splitlines() if x.strip()), 1):
+        if raw.startswith("#"):
+            continue
+        tok = raw.split()
+        action, args = tok[0].lower(), tok[1:]
+        if action not in BATCH_SPEC:
+            raise ValueError(f"Satır {n} ({raw}): bilinmeyen işlem {tok[0]!r} (izin verilen: {', '.join(BATCH_SPEC)})")
+        names = BATCH_SPEC[action]
+        need = len(names) - (1 if names[-1] == "commission" else 0)
+        if not need <= len(args) <= len(names):
+            raise ValueError(f"Satır {n} ({raw}): {action} için {' '.join(names[:need])}"
+                             f"{' [' + names[-1] + ']' if need < len(names) else ''} gerekir")
+        ops.append((n, raw, {"action": action, **dict(zip(names, args))}))
+    if not ops:
+        raise ValueError("Toplu giriş boş")
+    return ops
+
+
+def apply_batch(portfolio, history, text, now=None, confirm=False, quotes=None):
+    """Satırları SIRAYLA, portföy/geçmişin KOPYALARI üzerinde uygular (hepsi ya da hiçbiri): bir satır başarısız olursa
+    ValueError (hangi satır olduğu mesajda) ve girdi nesnelerine dokunulmaz. Dönüş: (portfolio, history, mesaj)."""
+    now = now or datetime.now(timezone.utc)
+    ops = parse_batch(text)
+    pf, hist = copy.deepcopy(portfolio), copy.deepcopy(history)
+    results = []
+    for i, (n, raw, kw) in enumerate(ops):
+        try:
+            # her işlem benzersiz zaman damgası alsın (undo kaydı `time` ile anılır)
+            results.append(apply(pf, hist, **kw, now=now + timedelta(seconds=i), confirm=confirm, quotes=quotes))
+        except ValueError as ex:
+            raise ValueError(f"Satır {n} ({raw}): {ex}") from None
+    body = "\n\n".join(f"{k}. {r}" for k, r in enumerate(results, 1))
+    return pf, hist, f"📦 Toplu işlem ({len(results)} satır)\n{body}"
+
+
 def _lv_txt(lv):
     st, tg = lv.get("stop_loss"), lv.get("target")
     return ", ".join(x for x in (f"stop {C}{float(st):,.2f}" if st is not None else "",
@@ -316,25 +367,33 @@ def main(argv=None):
     ap.add_argument("--commission")
     ap.add_argument("--note")
     ap.add_argument("--date")
+    ap.add_argument("--batch", help="Toplu giriş (satır sonu ya da ';' ile ayrılmış işlemler; verilirse tekil girdiler yok sayılır)")
     ap.add_argument("--no-cash-update", action="store_true")
     ap.add_argument("--confirm", action="store_true", help="Fiyat sapma kontrolünü onayla")
     args = ap.parse_args(argv)
 
     action = _env_or(args, "action", "IN_ACTION")
+    batch = _env_or(args, "batch", "IN_BATCH").strip()
     update_cash = not (args.no_cash_update or os.environ.get("IN_UPDATE_CASH", "true").lower() == "false")
     portfolio = common.load_portfolio()
     history = common.load_history()
     try:
-        msg = apply(portfolio, history, action,
-                    ticker=_env_or(args, "ticker", "IN_TICKER"),
-                    shares=_env_or(args, "shares", "IN_SHARES") or None,
-                    price=_env_or(args, "price", "IN_PRICE") or None,
-                    amount=_env_or(args, "amount", "IN_AMOUNT") or None,
-                    note=_env_or(args, "note", "IN_NOTE"),
-                    date=_env_or(args, "date", "IN_DATE") or None,
-                    update_cash=update_cash,
-                    commission=_env_or(args, "commission", "IN_COMMISSION") or None,
-                    confirm=args.confirm or os.environ.get("IN_CONFIRM", "").lower() == "true")
+        if batch:  # tekil girdiler yok sayılır
+            quotes = (common.load_json(f"{common.DATA_DIR}/quotes.json", {}) or {}).get("quotes", {})
+            portfolio, history, msg = apply_batch(
+                portfolio, history, batch, confirm=args.confirm or os.environ.get("IN_CONFIRM", "").lower() == "true",
+                quotes=quotes)
+        else:
+            msg = apply(portfolio, history, action,
+                        ticker=_env_or(args, "ticker", "IN_TICKER"),
+                        shares=_env_or(args, "shares", "IN_SHARES") or None,
+                        price=_env_or(args, "price", "IN_PRICE") or None,
+                        amount=_env_or(args, "amount", "IN_AMOUNT") or None,
+                        note=_env_or(args, "note", "IN_NOTE"),
+                        date=_env_or(args, "date", "IN_DATE") or None,
+                        update_cash=update_cash,
+                        commission=_env_or(args, "commission", "IN_COMMISSION") or None,
+                        confirm=args.confirm or os.environ.get("IN_CONFIRM", "").lower() == "true")
     except ValueError as ex:
         print(f"[ERROR] {ex}")
         common.send_telegram(f"⚠️ Pozisyon güncellemesi reddedildi: {common.e(ex)}")

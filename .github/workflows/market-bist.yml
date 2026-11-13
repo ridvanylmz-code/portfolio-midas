@@ -10,6 +10,14 @@ on:
     - cron: "47 7-14 * * 1-5"        # 10:47-17:47 TRT, seans içi saatlik
     - cron: "27 15,17 * * 1-5"       # 18:27 / 20:27 TRT, kapanış sonrası
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "manual: elle çalıştırma | auto: zamanlanmış çalışma gibi davran (dış zamanlayıcı için)"
+        type: choice
+        options:
+          - manual
+          - auto
+        default: manual
 
 permissions:
   contents: write
@@ -23,9 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 

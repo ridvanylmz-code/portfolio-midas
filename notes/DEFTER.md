@@ -6,9 +6,9 @@ Kod: `scripts/defter.py`, iş akışı: `.github/workflows/defter.yml`.
 
 | Hesap | Para | Kaynak | Not |
 |---|---|---|---|
-| Midas-TR | ₺ | otomatik: `bist/history.json` snapshot | v = toplam − yedek (90.000) |
+| Midas-TR | ₺ | otomatik: `docs/bist/data/history.json` snapshot | v = toplam − yedek (90.000) |
 | Info-TR | ₺ | otomatik: `defter/info_portfolio.json` pozisyonları × BIST fiyatı | yedek 25.000; işlem: Info-TR Pozisyon Güncelle |
-| Midas-USD | $ | otomatik: `history.json` snapshot | seri 2025-10-14'te başlar |
+| Midas-USD | $ | otomatik: `docs/data/history.json` snapshot | seri 2025-10-14'te başlar |
 | IBKR | $ | IBKR Flex (secret: IBKR_FLEX_TOKEN, IBKR_FLEX_QUERY_ID), 09:15 İst.; yoksa elle | seri 2026-04-17; Excel günlerinin üstüne yazmaz |
 
 - Alanlar: v performans tabanı, h hisse değeri, c günlük değişim (akış ayıklanmış), f para akışı, r yedek, s kaynak (x Excel, a oto, m elle), n not.

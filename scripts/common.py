@@ -6,7 +6,7 @@ import math
 import os
 import re
 import tempfile
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -16,13 +16,18 @@ TICKER_RE = re.compile(r"^[A-Z][A-Z0-9.\-]{0,9}$")
 
 # Piyasa seçimi: MARKET=bist -> BIST kopyası (ayrı portföy/geçmiş/durum dosyaları, ₺, docs/bist/data).
 # Varsayılan (MARKET boş/us) ABD yapısıdır ve davranışı değişmez.
+# Portföy ve geçmiş TEK kopya olarak herkese açık veri klasöründe durur (şifreli); state.json kökte kalır.
+# Eski kök kopyalar (portfolio.json, history.json, bist/...) migrate_legacy() ile ilk çalışmada taşınır.
 MARKET = (os.environ.get("MARKET") or "us").strip().lower()
 if MARKET == "bist":
-    F_PORTFOLIO, F_HISTORY, F_STATE = "bist/portfolio.json", "bist/history.json", "bist/state.json"
+    F_STATE = "bist/state.json"
     DATA_DIR, CUR = "docs/bist/data", "₺"
 else:
-    F_PORTFOLIO, F_HISTORY, F_STATE = "portfolio.json", "history.json", "state.json"
+    F_STATE = "state.json"
     DATA_DIR, CUR = "docs/data", "$"
+F_PORTFOLIO, F_HISTORY = f"{DATA_DIR}/portfolio.json", f"{DATA_DIR}/history.json"
+LEGACY_FILES = {"portfolio.json": "docs/data/portfolio.json", "history.json": "docs/data/history.json",
+                "bist/portfolio.json": "docs/bist/data/portfolio.json", "bist/history.json": "docs/bist/data/history.json"}
 
 
 # ---------------------------------------------------------------- şifreli kasa
@@ -30,7 +35,7 @@ else:
 # mini uygulamada girilen parola) ile AES-256-GCM şifrelenir; anahtar PBKDF2-SHA256 ile parolanın türevidir.
 # Dosya adları değişmez, içerik {"vault": 1, ...} zarfıdır. Tarayıcı tarafı: docs/vault.js (WebCrypto, aynı biçim).
 # Anahtar tanımlı değilse eski davranış (düz JSON) sürer; tanımlanınca ilk yazımda dosyalar şifrelenir.
-SECRET_FILES = {F_PORTFOLIO, F_HISTORY, F_STATE, f"{DATA_DIR}/portfolio.json", f"{DATA_DIR}/history.json"}
+SECRET_FILES = {F_PORTFOLIO, F_HISTORY, F_STATE}
 VAULT_ITER = 600_000
 _KEYS = {}      # (parola, salt, iter) -> türetilmiş anahtar (aynı çalışmada tekrar türetme olmasın)
 _SAVE_SALT = os.urandom(16)
@@ -117,7 +122,34 @@ def save_json(name, data):
         raise
 
 
+def migrate_legacy():
+    """Kökteki eski portfolio/history kopyaları varsa YETKİLİDİR: ham içerik (şifreli zarf olduğu gibi, çözülmeden)
+    docs kopyasının üstüne yazılır, sonra eski dosya silinir. Tek kopya kuralı (B7). Dönüş: taşınan dosyalar."""
+    moved = []
+    for old, new in LEGACY_FILES.items():
+        src = path(old)
+        if not src.exists():
+            continue
+        raw = src.read_bytes()
+        dst = path(new)
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        fd, tmp = tempfile.mkstemp(dir=dst.parent, suffix=".tmp")
+        try:
+            with os.fdopen(fd, "wb") as f:
+                f.write(raw)
+            os.replace(tmp, dst)
+        except Exception:
+            if os.path.exists(tmp):
+                os.unlink(tmp)
+            raise
+        src.unlink()
+        moved.append(old)
+        print(f"[migrate] {old} -> {new}")
+    return moved
+
+
 def load_portfolio():
+    migrate_legacy()
     data = load_json(F_PORTFOLIO)
     if data is None:
         raise FileNotFoundError(f"{F_PORTFOLIO} bulunamadı")
@@ -139,6 +171,7 @@ def load_portfolio():
 
 
 def load_history():
+    migrate_legacy()
     h = load_json(F_HISTORY, {}) or {}
     h.setdefault("transactions", [])
     h.setdefault("snapshots", [])
@@ -146,20 +179,19 @@ def load_history():
 
 
 def sync_public():
-    """Dashboard (GitHub Pages /docs) sadece docs/ altını görür; kopyala (anahtar varsa şifreli).
+    """Portföy/geçmiş zaten herkese açık veri klasöründe (tek kopya); burada yalnız sembol dosyaları yazılır.
     symbols.json: diğer iş akışları (intraday/technicals) için yalnızca sembol listesi; adet/maliyet içermez,
-    pozisyon ile izleme listesi ayrılmadan alfabetik yazılır."""
+    pozisyon ile izleme listesi ayrılmadan alfabetik yazılır.
+    holdings.json: yalnız eldeki sembollerin sıralı listesi (tutar yok), pozisyon momentum kontrolü için."""
+    migrate_legacy()
     ensure_encrypted()
-    pf = None
-    for name, src in (("portfolio.json", F_PORTFOLIO), ("history.json", F_HISTORY)):
-        data = load_json(src)
-        if data is not None:
-            save_json(f"{DATA_DIR}/{name}", data)
-            if name == "portfolio.json":
-                pf = data
+    pf = load_json(F_PORTFOLIO)
     if pf is not None:
-        syms = sorted(set(pf.get("portfolio", {})) | set(pf.get("watchlist", [])))
+        held = sorted(pf.get("portfolio", {}))
+        syms = sorted(set(held) | set(pf.get("watchlist", [])))
         save_json(f"{DATA_DIR}/symbols.json", {"tickers": syms})
+        save_json(f"{DATA_DIR}/holdings.json", {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                                "holdings": held})
 
 
 def ensure_encrypted():
@@ -272,16 +304,20 @@ TRAIL_MIN_STEP = 0.005      # stop en az fiyatın %0,5'i kadar yükselecekse ta�
 TRAIL_MAX_AGE_DAYS = 5      # piyasa verisi bundan eskiyse stop taşınmaz (hafta sonu + tatil payı)
 
 
-def trail_stops(portfolio, quotes, market, today):
+def trail_stops(portfolio, quotes, market, today, market_open=None):
     """Tam otomatik takip eden stop: eldeki her hisse için stop = max(kayıtlı stop, ATR stop). YALNIZCA YUKARI.
 
-    ATR stop: market.json / market-bist.json içindeki `stop_atr` (2×ATR ya da 3A tepeden 3×ATR). Kurallar:
+    ATR stop: market.json / market-bist.json içindeki `stop_atr` (kapanış − 2×ATR). Kurallar:
+    - YALNIZ piyasa kapalıyken (market_open is False) ve tamamlanmış günlük kapanış fiyatıyla taşınır; seans içinde
+      ya da piyasa durumu bilinmiyorsa (None) hiçbir şey yapılmaz (gün içi dalgalanma stopu yukarı kilitlemesin);
     - veri bayatsa (`updated` > TRAIL_MAX_AGE_DAYS gün) ya da hissenin satırı `stale` ise dokunulmaz;
     - güncel fiyat alınamadıysa (quotes'ta yok) dokunulmaz; yeni stop fiyatın en az %0,5 altında olmalı
       (gün içi düşüşte anında tetiklenmesin) ve hedefin altında kalmalı;
     - kayıtlı (ya da maliyet -%X varsayılan) stoptan en az TRAIL_MIN_STEP·fiyat yüksek değilse taşınmaz;
     - position_levels[T]["trail"] == False ise o hisse atlanır (update-position: trail_off).
     portfolio yerinde güncellenir; dönen liste alarm metinleridir ({key, text, once, t, old, new})."""
+    if market_open is not False:
+        return []
     if not market or not isinstance(market.get("stocks"), dict):
         return []
     try:
@@ -335,7 +371,9 @@ def zone_of(portfolio, t):
     return {k: float(v) for k, v in z.items() if k in ("below", "above") and v is not None}
 
 
-def check_alerts(portfolio, fresh_quotes):
+def check_alerts(portfolio, fresh_quotes, market_open=None):
+    """Alarmlar. "Günlük hareket" alarmı yalnız piyasa açıkken (market_open is True) üretilir: kapalıyken
+    kotasyondaki dp dünkü seansa aittir. Stop/hedef/bölge alarmları piyasa durumundan bağımsızdır."""
     out = []
     # İzleme listesi alım bölgeleri: geri çekilme (fiyat ≤ below) ya da kırılım (fiyat ≥ above)
     for t in list(dict.fromkeys(list(portfolio.get("watchlist", [])) + list(portfolio.get("buy_zones", {})))):
@@ -362,34 +400,10 @@ def check_alerts(portfolio, fresh_quotes):
         if target is not None and price >= target:
             out.append({"key": f"{t}:target", "text": f"🎯 {t} hedefe ulaştı: {CUR}{price:.2f} (hedef {CUR}{target:.2f})"})
         dp = q.get("dp")
-        if move and dp is not None and abs(dp) >= move:
+        if market_open is True and move and dp is not None and abs(dp) >= move:
             side = "up" if dp > 0 else "down"
             out.append({"key": f"{t}:move_{side}", "text": f"⚡ {t} günlük %{dp:+.2f} hareket ({CUR}{price:.2f})"})
     return out
-
-
-def month_progress(history, target, total_value, today_iso):
-    """Ay başı ilk snapshot'a göre kazanç; para yatırma/çekmeyi düzeltir."""
-    if not target:
-        return None
-    month = today_iso[:7]
-    snaps = sorted((s for s in history["snapshots"] if s["date"].startswith(month)),
-                   key=lambda s: s["date"])
-    if not snaps:
-        return None
-    start = snaps[0]
-    flows = 0.0
-    for tx in history["transactions"]:
-        if tx.get("undone"):
-            continue
-        if tx["date"] > start["date"] and tx["date"].startswith(month):
-            if tx["action"] == "deposit":
-                flows += tx["amount"]
-            elif tx["action"] == "withdraw":
-                flows -= tx["amount"]
-    gain = total_value - start["value"] - flows
-    return {"start": start["value"], "start_date": start["date"], "gain": gain,
-            "target": target, "pct": pct(gain, target)}
 
 
 # ----------------------------------------------------------------- Telegram
