@@ -3,6 +3,8 @@ name: "takip-listesi-tarama"
 description: "market.json picks listesinden 5 hisselik ABD takip listesini seçip repoda güncellemek istendiğinde kullan. Her güncellemede mevcut listeyi yeniden kontrol eder."
 ---
 
+> **Güncel sürüm kuralı:** Bu skill'in asıl metni repoda durur: `notes/yontem/takip-listesi-tarama/SKILL.md` (dal: main). Repo bağlandıktan sonra o dosyayı oku; buradaki metinden farklıysa **repodaki sürümü** uygula.
+
 # ABD Takip Listesi Seçimi
 
 Dil: Türkçe, kısa, basit tablo. Al-sat dili porsiyon dilidir (`portfoy-guncelle` ile aynı): "1 porsiyon al", "kenardaki porsiyonu al" vb.

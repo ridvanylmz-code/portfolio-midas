@@ -3,6 +3,8 @@ name: "portfoy-guncelle"
 description: "ABD hisse güncellemesi: yalnız Portföy_Midas projesinde ya da açıkça \"ABD güncelle\" dendiğinde kullan. Bist_Takip projesinde \"güncelle\" BIST demektir; orada bist-guncelle kullanılır."
 ---
 
+> **Güncel sürüm kuralı:** Bu skill'in asıl metni repoda durur: `notes/yontem/portfoy-guncelle/SKILL.md` (dal: main). Repo bağlandıktan sonra o dosyayı oku; buradaki metinden farklıysa **repodaki sürümü** uygula.
+
 # ABD Analiz Güncellemesi
 
 Önce proje kontrolü: oturum Bist_Takip projesine bağlıysa ve kullanıcı açıkça "ABD" demediyse bu beceriyi kullanma; `bist-guncelle` kullan.
