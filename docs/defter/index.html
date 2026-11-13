@@ -7,14 +7,12 @@
 <title>Portföy Defteri</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="../tgfs.js?v=1" defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#040705;--surf:#08100b;--surf2:#0c1710;--line:#16301f;--line2:#1f4a2e;
   --ink:#d5ecdd;--ink2:#9dbfaa;--mute:#62806d;--acc:#3ee08f;--acc2:#22a862;
   --up:#3ee08f;--dn:#ff6b72;--warn:#f2c14e;--idx:#6f86d6;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box}
@@ -80,6 +78,7 @@ td.na{color:#2f4a39}
 .nb{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;border:1px solid var(--line2);color:var(--warn);font-size:11px;cursor:pointer;background:transparent;padding:0;margin-left:4px;vertical-align:middle}
 td.val{color:var(--ink)}
 td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
+.cr{color:var(--warn);font-size:9px;cursor:help;margin-left:2px}
 .more{display:block;margin:10px auto 0}
 .chart{position:relative}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
@@ -116,7 +115,6 @@ td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
     <h1>PORTFÖY_DEFTERİ<span class="cur"></span></h1>
     <span class="sub" id="upd"></span>
     <span class="sp"></span>
-    <button class="btn hide" id="xlsBtn" type="button">⤓ Excel</button>
     <a class="btn" href="https://github.com/ridvanylmz-code/portfolio-midas/actions/workflows/defter.yml" target="_blank" rel="noopener">＋ Kayıt</a>
   </header>
   <div class="tape" id="tape"><div class="run" id="tapeRun"><span>XU100 · S&amp;P 500 · USD/TRY · MIDAS-TR · INFO-TR · MIDAS-USD · IBKR ·</span><span>XU100 · S&amp;P 500 · USD/TRY · MIDAS-TR · INFO-TR · MIDAS-USD · IBKR ·</span></div></div>
@@ -124,6 +122,7 @@ td .tot{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
 
   <main id="app" class="hide">
     <div class="lbl">SON GÜN · <b id="lastDay"></b></div>
+    <div id="wealth" style="margin-bottom:10px"></div>
     <div class="grid g2" id="groups"></div>
     <div class="grid g4" id="accs" style="margin-top:10px"></div>
 
@@ -177,7 +176,7 @@ function saveUi(){try{localStorage.setItem("defter_ui",JSON.stringify({tab:state
     if(!run)return; requestAnimationFrame(f);
     if(t-last<70)return; last=t;
     x.fillStyle="rgba(4,7,5,.18)";x.fillRect(0,0,c.width,c.height);
-    x.font=fs+"px IBM Plex Mono, monospace";
+    x.font=fs+"px ui-monospace,Menlo,monospace";
     for(var i=0;i<cols;i++){
       var ch=glyph[(Math.random()*glyph.length)|0];
       x.fillStyle=Math.random()<.04?"#c8ffe0":"#1f9e5a";
@@ -204,7 +203,7 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp
 
 /* ---------- hesap ---------- */
 function build(){
-  var prev={},pidx={xu:null,sp:null},out=[];
+  var prev={},last={},pidx={xu:null,sp:null,fx:null},lastFx=null,lastFxD=null,out=[];
   D.days.forEach(function(x){
     var r={d:x.d,a:{},n:x.n||null};
     Object.keys(x.a||{}).forEach(function(k){
@@ -217,13 +216,21 @@ function build(){
       prev[k]=e;
     });
     ["xu","sp"].forEach(function(k){if(x[k]){r[k]=x[k];r[k+"p"]=pidx[k]?x[k]/pidx[k]-1:null;pidx[k]=x[k]}});
+    if(x.fx){r.fx=x.fx;r.fxp=pidx.fx?x.fx/pidx.fx-1:null;pidx.fx=x.fx;lastFx=x.fx;lastFxD=x.d}
+    r.fxu=lastFx;r.fxd=lastFxD;   /* kullanılan kur: o günün kuru, yoksa son bilinen (ileri doldurma); hiç yoksa null */
     Object.keys(GRP).forEach(function(g){
-      var es=GRP[g].accs.map(function(a){return r.a[a]}).filter(Boolean);
+      var accs=GRP[g].accs,es=accs.map(function(a){return r.a[a]}).filter(Boolean);
       if(!es.length)return;
       var ok=es.filter(function(e){return e.pct!=null}),num=0,den=0;
       ok.forEach(function(e){num+=e.c;den+=e.pv});
-      r[g]={v:es.reduce(function(s,e){return s+e.v},0),tot:es.reduce(function(s,e){return s+e.tot},0),c:ok.length?num:null,pct:den?num/den:null,pv:den};
+      /* Grup DEĞERİ (v, tot): o gün kaydı olmayan hesap son bilinen değeriyle toplanır (başlangıcından sonra).
+         Bu kural scripts/defter.py carry_group ile BİREBİR AYNI kalmalı (sayfa, Excel, Telegram aynı rakamı göstersin).
+         Günlük değişim/yüzde yine yalnız gerçek kayıtlardan (yukarıda). */
+      var v=0,tot=0,carry=[];
+      accs.forEach(function(a){var e=r.a[a];if(e){v+=e.v;tot+=e.tot}else if(last[a]){v+=last[a].e.v;tot+=last[a].e.tot;carry.push({a:a,d:last[a].d})}});
+      r[g]={v:v,tot:tot,c:ok.length?num:null,pct:den?num/den:null,pv:den,carry:carry};
     });
+    Object.keys(r.a).forEach(function(k){last[k]={d:x.d,e:r.a[k]}});
     out.push(r);
   });
   return out;
@@ -247,7 +254,7 @@ function periods(kind){
     });
     Object.keys(GRP).forEach(function(G){
       var gr=1,ch=0,n=0,last=null;g.rows.forEach(function(r){var e=r[G];if(!e)return;last=e;if(e.pct!=null){gr*=1+e.pct;ch+=e.c;n++}});
-      if(last)rec[G]={v:last.v,tot:last.tot,c:n?ch:null,pct:n?gr-1:null};
+      if(last)rec[G]={v:last.v,tot:last.tot,c:n?ch:null,pct:n?gr-1:null,carry:last.carry};
     });
     ["xu","sp"].forEach(function(k){
       var vs=g.rows.filter(function(r){return r[k]});if(!vs.length)return;
@@ -259,6 +266,21 @@ function periods(kind){
 
 /* ---------- son gün kartları ---------- */
 function lastEntry(acc){for(var i=ROWS.length-1;i>=0;i--)if(ROWS[i].a[acc])return ROWS[i];return null}
+/* TOPLAM SERVET: 4 hesap tek para biriminde (TL hesaplar yedek dahil), o günün kuruyla. Kur yoksa kart gizlenir.
+   Değişim = bir önceki ortak güne göre toplam servet farkı (para giriş/çıkışı ve kur etkisi dahil). */
+function wealth(){
+  var el=$("wealth"),r=null,p=null;
+  for(var i=ROWS.length-1;i>=0;i--){var w=ROWS[i];if(w.tl&&w.usd&&w.fxu){if(!r)r=w;else{p=w;break}}}
+  if(!r){el.innerHTML="";return}
+  function tot(w){return {t:w.tl.tot+w.usd.v*w.fxu,u:w.tl.tot/w.fxu+w.usd.v}}
+  var a=tot(r),b=p?tot(p):null,dt=b?a.t-b.t:null,du=b?a.u-b.u:null;
+  var cr=(r.tl.carry||[]).concat(r.usd.carry||[]).map(function(c){return accName(c.a)+": "+trDate(c.d).slice(0,5)+" değeri"});
+  el.innerHTML='<div class="card big"><div class="t">TOPLAM SERVET<span class="pill">'+trDate(r.d)+"</span></div>"+
+    '<div class="v" id="wTry">'+money(a.t,"TRY")+'</div><div class="c '+cls(dt)+'" id="wTryC">'+arrow(dt)+sgnMoney(dt,"TRY")+" · "+pct(b?dt/b.t:null)+"</div>"+
+    '<div class="v" id="wUsd" style="font-size:20px">'+money(a.u,"USD")+'</div><div class="c '+cls(du)+'" id="wUsdC">'+arrow(du)+sgnMoney(du,"USD")+" · "+pct(b?du/b.u:null)+"</div>"+
+    '<div class="m">USD/TRY <b>'+nf(r.fxu,4)+"</b>"+(r.fxd!==r.d?" (son bilinen kur, "+trDate(r.fxd).slice(0,5)+")":"")+" · TL hesaplar yedek dahil<br>Değişim: para giriş/çıkışı ve kur etkisi dahil"+
+    (cr.length?'<br><span class="warn">⚠ '+cr.join(", ")+" (taşındı)</span>":"")+"</div></div>";
+}
 function cards(){
   var lastRow=ROWS[ROWS.length-1];
   $("lastDay").textContent=trDate(lastRow.d)+" "+wday(lastRow.d);
@@ -266,13 +288,14 @@ function cards(){
   Object.keys(GRP).forEach(function(g){
     var G=GRP[g],r=null;for(var i=ROWS.length-1;i>=0;i--)if(ROWS[i][g]){r=ROWS[i];break}
     if(!r)return;var e=r[g],ip=r[G.idx+"p"];
-    var miss=G.accs.filter(function(a){return !r.a[a]}).map(function(a){return ACC.filter(function(A){return A[0]===a})[0][1]});
+    var miss=(e.carry||[]).map(function(c){return accName(c.a)+": "+trDate(c.d).slice(0,5)+" değeri"});
     h+='<div class="card big"><div class="t">'+G.name+'<span class="pill">'+trDate(r.d)+"</span></div>"+
       '<div class="v">'+money(e.v,G.cur)+'</div><div class="c '+cls(e.c)+'">'+arrow(e.c)+sgnMoney(e.c,G.cur)+" · "+pct(e.pct)+"</div>"+
       '<div class="m">'+(g==="tl"?"Yedek dahil toplam <b>"+money(e.tot,"TRY")+"</b> · Yedek <b>"+money(e.tot-e.v,"TRY")+"</b><br>":"")+G.idxName+' <span class="'+cls(ip)+'">'+arrow(ip)+pct(ip)+"</span> · "+nf(r[G.idx],2)+
-      (miss.length?'<br><span class="warn">⚠ '+miss.join(", ")+" bu gün girilmedi</span>":"")+"</div></div>";
+      (miss.length?'<br><span class="warn carry">⚠ '+miss.join(", ")+" (bu gün girilmedi, toplama taşındı)</span>":"")+"</div></div>";
   });
   $("groups").innerHTML=h;h="";
+  wealth();
   ACC.forEach(function(A){
     var r=lastEntry(A[0]);if(!r){h+='<div class="card"><div class="t">'+A[1]+'</div><div class="v fl">—</div></div>';return}
     var e=r.a[A[0]],stale=r.d!==lastRow.d,res=(D.accounts[A[0]]||{}).reserve||0,m="";
@@ -291,6 +314,7 @@ function cards(){
   [["XU100",lastRow.xu,lastRow.xup],["S&P 500",lastRow.sp,lastRow.spp]].forEach(function(z){if(z[1])t.push(z[0]+" "+nf(z[1],2)+" "+(z[2]>0?"▲":"▼")+pct(z[2]))});
   ACC.forEach(function(A){var r=lastEntry(A[0]);if(r){var e=r.a[A[0]];t.push(A[1].toUpperCase()+" "+(e.pct>0?"▲":e.pct<0?"▼":"■")+pct(e.pct))}});
   ["tl","usd"].forEach(function(g){var r=lastRow[g];if(r)t.push(GRP[g].name+" "+pct(r.pct))});
+  for(var fi=ROWS.length-1;fi>=0;fi--)if(ROWS[fi].fx){var fr=ROWS[fi];t.push("USD/TRY "+nf(fr.fx,4)+(fr.fxp!=null?" "+(fr.fxp>0?"▲":"▼")+pct(fr.fxp):""));break}
   var line=t.map(function(s){return '<span>'+esc(s)+"</span>"}).join("");
   $("tapeRun").innerHTML=line+line;
 }
@@ -304,33 +328,36 @@ function rngStart(){
   var m={"1a":1,"3a":3,"1y":12,"3y":36}[state.rng];d.setUTCMonth(d.getUTCMonth()-m);return d.toISOString().slice(0,10);
 }
 function chart(el,g){
-  var G=GRP[g],from=rngStart(),pts=[],cp=1,ci=1,base=null,started=false;
+  var G=GRP[g],from=rngStart(),pts=[],cp=1,ci=1,base=null,started=false,fx0=null;
   ROWS.forEach(function(r){
     if(r.d<from)return;
     var e=r[g];
-    if(!started){if(!e)return;started=true;base=r[G.idx]||null;pts.push({d:r.d,p:0,i:base?0:null});return}
+    if(!started){if(!e)return;started=true;base=r[G.idx]||null;fx0=g==="tl"?r.fxu:null;pts.push({d:r.d,p:0,i:base?0:null,u:fx0?0:null});return}
     if(e&&e.pct!=null)cp*=1+e.pct;
     if(r[G.idx]&&base)ci=r[G.idx]/base;else if(r[G.idx]&&!base){base=r[G.idx]}
-    pts.push({d:r.d,p:cp-1,i:base?ci-1:null});
+    /* TL hesaplar dolar bazında: (1+r_TL) × fx_başlangıç / fx_t − 1 */
+    pts.push({d:r.d,p:cp-1,i:base?ci-1:null,u:(fx0&&r.fxu)?cp*fx0/r.fxu-1:null});
   });
   if(pts.length<2){el.innerHTML='<div class="note">Bu aralıkta veri yok.</div>';return}
   var W=520,H=210,L=44,R=8,T=12,B=24;
-  var vals=[];pts.forEach(function(p){vals.push(p.p);if(p.i!=null)vals.push(p.i)});
+  var vals=[];pts.forEach(function(p){vals.push(p.p);if(p.i!=null)vals.push(p.i);if(p.u!=null)vals.push(p.u)});
+  var hasU=pts.some(function(p){return p.u!=null});
   var mn=Math.min.apply(null,vals.concat([0])),mx=Math.max.apply(null,vals.concat([0])),pad=(mx-mn)*.08||.01;mn-=pad;mx+=pad;
   var X=function(i){return L+(W-L-R)*i/(pts.length-1)},Y=function(v){return T+(H-T-B)*(1-(v-mn)/(mx-mn))};
   function path(k){var s="",pen=false;pts.forEach(function(p,i){if(p[k]==null){pen=false;return}s+=(pen?"L":"M")+X(i).toFixed(1)+" "+Y(p[k]).toFixed(1);pen=true});return s}
   var ticks=[],step=niceStep((mx-mn)/4);for(var v=Math.ceil(mn/step)*step;v<=mx+1e-12;v+=step)ticks.push(Math.abs(v)<step/1e3?0:v);
   var svg='<svg viewBox="0 0 '+W+" "+H+'" role="img" aria-label="'+G.name+' kümülatif getiri ve '+G.idxName+'">';
   ticks.forEach(function(v){var y=Y(v).toFixed(1);svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="'+(Math.abs(v)<1e-9?"#2a5a3a":"#0f2116")+'" stroke-width="1"/>'+
-    '<text x="'+(L-6)+'" y="'+(+y+4)+'" fill="#62806d" font-size="10" text-anchor="end" font-family="IBM Plex Mono,monospace">'+pct(v,0)+"</text>"});
-  [0,Math.floor((pts.length-1)/2),pts.length-1].forEach(function(i,j){svg+='<text x="'+X(i).toFixed(1)+'" y="'+(H-6)+'" fill="#62806d" font-size="10" text-anchor="'+(j===0?"start":j===2?"end":"middle")+'" font-family="IBM Plex Mono,monospace">'+trDate(pts[i].d)+"</text>"});
+    '<text x="'+(L-6)+'" y="'+(+y+4)+'" fill="#62806d" font-size="10" text-anchor="end" font-family="ui-monospace,Menlo,monospace">'+pct(v,0)+"</text>"});
+  [0,Math.floor((pts.length-1)/2),pts.length-1].forEach(function(i,j){svg+='<text x="'+X(i).toFixed(1)+'" y="'+(H-6)+'" fill="#62806d" font-size="10" text-anchor="'+(j===0?"start":j===2?"end":"middle")+'" font-family="ui-monospace,Menlo,monospace">'+trDate(pts[i].d)+"</text>"});
   svg+='<path d="'+path("i")+'" fill="none" stroke="var(--idx)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>';
+  if(hasU)svg+='<path d="'+path("u")+'" fill="none" stroke="var(--warn)" stroke-width="1.6" stroke-dasharray="1 3" stroke-linecap="round" stroke-linejoin="round"/>';
   svg+='<path d="'+path("p")+'" fill="none" stroke="var(--acc2)" stroke-width="2" stroke-linejoin="round"/>';
   svg+='<line class="xh" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" stroke="#2f6b46" stroke-width="1" visibility="hidden"/>';
   svg+='<circle class="d1" r="4" fill="var(--acc2)" stroke="#08100b" stroke-width="2" visibility="hidden"/><circle class="d2" r="4" fill="var(--idx)" stroke="#08100b" stroke-width="2" visibility="hidden"/>';
   svg+="</svg>";
   var lp=pts[pts.length-1];
-  el.innerHTML='<div class="legend"><span><i style="border-color:var(--acc2)"></i>Portföy <b class="'+cls(lp.p)+'">'+pct(lp.p)+'</b></span><span><i class="d" style="border-color:var(--idx)"></i>'+G.idxName+' <b class="'+cls(lp.i)+'">'+pct(lp.i)+"</b></span></div>"+svg+'<div class="tip"></div>';
+  el.innerHTML='<div class="legend"><span><i style="border-color:var(--acc2)"></i>Portföy <b class="'+cls(lp.p)+'">'+pct(lp.p)+'</b></span><span><i class="d" style="border-color:var(--idx)"></i>'+G.idxName+' <b class="'+cls(lp.i)+'">'+pct(lp.i)+"</b></span>"+(hasU?'<span><i style="border-color:var(--warn);border-top-style:dotted"></i>TL hesaplar ($ bazında) <b class="'+cls(lp.u)+'">'+pct(lp.u)+"</b></span>":"")+"</div>"+svg+'<div class="tip"></div>';
   var s=el.querySelector("svg"),tip=el.querySelector(".tip"),xh=s.querySelector(".xh"),d1=s.querySelector(".d1"),d2=s.querySelector(".d2");
   function mv(ev){
     var rc=s.getBoundingClientRect(),cx=(ev.touches?ev.touches[0].clientX:ev.clientX)-rc.left,vx=cx*W/rc.width;
@@ -338,7 +365,7 @@ function chart(el,g){
     xh.setAttribute("x1",X(i));xh.setAttribute("x2",X(i));xh.setAttribute("visibility","visible");
     d1.setAttribute("cx",X(i));d1.setAttribute("cy",Y(p.p));d1.setAttribute("visibility","visible");
     if(p.i!=null){d2.setAttribute("cx",X(i));d2.setAttribute("cy",Y(p.i));d2.setAttribute("visibility","visible")}else d2.setAttribute("visibility","hidden");
-    tip.innerHTML=trDate(p.d)+" "+wday(p.d)+"<br>Portföy <span class='"+cls(p.p)+"'>"+pct(p.p)+"</span><br>"+G.idxName+" <span class='"+cls(p.i)+"'>"+pct(p.i)+"</span>";
+    tip.innerHTML=trDate(p.d)+" "+wday(p.d)+"<br>Portföy <span class='"+cls(p.p)+"'>"+pct(p.p)+"</span><br>"+G.idxName+" <span class='"+cls(p.i)+"'>"+pct(p.i)+"</span>"+(hasU?"<br>TL ($) <span class='"+cls(p.u)+"'>"+pct(p.u)+"</span>":"");
     tip.style.display="block";var px=X(i)*rc.width/W;tip.style.left=Math.min(Math.max(px-tip.offsetWidth/2,0),rc.width-tip.offsetWidth)+"px";tip.style.top="0px";
   }
   function out(){tip.style.display="none";[xh,d1,d2].forEach(function(n){n.setAttribute("visibility","hidden")})}
@@ -388,7 +415,7 @@ function bars(el,S,cfg){
   var Y=function(v){return T+(H-T-B)*(1-(v-mn)/(mx-mn))},X=function(i){return L+i*bw+gap/2},w=bw-gap;
   var step=niceStep((mx-mn)/4),svg='<svg viewBox="0 0 '+W+" "+H+'" role="img" aria-label="'+esc(cfg.aria)+'">';
   for(var v=Math.ceil(mn/step)*step;v<=mx+1e-9;v+=step){var y=Y(v).toFixed(1),z=Math.abs(v)<step/1e3;
-    svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="'+(z?"#2a5a3a":"#0f2116")+'"/><text x="'+(L-6)+'" y="'+(+y+4)+'" fill="#62806d" font-size="10" text-anchor="end" font-family="IBM Plex Mono,monospace">'+cfg.axis(z?0:v)+"</text>"}
+    svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="'+(z?"#2a5a3a":"#0f2116")+'"/><text x="'+(L-6)+'" y="'+(+y+4)+'" fill="#62806d" font-size="10" text-anchor="end" font-family="ui-monospace,Menlo,monospace">'+cfg.axis(z?0:v)+"</text>"}
   if(cfg.ref!=null){var yr=Y(cfg.ref).toFixed(1);svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+yr+'" y2="'+yr+'" stroke="var(--warn)" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>'}
   var every=Math.ceil(n/8);
   S.forEach(function(o,i){
@@ -396,7 +423,7 @@ function bars(el,S,cfg){
     segs.forEach(function(s){if(s.a==null||s.b==null||s.a===s.b)return;var y1=Y(Math.max(s.a,s.b)),y2=Y(Math.min(s.a,s.b));
       svg+='<rect x="'+x.toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+Math.max(1,y2-y1).toFixed(1)+'" rx="'+(s.top?rx:0)+'" fill="'+s.col+'"'+(s.op?' fill-opacity="'+s.op+'"':"")+(s.dash?' stroke="'+s.col+'" stroke-dasharray="3 2"':"")+"/>"});
     if(cfg.mark){var m=cfg.mark(o);if(m!=null)svg+='<line x1="'+(x-1).toFixed(1)+'" x2="'+(x+w+1).toFixed(1)+'" y1="'+Y(m).toFixed(1)+'" y2="'+Y(m).toFixed(1)+'" stroke="var(--idx)" stroke-width="2.5" stroke-linecap="round"/>'}
-    if(i%every===0||i===n-1&&n<=8)svg+='<text x="'+(x+w/2).toFixed(1)+'" y="'+(H-7)+'" fill="#62806d" font-size="10" text-anchor="middle" font-family="IBM Plex Mono,monospace">'+esc(dvLab(o,dv.p))+"</text>";
+    if(i%every===0||i===n-1&&n<=8)svg+='<text x="'+(x+w/2).toFixed(1)+'" y="'+(H-7)+'" fill="#62806d" font-size="10" text-anchor="middle" font-family="ui-monospace,Menlo,monospace">'+esc(dvLab(o,dv.p))+"</text>";
   });
   svg+='<rect class="hl" x="0" y="'+T+'" width="'+bw.toFixed(1)+'" height="'+(H-T-B)+'" fill="#3ee08f" fill-opacity=".07" visibility="hidden"/></svg>';
   el.innerHTML='<div class="legend">'+cfg.legend+"</div>"+svg+'<div class="tip"></div>';
@@ -487,7 +514,7 @@ function pieChart(el){
     a0=a1;
   });
   var hp=1-(cash/tot);
-  svg+='<text x="100" y="96" text-anchor="middle" fill="#d5ecdd" font-size="20" font-weight="600" font-family="IBM Plex Mono,monospace" class="pc">%'+nf(hp*100,0)+'</text><text x="100" y="116" text-anchor="middle" fill="#62806d" font-size="11" font-family="IBM Plex Mono,monospace" class="pl">hissede</text></svg>';
+  svg+='<text x="100" y="96" text-anchor="middle" fill="#d5ecdd" font-size="20" font-weight="600" font-family="ui-monospace,Menlo,monospace" class="pc">%'+nf(hp*100,0)+'</text><text x="100" y="116" text-anchor="middle" fill="#62806d" font-size="11" font-family="ui-monospace,Menlo,monospace" class="pl">hissede</text></svg>';
   var lg='<table style="font-size:12px;margin-top:4px"><tbody>'+sl.map(function(x,i){return '<tr data-i="'+i+'"><td style="background:transparent"><i class="sq" style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+x.col+';margin-right:6px"></i>'+esc(x.t)+'</td><td>%'+nf(x.v/tot*100,1)+'</td><td class="fl">'+money(x.v,cur)+"</td></tr>"}).join("")+"</tbody></table>";
   el.innerHTML='<div class="legend"><span>Toplam <b>'+money(tot,cur)+"</b></span>"+(resUse>0?'<span class="warn">Yedekten '+money(resUse,cur)+"</span>":"")+"</div>"+svg+lg;
   var pc=el.querySelector(".pc"),pl=el.querySelector(".pl");
@@ -514,7 +541,8 @@ function cell(e,cur,isPct,x){
   if(!e)return '<td class="'+x+'na">·</td>';
   if(state.mode==="v"){
     var sub=(cur==="TRY"&&e.tot!=null&&Math.abs(e.tot-e.v)>=1)?'<span class="tot">'+money(e.tot,cur)+"</span>":"";
-    return '<td class="'+x+'val">'+money(e.v,cur)+sub+"</td>";
+    var cr=(e.carry&&e.carry.length)?'<sup class="cr" title="'+esc(e.carry.map(function(c){return accName(c.a)+" "+trDate(c.d).slice(0,5)+" değeri taşındı"}).join(", "))+'">↺</sup>':"";
+    return '<td class="'+x+'val">'+money(e.v,cur)+cr+sub+"</td>";
   }
   if(isPct)return '<td class="'+x+cls(e.pct)+'">'+arrow(e.pct)+pct(e.pct)+"</td>";
   return '<td class="'+x+cls(e.c)+'">'+sgnMoney(e.c,cur)+"</td>";
@@ -578,12 +606,21 @@ function tableWd(){
 var ACT={open:"Açılış",buy:"Alış",sell:"Satış",deposit:"Para yatırma",withdraw:"Para çekme"};
 function accName(k){var a=ACC.filter(function(A){return A[0]===k})[0];return a?a[1]:k}
 function accCur(k){var a=ACC.filter(function(A){return A[0]===k})[0];return a?a[2]:"USD"}
+/* İşlem listesi ayrı şifreli dosyada (data/islem.json); İşlemler sekmesi açılınca yüklenir. Dosya yoksa (eski veri)
+   defter.json içindeki D.islem kullanılır. ISL: undefined = yüklenmedi, null = hiç yok. */
+var ISL;
+function islem(cb){
+  if(ISL!==undefined)return cb();
+  var done=function(o){ISL=o||D.islem||null;cb()};
+  fetch("data/islem.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("yok");return r.json()})
+    .then(function(env){return Vault.open(env)}).then(done,function(){done(null)});
+}
 function trRows(){
-  var I=D.islem||{rows:[]};
+  var I=ISL||{rows:[]};
   return I.rows.filter(function(r){return (state.acc==="all"||r.acc===state.acc)&&(!state.sym||r.sym===state.sym)});
 }
 function checkBox(){
-  var I=D.islem;if(!I)return '<div class="ck w">İşlem kaydı henüz oluşmadı (bir sonraki form ya da gece kaydından sonra görünür).</div>';
+  var I=ISL;if(!I)return '<div class="ck w">İşlem kaydı henüz oluşmadı (bir sonraki form ya da gece kaydından sonra görünür).</div>';
   var out=[],rc=I.recon.filter(function(x){return state.acc==="all"||x.acc===state.acc});
   if(rc.length)out.push('<span class="w">⚠ Adet farkı:</span> '+rc.map(function(x){return "<b>"+esc(accName(x.acc))+" "+esc(x.sym)+"</b> eldeki "+nf(x.held,4)+" · kayıt "+nf(x.net,4)+" ("+(x.diff>0?"+":"")+nf(x.diff,4)+")"}).join("; "));
   else out.push('<span class="ok">✓ Eldeki adetler kayıtlarla tutarlı</span>');
@@ -610,7 +647,8 @@ function tables(){
   $("tabs").innerHTML=TABS.map(function(t){return '<button type="button" class="tab'+(state.tab===t[0]?" on":"")+'" data-t="'+t[0]+'">'+t[1]+"</button>"}).join("");
   var tools="",note="";
   if(state.tab==="i"){
-    var syms={};((D.islem||{}).rows||[]).forEach(function(r){if(r.sym&&(state.acc==="all"||r.acc===state.acc))syms[r.sym]=1});
+    if(ISL===undefined){$("tblTools").innerHTML="";$("tbl").innerHTML='<div class="note">işlemler açılıyor…</div>';$("tblNote").textContent="";islem(tables);return}
+    var syms={};((ISL||{}).rows||[]).forEach(function(r){if(r.sym&&(state.acc==="all"||r.acc===state.acc))syms[r.sym]=1});
     tools='<div class="seg" id="accSeg">'+[["all","Tümü"]].concat(ACC.map(function(A){return [A[0],A[1]]})).map(function(z){return '<button type="button" data-a="'+z[0]+'" class="'+(state.acc===z[0]?"on":"")+'">'+z[1]+"</button>"}).join("")+"</div>"+
       '<select id="symSel"><option value="">tüm hisseler</option>'+Object.keys(syms).sort().map(function(k){return '<option'+(state.sym===k?" selected":"")+">"+esc(k)+"</option>"}).join("")+"</select>";
     $("tblTools").innerHTML=tools;
@@ -624,7 +662,7 @@ function tables(){
     note="Ort. = o günün ortalama günlük değişimi. ↑ oranı = yükselişle kapanan gün oranı. “XU100 ile aynı yön” = TL portföyünün endeksle aynı yönde kapandığı günlerin oranı. ★ en güçlü, ↓ en zayıf gün (XU100).";
   }else{
     tools='<div class="seg" id="modeSeg"><button type="button" data-m="p" class="'+(state.mode==="p"?"on":"")+'">%</button><button type="button" data-m="t" class="'+(state.mode==="t"?"on":"")+'">Tutar Δ</button><button type="button" data-m="v" class="'+(state.mode==="v"?"on":"")+'">Değer</button></div>';
-    note=state.mode==="v"?"Değer = portföye ayrılan tutar (anapara). TL hesaplarda altındaki küçük rakam yedek akçe dahil toplam varlık. Dönem tablolarında dönem sonu değeri; endeks sütunlarında kapanış seviyesi.":"▲▼ portföy ve endeksin yönü. Yüzdeler para giriş/çıkışı ve yedek akçe değişimi ayıklanmış performanstır. Σ = hesapların ağırlıklı toplamı.";
+    note=state.mode==="v"?"Değer = portföye ayrılan tutar (anapara). TL hesaplarda altındaki küçük rakam yedek akçe dahil toplam varlık. Dönem tablolarında dönem sonu değeri; endeks sütunlarında kapanış seviyesi. ↺ = o gün kaydı olmayan hesabın son bilinen değeri Σ'ya taşındı.":"▲▼ portföy ve endeksin yönü. Yüzdeler para giriş/çıkışı ve yedek akçe değişimi ayıklanmış performanstır. Σ = hesapların ağırlıklı toplamı.";
   }
   $("tblTools").innerHTML=tools;
   var h=state.tab==="g"?tableDaily():state.tab==="wd"?tableWd():tablePeriod(state.tab);
@@ -657,47 +695,13 @@ function openNote(ds){
 $("popX").onclick=function(){$("pop").classList.remove("on")};
 $("pop").addEventListener("click",function(e){if(e.target.id==="pop")$("pop").classList.remove("on")});
 
-/* ---------- Excel (tarayıcıda üretilir; hiçbir yere gönderilmez) ---------- */
-function loadXlsx(){return new Promise(function(ok,no){if(window.XLSX)return ok();var s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
-function aoa(kind){
-  var hdr=[kind==="g"?"Tarih":"Dönem"];if(kind==="g")hdr.push("Gün");else hdr.push("Başlangıç","Bitiş");
-  ACC.forEach(function(A){hdr.push(A[1]+" Değer",A[1]+" Δ",A[1]+" %")});
-  hdr.push("TL Toplam","TL Δ","TL %","USD Toplam","USD Δ","USD %","XU100","XU100 %","S&P 500","S&P %");if(kind==="g")hdr.push("Not");
-  var out=[hdr],src=kind==="g"?ROWS:periods(kind);
-  src.slice().reverse().forEach(function(r){
-    var row=kind==="g"?[trDate(r.d),wday(r.d)]:[r.k,trDate(r.from),trDate(r.to)];
-    ACC.forEach(function(A){var e=r.a[A[0]];row.push(e?e.v:null,e?e.c:null,e&&e.pct!=null?+e.pct.toFixed(6):null)});
-    ["tl","usd"].forEach(function(g){var e=r[g];row.push(e?e.v:null,e?e.c:null,e&&e.pct!=null?+e.pct.toFixed(6):null)});
-    row.push(r.xu||null,r.xup!=null?+r.xup.toFixed(6):null,r.sp||null,r.spp!=null?+r.spp.toFixed(6):null);
-    if(kind==="g")row.push(noteList(r).map(function(n){return n[0]+": "+n[1]}).join(" | ")||null);
-    out.push(row);
-  });
-  return out;
-}
-$("xlsBtn").onclick=function(){
-  var b=this;b.disabled=true;b.textContent="hazırlanıyor…";
-  loadXlsx().then(function(){
-    var wb=XLSX.utils.book_new();
-    [["g","Günlük"],["h","Haftalık"],["m","Aylık"],["y","Yıllık"]].forEach(function(z){
-      var ws=XLSX.utils.aoa_to_sheet(aoa(z[0]));
-      var rng=XLSX.utils.decode_range(ws["!ref"]);
-      for(var R=1;R<=rng.e.r;R++)for(var C=0;C<=rng.e.c;C++){var c=ws[XLSX.utils.encode_cell({r:R,c:C})];if(c&&c.t==="n"){var h=String(ws[XLSX.utils.encode_cell({r:0,c:C})].v);c.z=/%$/.test(h)?"0.00%":/XU100|S&P/.test(h)?"#,##0.00":"#,##0"}}
-      ws["!cols"]=[{wch:12}];XLSX.utils.book_append_sheet(wb,ws,z[1]);
-    });
-    var name="portfoy_defteri_"+ROWS[ROWS.length-1].d.replace(/-/g,"")+".xlsx";
-    XLSX.writeFile(wb,name);
-    b.textContent="⤓ Excel";b.disabled=false;
-    if(tg)try{tg.showAlert("Telegram içinde indirme engellenebilir. Excel her cumartesi bota gelir; anında almak için ＋ Kayıt → excel_gonder.")}catch(e){}
-  }).catch(function(){b.textContent="⤓ Excel";b.disabled=false;alert("Excel kütüphanesi yüklenemedi.")});
-};
-
 /* ---------- aç ---------- */
 fetch("data/defter.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("veri yok");return r.json()})
   .then(function(env){return Vault.open(env)})
   .then(function(d){
     D=d;ROWS=build();
     if(!ROWS.length)throw new Error("defter boş");
-    $("status").classList.add("hide");$("app").classList.remove("hide");$("xlsBtn").classList.remove("hide");
+    $("status").classList.add("hide");$("app").classList.remove("hide");
     document.body.classList.add("open");if(window.__stopRainSoon)window.__stopRainSoon();
     if(d.updated){var u=new Date(d.updated);$("upd").textContent="güncelleme "+u.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
     cards();charts();dvTools();tables();

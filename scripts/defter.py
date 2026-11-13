@@ -164,7 +164,7 @@ def recompute(d, acc):
 
 
 # ------------------------------------------------------------------ piyasa verisi
-def yahoo_closes(symbol, rng="10d"):
+def yahoo_closes(symbol, rng="10d", nd=2):
     import time
     params = ({"period1": 1577836800, "period2": int(datetime.now(timezone.utc).timestamp()), "interval": "1d"}
               if rng == "max" else {"range": rng, "interval": "1d"})
@@ -179,7 +179,7 @@ def yahoo_closes(symbol, rng="10d"):
             out = {}
             for ts, c in zip(res["timestamp"], res["indicators"]["quote"][0]["close"]):
                 if c:
-                    out[datetime.fromtimestamp(ts + off, timezone.utc).date().isoformat()] = round(float(c), 2)
+                    out[datetime.fromtimestamp(ts + off, timezone.utc).date().isoformat()] = round(float(c), nd)
             return out
         except Exception as ex:
             last = ex
@@ -241,29 +241,33 @@ def fred_closes(series="SP500"):
         return {}
 
 
-def tv_close(symbol):
+def tv_close(symbol, nd=2):
     try:
         r = requests.post("https://scanner.tradingview.com/global/scan",
                           json={"symbols": {"tickers": [symbol]}, "columns": ["close"]}, timeout=15)
         r.raise_for_status()
         rows = r.json().get("data", [])
-        return round(float(rows[0]["d"][0]), 2) if rows and rows[0]["d"][0] else None
+        return round(float(rows[0]["d"][0]), nd) if rows and rows[0]["d"][0] else None
     except Exception as ex:
         print(f"[WARN] tradingview {symbol}: {type(ex).__name__}")
         DIAG.append(f"tradingview {symbol}: {type(ex).__name__} {getattr(getattr(ex, 'response', None), 'status_code', '')}")
         return None
 
 
-def last_session(close_utc_hour, now=None):
-    """Son TAMAMLANMIŞ seansın tarihi (hafta içi; kapanış saati UTC, +15 dk pay). BIST 15, ABD 21 (EST/EDT güvenli)."""
-    now = now or datetime.now(timezone.utc)
-    t = now.date() if now.hour * 60 + now.minute >= close_utc_hour * 60 + 15 else now.date() - timedelta(days=1)
+def last_session(market, now=None):
+    """Bir piyasanın son TAMAMLANMIŞ seansının tarihi: BIST İst. 18:15, ABD New York 16:15 sonrası o günün seansı
+    tamamlanmış sayılır; öncesinde önceki iş günü. Hafta sonu Cuma'ya çekilir. Resmî tatiller modellenmez."""
+    tz, cut = MARKETS[market]
+    n = (now or datetime.now(timezone.utc)).astimezone(tz)
+    t = n.date() if (n.hour, n.minute) >= cut else n.date() - timedelta(days=1)
     while t.weekday() >= 5:
         t -= timedelta(days=1)
     return t.isoformat()
 
 
-def fill_indices(d, rng="10d", today=None):
+def fill_indices(d, rng="10d", today=None, today_us=None):
+    """today: BIST günü (XU100 ve USD/TRY için), today_us: ABD günü (SPY için; vars. today)."""
+    today_us = today_us or today
     # S&P 500 karşılaştırması SPY fiyatıyla yapılır (endeks verisi ücretsiz kaynaklarda kısıtlı; tek kaynak = tutarlı seri)
     if d.get("sp_src") != "SPY":
         for x in d["days"]:
@@ -271,30 +275,43 @@ def fill_indices(d, rng="10d", today=None):
         d["sp_src"] = "SPY"
         rng = "max"
     xu, sp = yahoo_closes("XU100.IS", rng), yahoo_closes("SPY", rng)
+    # USD/TRY: geçmiş ilk kez doldurulurken (günlerin yarısından azında fx var) tüm geçmiş çekilir
+    fx_rng = "max" if sum(1 for x in d["days"] if "fx" in x) < len(d["days"]) / 2 else rng
+    fx = yahoo_closes("USDTRY=X", fx_rng, nd=4)
     if len(sp) < 3:
         sp = {**twelvedata_closes("SPY", 5000 if rng == "max" else 15), **sp}
     if len(xu) < 3:
         xu = {**stooq_closes("^xu100"), **xu}
-    xu0, sp0 = set(xu), set(sp)   # tarihli kaynaktan gelen günler
+    xu0, sp0, fx0 = set(xu), set(sp), set(fx)   # tarihli kaynaktan gelen günler
     # TradingView anlık kapanışı yalnızca 'today' gerçekten son tamamlanan seanssa kullanılır
     # (3–6 Kas 2026: gecikmeli çalışmada önceki günün kapanışı yanlış güne yazılmıştı).
-    if today and today not in xu and today == last_session(15):
+    if today and today not in xu and today == last_session("bist"):
         v = tv_close("BIST:XU100")
         if v:
             xu[today] = v
-    if today and today not in sp and today == last_session(21):
+    if today_us and today_us not in sp and today_us == last_session("us"):
         v = tv_close("AMEX:SPY")
         if v:
-            sp[today] = v
+            sp[today_us] = v
+    if today and today not in fx and today == last_session("bist"):
+        v = tv_close("FX_IDC:USDTRY", nd=4)
+        if v:
+            fx[today] = v
     # Tarihli geçmiş kaynak (Yahoo/Twelve Data/Stooq) yetkilidir: Excel sonrası günlerde farklı değeri düzeltir.
     xl = max((x["d"] for x in d["days"] if any(e.get("s") == "x" for e in x.get("a", {}).values())), default="")
-    hist_xu, hist_sp = {k: v for k, v in xu.items() if k != today or k in xu0}, {k: v for k, v in sp.items() if k != today or k in sp0}
+    hist_xu, hist_sp = {k: v for k, v in xu.items() if k != today or k in xu0}, {k: v for k, v in sp.items() if k != today_us or k in sp0}
+    hist_fx = {k: v for k, v in fx.items() if k != today or k in fx0}
     n = 0
     for x in d["days"]:
         for key, src in (("xu", hist_xu), ("sp", hist_sp)):
             v = src.get(x["d"])
             if v is not None and x["d"] > xl and x.get(key) != v:
                 x[key] = v; n += 1
+        v = hist_fx.get(x["d"])   # USD/TRY'de Excel değeri yok: tüm günler tarihli kaynaktan
+        if v is not None and x.get("fx") != v:
+            x["fx"] = v; n += 1
+        if "fx" not in x and x["d"] in fx:
+            x["fx"] = fx[x["d"]]; n += 1
         if "xu" not in x and x["d"] in xu:
             x["xu"] = xu[x["d"]]; n += 1
         if "sp" not in x and x["d"] in sp:
@@ -383,51 +400,24 @@ def cmd_import(_):
     for acc in ACCOUNTS:
         recompute(d, acc)
     msgs.append(f"📈 Endeks kapanışı eklendi: {n} hücre.")
-    msgs.append(reconcile(d))
     save(d)
     common.send_telegram("📒 <b>Portföy Defteri</b>\n" + "\n".join(m for m in msgs if m))
     return 0
-
-
-def reconcile(d):
-    """Son Excel günü ile repodaki snapshot'ları karşılaştırır (yalnızca Telegram'a, log'a değil)."""
-    lines = []
-    for acc in ("midas_tr", "midas_usd"):
-        a = ACCOUNTS[acc]
-        ser = [(ds, e) for ds, e in series(d, acc) if e.get("s") == "x"]
-        if not ser:
-            continue
-        ds, e = ser[-1]
-        hist = common.load_json(a["src"], {}) or {}
-        snap = next((s for s in hist.get("snapshots", []) if s["date"] == ds), None)
-        cur = "₺" if a["cur"] == "TRY" else "$"
-        if not snap:
-            lines.append(f"• {a['name']} {ds}: repoda o güne ait kayıt yok.")
-            continue
-        res = d["accounts"][acc].get("reserve", 0)
-        lines.append(f"• {a['name']} {ds}: Excel portföy {cur}{e['v']:,.0f}"
-                     + (f" (hisse {cur}{e['h']:,.0f})" if e.get("h") else "")
-                     + f" · Repo toplam {cur}{snap['value']:,.0f} (nakit {cur}{snap.get('cash', 0):,.0f})"
-                     + (f" → toplam − yedek {cur}{snap['value'] - res:,.0f}" if res else ""))
-    return ("🔎 <b>Mutabakat</b>\n" + "\n".join(lines)) if lines else ""
 
 
 # ------------------------------------------------------------------ otomatik günlük kayıt
 def flows_on(hist, ds):
     f = 0.0
     for t in hist.get("transactions", []):
-        if t.get("date") == ds and t.get("action") in ("deposit", "withdraw"):
+        if t.get("date") == ds and t.get("action") in ("deposit", "withdraw") and not t.get("undone"):
             f += t.get("amount", 0) * (1 if t["action"] == "deposit" else -1)
     return round(f, 2)
 
 
-def target_day(now=None):
-    """Kaydın ait olduğu işlem günü. 22:20 UTC cron'u GitHub'da saatlerce gecikip ertesi UTC gününe
-    sarkabiliyor (3–7 Kas 2026); bu yüzden 'şu an − 8 sa' alınır ve hafta sonu Cuma'ya çekilir."""
-    t = ((now or datetime.now(timezone.utc)) - timedelta(hours=8)).date()
-    while t.weekday() >= 5:
-        t -= timedelta(days=1)
-    return t.isoformat()
+def target_day(market="bist", now=None):
+    """Kaydın ait olduğu işlem günü = o piyasanın son TAMAMLANMIŞ seansı (bkz. last_session). Seans ortasında
+    gelen bir çalışma bitmemiş güne yazmaz; 22:20 UTC cron'u saatlerce gecikse de doğru güne düşer."""
+    return last_session(market, now)
 
 
 def snap_fill(d, acc, ds, x=None):
@@ -479,82 +469,91 @@ def heal_gaps(d, ds, back=14):
     return out
 
 
-def fix_info_shift(d):
-    """Tek seferlik: 3–7 Kas 2026 cron gecikmesiyle Info-TR otomatik kayıtları 1 gün ileri yazıldı; geri kaydırır."""
-    tag = "info_shift_2026_11"
-    fixes = d.setdefault("fixes", [])
-    if tag in fixes:
-        return
-    for src, dst in (("2026-11-04", "2026-11-03"), ("2026-11-05", "2026-11-04"),
-                     ("2026-11-06", "2026-11-05"), ("2026-11-07", "2026-11-06")):
-        xs, xd = day(d, src, create=False), day(d, dst)
-        e = (xs or {}).get("a", {}).get("info_tr")
-        if e and e.get("s") == "a" and "info_tr" not in xd["a"]:
-            xd["a"]["info_tr"] = xs["a"].pop("info_tr")
-    sat = day(d, "2026-11-07", create=False)
-    if sat and not sat["a"]:
-        d["days"].remove(sat)
-    fixes.append(tag)
-    DIAG.append("fix: Info-TR 3–7 Kas kayması düzeltildi")
+def rederive_flows(d, now=None, days=60):
+    """Son `days` gündeki otomatik (s == "a") Midas-TR/USD kayıtlarının akışını (f) geçmiş dosyasından yeniden türetir
+    (geri alınan hareketler `flows_on`da düşer); elle kısmı (fm) korunur. Excel (x) ve elle (m) kayıtlara dokunmaz.
+    Değişim (c) sonra recompute ile güncellenir."""
+    cut = ((now or datetime.now(timezone.utc)).date() - timedelta(days=days)).isoformat()
+    for acc in ("midas_tr", "midas_usd"):
+        hist = common.load_json(ACCOUNTS[acc]["src"], {}) or {}
+        if "transactions" not in hist:
+            continue   # geçmiş okunamadıysa mevcut akışları silme
+        for x in d["days"]:
+            e = x.get("a", {}).get(acc)
+            if x["d"] < cut or not e or e.get("s") != "a":
+                continue
+            f = round(flows_on(hist, x["d"]) + e.get("fm", 0), 2)
+            if f:
+                e["f"] = f
+            else:
+                e.pop("f", None)
 
 
-def cmd_auto(args):
+def info_fill(d, x, ds, now=None):
+    """Info-TR: `ds` günü için tarihli kapanışla değer yazar. Elle/Excel kayda dokunmaz. Yazdıysa True."""
+    e0 = x["a"].get("info_tr")
+    if e0 and e0.get("s") in ("m", "x"):
+        return False
+    iv = info_value(ds, now)
+    if not iv:
+        return False
+    res = d["accounts"]["info_tr"].get("reserve", 0)
+    e = {"v": round(iv["total"] - res, 2), "h": round(iv["stocks"], 2), "r": res, "s": "a"}
+    f = flows_on(iv["pf"], ds)
+    if f:
+        e["f"] = f
+    if (e0 or {}).get("n"):
+        e["n"] = e0["n"]
+    if iv["missing"]:
+        e["n"] = (e.get("n", "") + f" [fiyat yok: {', '.join(iv['missing'])}]").strip()
+    x["a"]["info_tr"] = e
+    return True
+
+
+def cmd_auto(args, now=None):
+    now = now or datetime.now(timezone.utc)
     d = load()
-    fix_info_shift(d)   # canlı Info-TR yazımından ÖNCE
-    live = target_day()
-    ds = args.date or live
-    x = day(d, ds)
+    # Her piyasa için son tamamlanmış seans günü (--date: geçmişi doldurmak için her ikisini de zorlar)
+    days = {m: args.date or target_day(m, now) for m in MARKETS}
+    xs = {ds: day(d, ds) for ds in set(days.values())}
     got = []
     for acc, a in ACCOUNTS.items():
         if not a["src"]:
             continue
+        ds = days[MARKET_OF[acc]]
+        x = xs[ds]
         if a["src"] == "info":
-            if ds != live:
-                continue  # geçmiş gün: Info-TR canlı fiyatla hesaplanır, eski güne yazılmaz
-            e0 = x["a"].get(acc)
-            if e0 and e0.get("s") in ("m", "x"):
-                continue
-            iv = info_value()
-            if not iv:
-                continue
-            res = d["accounts"][acc].get("reserve", 0)
-            e = {"v": round(iv["total"] - res, 2), "h": round(iv["stocks"], 2), "r": res, "s": "a"}
-            f = round(sum(t.get("amount", 0) * (1 if t["action"] == "deposit" else -1)
-                          for t in iv["pf"].get("transactions", [])
-                          if t.get("date") == ds and t.get("action") in ("deposit", "withdraw")), 2)
-            if f:
-                e["f"] = f
-            if (e0 or {}).get("n"):
-                e["n"] = e0["n"]
-            if iv["missing"]:
-                e["n"] = (e.get("n", "") + f" [fiyat yok: {', '.join(iv['missing'])}]").strip()
-            x["a"][acc] = e
-            got.append(a["name"])
+            if ds != target_day("bist", now):
+                continue  # geçmiş gün: Info-TR pozisyonları bugünküdür, eski güne yazılmaz
+            if info_fill(d, x, ds, now):
+                got.append(a["name"])
             continue
-        if snap_fill(d, acc, ds):
+        if snap_fill(d, acc, ds, x):
             got.append(a["name"])
-    healed = heal_gaps(d, ds)
+    healed = heal_gaps(d, max(days.values()))
+    rederive_flows(d, now)   # geri alınan para hareketleri geçmiş günlerde de düşsün
     gaps = sum(1 for y in d["days"] if y["d"] >= "2023-06-16" and "sp" not in y)
-    fill_indices(d, rng="max" if gaps > 20 else "1mo", today=ds)
-    if not x["a"] and "xu" not in x and "sp" not in x:
-        d["days"].remove(x)
-        print(f"{ds}: piyasa kapalı / veri yok; kayıt açılmadı.")
+    fill_indices(d, rng="max" if gaps > 20 else "1mo", today=days["bist"], today_us=days["us"])
+    for ds, x in xs.items():
+        if x in d["days"] and not x["a"] and "xu" not in x and "sp" not in x:
+            d["days"].remove(x)
+            print(f"{ds}: piyasa kapalı / veri yok; kayıt açılmadı.")
     for acc in ACCOUNTS:
         recompute(d, acc)
     save(d)
-    miss = [ACCOUNTS[k]["name"] for k in ("midas_tr", "midas_usd")
-            if not (x["a"].get(k) or {}).get("s")]
-    xd = day(d, ds, create=False)
-    miss_idx = [n for k, n in (("xu", "XU100"), ("sp", "SPY")) if xd and xd.get("a") and k not in xd]
+    miss = [f"{ACCOUNTS[k]['name']} {_tr_date(days[MARKET_OF[k]])}" for k in ("midas_tr", "midas_usd")
+            if xs[days[MARKET_OF[k]]] in d["days"] and not (xs[days[MARKET_OF[k]]]["a"].get(k) or {}).get("s")]
+    miss_idx = [f"{n} {_tr_date(days[m])}" for k, n, m in (("xu", "XU100", "bist"), ("sp", "SPY", "us"))
+                for xd in [day(d, days[m], create=False)] if xd and xd.get("a") and k not in xd]
     if miss_idx:
-        common.send_telegram(f"⚠️ Defter {_tr_date(ds)}: {', '.join(miss_idx)} kapanışı alınamadı; "
+        common.send_telegram(f"⚠️ Defter: {', '.join(miss_idx)} kapanışı alınamadı; "
                              "sonraki çalışmada tarihli kaynaktan tekrar denenecek.")
     if healed:
         common.send_telegram("🩹 Defter boşlukları dolduruldu: " + ", ".join(healed))
-    if miss and x in d["days"]:
-        common.send_telegram(f"⚠️ Defter {_tr_date(ds)}: {', '.join(miss)} snapshot yok, girilmedi. "
+    if miss:
+        common.send_telegram(f"⚠️ Defter: {', '.join(miss)} snapshot yok, girilmedi. "
                              "Monitor o gün çalıştı mı? Elle: Defter → otomatik_yenile + tarih.")
-    print(f"{ds}: otomatik kayıt tamam ({len(got)} hesap).")
+    print(f"{', '.join(sorted(set(days.values())))}: otomatik kayıt tamam ({len(got)} hesap).")
     return 0
 
 
@@ -683,7 +682,7 @@ def cmd_ibkr(_):
             del x["a"]["ibkr"]
             if not x["a"] and not x.get("xu") and not x.get("sp") and not x.get("n"):
                 d["days"].remove(x)
-    new, cmp_lines, warns = 0, [], []
+    new, warns = 0, []
     # Güvenlik: rapor tüm dönemi kapsasa da yalnızca son 3 takvim günü güncellenir. Daha eski günlere
     # yalnızca defterde hiç IBKR kaydı yoksa (boşluk doldurma) yazılır; var olan eski kayıt asla değişmez.
     win = (datetime.strptime(max(nav), "%Y-%m-%d") - timedelta(days=2)).strftime("%Y-%m-%d")
@@ -702,9 +701,6 @@ def cmd_ibkr(_):
         if not old and ds < last_x:
             continue
         if old and old.get("s") == "x":
-            diff = nav[ds]["v"] - old["v"]
-            if abs(diff) >= 1:
-                cmp_lines.append((ds, old["v"], nav[ds]["v"]))
             continue
         prev = [en["v"] for pd, en in series(d, "ibkr") if pd < ds and en.get("v")]
         if prev and not flows.get(ds) and prev[-1] > 0 and abs(nav[ds]["v"] / prev[-1] - 1) > 0.25:
@@ -730,12 +726,6 @@ def cmd_ibkr(_):
         msg.append("💵 Para hareketi: " + ", ".join(f"{_tr_date(k)} {v:+,.0f}$" for k, v in recent))
     if warns:
         msg.append("⚠️ Şüpheli değer, elle kontrol et: " + "; ".join(warns))
-    if cmp_lines and not d.get("ibkr_cmp_sent"):
-        big = sorted(cmp_lines, key=lambda t: -abs(t[2] - t[1]))[:6]
-        msg.append("🔎 Excel ↔ IBKR (en büyük farklar): " + "; ".join(
-            f"{_tr_date(a)} ${b:,.0f}→${c:,.0f}" for a, b, c in big))
-        d["ibkr_cmp_sent"] = True
-        save(d)
     common.send_telegram("\n".join(msg))
     return 0
 
@@ -747,18 +737,52 @@ def info_prices(tickers):
     return {t: (f(t) or {}).get("c") for t in tickers}
 
 
-def info_value():
+def bars_closes(ds, tickers):
+    """BIST_BARS_JSON (iş akışı trend-bist-data dalından bars-bist.json'u indirir; bkz. scripts/bist_bars.py biçimi)
+    dosyasından `ds` tarihli günlük kapanışlar: {hisse: kapanış}. Dosya ya da o tarihli mum yoksa hisse yer almaz."""
+    p = os.environ.get("BIST_BARS_JSON", "").strip()
+    if not p or not Path(p).exists():
+        return {}
+    try:
+        bars = (json.loads(Path(p).read_text(encoding="utf-8")) or {}).get("bars") or {}
+    except Exception as ex:
+        DIAG.append(f"bars-bist: {type(ex).__name__}")
+        return {}
+    out = {}
+    for t in tickers:
+        for b in bars.get(t) or []:
+            if b[0] == ds and b[4]:
+                out[t] = float(b[4])
+    return out
+
+
+def info_value(ds, now=None):
+    """Info-TR değeri, `ds` gününün tarihli kapanışıyla. Bars dosyasında olmayan hisse için canlı kotasyon YALNIZ
+    `ds` beklenen son seans günüyse ve piyasa kapalıysa kullanılır (kotasyon o zaman kapanıştır); aksi hâlde
+    kayıt yazılmaz (None) ve DIAG'a satır düşer."""
+    import bist_data
     pf = common.load_json(F_INFO)
     if not pf:
         return None
+    now = now or datetime.now(timezone.utc)
     pos = pf.get("positions", {})
-    px = info_prices(list(pos)) if pos else {}
-    missing = [t for t, q in px.items() if not q]
+    px = bars_closes(ds, pos)
+    need = [t for t in pos if t not in px]
+    if need:
+        if bist_data.expected_session(now).isoformat() == ds and not bist_data.session_open(now):
+            px.update({t: q for t, q in info_prices(need).items() if q})
+        else:
+            DIAG.append(f"info_tr {ds}: tarihli kapanış yok ({', '.join(need)}); yazılmadı")
+            print(f"[WARN] Info-TR {ds}: tarihli kapanış yok ({', '.join(need)}); kayıt yazılmadı.")
+            return None
+    missing = [t for t in pos if not px.get(t)]
     stocks = sum(p["shares"] * (px.get(t) or p.get("last") or p["cost"]) for t, p in pos.items())
-    for t, q in px.items():   # son bilinen fiyatı sakla (fiyat alınamazsa yedek)
-        if q:
-            pos[t]["last"] = round(q, 4)
-    common.save_json(F_INFO, pf)
+    if ds == target_day("bist", now):   # son bilinen fiyat yalnız güncel günden saklanır (fiyat alınamazsa yedek)
+        new = {t: round(q, 4) for t, q in px.items() if q}
+        if any(pos[t].get("last") != q for t, q in new.items()):
+            for t, q in new.items():
+                pos[t]["last"] = q
+            common.save_json(F_INFO, pf)
     return {"total": stocks + pf.get("cash", 0), "stocks": stocks, "missing": missing, "pf": pf}
 
 
@@ -951,25 +975,51 @@ def _tr_date(ds):
 
 
 # ------------------------------------------------------------------ dönem hesapları
+def carry_group(day_a, last, accs):
+    """Grup değeri (v) için ileri doldurma kuralı. docs/defter/index.html build() içindeki kuralla BİREBİR AYNI
+    kalmalı (sayfa, Excel ve Telegram aynı rakamı göstersin).
+    Günü gerçek kaydı olan hesaplar kendi değeriyle; kaydı olmayan ama daha önce kaydı olan (başlangıç tarihinden
+    sonra) hesap son bilinen değeriyle toplanır. `day_a`: o günün {hesap: kayıt}, `last`: {hesap: (tarih, kayıt)}.
+    Dönüş: {"v": toplam, "carry": [[hesap, son kayıt tarihi], ...]} ya da (hiç gerçek kayıt yoksa) None.
+    Günlük değişim/yüzde bu kuraldan etkilenmez; yalnız gerçek kayıtlardan hesaplanır."""
+    if not any(a in day_a for a in accs):
+        return None
+    v, carry = 0.0, []
+    for a in accs:
+        if a in day_a:
+            v += day_a[a]["v"]
+        elif a in last:
+            v += last[a][1]["v"]
+            carry.append([a, last[a][0]])
+    return {"v": v, "carry": carry}
+
+
 def daily_rows(d):
-    """Her gün, her hesap için yüzde değişim (c / önceki v)."""
-    prev = {}
+    """Her gün, her hesap için yüzde değişim (c / önceki v); grup değeri `g` (eksik hesap ileri doldurulur)."""
+    prev, last = {}, {}
     pidx = {"xu": None, "sp": None}
     out = []
     for x in d["days"]:
-        row = {"d": x["d"], "a": {}, "n": x.get("n")}
+        row = {"d": x["d"], "a": {}, "n": x.get("n"), "g": {}}
         for acc, e in x.get("a", {}).items():
             if x["d"] < d["accounts"].get(acc, {}).get("start", ""):
                 continue
             p = prev.get(acc)
             pct = e["c"] / p["v"] if p and p.get("v") and "c" in e else None
             row["a"][acc] = dict(e, pct=pct, pv=(p or {}).get("v"))
+        for grp, accs in GROUPS:
+            g = carry_group(row["a"], last, accs)
+            if g:
+                row["g"][grp] = g
+        for acc, e in row["a"].items():
             prev[acc] = e
-        for k in ("xu", "sp"):
+            last[acc] = (x["d"], e)
+        for k in ("xu", "sp", "fx"):
             if x.get(k):
                 row[k] = x[k]
-                row[k + "p"] = (x[k] / pidx[k] - 1) if pidx[k] else None
-                pidx[k] = x[k]
+                if k != "fx":
+                    row[k + "p"] = (x[k] / pidx[k] - 1) if pidx[k] else None
+                    pidx[k] = x[k]
         out.append(row)
     return out
 
@@ -1008,16 +1058,16 @@ def periods(d, kind):
                 if e.get("pct") is not None:
                     gr *= 1 + e["pct"]; chg += e["c"]; n += 1
             rec["a"][acc] = {"v": es[-1]["v"], "c": chg, "pct": (gr - 1) if n else None}
-        for grp, accs in (("tl", ("midas_tr", "info_tr")), ("usd", ("midas_usd", "ibkr"))):
-            gr, chg, n, val = 1.0, 0.0, 0, 0.0
+        for grp, accs in GROUPS:
+            gr, chg, n = 1.0, 0.0, 0
             for r in g:
                 num = sum(r["a"][a]["c"] for a in accs if a in r["a"] and r["a"][a].get("pct") is not None)
                 den = sum(r["a"][a]["pv"] for a in accs if a in r["a"] and r["a"][a].get("pct") is not None)
                 if den:
                     gr *= 1 + num / den; chg += num; n += 1
-            val = sum(rec["a"][a]["v"] for a in accs if a in rec["a"])
-            if val:
-                rec[grp] = {"v": val, "c": chg, "pct": (gr - 1) if n else None}
+            gv = next((r["g"][grp] for r in reversed(g) if grp in r["g"]), None)   # dönem sonu değeri (ileri doldurmalı)
+            if gv and gv["v"]:
+                rec[grp] = {"v": gv["v"], "c": chg, "pct": (gr - 1) if n else None, "carry": gv["carry"]}
         for idx in ("xu", "sp"):
             vals = [r[idx] for r in g if r.get(idx)]
             if vals:
@@ -1111,10 +1161,10 @@ def trade_snapshot(d):
 
 
 def cmd_trades(_):
-    """Yalnız İşlemler sekmesini yeniler (pozisyon formlarından çağrılır; hata olsa da formu bozmaz)."""
+    """Yalnız işlem listesini (islem.json) yeniler (pozisyon formlarından çağrılır; hata olsa da formu bozmaz).
+    defter.json'a dokunmaz."""
     try:
-        save(load())
-        print("islemler yenilendi")
+        print("islemler yenilendi" if save_islem(load()) else "islemler değişmedi")
     except Exception as ex:
         print(f"::warning::islemler yenilenemedi ({type(ex).__name__})")
     return 0
@@ -1201,7 +1251,8 @@ def build_xlsx(d, out_path):
     cols = ["Tarih", "Gün"]
     for a in accs:
         cols += [f"{names[a]}\nDeğer", f"{names[a]}\nΔ", f"{names[a]}\n%"]
-    cols += ["TL Toplam", "TL Δ", "TL %", "USD Toplam", "USD Δ", "USD %", "XU100", "XU100 %", "S&P 500", "S&P %", "Not"]
+    cols += ["TL Toplam", "TL Δ", "TL %", "USD Toplam", "USD Δ", "USD %", "XU100", "XU100 %", "S&P 500", "S&P %",
+             "USD/TRY", "Not"]
     header(ws, cols, {1: 11, 2: 6, len(cols): 40})
     rows = daily_rows(d)
     for i, r in enumerate(rows, 2):
@@ -1221,10 +1272,13 @@ def build_xlsx(d, out_path):
                 if e.get("f"):
                     notes.append(f"{names[a]} para akışı: {e['f']:+,.0f}")
             c += 3
-        for accs_g in (("midas_tr", "info_tr"), ("midas_usd", "ibkr")):
+        for grp, accs_g in GROUPS:
             es = [r["a"][a] for a in accs_g if a in r["a"]]
             ok = [e for e in es if e.get("pct") is not None]
-            put(ws, i, c, sum(e["v"] for e in es) if es else None, NUM)
+            gv = r["g"].get(grp)   # ileri doldurulmuş grup değeri (sayfa ve haftalık özetle aynı kural)
+            put(ws, i, c, gv["v"] if gv else None, NUM)
+            if gv and gv["carry"]:
+                notes.append(f"{grp.upper()} Σ: " + ", ".join(f"{names[a]} {_tr_date(ds)[:5]} değeri" for a, ds in gv["carry"]) + " taşındı")
             if ok:
                 num, den = sum(e["c"] for e in ok), sum(e["pv"] for e in ok)
                 put(ws, i, c + 1, num, NUM, True)
@@ -1232,10 +1286,11 @@ def build_xlsx(d, out_path):
             c += 3
         put(ws, i, c, r.get("xu"), NUM2); put(ws, i, c + 1, r.get("xup"), PCT, True)
         put(ws, i, c + 2, r.get("sp"), NUM2); put(ws, i, c + 3, r.get("spp"), PCT, True)
+        put(ws, i, c + 4, r.get("fx"), "#,##0.0000")
         if r.get("n"):
             notes.insert(0, r["n"])
         if notes:
-            cell = put(ws, i, c + 4, "📝")
+            cell = put(ws, i, c + 5, "📝")
             cell.comment = Comment("\n".join(notes), "Defter")
     ws.auto_filter.ref = f"A1:{get_column_letter(len(cols))}{len(rows) + 1}"
 
@@ -1491,10 +1546,15 @@ def week_summary(d):
     for a in ACCOUNTS:
         cur = "₺" if ACCOUNTS[a]["cur"] == "TRY" else "$"
         L.append(f"• {ACCOUNTS[a]['name']}: {fmt(p['a'].get(a), cur)}")
+    def carry(e):
+        return (" (" + ", ".join(f"{ACCOUNTS[a]['name']} {_tr_date(ds)[:5]} değeri" for a, ds in e["carry"]) + ")"
+                if e and e.get("carry") else "")
     L.append(f"• <b>TL toplam</b>: {fmt(p.get('tl'), '₺')} · XU100 "
-             + (f"{p['xup'] * 100:+.2f}%" if p.get("xup") is not None else "—"))
+             + (f"{p['xup'] * 100:+.2f}%" if p.get("xup") is not None else "—")
+             + (f" · değer ₺{p['tl']['v']:,.0f}{carry(p['tl'])}" if p.get("tl") else ""))
     L.append(f"• <b>USD toplam</b>: {fmt(p.get('usd'), '$')} · S&P 500 "
-             + (f"{p['spp'] * 100:+.2f}%" if p.get("spp") is not None else "—"))
+             + (f"{p['spp'] * 100:+.2f}%" if p.get("spp") is not None else "—")
+             + (f" · değer ${p['usd']['v']:,.0f}{carry(p['usd'])}" if p.get("usd") else ""))
     miss = [f"{_tr_date(r['d'])} {ACCOUNTS[a]['name']}" for r in d["days"] if p["from"] <= r["d"] <= p["to"]
             for a in ("info_tr", "ibkr") if a not in r.get("a", {}) and (r.get("xu") or r.get("sp"))
             and r["d"] >= ACCOUNTS[a].get("start", "")]

@@ -143,6 +143,20 @@
       wrap.appendChild(leg);
     }
     draw();
+    var st = staleNote(B, ctx);
+    if (st) box.appendChild(el("div", "sub", st));
+  }
+
+  /* Mumların son günü piyasa verisinden (market json `updated`, piyasanın saat diliminde tarih) eskiyse küçük not (B33). */
+  function staleNote(B, ctx) {
+    try {
+      var last = B[B.length - 1][0], u = ctx.M && ctx.M.updated;
+      if (!last || !u) return "";
+      var d = new Date(u); if (isNaN(d.getTime())) return "";
+      var md = new Intl.DateTimeFormat("en-CA", { timeZone: ctx.tz || "America/New_York" }).format(d);  // YYYY-AA-GG
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(md) || last >= md) return "";
+      return "Grafik verisi " + last.slice(5).split("-").reverse().join(".") + " tarihli (göstergeler daha yeni)";
+    } catch (e) { return "" }
   }
 
   function render(box, t, ctx) {

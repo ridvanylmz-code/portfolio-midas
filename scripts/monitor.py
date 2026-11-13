@@ -330,7 +330,7 @@ def build_report(portfolio, quotes, fresh, summary, market_open, alerts, now, da
     if alerts:
         lines += ["", "<b>Alarmlar</b>"] + [e(a["text"]) for a in alerts]
     if dashboard_url:
-        lines += ["", f'<a href="{e(dashboard_url)}">Dashboard</a>']
+        lines += ["", f'<a href="{e(dashboard_url)}">Uygulama</a>']
     return "\n".join(lines)
 
 

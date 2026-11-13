@@ -9,6 +9,7 @@ import json
 import os
 import re
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -134,8 +135,11 @@ def main(argv=None):
     print(f"BIST günlük mum: {ok}/{len(tickers)} hisse güncellendi, toplam {len(bars)}")
     if not bars:
         return 0
+    # Hisselerin çoğunun son mum tarihi: ekran, göstergelerle (market-bist.json) aynı güne ait olup olmadığını buradan anlar
+    last_dates = Counter(r[-1][0] for r in bars.values() if r)
     with open(a.out, "w", encoding="utf-8") as f:
         json.dump({"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                   "last_date": last_dates.most_common(1)[0][0] if last_dates else None,
                    "source": "Yahoo Finance günlük (yfinance)", "bars": bars}, f, ensure_ascii=False, separators=(",", ":"))
     return 0
 

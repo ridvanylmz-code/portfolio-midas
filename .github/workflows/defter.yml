@@ -1,7 +1,9 @@
 name: Portföy Defteri - Tüm hesaplar
 
 # 4 hesabın günlük kaydı (docs/defter). Veri PORTFOLIO_KEY ile şifreli; Telegram ana bot.
-# Otomatik: hafta içi 22:20 UTC (İst. 01:20) Midas-TR / Midas-USD değeri + XU100 / S&P 500 kapanışı.
+# Otomatik: hafta içi 22:20 UTC (İst. 01:20) Midas-TR / Info-TR / Midas-USD değeri + XU100 / S&P 500 / USD-TRY kapanışı.
+# Kayıt yalnız TAMAMLANMIŞ seans gününe yazılır (BIST İst. 18:15, ABD NY 16:15 sonrası); Info-TR değeri trend-bist-data
+# dalındaki bars-bist.json'dan tarihli günlük kapanışla hesaplanır (canlı fiyatla değil).
 # Cumartesi 07:10 UTC (İst. 10:10) haftalık özet + Excel Telegram'a gelir.
 # Elle: "Run workflow" formu (Info-TR, IBKR değerleri, para giriş/çıkışı, yedek akçe, not, Excel iste).
 
@@ -116,11 +118,18 @@ jobs:
           fi
           echo "c=$c" >> "$GITHUB_OUTPUT"
 
+      - name: BIST günlük mumları (Info-TR tarihli kapanış)
+        if: steps.cmd.outputs.c != 'excel'
+        run: |
+          git fetch -q --depth=1 origin trend-bist-data 2>/dev/null && git show FETCH_HEAD:bars-bist.json > "$RUNNER_TEMP/bars-bist.json" 2>/dev/null \
+            || { rm -f "$RUNNER_TEMP/bars-bist.json"; echo "mum dosyası yok; Info-TR yalnız kapalı piyasada canlı fiyatla yazılır"; }
+
       - name: Defteri güncelle, kaydet, push et
         id: run
         if: steps.cmd.outputs.c != 'excel'
         env:
           CMD: ${{ steps.cmd.outputs.c }}
+          BIST_BARS_JSON: ${{ runner.temp }}/bars-bist.json
           PORTFOLIO_KEY: ${{ secrets.PORTFOLIO_KEY }}
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
           IBKR_FLEX_TOKEN: ${{ secrets.IBKR_FLEX_TOKEN }}

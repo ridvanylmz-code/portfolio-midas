@@ -15,7 +15,7 @@ Dalı main'e birleştirdikten sonra bir kez: GitHub -> Actions -> "Saat - zamanl
 Çalışan "Saat - zamanlayıcı" kaydını Cancel edin ve `saat.yml` dosyasındaki `schedule:` bloğunu silin ya da Actions'ta iş akışını Disable edin (yoksa saatlik cron yeniden başlatır). Beklemedeki kaydı da iptal edin.
 
 ## Bilinen sınırlar
-- Bir çalıştırıcı sürekli meşgul (ücretsiz plan dakika kotası, herkese açık depoda sınırsız; özel depoda ~330 dk x 4,4 = aylık kotayı tüketir: depo özel yapılırsa dış zamanlayıcıya geçin).
+- Bir çalıştırıcı sürekli meşgul. Herkese açık depoda dakika kotası sorun değil; depo özel yapılırsa saat sürekli çalıştığı için kotayı tüketir, o durumda dış zamanlayıcıya geçin.
 - GitHub kendi yeniden tetiklememizi de geciktirirse saatlik cron devralır; arada boşluk kalabilir.
 - Devir anında yeni saat o anki ızgara noktasını yeniden tetikler (bellekte durum yok): bir kez çift çalışma olur; concurrency grupları ve rapor tekilleştirmesi (state.json) bunu zararsız kılar. Günlük işler (IBKR, trend 03:15, Excel) saatinden 90 dakikadan sonra yeniden başlayan saatte o gün atlanır.
 - Üretimde denenmedi: `gh workflow run` ve `GITHUB_TOKEN` ile dispatch yetkisi birleştirmeden sonra ilk çalışmada doğrulanmalı.
