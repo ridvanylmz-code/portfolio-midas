@@ -1,0 +1,1400 @@
+{
+ "updated": "2026-11-13T21:28:47+00:00",
+ "market": "BIST",
+ "session": "kapali",
+ "prepost": false,
+ "count": 32,
+ "ok": 32,
+ "sources": {
+  "BIENY": "yfinance",
+  "SASA": "yfinance",
+  "SMRTG": "yfinance",
+  "MIATK": "yfinance",
+  "EMKEL": "yfinance",
+  "KLSER": "yfinance",
+  "DOFER": "yfinance",
+  "ALTNY": "yfinance",
+  "TCELL": "yfinance",
+  "THYAO": "yfinance",
+  "ALTIN": "TradingView",
+  "GMSTR": "yfinance",
+  "EMPAE": "yfinance",
+  "RYSAS": "yfinance",
+  "HRKET": "yfinance",
+  "SDTTR": "yfinance",
+  "TUPRS": "yfinance",
+  "DOHOL": "yfinance",
+  "TRENJ": "yfinance",
+  "AKSGY": "yfinance",
+  "TKFEN": "yfinance",
+  "SOKM": "yfinance",
+  "KBORU": "yfinance",
+  "KAYSE": "yfinance",
+  "FROTO": "yfinance",
+  "TOASO": "yfinance",
+  "BASGZ": "yfinance",
+  "TRGYO": "yfinance",
+  "ENERY": "yfinance",
+  "AHGAZ": "yfinance",
+  "RYGYO": "yfinance",
+  "GMTAS": "yfinance"
+ },
+ "log": [
+  "BIENY: Yahoo query1 429",
+  "BIENY: Yahoo query2 429",
+  "SASA: Yahoo query1 429",
+  "SASA: Yahoo query2 429",
+  "ALTIN: yfinance boş döndü",
+  "ALTIN: Twelve Data 404: **symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht"
+ ],
+ "tickers": {
+  "BIENY": {
+   "price": 13.61,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 13.8579,
+    "ema20": 13.1929,
+    "diff": 0.665,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 13,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 13.9493,
+    "ema89": 14.0485,
+    "diff": -0.0992,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 7,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 5.8,
+    "pivots": 15,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 9.71,
+    "last_price": 13.51
+   },
+   "st15": {
+    "dir": "down",
+    "line": 13.9826,
+    "dist_pct": -2.74,
+    "bars_since_flip": 24
+   },
+   "state": "mixed",
+   "score": -1,
+   "events": [
+    "15dk Trend ▼ döndü"
+   ],
+   "chg_pct": -6.07
+  },
+  "SASA": {
+   "price": 1.59,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 1.5946,
+    "ema20": 1.5954,
+    "diff": -0.0008,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 1,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 1.5928,
+    "ema89": 1.5968,
+    "diff": -0.004,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 26,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.4,
+    "pivots": 30,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 1.65,
+    "last_price": 1.64
+   },
+   "st15": {
+    "dir": "down",
+    "line": 1.6241,
+    "dist_pct": -2.15,
+    "bars_since_flip": 27
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [
+    "4S Trend ▼ döndü"
+   ],
+   "chg_pct": -0.62
+  },
+  "SMRTG": {
+   "price": 4.32,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 4.2579,
+    "ema20": 4.1458,
+    "diff": 0.112,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 9,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 4.3247,
+    "ema89": 4.3033,
+    "diff": 0.0214,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 59,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 6.5,
+    "pivots": 22,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 4.75,
+    "last_price": 4.43
+   },
+   "st15": {
+    "dir": "up",
+    "line": 4.2668,
+    "dist_pct": 1.23,
+    "bars_since_flip": 32
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [],
+   "chg_pct": 1.17
+  },
+  "MIATK": {
+   "price": 23.82,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 24.0048,
+    "ema20": 24.1545,
+    "diff": -0.1497,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 37,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 24.0161,
+    "ema89": 24.0886,
+    "diff": -0.0725,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 14,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.9,
+    "pivots": 31,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 25.22,
+    "last_price": 24.94
+   },
+   "st15": {
+    "dir": "down",
+    "line": 24.2291,
+    "dist_pct": -1.72,
+    "bars_since_flip": 8
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [
+    "15dk Tamam yada Devam ▼ Tamam"
+   ],
+   "chg_pct": -0.67
+  },
+  "EMKEL": {
+   "price": 5.73,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 5.5371,
+    "ema20": 5.4961,
+    "diff": 0.041,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 1,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 5.6917,
+    "ema89": 5.6026,
+    "diff": 0.0891,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 161,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 6.4,
+    "pivots": 19,
+    "bias": "up",
+    "wave": 3,
+    "label": "Yükseliş · Dalga 3 (güçlü itki)",
+    "start_price": 4.81,
+    "last_price": 5.95
+   },
+   "st15": {
+    "dir": "down",
+    "line": 5.7863,
+    "dist_pct": -0.98,
+    "bars_since_flip": 14
+   },
+   "state": "mixed",
+   "score": 1,
+   "events": [
+    "4S Trend ▲ döndü"
+   ],
+   "chg_pct": 0.88
+  },
+  "KLSER": {
+   "price": 15.73,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 14.892,
+    "ema20": 14.6375,
+    "diff": 0.2545,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 2,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 15.3264,
+    "ema89": 15.0012,
+    "diff": 0.3252,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 55,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 5.9,
+    "pivots": 15,
+    "bias": "up",
+    "wave": 3,
+    "label": "Yükseliş · Dalga 3 (güçlü itki)",
+    "start_price": 13.69,
+    "last_price": 16.0
+   },
+   "st15": {
+    "dir": "up",
+    "line": 15.2312,
+    "dist_pct": 3.17,
+    "bars_since_flip": 27
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [
+    "4S Trend ▲ döndü"
+   ],
+   "chg_pct": 7.45
+  },
+  "DOFER": {
+   "price": 18.62,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 18.5056,
+    "ema20": 18.3413,
+    "diff": 0.1643,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 9,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 18.5951,
+    "ema89": 18.5745,
+    "diff": 0.0206,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 54,
+    "bars": 1958
+   },
+   "elliott": {
+    "thr_pct": 5.7,
+    "pivots": 14,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 17.6,
+    "last_price": 18.2
+   },
+   "st15": {
+    "dir": "down",
+    "line": 18.7838,
+    "dist_pct": -0.88,
+    "bars_since_flip": 8
+   },
+   "state": "mixed",
+   "score": 1,
+   "events": [
+    "15dk Tamam yada Devam ▼ Tamam"
+   ],
+   "chg_pct": 0.32
+  },
+  "ALTNY": {
+   "price": 11.39,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 11.1749,
+    "ema20": 10.9983,
+    "diff": 0.1766,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 8,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 11.3143,
+    "ema89": 11.2362,
+    "diff": 0.0781,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 279,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.1,
+    "pivots": 24,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 11.49,
+    "last_price": 11.45
+   },
+   "st15": {
+    "dir": "up",
+    "line": 11.2203,
+    "dist_pct": 1.49,
+    "bars_since_flip": 11
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [],
+   "chg_pct": 1.7
+  },
+  "TCELL": {
+   "price": 96.85,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 96.0475,
+    "ema20": 94.6687,
+    "diff": 1.3789,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 7,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 96.9203,
+    "ema89": 96.5795,
+    "diff": 0.3408,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 135,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 3.3,
+    "pivots": 23,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 99.0,
+    "last_price": 97.85
+   },
+   "st15": {
+    "dir": "up",
+    "line": 96.5276,
+    "dist_pct": 0.33,
+    "bars_since_flip": 6
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [
+    "15dk Tamam yada Devam ▲ Devam"
+   ],
+   "chg_pct": 0.16
+  },
+  "THYAO": {
+   "price": 320.0,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 315.5467,
+    "ema20": 301.6653,
+    "diff": 13.8814,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 15,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 321.011,
+    "ema89": 318.8354,
+    "diff": 2.1757,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 306,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 3.4,
+    "pivots": 16,
+    "bias": "up",
+    "wave": 3,
+    "label": "Yükseliş · Dalga 3 (güçlü itki)",
+    "start_price": 242.4,
+    "last_price": 325.75
+   },
+   "st15": {
+    "dir": "up",
+    "line": 319.3668,
+    "dist_pct": 0.2,
+    "bars_since_flip": 22
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [],
+   "chg_pct": 0.23
+  },
+  "ALTIN": {
+   "price": 70.2,
+   "bar_time": "2026-11-13T15:00+00:00",
+   "h4": {
+    "ema8": 70.5944,
+    "ema20": 70.7474,
+    "diff": -0.153,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 2,
+    "bars": 118
+   },
+   "m15": {
+    "ema34": 70.1775,
+    "ema89": 70.4487,
+    "diff": -0.2712,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 106,
+    "bars": 2000
+   },
+   "elliott": {
+    "thr_pct": 2.0,
+    "pivots": 17,
+    "bias": "down",
+    "wave": 3,
+    "label": "Düşüş · Dalga 3 (güçlü itki)",
+    "start_price": 72.73,
+    "last_price": 69.88
+   },
+   "st15": {
+    "dir": "down",
+    "line": 70.3,
+    "dist_pct": -0.14,
+    "bars_since_flip": 131
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [
+    "4S Trend ▼ döndü"
+   ],
+   "chg_pct": 0.3
+  },
+  "GMSTR": {
+   "price": 499.5,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 508.9819,
+    "ema20": 515.7986,
+    "diff": -6.8167,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 71,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 502.274,
+    "ema89": 507.7974,
+    "diff": -5.5233,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 64,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 2.5,
+    "pivots": 35,
+    "bias": "down",
+    "wave": 3,
+    "label": "Düşüş · Dalga 3 (güçlü itki)",
+    "start_price": 527.75,
+    "last_price": 496.9
+   },
+   "st15": {
+    "dir": "down",
+    "line": 503.5766,
+    "dist_pct": -0.82,
+    "bars_since_flip": 67
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [],
+   "chg_pct": -0.84
+  },
+  "EMPAE": {
+   "price": 40.1,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 39.2791,
+    "ema20": 38.5793,
+    "diff": 0.6999,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 7,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 40.003,
+    "ema89": 39.7013,
+    "diff": 0.3017,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 237,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 7.5,
+    "pivots": 23,
+    "bias": "up",
+    "wave": 3,
+    "label": "Yükseliş · Dalga 3 (güçlü itki)",
+    "start_price": 35.56,
+    "last_price": 41.4
+   },
+   "st15": {
+    "dir": "up",
+    "line": 39.337,
+    "dist_pct": 1.9,
+    "bars_since_flip": 31
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [],
+   "chg_pct": 1.11
+  },
+  "RYSAS": {
+   "price": 25.5,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 25.7567,
+    "ema20": 25.9947,
+    "diff": -0.238,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 4,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 25.5619,
+    "ema89": 25.6646,
+    "diff": -0.1028,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 199,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 5.2,
+    "pivots": 28,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 24.28,
+    "last_price": 25.0
+   },
+   "st15": {
+    "dir": "down",
+    "line": 25.7014,
+    "dist_pct": -0.79,
+    "bars_since_flip": 14
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [],
+   "chg_pct": -0.47
+  },
+  "HRKET": {
+   "price": 6.69,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 7.3919,
+    "ema20": 7.4996,
+    "diff": -0.1077,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 0,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 7.0567,
+    "ema89": 7.378,
+    "diff": -0.3213,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 54,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 11.4,
+    "pivots": 14,
+    "bias": "down",
+    "wave": 1,
+    "label": "Düşüş · Dalga 1 oluşuyor",
+    "start_price": 8.42,
+    "last_price": 6.69
+   },
+   "st15": {
+    "dir": "down",
+    "line": 6.9329,
+    "dist_pct": -3.63,
+    "bars_since_flip": 64
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [
+    "4S Trend ▼ döndü"
+   ],
+   "chg_pct": -9.47
+  },
+  "SDTTR": {
+   "price": 11.62,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 11.7747,
+    "ema20": 12.0501,
+    "diff": -0.2754,
+    "dir": "down",
+    "cross": null,
+    "cross_bars_ago": null,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 11.7076,
+    "ema89": 11.7687,
+    "diff": -0.0611,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 129,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 5.7,
+    "pivots": 21,
+    "bias": "down",
+    "wave": 3,
+    "label": "Düşüş · Dalga 3 (güçlü itki)",
+    "start_price": 13.09,
+    "last_price": 11.36
+   },
+   "st15": {
+    "dir": "down",
+    "line": 11.8602,
+    "dist_pct": -2.07,
+    "bars_since_flip": 18
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [],
+   "chg_pct": -0.51
+  },
+  "TUPRS": {
+   "price": 359.0,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 351.5973,
+    "ema20": 348.188,
+    "diff": 3.4093,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 2,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 359.8522,
+    "ema89": 355.0522,
+    "diff": 4.8001,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 91,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.2,
+    "pivots": 30,
+    "bias": "up",
+    "wave": 1,
+    "label": "Yükseliş · Dalga 1 oluşuyor",
+    "start_price": 324.5,
+    "last_price": 364.5
+   },
+   "st15": {
+    "dir": "up",
+    "line": 357.7404,
+    "dist_pct": 0.35,
+    "bars_since_flip": 126
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [
+    "4S Trend ▲ döndü"
+   ],
+   "chg_pct": 1.2
+  },
+  "DOHOL": {
+   "price": 16.88,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 17.072,
+    "ema20": 17.1531,
+    "diff": -0.0811,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 2,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 16.8966,
+    "ema89": 17.0363,
+    "diff": -0.1396,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 110,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 3.4,
+    "pivots": 20,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 15.64,
+    "last_price": 16.65
+   },
+   "st15": {
+    "dir": "up",
+    "line": 16.7421,
+    "dist_pct": 0.82,
+    "bars_since_flip": 22
+   },
+   "state": "mixed",
+   "score": -1,
+   "events": [
+    "4S Trend ▼ döndü"
+   ],
+   "chg_pct": -0.76
+  },
+  "TRENJ": {
+   "price": 77.6,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 76.7555,
+    "ema20": 76.4394,
+    "diff": 0.3162,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 6,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 77.2046,
+    "ema89": 77.0514,
+    "diff": 0.1532,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 6,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.8,
+    "pivots": 19,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 71.6,
+    "last_price": 75.4
+   },
+   "st15": {
+    "dir": "up",
+    "line": 76.7459,
+    "dist_pct": 1.1,
+    "bars_since_flip": 31
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [
+    "15dk Trend ▲ döndü"
+   ],
+   "chg_pct": 2.71
+  },
+  "AKSGY": {
+   "price": 9.25,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 9.2002,
+    "ema20": 9.1047,
+    "diff": 0.0955,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 6,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 9.3279,
+    "ema89": 9.2422,
+    "diff": 0.0857,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 165,
+    "bars": 1957
+   },
+   "elliott": {
+    "thr_pct": 2.6,
+    "pivots": 35,
+    "bias": "up",
+    "wave": 4,
+    "label": "Yükseliş · Dalga 4 (düzeltme)",
+    "start_price": 8.65,
+    "last_price": 9.25
+   },
+   "st15": {
+    "dir": "down",
+    "line": 9.3561,
+    "dist_pct": -1.15,
+    "bars_since_flip": 9
+   },
+   "state": "mixed",
+   "score": 1,
+   "events": [],
+   "chg_pct": -1.07
+  },
+  "TKFEN": {
+   "price": 190.6,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 196.8846,
+    "ema20": 195.9068,
+    "diff": 0.9778,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 4,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 198.4343,
+    "ema89": 199.2208,
+    "diff": -0.7865,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 2,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 7.1,
+    "pivots": 26,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 183.9,
+    "last_price": 190.3
+   },
+   "st15": {
+    "dir": "down",
+    "line": 196.992,
+    "dist_pct": -3.35,
+    "bars_since_flip": 19
+   },
+   "state": "mixed",
+   "score": -1,
+   "events": [
+    "15dk Trend ▼ döndü"
+   ],
+   "chg_pct": -6.57
+  },
+  "SOKM": {
+   "price": 45.08,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 46.2808,
+    "ema20": 48.9334,
+    "diff": -2.6526,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 23,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 45.2702,
+    "ema89": 45.8931,
+    "diff": -0.6229,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 196,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.6,
+    "pivots": 19,
+    "bias": "down",
+    "wave": 5,
+    "label": "Düşüş · Dalga 5 (olgun, düzeltme riski)",
+    "start_price": 58.65,
+    "last_price": 44.1
+   },
+   "st15": {
+    "dir": "down",
+    "line": 45.5194,
+    "dist_pct": -0.97,
+    "bars_since_flip": 49
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [],
+   "chg_pct": -1.1
+  },
+  "KBORU": {
+   "price": 10.55,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 10.495,
+    "ema20": 10.2156,
+    "diff": 0.2794,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 14,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 10.525,
+    "ema89": 10.543,
+    "diff": -0.0181,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 16,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 5.6,
+    "pivots": 22,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 11.37,
+    "last_price": 10.85
+   },
+   "st15": {
+    "dir": "down",
+    "line": 10.6217,
+    "dist_pct": -0.68,
+    "bars_since_flip": 28
+   },
+   "state": "mixed",
+   "score": -1,
+   "events": [],
+   "chg_pct": 0.09
+  },
+  "KAYSE": {
+   "price": 2.36,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 2.3715,
+    "ema20": 2.3968,
+    "diff": -0.0253,
+    "dir": "down",
+    "cross": null,
+    "cross_bars_ago": null,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 2.3695,
+    "ema89": 2.3797,
+    "diff": -0.0102,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 98,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.5,
+    "pivots": 19,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 2.31,
+    "last_price": 2.32
+   },
+   "st15": {
+    "dir": "down",
+    "line": 2.388,
+    "dist_pct": -1.19,
+    "bars_since_flip": 8
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [
+    "15dk Tamam yada Devam ▼ Tamam"
+   ],
+   "chg_pct": 0.0
+  },
+  "FROTO": {
+   "price": 73.85,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 73.5884,
+    "ema20": 72.1084,
+    "diff": 1.48,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 11,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 73.8548,
+    "ema89": 73.8327,
+    "diff": 0.0221,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 4,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.3,
+    "pivots": 14,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 64.5,
+    "last_price": 72.25
+   },
+   "st15": {
+    "dir": "up",
+    "line": 73.1633,
+    "dist_pct": 0.93,
+    "bars_since_flip": 21
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [
+    "15dk Trend ▲ döndü"
+   ],
+   "chg_pct": 0.82
+  },
+  "TOASO": {
+   "price": 242.5,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 238.3186,
+    "ema20": 235.4303,
+    "diff": 2.8883,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 10,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 240.0852,
+    "ema89": 238.9539,
+    "diff": 1.1313,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 21,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.3,
+    "pivots": 22,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 247.1,
+    "last_price": 243.6
+   },
+   "st15": {
+    "dir": "up",
+    "line": 239.1383,
+    "dist_pct": 1.39,
+    "bars_since_flip": 64
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [],
+   "chg_pct": 1.85
+  },
+  "BASGZ": {
+   "price": 36.18,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 36.2306,
+    "ema20": 35.7397,
+    "diff": 0.4909,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 12,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 36.4336,
+    "ema89": 36.4186,
+    "diff": 0.015,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 143,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 5.6,
+    "pivots": 14,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 38.72,
+    "last_price": 37.24
+   },
+   "st15": {
+    "dir": "down",
+    "line": 36.7367,
+    "dist_pct": -1.54,
+    "bars_since_flip": 8
+   },
+   "state": "mixed",
+   "score": 1,
+   "events": [
+    "15dk Tamam yada Devam ▼ Tamam"
+   ],
+   "chg_pct": -0.33
+  },
+  "TRGYO": {
+   "price": 86.2,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 87.3347,
+    "ema20": 87.7686,
+    "diff": -0.4339,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 2,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 86.3179,
+    "ema89": 87.0754,
+    "diff": -0.7575,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 110,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 3.0,
+    "pivots": 19,
+    "bias": "up",
+    "wave": 2,
+    "label": "Yükseliş · Dalga 2 (düzeltme)",
+    "start_price": 84.4,
+    "last_price": 85.5
+   },
+   "st15": {
+    "dir": "down",
+    "line": 86.3591,
+    "dist_pct": -0.18,
+    "bars_since_flip": 39
+   },
+   "state": "bearish",
+   "score": -3,
+   "events": [
+    "4S Trend ▼ döndü"
+   ],
+   "chg_pct": -1.03
+  },
+  "ENERY": {
+   "price": 14.6,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 14.3329,
+    "ema20": 14.0642,
+    "diff": 0.2687,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 18,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 14.5338,
+    "ema89": 14.3776,
+    "diff": 0.1562,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 56,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 2.8,
+    "pivots": 40,
+    "bias": "up",
+    "wave": 3,
+    "label": "Yükseliş · Dalga 3 (güçlü itki)",
+    "start_price": 13.54,
+    "last_price": 14.63
+   },
+   "st15": {
+    "dir": "up",
+    "line": 14.5296,
+    "dist_pct": 0.48,
+    "bars_since_flip": 66
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [],
+   "chg_pct": 1.18
+  },
+  "AHGAZ": {
+   "price": 46.28,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 46.169,
+    "ema20": 46.1625,
+    "diff": 0.0065,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 0,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 46.2511,
+    "ema89": 46.1286,
+    "diff": 0.1225,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 27,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 2.9,
+    "pivots": 25,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 47.38,
+    "last_price": 46.56
+   },
+   "st15": {
+    "dir": "up",
+    "line": 46.0294,
+    "dist_pct": 0.54,
+    "bars_since_flip": 61
+   },
+   "state": "bullish",
+   "score": 3,
+   "events": [
+    "4S Trend ▲ döndü"
+   ],
+   "chg_pct": 0.3
+  },
+  "RYGYO": {
+   "price": 47.14,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 47.8205,
+    "ema20": 48.7386,
+    "diff": -0.9181,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 12,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 47.276,
+    "ema89": 47.5805,
+    "diff": -0.3045,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 236,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 4.6,
+    "pivots": 38,
+    "bias": "down",
+    "wave": 2,
+    "label": "Düşüş · Dalga 2 (düzeltme)",
+    "start_price": 49.8,
+    "last_price": 47.98
+   },
+   "st15": {
+    "dir": "up",
+    "line": 46.6287,
+    "dist_pct": 1.08,
+    "bars_since_flip": 22
+   },
+   "state": "mixed",
+   "score": -1,
+   "events": [],
+   "chg_pct": 1.77
+  },
+  "GMTAS": {
+   "price": 48.7,
+   "bar_time": "2026-11-13T14:45+00:00",
+   "h4": {
+    "ema8": 48.2798,
+    "ema20": 48.6294,
+    "diff": -0.3497,
+    "dir": "down",
+    "cross": "down",
+    "cross_bars_ago": 14,
+    "bars": 119
+   },
+   "m15": {
+    "ema34": 48.774,
+    "ema89": 48.454,
+    "diff": 0.3199,
+    "dir": "up",
+    "cross": "up",
+    "cross_bars_ago": 62,
+    "bars": 1959
+   },
+   "elliott": {
+    "thr_pct": 3.3,
+    "pivots": 41,
+    "bias": "up",
+    "wave": 3,
+    "label": "Yükseliş · Dalga 3 (güçlü itki)",
+    "start_price": 46.18,
+    "last_price": 49.36
+   },
+   "st15": {
+    "dir": "up",
+    "line": 48.5349,
+    "dist_pct": 0.34,
+    "bars_since_flip": 31
+   },
+   "state": "mixed",
+   "score": 1,
+   "events": [],
+   "chg_pct": 1.54
+  }
+ }
+}
