@@ -14,7 +14,7 @@ Dil: Türkçe, kısa, basit tablo. Al-sat dili porsiyon dilidir (`portfoy-guncel
 ## Girdi
 - `market.json` içindeki `picks` (sektör başına adaylar), `regime` ve aday alanları: `rs`, `rs_m1`, `rs_m3`, `trend`, `label`, `rsi`, `atr_pct`, `stop_atr`. Kendi taraman yok; sayılar koddan gelir, Claude seçer ve yorumlar.
 - Adil değer: `docs/data/analysis.json` → `fundamental.fair_value` (analist ortalama hedefi). Yoksa "adil değer yok" yaz, kendi tahminini uydurma.
-- Stop: adayın `stop_atr` değeri. Teknik bir dip daha yakınsa onu kullan ve kaynağını yaz.
+- Stop: adayın `stop_atr` değeri (`günlük kapanış − 2×ATR`). Teknik bir dip daha yakınsa onu kullan ve kaynağını yaz.
 - Aday dışı hisse önerirsen "aday dışı" diye etiketle ve nedenini yaz.
 
 ## Dilüsyon kontrolü (her hisse, zorunlu)
@@ -53,8 +53,9 @@ Bunlar dışında liste korunur. Stop ve dilüsyon kaynaklı çıkışlar hariç
 Giriş fiyatı TradingView'den tarihli alınır.
 
 ## Repo yazma
-- Takip listesini `scripts/update_position.py` içindeki `watch_add` / `watch_remove` eylemleriyle güncelle (örn. `--action watch_add --ticker AMD`). Değişiklikleri commit edip push et.
+- Portföy dosyası şifrelidir; betik yerelde çalıştırılamaz. Takip listesini "Portföy Güncelle - Midas-USD" iş akışını **tek sefer** çalıştırarak güncelle: `batch` alanına her satıra bir işlem yaz (örn. `watch_remove INTC` / `watch_add AMD` / `zone_below AMD 95`). Hepsi tek commit ve tek Telegram mesajı olur; bir satır hatalıysa hiçbiri uygulanmaz.
+- Her girişi ve çıkışı `docs/data/picks_log.json` dosyasına ekle ve commit et: `{"ticker", "in_date", "in_price", "stop", "out_date", "out_price", "reason"}` (açık seçimlerde `out_*` boş).
 - Push başarısızsa listeyi repoda güncel sayma; hatayı raporun başında yaz ve yapılacak eylemleri liste olarak ver.
 
 ## Performans
-Performansı yalnızca tarihli giriş fiyatlarıyla ölç. İzlenimle karşılaştırma yapma.
+Performansı yalnızca `docs/data/picks_log.json`'daki tarihli giriş ve çıkış fiyatlarıyla ölç. Raporun sonuna tek satır ekle: kapanan seçim sayısı, kazananların oranı, aynı dönemde SPY'a göre ortalama fark. İzlenimle karşılaştırma yapma.

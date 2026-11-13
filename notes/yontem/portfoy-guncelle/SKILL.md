@@ -12,7 +12,8 @@ Dil: Türkçe, kısa, uygulanabilir. Basit tablolar. Sade Türkçe terimler ("y�
 ## Kapsam
 - Yalnızca ABD piyasası. BIST bu skill'in kapsamında değil.
 - Portföy tutarları (adet, maliyet, K/Z, nakit oranı) okunmaz ve hesaplanmaz. portfolio.json şifrelidir; K/Z ve nakit mini uygulamada kullanıcının kendi şifresiyle hesaplanır.
-- Eldeki pozisyonların **yalnızca sembolleri** `docs/data/holdings.json` dosyasından okunur (`{"updated", "holdings": [...]}`). Dosya yoksa veya 7 günden eskiyse pozisyon hatırlatmasını atla ve bunu veri eksikliği olarak yaz. Pozisyon uydurma.
+- Eldeki pozisyonların **yalnızca sembolleri** `docs/data/holdings.json` dosyasından okunur (`{"updated", "holdings": [...]}`). Dosyayı her izleme çalışması üretir. Dosya yoksa veya 7 günden eskiyse pozisyon hatırlatmasını atla ve bunu raporun ilk maddesinde veri eksikliği olarak yaz. Pozisyon uydurma.
+- Stop tanımı: `stop_atr = günlük kapanış − 2×ATR`. Takip eden stop yalnız günlük kapanışla ve yalnız yukarı taşınır. Başka bir stop formülü yazma.
 - Kesin kısıtlar: yalnız spot; short, kaldıraç, opsiyon yok; banka hisseleri ve alkol üreticisi şirketler yok.
 
 ## Dil (zorunlu, haftalik-teknik-analiz ile ortak)
@@ -31,9 +32,12 @@ Kullanıcıyla ortak gibi doğrudan konuş; kaçamak ifade ve "yatırım tavsiye
 1. Rejim ve nakit: rejim etiketini ve puanı yaz. Direktifi "nakit %X-Y bandında olmalı" biçiminde ver. Düşüş rejiminde üst banda, yükselişte alt banda yaklaş.
 2. Sektör yorumu: `docs/data/sector_notes.json` içinde lider ve zayıf sektörleri haber ve momentum gerekçesiyle güncelle. Her not tarihli olsun.
 3. Aday seçimi ve takip listesi: `takip-listesi-tarama` skill'ini Skill aracıyla yükle ve uygula.
-4. Hisse yorumu: `docs/data/analysis.json` içinde yalnızca güncellenen hisseler için adil değer, teknik yorum ve `dilution` alanını yaz.
+4. Hisse yorumu: `docs/data/analysis.json` içinde `docs/data/symbols.json`'daki **her** hisse için adil değer, teknik yorum ve `dilution` alanını yaz. Kurallar:
+   - Her blok kendi tarihini taşır: `technical_date` ve `momentum_date` (YYYY-AA-GG). Teknik bloğu yenileyemediysen eski metni bırakma, bloğu sil.
+   - Sayılar ayrı alanda durur: `fundamental.target_price` (analist ortalama hedefi, sayı) ve `fundamental.earn_date` (YYYY-AA-GG). Metne "hedefe %X" yazma; yüzdeyi ekran canlı fiyattan hesaplar.
+   - `symbols.json`'da olmayan hissenin kaydını `analysis.json`'dan sil.
 5. Pozisyon kontrolü: `holdings.json` içindeki her sembol için günlük kapanışı EMA20/EMA50 ve picks/technicals içindeki stop ile karşılaştır. Momentumu kırılanı porsiyon diliyle tek satırda yaz (örn. "SGML: kapanış EMA50 altında, 1 porsiyon sat; 9,10 üstüne dönerse sattığını geri al").
-6. Değişiklikleri commit edip push et. Commit mesajı Türkçe ve kısa.
+6. Değişiklikleri commit edip push et. Commit mesajı Türkçe ve kısa; mesajda hisse adı, alım ya da satım yazma (depo herkese açık).
 7. Yazma başarısızsa bunu raporun başında yaz ve kalan yazma adımlarını atla.
 
 ## Çıktı
@@ -50,3 +54,4 @@ Madde sayısına girmeyen ek satırlar: Kaynaklar ve DEVAM.md için tek satır.
 - Pozisyon, adet, tutar uydurmak
 - Veri eskiyken "al" önermek
 - Porsiyon dili dışında belirsiz al-sat ifadesi ("düşünülebilir", "değerlendirilebilir")
+- Tarihsiz analiz bloğu bırakmak; eski fiyattan hesaplanmış yüzdeyi metinde tutmak

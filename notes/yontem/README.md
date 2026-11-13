@@ -1,6 +1,8 @@
 # Yöntem metinleri (denetim için kopya)
 
-Kopyalanma tarihi: 13.11.2026. Asıl kaynak Claude hesabındaki skill'lerdir; burası denetçinin (Fable 5.2) okuması için salt-okunur kopya.
+Kopyalanma tarihi: 13.11.2026. Asıl kaynak Claude hesabındaki skill'lerdir.
+
+**13.11.2026 denetim güncellemesi:** `portfoy-guncelle/SKILL.md` ve `takip-listesi-tarama/SKILL.md` denetim bulgularına (B5, B14, B19, B28, B30, B35, B37) göre güncellendi. Bu depodaki sürüm artık hesaptakinden **yenidir**: hesaptaki skill'lerin bu iki dosyayla değiştirilmesi gerekir (Claude → Ayarlar → Skills → ilgili skill → dosyayı yükle). Değişikliklerin özeti: `notes/DENETIM-SKILL-ONERILERI.md`.
 
 | Klasör | Görev |
 |---|---|

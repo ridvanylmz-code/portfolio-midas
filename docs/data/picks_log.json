@@ -1,0 +1,4 @@
+{
+ "_not": "Takip listesi seçim kaydı; takip-listesi-tarama skill'i yazar. Alanlar: ticker, in_date, in_price, stop, out_date, out_price, reason.",
+ "picks": []
+}
