@@ -445,7 +445,7 @@
   "bilanco": "≈9–11 Kas (teyitsiz)",
   "tip": "al",
   "emir": "Sattığını geri al — yarım",
-  "kosul": "Bilanço sonrası"
+  "kosul": "Limit yok: bölgede 1s RSI 30 üstüne çıkınca yarım porsiyon. Bilanço sonrası"
  },
  {
   "id": "BIENY-05",
@@ -697,7 +697,7 @@
   "bilanco": "Kasım sonu (teyitsiz)",
   "tip": "al",
   "emir": "Sattığını geri al — yarım",
-  "kosul": "4s ST kırmızı → yarım"
+  "kosul": "Limit yok: bölgede 1s RSI 30 üstüne çıkınca yarım porsiyon. 4s ST kırmızı → yarım"
  },
  {
   "id": "MIATK-05",

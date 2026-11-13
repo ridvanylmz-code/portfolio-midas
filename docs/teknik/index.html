@@ -91,7 +91,7 @@ Promise.all([get('data/salinim.json'),get('data/meta.json'),get('../data/quotes.
       pr.forEach(r=>{
         if(p&&!put&&p>=r.fiyat){h+=`<tr class="now"><td>Şimdiki fiyat</td><td class="d"></td><td class="f">${fmt(p)}</td></tr>`;put=true}
         const d=p?(r.fiyat-p)/A:null, kap=/kapanış/i.test(r.emir+' '+r.kosul)||r.tip==='sigorta'||r.tip==='stop';
-        h+=`<tr class="${d!=null&&Math.abs(d)<=0.5?'yakin':''}"><td><span class="k ${r.tip==='sigorta'?'sigorta':''}" style="--c:${C[r.tip]||'var(--mute)'}"></span><span class="e">${esc(r.emir)}</span><span class="tag">${kap?'KAPANIŞ':'LİMİT'}</span><div class="c">${esc(r.kosul)}${r.kaynak?' · '+esc(r.kaynak):''}</div></td>`+
+        h+=`<tr class="${d!=null&&Math.abs(d)<=0.5?'yakin':''}"><td><span class="k ${r.tip==='sigorta'?'sigorta':''}" style="--c:${C[r.tip]||'var(--mute)'}"></span><span class="e">${esc(r.emir)}</span><span class="tag">${kap?'KAPANIŞ':r.tip==='al'?'TEYİT':'LİMİT'}</span><div class="c">${esc(r.kosul)}${r.kaynak?' · '+esc(r.kaynak):''}</div></td>`+
            `<td class="d">${d==null?'':(d>0?'+':'')+d.toFixed(1).replace('.',',')+' ATR'}</td><td class="f">${fmt(r.fiyat)}</td></tr>`;
       });
       if(p&&!put)h+=`<tr class="now"><td>Şimdiki fiyat</td><td class="d"></td><td class="f">${fmt(p)}</td></tr>`;
