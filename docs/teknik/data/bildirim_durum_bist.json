@@ -1,1 +1,84 @@
-{}
+{
+ "BIENY-01": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "BIENY-02": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "BIENY-03": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "BIENY-04": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "BIENY-05": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "MIATK-01": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "MIATK-02": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "MIATK-03": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "MIATK-04": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "MIATK-05": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SASA-01": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "SASA-02": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "SASA-03": {
+  "hafta": "2026-11-08",
+  "taraf": "alt"
+ },
+ "SASA-04": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SASA-05": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SMRTG-01": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SMRTG-02": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SMRTG-03": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SMRTG-04": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "SMRTG-05": {
+  "hafta": "2026-11-08",
+  "taraf": "ust"
+ },
+ "_harita_SMRTG": "2026-11-13",
+ "_son": "2026-11-13T15:18:24+00:00"
+}
