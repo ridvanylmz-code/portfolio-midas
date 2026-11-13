@@ -38,7 +38,7 @@ LEGACY_FILES = {"portfolio.json": "docs/data/portfolio.json", "history.json": "d
 SECRET_FILES = {F_PORTFOLIO, F_HISTORY, F_STATE}
 VAULT_ITER = 600_000
 _KEYS = {}      # (parola, salt, iter) -> türetilmiş anahtar (aynı çalışmada tekrar türetme olmasın)
-_SAVE_SALT = os.urandom(16)
+_SAVE_SALT = os.urandom(16)   # yalnız yeni (daha önce şifreli olmayan) dosyalar için; mevcut dosya kendi tuzunu korur
 
 
 class VaultError(RuntimeError):
@@ -61,14 +61,18 @@ def _derive(passphrase, salt, iters):
     return _KEYS[k]
 
 
-def vault_encrypt(obj, passphrase):
+def vault_encrypt(obj, passphrase, salt=None, iters=VAULT_ITER):
+    """salt verilmezse yeni dosya tuzu kullanılır. Mevcut dosyanın tuzu/iter'i korunur ki tarayıcıdaki
+    türetilmiş anahtar (parola değil) yeniden yazımdan sonra da geçerli kalsın. Aynı tuz + her yazımda taze
+    rastgele 96 bit IV, bu yazım hacminde (günde birkaç yüz yazım) AES-GCM için güvenlidir (IV çakışma olasılığı ihmal edilebilir)."""
+    salt = salt or _SAVE_SALT
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
     iv = os.urandom(12)
     plain = json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    ct = AESGCM(_derive(passphrase, _SAVE_SALT, VAULT_ITER)).encrypt(iv, plain, None)
+    ct = AESGCM(_derive(passphrase, salt, iters)).encrypt(iv, plain, None)
     b = lambda x: base64.b64encode(x).decode()  # noqa: E731
-    return {"vault": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256", "iter": VAULT_ITER,
-            "salt": b(_SAVE_SALT), "iv": b(iv), "data": b(ct)}
+    return {"vault": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256", "iter": iters,
+            "salt": b(salt), "iv": b(iv), "data": b(ct)}
 
 
 def vault_decrypt(env, passphrase):
@@ -106,12 +110,18 @@ def save_json(name, data):
     p = path(name)
     if str(name) in SECRET_FILES and vault_key():
         # İçerik değişmediyse yazma: rastgele IV yüzünden her yazım dosyayı (ve commit'i) değiştirirdi (depo şişmesi).
+        salt, iters = None, VAULT_ITER
         try:
-            if p.exists() and load_json(name) == data:
-                return
-        except (VaultError, ValueError, OSError):
+            if p.exists():
+                with open(p, encoding="utf-8") as f:
+                    old = json.load(f)
+                if is_vault(old):  # mevcut dosyanın tuzunu ve iter'ini koru (yalnız IV tazelenir)
+                    salt, iters = base64.b64decode(old["salt"]), int(old["iter"])
+                if load_json(name) == data:
+                    return
+        except (VaultError, ValueError, OSError, KeyError, TypeError):
             pass
-        data = vault_encrypt(data, vault_key())
+        data = vault_encrypt(data, vault_key(), salt, iters)
     p.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=p.parent, suffix=".tmp")
     try:
