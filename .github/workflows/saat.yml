@@ -1,0 +1,39 @@
+name: Saat - zamanlayıcı
+
+# Neden var: bu depoda GitHub `schedule` olayları ~8 saat geç geliyor ve çoğu düşüyor (denetim B1); elle tetiklenen
+# `workflow_dispatch` ise saniyeler içinde başlıyor. Bu iş akışı tek uzun çalışmadır: her dakika scripts/saat.py
+# hangi işin zamanı geldiğine bakar ve diğer iş akışlarını `mode=auto` ile tetikler. 5 sa 30 dk sonra kendini yeniden
+# tetikleyip çıkar; saatlik cron yalnız yedek (GitHub gecikse bile en geç birkaç saatte yeniden başlatır).
+# Diğer iş akışlarındaki `schedule:` satırları şimdilik yedek olarak duruyor (çift tetikleme zararsız: her birinin
+# kendi concurrency grubu ve idempotent yazımı var).
+# Birleştirmeden sonra bir kez ELLE başlatılmalı: Actions -> "Saat - zamanlayıcı" -> Run workflow. Ayrıntı: notes/SAAT.md
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 * * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: saat
+  cancel-in-progress: false   # tek saat çalışır; yeni tetikleme sırada bekler (grupta en çok bir bekleyen kalır)
+
+jobs:
+  saat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Saati çalıştır
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+        run: python scripts/saat.py --minutes 330

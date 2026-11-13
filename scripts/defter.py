@@ -9,14 +9,16 @@ Kayıt alanları (gün → hesap):
   c  günlük performans değişimi (para giriş/çıkışı ve yedek akçe değişimi ayıklanmış)
   f  o günkü para akışı (yatırma +, çekme −)       r  o günkü yedek akçe (TL)
   s  kaynak: x=Excel, a=otomatik (repo), m=elle    n  not
-Gün düzeyi: xu (XU100 kapanış), sp (S&P 500 kapanış), n (not).
+Gün düzeyi: xu (XU100 kapanış), sp (S&P 500 kapanış), fx (USD/TRY kapanış), n (not).
+İşlem listesi (Pozisyonlar/İşlemler sekmesi) ayrı dosyada: docs/defter/data/islem.json (şifreli).
 
 Komutlar:
   kutu-anahtar  Claude'un repoya şifreli veri bırakabilmesi için RSA anahtar çifti üretir
                 (özel anahtar PORTFOLIO_KEY ile şifreli saklanır; açık anahtar defter/box_pub.pem).
   ice-aktar     defter/inbox/*.box.json kutularını açar ve deftere işler (sonra kutular silinir).
   ibkr          IBKR Flex raporundan (salt okunur token) günlük net değer + para hareketleri.
-  oto           Belirtilen gün (vars. bugün, UTC) için Midas-TR / Midas-USD değerini repodan, endeksleri piyasadan yazar.
+  oto           Her piyasanın son TAMAMLANMIŞ seans günü (ya da --date) için Midas-TR / Info-TR / Midas-USD değerini
+                (Info-TR: bars-bist.json tarihli kapanışı), endeksleri ve USD/TRY'yi yazar.
   gir           Elle kayıt (iş akışı formundan): IN_* ortam değişkenleri.
   excel         Excel dosyası üretip Telegram'dan gönderir (+ haftalık özet).
 """
@@ -28,6 +30,7 @@ import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -39,7 +42,8 @@ F_BOX_PRIV = "defter/box_key.json"
 F_BOX_PUB = "defter/box_pub.pem"
 INBOX = "defter/inbox"
 F_INFO = "defter/info_portfolio.json"
-common.SECRET_FILES.update({F_DEFTER, F_BOX_PRIV, F_INFO})
+F_ISLEM = "docs/defter/data/islem.json"
+common.SECRET_FILES.update({F_DEFTER, F_BOX_PRIV, F_INFO, F_ISLEM})
 
 ACCOUNTS = {
     "midas_tr": {"name": "Midas-TR", "cur": "TRY", "bench": "xu", "reserve": 90000, "src": "docs/bist/data/history.json"},
@@ -54,6 +58,11 @@ ALIASES = {"midas_tr": "midas_tr", "midastr": "midas_tr", "midas-tr": "midas_tr"
 DIAG = []   # kaynak hataları (tutar içermez; status.json'a yazılır)
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
 GUN = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"]
+GROUPS = (("tl", ("midas_tr", "info_tr")), ("usd", ("midas_usd", "ibkr")))
+IST, NY = ZoneInfo("Europe/Istanbul"), ZoneInfo("America/New_York")
+# piyasa -> (saat dilimi, seansın tamamlandığı yerel saat: kapanış + 15 dk pay)
+MARKETS = {"bist": (IST, (18, 15)), "us": (NY, (16, 15))}
+MARKET_OF = {"midas_tr": "bist", "info_tr": "bist", "midas_usd": "us", "ibkr": "us"}
 
 
 # ------------------------------------------------------------------ veri
@@ -71,23 +80,54 @@ def load():
     return d
 
 
-def save(d):
-    d["days"].sort(key=lambda x: x["d"])
-    d["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+def _strip(o, ignore):
+    return {k: v for k, v in o.items() if k not in ignore}
+
+
+def save_islem(d):
+    """İşlem listesini ayrı şifreli dosyaya yazar (içerik, `at` damgası hariç, değişmediyse yazmaz).
+    Dönüş: True yazıldı, False değişmedi, None liste üretilemedi."""
     if not common.vault_key():
-        raise common.VaultError("PORTFOLIO_KEY yok: defter düz yazılmaz")
-    try:   # mini uygulama "İşlemler" sekmesi (defter.json içinde, şifreli)
-        d["islem"] = trade_snapshot(d)
+        raise common.VaultError("PORTFOLIO_KEY yok: işlem listesi düz yazılmaz")
+    try:
+        isl = trade_snapshot(d)
     except Exception as ex:
         DIAG.append(f"islem: {type(ex).__name__}")
+        return None
+    try:
+        old = common.load_json(F_ISLEM)
+    except Exception:
+        old = None
+    if isinstance(old, dict) and _strip(old, ("at",)) == _strip(isl, ("at",)):
+        return False
+    common.save_json(F_ISLEM, isl)
+    return True
+
+
+def save(d):
+    d["days"].sort(key=lambda x: x["d"])
+    if not common.vault_key():
+        raise common.VaultError("PORTFOLIO_KEY yok: defter düz yazılmaz")
+    if save_islem(d) is not None:
+        d.pop("islem", None)   # eski sürüm: işlem listesi defter.json içindeydi; artık islem.json'da
+    try:
+        old = common.load_json(F_DEFTER)
+    except Exception:
+        old = None
+    # İçerik değişmediyse yazma: şifreleme rastgele IV kullandığından her yazım dosyayı (324 KB) değiştirirdi
+    if isinstance(old, dict) and _strip(old, ("updated",)) == _strip(d, ("updated",)):
+        return False
+    d["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     common.save_json(F_DEFTER, d)
     # Tutar içermeyen durum dosyası (izleme / hata ayıklama için)
     st = {"updated": d["updated"], "days": len(d["days"]),
           "first": d["days"][0]["d"] if d["days"] else None, "last": d["days"][-1]["d"] if d["days"] else None,
           "with_xu": sum(1 for x in d["days"] if "xu" in x), "with_sp": sum(1 for x in d["days"] if "sp" in x),
+          "with_fx": sum(1 for x in d["days"] if "fx" in x),
           "last_by_account": {a: next((x["d"] for x in reversed(d["days"]) if a in x.get("a", {})), None)
                               for a in ACCOUNTS}, "diag": DIAG[-10:]}
     common.save_json("docs/defter/data/status.json", st)
+    return True
 
 
 def day(d, ds, create=True):
