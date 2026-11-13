@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Teknik Plan</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="../tgfs.js?v=1" defer></script>
+<style>
+:root{--bg:#040705;--surf:#08100b;--surf2:#0c1710;--line:#16301f;--ink:#d5ecdd;--ink2:#9dbfaa;--mute:#62806d;
+--sat:#ff9f43;--al:#3ee08f;--sig:#3ee08f;--stop:#ff6b72;--yedek:#b48cff;--uyari:#8aa396;--warn:#f2c14e;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans)}
+.wrap{max-width:900px;margin:0 auto;padding:12px 14px 40px}
+h1{font:600 17px var(--mono);color:var(--al);margin:4px 0}
+.sub{color:var(--mute);font:12px var(--mono)}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+nav button{font:500 12px var(--mono);color:var(--ink2);background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;min-height:34px}
+nav button.on{color:var(--bg);background:var(--al);border-color:var(--al)}
+nav button i{font-style:normal;color:var(--warn)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sym{font:600 16px var(--mono)}
+.px{font:600 18px var(--mono)}
+.up{color:var(--al)}.dn{color:var(--stop)}
+.meta{color:var(--ink2);font-size:12px;margin-top:4px}
+.warn{background:rgba(242,193,78,.1);border:1px solid rgba(242,193,78,.4);color:var(--warn);border-radius:8px;padding:6px 8px;font-size:12px;margin-top:8px}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-variant-numeric:tabular-nums}
+td{padding:7px 4px;border-top:1px solid var(--line);vertical-align:top;font-size:13px}
+td.f{font-family:var(--mono);white-space:nowrap;text-align:right;width:1%}
+td.d{font-family:var(--mono);white-space:nowrap;color:var(--mute);text-align:right;width:1%;font-size:12px}
+.k{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:1px}
+.k.sigorta{background:transparent;border:2px solid var(--sig)}
+.e{font-weight:500}.c{color:var(--mute);font-size:12px}
+.tag{font:600 10px var(--mono);border:1px solid var(--line);border-radius:4px;padding:1px 4px;color:var(--ink2);margin-left:4px}
+tr.now td{background:var(--surf2);color:var(--ink);font-weight:600}
+tr.yakin td{background:rgba(255,159,67,.08)}
+.not{color:var(--mute);font-size:12px;margin-top:6px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--mute);font-size:12px;margin:6px 0}
+a{color:var(--al)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>TEKNİK PLAN</h1>
+  <div class="sub" id="sub">Yükleniyor…</div>
+  <div class="legend">
+    <span><span class="k" style="--c:var(--sat)"></span>Sat</span><span><span class="k" style="--c:var(--al)"></span>Geri al</span>
+    <span><span class="k sigorta"></span>Sigorta</span><span><span class="k" style="--c:var(--stop)"></span>Çekirdek stop</span>
+    <span><span class="k" style="--c:var(--yedek)"></span>Kenardaki</span><span><span class="k" style="--c:var(--uyari)"></span>Uyarı (işlem değil)</span>
+  </div>
+  <nav id="nav"></nav>
+  <div id="list"></div>
+  <p class="sub">Haftalık plan bağlayıcıdır; 15 dk alarmlar ve günlük analiz bilgi amaçlıdır. Bildirim: fiyat bir emre 0,5 ATR yaklaşınca ve seviye geçilince Telegram'a gider. <a href="../">Portföy</a></p>
+</div>
+<script>
+(function(){
+const tg=window.Telegram&&window.Telegram.WebApp; try{tg&&tg.ready();tg&&tg.expand();}catch(e){}
+const C={sat:'var(--sat)',al:'var(--al)',sigorta:'var(--sig)',stop:'var(--stop)',yedek:'var(--yedek)',uyari:'var(--uyari)'};
+const fmt=x=>x==null?'—':Number(x).toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const get=u=>fetch(u+'?t='+Date.now()).then(r=>{if(!r.ok)throw new Error(u);return r.json()});
+let sec='Tümü';
+Promise.all([get('data/salinim.json'),get('data/meta.json'),get('../data/quotes.json').catch(()=>({})),get('../bist/data/quotes.json').catch(()=>({}))])
+.then(([plan,meta,qu,qb])=>{
+  const Q=Object.assign({},(qb.quotes||{}),(qu.quotes||{}));
+  const H=meta.hisseler||{}; const syms=Object.keys(H).sort((a,b)=>(H[a].pazar+a).localeCompare(H[b].pazar+b));
+  document.getElementById('sub').textContent='Plan verisi: '+new Date(meta.guncelleme).toLocaleString('tr-TR')+' · fiyat: '+(qu.updated?new Date(qu.updated).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}):'—')+' ABD / '+(qb.updated?new Date(qb.updated).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}):'—')+' BIST';
+  const px=s=>{const q=Q[s];if(!q)return null;const x=q.ext&&/pre|post/.test(q.ext.sess||'')?q.ext.p:q.c;return x>0?x:null};
+  const near=s=>{const p=px(s),a=H[s].atr;return plan.some(r=>r.hisse===s&&r.fiyat!=null&&r.tip!=='not'&&p&&Math.abs(p-r.fiyat)<=0.5*a)};
+  function draw(){
+    const nav=document.getElementById('nav'); nav.innerHTML='';
+    ['Tümü',...syms].forEach(s=>{const b=document.createElement('button');b.className=s===sec?'on':'';b.innerHTML=esc(s)+(s!=='Tümü'&&near(s)?' <i>●</i>':'');b.onclick=()=>{sec=s;draw()};nav.append(b)});
+    const L=document.getElementById('list'); L.innerHTML='';
+    (sec==='Tümü'?syms:[sec]).forEach(s=>{
+      const m=H[s], p=px(s), q=Q[s]||{}, cur=m.pazar==='bist'?'₺':'$', A=m.atr;
+      const rows=plan.filter(r=>r.hisse===s);
+      const pr=rows.filter(r=>r.fiyat!=null&&r.tip!=='not').sort((a,b)=>b.fiyat-a.fiyat);
+      const notes=rows.filter(r=>r.fiyat==null||r.tip==='not');
+      const age=Math.floor((Date.now()-new Date(m.plan+'T00:00:00'))/864e5);
+      const lo=pr.length?Math.min(...pr.map(r=>r.fiyat)):null, hi=pr.length?Math.max(...pr.map(r=>r.fiyat)):null;
+      const bil=rows[0]?.bilanco||'—';
+      let h=`<div class="top"><span class="sym">${esc(s)}</span><span class="px">${p?cur+fmt(p):'—'}</span>`+
+        (q.dp!=null?`<span class="${q.dp>=0?'up':'dn'}">${q.dp>=0?'+':''}${fmt(q.dp)}%</span>`:'')+`</div>`+
+        `<div class="meta">Mod: <b>${esc(m.mod)}</b> · ATR ${fmt(A)} · plan ${esc(m.plan)} · bilanço ${esc(bil)}</div>`;
+      if(age>7)h+=`<div class="warn">Plan ${age} gün önce yapıldı; haftalık analiz gerekli.</div>`;
+      if(p&&lo!=null&&(p>hi||p<lo))h+=`<div class="warn">Fiyat emir haritasının dışında (${fmt(lo)}–${fmt(hi)}) — ara güncelleme gerekli.</div>`;
+      h+='<table>'; let put=false;
+      pr.forEach(r=>{
+        if(p&&!put&&p>=r.fiyat){h+=`<tr class="now"><td>Şimdiki fiyat</td><td class="d"></td><td class="f">${fmt(p)}</td></tr>`;put=true}
+        const d=p?(r.fiyat-p)/A:null, kap=/kapanış/i.test(r.emir+' '+r.kosul)||r.tip==='sigorta'||r.tip==='stop';
+        h+=`<tr class="${d!=null&&Math.abs(d)<=0.5?'yakin':''}"><td><span class="k ${r.tip==='sigorta'?'sigorta':''}" style="--c:${C[r.tip]||'var(--mute)'}"></span><span class="e">${esc(r.emir)}</span><span class="tag">${kap?'KAPANIŞ':'LİMİT'}</span><div class="c">${esc(r.kosul)}${r.kaynak?' · '+esc(r.kaynak):''}</div></td>`+
+           `<td class="d">${d==null?'':(d>0?'+':'')+d.toFixed(1).replace('.',',')+' ATR'}</td><td class="f">${fmt(r.fiyat)}</td></tr>`;
+      });
+      if(p&&!put)h+=`<tr class="now"><td>Şimdiki fiyat</td><td class="d"></td><td class="f">${fmt(p)}</td></tr>`;
+      h+='</table>';
+      if(notes.length)h+='<div class="not">'+notes.map(r=>`<b>${esc(r.emir)}:</b> ${esc(r.kosul||r.fiyat_metin)}`).join('<br>')+'</div>';
+      const c=document.createElement('div');c.className='card';c.innerHTML=h;L.append(c);
+    });
+  }
+  draw();
+}).catch(e=>{document.getElementById('sub').textContent='Yüklenemedi: '+e.message});
+})();
+</script>
+</body>
+</html>

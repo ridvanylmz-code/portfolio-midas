@@ -1,0 +1,61 @@
+{
+ "guncelleme": "2026-11-13T13:05:25+00:00",
+ "hisseler": {
+  "BIENY": {
+   "pazar": "bist",
+   "atr": 0.7691,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-08",
+   "mod": "Bant"
+  },
+  "CRWV": {
+   "pazar": "us",
+   "atr": 6.4513,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-07",
+   "mod": "Savunma"
+  },
+  "MIATK": {
+   "pazar": "bist",
+   "atr": 1.789,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-08",
+   "mod": "Bant"
+  },
+  "RKLB": {
+   "pazar": "us",
+   "atr": 4.8895,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-07",
+   "mod": "Savunma"
+  },
+  "SASA": {
+   "pazar": "bist",
+   "atr": 0.0884,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-08",
+   "mod": "Savunma"
+  },
+  "SGML": {
+   "pazar": "us",
+   "atr": 0.6291,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-07",
+   "mod": "Savunma"
+  },
+  "SMRTG": {
+   "pazar": "bist",
+   "atr": 0.3188,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-08",
+   "mod": "Savunma"
+  },
+  "WYFI": {
+   "pazar": "us",
+   "atr": 1.2529,
+   "atr_tarih": "2026-11-12",
+   "plan": "2026-11-07",
+   "mod": "Savunma"
+  }
+ }
+}
