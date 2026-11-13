@@ -219,6 +219,9 @@
     if(!$("defterBtn")){var db=el("a","","📒 Portföy Defteri (4 hesap) →");db.id="defterBtn";db.href=CFG.defterHref;
       db.style.cssText="display:block;margin:10px 0 4px;padding:10px 12px;border:1px solid rgba(62,224,143,.35);border-radius:10px;color:#3ee08f;text-decoration:none;font-weight:600;text-align:center";
       $("foot").parentNode.insertBefore(db,$("foot"))}
+    if(CFG.teknikHref&&!$("teknikBtn")){var tb=el("a","","📐 Teknik Plan (haftalık emirler) →");tb.id="teknikBtn";tb.href=CFG.teknikHref;
+      tb.style.cssText="display:block;margin:6px 0 4px;padding:10px 12px;border:1px solid rgba(255,159,67,.35);border-radius:10px;color:#ff9f43;text-decoration:none;font-weight:600;text-align:center";
+      $("foot").parentNode.insertBefore(tb,$("foot"))}
     if(window.Vault&&Vault.unlocked()&&!$("lockBtn")){var lb=el("a","","🔒 Kilitle");lb.id="lockBtn";lb.href="#";
       lb.style.cssText="display:block;margin-top:6px;color:inherit;opacity:.7;text-decoration:underline";
       lb.onclick=function(e){e.preventDefault();Vault.forget()};$("foot").parentNode.insertBefore(lb,$("foot").nextSibling)}
