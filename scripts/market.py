@@ -178,7 +178,7 @@ def build_picks(uni, gmap, spy_p, held):  # held: izlenen semboller (pozisyon + 
     Aday havuzu: büyük tarama (piyasa değeri > min_mcap, TEK istek) + tema aday listeleri (TEK istek)."""
     cfg = uni.get("picks") or {}
     if not cfg:
-        return {}, 0
+        return {}, 0, []
     ind_g, sec_g, themes = cfg.get("industry_group", {}), uni.get("sector_group", {}), cfg.get("theme_candidates", {})
     excl = set(cfg.get("exclude_industries", []))
     big = tvscan.screen([{"left": "market_cap_basic", "operation": "greater", "right": cfg.get("min_mcap", 3e9)},
@@ -226,7 +226,9 @@ def build_picks(uni, gmap, spy_p, held):  # held: izlenen semboller (pozisyon + 
         for z in cands:
             z.pop("_k")
         out[g] = cands[:cfg.get("per_group", 3)]
-    return out, len(big)
+    # genişlik için aynı havuz (ek istek yok): grup başına kayıtlar tekilleştirilir, tercihli hisse (ör. HPE/PC) hariç
+    uniq = {t: x for recs in pool.values() for t, x in recs.items() if "/" not in t}
+    return out, len(big), list(uniq.values())
 
 
 def write_bars(path, stocks, sout):
@@ -266,8 +268,22 @@ def borderline(score, mx):
     return any(0 <= score + d <= mx and regime_band(score + d, mx) != regime_band(score, mx) for d in (-1, 1))
 
 
-def regime(data, groups_out, stocks_out):
-    """0-7 puan: SPY/QQQ/IWM trendi, piyasa genişliği, eşit ağırlık katılımı."""
+MIN_POOL = 30  # genişlik için havuzda en az bu kadar (close + SMA50'li) hisse gerekir; azsa eski hesaba düşülür
+
+
+def pool_breadth(rows):
+    """Hisse havuzunda (close ve SMA50'si olan) hisselerin SMA50 üstündeki payı: (yüzde, hisse sayısı) ya da
+    havuz yok/küçükse (None, n). BIST'teki market_bist.regime ile aynı tanım."""
+    ok = [x for x in rows or [] if num(x.get("close")) and num(x.get("SMA50"))]
+    if len(ok) < MIN_POOL:
+        return None, len(ok)
+    return round(sum(1 for x in ok if x["close"] > x["SMA50"]) / len(ok) * 100), len(ok)
+
+
+def regime(data, groups_out, stocks_out, pool=None):
+    """0-7 puan: SPY/QQQ/IWM trendi, piyasa genişliği, eşit ağırlık katılımı.
+    Genişlik: `pool` (hisse tarama havuzu satırları) yeterliyse yalnız hisselerden; yoksa eski karışık hesap
+    (ETF + hisse + gösterge) ve etiket bunu söyler."""
     def g(s, k):
         return num((data.get(s) or {}).get(k))
     checks = []
@@ -283,10 +299,15 @@ def regime(data, groups_out, stocks_out):
     rsp, spy = g("RSP", "Perf.1M"), g("SPY", "Perf.1M")
     if rsp is not None and spy is not None:
         checks.append(["Eşit ağırlık (RSP) SPY'den en çok 2 puan geride (katılım)", rsp - spy > -2])
-    above = [x for x in list(groups_out) + list(stocks_out.values()) if x.get("close") and x.get("sma50")]
-    br50 = round(sum(1 for x in above if x["close"] > x["sma50"]) / len(above) * 100) if above else None
+    br50, n_pool = pool_breadth(pool)
     if br50 is not None:
-        checks.append([f"Genişlik: evrenin %{br50}'i SMA50 üstünde (>%50)", br50 > 50])
+        lbl = f"Genişlik: {n_pool} hisselik havuzun %{br50}'i SMA50 üstünde (>%50)"
+    else:  # havuz yok ya da küçük: eski karışık hesap
+        above = [x for x in list(groups_out) + list(stocks_out.values()) if x.get("close") and x.get("sma50")]
+        br50 = round(sum(1 for x in above if x["close"] > x["sma50"]) / len(above) * 100) if above else None
+        lbl = f"Genişlik (hisse havuzu yok; ETF+hisse+gösterge karışık {len(above)} kalem): %{br50}'i SMA50 üstünde (>%50)"
+    if br50 is not None:
+        checks.append([lbl, br50 > 50])
     if not checks:
         return None
     score = sum(1 for _, ok in checks if ok)
@@ -397,12 +418,12 @@ def main(argv=None):
                    "verdict": verdict(q, tr, bool((gmap.get(grp) or {}).get("bank"))), "stop_atr": stop}
 
     try:
-        picks, pool_n = build_picks(uni, gmap, spy_p, set(common.public_symbols("docs/data")))
+        picks, pool_n, pool_rows = build_picks(uni, gmap, spy_p, set(common.public_symbols("docs/data")))
     except Exception as ex:  # seçim hatası ana çıktıyı düşürmesin
         log(f"Hisse seçimi hatası: {type(ex).__name__}: {tk.scrub(ex)[:100]}")
-        picks, pool_n = (prev.get("picks") or {}), 0
+        picks, pool_n, pool_rows = (prev.get("picks") or {}), 0, []
     reg = regime(data, [x for x in gout if not x.get("stale")] + [{"close": num(data[b].get("close")),
-                 "sma50": num(data[b].get("SMA50"))} for b in bench if b in data], sout)
+                 "sma50": num(data[b].get("SMA50"))} for b in bench if b in data], sout, pool_rows)
     out = {
         "updated": now.isoformat(timespec="seconds"), "checked": now.isoformat(timespec="seconds"),
         # TV tarayıcısı (anahtarsız) ~15 dk gecikmeli: seans etiketi verinin ait olduğu ana göre (2026-10-15 ölçüldü)
@@ -415,7 +436,8 @@ def main(argv=None):
                        for b in bench if b in data},
         "regime": reg, "groups": gout, "stocks": sout, "picks": picks, "picks_pool": pool_n, "log": LOG,
         "method": "RS = performans − SPY (puan). Bileşik: 0.15·1H+0.35·1A+0.35·3A+0.15·6A. Trend 0-7 (5 günlük + 2 haftalık koşul). "
-                  "Çeyrek: 3A RS (uzun) ve 1A RS (kısa). Stop önerisi: kapanış − 2×ATR.",
+                  "Çeyrek: 3A RS (uzun) ve 1A RS (kısa). Stop önerisi: kapanış − 2×ATR. "
+                  "Rejim genişliği: hisse havuzunda (büyük tarama + tema adayları) kapanış > SMA50 payı; havuz yoksa ETF+hisse+gösterge karışık.",
     }
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))

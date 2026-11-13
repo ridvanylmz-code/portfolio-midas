@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<title>Bugün · RIDVAN // COCKPIT</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta name="theme-color" content="#0a0d14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cockpit">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="tgfs.js?v=1" defer></script>
+<style>
+:root{
+  --bg:#0a0d14; --card:#11151f; --line:#1d2330; --txt:#e8ecf4; --mut:#7d8798;
+  --up:#3ddc84; --dn:#ff5c6c; --warn:#f5b942; --chip:#1a2030; --on:#27304a; --acc:#5aa9ff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+html,body{margin:0;color:var(--txt);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{padding:0 14px calc(40px + env(safe-area-inset-bottom));max-width:980px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;padding:14px 4px 0;font-size:19px;font-weight:800;line-height:1.1;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(240,243,250,.95)}
+.brand b{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 10px var(--up)}
+.brandsub{padding:5px 4px 0 22px;font-size:11px;letter-spacing:.08em;color:var(--mut)}
+.eye{border:0;background:transparent;color:var(--mut);padding:2px 6px;margin-left:auto;cursor:pointer}
+.eye svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.eye .ico-off{display:none} body.hide .eye .ico-off{display:block} body.hide .eye .ico-on{display:none}
+.sec{display:flex;align-items:center;gap:8px;margin:20px 4px 8px;font-size:17px;font-weight:700}
+.badge{background:var(--chip);color:var(--mut);font-size:12px;font-weight:600;padding:2px 8px;border-radius:8px}
+.cols{display:grid;grid-template-columns:1fr;gap:8px}
+@media (min-width:720px){.cols{grid-template-columns:1fr 1fr;gap:12px}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-variant-numeric:tabular-nums}
+.box h3{margin:0 0 6px;font-size:14px;color:var(--mut);font-weight:600}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line)}
+.kv:last-child{border-bottom:0} .kv span:first-child{color:var(--mut)} .kv span:last-child{text-align:right;font-weight:600}
+.act{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;margin-bottom:6px;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;font-variant-numeric:tabular-nums}
+.act.dn{border-color:rgba(255,92,108,.6)}
+.act .r{text-align:right;flex:0 0 auto}
+.tk{font-weight:700;font-size:16px}
+.chipx{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:7px;background:var(--chip);color:var(--mut);margin-right:6px}
+.chipx.up{color:var(--up);background:rgba(61,220,132,.1)}.chipx.dn{color:var(--dn);background:rgba(255,92,108,.1)}.chipx.warn{color:var(--warn);background:rgba(245,185,66,.1)}
+.sub{color:var(--mut);font-size:13px}
+.up{color:var(--up)} .dn{color:var(--dn)} .warn{color:var(--warn)}
+.stale{color:var(--dn);font-weight:700}
+.mut{color:var(--mut);padding:6px 4px}
+.err{background:rgba(255,92,108,.1);border:1px solid rgba(255,92,108,.3);color:var(--dn);border-radius:12px;padding:12px;margin-top:16px;font-size:13px}
+</style>
+</head>
+<body>
+<script src="nav.js?v=1"></script>
+<div class="brand"><b></b>BUGÜN
+  <button class="eye" id="eye" type="button" aria-label="Tutarları gizle / göster">
+    <svg class="ico-on" viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/></svg>
+    <svg class="ico-off" viewBox="0 0 24 24"><path d="M12 5c-6 0-9.5 7-9.5 7s3.5 7 9.5 7 9.5-7 9.5-7S18 5 12 5z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>
+  </button>
+</div>
+<div class="brandsub" id="today"></div>
+<main id="app"></main>
+<div class="mut" id="msg">Yükleniyor…</div>
+<script src="vault.js?v=1"></script>
+<script src="sector.js?v=3"></script>
+<script src="bugun.js?v=1"></script>
+</body>
+</html>

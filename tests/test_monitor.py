@@ -207,7 +207,7 @@ def test_perf_summary_small_example(load):
     # taban: ayın ilk gününden ÖNCEKİ son kayıt (30 Eki = 1000); 100 yatırma akıştır
     assert p["Ay"]["gain"] == pytest.approx(110.0)
     assert p["Ay"]["twr"] == pytest.approx(((1050 / 1000) * (1100 / 1050) * ((1210 - 100) / 1100) - 1) * 100)
-    assert p["Hafta"]["gain"] == pytest.approx(60.0)  # t-7 = 5 Kas -> son kayıt < 5 Kas = 2 Kas (1050): 1210-1050-100
+    assert p["Hafta"]["gain"] == pytest.approx(10.0)  # t-7 = 5 Kas -> o güne ya da öncesine ait son kayıt = 5 Kas (1100): 1210-1100-100 (perf.js ile aynı)
     assert c.perf_summary({"snapshots": []}, 1.0, "2026-11-12") is None
 
 

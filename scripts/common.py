@@ -493,7 +493,8 @@ def finite_positive(x, name):
 
 def perf_summary(history, total_value, today_iso):
     """Rapor satırı: Hafta / Ay / Yıl kazancı ($) ve zaman ağırlıklı getiri (%), para giriş-çıkışından arındırılmış."""
-    snaps = sorted(history.get("snapshots", []), key=lambda s: s["date"])
+    # değeri 0/boş kayıtlar (portföy girilmeden önceki) yok sayılır: docs/perf.js series() ile aynı kural
+    snaps = sorted((s for s in history.get("snapshots", []) if (s.get("value") or 0) > 0), key=lambda s: s["date"])
     if not snaps:
         return None
     snaps = [s for s in snaps if s["date"] != today_iso] + [{"date": today_iso, "value": total_value}]
@@ -513,11 +514,12 @@ def perf_summary(history, total_value, today_iso):
         fl.append(f)
     from datetime import date, timedelta
     t = date.fromisoformat(today_iso)
-    marks = {"Hafta": (t - timedelta(days=7)).isoformat(), "Ay": date(t.year, t.month, 1).isoformat(),
-             "Yıl": date(t.year, 1, 1).isoformat()}
+    # dönem başlangıcı = o güne ya da öncesine ait son kayıt (docs/perf.js period() ile aynı): hafta t−7, ay/yıl önceki dönem sonu
+    marks = {"Hafta": (t - timedelta(days=7)).isoformat(), "Ay": (date(t.year, t.month, 1) - timedelta(days=1)).isoformat(),
+             "Yıl": date(t.year - 1, 12, 31).isoformat()}
     res = {}
     for k, d0 in marks.items():
-        j = max([i for i, s in enumerate(snaps) if s["date"] < d0] or [0])
+        j = max([i for i, s in enumerate(snaps) if s["date"] <= d0] or [0])
         if j >= len(snaps) - 1:
             continue
         gain = snaps[-1]["value"] - snaps[j]["value"] - sum(fl[j + 1:])
