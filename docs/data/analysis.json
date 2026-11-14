@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-12",
- "note": "Fiyatlar 12 Kas seans içi ~14:50 ET, TradingView (15 dk gecikmeli). Takip listesi 12 Kas: CROX, ELF, KNSA, GMAB, GKOS (değişiklik yok; yedek aday HNGE). Adil değer = analist ortalama hedefi. Stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim risk-off 3/7: nakit %35-40, alımlar yalnız lider gruplardan ve kademeli.",
+ "updated": "2026-11-14",
+ "note": "Fiyatlar 13 Kas (Cuma) kapanış, TradingView. Takip listesi 14 Kas: CROX, ELF, KNSA, GMAB, GKOS (değişiklik yok). Adil değer = analist ortalama hedefi. Stop = fiyattan 2×ATR ya da 3A tepeden 3×ATR. Rejim kodda 4/7 (genişlik ölçümü değişti); nakit %25-30, alımlar yalnız lider gruplardan ve kademeli. Teknik plan (salinim.json) 7 Kas tarihli; bilançolar geçti, yeni haftalık teknik analiz gerekli (plan 21 Kas'ta süresi dolar).",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
    "momentum": {
-    "status": "Toparlanıyor",
-    "text": "12 Kas $64,85 (−%2,0; hafta +%28,5). EMA20 58,42 ve SMA50 62,53 üstünde; trend 2/7 (haftalık koşullar henüz olumsuz). Hedef indirimlerine rağmen dipten ~%50 tepki. ATR stop $60,08. Tut; 60,08 altı kapanışta 1 porsiyon sat."
+    "status": "Zayıflıyor",
+    "text": "13 Kas $61,53 (−%4,0; seans sonrası 59,87; hafta +%27,4). EMA20 58,65 üstünde ama SMA50 62,47 altına döndü; trend 1/7. Teknik plan sigortası 58,31: kapanış altına inerse 1 porsiyon sat. Plan çekirdek stop 47,16; ATR stop 51,78."
    },
    "technical": [
     "9 Eki kapanışı $68,21 (−%0,28); trend verisi son fiyatı $68,22",
@@ -77,7 +77,7 @@
    "name": "CoreWeave",
    "momentum": {
     "status": "Kırık",
-    "text": "12 Kas $56,03 (−%7,8). Trend 0/7; EMA20 (57,57) altına geri düştü, SMA50 73,21. Barclays hedefi 105→85 indirdi; borç yükü kaygısı sürüyor. ATR stop $49,50. 1 porsiyon sat; 49,50 altı kapanışta 1 porsiyon daha sat; 57,60 üstü kapanışta sattığını geri al."
+    "text": "13 Kas $53,13 (−%6,1; gün içi dip 49,24; seans sonrası 51,75). Trend 0/7; EMA20 57,20, SMA50 72,60 üstte. Nvidia'nın neocloud'lara desteği zayıflıyor haberleri; Barclays hedef 85. Teknik plan: sigorta 55,09 altında, 53,35 satış seviyesinde. 53,35'e dönüşte 1 porsiyon sat; çekirdek stop 42,08 (kapanış); 55,09 üstü kapanışta sattığının yarısını geri al."
    },
    "technical": [
     "9 Eki kapanışı $82,08 (+%0,61); trend verisi son fiyatı $82,37",
@@ -148,7 +148,7 @@
    "name": "WhiteFiber",
    "momentum": {
     "status": "Kırık",
-    "text": "12 Kas $10,26 (−%1,6). Trend 0/7; EMA20 10,86 altında, SMA50 14,77. Bilanço sonrası B. Riley (38→32) ve Macquarie (44→30) hedef indirdi. ATR stop $8,97. 1 porsiyon sat; 8,97 altı kapanışta 1 porsiyon daha sat; 10,86 üstü kapanışta sattığını geri al."
+    "text": "13 Kas $9,43 (−%8,8; seans sonrası 9,22). Trend 0/7; EMA20 10,73 altında. Bilanço sonrası hedef indirimleri (B. Riley 32, Macquarie 30). Teknik plan: 9,03 satış seviyesi yakın; çekirdek stop 7,24 (kapanış). 10,51'e dönüşte 1 porsiyon sat; 7,24 altı kapanışta çekirdek sat."
    },
    "technical": [
     "9 Eki kapanışı $15,69 (−%0,38); trend verisi son fiyatı $15,80",
@@ -213,7 +213,7 @@
    "name": "Sigma Lithium",
    "momentum": {
     "status": "Kırık",
-    "text": "12 Kas $5,04 (−%2,4). Trend 0/7, RSI 29; EMA20 6,63, SMA50 8,56 çok üstte. $9 geçersizlik seviyesi çoktan kırıldı. Bilanço 13 Kas; son hafta dönüştürülebilir tahvil fiyatlaması (dilüsyon riski). ATR stop $4,41. Bilanço öncesi 1 porsiyon sat; 4,41 altı kapanışta 1 porsiyon daha sat; 6,63 üstü kapanışta sattığını geri al."
+    "text": "13 Kas $5,15 (+%2,8). Bilanço: Q3 gelir duruş nedeniyle düştü, faaliyet nakit akışı +$24,2 mn, yeniden finansman ve 2027 için 330 bin ton hedefi teyit. Trend 0/7, RSI 30,9. Teknik plan çekirdek stopu 5,23 (kapanış) kırıldı: pazartesi 1 porsiyon çekirdek sat; 4,98 altında 1 porsiyon daha sat (plan B yolu 4,98/4,80); 6,49 (EMA20) üstü kapanışta sattığını geri al."
    },
    "technical": [
     "9 Eki kapanışı $9,35 (−%2,20); trend verisi son fiyatı $9,36",
@@ -277,14 +277,14 @@
    ],
    "dilution": {
     "risk": "Yüksek",
-    "text": "12 Kas (TradingView haber): son hafta borç vadesi uzatma ve dönüştürülebilir tahvil fiyatlaması; nakit akışı Q3 duruşlarıyla zayıf. SEC kaydı doğrulanamadı."
+    "text": "14 Kas (TradingView haber): Q3 bilançosunda yeniden finansman ve dönüştürülebilir tahvil; faaliyet nakit akışı pozitife döndü (+$24,2 mn) ama bilanço zayıf. SEC kaydı doğrulanamadı."
    }
   },
   "UAMY": {
    "name": "United States Antimony",
    "momentum": {
-    "status": "Kırık",
-    "text": "12 Kas $2,94 (−%5,8; market.json 17:22 UTC). Trend 0/7; EMA20 3,15 altında. $4 geçersizlik seviyesi kırık. Bilanço takvimi 12 Kas (kapanış sonrası beklenir); TradingView haber akışı yok. ATR stop $2,65. 1 porsiyon sat; 2,65 altı kapanışta 1 porsiyon daha sat."
+    "status": "Kırık (tepki)",
+    "text": "13 Kas $3,09 (+%6,2; hafta +%14,9). EMA20 3,14'ün hemen altında; trend 0/7. Bilanço geçti (sonraki 25 Mar 2027); TradingView haber akışı yok. ATR stop $2,50. 3,14 üstü kapanış gelmeden ekleme yok; 2,50 altı kapanışta 1 porsiyon sat."
    },
    "technical": [
     "9 Eki kapanışı $3,68 (−%1,08); trend verisi son fiyatı $3,72",
@@ -1817,8 +1817,8 @@
   "ELF": {
    "name": "e.l.f. Beauty",
    "momentum": {
-    "status": "Zayıflıyor",
-    "text": "12 Kas $112,98 (−%4,6). EMA20 (113,34) altına sarktı; SMA50 107,09 destek. Trend 7/7, RS +27,6. Stop $106,97. Tetik: 117,30 (bugünkü tepe) üstü kapanışta 1 porsiyon al; 106,97 altı kapanışta listeden çıkar."
+    "status": "Güçlü",
+    "text": "13 Kas $117,98 (+%3,9; hafta +%9,2). EMA20 (113,83) yeniden üstünde; trend 7/7, RS +32,9. Stop $106,94. Tetik: 119,82 (Cuma tepe) üstü kapanışta 1 porsiyon al."
    },
    "technical": [
     "23 Eki kapanış $114,24; RSI 65; ADX 38; MACD sinyal üstünde",
@@ -2013,7 +2013,7 @@
    "name": "Kiniksa Pharmaceuticals",
    "momentum": {
     "status": "Güçlü",
-    "text": "12 Kas $94,98 (−%0,8). Trend 7/7, RS +26,9. EMA20 89,89 üstünde. Picks listesinden düştü ama trend bozulmadı. Stop $86,42. Tetik: 99,31 (3A tepe) üstü kapanışta 1 porsiyon al."
+    "text": "13 Kas $96,33 (hafta +%8,3). Trend 7/7, RS +29,3; EMA20 90,62 üstünde. Stop $87,27. Tetik: 99,31 (3A tepe) üstü kapanışta 1 porsiyon al."
    },
    "technical": [
     "30 Eki kapanış $92,24; RSI 63; EMA20 83,2, SMA50 79,2 üstünde",
@@ -2092,7 +2092,7 @@
    "name": "Crocs",
    "momentum": {
     "status": "Güçlü",
-    "text": "12 Kas $156,83 (−%2,0). Trend 7/7, RS +29,9. EMA20 144,0 üstünde; RSI 68,8 aşırı alıma yakın. Stop $147,10. Tetik: EMA20'ye (~144) geri çekilmede 1 porsiyon al."
+    "text": "13 Kas $163,72 (+%4,4; hafta +%8,9). 3A tepeye (164,13) dayandı; trend 7/7, RS +35,5, RSI 73 aşırı alım. Stop $151,60. Tetik: 164,13 üstü kapanışta yarım porsiyon al; asıl giriş EMA20'ye (~146) çekilmede 1 porsiyon."
    },
    "technical": [
     "30 Eki kapanış $150,52; RSI 77,7; ATR %4,0",
@@ -2171,8 +2171,8 @@
   "GMAB": {
    "name": "Genmab",
    "momentum": {
-    "status": "Dikkat",
-    "text": "12 Kas $51,93 (−%3,6; hafta −%4,4). Trend 7/7, RS +53,4 (listenin en güçlüsü). Stop $50,22'ye %3 mesafe; EMA20 49,82. Tetik: 50,22 üzerinde tutunup 53,03 üstü kapanışta 1 porsiyon al; 50,22 altı kapanışta listeden çıkar."
+    "status": "Dinleniyor",
+    "text": "13 Kas $51,37 (−%0,7; hafta −%1,9). Trend 7/7, RS +51,6; EMA20 49,95 üstünde tutunuyor. Stop $46,73. Tetik: 53,03 üstü kapanışta 1 porsiyon al; 49,95 altı kapanışta bekle."
    },
    "technical": [
     "6 Kas kapanış $53,63; EMA20 47,87, EMA50 41,31 üstünde",
@@ -2207,7 +2207,7 @@
    "name": "Glaukos",
    "momentum": {
     "status": "Güçlü",
-    "text": "12 Kas $246,98 (−%0,1). Trend 7/7, RS +38,9. RSI 69,5. Stop $222,54. Tetik: 255,19 (3A tepe) üstü kapanışta 1 porsiyon al ya da EMA20'ye (~216) çekilmede yarım porsiyon."
+    "text": "13 Kas $245,72 (hafta +%10,9). Trend 7/7, RS +41,3; RSI 68,7. Stop $221,76. Tetik: 255,19 (3A tepe) üstü kapanışta 1 porsiyon al ya da EMA20'ye (~219) çekilmede yarım porsiyon."
    },
    "technical": [
     "6 Kas kapanış $224,41; EMA20 203,0, EMA50 184,6 üstünde",

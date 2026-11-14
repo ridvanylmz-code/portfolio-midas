@@ -1,5 +1,5 @@
 {
- "guncelleme": "2026-11-14T19:00:08+00:00",
+ "guncelleme": "2026-11-14T19:30:00+00:00",
  "hisseler": {
   "BIENY": {
    "pazar": "bist",
@@ -10,8 +10,8 @@
   },
   "CRWV": {
    "pazar": "us",
-   "atr": 6.4513,
-   "atr_tarih": "2026-11-12",
+   "atr": 6.5536,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-07",
    "mod": "Savunma"
   },
@@ -24,8 +24,8 @@
   },
   "RKLB": {
    "pazar": "us",
-   "atr": 4.8895,
-   "atr_tarih": "2026-11-12",
+   "atr": 4.876,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-07",
    "mod": "Savunma"
   },
@@ -38,8 +38,8 @@
   },
   "SGML": {
    "pazar": "us",
-   "atr": 0.6291,
-   "atr_tarih": "2026-11-12",
+   "atr": 0.637,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-07",
    "mod": "Savunma"
   },
@@ -52,8 +52,8 @@
   },
   "WYFI": {
    "pazar": "us",
-   "atr": 1.2529,
-   "atr_tarih": "2026-11-12",
+   "atr": 1.2826,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-07",
    "mod": "Savunma"
   }

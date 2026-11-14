@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-12",
- "summary": "12 Kas güncellemesi; fiyatlar 12 Kas seans içi ~14:50 ET (TradingView, 15 dk gecikmeli; market.json 17:37 UTC). SPY $757,84 (−%0,3), QQQ $688,13 (−%0,3), IWM $279,09 (−%1,4), VIX 18,5 (+%5,8). SPY SMA50 ($764,8) altında, SMA200 ($731,6) üstünde. Makro: Ekim TÜFE aylık +%0,4 ile beklentiyi aştı (10 Kas); BofA Fed'in geride kaldığını, 50 bp artırım ihtimalini konuşuyor. Faiz artırım korkusu teknoloji/yarı iletkeni baskılıyor. Rejim 'Risk-off (savunma)' 3/7: nakit %35-40 bandında olmalı. Yükselen hisse oranı %38 (SMA50 üstü; 7 Kas %28'den iyileşme). Lider: sağlık, temel tüketim, döngüsel tüketim, havayolları, malzeme. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, lityum, nükleer, bakır, yarı iletken. Takip listesi değişmedi: CROX, ELF, KNSA, GMAB, GKOS (stop altında kapanış yok). Yedek aday: HNGE. Yarın 13 Kas ÜFE (beklenti aylık +%0,4), SGML bilançosu; 17 Kas perakende satışlar.",
+ "updated": "2026-11-14",
+ "summary": "14 Kas güncellemesi; fiyatlar 13 Kas (Cuma) kapanış, TradingView (market.json 14 Kas 01:29 UTC). Hafta: SPY $754,37 (hafta +%2,7, Cuma −%0,4), QQQ $679,89 (+%3,3; Cuma −%1,2), IWM $277,54 (+%2,0), VIX 19,3. SPY, QQQ ve IWM hâlâ SMA50 altında; SPY SMA200 ($731,9) üstünde. Makro: Ekim ÜFE aylık +%0,3 (beklenti +%0,4) TÜFE sonrası biraz rahatlattı; ama Fed başkan yardımcısı yapay zekâ yatırımlarının enflasyonu beslediğini söyledi, trend takip fonları net kısaya döndü (UBS). Nvidia kaynaklı sarsıntı neocloud hisselerini (CRWV) vurdu. Rejim kodda 'Nötr / seçici' 4/7 (nakit %20-25) ama yükseliş yalnız genişlik ölçüm değişikliğinden: yükselen hisse oranı artık 1387 hisselik havuzdan %57 (eski ölçüm %38). Endeks koşulları değişmedi; nakit %25-30 bandında olmalı, alımlar yalnız lider gruplardan ve kademeli. Lider: sağlık (7/7), temel tüketim (7/7), döngüsel tüketim, malzeme, gayrimenkul. Finans ve bölgesel bankalar güçlü ama banka kuralı gereği dışarıda. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, nükleer, lityum, bakır, yarı iletken, teknoloji. Takip listesi değişmedi: CROX, ELF, KNSA, GMAB, GKOS. Haftaya: 17 Kas perakende satışlar (beklenti +%0,2), 18 Kas konut başlangıçları.",
  "groups": {
   "CIBR": {
    "note": "7 Kas: Geride, hafta −%12,1, 1A −%15,2."
@@ -9,19 +9,19 @@
    "note": "7 Kas: Zayıflayan, hafta −%7,4, 1A −%10,6. Azalt / kâr al."
   },
   "XLK": {
-   "note": "12 Kas: #22, trend 3/7, 1A −%10,5. TÜFE sonrası faiz baskısı; EMA20 (178) altında. Uzak dur."
+   "note": "14 Kas: #22, 2/7, 1A −%12,2, Cuma −%2,0. Uzak dur."
   },
   "AIQ": {
    "note": "25 Eki: Zayıflayan (trend 4/7, 1A −6,4%). Yazılım tarafı (NOW, PLTR) güçlü, donanım tarafı zayıf."
   },
   "SMH": {
-   "note": "12 Kas: #27, trend 2/7, 1A −%13,4; hafta +%3,8 tepki SMA50'yi (561) geri almadı. Alım yok."
+   "note": "14 Kas: #29, 2/7, 1A −%15,6, Cuma −%3,0 (Nvidia sarsıntısı). Alım yok."
   },
   "XLE": {
-   "note": "12 Kas: #7, trend 5/7, bugün +%1,8 tepki; 1A hâlâ −%3. İzle."
+   "note": "14 Kas: #5 ama 'Azalt / kâr al'; hafta +%5,8, 1A −%3,9."
   },
   "XLV": {
-   "note": "12 Kas: Lider #1, trend 7/7, bileşik RS +13,6, 1A +%10. Hafta −%1 kâr satışı; EMA20 (183) üstünde. Risk-off'ta ana sığınak; yeni alımlar önce buradan."
+   "note": "14 Kas: Lider #1, trend 7/7, RS +14,4, hafta +%4,2, 1A +%10,5. Yeni alımlar önce buradan."
   },
   "IBIT": {
    "note": "25 Eki: Kararsız (6/7 ama 1A −5,1%). MSTR oynak, uygun değil."
@@ -30,7 +30,7 @@
    "note": "1A toparlanma işareti, 3A hâlâ SPY gerisinde. Erken; teyit için 3A RS'nin pozitife dönmesi beklenir."
   },
   "DTCR": {
-   "note": "12 Kas: #24, trend 1/7. CRWV bugün −%7,8 (Barclays hedef 105→85). Yapay zekâ altyapısı baskıda."
+   "note": "14 Kas: #24, 1/7. Nvidia'nın neocloud'lara desteğinin zayıfladığı haberleri; CRWV Cuma −%6,1."
   },
   "URA": {
    "note": "12 Kas: #35, 0/7, 3A −%27,7."
@@ -39,19 +39,19 @@
    "note": "12 Kas: #33, 0/7, 3A −%24."
   },
   "UFO": {
-   "note": "12 Kas: #23, trend 1/7 ama hafta +%7,2. RKLB dipten ~%50 toparlandı; grup trendi henüz dönmedi."
+   "note": "14 Kas: #23, 0/7, hafta +%7,5 tepki. RKLB SMA50 altında kaldı."
   },
   "ITA": {
    "note": "Savunma: ADX 51 ile güçlü bir DÜŞÜŞ trendi, 0/7. KTOS dahil uzak dur."
   },
   "LIT": {
-   "note": "12 Kas: #34, 0/7, 1A −%11,9. SGML bilançosu 13 Kas."
+   "note": "14 Kas: #33, 0/7. SGML bilançosu sonrası +%2,8; grup trendi kırık."
   },
   "REMX": {
-   "note": "12 Kas: #36, 0/7, 3A −%34, bugün −%4. UAMY dahil uzak dur."
+   "note": "14 Kas: #36, 0/7. UAMY haftada +%14,9 tepki verdi ama grup trendi kırık."
   },
   "WGMI": {
-   "note": "12 Kas: En zayıf (#37), 1A −%24,9, 3A −%40. Haftalık +%8 tepki trendi değiştirmedi. WYFI dahil uzak dur."
+   "note": "14 Kas: En zayıf (#37), 1A −%27,3, Cuma −%5,0. WYFI dahil uzak dur."
   },
   "GDX": {
    "note": "7 Kas: Hafta +%12 ama trend 2/7: sıçrama, trend değil. İzle."
@@ -69,10 +69,10 @@
    "note": "30 Eki: $43,43 (+%0,7), SMA50 üstü. Faiz artırımı konuşması kamu hizmetlerini sınırlar; doğalgaz dağıtım/orta akım (TRGP) daha güçlü."
   },
   "XLRE": {
-   "note": "7 Kas: Lider, 6/7, hafta +%1,4. Faize duyarlı: 10 Kas TÜFE yüksek gelirse ilk etkilenen."
+   "note": "14 Kas: #8, 6/7, hafta +%1,4."
   },
   "XLF": {
-   "note": "Banka kuralı nedeniyle hisse önerisi yok. 13-14 Eki banka bilançoları genel piyasa yönü için izlenir."
+   "note": "14 Kas: #3, 7/7, hafta +%3,4. Banka kuralı gereği yatırım yok; bankacılık dışı finans adayları ayrı değerlendirilir."
   },
   "KRE": {
    "note": "Bölgesel bankalar: banka kuralı; ADX 38 ile güçlü düşüş, piyasa için olumsuz sinyal (kredi tarafı)."
@@ -90,16 +90,16 @@
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "12 Kas: Lider #2, trend 7/7, RS +7,2, 1A +%7,8. Savunma rotasyonunun ikinci ayağı."
+   "note": "14 Kas: Lider #2, 7/7, RS +8,8, hafta +%3,8. Cuma +%1,4 ile en güçlü sektör."
   },
   "XBI": {
    "note": "7 Kas: Lider ama trend 4/7, Cuma +%2,6. Seçici: güçlü nakitli isimler (GMAB)."
   },
   "XLY": {
-   "note": "12 Kas: #4, trend 5/7, 1A +%7,7. Güçlü ama faiz artırım korkusuna duyarlı; seçici ol."
+   "note": "14 Kas: #4, 5/7, hafta +%2,7. Faiz hassas; CROX/ELF gibi nakit üreten isimlerle sınırlı kal."
   },
   "XLB": {
-   "note": "12 Kas: #6, trend 6/7, ama hafta −%2,8. İzle."
+   "note": "14 Kas: #6, 6/7. İzle."
   },
   "XLC": {
    "note": "25 Eki: Zayıf (0/7, hafta −6,3%). Uzak dur."
