@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T01:36:35+00:00",
+  "updated": "2026-11-14T02:38:28+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "TV scanner: 40/40 sembol tek istekte",
@@ -15,7 +15,7 @@
     "TD  WYFI: RSI 40.1 SMA50 14.58 (250 bar)",
     "TD  TEAM: RSI 28.0 SMA50 192.16 (250 bar)",
     "TD  MPC: RSI 47.9 SMA50 423.94 (250 bar)",
-    "TD  ILMN: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  ILMN: RSI 35.0 SMA50 249.02 (250 bar)",
     "TD  AVTR: RSI 45.3 SMA50 15.7 (250 bar)",
     "TD  GRAL: RSI 42.3 SMA50 121.43 (250 bar)",
     "TD  ZS: RSI 35.6 SMA50 209.45 (250 bar)",
@@ -43,7 +43,7 @@
     "TD  AMD: RSI 50.4 SMA50 554.55 (250 bar)",
     "TD  NVDA: RSI 24.9 SMA50 214.65 (250 bar)",
     "TD  TRGP: RSI 54.3 SMA50 288.87 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 39"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
   ],
   "tickers": {
     "CROX": {
@@ -559,25 +559,24 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 206.94,
+        "close": 207.01,
         "rsi14": 35.0,
         "sma20": 244.76,
         "sma50": 249.02,
-        "sma200": 179.51,
+        "sma200": 179.52,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -13.884,
-          "signal": -8.687,
-          "hist": -5.197
+          "macd": -13.878,
+          "signal": -8.686,
+          "hist": -5.192
         },
         "atr14": 15.07,
         "support20": 197.81,
         "resistance20": 294.21,
-        "vol_ratio": 0.71,
-        "bars": 250,
-        "stale": true
+        "vol_ratio": 0.55,
+        "bars": 250
       }
     },
     "AVTR": {
