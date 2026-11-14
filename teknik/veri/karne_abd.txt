@@ -1,0 +1,23 @@
+# Karne — ABD (puan.py, 2026-11-15)
+
+Son analiz (2026-11-07):
+ÖZET
+Bölge dokunma oranı: gerçek %100 · şans ort. %100
+Bölge isabeti (dokunulanlarda): gerçek %62 (n=13) · şans ort. %56 · gerçekten iyi şans oranı %40 (tek yönlü p)
+  KRİTİK: %57 (n=7)
+  ÖNEMLİ: %60 (n=5)
+  İzleme: %100 (n=1)
+  direnc: %50 (n=8)
+  destek: %50 (n=2)
+  pivot: %100 (n=3)
+
+Birikimli (2026-11-01 – 2026-11-14, şans 200 tekrar):
+ÖZET
+Bölge dokunma oranı: gerçek %71 · şans ort. %59
+Bölge isabeti (dokunulanlarda): gerçek %61 (n=37) · şans ort. %68 · gerçekten iyi şans oranı %80 (tek yönlü p)
+  KRİTİK: %70 (n=15)
+  ÖNEMLİ: %54 (n=13)
+  İzleme: %56 (n=9)
+  direnc: %58 (n=19)
+  destek: %45 (n=11)
+  pivot: %93 (n=7)

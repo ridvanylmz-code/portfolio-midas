@@ -1,0 +1,272 @@
+[
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 69.9,
+  "yon": "cross_up",
+  "ad": "RKLB 69,90 — sigorta (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 67.4,
+  "yon": "cross_up",
+  "ad": "RKLB 67,40 — 1 porsiyon daha sat (ticaret 2) (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 63.3,
+  "yon": "cross_up",
+  "ad": "RKLB 63,30 — 1 porsiyon daha sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 62.51,
+  "yon": "cross_up",
+  "ad": "RKLB 62,51 — 1 porsiyon sat + fazla (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 58.95,
+  "yon": "cross_down",
+  "ad": "RKLB 58,95 — sattığını geri al bölgesi (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 56.4,
+  "yon": "cross_down",
+  "ad": "RKLB 56,40 — B hedefi 1 (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:RKLB",
+  "fiyat": 54.14,
+  "yon": "cross_down",
+  "ad": "RKLB 54,14 — çekirdek stop (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:CRWV",
+  "fiyat": 63.9,
+  "yon": "cross_up",
+  "ad": "CRWV 63,90 — sigorta (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:CRWV",
+  "fiyat": 57.64,
+  "yon": "cross_up",
+  "ad": "CRWV 57,64 — kalan ticaret sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:CRWV",
+  "fiyat": 56.24,
+  "yon": "cross_up",
+  "ad": "CRWV 56,24 — 1 porsiyon sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:CRWV",
+  "fiyat": 52.09,
+  "yon": "cross_down",
+  "ad": "CRWV 52,09 — yarım geri al bölgesi (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:CRWV",
+  "fiyat": 50.27,
+  "yon": "cross_down",
+  "ad": "CRWV 50,27 — çekirdek stop (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:CRWV",
+  "fiyat": 47.31,
+  "yon": "cross_down",
+  "ad": "CRWV 47,31 — B hedefi 1 (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 6.81,
+  "yon": "cross_up",
+  "ad": "SGML 6,81 — sigorta (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 6.49,
+  "yon": "cross_up",
+  "ad": "SGML 6,49 — 1 porsiyon sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 5.76,
+  "yon": "cross_up",
+  "ad": "SGML 5,76 — fazla sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 5.52,
+  "yon": "cross_up",
+  "ad": "SGML 5,52 — fazla sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 5.4,
+  "yon": "cross_up",
+  "ad": "SGML 5,40 — ertelenen çekirdek + fazla sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 4.59,
+  "yon": "cross_down",
+  "ad": "SGML 4,59 — B hedefi 1 (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:SGML",
+  "fiyat": 4.49,
+  "yon": "cross_down",
+  "ad": "SGML 4,49 — çekirdek stop (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:WYFI",
+  "fiyat": 11.24,
+  "yon": "cross_up",
+  "ad": "WYFI 11,24 — sigorta (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:WYFI",
+  "fiyat": 10.12,
+  "yon": "cross_up",
+  "ad": "WYFI 10,12 — 1 porsiyon daha sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:WYFI",
+  "fiyat": 9.89,
+  "yon": "cross_up",
+  "ad": "WYFI 9,89 — 1 porsiyon sat (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:WYFI",
+  "fiyat": 8.13,
+  "yon": "cross_down",
+  "ad": "WYFI 8,13 — B hedefi 1 (v2.4 14.11)"
+ },
+ {
+  "sembol": "NASDAQ:WYFI",
+  "fiyat": 7.24,
+  "yon": "cross_down",
+  "ad": "WYFI 7,24 — çekirdek stop (v2.4 14.11)"
+ },
+ {
+  "sembol": "BIST:BIENY",
+  "fiyat": 13.35,
+  "yon": "cross_up",
+  "ad": "BIENY 13,35 — sat (kalan ticaret) (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:BIENY",
+  "fiyat": 13.58,
+  "yon": "cross_up",
+  "ad": "BIENY 13,58 — ertelenen çekirdek sat (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:BIENY",
+  "fiyat": 13.7,
+  "yon": "cross_up",
+  "ad": "BIENY 13,70 — sigorta (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:BIENY",
+  "fiyat": 12.74,
+  "yon": "cross_down",
+  "ad": "BIENY 12,74 — yarım geri al (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:BIENY",
+  "fiyat": 11.78,
+  "yon": "cross_down",
+  "ad": "BIENY 11,78 — çekirdek stop (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SASA",
+  "fiyat": 1.6,
+  "yon": "cross_up",
+  "ad": "SASA 1,60 — sat (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SASA",
+  "fiyat": 1.64,
+  "yon": "cross_up",
+  "ad": "SASA 1,64 — sat daha (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SASA",
+  "fiyat": 1.69,
+  "yon": "cross_up",
+  "ad": "SASA 1,69 — sigorta (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SASA",
+  "fiyat": 1.52,
+  "yon": "cross_down",
+  "ad": "SASA 1,52 — B hedefi (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SASA",
+  "fiyat": 1.5,
+  "yon": "cross_down",
+  "ad": "SASA 1,50 — çekirdek stop (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SMRTG",
+  "fiyat": 4.07,
+  "yon": "cross_up",
+  "ad": "SMRTG 4,07 — sat (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SMRTG",
+  "fiyat": 4.12,
+  "yon": "cross_up",
+  "ad": "SMRTG 4,12 — sat daha (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SMRTG",
+  "fiyat": 4.21,
+  "yon": "cross_up",
+  "ad": "SMRTG 4,21 — sigorta (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SMRTG",
+  "fiyat": 3.56,
+  "yon": "cross_down",
+  "ad": "SMRTG 3,56 — B hedefi (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:SMRTG",
+  "fiyat": 3.42,
+  "yon": "cross_down",
+  "ad": "SMRTG 3,42 — çekirdek stop (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:MIATK",
+  "fiyat": 24.76,
+  "yon": "cross_up",
+  "ad": "MIATK 24,76 — sat (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:MIATK",
+  "fiyat": 25.14,
+  "yon": "cross_up",
+  "ad": "MIATK 25,14 — sat daha (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:MIATK",
+  "fiyat": 25.83,
+  "yon": "cross_up",
+  "ad": "MIATK 25,83 — sigorta (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:MIATK",
+  "fiyat": 23.79,
+  "yon": "cross_down",
+  "ad": "MIATK 23,79 — yarım geri al (v2.2 08.11)"
+ },
+ {
+  "sembol": "BIST:MIATK",
+  "fiyat": 23.11,
+  "yon": "cross_down",
+  "ad": "MIATK 23,11 — çekirdek stop (v2.2 08.11)"
+ }
+]

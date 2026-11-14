@@ -1,0 +1,38 @@
+[
+ {
+  "tarih": "2026-11-14",
+  "pazar": "abd",
+  "surum": "v2.4",
+  "dosya": "claude/defter/2026-11-14_abd.md"
+ },
+ {
+  "tarih": "2026-11-08",
+  "pazar": "bist",
+  "surum": "v2.2",
+  "dosya": "claude/defter/2026-11-07_abd_bist.md"
+ },
+ {
+  "tarih": "2026-11-07",
+  "pazar": "abd",
+  "surum": "v2.2",
+  "dosya": "claude/defter/2026-11-07_abd_bist.md"
+ },
+ {
+  "tarih": "2026-11-04",
+  "pazar": "abd+bist",
+  "surum": "v2.1",
+  "dosya": "claude/tahmin_defteri_arsiv_2.md"
+ },
+ {
+  "tarih": "2026-11-01",
+  "pazar": "abd+bist",
+  "surum": "v2.1",
+  "dosya": "claude/tahmin_defteri_arsiv_2.md"
+ },
+ {
+  "tarih": "2026-10-13",
+  "pazar": "abd+bist",
+  "surum": "v1–v2",
+  "dosya": "claude/tahmin_defteri_arsiv.md"
+ }
+]
