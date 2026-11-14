@@ -1,158 +1,158 @@
 {
- "updated": "2026-11-12",
- "summary": "12 Kas: XU100 11.811 (+%1,24), 6 Kas kapanışından bu yana +%2,9; hacim 175 mlr ₺. Endeks 20 günlük ortalamanın (≈11.605) üstüne çıktı ama 50 günlük (≈12.420) ve 200 günlük (≈13.545) ortalama hâlâ uzakta. Rejim Risk-off 1/7, hisselerin yalnız %17'si 50 günlük ortalama üstünde (6 Kas %14): nakit %35-40 bandında kalsın. Teyit için 12.000 üstü, sonra 12.420; destek 11.600 ve 11.480. Makro: TCMB yılın son Enflasyon Raporu'nda 2026 yıl sonu tahminini %28'den %29,5'e, 2027 ara hedefini %15'ten %21'e çekti (savaş kaynaklı enerji fiyatları gerekçe); sıkı duruş sürecek mesajı verildi, ancak ana eğilimde ve kira enflasyonunda iyileşme vurgulandı. Faiz indirimi beklentilerinin ötelenmesi bankalar ve borçlu şirketler için olumsuz, ihracatçı/enerji için nötr. USD/TRY 50,25 (1A +%1,9, sakin); XU100 dolar bazında 3A −%20,5. Bilanço sezonu kapandı: kurum derlemelerine göre 3Ç sonuçları genelde beklenti üstü. TCELL 3Ç geliri %6,2 arttı, kurumlar AL'da (hedef 157-158,5), hisse hafta +%7. THYAO'da Deniz Yatırım hedefi 461 ₺; hisse 319 ile 3A tepeye (325,75) dayandı, RSI 71. TUPRS'te Ziraat hedef 490. Pozisyonlarda 9 aylık sonuçlar: SMRTG kâra geçti (151,9 mn ₺), ALTNY ve EMPAE kârını artırdı; BIENY, KLSER, MIATK, DOFER zararda (zarar daralıyor); EMKEL'in 3Ç raporu SPK ek süresiyle henüz yok. Gelecek: 13 Kas Eylül ödemeler dengesi. Göreli güç: Ulaştırma > Bankacılık (yatırım dışı) > Enerji > GYO > Telekom; en zayıf Savunma, Kimya, Sanayi, Teknoloji, Gıda. Takip listesinde güçlüler ENERY (7/7, kısa vadede üçü yukarı), TUPRS, TKFEN ve AKSGY (4S Trend, 15dk Trend yukarı, Devam). Pozisyonlarda TCELL ve SASA'da üçü de yukarı (Devam); THYAO güçlü ama kısa vadede Tamam'a döndü, kâr koruma zamanı. ALTIN ve GMSTR'de üçü de aşağı.",
+ "updated": "2026-11-14",
+ "summary": "13 Kas haftası: XU100 11.843 (Cuma +%0,27; hacim 150 mlr ₺), hafta +%3,1 (6 Kas 11.483). Endeks 20 günlük ortalamanın (≈11.630) üstünde tutundu, 12.000 denenmedi; 50 günlük (≈12.380) ve 200 günlük (≈13.540) ortalama uzak. Rejim Risk-off 1/7, genişlik %20'ye çıktı (6 Kas %14): iyileşme var ama teyit yok, nakit %35-40 bandında kalsın. Teyit için 12.000 ve 12.380 üstü kapanış; destek 11.630 ve 11.480. Makro: TCMB Enflasyon Raporu IV'te 2026 sonu tahmini %29,5'e, 2027 ara hedefi %21'e yükseldi (enerji fiyatları); sıkı duruş vurgusu faiz indirimlerinin ötelenebileceğini gösteriyor. 13 Kas'ta Eylül ödemeler dengesi açıklandı (beklenti ≈2,4 mlr $ fazla). USD/TRY 50,36 (1A +%2,1, sakin); XU100 dolar bazında 3A −%20,5. Haftanın öne çıkanları: THYAO hafta +%10 ile 320,25 (RSI 71, 3A tepe 325,75 sınırı); TCELL +%7,5 (97); TUPRS +%7,5; FROTO +%8,7. Cuma sert düşenler: HRKET −%10 (iki günde −%18), TKFEN −%7,2, BIENY −%6,9 (13,49; teknik planın satış bölgesine geri döndü). KLSER Cuma +%7,6. SASA borçlanma aracı ihraç tavanını 350 mn $'dan 500 mn $'a çıkardı (borç yükü artıyor). Göreli güç: Ulaştırma > Bankacılık (yatırım dışı) > Enerji > Telekom > GYO; en zayıf Savunma, Kimya, Sanayi, Teknoloji, Hizmet. Takip listesinde güçlüler ENERY (7/7, RS +41,5, üçü yukarı), AHGAZ (7/7, kısa vade yeniden yukarı), TUPRS (5/7, üçü yukarı). Pozisyonlarda THYAO, TCELL, SMRTG, ALTNY, EMPAE kısa vadede üçü yukarı (Devam); SASA, MIATK, ALTIN, GMSTR üçü aşağı.",
  "groups": {
   "ULASTIRMA": {
-   "note": "12 Kas: Hafta +%5,8, Lider (RS +12,4) ama üyelerin %43'ü 50 günlük ortalama üstünde. THYAO ₺319 (3A tepe 325,75), RSI 71, kısa vadede Tamam. RYSAS hafta −%10,6, kısa vadede üçü aşağı; HRKET bugün −%9,5 (yeni sözleşmelere rağmen). TAVHL aday (5/7, RS +19,4)."
+   "note": "13 Kas: Hafta +%5,7, 1A +%8,6, Lider (RS +14,3). THYAO 320,25 (hafta +%10, RSI 71). RYSAS ve HRKET zayıfladı (HRKET iki günde −%18). TAVHL aday."
   },
   "BANKA": {
-   "note": "12 Kas: Hafta +%5, RS +9,7 (Lider). Yatırım dışı (banka hariç kuralı). Enflasyon tahmininin yükselmesi faiz indirimini öteleyebilir."
+   "note": "13 Kas: Hafta +%3,9, RS +9,0 (Lider). Yatırım dışı (banka hariç kuralı)."
   },
   "ENERJI": {
-   "note": "12 Kas: RS +8,3 ama Zayıflayan, üyelerin hiçbiri 50 günlük ortalama üstünde değil. TUPRS 5/7, kısa vadede üçü yukarı (Devam), Ziraat hedef 490. TRENJ 0/7. KCHOL 5/7 aday. Enerji fiyatlarındaki yükseliş rafineri marjını destekliyor."
+   "note": "13 Kas: Hafta +%6,8 ama üyelerin hiçbiri 50 günlük ortalama üstünde değil (Zayıflayan, RS +8,4). TUPRS 359, 5/7, kısa vadede üçü yukarı; TRENJ hafta +%6,8 (9 ayda kâr 2,15 mlr ₺, +%59) ama 0/7. KCHOL aday."
   },
   "GYO": {
-   "note": "12 Kas: Zayıflayan (RS +4,1). AKSGY 5/7, kısa vadede üçü yukarı; RYGYO ve TRGYO kısa vadede üçü aşağı (TRGYO'da Ziraat hedef 115,5, Vakıf 135). ALARK 6/7 aday."
+   "note": "13 Kas: Zayıflayan (RS +2,5). AKSGY 4/7, kısa vadede yukarı ama Tamam; RYGYO ve TRGYO kısa vadede aşağı. ALARK aday."
   },
   "PERAKENDE": {
-   "note": "12 Kas: Zayıflayan, üyelerin hiçbiri 50 günlük ortalama üstünde değil. SOKM ₺45,44, RSI 24 (aşırı satım), kısa vadede üçü aşağı. GMTAS ve BIMAS 5/7 aday. DOHOL 0/7."
+   "note": "13 Kas: Zayıflayan, hafta −%1,7. SOKM hafta −%15,8, RSI 24 (aşırı satım). GMTAS 6/7 aday, BIMAS aday. DOHOL 0/7."
   },
   "SAGLIK": {
-   "note": "12 Kas: Hafta +%7,9 tepki ama 1A −%8,5. KAYSE RSI 30, 0/7."
+   "note": "13 Kas: Hafta +%5,6, MPARK aday. KAYSE RSI 30, 0/7."
   },
   "OTOMOTIV": {
-   "note": "12 Kas: Zayıflayan. FROTO ₺73,35 (50 günlük ortalama ≈73,8 sınırında), TOASO ₺238; ikisinde 4S Trend yukarı, 15dk Trend aşağı. Günlük 1/7: teyit için FROTO 74 ve TOASO 258 üstü gerekli. Ziraat hedefleri 130 ve 414."
+   "note": "13 Kas: Hafta +%4,9. FROTO 73,75 (50 günlük ortalama ≈73,8 sınırında, hafta +%8,7), TOASO 243 (+%6); ikisinde kısa vadede üçü yukarı (Devam). Günlük hâlâ 1/7: teyit FROTO 74, TOASO 258 üstü."
   },
   "HIZMET": {
-   "note": "12 Kas: Geride. DOCO 7/7 aday."
+   "note": "13 Kas: Geride, 1A −%11. DOCO aday."
   },
   "TELEKOM": {
-   "note": "12 Kas: Lider'e geçti (RS +3,7). TCELL ₺96,45, hafta +%7; 3Ç sonrası kurumlar AL (hedef 157-158,5). 4S Trend, 15dk Trend yukarı, Devam; 50 günlük ortalama ≈97 hemen üstte."
+   "note": "13 Kas: Lider (RS +4,5), hafta +%6,6. TCELL 97, 50 günlük ortalama (97,05) sınırında; kısa vadede üçü yukarı. Ortalama hedef ≈153."
   },
   "INSAAT": {
-   "note": "12 Kas: Geride. TKFEN 5/7, kısa vadede üçü yukarı ama 3Ç'de 839 mn ₺ zarar, Gedik hedef 280 (Endekse Paralel). BIENY hafta +%18 tepki, RSI 62."
+   "note": "13 Kas: Geride. TKFEN Cuma −%7,2 (190), kısa vadede bozuldu. BIENY Cuma −%6,9. AKFIS aday."
   },
   "ELEKTRIK": {
-   "note": "12 Kas: Lider (RS +0,4). Doğalgaz dağıtımcıları ayrışıyor: ENERY (RS +39,7) 7/7 ve kısa vadede üçü yukarı; AHGAZ 7/7 ama kısa vadede aşağı; ENJSA 7/7 aday. BASGZ 1/7."
+   "note": "13 Kas: Lider, hafta +%6,3. ENERY (RS +41,5) ve AHGAZ 7/7; ENJSA aday. BASGZ hafta −%7."
   },
   "HOLDING": {
-   "note": "12 Kas: Geride (RS −5,3). KCHOL (enerji grubunda) 5/7."
+   "note": "13 Kas: Geride (RS −4,1), hafta +%4,7."
   },
   "METAL": {
-   "note": "12 Kas: Geride, 1A −%8. CELHA 7/7 aday (RS +39,5). DOFER 0/7, 9 ayda 54 mn ₺ zarar."
+   "note": "13 Kas: Zayıflayan, 1A −%9,5. CELHA aday. DOFER 0/7."
   },
   "GIDA": {
-   "note": "12 Kas: Geride, üyelerin hiçbiri 50 günlük ortalama üstünde değil. Uzak dur (alkol değerlendirme dışı)."
+   "note": "13 Kas: Geride. CCOLA aday (alkolsüz içecek). Alkol değerlendirme dışı."
   },
   "TEKNOLOJI": {
-   "note": "12 Kas: Geride, 1A −%10. MIATK 0/7, kısa vadede aşağı; 9 ayda zarar daraldı (199 mn ₺)."
+   "note": "13 Kas: Geride. MIATK 23,82, kısa vadede üçü aşağı, 0/7."
   },
   "SANAYI": {
-   "note": "12 Kas: Geride, RS −10,6. EMKEL bugün +%9,9 tepki ama 1A −%39, 3Ç raporu gecikti. KLSER yeniden yapılandırma sürecinde. KBORU 1/7. TCKRC 5/7 aday."
+   "note": "13 Kas: Geride (RS −10,4). EMKEL hafta +%18 tepki, KLSER +%11; ikisi de günlük 0-1/7. TCKRC aday."
   },
   "KIMYA": {
-   "note": "12 Kas: Geride (RS −12,6), 1A −%16. SASA ₺1,60, kısa vadede üçü yukarı (Devam) ama günlük 0/7, 50 günlük ortalama ≈1,97 uzak."
+   "note": "13 Kas: Geride (RS −13,0), 1A −%17. SASA 1,59, kısa vadede üçü aşağı; borçlanma tavanı 500 mn $'a çıkarıldı."
   },
   "SAVUNMA": {
-   "note": "12 Kas: En zayıf grup (RS −16,1), üyelerin hiçbiri 50 günlük ortalama üstünde değil. ALTNY 9 ayda kârını artırdı ama 1/7; SDTTR RSI 34. Aday yok."
+   "note": "13 Kas: En zayıf grup (RS −13,6) ama hafta +%4,8 tepki. ALTNY hafta +%9,9, kısa vadede üçü yukarı; SDTTR RSI 33."
   }
  },
  "stocks": {
   "THYAO": {
-   "note": "12 Kas: ₺319 (+%1,35), 6 Kas'tan +%6,6. 3A tepe 325,75'e dayandı, RSI 71 (aşırı alım). 4S Trend, 15dk Trend yukarı ama 15dk Tamam yada Devam: Tamam (çizgi ≈324). Günlük 5/7, 200 günlük ortalama (≈304) aşıldı. ATR stop ≈298. Deniz hedef 461, ortalama 436. Taşı; stopu 298'e çek, 326 üstü kapanışta yeni alan açılır."
+   "note": "13 Kas: ₺320,25, hafta +%10,4. RSI 71, 3A tepe 325,75 direnç. 4S Trend, 15dk Trend yukarı, Devam; günlük 5/7. Stop ≈299,6. Taşı; 326 üstü kapanış yeni alan açar, RSI aşırı alımda yeni alım kovalanmaz."
   },
   "SASA": {
-   "note": "12 Kas: ₺1,60 (+%2,6). 4S Trend, 15dk Trend yukarı, Devam (kısa vadeli tepki). Günlük 0/7, 50 günlük ortalama ≈1,97 uzak; sermaye artırımı riski yüksek. ATR stop ≈1,51."
+   "note": "13 Kas: ₺1,59. 4S Trend, 15dk Trend aşağı, Tamam; 0/7. Borçlanma aracı ihraç tavanı 350 mn $'dan 500 mn $'a çıkarıldı (borç yükü). Teknik planda 1,60 satış seviyesi hemen üstte, 1,52 uyarı, 1,50 kapanış stopu. Stop ≈1,42 (ATR)."
   },
   "TCELL": {
-   "note": "12 Kas: ₺96,45, 6 Kas'tan +%7,2. 3Ç sonrası kurumlar AL (hedef 157-158,5). 4S Trend, 15dk Trend yukarı, Devam; günlük 1/7, 50 günlük ortalama ≈97 direnç. ATR stop ≈93,3. Taşı; 97 üstü kapanış teyit."
+   "note": "13 Kas: ₺97, hafta +%7,5. 4S Trend, 15dk Trend yukarı, Devam; 50 günlük ortalama 97,05 tam sınırda. Stop ≈90,9. Taşı; 97 üstü kapanış teyit."
   },
   "BIENY": {
-   "note": "12 Kas: ₺14,49 (+%3,3), 6 Kas'tan +%8,9. 4S Trend, 15dk Trend yukarı ama Tamam (çizgi ≈14,61). RSI 62; 50 günlük ortalama ≈15,0 direnç. 9 ayda 1,19 mlr ₺ zarar (daralıyor). ATR stop ≈13,7."
+   "note": "13 Kas: ₺13,49 (Cuma −%6,9). 4S Trend yukarı, 15dk Trend aşağı, Tamam. Teknik planın satış bölgesi 13,35-13,58 içinde; sigorta 13,70 altında kapandı. Geri alım 12,74, kapanış stopu 11,78."
   },
   "EMKEL": {
-   "note": "12 Kas: ₺5,68 (+%9,9 tepki), 1A −%39. 4S Trend aşağı, 15dk Trend yukarı, Devam. 3Ç raporu SPK ek süresiyle gecikti, maaş gecikmesi haberi vardı. ATR stop ≈5,16. Pozisyonun en riskli hissesi: tepkiyi azaltma fırsatı olarak değerlendir, stop altında çık."
+   "note": "13 Kas: ₺5,72, hafta +%18 tepki. 4S Trend, 15dk Trend yukarı, Tamam; günlük 0/7, 3Ç raporu hâlâ yok. Stop ≈4,70. Tepkide azaltma fikri geçerli."
   },
   "KLSER": {
-   "note": "12 Kas: ₺14,69 (+%3,1). 4S Trend, 15dk Trend yukarı, Tamam. Finansal yeniden yapılandırma başvurusu var; 9 ayda 654 mn ₺ zarar, borç/özsermaye 1,27. ATR stop ≈13,9."
+   "note": "13 Kas: ₺15,80 (Cuma +%7,6), hafta +%11. 4S Trend, 15dk Trend yukarı, Devam. Yeniden yapılandırma sürecinde, borç/özsermaye 1,27. 50 günlük ortalama ≈18,2 uzak. Stop ≈14,1."
   },
   "MIATK": {
-   "note": "12 Kas: ₺23,94 (+%1,1). 4S Trend, 15dk Trend aşağı, Devam. Günlük 0/7. 9 ayda 199 mn ₺ zarar (geçen yıl 444 mn). ATR stop ≈22,2."
+   "note": "13 Kas: ₺23,82. 4S Trend, 15dk Trend aşağı, Tamam. Teknik plan: geri alım bölgesi 23,42-23,79'un hemen üstünde (1s RSI 30 teyidiyle yarım), kapanış stopu 23,11 (0,4 ATR uzakta)."
   },
   "SMRTG": {
-   "note": "12 Kas: ₺4,28 (+%2,6), 6 Kas'tan +%5,7. 4S Trend, 15dk Trend yukarı, Tamam. 9 ayda kâra geçti (151,9 mn ₺, FAVÖK 2,4 mlr ₺). Borç/özsermaye 3,1, tahsisli artırım riski yüksek. ATR stop ≈3,96. Bugün ek alım yapıldı: stopa sıkı uy."
+   "note": "13 Kas: ₺4,31, hafta +%10,8. 4S Trend, 15dk Trend yukarı, Devam. Teknik plan sigortası 4,21'in üstünde kapandı (kovalanmaz). Borç/özsermaye 3,1. Stop ≈3,70."
   },
   "DOFER": {
-   "note": "12 Kas: ₺18,51 (+%1,7). 4S Trend, 15dk Trend yukarı, Devam; günlük 0/7, 1A −%16. 9 ayda 54 mn ₺ zarar. ATR stop ≈17,4."
+   "note": "13 Kas: ₺18,63. 4S Trend, 15dk Trend yukarı, Tamam; günlük 0/7. Stop ≈16,4."
   },
   "EMPAE": {
-   "note": "12 Kas: ₺39,98 (+%4,7), 6 Kas'tan +%7,8. 4S Trend, 15dk Trend yukarı, Tamam. 9 ayda hasılat +%35, net kâr 65,9 mn ₺ (+%66). 50 günlük ortalama ≈46,9 uzak. ATR stop ≈36,8."
+   "note": "13 Kas: ₺39,90, hafta +%7,8. 4S Trend, 15dk Trend yukarı, Devam. 50 günlük ortalama ≈46,3 uzak. Stop ≈33,7."
   },
   "ALTIN": {
-   "note": "12 Kas: ₺69,99 (−%1,2). 4S Trend, 15dk Trend aşağı, Tamam; 50 ve 200 günlük ortalama altında. ATR stop ≈68,9 (fiyata %1,6 uzak)."
+   "note": "13 Kas: ₺70,20. 4S Trend, 15dk Trend aşağı, Tamam; 50 ve 200 günlük ortalama altında. Stop ≈68,1."
   },
   "GMSTR": {
-   "note": "12 Kas: ₺503 (−%3,2), RSI 35. 4S Trend, 15dk Trend aşağı, Tamam; 1A −%14. ATR stop ≈488."
+   "note": "13 Kas: ₺499, RSI 34. Üçü aşağı, 1A −%14. Stop ≈470."
   },
   "ENERY": {
-   "note": "12 Kas: ₺14,45 (+%2,5). 7/7, RS +39,7; 4S Trend, 15dk Trend yukarı, Devam. 3A tepe 14,75 yakın. 9 ayda net kâr 6,05 mlr ₺ (+%7). ATR stop ≈13,3. Takip listesinin en güçlüsü; giriş için 14,75 üstü kapanış veya 13,7 civarı geri çekilme."
+   "note": "13 Kas: ₺14,60, 3A tepe 14,75 yakın. 7/7, RS +41,5; üçü yukarı (Devam). Stop ≈13,5. En güçlü aday: 14,75 üstü kapanışta giriş."
   },
   "AHGAZ": {
-   "note": "12 Kas: ₺46,20 (+%0,7). 7/7, RS +26,1 ama 4S Trend, 15dk Trend aşağı (kısa vadeli soluklanma). ATR stop ≈44,1. Kısa vadede yön dönünce izle."
+   "note": "13 Kas: ₺46,24. 7/7, RS +27; kısa vadede yeniden üçü yukarı (Devam). Stop ≈43,1."
   },
   "RYSAS": {
-   "note": "12 Kas: ₺25,62 (+%2,0), 6 Kas'tan −%6,3. Günlük 5/7 ama 4S Trend, 15dk Trend aşağı, Tamam. 9 ayda net kâr 1,33 mlr ₺ (+%18). ATR stop ≈24,2. Bekle."
+   "note": "13 Kas: ₺25,50, 5/7 ama kısa vadede üçü aşağı. Bekle."
   },
   "RYGYO": {
-   "note": "12 Kas: ₺46,36 (−%2,9), 6 Kas'tan −%5,6. 5/7 ama kısa vadede üçü aşağı, Stoch 11. ATR stop ≈43,7. Bekle."
+   "note": "13 Kas: ₺47,14, 5/7, kısa vadede aşağı. Bekle."
   },
   "GMTAS": {
-   "note": "12 Kas: ₺47,88. 5/7, RS +11,1; 4S Trend aşağı, 15dk Trend yukarı, Tamam. ATR stop ≈45,3."
+   "note": "13 Kas: ₺48,68, 6/7, RS +11,4; 4S Trend aşağı, 15dk Trend yukarı."
   },
   "TRGYO": {
-   "note": "12 Kas: ₺86,70 (−%0,9). Kısa vadede üçü aşağı; 1/7. Ziraat hedef 115,5, Vakıf 135; temettü verimi %5,7. ATR stop ≈84,3."
+   "note": "13 Kas: ₺86,20, kısa vadede aşağı; temettü verimi %5,8."
   },
   "FROTO": {
-   "note": "12 Kas: ₺73,35 (yatay). 4S Trend yukarı, 15dk Trend aşağı, Tamam. 50 günlük ortalama ≈73,8 sınırda; 74 üstü kapanış teyit. Ziraat hedef 130, temettü verimi %9,1. ATR stop ≈70,5."
+   "note": "13 Kas: ₺73,75, hafta +%8,7. Üçü yukarı (Devam); 50 günlük ortalama 73,8 sınırında. 74 üstü kapanış teyit. Stop ≈68,1."
   },
   "TOASO": {
-   "note": "12 Kas: ₺238 (+%2,4). 4S Trend yukarı, 15dk Trend aşağı, Devam. 1/7; 258 (50 günlük ortalama) uzak. Ziraat hedef 414. ATR stop ≈227."
+   "note": "13 Kas: ₺243, hafta +%6. Üçü yukarı (Devam); 1/7, 258 direnç. Stop ≈221,5."
   },
   "TUPRS": {
-   "note": "12 Kas: ₺357 (+%2,4), 6 Kas'tan +%5,8. 5/7, RS +14,4; 4S Trend, 15dk Trend yukarı, Devam. Ziraat hedef 490, F/K 5,5. 50 günlük ortalama ≈379 direnç. ATR stop ≈342. Aday: 4S Trend yukarıyken kademeli giriş düşünülebilir."
+   "note": "13 Kas: ₺359, hafta +%7,5. 5/7, üçü yukarı (Devam). 50 günlük ortalama ≈378 direnç; Ziraat hedef 490. Stop ≈330."
   },
   "SOKM": {
-   "note": "12 Kas: ₺45,44, RSI 24 (aşırı satım), kısa vadede üçü aşağı. Kurumlar AL (hedef 84,5-97) ama grafik bozuk. Dönüş sinyali (4S Trend yukarı) gelmeden alma."
+   "note": "13 Kas: ₺45,02, hafta −%15,8, RSI 24. Üçü aşağı. Dönüş sinyali bekle."
   },
   "TKFEN": {
-   "note": "12 Kas: ₺204,80 (+%3,0), 6 Kas'tan +%8,4. 5/7; 4S Trend, 15dk Trend yukarı, Devam (Dalga 1 oluşuyor). 3Ç'de 839 mn ₺ zarar; Gedik hedef 280 (Endekse Paralel). 50 günlük ortalama ≈220 direnç. ATR stop ≈190."
+   "note": "13 Kas: ₺190 (Cuma −%7,2), 15dk Trend aşağı döndü, Tamam; 3/7. Bekle."
   },
   "DOHOL": {
-   "note": "12 Kas: ₺16,99, 6 Kas'tan −%5,7. 0/7, kısa vadede aşağı. OYAK hedef 34,74 (Endeks Üstü). Bekle."
+   "note": "13 Kas: ₺16,87, 0/7, kısa vadede aşağı."
   },
   "HRKET": {
-   "note": "12 Kas: ₺7,43 (−%9,5) yeni sözleşme haberlerine rağmen sert satış. 4S Trend yukarı, 15dk Trend aşağı, Tamam; günlük 5/7. 9 ayda kâr 332 mn ₺ (+%79). ATR stop ≈6,72. Oynaklık yüksek (ATR %9,5)."
+   "note": "13 Kas: ₺6,69 (Cuma −%10, iki günde −%18), üçü aşağı. Sözleşme haberlerine rağmen satış. Uzak dur."
   },
   "KBORU": {
-   "note": "12 Kas: ₺10,54. 4S Trend yukarı, 15dk Trend aşağı, Devam; 1/7, 50 günlük ortalama ≈12,1 uzak."
+   "note": "13 Kas: ₺10,55, 1/7."
   },
   "TRENJ": {
-   "note": "12 Kas: ₺75,55 (−%2,5). 0/7, 1A −%25. Bekle."
+   "note": "13 Kas: ₺78,05 (Cuma +%3,3), üçü yukarı ama günlük 0/7; 9 ayda kâr 2,15 mlr ₺."
   },
   "AKSGY": {
-   "note": "12 Kas: ₺9,37 (+%3,7). 5/7; 4S Trend, 15dk Trend yukarı, Devam. 50 günlük ortalama ≈9,39 sınırda; temettü verimi %5. ATR stop ≈9,12."
+   "note": "13 Kas: ₺9,25, 4/7, kısa vadede yukarı ama Tamam."
   },
   "BASGZ": {
-   "note": "12 Kas: ₺36,30. 1/7; 4S Trend, 15dk Trend yukarı, Tamam. Temettü verimi %5,5."
+   "note": "13 Kas: ₺36,08, hafta −%7, 1/7."
   },
   "KAYSE": {
-   "note": "12 Kas: ₺2,36, RSI 30, 0/7. Bekle."
+   "note": "13 Kas: ₺2,35, RSI 30, 0/7."
   },
   "SDTTR": {
-   "note": "12 Kas: ₺11,71, 6 Kas'tan −%8,1, RSI 34. 0/7, savunma grubu en zayıf. Bekle."
+   "note": "13 Kas: ₺11,55, RSI 33, 0/7."
   },
   "ALTNY": {
-   "note": "12 Kas: ₺11,30 (+%2,9), bugün pozisyona eklendi. 4S Trend, 15dk Trend yukarı, Tamam. 9 ayda net kâr 144,8 mn ₺ (+%37), İngiltere'de 700 mn $ iş stoku hedefi. Savunma grubu en zayıf; günlük 1/7, 50 günlük ortalama ≈13. ATR stop ≈10,73."
+   "note": "13 Kas: ₺11,45, hafta +%9,9. 4S Trend, 15dk Trend yukarı, Devam; günlük 1/7, 50 günlük ortalama ≈12,9. Stop ≈10,35."
   }
  }
 }

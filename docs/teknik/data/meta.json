@@ -1,10 +1,10 @@
 {
- "guncelleme": "2026-11-13T13:05:25+00:00",
+ "guncelleme": "2026-11-14T19:00:08+00:00",
  "hisseler": {
   "BIENY": {
    "pazar": "bist",
-   "atr": 0.7691,
-   "atr_tarih": "2026-11-12",
+   "atr": 0.8099,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-08",
    "mod": "Bant"
   },
@@ -17,8 +17,8 @@
   },
   "MIATK": {
    "pazar": "bist",
-   "atr": 1.789,
-   "atr_tarih": "2026-11-12",
+   "atr": 1.7455,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-08",
    "mod": "Bant"
   },
@@ -31,8 +31,8 @@
   },
   "SASA": {
    "pazar": "bist",
-   "atr": 0.0884,
-   "atr_tarih": "2026-11-12",
+   "atr": 0.0842,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-08",
    "mod": "Savunma"
   },
@@ -45,8 +45,8 @@
   },
   "SMRTG": {
    "pazar": "bist",
-   "atr": 0.3188,
-   "atr_tarih": "2026-11-12",
+   "atr": 0.3053,
+   "atr_tarih": "2026-11-13",
    "plan": "2026-11-08",
    "mod": "Savunma"
   },
