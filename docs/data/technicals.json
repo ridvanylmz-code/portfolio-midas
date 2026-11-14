@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T22:36:28+00:00",
+  "updated": "2026-11-14T01:36:35+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "TV scanner: 40/40 sembol tek istekte",
@@ -7,43 +7,43 @@
     "TD  CRWV: RSI 43.1 SMA50 72.6 (250 bar)",
     "TD  ELF: RSI 59.2 SMA50 107.32 (250 bar)",
     "TD  GKOS: RSI 68.7 SMA50 184.62 (250 bar)",
-    "TD  GMAB: RSI 59.0 SMA50 41.15 (250 bar)",
-    "TD  KNSA: RSI 60.2 SMA50 82.18 (250 bar)",
+    "TD  GMAB: RSI 59.1 SMA50 41.15 (250 bar)",
+    "TD  KNSA: RSI 60.1 SMA50 82.18 (250 bar)",
     "TD  RKLB: RSI 52.9 SMA50 62.47 (250 bar)",
-    "TD  SGML: RSI 31.0 SMA50 8.41 (250 bar)",
+    "TD  SGML: RSI 30.9 SMA50 8.41 (250 bar)",
     "TD  UAMY: RSI 46.8 SMA50 3.77 (250 bar)",
     "TD  WYFI: RSI 40.1 SMA50 14.58 (250 bar)",
     "TD  TEAM: RSI 28.0 SMA50 192.16 (250 bar)",
-    "TD  MPC: RSI 47.8 SMA50 423.94 (250 bar)",
-    "TD  ILMN: RSI 35.0 SMA50 249.02 (250 bar)",
+    "TD  MPC: RSI 47.9 SMA50 423.94 (250 bar)",
+    "TD  ILMN: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
     "TD  AVTR: RSI 45.3 SMA50 15.7 (250 bar)",
     "TD  GRAL: RSI 42.3 SMA50 121.43 (250 bar)",
     "TD  ZS: RSI 35.6 SMA50 209.45 (250 bar)",
     "TD  CVI: RSI 32.5 SMA50 52.66 (250 bar)",
     "TD  DINO: RSI 38.9 SMA50 112.52 (250 bar)",
     "TD  EL: RSI 59.5 SMA50 101.79 (250 bar)",
-    "TD  SXT: RSI 36.4 SMA50 128.3 (250 bar)",
+    "TD  SXT: RSI 36.5 SMA50 128.31 (250 bar)",
     "TD  MSTR: RSI 32.6 SMA50 143.26 (250 bar)",
     "TD  OKTA: RSI 43.5 SMA50 198.1 (250 bar)",
-    "TD  QLYS: RSI 38.8 SMA50 190.98 (250 bar)",
+    "TD  QLYS: RSI 38.9 SMA50 190.98 (250 bar)",
     "TD  RNG: RSI 46.0 SMA50 77.0 (250 bar)",
     "TD  PAYC: RSI 50.7 SMA50 238.8 (250 bar)",
     "TD  NOW: RSI 31.9 SMA50 132.1 (250 bar)",
-    "TD  PLTR: RSI 39.4 SMA50 184.79 (250 bar)",
+    "TD  PLTR: RSI 39.5 SMA50 184.79 (250 bar)",
     "TD  CRM: RSI 39.5 SMA50 235.28 (250 bar)",
     "TD  ZBRA: RSI 34.6 SMA50 361.71 (250 bar)",
     "TD  NTAP: RSI 40.3 SMA50 203.82 (250 bar)",
-    "TD  IT: RSI 42.8 SMA50 197.04 (250 bar)",
+    "TD  IT: RSI 42.7 SMA50 197.04 (250 bar)",
     "TD  CRL: RSI 52.5 SMA50 311.06 (250 bar)",
     "TD  SHOP: RSI 42.7 SMA50 152.79 (250 bar)",
     "TD  ANF: RSI 45.6 SMA50 148.39 (250 bar)",
     "TD  SN: RSI 68.2 SMA50 190.39 (250 bar)",
-    "TD  CLF: RSI 48.1 SMA50 12.61 (250 bar)",
-    "TD  MRVL: RSI 35.2 SMA50 229.2 (250 bar)",
+    "TD  CLF: RSI 48.0 SMA50 12.61 (250 bar)",
+    "TD  MRVL: RSI 35.2 SMA50 229.21 (250 bar)",
     "TD  AMD: RSI 50.4 SMA50 554.55 (250 bar)",
-    "TD  NVDA: RSI 24.8 SMA50 214.65 (250 bar)",
+    "TD  NVDA: RSI 24.9 SMA50 214.65 (250 bar)",
     "TD  TRGP: RSI 54.3 SMA50 288.87 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 39"
   ],
   "tickers": {
     "CROX": {
@@ -67,7 +67,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 163.71,
+        "close": 163.72,
         "rsi14": 73.0,
         "sma20": 141.55,
         "sma50": 127.72,
@@ -76,14 +76,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 10.576,
+          "macd": 10.577,
           "signal": 8.932,
           "hist": 1.644
         },
         "atr14": 6.06,
         "support20": 117.0,
         "resistance20": 164.12,
-        "vol_ratio": 0.74,
+        "vol_ratio": 0.88,
         "bars": 250
       }
     },
@@ -108,7 +108,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 53.11,
+        "close": 53.13,
         "rsi14": 43.1,
         "sma20": 54.99,
         "sma50": 72.6,
@@ -117,14 +117,14 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -5.703,
+          "macd": -5.702,
           "signal": -6.999,
-          "hist": 1.296
+          "hist": 1.297
         },
         "atr14": 6.55,
         "support20": 40.58,
         "resistance20": 65.92,
-        "vol_ratio": 1.82,
+        "vol_ratio": 1.08,
         "bars": 250
       }
     },
@@ -165,7 +165,7 @@
         "atr14": 5.52,
         "support20": 105.36,
         "resistance20": 123.13,
-        "vol_ratio": 1.88,
+        "vol_ratio": 1.35,
         "bars": 250
       }
     },
@@ -190,7 +190,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 245.74,
+        "close": 245.72,
         "rsi14": 68.7,
         "sma20": 213.52,
         "sma50": 184.62,
@@ -199,14 +199,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 19.133,
+          "macd": 19.132,
           "signal": 17.002,
-          "hist": 2.131
+          "hist": 2.13
         },
         "atr14": 11.98,
         "support20": 164.09,
         "resistance20": 255.19,
-        "vol_ratio": 0.24,
+        "vol_ratio": 0.29,
         "bars": 250
       }
     },
@@ -231,23 +231,23 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 51.36,
-        "rsi14": 59.0,
-        "sma20": 49.99,
+        "close": 51.37,
+        "rsi14": 59.1,
+        "sma20": 50.0,
         "sma50": 41.15,
         "sma200": 31.54,
         "above_sma20": true,
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 3.857,
+          "macd": 3.858,
           "signal": 4.418,
           "hist": -0.561
         },
         "atr14": 2.32,
         "support20": 37.76,
         "resistance20": 59.97,
-        "vol_ratio": 0.86,
+        "vol_ratio": 0.57,
         "bars": 250
       }
     },
@@ -272,8 +272,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 96.37,
-        "rsi14": 60.2,
+        "close": 96.33,
+        "rsi14": 60.1,
         "sma20": 89.58,
         "sma50": 82.18,
         "sma200": 62.83,
@@ -281,14 +281,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 4.486,
-          "signal": 4.165,
-          "hist": 0.321
+          "macd": 4.483,
+          "signal": 4.164,
+          "hist": 0.319
         },
-        "atr14": 4.5,
+        "atr14": 4.53,
         "support20": 70.67,
         "resistance20": 99.31,
-        "vol_ratio": 0.02,
+        "vol_ratio": 0.49,
         "bars": 250
       }
     },
@@ -322,14 +322,14 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -0.221,
+          "macd": -0.222,
           "signal": -1.898,
           "hist": 1.676
         },
         "atr14": 4.88,
         "support20": 43.89,
         "resistance20": 68.26,
-        "vol_ratio": 0.61,
+        "vol_ratio": 0.69,
         "bars": 250
       }
     },
@@ -354,8 +354,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 5.16,
-        "rsi14": 31.0,
+        "close": 5.15,
+        "rsi14": 30.9,
         "sma20": 6.69,
         "sma50": 8.41,
         "sma200": 12.47,
@@ -370,7 +370,7 @@
         "atr14": 0.63,
         "support20": 4.77,
         "resistance20": 8.68,
-        "vol_ratio": 1.13,
+        "vol_ratio": 1.2,
         "bars": 250
       }
     },
@@ -436,7 +436,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 9.44,
+        "close": 9.43,
         "rsi14": 40.1,
         "sma20": 10.19,
         "sma50": 14.58,
@@ -445,14 +445,14 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.468,
+          "macd": -1.469,
           "signal": -1.774,
-          "hist": 0.306
+          "hist": 0.305
         },
         "atr14": 1.28,
         "support20": 7.43,
         "resistance20": 12.49,
-        "vol_ratio": 0.58,
+        "vol_ratio": 0.62,
         "bars": 250
       }
     },
@@ -477,7 +477,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 149.86,
+        "close": 149.99,
         "rsi14": 28.0,
         "sma20": 191.7,
         "sma50": 192.16,
@@ -486,14 +486,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -13.394,
-          "signal": -6.972,
-          "hist": -6.422
+          "macd": -13.383,
+          "signal": -6.97,
+          "hist": -6.413
         },
-        "atr14": 10.23,
+        "atr14": 10.22,
         "support20": 144.99,
         "resistance20": 229.96,
-        "vol_ratio": 0.73,
+        "vol_ratio": 0.89,
         "bars": 250
       }
     },
@@ -518,8 +518,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 414.61,
-        "rsi14": 47.8,
+        "close": 414.65,
+        "rsi14": 47.9,
         "sma20": 428.4,
         "sma50": 423.94,
         "sma200": 301.79,
@@ -527,14 +527,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -9.358,
-          "signal": -6.077,
-          "hist": -3.281
+          "macd": -9.355,
+          "signal": -6.076,
+          "hist": -3.279
         },
         "atr14": 19.09,
         "support20": 367.72,
         "resistance20": 493.98,
-        "vol_ratio": 1.65,
+        "vol_ratio": 0.85,
         "bars": 250
       }
     },
@@ -576,7 +576,8 @@
         "support20": 197.81,
         "resistance20": 294.21,
         "vol_ratio": 0.71,
-        "bars": 250
+        "bars": 250,
+        "stale": true
       }
     },
     "AVTR": {
@@ -616,7 +617,7 @@
         "atr14": 0.52,
         "support20": 15.07,
         "resistance20": 17.45,
-        "vol_ratio": 0.06,
+        "vol_ratio": 0.71,
         "bars": 250
       }
     },
@@ -641,23 +642,23 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 115.78,
+        "close": 115.89,
         "rsi14": 42.3,
-        "sma20": 133.15,
+        "sma20": 133.16,
         "sma50": 121.43,
         "sma200": 79.25,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -1.076,
-          "signal": 2.511,
-          "hist": -3.587
+          "macd": -1.068,
+          "signal": 2.513,
+          "hist": -3.58
         },
-        "atr14": 11.27,
-        "support20": 114.03,
+        "atr14": 11.32,
+        "support20": 114.0,
         "resistance20": 161.9,
-        "vol_ratio": 0.02,
+        "vol_ratio": 0.41,
         "bars": 250
       }
     },
@@ -682,7 +683,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 192.36,
+        "close": 192.47,
         "rsi14": 35.6,
         "sma20": 223.08,
         "sma50": 209.45,
@@ -691,14 +692,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -6.082,
-          "signal": -0.008,
-          "hist": -6.073
+          "macd": -6.073,
+          "signal": -0.007,
+          "hist": -6.066
         },
-        "atr14": 12.1,
+        "atr14": 12.09,
         "support20": 184.63,
         "resistance20": 267.87,
-        "vol_ratio": 0.56,
+        "vol_ratio": 0.65,
         "bars": 250
       }
     },
@@ -739,7 +740,7 @@
         "atr14": 3.23,
         "support20": 37.22,
         "resistance20": 63.46,
-        "vol_ratio": 0.6,
+        "vol_ratio": 0.57,
         "bars": 250
       }
     },
@@ -780,7 +781,7 @@
         "atr14": 5.15,
         "support20": 95.56,
         "resistance20": 129.33,
-        "vol_ratio": 1.13,
+        "vol_ratio": 0.7,
         "bars": 250
       }
     },
@@ -805,7 +806,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 111.77,
+        "close": 111.75,
         "rsi14": 59.5,
         "sma20": 108.88,
         "sma50": 101.79,
@@ -814,14 +815,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 3.01,
+          "macd": 3.008,
           "signal": 3.057,
-          "hist": -0.047
+          "hist": -0.048
         },
         "atr14": 4.14,
         "support20": 102.38,
         "resistance20": 115.29,
-        "vol_ratio": 0.51,
+        "vol_ratio": 0.6,
         "bars": 250
       }
     },
@@ -846,23 +847,23 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 116.66,
-        "rsi14": 36.4,
-        "sma20": 125.11,
-        "sma50": 128.3,
+        "close": 116.7,
+        "rsi14": 36.5,
+        "sma20": 125.12,
+        "sma50": 128.31,
         "sma200": 114.92,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -3.534,
-          "signal": -2.703,
-          "hist": -0.831
+          "macd": -3.531,
+          "signal": -2.702,
+          "hist": -0.828
         },
-        "atr14": 4.98,
+        "atr14": 5.03,
         "support20": 104.25,
         "resistance20": 135.9,
-        "vol_ratio": 0.09,
+        "vol_ratio": 0.56,
         "bars": 250
       }
     },
@@ -887,7 +888,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 111.59,
+        "close": 111.62,
         "rsi14": 32.6,
         "sma20": 134.24,
         "sma50": 143.26,
@@ -896,14 +897,14 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -7.507,
-          "signal": -4.828,
-          "hist": -2.679
+          "macd": -7.505,
+          "signal": -4.827,
+          "hist": -2.677
         },
         "atr14": 8.83,
         "support20": 108.25,
         "resistance20": 155.69,
-        "vol_ratio": 1.65,
+        "vol_ratio": 1.03,
         "bars": 250
       }
     },
@@ -928,7 +929,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 182.84,
+        "close": 182.87,
         "rsi14": 43.5,
         "sma20": 195.74,
         "sma50": 198.1,
@@ -937,14 +938,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -6.383,
+          "macd": -6.381,
           "signal": -3.912,
-          "hist": -2.471
+          "hist": -2.469
         },
-        "atr14": 13.1,
+        "atr14": 13.12,
         "support20": 164.18,
         "resistance20": 228.72,
-        "vol_ratio": 0.36,
+        "vol_ratio": 0.5,
         "bars": 250
       }
     },
@@ -969,23 +970,23 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 172.81,
-        "rsi14": 38.8,
-        "sma20": 202.92,
+        "close": 172.94,
+        "rsi14": 38.9,
+        "sma20": 202.93,
         "sma50": 190.98,
         "sma200": 137.53,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -4.165,
-          "signal": 1.533,
-          "hist": -5.698
+          "macd": -4.154,
+          "signal": 1.535,
+          "hist": -5.69
         },
         "atr14": 13.67,
         "support20": 164.68,
         "resistance20": 235.55,
-        "vol_ratio": 0.66,
+        "vol_ratio": 1.03,
         "bars": 250
       }
     },
@@ -1010,7 +1011,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 75.41,
+        "close": 75.39,
         "rsi14": 46.0,
         "sma20": 79.1,
         "sma50": 77.0,
@@ -1019,14 +1020,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -0.864,
-          "signal": -0.057,
-          "hist": -0.806
+          "macd": -0.865,
+          "signal": -0.058,
+          "hist": -0.808
         },
         "atr14": 3.94,
         "support20": 70.61,
         "resistance20": 98.14,
-        "vol_ratio": 1.15,
+        "vol_ratio": 0.91,
         "bars": 250
       }
     },
@@ -1051,7 +1052,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 248.87,
+        "close": 248.86,
         "rsi14": 50.7,
         "sma20": 257.03,
         "sma50": 238.8,
@@ -1060,14 +1061,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 1.139,
+          "macd": 1.138,
           "signal": 4.156,
-          "hist": -3.017
+          "hist": -3.018
         },
-        "atr14": 9.82,
+        "atr14": 9.79,
         "support20": 230.92,
         "resistance20": 275.22,
-        "vol_ratio": 0.51,
+        "vol_ratio": 0.88,
         "bars": 250
       }
     },
@@ -1092,7 +1093,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 102.27,
+        "close": 102.25,
         "rsi14": 31.9,
         "sma20": 123.91,
         "sma50": 132.1,
@@ -1101,14 +1102,14 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -10.731,
-          "signal": -8.492,
-          "hist": -2.239
+          "macd": -10.733,
+          "signal": -8.493,
+          "hist": -2.24
         },
         "atr14": 6.23,
         "support20": 97.0,
         "resistance20": 159.5,
-        "vol_ratio": 0.37,
+        "vol_ratio": 0.43,
         "bars": 250
       }
     },
@@ -1133,8 +1134,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 167.98,
-        "rsi14": 39.4,
+        "close": 167.99,
+        "rsi14": 39.5,
         "sma20": 182.36,
         "sma50": 184.79,
         "sma200": 153.72,
@@ -1144,12 +1145,12 @@
         "macd": {
           "macd": -6.266,
           "signal": -4.564,
-          "hist": -1.703
+          "hist": -1.702
         },
         "atr14": 8.83,
         "support20": 152.6,
         "resistance20": 202.63,
-        "vol_ratio": 0.67,
+        "vol_ratio": 0.61,
         "bars": 250
       }
     },
@@ -1174,7 +1175,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 217.86,
+        "close": 217.84,
         "rsi14": 39.5,
         "sma20": 230.48,
         "sma50": 235.28,
@@ -1183,14 +1184,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -5.445,
+          "macd": -5.447,
           "signal": -3.749,
-          "hist": -1.696
+          "hist": -1.698
         },
         "atr14": 8.06,
         "support20": 208.88,
         "resistance20": 252.42,
-        "vol_ratio": 0.86,
+        "vol_ratio": 0.74,
         "bars": 250
       }
     },
@@ -1231,7 +1232,7 @@
         "atr14": 13.6,
         "support20": 311.07,
         "resistance20": 392.78,
-        "vol_ratio": 0.72,
+        "vol_ratio": 0.88,
         "bars": 250
       }
     },
@@ -1256,7 +1257,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 181.43,
+        "close": 181.37,
         "rsi14": 40.3,
         "sma20": 197.92,
         "sma50": 203.82,
@@ -1265,14 +1266,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -9.029,
-          "signal": -7.019,
-          "hist": -2.01
+          "macd": -9.034,
+          "signal": -7.02,
+          "hist": -2.014
         },
-        "atr14": 10.65,
+        "atr14": 10.64,
         "support20": 168.21,
         "resistance20": 231.56,
-        "vol_ratio": 0.66,
+        "vol_ratio": 0.92,
         "bars": 250
       }
     },
@@ -1297,8 +1298,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 192.2,
-        "rsi14": 42.8,
+        "close": 192.15,
+        "rsi14": 42.7,
         "sma20": 211.37,
         "sma50": 197.04,
         "sma200": 167.78,
@@ -1306,14 +1307,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -2.772,
-          "signal": 1.317,
-          "hist": -4.089
+          "macd": -2.776,
+          "signal": 1.316,
+          "hist": -4.092
         },
         "atr14": 9.68,
         "support20": 185.0,
         "resistance20": 237.54,
-        "vol_ratio": 0.61,
+        "vol_ratio": 0.82,
         "bars": 250
       }
     },
@@ -1338,7 +1339,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 337.95,
+        "close": 337.97,
         "rsi14": 52.5,
         "sma20": 342.94,
         "sma50": 311.06,
@@ -1347,14 +1348,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 8.231,
-          "signal": 11.029,
-          "hist": -2.798
+          "macd": 8.232,
+          "signal": 11.03,
+          "hist": -2.797
         },
         "atr14": 16.45,
         "support20": 297.56,
         "resistance20": 379.63,
-        "vol_ratio": 0.35,
+        "vol_ratio": 0.63,
         "bars": 250
       }
     },
@@ -1379,7 +1380,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 147.11,
+        "close": 147.09,
         "rsi14": 42.7,
         "sma20": 158.46,
         "sma50": 152.79,
@@ -1388,14 +1389,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -3.46,
-          "signal": -1.536,
-          "hist": -1.924
+          "macd": -3.462,
+          "signal": -1.537,
+          "hist": -1.925
         },
         "atr14": 8.09,
         "support20": 135.65,
         "resistance20": 178.28,
-        "vol_ratio": 0.43,
+        "vol_ratio": 0.51,
         "bars": 250
       }
     },
@@ -1420,23 +1421,23 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 148.98,
+        "close": 148.88,
         "rsi14": 45.6,
-        "sma20": 159.02,
+        "sma20": 159.01,
         "sma50": 148.39,
         "sma200": 107.53,
         "above_sma20": false,
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": 1.053,
-          "signal": 3.427,
-          "hist": -2.374
+          "macd": 1.045,
+          "signal": 3.425,
+          "hist": -2.38
         },
-        "atr14": 7.01,
+        "atr14": 6.98,
         "support20": 145.26,
         "resistance20": 172.0,
-        "vol_ratio": 0.62,
+        "vol_ratio": 0.77,
         "bars": 250
       }
     },
@@ -1477,7 +1478,7 @@
         "atr14": 7.69,
         "support20": 187.1,
         "resistance20": 232.76,
-        "vol_ratio": 0.87,
+        "vol_ratio": 0.78,
         "bars": 250
       }
     },
@@ -1502,8 +1503,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 12.66,
-        "rsi14": 48.1,
+        "close": 12.65,
+        "rsi14": 48.0,
         "sma20": 13.32,
         "sma50": 12.61,
         "sma200": 11.3,
@@ -1511,14 +1512,14 @@
         "above_sma50": true,
         "above_sma200": true,
         "macd": {
-          "macd": -0.004,
+          "macd": -0.005,
           "signal": 0.113,
-          "hist": -0.117
+          "hist": -0.118
         },
         "atr14": 0.85,
         "support20": 11.25,
         "resistance20": 15.03,
-        "vol_ratio": 0.5,
+        "vol_ratio": 0.47,
         "bars": 250
       }
     },
@@ -1543,23 +1544,23 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 156.71,
+        "close": 156.76,
         "rsi14": 35.2,
-        "sma20": 194.74,
-        "sma50": 229.2,
+        "sma20": 194.75,
+        "sma50": 229.21,
         "sma200": 187.0,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -24.274,
+          "macd": -24.27,
           "signal": -21.88,
-          "hist": -2.393
+          "hist": -2.39
         },
         "atr14": 17.17,
         "support20": 132.54,
         "resistance20": 253.66,
-        "vol_ratio": 0.74,
+        "vol_ratio": 0.78,
         "bars": 250
       }
     },
@@ -1584,7 +1585,7 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 534.09,
+        "close": 534.06,
         "rsi14": 50.4,
         "sma20": 519.02,
         "sma50": 554.55,
@@ -1593,14 +1594,14 @@
         "above_sma50": false,
         "above_sma200": true,
         "macd": {
-          "macd": -8.347,
+          "macd": -8.349,
           "signal": -15.896,
-          "hist": 7.549
+          "hist": 7.547
         },
         "atr14": 41.94,
         "support20": 402.1,
         "resistance20": 594.0,
-        "vol_ratio": 5.21,
+        "vol_ratio": 1.41,
         "bars": 250
       }
     },
@@ -1625,8 +1626,8 @@
       },
       "td": {
         "date": "2026-11-13",
-        "close": 162.82,
-        "rsi14": 24.8,
+        "close": 162.85,
+        "rsi14": 24.9,
         "sma20": 198.69,
         "sma50": 214.65,
         "sma200": 204.19,
@@ -1634,14 +1635,14 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -14.234,
+          "macd": -14.231,
           "signal": -10.11,
-          "hist": -4.123
+          "hist": -4.121
         },
         "atr14": 9.98,
         "support20": 148.8,
         "resistance20": 222.19,
-        "vol_ratio": 9.82,
+        "vol_ratio": 1.74,
         "bars": 250
       }
     },
@@ -1682,7 +1683,7 @@
         "atr14": 10.2,
         "support20": 261.25,
         "resistance20": 316.6,
-        "vol_ratio": 0.39,
+        "vol_ratio": 0.52,
         "bars": 250
       }
     }
