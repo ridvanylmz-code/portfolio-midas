@@ -206,8 +206,16 @@ def sync_public():
         held = sorted(pf.get("portfolio", {}))
         syms = sorted(set(held) | set(pf.get("watchlist", [])))
         save_json(f"{DATA_DIR}/symbols.json", {"tickers": syms})
-        save_json(f"{DATA_DIR}/holdings.json", {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                                                "holdings": held})
+        try:   # liste aynıysa ve dosya 1 günden yeniyse yazma (her çalışmada yalnız zaman damgası için commit olmasın;
+            # skill 7 günden eski dosyayı yok saydığı için damga günde bir tazelenir)
+            old = load_json(f"{DATA_DIR}/holdings.json") or {}
+            age = datetime.now(timezone.utc) - datetime.fromisoformat(old["updated"])
+            same = old.get("holdings") == held and age.total_seconds() < 86400
+        except (ValueError, OSError, KeyError, TypeError):
+            same = False
+        if not same:
+            save_json(f"{DATA_DIR}/holdings.json", {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                                    "holdings": held})
 
 
 def ensure_encrypted():

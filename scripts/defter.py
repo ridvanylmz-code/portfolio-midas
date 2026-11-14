@@ -189,7 +189,7 @@ def yahoo_closes(symbol, rng="10d", nd=2):
     return {}
 
 
-def twelvedata_closes(symbol, n=5000):
+def twelvedata_closes(symbol, n=5000, nd=2):
     key = os.environ.get("TWELVEDATA_API_KEY", "").strip()
     if not key:
         return {}
@@ -200,7 +200,7 @@ def twelvedata_closes(symbol, n=5000):
         if j.get("status") != "ok":
             DIAG.append(f"twelvedata {symbol}: {str(j.get('code', ''))} {str(j.get('message', ''))[:60].replace(key, '***')}")
             return {}
-        return {v["datetime"][:10]: round(float(v["close"]), 2) for v in j.get("values", [])}
+        return {v["datetime"][:10]: round(float(v["close"]), nd) for v in j.get("values", [])}
     except Exception as ex:
         DIAG.append(f"twelvedata {symbol}: {type(ex).__name__}")
         return {}
@@ -278,6 +278,8 @@ def fill_indices(d, rng="10d", today=None, today_us=None):
     # USD/TRY: geçmiş ilk kez doldurulurken (günlerin yarısından azında fx var) tüm geçmiş çekilir
     fx_rng = "max" if sum(1 for x in d["days"] if "fx" in x) < len(d["days"]) / 2 else rng
     fx = yahoo_closes("USDTRY=X", fx_rng, nd=4)
+    if len(fx) < 3:   # Yahoo GitHub'dan sık 429 veriyor: geçmiş ve günlük kur Twelve Data'dan
+        fx = {**twelvedata_closes("USD/TRY", 5000 if fx_rng == "max" else 15, nd=4), **fx}
     if len(sp) < 3:
         sp = {**twelvedata_closes("SPY", 5000 if rng == "max" else 15), **sp}
     if len(xu) < 3:

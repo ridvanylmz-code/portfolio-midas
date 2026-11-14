@@ -332,3 +332,21 @@ def test_fill_indices_fx(load, monkeypatch):
     monkeypatch.setattr(m, "last_session", lambda mk, now=None: "2026-11-11")
     m.fill_indices(d, "10d", today="2026-11-12")
     assert "fx" not in d["days"][-1]
+
+
+def test_fx_falls_back_to_twelvedata_when_yahoo_fails(load, monkeypatch):
+    """Yahoo 429 verince (GitHub'da sık) USD/TRY geçmişi Twelve Data'dan dolar."""
+    d_mod = load(key="test-anahtar").defter
+    monkeypatch.setattr(d_mod, "yahoo_closes", lambda *a, **k: {})
+    monkeypatch.setattr(d_mod, "stooq_closes", lambda *a, **k: {})
+    monkeypatch.setattr(d_mod, "tv_close", lambda *a, **k: None)
+    calls = []
+
+    def td(symbol, n=5000, nd=2):
+        calls.append((symbol, nd))
+        return {"2026-11-10": 42.1234, "2026-11-11": 42.2345, "2026-11-12": 42.3456} if symbol == "USD/TRY" else {}
+    monkeypatch.setattr(d_mod, "twelvedata_closes", td)
+    d = {"days": [{"d": "2026-11-10", "a": {}}, {"d": "2026-11-11", "a": {}}, {"d": "2026-11-12", "a": {}}], "sp_src": "SPY"}
+    d_mod.fill_indices(d, today="2026-11-12")
+    assert [x.get("fx") for x in d["days"]] == [42.1234, 42.2345, 42.3456]
+    assert ("USD/TRY", 4) in calls
