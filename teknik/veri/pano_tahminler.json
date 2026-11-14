@@ -1529,8 +1529,8 @@
   "hedef2": "A 14,62 / 14,91",
   "zaman": "9–12 Kas tepe (12) · 16–19 Kas (5) · 23–26 Kas (6)",
   "momentum": "Bant · RSI 53,0 · ADX 47,4 (+DI 29,1 / −DI 28,1) · MACDh +0,453 · haftalık RSI 33,4, MACDh −0,633 · RS nötr (21g +%1,0, 63g −%20) · z +1,05, VR5 1,26, 53 olay 10g +%0,3, %57 pozitif · 4s ve günlük ST yeşil",
-  "sonuc": "",
-  "isabet": "—"
+  "sonuc": "A ✓: 12.11 kapanış 14,49 > 14,06 → ÖNEMLİ 14,62–14,91 ✓ (tepe 14,85), 13.11 ret −%6,9 (13,49). 13,35–13,58 / 13,80–14,06 dirençleri kapanışla geçildi. B 12,46 gelmedi",
+  "isabet": "✓ (A)"
  },
  {
   "id": "2026-11-08-SASA",
@@ -1550,8 +1550,8 @@
   "hedef2": "A 1,79 / 1,82",
   "zaman": "11–16 Kas iki yönlü + bilanço (8) · 23–26 Kas (6)",
   "momentum": "Savunma · RSI 38,3 · ADX 38,2 (−DI 32,4 / +DI 20,1) · MACDh +0,023 · haftalık RSI 35,6, MACDh −0,085 · RS zayıf (21g −%9,8) · z −1,03, 126 olay 10g +%0,3, %44 pozitif · 4s ST kırmızı 1,662",
-  "sonuc": "",
-  "isabet": "—"
+  "sonuc": "Yatay 1,56–1,65: 1,581–1,620 / 1,640–1,678 dirençlerinde ret ✓ (12.11 tepe 1,64 → 1,59). B 1,54 ve A 1,71 tetikleri gelmedi",
+  "isabet": "½ (dirençler ✓)"
  },
  {
   "id": "2026-11-08-SMRTG",
@@ -1571,8 +1571,8 @@
   "hedef2": "A 4,47 / 4,67",
   "zaman": "11–16 Kas (8) · 23–26 Kas (7)",
   "momentum": "Savunma · RSI 39,1 · ADX 48,0 (−DI 34,4 / +DI 18,4) · MACDh +0,133 · haftalık RSI 26,8, MACDh −0,632 · RS zayıf (21g −%11, 63g −%55) · z −0,69, 100 olay 10g −%1,8, %37 pozitif · 4s ST yeşil 3,742",
-  "sonuc": "",
-  "isabet": "—"
+  "sonuc": "A ✓: 09.11 4,45 (4,16 üstü) → 4,465–4,55 ✓ ve 4,59–4,67 ✓ (10.11 açılış 4,75), aynı gün ret 4,16. B 3,80 gelmedi",
+  "isabet": "✓ (A)"
  },
  {
   "id": "2026-11-08-MIATK",
@@ -1592,8 +1592,8 @@
   "hedef2": "A 26,64 / 27,44",
   "zaman": "9–12 Kas (7) · 18–23 Kas + bilanço (8)",
   "momentum": "Bant · RSI 45,8 · ADX 10,4 (+DI 24,7 / −DI 21,2) · MACDh +0,045 · haftalık RSI 39,0, MACDh −0,503 · RS zayıf (21g −%12) · z −0,36, 106 olay 10g +%0,7, %46 pozitif · 4s ST kırmızı 25,12",
-  "sonuc": "",
-  "isabet": "—"
+  "sonuc": "B1 ✓: KRİTİK 24,76–25,52’de ret (09.11 tepe 25,22) → izleme 23,42–23,79 ✓ (11.11 dip 23,62). 23,42 altı kapanış ve A 25,52 gelmedi",
+  "isabet": "✓ (B1)"
  },
  {
   "id": "2026-11-14-RKLB",
@@ -1676,6 +1676,90 @@
   "hedef2": "B: 7,43–7,82 / A: 14,0",
   "zaman": "Zaman penceresi yok (v2.4)",
   "momentum": "v2.4 · nötr · Savunma · RSI 40,3 · ADX 39,2 (−DI 30,9) · düşüş dizilimi (EMA233 yetersiz veri, 321 bar) · MACDh +0,31 · haftalık MACDh −1,54 · RS zayıf (63g −%68; WGMI'ye göre −%41) · z −1,11, 26 olay 10g −%3,6, %35 pozitif · ÇVWAP dip 9,23 / bilanço 9,98 · 4s ST yeşil 8,86 / günlük kırmızı 10,66 · analist hedef indirimleri (30–37 $)",
+  "sonuc": "",
+  "isabet": "—"
+ },
+ {
+  "id": "2026-11-15-BIENY",
+  "hafta": "2026-11-15",
+  "surum": "v2.4",
+  "sembol": "BIST:BIENY",
+  "hisse": "BIENY",
+  "para": "TRY",
+  "analiz_fiyati": 13.49,
+  "ana_senaryo": "B: 13,49 altı kapanış → 13,28–13,35, sonra 11,90–12,07 / A: 14,85 üstü kapanış → —, sonra —",
+  "olasilik": "—",
+  "alt_senaryo": "12.11 tepe 14,85 (ABC↑ 1,618 + %38,2 geri çekilme 14,91) sonrası 13.11 −%6,9, kapanış gün dibinde (13,49) → B tetiği her kapanışta canlı. Satışlar KRİTİK 13,56–13,80’de (EMA34 13,69). 14,85 üstü kapanış A; üstte ÖNEMLİ 14,80–15,10.",
+  "donus_bolgesi": "ÖNEMLİ 14,80–15,10 direnç (4) · KRİTİK 13,56–13,80 direnç (4) · İzleme↓ 13,28–13,35 destek (3,50) · İzleme↓ 11,90–12,07 destek (3,50)",
+  "tetik": 14.85,
+  "stop": 11.78,
+  "hedef1": "B: 13,28–13,35 / A: —",
+  "hedef2": "B: 11,90–12,07 / A: —",
+  "zaman": "—",
+  "momentum": "v2.4 · XU100 11842,82 · EMA89 12712,53 · EMA233 12806,84 · ADX 47,00 (+DI 21,00 / −DI 27,70) → risk-off (XU100 < EMA89 < EMA233; ADX 47, −DI baskın) → destekler bir kademe düştü, kenardaki porsiyon kullanılmaz · Bant · RSI 51,80 · ADX 37,30 (+DI 30,80 / −DI 23,80) · EMA21 13,04 / 34 13,69 / 89 16,78 / 144 19,08 / 233 22,09 · MACDh 0,534 · haftalık RSI 34,10, MACDh -0,424 · RS nötr (21g %2,63, 63g %-25,40) · z 0,556, 56 olay 10g %-0,96 · 4s ST kırmızı 14,40 / günlük yeşil 12,89 · 875 bar",
+  "sonuc": "",
+  "isabet": "—"
+ },
+ {
+  "id": "2026-11-15-SASA",
+  "hafta": "2026-11-15",
+  "surum": "v2.4",
+  "sembol": "BIST:SASA",
+  "hisse": "SASA",
+  "para": "TRY",
+  "analiz_fiyati": 1.59,
+  "ana_senaryo": "B: 1,56 altı kapanış → 1,52–1,54, sonra 1,43–1,462 / A: 1,64 üstü kapanış → 1,73–1,76, sonra 1,801–1,82",
+  "olasilik": "—",
+  "alt_senaryo": "09–13.11 1,56–1,65 yatay; KRİTİK 1,62–1,65 (EMA21 1,65 + %23,6 + kanal) üst sınır. 1,56 altı kapanış B → 1,52–1,54 / 1,43–1,46. Savunma: geri alım yok.",
+  "donus_bolgesi": "ÖNEMLİ 1,801–1,82 direnç (3,50) · ÖNEMLİ 1,73–1,76 direnç (3) · KRİTİK 1,62–1,65 direnç (4) · İzleme↓ 1,52–1,54 destek (3) · İzleme↓ 1,43–1,462 destek (4)",
+  "tetik": 1.64,
+  "stop": 1.42,
+  "hedef1": "B: 1,52–1,54 / A: 1,73–1,76",
+  "hedef2": "B: 1,43–1,462 / A: 1,801–1,82",
+  "zaman": "—",
+  "momentum": "v2.4 · XU100 11842,82 · EMA89 12712,53 · EMA233 12806,84 · ADX 47,00 (+DI 21,00 / −DI 27,70) → risk-off (XU100 < EMA89 < EMA233; ADX 47, −DI baskın) → destekler bir kademe düştü, kenardaki porsiyon kullanılmaz · Savunma · RSI 41,40 · ADX 31,10 (+DI 21,70 / −DI 28,20) · EMA21 1,647 / 34 1,75 / 89 2,066 / 144 2,249 / 233 2,479 · MACDh 0,028 · haftalık RSI 35,90, MACDh -0,073 · RS zayıf (21g %-10,60, 63g %-18,90) · z -0,68, 142 olay 10g %1,114 · 4s ST kırmızı 1,645 / günlük yeşil 1,472 · 1677 bar",
+  "sonuc": "",
+  "isabet": "—"
+ },
+ {
+  "id": "2026-11-15-SMRTG",
+  "hafta": "2026-11-15",
+  "surum": "v2.4",
+  "sembol": "BIST:SMRTG",
+  "hisse": "SMRTG",
+  "para": "TRY",
+  "analiz_fiyati": 4.31,
+  "ana_senaryo": "B: 4,13 altı kapanış → 4,04–4,13, sonra 3,80–3,89 / A: 4,43 üstü kapanış → 4,50–4,55, sonra 4,64–4,75",
+  "olasilik": "—",
+  "alt_senaryo": "10.11 4,75 açılış tepesi (KRİTİK 4,64–4,75: %61,8 + EMA34 4,74) sert ret, 12–13.11 4,13–4,43 sıkışma. 4,43 üstü kapanış A → 4,50–4,55 satış. 4,13 altı kapanış B → 4,04–4,13 / 3,80–3,89. Ana sat bölgesi ÖNEMLİ 4,50–4,55; geçilirse sigorta 4,80 (KRİTİK üstü).",
+  "donus_bolgesi": "KRİTİK 4,64–4,75 direnç (4) · ÖNEMLİ 4,50–4,55 direnç (3,50) · İzleme↓ 4,20–4,27 destek (3) · İzleme↓ 4,04–4,13 destek (3,50) · İzleme↓ 3,80–3,89 destek (4) · uzak ÖNEMLİ 4,78–4,89 / İzleme 3,56–3,64 / ÖNEMLİ 5,21–5,30 / ÖNEMLİ 5,45–5,55",
+  "tetik": 4.43,
+  "stop": 3.51,
+  "hedef1": "B: 4,04–4,13 / A: 4,50–4,55",
+  "hedef2": "B: 3,80–3,89 / A: 4,64–4,75",
+  "zaman": "—",
+  "momentum": "v2.4 · XU100 11842,82 · EMA89 12712,53 · EMA233 12806,84 · ADX 47,00 (+DI 21,00 / −DI 27,70) → risk-off (XU100 < EMA89 < EMA233; ADX 47, −DI baskın) → destekler bir kademe düştü, kenardaki porsiyon kullanılmaz · Bant · RSI 46,60 · ADX 35,00 (+DI 27,80 / −DI 24,20) · EMA21 4,265 / 34 4,737 / 89 6,665 / 144 7,55 / 233 8,293 · MACDh 0,171 · haftalık RSI 29,20, MACDh -0,511 · RS zayıf (21g %-4,125, 63g %-50,90) · z 0,146, 94 olay 10g %-1,531 · 4s ST kırmızı 4,449 / günlük yeşil 3,811 · 1160 bar",
+  "sonuc": "",
+  "isabet": "—"
+ },
+ {
+  "id": "2026-11-15-MIATK",
+  "hafta": "2026-11-15",
+  "surum": "v2.4",
+  "sembol": "BIST:MIATK",
+  "hisse": "MIATK",
+  "para": "TRY",
+  "analiz_fiyati": 23.82,
+  "ana_senaryo": "B: 23,62 altı kapanış → 23,25–23,92, sonra 22,02–22,71 / A: 24,94 üstü kapanış → 25,08–25,36, sonra —",
+  "olasilik": "—",
+  "alt_senaryo": "ADX 9,6 → yön yok; 22,02–25,24 Darvas kutusu. Fiyat ÖNEMLİ 23,25–23,92 pivotunda. 24,94 üstü kapanış A → 25,08–25,36 (EMA34 + çift tepe). 23,62 altı kapanış B → 22,02–22,71 (Darvas tabanı).",
+  "donus_bolgesi": "ÖNEMLİ 25,08–25,36 direnç (3) · ÖNEMLİ 24,36–24,76 direnç (3) · ÖNEMLİ 23,25–23,92 pivot (4) · İzleme↓ 22,02–22,71 destek (4)",
+  "tetik": 24.94,
+  "stop": 21.76,
+  "hedef1": "B: 23,25–23,92 / A: 25,08–25,36",
+  "hedef2": "B: 22,02–22,71 / A: —",
+  "zaman": "—",
+  "momentum": "v2.4 · XU100 11842,82 · EMA89 12712,53 · EMA233 12806,84 · ADX 47,00 (+DI 21,00 / −DI 27,70) → risk-off (XU100 < EMA89 < EMA233; ADX 47, −DI baskın) → destekler bir kademe düştü, kenardaki porsiyon kullanılmaz · Bant · RSI 45,00 · ADX 9,616 (+DI 25,00 / −DI 20,00) · EMA21 24,57 / 34 25,36 / 89 29,01 / 144 31,54 / 233 33,84 · MACDh 0,114 · haftalık RSI 38,70, MACDh -0,432 · RS zayıf (21g %-2,504, 63g %-11,80) · z -0,428, 105 olay 10g %1,231 · 4s ST kırmızı 25,02 / günlük kırmızı 27,18 · 1248 bar",
   "sonuc": "",
   "isabet": "—"
  }

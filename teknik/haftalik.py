@@ -411,11 +411,11 @@ def cmd_pozisyon(a):
         if run['createdAt'][:10] < a.since or run['conclusion'] != 'success': continue
         log = subprocess.run(['gh', 'run', 'view', str(run['databaseId']), '-R', 'ridvanylmz-code/portfolio-midas', '--log'], capture_output=True, text=True).stdout
         for l in log.splitlines():
-            m = re.search(r'(ALIŞ|SATIŞ) (\w+): (\d+) adet @ \$?([\d.,]+)', l)
+            m = re.search(r'(ALIŞ|SATIŞ) (\w+): (\d+) adet @ [\$₺]?([\d.,]+)', l)
             if m: islem.append((run['createdAt'][:16], m.group(1), m.group(2), int(m.group(3)), m.group(4)))
-            m = re.search(r'Yeni pozisyon: (\d+) adet, ort\. maliyet \$?([\d.,]+)|Kalan: (\d+) adet \(maliyet \$?([\d.,]+)', l)
+            m = re.search(r'Yeni pozisyon: (\d+) adet, ort\. maliyet [\$₺]?([\d.,]+)|Kalan: (\d+) adet \(maliyet [\$₺]?([\d.,]+)', l)
             if m and islem: son[islem[-1][2]] = (int(m.group(1) or m.group(3)), m.group(2) or m.group(4))
-            m = re.search(r'Nakit: \$?([\d.,]+)', l)
+            m = re.search(r'Nakit: [\$₺]?([\d.,]+)', l)
             if m: son['_nakit'] = m.group(1)
     for x in islem: print(*x)
     print('\nSon durum:', json.dumps(son, ensure_ascii=False))
