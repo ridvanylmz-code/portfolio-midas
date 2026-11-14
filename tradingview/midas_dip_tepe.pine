@@ -1,0 +1,139 @@
+//@version=6
+indicator("Midas Dip-Tepe", overlay = true, max_boxes_count = 200)
+
+// Her hissede ve her periyotta (15dk, 4s) aynı ayarla çalışır; eşikler ATR katıdır, hisseye kendiliğinden uyar.
+// OK   = erken dip/tepe adayı (mum kapanışında kesinleşir, sonradan silinmez).
+// KUTU = kesik çizgili: canlı aday bölge (yeni dip/tepe gelirse silinir); düz çizgili: teyitli dip/tepe.
+// YILAN = yeşil/kırmızı çizgi: salınım yönü. Renk değişimi = dönüş teyidi (fiyat uçtan "Salınım eşiği" kadar döndü).
+// Test sonuçları ve kullanım: notes/DIP-TEPE.md
+
+K0   = input.float(4.0, "Salınım eşiği (ATR katı)", minval = 1.0, step = 0.5, tooltip = "Yılanın renk değiştirmesi ve bir dip/tepenin teyidi için gereken dönüş.")
+R    = input.float(0.5, "Erken ok dönüşü (ATR katı)", minval = 0.1, step = 0.05, tooltip = "Fiyat son uçtan bu kadar dönünce ok çıkar.")
+G    = input.float(3.0, "En küçük bacak (ATR katı)", minval = 0.0, step = 0.5, tooltip = "Önceki dönüş noktasından bu kadar uzaklaşmadan ok çıkmaz.")
+alen = input.int(14, "ATR uzunluğu", minval = 1)
+showArrow = input.bool(true, "Okları göster")
+showBox   = input.bool(true, "Kutuları göster")
+showSnake = input.bool(true, "Yılanı göster")
+show4h    = input.bool(true, "4 saatlik yönü köşede göster (alt periyotlarda)")
+colUp = #22c55e
+colDn = #ef4444
+
+f_leg() =>
+    a = ta.atr(alen)
+    var int   dir   = 0
+    var float hi    = high
+    var float lo    = low
+    var int   hib   = bar_index
+    var int   lob   = bar_index
+    var bool  fired = false
+    var float lastH = high
+    var float lastL = low
+    bool buy = false
+    bool sell = false
+    bool flipUp = false
+    bool flipDn = false
+    bool newExt = false
+    if na(a)
+        if high > hi
+            hi := high
+            hib := bar_index
+        if low < lo
+            lo := low
+            lob := bar_index
+    else
+        bool proc = true
+        if dir <= 0
+            if low < lo
+                lo := low
+                lob := bar_index
+                newExt := fired
+                fired := false
+            if not fired and close >= lo + R * a and lastH - lo >= G * a and (bar_index > lob or close > open)
+                buy := true
+                fired := true
+            if high >= lo + K0 * a
+                dir := 1
+                lastL := lo
+                hi := high
+                hib := bar_index
+                fired := false
+                flipUp := true
+                proc := false
+        if dir >= 0 and proc
+            if high > hi
+                hi := high
+                hib := bar_index
+                newExt := fired
+                fired := false
+            if not fired and close <= hi - R * a and hi - lastL >= G * a and (bar_index > hib or close < open)
+                sell := true
+                fired := true
+            if low <= hi - K0 * a
+                dir := -1
+                lastH := hi
+                lo := low
+                lob := bar_index
+                fired := false
+                flipDn := true
+    float stop = dir > 0 ? hi - K0 * a : dir < 0 ? lo + K0 * a : na
+    [dir, buy, sell, flipUp, flipDn, newExt, stop, lo, hi, lob, hib, a]
+
+f_dir() =>
+    [d, _b, _s, _fu, _fd, _n, _st, _lo, _hi, _lb, _hb, _a] = f_leg()
+    d
+
+[dir, buy, sell, flipUp, flipDn, newExt, stop, lo, hi, lob, hib, a] = f_leg()
+
+// --- Yılan ---
+snakeCol = dir > 0 ? colUp : colDn
+plot(showSnake ? stop : na, "Yılan", color = snakeCol, linewidth = 2, style = plot.style_linebr)
+
+// --- Oklar ---
+plotshape(showArrow and buy,  "Dip adayı",  shape.triangleup,   location.belowbar, colUp, size = size.small)
+plotshape(showArrow and sell, "Tepe adayı", shape.triangledown, location.abovebar, colDn, size = size.small)
+
+// --- Kutular ---
+var box cand = na
+boxW = 3
+if showBox
+    if newExt or flipUp or flipDn
+        box.delete(cand)
+        cand := na
+    if buy
+        box.delete(cand)
+        cand := box.new(lob - boxW, lo + a, bar_index + boxW, lo, border_color = color.new(colUp, 30), border_style = line.style_dashed, bgcolor = color.new(colUp, 88))
+    if sell
+        box.delete(cand)
+        cand := box.new(hib - boxW, hi, bar_index + boxW, hi - a, border_color = color.new(colDn, 30), border_style = line.style_dashed, bgcolor = color.new(colDn, 88))
+    if flipUp
+        box.new(lob - boxW, lo + a, lob + boxW, lo, border_color = color.new(colUp, 0), bgcolor = color.new(colUp, 80))
+    if flipDn
+        box.new(hib - boxW, hi, hib + boxW, hi - a, border_color = color.new(colDn, 0), bgcolor = color.new(colDn, 80))
+
+// --- 4 saatlik yön (yalnız kapanmış 4s mumu; yeniden boyamaz) ---
+dir4 = request.security(syminfo.tickerid, "240", f_dir()[1], lookahead = barmerge.lookahead_on)
+var table t = table.new(position.top_right, 1, 1)
+if show4h and barstate.islast and timeframe.in_seconds() < 14400
+    table.cell(t, 0, 0, dir4 > 0 ? "4s ▲" : dir4 < 0 ? "4s ▼" : "4s –", text_color = color.white, bgcolor = color.new(dir4 > 0 ? colUp : dir4 < 0 ? colDn : color.gray, 20), text_size = size.small)
+
+// --- Alarmlar: "Herhangi bir alert() fonksiyon çağrısı" seçilirse dördü birden gelir ---
+tf = timeframe.period
+px = str.tostring(close, format.mintick)
+if buy
+    alert("🟢▲ " + syminfo.ticker + " " + tf + " dip adayı · fiyat " + px + " · bozulma: " + str.tostring(lo, format.mintick) + " altı", alert.freq_once_per_bar_close)
+if sell
+    alert("🔴▼ " + syminfo.ticker + " " + tf + " tepe adayı · fiyat " + px + " · bozulma: " + str.tostring(hi, format.mintick) + " üstü", alert.freq_once_per_bar_close)
+if flipUp
+    alert("✅ " + syminfo.ticker + " " + tf + " dip teyit (yılan yeşil) · fiyat " + px, alert.freq_once_per_bar_close)
+if flipDn
+    alert("⛔ " + syminfo.ticker + " " + tf + " tepe teyit (yılan kırmızı) · fiyat " + px, alert.freq_once_per_bar_close)
+
+alertcondition(buy,    "Dip adayı",   "{{ticker}} {{interval}} dip adayı, fiyat {{close}}")
+alertcondition(sell,   "Tepe adayı",  "{{ticker}} {{interval}} tepe adayı, fiyat {{close}}")
+alertcondition(flipUp, "Dip teyit",   "{{ticker}} {{interval}} dip teyit (yılan yeşil), fiyat {{close}}")
+alertcondition(flipDn, "Tepe teyit",  "{{ticker}} {{interval}} tepe teyit (yılan kırmızı), fiyat {{close}}")
+
+// Veri penceresi / doğrulama için (grafikte görünmez)
+plot(buy ? 1 : 0, "buy", display = display.data_window)
+plot(sell ? 1 : 0, "sell", display = display.data_window)
+plot(dir, "yön", display = display.data_window)
