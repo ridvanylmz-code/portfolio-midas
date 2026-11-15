@@ -11,7 +11,7 @@ Kapsam: ABD (RKLB, CRWV, SGML, WYFI, `NYSE:UAMY`) ve BIST (BIENY, SASA, SMRTG, M
 | Kesik çizgili kutu | Canlı aday bölge. Fiyat yeni dip/tepe yaparsa kutu silinir (aday bozuldu). |
 | Düz çizgili kutu | Teyit edilmiş dip/tepe (yılan renk değiştirdiğinde geriye dönük çizilir). |
 | Yılan (yeşil/kırmızı çizgi) | Salınım yönü. Renk değişimi = fiyat uçtan 4 ATR döndü, dönüş teyitli. |
-| Köşedeki "4s ▲/▼" | 15 dakikalık grafikte 4 saatlik salınımın yönü. |
+| Köşedeki puan tablosu | 0–100 puan ile 4 saatlik ve 15 dakikalık durum (aşağıda). |
 
 ## Kural
 
@@ -57,21 +57,44 @@ Aynı ölçüt, aynı ayar (4 / 0,5 / 3).
 - SASA 15 dakikalıkta ATR yalnız 1,5 fiyat adımı (ALTIN'da 2,3): fiyat basamaklı hareket ettiği için sinyal gürültülü. SASA için 4 saatlik kullanılmalı.
 - Hisseye özel ayar BIST'te de ileriye dönük testte tutmadı (4s: özel 0,51, ortak 0,58; 15dk: özel 0,44, ortak 0,47 F1). 80'den fazla yöntem/ayar arasında en iyi çıkan yine bu gösterge; repodaki EMA kesişimleri ve Supertrend(10,2) dönüşten 7–26 mum sonra sinyal verdi (F1 0,06–0,26).
 
-## Kullanım stratejisi
+## Puan (sağ üst köşe, 0–100)
 
-Okların yaklaşık yarısı erken gelir; bu yüzden plan "küçük gir, kutu bozulursa çık, yılan teyit edince tamamla" üzerine kuruludur. Bu kurallar göstergenin mantığından türetildi; bütün olarak geriye dönük test edilmedi.
+Puan = 4 saatlik durum (en çok 55) + 15 dakikalık durum (en çok 45). Hangi grafikte olursan ol ikisi birlikte hesaplanır.
 
-Alım:
-1. Yeşil ok + kesik yeşil kutu: 1 porsiyon al. Bozulma seviyesi kutunun alt kenarı.
-2. Kutu silinirse (yeni dip): o porsiyonu sat, sonraki yeşil oku bekle. Aynı düşüşte 3 ok bozulduysa denemeyi bırak, yılanın yeşile dönmesini bekle.
-3. Yılan yeşile dönerse (kutu düz çizgili olur): 1 porsiyon daha ekle, stopu teyitli kutunun altına al.
+| Durum | 4s puanı | 15dk puanı |
+|---|---|---|
+| Yılan yeşil, tepe adayı yok ("▲ yukarı") | 55 | 45 |
+| Yılan yeşil, kırmızı ok geldi ("▲ tepe adayı") | 15 | 25 |
+| Yılan kırmızı, yeşil ok geldi ("▼ dip adayı") | 25 | 15 |
+| Yılan kırmızı, dip adayı yok ("▼ aşağı") | 0 | 0 |
 
-Satış:
-1. Kırmızı ok + kesik kırmızı kutu: 1 porsiyon sat.
-2. Kutu silinirse (yeni tepe): yükseliş sürüyor, elindekini tut; sonraki kırmızı okta yine 1 porsiyon sat.
-3. Yılan kırmızıya dönerse: ticaret porsiyonlarının kalanını sat; yeni yeşil ok gelene kadar alım yok.
+Ağırlıklar 13 hissede her durumun ardından gelen 1 günlük getiriye göre sıralandı (4s'te tepe adayı, dip adayından daha kötü sonuç verdiği için daha düşük puan alır).
+Sınır: puanın iki ucu anlamlıdır (0 ve 100), ortası pek bir şey söylemez. Sonraki 1 gün ortalaması (ATR ölçeğinde): puan 0 → −1,24; 15–80 arası → −0,22 ile +0,05; puan 100 → +0,98. Test dönemi 75–96 gündür ve genel yön aşağıydı; hisse bazında tutarlılık zayıf (13 hissenin 7'sinde yüksek puan düşük puandan iyi).
 
-İki periyot birlikte: 4 saatlik yönü, 15 dakikalık giriş yerini verir. Köşedeki "4s ▲" iken 15 dakikalık yeşil oklar alım, kırmızı oklar yalnız kısmi kâr içindir. "4s ▼" iken 15 dakikalık yeşil oklar tepki alımıdır (yarım porsiyon). Ok ancak mum kapanışında kesinleşir.
+## Kullanım stratejisi (olay testine göre, 15.11.2026)
+
+Ölçü: olaydan sonraki getiri, ATR ölçeğinde; 15dk olaylarında sonraki 1 gün (dönem ortalaması −0,13), 4s olaylarında sonraki 6 mum (dönem ortalaması −0,02).
+
+Giriş için en iyi 3 durum:
+
+| Sıra | Durum | Sonraki getiri | Artı kapanan | Örnek |
+|---|---|---|---|---|
+| 1 | 4s yılan yeşile döndü (4s dip teyit) | +0,22 | %56 | 142 olay |
+| 2 | Puan 100: 4s yukarı + 15dk yukarı | +0,98 | — | 364 mum (az sayıda dönem) |
+| 3 | 4s yukarıyken 15dk yılan yeşile döndü | +0,10 | %55 | 20 olay (az) |
+
+Çıkış için en iyi 3 durum:
+
+| Sıra | Durum | Sonraki getiri | Artı kapanan | Örnek |
+|---|---|---|---|---|
+| 1 | Puan 0: 4s aşağı + 15dk aşağı, aday yok | −1,24 | — | 858 mum |
+| 2 | 4s'te tepe adayı varken 15dk yılan kırmızıya döndü | −0,25 | %35 | 113 olay |
+| 3 | 4s yılan kırmızıya döndü (4s tepe teyit) | −0,09 | %38 | 141 olay |
+
+Tek başına işe yaramayanlar:
+- 15dk yeşil ok: sonraki 1 gün −0,13 ile −0,15; dönem ortalamasından farksız. Tek başına alım nedeni değildir; en fazla 1 porsiyonluk deneme, bozulma kutunun altı.
+- 15dk kırmızı ok: ardından fiyat ortalamada düşmedi (+0,01 ile +0,12). Tek başına satış nedeni değildir; 4s yukarıyken gelen kırmızı okta satma.
+- 4s yeşil/kırmızı ok: ortalamadan farksız (−0,04 / −0,01). Ok hazırlık işaretidir; işlem yılan dönüşünde yapılır.
 
 ## Ayarlar: ne zaman değiştirilir
 

@@ -14,7 +14,7 @@ alen = input.int(14, "ATR uzunluğu", minval = 1)
 showArrow = input.bool(true, "Okları göster")
 showBox   = input.bool(true, "Kutuları göster")
 showSnake = input.bool(true, "Yılanı göster")
-show4h    = input.bool(true, "4 saatlik yönü köşede göster (alt periyotlarda)")
+showScore = input.bool(true, "Puan tablosunu köşede göster (4s + 15dk)")
 colUp = #22c55e
 colDn = #ef4444
 
@@ -76,13 +76,14 @@ f_leg() =>
                 fired := false
                 flipDn := true
     float stop = dir > 0 ? hi - K0 * a : dir < 0 ? lo + K0 * a : na
-    [dir, buy, sell, flipUp, flipDn, newExt, stop, lo, hi, lob, hib, a]
+    [dir, buy, sell, flipUp, flipDn, newExt, stop, lo, hi, lob, hib, a, fired]
 
-f_dir() =>
-    [d, _b, _s, _fu, _fd, _n, _st, _lo, _hi, _lb, _hb, _a] = f_leg()
-    d
+// Durum kodu: 0 = aşağı, 1 = aşağı + dip adayı, 2 = yukarı + tepe adayı, 3 = yukarı
+f_st() =>
+    [d, _b, _s, _fu, _fd, _n, _st, _lo, _hi, _lb, _hb, _a, f] = f_leg()
+    d > 0 ? (f ? 2 : 3) : d < 0 ? (f ? 1 : 0) : -1
 
-[dir, buy, sell, flipUp, flipDn, newExt, stop, lo, hi, lob, hib, a] = f_leg()
+[dir, buy, sell, flipUp, flipDn, newExt, stop, lo, hi, lob, hib, a, fired] = f_leg()
 
 // --- Yılan ---
 snakeCol = dir > 0 ? colUp : colDn
@@ -110,11 +111,24 @@ if showBox
     if flipDn
         box.new(hib - boxW, hi, hib + boxW, hi - a, border_color = color.new(colDn, 0), bgcolor = color.new(colDn, 80))
 
-// --- 4 saatlik yön (yalnız kapanmış 4s mumu; yeniden boyamaz) ---
-dir4 = request.security(syminfo.tickerid, "240", f_dir()[1], lookahead = barmerge.lookahead_on)
-var table t = table.new(position.top_right, 1, 1)
-if show4h and barstate.islast and timeframe.in_seconds() < 14400
-    table.cell(t, 0, 0, dir4 > 0 ? "4s ▲" : dir4 < 0 ? "4s ▼" : "4s –", text_color = color.white, bgcolor = color.new(dir4 > 0 ? colUp : dir4 < 0 ? colDn : color.gray, 20), text_size = size.small)
+// --- Puan (0-100): 4 saatlik durum 55, 15 dakikalık durum 45 puan ---
+// 4s: yalnız kapanmış 4s mumu (yeniden boyamaz). 15dk: 15dk'dan büyük grafiklerde son 15dk mumu.
+stOwn = dir > 0 ? (fired ? 2 : 3) : dir < 0 ? (fired ? 1 : 0) : -1
+st4r  = request.security(syminfo.tickerid, "240", f_st()[1], lookahead = barmerge.lookahead_on)
+st15r = request.security(syminfo.tickerid, "15", f_st())
+st4   = timeframe.period == "240" ? stOwn : st4r
+st15  = timeframe.period == "15" ? stOwn : st15r
+p4    = st4 == 3 ? 55 : st4 == 1 ? 25 : st4 == 2 ? 15 : 0
+p15   = st15 == 3 ? 45 : st15 == 2 ? 25 : st15 == 1 ? 15 : 0
+score = p4 + p15
+f_txt(st) => st == 3 ? "▲ yukarı" : st == 2 ? "▲ tepe adayı" : st == 1 ? "▼ dip adayı" : st == 0 ? "▼ aşağı" : "–"
+f_col(st) => st == 3 ? colUp : st == 2 ? #a3a23a : st == 1 ? #d97706 : st == 0 ? colDn : color.gray
+scCol = score >= 75 ? colUp : score >= 50 ? #a3a23a : score >= 25 ? #d97706 : colDn
+var table t = table.new(position.top_right, 1, 3)
+if showScore and barstate.islast
+    table.cell(t, 0, 0, "Puan " + str.tostring(score) + "/100", text_color = color.white, bgcolor = color.new(scCol, 10), text_size = size.normal)
+    table.cell(t, 0, 1, "4s " + f_txt(st4) + " · " + str.tostring(p4) + "/55", text_color = color.white, bgcolor = color.new(f_col(st4), 30), text_size = size.small)
+    table.cell(t, 0, 2, "15dk " + f_txt(st15) + " · " + str.tostring(p15) + "/45", text_color = color.white, bgcolor = color.new(f_col(st15), 30), text_size = size.small)
 
 // --- Alarmlar: "Herhangi bir alert() fonksiyon çağrısı" seçilirse dördü birden gelir ---
 tf = timeframe.period
@@ -137,3 +151,4 @@ alertcondition(flipDn, "Tepe teyit",  "{{ticker}} {{interval}} tepe teyit (yıla
 plot(buy ? 1 : 0, "buy", display = display.data_window)
 plot(sell ? 1 : 0, "sell", display = display.data_window)
 plot(dir, "yön", display = display.data_window)
+plot(score, "puan", display = display.data_window)
