@@ -1,7 +1,7 @@
 # Midas Dip-Tepe göstergesi
 
 Kod: `tradingview/midas_dip_tepe.pine` (TradingView hesabında "Midas Dip-Tepe" adıyla kayıtlı).
-Kapsam: RKLB, CRWV, SGML, WYFI, UAMY (TradingView'de `NYSE:UAMY`); 15 dakikalık ve 4 saatlik grafik. Aynı ayar hepsinde çalışır.
+Kapsam: ABD (RKLB, CRWV, SGML, WYFI, `NYSE:UAMY`) ve BIST (BIENY, SASA, SMRTG, MIATK, THYAO, TCELL, ALTIN, GMSTR); 15 dakikalık ve 4 saatlik grafik. Aynı gösterge ve aynı ayar hepsinde çalışır.
 
 ## Ekranda ne var
 
@@ -19,7 +19,7 @@ Fiyat son uçtan 0,5 ATR dönünce ok çıkar; koşul, önceki dönüş noktası
 Her yeni dip/tepe oku yeniden kurar. Fiyat uçtan 4 ATR dönünce yılan renk değiştirir.
 Okun bozulma seviyesi kutunun dış kenarıdır (dipte kutunun altı, tepede üstü).
 
-## Test (her hissede son 600 mum, 14.11.2026)
+## Test — ABD (her hissede son 600 mum, 14.11.2026)
 
 Ölçüt: "büyük dönüş" = en az 4 ATR'lik salınımın dibi/tepesi. "İsabetli ok" = sonraki bacağın ilk üçte birinde gelen ok.
 
@@ -37,6 +37,55 @@ Okun bozulma seviyesi kutunun dış kenarıdır (dipte kutunun altı, tepede üs
 | 15dk | UAMY | 57 | 21 | %86 | %52 |
 
 İlk isabetli ok ortalama olarak dönüş mumunda veya bir mum sonra gelir ve sonraki bacağın yaklaşık %80'ini bırakır.
+
+## Test — BIST (her hissede son 600 mum, 15.11.2026)
+
+Aynı ölçüt, aynı ayar (4 / 0,5 / 3).
+
+| Hisse | 4s: ok | 4s: büyük dönüş | 4s: yakalanan | 4s: isabetli ok | 15dk: ok | 15dk: büyük dönüş | 15dk: yakalanan | 15dk: isabetli ok |
+|---|---|---|---|---|---|---|---|---|
+| BIENY | 68 | 22 | %82 | %46 | 78 | 20 | %80 | %27 |
+| SASA | 61 | 18 | %94 | %47 | 39 | 12 | %75 | %29 |
+| SMRTG | 61 | 19 | %89 | %47 | 65 | 18 | %83 | %41 |
+| MIATK | 60 | 22 | %82 | %54 | 58 | 22 | %73 | %46 |
+| THYAO | 72 | 14 | %71 | %43 | 69 | 13 | %92 | %33 |
+| TCELL | 61 | 18 | %89 | %47 | 55 | 17 | %88 | %47 |
+| ALTIN | 70 | 25 | %76 | %45 | 64 | 27 | %67 | %41 |
+| GMSTR | 74 | 23 | %74 | %35 | 65 | 16 | %88 | %45 |
+
+- 4 saatlikte sonuç ABD ile aynı düzeyde. 15 dakikalıkta BIST daha zayıf; BIENY, SASA ve THYAO'da okların yalnız üçte biri isabetli.
+- SASA 15 dakikalıkta ATR yalnız 1,5 fiyat adımı (ALTIN'da 2,3): fiyat basamaklı hareket ettiği için sinyal gürültülü. SASA için 4 saatlik kullanılmalı.
+- Hisseye özel ayar BIST'te de ileriye dönük testte tutmadı (4s: özel 0,51, ortak 0,58; 15dk: özel 0,44, ortak 0,47 F1). 80'den fazla yöntem/ayar arasında en iyi çıkan yine bu gösterge; repodaki EMA kesişimleri ve Supertrend(10,2) dönüşten 7–26 mum sonra sinyal verdi (F1 0,06–0,26).
+
+## Kullanım stratejisi
+
+Okların yaklaşık yarısı erken gelir; bu yüzden plan "küçük gir, kutu bozulursa çık, yılan teyit edince tamamla" üzerine kuruludur. Bu kurallar göstergenin mantığından türetildi; bütün olarak geriye dönük test edilmedi.
+
+Alım:
+1. Yeşil ok + kesik yeşil kutu: 1 porsiyon al. Bozulma seviyesi kutunun alt kenarı.
+2. Kutu silinirse (yeni dip): o porsiyonu sat, sonraki yeşil oku bekle. Aynı düşüşte 3 ok bozulduysa denemeyi bırak, yılanın yeşile dönmesini bekle.
+3. Yılan yeşile dönerse (kutu düz çizgili olur): 1 porsiyon daha ekle, stopu teyitli kutunun altına al.
+
+Satış:
+1. Kırmızı ok + kesik kırmızı kutu: 1 porsiyon sat.
+2. Kutu silinirse (yeni tepe): yükseliş sürüyor, elindekini tut; sonraki kırmızı okta yine 1 porsiyon sat.
+3. Yılan kırmızıya dönerse: ticaret porsiyonlarının kalanını sat; yeni yeşil ok gelene kadar alım yok.
+
+İki periyot birlikte: 4 saatlik yönü, 15 dakikalık giriş yerini verir. Köşedeki "4s ▲" iken 15 dakikalık yeşil oklar alım, kırmızı oklar yalnız kısmi kâr içindir. "4s ▼" iken 15 dakikalık yeşil oklar tepki alımıdır (yarım porsiyon). Ok ancak mum kapanışında kesinleşir.
+
+## Ayarlar: ne zaman değiştirilir
+
+Varsayılan (4 / 0,5 / 3 / ATR 14) test edilen 13 hissenin ortak en iyisidir; normalde değiştirme.
+
+| Durum | Değişiklik | Testteki etkisi |
+|---|---|---|
+| Çok fazla ok, ekran kalabalık | "Erken ok dönüşü" 0,5 → 0,75 | BIST 4s: ok sayısı 66 → 57, isabetli ok %45 → %47, yakalanan dönüş aynı |
+| Yalnız büyük salınımlar isteniyor | "Salınım eşiği" 4 → 5 | Yılan daha seyrek döner; BIST 4s: ok 66 → 54, yakalanan dönüş %82 → %69 |
+| Küçük salınımlar da isteniyor | "Salınım eşiği" 4 → 3 | BIST 4s: ok 66 → 84, isabetli ok %45 → %40 |
+| Yatay/dar bantta gereksiz ok | "En küçük bacak" 3 → 5 | BIST 4s: ok 66 → 57, yakalanan dönüş %82 → %73 |
+| ATR uzunluğu | Değiştirme | 10, 14, 21 arasında fark yok |
+
+Ayarı bir hissede geçmişe bakarak "en iyi görünen" değere çekmek işe yaramaz: testte geçmişte en iyi görünen hisseye özel ayar, sonraki 300 mumda ortak ayardan kötü çıktı.
 
 ## Sınırlar
 
