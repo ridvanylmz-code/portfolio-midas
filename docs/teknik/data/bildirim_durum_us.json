@@ -1,62 +1,74 @@
 {
  "CRWV-01": {
-  "hafta": "2026-11-07",
-  "taraf": "ust"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
  },
  "CRWV-02": {
-  "gecti": "2026-11-13",
-  "hafta": "2026-11-07",
-  "taraf": "alt",
-  "yakin": "2026-11-14"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
  },
  "CRWV-03": {
-  "hafta": "2026-11-07",
-  "taraf": "alt",
-  "yakin": "2026-11-14"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
  },
  "CRWV-04": {
-  "hafta": "2026-11-07",
-  "taraf": "alt",
-  "yakin": "2026-11-13"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
+ },
+ "CRWV-05": {
+  "hafta": "2026-11-14",
+  "taraf": "ust"
  },
  "CRWV-06": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "ust"
  },
  "RKLB-01": {
-  "hafta": "2026-11-07",
-  "taraf": "ust"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
  },
  "RKLB-02": {
-  "hafta": "2026-11-07",
-  "taraf": "ust"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
  },
  "RKLB-03": {
-  "hafta": "2026-11-07",
-  "taraf": "ust"
+  "hafta": "2026-11-14",
+  "taraf": "alt"
  },
  "RKLB-04": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
+  "taraf": "alt"
+ },
+ "RKLB-05": {
+  "hafta": "2026-11-14",
   "taraf": "ust"
  },
  "RKLB-06": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
+  "taraf": "ust"
+ },
+ "RKLB-07": {
+  "hafta": "2026-11-14",
   "taraf": "ust"
  },
  "SGML-01": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "alt"
  },
  "SGML-02": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "alt"
  },
  "SGML-03": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "alt"
  },
  "SGML-04": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
+  "taraf": "alt"
+ },
+ "SGML-05": {
+  "hafta": "2026-11-14",
   "taraf": "alt"
  },
  "SGML-06": {
@@ -65,27 +77,39 @@
   "taraf": "alt",
   "yakin": "2026-11-13"
  },
- "WYFI-01": {
-  "hafta": "2026-11-07",
+ "SGML-07": {
+  "hafta": "2026-11-14",
   "taraf": "ust"
  },
+ "SGML-08": {
+  "hafta": "2026-11-14",
+  "taraf": "ust"
+ },
+ "WYFI-01": {
+  "hafta": "2026-11-14",
+  "taraf": "alt"
+ },
  "WYFI-02": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "alt"
  },
  "WYFI-03": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "alt"
  },
  "WYFI-04": {
   "hafta": "2026-11-07",
   "taraf": "alt"
  },
+ "WYFI-05": {
+  "hafta": "2026-11-14",
+  "taraf": "ust"
+ },
  "WYFI-06": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-14",
   "taraf": "ust"
  },
  "_harita_RKLB": "2026-11-14",
  "_harita_SGML": "2026-11-14",
- "_son": "2026-11-14T08:58:47+00:00"
+ "_son": "2026-11-16T09:00:46+00:00"
 }
