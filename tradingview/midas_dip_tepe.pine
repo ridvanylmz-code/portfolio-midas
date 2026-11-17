@@ -5,7 +5,7 @@ indicator("Midas Dip-Tepe", overlay = true, max_boxes_count = 200)
 // OK   = erken dip/tepe adayı (mum kapanışında kesinleşir, sonradan silinmez).
 // KUTU = kesik çizgili: canlı aday bölge (yeni dip/tepe gelirse silinir); düz çizgili: teyitli dip/tepe.
 // YILAN = yeşil/kırmızı çizgi: salınım yönü. Renk değişimi = dönüş teyidi (fiyat uçtan "Salınım eşiği" kadar döndü).
-// Test sonuçları ve kullanım: notes/DIP-TEPE.md
+// Kullanım rehberi: notes/DIP-TEPE-REHBER.pdf · test ayrıntısı: notes/DIP-TEPE.md
 
 K0   = input.float(4.0, "Salınım eşiği (ATR katı)", minval = 1.0, step = 0.5, tooltip = "Yılanın renk değiştirmesi ve bir dip/tepenin teyidi için gereken dönüş.")
 R    = input.float(0.5, "Erken ok dönüşü (ATR katı)", minval = 0.1, step = 0.05, tooltip = "Fiyat son uçtan bu kadar dönünce ok çıkar.")
@@ -15,6 +15,8 @@ showArrow = input.bool(true, "Okları göster")
 showBox   = input.bool(true, "Kutuları göster")
 showSnake = input.bool(true, "Yılanı göster")
 showScore = input.bool(true, "Puan tablosunu köşede göster (4s + 15dk)")
+tblPos    = input.string("Sağ üst", "Tablo konumu", options = ["Sağ üst", "Sağ orta", "Sağ alt", "Sol alt"])
+tblGap    = input.int(1, "Tablo üst boşluğu (satır)", minval = 0, maxval = 4, tooltip = "Tablo hisse adının üstüne biniyorsa artır.")
 colUp = #22c55e
 colDn = #ef4444
 
@@ -87,7 +89,7 @@ f_st() =>
 
 // --- Yılan ---
 snakeCol = dir > 0 ? colUp : colDn
-plot(showSnake ? stop : na, "Yılan", color = snakeCol, linewidth = 2, style = plot.style_linebr)
+plot(showSnake and dir == dir[1] ? stop : na, "Yılan", color = snakeCol, linewidth = 2, style = plot.style_linebr)
 
 // --- Oklar ---
 plotshape(showArrow and buy,  "Dip adayı",  shape.triangleup,   location.belowbar, colUp, size = size.small)
@@ -124,13 +126,34 @@ score = p4 + p15
 f_txt(st) => st == 3 ? "▲ yukarı" : st == 2 ? "▲ tepe adayı" : st == 1 ? "▼ dip adayı" : st == 0 ? "▼ aşağı" : "–"
 f_col(st) => st == 3 ? colUp : st == 2 ? #a3a23a : st == 1 ? #d97706 : st == 0 ? colDn : color.gray
 scCol = score >= 75 ? colUp : score >= 50 ? #a3a23a : score >= 25 ? #d97706 : colDn
-var table t = table.new(position.top_right, 1, 3)
-if showScore and barstate.islast
-    table.cell(t, 0, 0, "Puan " + str.tostring(score) + "/100", text_color = color.white, bgcolor = color.new(scCol, 10), text_size = size.normal)
-    table.cell(t, 0, 1, "4s " + f_txt(st4) + " · " + str.tostring(p4) + "/55", text_color = color.white, bgcolor = color.new(f_col(st4), 30), text_size = size.small)
-    table.cell(t, 0, 2, "15dk " + f_txt(st15) + " · " + str.tostring(p15) + "/45", text_color = color.white, bgcolor = color.new(f_col(st15), 30), text_size = size.small)
 
-// --- Alarmlar: "Herhangi bir alert() fonksiyon çağrısı" seçilirse dördü birden gelir ---
+// --- Plan (porsiyon, 4 = tam pozisyon). Kural: puan <= 30 → 0; puan 100 → 4; puan >= 70 → en az 2;
+//     4s tepe adayında en çok 2; arada elindekini koru. Test: notes/DIP-TEPE-REHBER.pdf
+var int plan = 0
+prevPlan = plan
+if score <= 30
+    plan := 0
+else if score == 100
+    plan := 4
+else if score >= 70
+    plan := math.max(plan, 2)
+if st4 == 2
+    plan := math.min(plan, 2)
+planTxt = plan == 4 ? "Plan: 4/4 porsiyon" : plan == 2 ? "Plan: 2/4 porsiyon" : "Plan: nakit (0/4)"
+planCol = plan == 4 ? colUp : plan == 2 ? #a3a23a : color.gray
+
+pos = tblPos == "Sağ orta" ? position.middle_right : tblPos == "Sağ alt" ? position.bottom_right : tblPos == "Sol alt" ? position.bottom_left : position.top_right
+var table t = table.new(pos, 1, 9)
+if showScore and barstate.islast
+    for k = 0 to tblGap
+        if k < tblGap
+            table.cell(t, 0, k, " ", text_size = size.normal)
+    table.cell(t, 0, tblGap, "Puan " + str.tostring(score) + "/100", text_color = color.white, bgcolor = color.new(scCol, 10), text_size = size.normal)
+    table.cell(t, 0, tblGap + 1, "4s " + f_txt(st4) + " · " + str.tostring(p4) + "/55", text_color = color.white, bgcolor = color.new(f_col(st4), 30), text_size = size.small)
+    table.cell(t, 0, tblGap + 2, "15dk " + f_txt(st15) + " · " + str.tostring(p15) + "/45", text_color = color.white, bgcolor = color.new(f_col(st15), 30), text_size = size.small)
+    table.cell(t, 0, tblGap + 3, planTxt, text_color = color.white, bgcolor = color.new(planCol, 20), text_size = size.small)
+
+// --- Alarmlar: "Herhangi bir alert() fonksiyon çağrısı" seçilirse hepsi (oklar, teyitler, plan değişimi) gelir ---
 tf = timeframe.period
 px = str.tostring(close, format.mintick)
 if buy
@@ -142,6 +165,9 @@ if flipUp
 if flipDn
     alert("⛔ " + syminfo.ticker + " " + tf + " tepe teyit (yılan kırmızı) · fiyat " + px, alert.freq_once_per_bar_close)
 
+if plan != prevPlan and barstate.isconfirmed
+    alert("📋 " + syminfo.ticker + " " + planTxt + " (önce " + str.tostring(prevPlan) + "/4) · puan " + str.tostring(score) + " · fiyat " + px, alert.freq_once_per_bar_close)
+
 alertcondition(buy,    "Dip adayı",   "{{ticker}} {{interval}} dip adayı, fiyat {{close}}")
 alertcondition(sell,   "Tepe adayı",  "{{ticker}} {{interval}} tepe adayı, fiyat {{close}}")
 alertcondition(flipUp, "Dip teyit",   "{{ticker}} {{interval}} dip teyit (yılan yeşil), fiyat {{close}}")
@@ -152,3 +178,4 @@ plot(buy ? 1 : 0, "buy", display = display.data_window)
 plot(sell ? 1 : 0, "sell", display = display.data_window)
 plot(dir, "yön", display = display.data_window)
 plot(score, "puan", display = display.data_window)
+plot(plan, "plan", display = display.data_window)

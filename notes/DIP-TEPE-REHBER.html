@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Midas Dip-Tepe Kullanım Rehberi</title>
+<style>
+  @page { size: A4; margin: 14mm 13mm 14mm 13mm; }
+  :root { --ink:#1b1f24; --mute:#5b6470; --line:#d9dde3; --soft:#f4f6f8;
+          --up:#16a34a; --up-bg:#e7f6ec; --dn:#dc2626; --dn-bg:#fdecec;
+          --top:#8a8a1f; --top-bg:#f5f5dc; --dip:#c2620a; --dip-bg:#fdf0e1; --gray:#6b7280; --gray-bg:#eef0f2; }
+  * { box-sizing: border-box; }
+  body { font-family: Inter, "DejaVu Sans", sans-serif; color: var(--ink); font-size: 10.2pt; line-height: 1.42; margin: 0; }
+  h1 { font-size: 20pt; margin: 0 0 2pt; letter-spacing: -0.3pt; }
+  h2 { font-size: 13pt; margin: 16pt 0 6pt; padding-bottom: 3pt; border-bottom: 1.5pt solid var(--ink); }
+  h3 { font-size: 10.8pt; margin: 10pt 0 4pt; }
+  p { margin: 4pt 0; }
+  .sub { color: var(--mute); font-size: 9.5pt; margin-bottom: 8pt; }
+  table { break-inside: avoid; border-collapse: collapse; width: 100%; margin: 5pt 0 6pt; font-size: 9.6pt; }
+  th, td { border: 0.6pt solid var(--line); padding: 4pt 6pt; text-align: left; vertical-align: top; }
+  th { background: var(--soft); font-weight: 600; }
+  td.n, th.n { text-align: right; white-space: nowrap; }
+  .chip { display: inline-block; padding: 0.5pt 6pt; border-radius: 8pt; font-weight: 600; font-size: 9pt; white-space: nowrap; }
+  .up { background: var(--up-bg); color: var(--up); } .dn { background: var(--dn-bg); color: var(--dn); }
+  .top { background: var(--top-bg); color: var(--top); } .dip { background: var(--dip-bg); color: var(--dip); }
+  .gray { background: var(--gray-bg); color: var(--gray); }
+  .box { break-inside: avoid; border: 1pt solid var(--line); border-radius: 6pt; padding: 7pt 10pt; margin: 6pt 0; background: #fff; }
+  .key { border: 1.5pt solid var(--ink); border-radius: 6pt; padding: 8pt 11pt; margin: 8pt 0 4pt; }
+  .key ol { margin: 4pt 0 0 14pt; padding: 0; } .key li { margin: 3pt 0; }
+  .warn { break-inside: avoid; border-left: 3pt solid var(--dip); background: #fffaf3; padding: 6pt 10pt; margin: 6pt 0; }
+  .grid td { text-align: center; } .grid td:first-child, .grid th:first-child { text-align: left; }
+  .grid .act { display: block; font-size: 8.6pt; margin-top: 1pt; }
+  .buy { background: #e7f6ec; } .add { background: #d2efdc; } .sell { background: #fdecec; } .hold { background: #fafafa; } .cap { background: #f5f5dc; }
+  ul { margin: 3pt 0 3pt 14pt; padding: 0; } li { margin: 2pt 0; }
+  .small { font-size: 8.8pt; color: var(--mute); }
+  .pb { break-before: page; }
+  .two { display: flex; gap: 10pt; } .two > div { flex: 1; }
+  .tbl-mock { font-family: Inter, sans-serif; display: inline-block; border-radius: 4pt; overflow: hidden; font-size: 9pt; border: 0.6pt solid #999; }
+  .tbl-mock div { padding: 2pt 8pt; color: #fff; }
+</style>
+</head>
+<body>
+
+<h1>Midas Dip-Tepe · Kullanım Rehberi</h1>
+<div class="sub">TradingView göstergesi “Midas Dip-Tepe” (sürüm 4) · ABD: RKLB, CRWV, SGML, WYFI, UAMY · BIST: BIENY, SASA, SMRTG, MIATK, THYAO, TCELL, ALTIN, GMSTR · 17.11.2026</div>
+
+<div class="key">
+  <b>Tek cümleyle:</b> Grafiği <b>15 dakikalığa</b> al, sağ üstteki tablonun en alt satırındaki <b>Plan</b>’a bak ve elindeki porsiyonu ona eşitle. Plan yalnızca mum kapanışında değişir; değiştiğinde alarm gelir.
+  <ol>
+    <li><b>Puan 70 veya üstü</b> → en az <b>2 porsiyon</b> (ilk giriş).</li>
+    <li><b>Puan 100</b> (4s ve 15dk ikisi de “▲ yukarı”) → <b>4 porsiyona</b> tamamla.</li>
+    <li><b>4s satırında “▲ tepe adayı”</b> → en çok <b>2 porsiyon</b>; fazlasını sat.</li>
+    <li><b>Puan 30 veya altı</b> → <b>hepsini sat</b>, nakitte bekle.</li>
+    <li>Arada (puan 40–60) → <b>elindekini koru</b>, ekleme yapma.</li>
+  </ol>
+</div>
+<p class="small">Porsiyon: tam pozisyon = 4 porsiyon (repodaki salınım dili ile aynı). Plan yalnızca 0, 2 veya 4 porsiyon önerir.</p>
+
+<h2>1. Ekranda ne var</h2>
+<table>
+  <tr><th style="width:30%">Öğe</th><th>Anlamı</th></tr>
+  <tr><td><b>Yılan</b> (yeşil / kırmızı çizgi)</td><td>Salınımın yönü. Renk değişimi = dönüş teyidi: fiyat son uçtan 4 ATR döndü. Renk değiştiği mumda çizgi bir mum kesilir.</td></tr>
+  <tr><td><b>Yeşil ▲ / kırmızı ▼ ok</b></td><td>Erken dip / tepe <i>adayı</i> (fiyat uçtan 0,5 ATR döndü). Mum kapanışında kesinleşir. Okların yaklaşık yarısı erkendir; <b>tek başına işlem nedeni değildir.</b></td></tr>
+  <tr><td><b>Kesik çizgili kutu</b></td><td>Canlı aday bölge. Fiyat yeni dip/tepe yaparsa kutu silinir (aday bozuldu).</td></tr>
+  <tr><td><b>Düz çizgili kutu</b></td><td>Teyitli dip/tepe (yılan renk değiştirdiğinde çizilir).</td></tr>
+  <tr><td><b>Sağ üst tablo</b></td><td>4 satır: Puan · 4s durumu · 15dk durumu · Plan (aşağıda).</td></tr>
+</table>
+
+<h3>Tablonun satırları</h3>
+<div class="two">
+<div>
+<div class="tbl-mock">
+  <div style="background:#a3a23a">Puan 70/100</div>
+  <div style="background:#22c55e;opacity:.85">4s ▲ yukarı · 55/55</div>
+  <div style="background:#d97706;opacity:.85">15dk ▼ dip adayı · 15/45</div>
+  <div style="background:#a3a23a;opacity:.9">Plan: 2/4 porsiyon</div>
+</div>
+</div>
+<div>
+<table>
+  <tr><th>Satırda yazan</th><th>Yılan</th><th class="n">4s</th><th class="n">15dk</th></tr>
+  <tr><td><span class="chip up">▲ yukarı</span></td><td>yeşil, tepe adayı yok</td><td class="n">55</td><td class="n">45</td></tr>
+  <tr><td><span class="chip top">▲ tepe adayı</span></td><td>yeşil, kırmızı ok geldi</td><td class="n">15</td><td class="n">25</td></tr>
+  <tr><td><span class="chip dip">▼ dip adayı</span></td><td>kırmızı, yeşil ok geldi</td><td class="n">25</td><td class="n">15</td></tr>
+  <tr><td><span class="chip dn">▼ aşağı</span></td><td>kırmızı, dip adayı yok</td><td class="n">0</td><td class="n">0</td></tr>
+</table>
+</div>
+</div>
+<p><b>Ok yönü = yılanın rengi:</b> ▲ yeşil yılan, ▼ kırmızı yılan. Puan = 4s puanı + 15dk puanı (4 saatlik daha ağır). Ağırlıklar, her durumun ardından gelen 1 günlük getiriye göre sıralandı.</p>
+
+<h2 class="pb">2. Strateji tablosu: her durumda ne yapılır</h2>
+<p>Satır: 4 saatlik durum · Sütun: 15 dakikalık durum · Hücre: puan ve yapılacak iş. Bu tabloyu ezberlemen gerekmez; aynı sonucu tablodaki <b>Plan</b> satırı yazar.</p>
+<table class="grid">
+  <tr><th>4s ↓ &nbsp;/&nbsp; 15dk →</th><th><span class="chip up">▲ yukarı</span></th><th><span class="chip top">▲ tepe adayı</span></th><th><span class="chip dip">▼ dip adayı</span></th><th><span class="chip dn">▼ aşağı</span></th></tr>
+  <tr><td><span class="chip up">▲ yukarı</span></td>
+      <td class="add"><b>100</b><span class="act">4 porsiyona tamamla</span></td>
+      <td class="buy"><b>80</b><span class="act">en az 2 porsiyon</span></td>
+      <td class="buy"><b>70</b><span class="act">en az 2 porsiyon</span></td>
+      <td class="hold"><b>55</b><span class="act">koru</span></td></tr>
+  <tr><td><span class="chip top">▲ tepe adayı</span></td>
+      <td class="cap"><b>60</b><span class="act">en çok 2, ekleme yok</span></td>
+      <td class="cap"><b>40</b><span class="act">en çok 2, ekleme yok</span></td>
+      <td class="sell"><b>30</b><span class="act">hepsini sat</span></td>
+      <td class="sell"><b>15</b><span class="act">hepsini sat</span></td></tr>
+  <tr><td><span class="chip dip">▼ dip adayı</span></td>
+      <td class="buy"><b>70</b><span class="act">en az 2 porsiyon</span></td>
+      <td class="hold"><b>50</b><span class="act">koru</span></td>
+      <td class="hold"><b>40</b><span class="act">koru</span></td>
+      <td class="sell"><b>25</b><span class="act">hepsini sat</span></td></tr>
+  <tr><td><span class="chip dn">▼ aşağı</span></td>
+      <td class="hold"><b>45</b><span class="act">koru, ekleme yok</span></td>
+      <td class="sell"><b>25</b><span class="act">hepsini sat</span></td>
+      <td class="sell"><b>15</b><span class="act">hepsini sat</span></td>
+      <td class="sell"><b>0</b><span class="act">hepsini sat</span></td></tr>
+</table>
+<p class="small">“Koru” = elinde ne varsa (0, 2 veya 4) değiştirme. Örnek: 4 porsiyondayken 15dk “▼ aşağı”ya dönerse puan 55 olur; 4s hâlâ yukarıysa satmazsın.</p>
+
+<div class="two">
+<div class="box">
+<h3 style="margin-top:0">Giriş için en güçlü 3 durum</h3>
+<ol style="margin:0 0 0 14pt;padding:0">
+  <li><b>4s yılan yeşile döndü.</b> Ardından gelen 6 mumda ortalama +0,22 ATR, olayların %56’sı artıda (142 olay).</li>
+  <li><b>Puan 100.</b> Ertesi gün ortalaması +0,98 ATR; en güçlü durum ama seyrek.</li>
+  <li><b>4s yukarıyken 15dk yılan yeşile döndü.</b> +0,10 ATR, %55 artıda (20 olay, az).</li>
+</ol>
+</div>
+<div class="box">
+<h3 style="margin-top:0">Çıkış için en güçlü 3 durum</h3>
+<ol style="margin:0 0 0 14pt;padding:0">
+  <li><b>Puan 0</b> (her şey kırmızı, aday yok). Ertesi gün −1,24 ATR.</li>
+  <li><b>4s tepe adayıyken 15dk yılan kırmızıya döndü.</b> −0,25 ATR, yalnız %35 artıda.</li>
+  <li><b>4s yılan kırmızıya döndü.</b> −0,09 ATR, %38 artıda.</li>
+</ol>
+</div>
+</div>
+
+<div class="warn"><b>Tek başına işlem nedeni olmayanlar:</b> 15dk yeşil ok (ardından gelen getiri dönem ortalamasından farksız), 15dk kırmızı ok (ardından fiyat ortalamada düşmedi; 4s yukarıyken gelen kırmızı okta satma), 4s okları. Oklar hazırlık işaretidir; işlem yılan dönüşünde ve puan eşiklerinde yapılır.</div>
+
+<h2>3. Günlük kullanım</h2>
+<h3>Kurulum (bir kez)</h3>
+<ul>
+  <li>Her hissede grafiği <b>15 dakikalığa</b> al, “Midas Dip-Tepe”yi ekle. Plan satırı 15 dakikalık grafikte hesaplanır; 4 saatlik grafikte 15dk durumu her 4 saatte bir okunduğu için plan farklı çıkabilir.</li>
+  <li>Alarm: Koşul “Midas Dip-Tepe” → <b>“Herhangi bir alert() fonksiyon çağrısı”</b>, hisse başına bir alarm (15 dakikalık grafikte). Gelen mesajlar: 🟢 dip adayı, 🔴 tepe adayı, ✅ / ⛔ yılan teyidi ve <b>📋 plan değişimi</b> (örn. “THYAO Plan: 2/4 porsiyon (önce 0/4) · puan 70”).</li>
+  <li>Seans dışı mumları <b>kapalı</b> tut (test normal seans verisiyle yapıldı).</li>
+  <li>Tablo hisse adının üstüne biniyorsa: Ayarlar → “Tablo üst boşluğu (satır)” 1 → 2, ya da “Tablo konumu” → Sağ orta.</li>
+</ul>
+
+<h3>Gün içinde</h3>
+<ol style="margin:3pt 0 3pt 14pt;padding:0">
+  <li>📋 alarmı gelince grafiğe bak, <b>mum kapandıktan sonra</b> elindeki porsiyonu Plan’a eşitle.</li>
+  <li>Plan 2/4’ten 4/4’e çıktıysa 2 porsiyon ekle; 4/4’ten 2/4’e indiyse 2 porsiyon sat; nakit dediyse hepsini sat.</li>
+  <li>Plan değişmedikçe ok ve kutulara göre işlem yapma; onlar planın ne zaman değişebileceğini önceden gösterir.</li>
+</ol>
+
+<h3>Planın üstündeki genel kurallar (repodaki salınım kuralları)</h3>
+<ul>
+  <li><b>Bilanço:</b> bilançodan 2 işlem günü önce ticaret porsiyonlarını nakde çek, plan ne derse desin.</li>
+  <li><b>Risk:</b> porsiyon başına risk portföyün %1’ini geçmesin. Plan sık değişir (hisse başına günde ortalama 0,7 değişim); porsiyon büyüklüğünü buna göre küçük tut.</li>
+  <li><b>SASA:</b> 15 dakikalıkta fiyat basamağı ATR’ye göre çok büyük (ATR ≈ 1,5 fiyat adımı); sinyal gürültülü. SASA’da yalnız 4s satırını kullan: 4s “▲ yukarı” → 2 porsiyon, “▼ aşağı” → nakit.</li>
+  <li><b>Çekirdek pozisyon:</b> bu plan <i>ticaret porsiyonları</i> içindir. Uzun vadeli çekirdek pozisyon haftalık analizdeki “çekirdek sat” kuralına bağlı kalır.</li>
+</ul>
+
+<h2>4. Test sonuçları</h2>
+<p>Plan kuralı 13 hissede 15 dakikalık veriyle, her mum kapanışında karar verilip bir sonraki mumdan uygulanarak test edildi. Porsiyon değişimi başına %0,05 maliyet düşüldü. Getiri tam pozisyona göredir.</p>
+<table>
+  <tr><th>Hisse</th><th class="n">Gün</th><th class="n">Al-tut</th><th class="n">Plan</th><th class="n">Al-tut en büyük düşüş</th><th class="n">Plan en büyük düşüş</th><th class="n">Pozisyonda kalma</th><th class="n">Plan değişimi</th></tr>
+  <tr><td>RKLB</td><td class="n">85</td><td class="n">−11%</td><td class="n">+13%</td><td class="n">−47%</td><td class="n">−12%</td><td class="n">20%</td><td class="n">57</td></tr>
+  <tr><td>CRWV</td><td class="n">85</td><td class="n">−29%</td><td class="n">+6%</td><td class="n">−65%</td><td class="n">−16%</td><td class="n">15%</td><td class="n">58</td></tr>
+  <tr><td>SGML</td><td class="n">85</td><td class="n">−50%</td><td class="n">−9%</td><td class="n">−63%</td><td class="n">−15%</td><td class="n">14%</td><td class="n">51</td></tr>
+  <tr><td>WYFI</td><td class="n">85</td><td class="n">−64%</td><td class="n">−16%</td><td class="n">−76%</td><td class="n">−19%</td><td class="n">17%</td><td class="n">62</td></tr>
+  <tr><td>UAMY</td><td class="n">85</td><td class="n">−43%</td><td class="n">−8%</td><td class="n">−63%</td><td class="n">−21%</td><td class="n">16%</td><td class="n">64</td></tr>
+  <tr><td>BIENY</td><td class="n">66</td><td class="n">−33%</td><td class="n">+15%</td><td class="n">−57%</td><td class="n">−13%</td><td class="n">20%</td><td class="n">62</td></tr>
+  <tr><td>SASA</td><td class="n">66</td><td class="n">−36%</td><td class="n">+1%</td><td class="n">−53%</td><td class="n">−16%</td><td class="n">16%</td><td class="n">39</td></tr>
+  <tr><td>SMRTG</td><td class="n">66</td><td class="n">−58%</td><td class="n">−6%</td><td class="n">−69%</td><td class="n">−11%</td><td class="n">14%</td><td class="n">54</td></tr>
+  <tr><td>MIATK</td><td class="n">66</td><td class="n">−25%</td><td class="n">+15%</td><td class="n">−54%</td><td class="n">−19%</td><td class="n">20%</td><td class="n">58</td></tr>
+  <tr><td>THYAO</td><td class="n">66</td><td class="n">+4%</td><td class="n">+14%</td><td class="n">−22%</td><td class="n">−3%</td><td class="n">20%</td><td class="n">45</td></tr>
+  <tr><td>TCELL</td><td class="n">66</td><td class="n">−6%</td><td class="n">+1%</td><td class="n">−19%</td><td class="n">−3%</td><td class="n">20%</td><td class="n">45</td></tr>
+  <tr><td>ALTIN</td><td class="n">66</td><td class="n">−5%</td><td class="n">−3%</td><td class="n">−15%</td><td class="n">−6%</td><td class="n">20%</td><td class="n">68</td></tr>
+  <tr><td>GMSTR</td><td class="n">66</td><td class="n">−18%</td><td class="n">−9%</td><td class="n">−26%</td><td class="n">−11%</td><td class="n">13%</td><td class="n">55</td></tr>
+  <tr><th>Ortalama</th><th></th><th class="n">−29%</th><th class="n">+1%</th><th class="n">−48%</th><th class="n">−13%</th><th class="n">17%</th><th class="n">55</th></tr>
+</table>
+
+<h3>Denenen diğer planlar (13 hisse ortalaması, aynı dönem)</h3>
+<table>
+  <tr><th>Plan</th><th class="n">Getiri</th><th class="n">En büyük düşüş</th><th class="n">Pozisyonda kalma</th><th>Not</th></tr>
+  <tr><td><b>Önerilen: 70’te 2p, 100’de 4p, ≤30 sat, 4s tepe adayında en çok 2p</b></td><td class="n">+0,5%</td><td class="n">−14%</td><td class="n">17%</td><td>13 hissenin 13’ünde al-tut’tan iyi; dönemin iki yarısında da</td></tr>
+  <tr><td>Puan ≥70 → 4p, ≤30 → 0 (tek kademe)</td><td class="n">−1,0%</td><td class="n">−24%</td><td class="n">30%</td><td>Benzer getiri, daha derin düşüş</td></tr>
+  <tr><td>Yalnız 4s yılan (yeşil 4p, kırmızı 0)</td><td class="n">−16,9%</td><td class="n">−36%</td><td class="n">32%</td><td>15dk eklemek belirgin iyileştirdi</td></tr>
+  <tr><td>Puana oranlı (puan/25 porsiyon)</td><td class="n">−17,4%</td><td class="n">−32%</td><td class="n">43%</td><td>Puanın ortası bilgi taşımıyor</td></tr>
+  <tr><td>Al-tut</td><td class="n">−38,7%</td><td class="n">−74%</td><td class="n">100%</td><td></td></tr>
+</table>
+<p class="small">Bu tablodaki getiriler log getiri ortalamasıdır; yukarıdaki hisse tablosu yüzde getiridir.</p>
+
+<div class="warn">
+<b>Bu sonuçları nasıl okumalı:</b>
+<ul>
+  <li>Test dönemi 66–85 gündür ve 13 hissenin 11’i düştü. Planın üstünlüğü büyük ölçüde <b>düşüşte nakitte kalmaktan</b> geliyor; plan bu dönemde para kazandırmadı, kaybı önledi (ortalama +1%).</li>
+  <li><b>Yükselişte ne olur?</b> 15 dakikalık veri yalnız ~3 ay geriye gittiği için planın tamamı uzun dönemde test edilemedi. Yalnız 4s kısmı 3 yıllık 4 saatlik veride, ~200 günlük kayan pencerelerle test edildi: yükseliş dönemlerinde al-tut artışının yaklaşık <b>üçte ikisini</b> yakaladı (+45’e karşı +69, log %), düşüş dönemlerinde kaybın yaklaşık <b>yarısından</b> kaçındı (−25’e karşı −46), yatay dönemlerde al-tut’tan biraz <b>kötü</b> kaldı (−9’a karşı −3). Plan, 4s yukarıyken hiç tam satmadığı için yükselişte benzer davranması beklenir; ama bu ölçülmedi.</li>
+  <li>Eşikler (70 / 100 / 30) aynı veriye bakılarak seçildi; komşu eşikler (60/40, 80/25) de benzer sonuç verdi, yani sonuç tek bir şanslı ayara bağlı değil. Yine de gelecekte aynı başarı garanti değildir.</li>
+  <li>Maliyet varsayımı %0,05; daha geniş makaslı hissede (SASA, SMRTG) gerçek maliyet daha yüksek olabilir.</li>
+</ul>
+</div>
+
+<h2>5. Ayarlar: ne zaman değiştirilir</h2>
+<p>Varsayılan ayar (4 / 0,5 / 3 / ATR 14) test edilen 13 hissenin ortak en iyisidir. <b>Normalde değiştirme.</b> Hisseye özel ayar denendi: geçmişte en iyi görünen ayar sonraki 300 mumda ortak ayardan kötü çıktı.</p>
+<table>
+  <tr><th style="width:30%">Durum</th><th style="width:25%">Değişiklik</th><th>Etkisi (BIST 4s ortalaması)</th></tr>
+  <tr><td>Çok fazla ok, ekran kalabalık</td><td>“Erken ok dönüşü” 0,5 → 0,75</td><td>Ok 66 → 57, isabet %45 → %47</td></tr>
+  <tr><td>Yalnız büyük salınımlar</td><td>“Salınım eşiği” 4 → 5</td><td>Ok 66 → 54, yakalanan dönüş %82 → %69</td></tr>
+  <tr><td>Küçük salınımlar da</td><td>“Salınım eşiği” 4 → 3</td><td>Ok 66 → 84, isabet %45 → %40</td></tr>
+  <tr><td>Dar bantta gereksiz ok</td><td>“En küçük bacak” 3 → 5</td><td>Ok 66 → 57, yakalanan dönüş %82 → %73</td></tr>
+  <tr><td>ATR uzunluğu</td><td>Değiştirme</td><td>10, 14, 21 aynı sonucu verdi</td></tr>
+  <tr><td>Tablo yazıların üstüne biniyor</td><td>“Tablo üst boşluğu” / “Tablo konumu”</td><td>Yalnız görünüm; hesap değişmez</td></tr>
+</table>
+<p><b>Önemli:</b> “Salınım eşiği”, “Erken ok dönüşü” veya “En küçük bacak” değişirse puan ve plan da değişir; bu rehberdeki test sonuçları yalnız varsayılan ayar için geçerlidir. Ayarı değiştirdiysen plan kurallarını yeniden test ettir.</p>
+
+<h3>Ne zaman yeniden test edilmeli</h3>
+<ul>
+  <li>Takip listesine yeni hisse eklenince (önce 600 mumluk test).</li>
+  <li>3 ay sonra (bu test düşüş döneminde yapıldı; bir yükseliş dönemi geçince kurallar tekrar ölçülmeli).</li>
+  <li>Hissede bölünme, bedelsiz veya fiyat basamağı değişikliği olunca.</li>
+</ul>
+
+<p class="small" style="margin-top:14pt">Kaynak: tradingview/midas_dip_tepe.pine · test ayrıntısı: notes/DIP-TEPE.md · bu rehberin kaynağı: notes/DIP-TEPE-REHBER.html. Bu rehber yatırım tavsiyesi değildir; geçmiş veriyle yapılan testlere dayanır.</p>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 # Midas Dip-Tepe göstergesi
 
 Kod: `tradingview/midas_dip_tepe.pine` (TradingView hesabında "Midas Dip-Tepe" adıyla kayıtlı).
+Kullanım rehberi (al/sat kuralları, Plan satırı, test sonuçları): `notes/DIP-TEPE-REHBER.pdf` (kaynak: `notes/DIP-TEPE-REHBER.html`).
 Kapsam: ABD (RKLB, CRWV, SGML, WYFI, `NYSE:UAMY`) ve BIST (BIENY, SASA, SMRTG, MIATK, THYAO, TCELL, ALTIN, GMSTR); 15 dakikalık ve 4 saatlik grafik. Aynı gösterge ve aynı ayar hepsinde çalışır.
 
 ## Ekranda ne var
