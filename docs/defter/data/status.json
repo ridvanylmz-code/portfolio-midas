@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T12:22:32+00:00",
+  "updated": "2026-11-17T13:50:05+00:00",
   "days": 1283,
   "first": "2020-10-01",
   "last": "2026-11-17",
@@ -15,7 +15,6 @@
   "diag": [
     "yahoo XU100.IS: HTTPError 429",
     "yahoo SPY: HTTPError 429",
-    "yahoo USDTRY=X: HTTPError 429",
-    "stooq ^xu100: ConnectTimeout "
+    "yahoo USDTRY=X: HTTPError 429"
   ]
 }
