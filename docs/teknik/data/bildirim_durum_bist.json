@@ -17,7 +17,8 @@
  },
  "BIENY-05": {
   "hafta": "2026-11-19",
-  "taraf": "ust"
+  "taraf": "ust",
+  "yakin": "2026-11-18"
  },
  "BIENY-06": {
   "hafta": "2026-11-19",
@@ -25,11 +26,13 @@
  },
  "MIATK-01": {
   "hafta": "2026-11-19",
-  "taraf": "alt"
+  "taraf": "alt",
+  "yakin": "2026-11-18"
  },
  "MIATK-02": {
   "hafta": "2026-11-19",
-  "taraf": "alt"
+  "taraf": "alt",
+  "yakin": "2026-11-18"
  },
  "MIATK-03": {
   "hafta": "2026-11-19",
@@ -42,7 +45,8 @@
  },
  "MIATK-05": {
   "hafta": "2026-11-19",
-  "taraf": "ust"
+  "taraf": "ust",
+  "yakin": "2026-11-18"
  },
  "MIATK-06": {
   "hafta": "2026-11-19",
@@ -50,11 +54,13 @@
  },
  "SASA-01": {
   "hafta": "2026-11-19",
-  "taraf": "alt"
+  "taraf": "alt",
+  "yakin": "2026-11-18"
  },
  "SASA-02": {
   "hafta": "2026-11-19",
-  "taraf": "alt"
+  "taraf": "alt",
+  "yakin": "2026-11-18"
  },
  "SASA-03": {
   "hafta": "2026-11-19",
@@ -66,7 +72,8 @@
  },
  "SASA-05": {
   "hafta": "2026-11-19",
-  "taraf": "ust"
+  "taraf": "ust",
+  "yakin": "2026-11-18"
  },
  "SASA-06": {
   "hafta": "2026-11-19",
@@ -74,11 +81,13 @@
  },
  "SMRTG-01": {
   "hafta": "2026-11-19",
-  "taraf": "alt"
+  "taraf": "alt",
+  "yakin": "2026-11-18"
  },
  "SMRTG-02": {
   "hafta": "2026-11-19",
-  "taraf": "alt"
+  "taraf": "alt",
+  "yakin": "2026-11-18"
  },
  "SMRTG-03": {
   "hafta": "2026-11-19",
@@ -90,7 +99,8 @@
  },
  "SMRTG-05": {
   "hafta": "2026-11-19",
-  "taraf": "ust"
+  "taraf": "ust",
+  "yakin": "2026-11-18"
  },
  "SMRTG-06": {
   "hafta": "2026-11-19",
@@ -118,5 +128,5 @@
  },
  "_harita_MIATK": "2026-11-17",
  "_harita_SMRTG": "2026-11-13",
- "_son": "2026-11-18T22:23:41+00:00"
+ "_son": "2026-11-18T22:33:06+00:00"
 }
