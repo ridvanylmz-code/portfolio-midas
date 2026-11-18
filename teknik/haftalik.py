@@ -32,8 +32,8 @@ PAZAR = {
     'abd': dict(hisseler=['RKLB', 'CRWV', 'SGML', 'WYFI', 'UAMY'], endeks='SPY', para='USD', exch='NASDAQ',
                 ek=['SPY', 'UFO', 'SMH', 'LIT', 'WGMI', 'REMX'], ind='ind.py', struct='struct_.py', run='run.py',
                 cfg='cfg.py', indjson='ind.json', res='res.pkl'),
-    'bist': dict(hisseler=['BIENY', 'SASA', 'SMRTG', 'MIATK'], endeks='XU100', para='TRY', exch='BIST',
-                 ek=['XU100', 'XTAST', 'XKMYA', 'XUSIN', 'XBLSM'], ind='indb.py', struct=None, run='runb.py',
+    'bist': dict(hisseler=['BIENY', 'SASA', 'SMRTG', 'MIATK', 'THYAO'], endeks='XU100', para='TRY', exch='BIST',
+                 ek=['XU100', 'XTAST', 'XKMYA', 'XUSIN', 'XBLSM', 'XULAS'], ind='indb.py', struct=None, run='runb.py',
                  cfg='cfgb.py', indjson='indb.json', res='resb.pkl'),
 }
 BIST = set(PAZAR['bist']['hisseler'])
@@ -361,7 +361,8 @@ HISSE_TABLO = [('BIENY', 'BIST', 'Yapı ürünleri (seramik)', 'BIST:XTAST'), ('
                ('CRWV', 'NASDAQ', 'Yapay zekâ bulut altyapısı', 'NASDAQ:SMH'), ('SGML', 'NASDAQ', 'Lityum madenciliği', 'AMEX:LIT'),
                ('SASA', 'BIST', 'Polyester / kimya', 'BIST:XKMYA'), ('SMRTG', 'BIST', 'Güneş enerjisi ekipmanı', 'BIST:XUSIN (zayıf vekil)'),
                ('MIATK', 'BIST', 'Yazılım / güvenlik', 'BIST:XBLSM'), ('WYFI', 'NASDAQ', 'Yapay zekâ veri merkezi (WhiteFiber)', 'NASDAQ:WGMI'),
-               ('UAMY', 'NYSE', 'Antimon / kritik mineraller', 'AMEX:REMX')]
+               ('UAMY', 'NYSE', 'Antimon / kritik mineraller', 'AMEX:REMX'),
+               ('THYAO', 'BIST', 'Havayolu', 'BIST:XULAS')]
 
 
 def kisa_defter(p, rows, rep, meta, DZ):

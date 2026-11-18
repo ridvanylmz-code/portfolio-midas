@@ -1,7 +1,7 @@
 import sys,os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 import json
-S=['BIENY','SASA','SMRTG','MIATK']; SEC={'BIENY':'XTAST','SASA':'XKMYA','SMRTG':'XUSIN','MIATK':'XBLSM'}
+S=['BIENY','SASA','SMRTG','MIATK','THYAO']; SEC={'BIENY':'XTAST','SASA':'XKMYA','SMRTG':'XUSIN','MIATK':'XBLSM','THYAO':'XULAS'}
 xu=load('XU100'); out={}
 xc=xu.c; A,P_,M_=adx(xu)
 print('XU100',xc.iloc[-1],'EMA89',round(ema(xc,89).iloc[-1]),'EMA233',round(ema(xc,233).iloc[-1]),'ADX',round(A.iloc[-1],1),round(P_.iloc[-1],1),round(M_.iloc[-1],1),'EMA21',round(ema(xc,21).iloc[-1]))

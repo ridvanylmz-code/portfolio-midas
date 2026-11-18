@@ -1,13 +1,13 @@
 {
- "guncelleme": "2026-11-18T21:16:51+00:00",
+ "guncelleme": "2026-11-18T22:00:10+00:00",
  "hisseler": {
   "BIENY": {
    "pazar": "bist",
    "atr": 0.7859,
    "atr_tarih": "2026-11-18",
-   "plan": "2026-11-15",
-   "mod": "Bant",
-   "bilanco": "3Ç açıklandı 09.11 (9A net zarar 1,19 mlr TL; önceki 2,14 mlr)"
+   "plan": "2026-11-19",
+   "mod": "Savunma",
+   "bilanco": "3Ç açıklandı 09.11 (9A net zarar 1,19 mlr TL); yıllık ≈Mart 2027"
   },
   "CRWV": {
    "pazar": "us",
@@ -21,9 +21,9 @@
    "pazar": "bist",
    "atr": 1.77,
    "atr_tarih": "2026-11-18",
-   "plan": "2026-11-15",
+   "plan": "2026-11-19",
    "mod": "Bant",
-   "bilanco": "3Ç açıklandı 09.11 (9A net zarar 199 mln TL; önceki 444 mln)"
+   "bilanco": "3Ç açıklandı 09.11 (9A net zarar 199 mln TL); yıllık ≈Mart 2027"
   },
   "RKLB": {
    "pazar": "us",
@@ -37,9 +37,9 @@
    "pazar": "bist",
    "atr": 0.0808,
    "atr_tarih": "2026-11-18",
-   "plan": "2026-11-15",
+   "plan": "2026-11-19",
    "mod": "Savunma",
-   "bilanco": "3Ç açıklandı 06.11 (Ç3 zarar 1,9 mlr TL); 12.11 borçlanma aracı tavanı 350 → 500 mln $"
+   "bilanco": "3Ç açıklandı 06.11 (Ç3 zarar 1,9 mlr TL); yıllık ≈Mart 2027"
   },
   "SGML": {
    "pazar": "us",
@@ -53,9 +53,17 @@
    "pazar": "bist",
    "atr": 0.3121,
    "atr_tarih": "2026-11-18",
-   "plan": "2026-11-15",
+   "plan": "2026-11-19",
    "mod": "Bant",
-   "bilanco": "3Ç açıklandı 07.11 (9A net kâr 152 mln TL; önceki 946 mln zarar)"
+   "bilanco": "3Ç açıklandı 07.11 (9A net kâr 152 mln TL); yıllık ≈Mart 2027"
+  },
+  "THYAO": {
+   "pazar": "bist",
+   "atr": 9.7432,
+   "atr_tarih": "2026-11-18",
+   "plan": "2026-11-19",
+   "mod": "Bant",
+   "bilanco": "3Ç açıklandı (Kasım başı, teyitsiz); yıllık ≈Mart 2027"
   },
   "UAMY": {
    "pazar": "us",
