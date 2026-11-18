@@ -7,7 +7,7 @@ Her analizde okunacak **tek** belge budur. Tam kural metni (Proje `claude/haftal
 ```bash
 git clone https://github.com/ridvanylmz-code/portfolio-midas.git && cd portfolio-midas     # tek kurulum
 ```
-1. **Veri (MCP, ≤5 paralel, rows + büyük count → dosyaya düşer):** ABD RKLB/SGML 1D 1600 + 1h 1500 · CRWV/WYFI 1h 3500 · SPY/UFO/SMH/LIT/WGMI 1D 1500. BIST 4 hisse 4h 5000 · XU100/XTAST/XKMYA/XUSIN/XBLSM 1D 1500. Sonra batch (close, change, high, low, ATR, pre/postmarket), earnings, gerekirse news (limit 8). → `python3 teknik/haftalik.py veri`
+1. **Veri (MCP, ≤5 paralel, rows + büyük count → dosyaya düşer):** ABD RKLB/SGML/NYSE:UAMY 1D 1600 + 1h 1500 · CRWV/WYFI 1h 3500 · SPY/NASDAQ:UFO/SMH/LIT/WGMI/AMEX:REMX 1D 1500 (MCP günlük kotası ~25 çağrı: veri + haber az tutulur; kota dolarsa Pine `pine-facade/save/next`, alarmlar `pricealerts` API ile Chrome sayfasından). BIST 4 hisse 4h 5000 · XU100/XTAST/XKMYA/XUSIN/XBLSM 1D 1500. Sonra batch (close, change, high, low, ATR, pre/postmarket), earnings, gerekirse news (limit 8). → `python3 teknik/haftalik.py veri`
 2. **Karne:** `python3 teknik/haftalik.py puan --pazar abd` (son analiz + birikimli → `teknik/veri/karne_abd.txt`)
 3. **Pozisyon:** `python3 teknik/haftalik.py pozisyon --pazar abd --since <son analiz tarihi>` (gh ile iş akışı günlükleri → işlemler + son adet + nakit)
 4. **Analiz:** önceki `teknik/cfg/<pazar>_*.py` kopyala, yalnız yeni pivotları Edit ile düzelt → `python3 teknik/haftalik.py analiz --pazar abd --cfg teknik/cfg/abd_<YYYYMMDD>.py --tarih <YYYY-MM-DD>` → kısa özet + `teknik/is/plan_<pazar>_<tarih>.json`
