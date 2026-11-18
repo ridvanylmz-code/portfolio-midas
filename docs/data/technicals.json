@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T23:10:27+00:00",
+  "updated": "2026-11-18T03:50:51+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 41 sembol; ilk 40 alındı",
@@ -84,7 +84,7 @@
         "atr14": 5.78,
         "support20": 117.0,
         "resistance20": 164.24,
-        "vol_ratio": 0.85,
+        "vol_ratio": 0.86,
         "bars": 250
       }
     },
@@ -125,7 +125,7 @@
         "atr14": 6.23,
         "support20": 40.58,
         "resistance20": 64.58,
-        "vol_ratio": 0.75,
+        "vol_ratio": 0.81,
         "bars": 250
       }
     },
@@ -204,10 +204,10 @@
           "signal": 17.539,
           "hist": 0.693
         },
-        "atr14": 11.42,
+        "atr14": 11.43,
         "support20": 172.93,
         "resistance20": 255.19,
-        "vol_ratio": 0.37,
+        "vol_ratio": 0.38,
         "bars": 250
       }
     },
@@ -248,7 +248,7 @@
         "atr14": 2.18,
         "support20": 39.05,
         "resistance20": 59.97,
-        "vol_ratio": 0.51,
+        "vol_ratio": 0.52,
         "bars": 250
       }
     },
@@ -412,7 +412,7 @@
         "atr14": 16.0,
         "support20": 338.15,
         "resistance20": 414.23,
-        "vol_ratio": 0.56,
+        "vol_ratio": 0.57,
         "bars": 250
       }
     },
@@ -453,7 +453,7 @@
         "atr14": 0.31,
         "support20": 2.41,
         "resistance20": 3.48,
-        "vol_ratio": 1.13,
+        "vol_ratio": 1.14,
         "bars": 250
       }
     },
@@ -576,7 +576,7 @@
         "atr14": 18.85,
         "support20": 367.72,
         "resistance20": 478.94,
-        "vol_ratio": 1.08,
+        "vol_ratio": 1.09,
         "bars": 250
       }
     },
@@ -614,8 +614,8 @@
           "signal": -11.031,
           "hist": -4.324
         },
-        "atr14": 14.09,
-        "support20": 196.65,
+        "atr14": 14.1,
+        "support20": 196.61,
         "resistance20": 294.21,
         "vol_ratio": 0.76,
         "bars": 250
@@ -737,7 +737,7 @@
           "signal": -2.709,
           "hist": -5.268
         },
-        "atr14": 11.82,
+        "atr14": 11.83,
         "support20": 180.47,
         "resistance20": 267.87,
         "vol_ratio": 0.94,
@@ -781,7 +781,7 @@
         "atr14": 3.14,
         "support20": 37.22,
         "resistance20": 62.79,
-        "vol_ratio": 0.57,
+        "vol_ratio": 0.61,
         "bars": 250
       }
     },
@@ -904,7 +904,7 @@
         "atr14": 5.0,
         "support20": 104.25,
         "resistance20": 135.83,
-        "vol_ratio": 0.81,
+        "vol_ratio": 0.82,
         "bars": 250
       }
     },
@@ -943,9 +943,9 @@
           "hist": -3.693
         },
         "atr14": 8.8,
-        "support20": 96.34,
+        "support20": 96.35,
         "resistance20": 155.69,
-        "vol_ratio": 1.29,
+        "vol_ratio": 1.31,
         "bars": 250
       }
     },
@@ -1027,7 +1027,7 @@
         "atr14": 13.56,
         "support20": 164.68,
         "resistance20": 235.55,
-        "vol_ratio": 0.89,
+        "vol_ratio": 0.96,
         "bars": 250
       }
     },
@@ -1109,7 +1109,7 @@
         "atr14": 9.62,
         "support20": 230.92,
         "resistance20": 275.22,
-        "vol_ratio": 0.91,
+        "vol_ratio": 0.99,
         "bars": 250
       }
     },
@@ -1150,7 +1150,7 @@
         "atr14": 6.12,
         "support20": 92.03,
         "resistance20": 159.5,
-        "vol_ratio": 1.15,
+        "vol_ratio": 1.16,
         "bars": 250
       }
     },
@@ -1191,7 +1191,7 @@
         "atr14": 8.85,
         "support20": 152.6,
         "resistance20": 202.63,
-        "vol_ratio": 0.69,
+        "vol_ratio": 0.71,
         "bars": 250
       }
     },
@@ -1232,7 +1232,7 @@
         "atr14": 8.85,
         "support20": 193.41,
         "resistance20": 252.42,
-        "vol_ratio": 1.89,
+        "vol_ratio": 1.91,
         "bars": 250
       }
     },
@@ -1437,7 +1437,7 @@
         "atr14": 8.18,
         "support20": 135.65,
         "resistance20": 178.28,
-        "vol_ratio": 0.58,
+        "vol_ratio": 0.59,
         "bars": 250
       }
     },
@@ -1476,9 +1476,9 @@
           "hist": -2.712
         },
         "atr14": 7.03,
-        "support20": 141.49,
+        "support20": 141.48,
         "resistance20": 172.0,
-        "vol_ratio": 0.93,
+        "vol_ratio": 0.95,
         "bars": 250
       }
     },
@@ -1560,7 +1560,7 @@
         "atr14": 0.82,
         "support20": 11.25,
         "resistance20": 15.03,
-        "vol_ratio": 0.6,
+        "vol_ratio": 0.61,
         "bars": 250
       }
     },
@@ -1601,7 +1601,7 @@
         "atr14": 16.37,
         "support20": 132.54,
         "resistance20": 253.66,
-        "vol_ratio": 0.82,
+        "vol_ratio": 0.86,
         "bars": 250
       }
     },
@@ -1639,10 +1639,10 @@
           "signal": -13.601,
           "hist": 3.806
         },
-        "atr14": 40.57,
+        "atr14": 40.59,
         "support20": 402.1,
         "resistance20": 594.0,
-        "vol_ratio": 0.94,
+        "vol_ratio": 0.98,
         "bars": 250
       }
     },
@@ -1683,7 +1683,7 @@
         "atr14": 9.71,
         "support20": 148.8,
         "resistance20": 222.19,
-        "vol_ratio": 1.48,
+        "vol_ratio": 1.69,
         "bars": 250
       }
     }
