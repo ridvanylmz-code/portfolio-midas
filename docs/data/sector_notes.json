@@ -1,81 +1,81 @@
 {
- "updated": "2026-11-14",
- "summary": "14 Kas güncellemesi; fiyatlar 13 Kas (Cuma) kapanış, TradingView (market.json 14 Kas 01:29 UTC). Hafta: SPY $754,37 (hafta +%2,7, Cuma −%0,4), QQQ $679,89 (+%3,3; Cuma −%1,2), IWM $277,54 (+%2,0), VIX 19,3. SPY, QQQ ve IWM hâlâ SMA50 altında; SPY SMA200 ($731,9) üstünde. Makro: Ekim ÜFE aylık +%0,3 (beklenti +%0,4) TÜFE sonrası biraz rahatlattı; ama Fed başkan yardımcısı yapay zekâ yatırımlarının enflasyonu beslediğini söyledi, trend takip fonları net kısaya döndü (UBS). Nvidia kaynaklı sarsıntı neocloud hisselerini (CRWV) vurdu. Rejim kodda 'Nötr / seçici' 4/7 (nakit %20-25) ama yükseliş yalnız genişlik ölçüm değişikliğinden: yükselen hisse oranı artık 1387 hisselik havuzdan %57 (eski ölçüm %38). Endeks koşulları değişmedi; nakit %25-30 bandında olmalı, alımlar yalnız lider gruplardan ve kademeli. Lider: sağlık (7/7), temel tüketim (7/7), döngüsel tüketim, malzeme, gayrimenkul. Finans ve bölgesel bankalar güçlü ama banka kuralı gereği dışarıda. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, nükleer, lityum, bakır, yarı iletken, teknoloji. Takip listesi değişmedi: CROX, ELF, KNSA, GMAB, GKOS. Haftaya: 17 Kas perakende satışlar (beklenti +%0,2), 18 Kas konut başlangıçları.",
+ "updated": "2026-11-18",
+ "summary": "18 Kas güncellemesi; fiyatlar 18 Kas normal seans kapanışı, TradingView (market.json 18 Kas 20:00 UTC, 15 dk gecikmeli). SPY $730,20 (gün −%0,3, hafta −%3,4, 1A −%4,7), QQQ $659,51 (+%0,4; 1A −%8,2), IWM $270,11 (+%0,4). SPY ilk kez SMA200'ün ($732,55) altında kapattı; SPY, QQQ, IWM ve DIA trendi 'Düşüş'. VIX 24,57 (hafta +%31). ABD 10 yıllık faiz %5,06. Rejim 4/7'den 2/7'ye indi: 'Risk-off (savunma)'. Yükselen hisse oranı %47 (1390 taranan hisse, SMA50 üstü). Nakit %35-40 bandında olmalı, düşüş rejiminde üst banda (%40) yaklaş; yeni alım yalnız lider gruplardan ve yarım porsiyonla. Makro: Ekim TÜFE aylık +%0,4 beklentinin üstünde, ÜFE yıllık %6,5 (4 yılın zirvesi); BofA Fed'in 50 baz puan artırım ihtimalinden söz ediyor. Nvidia 17 Kas bilançosu sonrası neocloud tarafında 'disiplinli finansman' mesajı CRWV'yi aşağı çekti; fon yöneticileri teknolojiden 2006'dan beri en hızlı tempoyla çıkıyor. Ekim perakende satışlar +%0,2 (beklentiye eşit); konut başlangıçları 1,309 mn ile beklentinin üstünde, izinler 1,295 mn ile altında. Lider: temel tüketim (7/7, #1), sağlık (6/7; bugün −%2,4), havayolları, döngüsel tüketim, gayrimenkul. Kamu hizmetleri ve siber güvenlik 'izle'ye düştü. Finans ve bölgesel bankalar banka kuralı gereği dışarıda. Zayıf: yarı iletken (1A −%18), teknoloji, yapay zekâ, veri merkezi, BTC ve madencileri, değerli ve baz metal madencileri (GDX −%6,7, SIL −%6,5, COPX −%6,8 bugün), uranyum, nükleer, nadir toprak, lityum, güneş. Takip listesi değişmedi: CROX, ELF, KNSA, GMAB, GKOS. Haftaya: 25 Kas çekirdek PCE (beklenti aylık +%0,3), Q3 GSYH 2. tahmin (beklenti %3,4), dayanıklı mallar.",
  "groups": {
   "CIBR": {
-   "note": "7 Kas: Geride, hafta −%12,1, 1A −%15,2."
+   "note": "18 Kas: #5, 4/7; bugün +%4,6 (OKTA, TENB, RPD bilanço sonrası +%11-15). Trend henüz düzelmedi. İzle."
   },
   "IGV": {
-   "note": "7 Kas: Zayıflayan, hafta −%7,4, 1A −%10,6. Azalt / kâr al."
+   "note": "18 Kas: #17, 3/7, 1A −%8,4. Uzak dur."
   },
   "XLK": {
-   "note": "14 Kas: #22, 2/7, 1A −%12,2, Cuma −%2,0. Uzak dur."
+   "note": "18 Kas: #20, 2/7, 1A −%12,7. Uzak dur."
   },
   "AIQ": {
-   "note": "25 Eki: Zayıflayan (trend 4/7, 1A −6,4%). Yazılım tarafı (NOW, PLTR) güçlü, donanım tarafı zayıf."
+   "note": "18 Kas: #19, 2/7, 1A −%11,4. Uzak dur."
   },
   "SMH": {
-   "note": "14 Kas: #29, 2/7, 1A −%15,6, Cuma −%3,0 (Nvidia sarsıntısı). Alım yok."
+   "note": "18 Kas: #27, 2/7, 1A −%18,0. Nvidia bilançosu dönüşü getirmedi. Uzak dur."
   },
   "XLE": {
-   "note": "14 Kas: #5 ama 'Azalt / kâr al'; hafta +%5,8, 1A −%3,9."
+   "note": "18 Kas: #13, 4/7, 1A −%9,6, bugün −%3,1. Azalt / kâr al."
   },
   "XLV": {
-   "note": "14 Kas: Lider #1, trend 7/7, RS +14,4, hafta +%4,2, 1A +%10,5. Yeni alımlar önce buradan."
+   "note": "18 Kas: #2, 6/7, rs +9,3; bugün −%2,4 ile EMA20 altına indi, hafta −%3,5. Lider ama soluklanıyor; yeni alım çekilmede."
   },
   "IBIT": {
-   "note": "25 Eki: Kararsız (6/7 ama 1A −5,1%). MSTR oynak, uygun değil."
+   "note": "18 Kas: #29, 1/7, 1A −%24,1. Uzak dur."
   },
   "QTUM": {
    "note": "1A toparlanma işareti, 3A hâlâ SPY gerisinde. Erken; teyit için 3A RS'nin pozitife dönmesi beklenir."
   },
   "DTCR": {
-   "note": "14 Kas: #24, 1/7. Nvidia'nın neocloud'lara desteğinin zayıfladığı haberleri; CRWV Cuma −%6,1."
+   "note": "18 Kas: #22, 1/7, 1A −%7,7. Neocloud finansman kaygısı. Uzak dur."
   },
   "URA": {
-   "note": "12 Kas: #35, 0/7, 3A −%27,7."
+   "note": "18 Kas: #35, 0/7. Uzak dur."
   },
   "NLR": {
    "note": "12 Kas: #33, 0/7, 3A −%24."
   },
   "UFO": {
-   "note": "14 Kas: #23, 0/7, hafta +%7,5 tepki. RKLB SMA50 altında kaldı."
+   "note": "18 Kas: #21, 0/7, hafta −%6,3. Uzak dur."
   },
   "ITA": {
    "note": "Savunma: ADX 51 ile güçlü bir DÜŞÜŞ trendi, 0/7. KTOS dahil uzak dur."
   },
   "LIT": {
-   "note": "14 Kas: #33, 0/7. SGML bilançosu sonrası +%2,8; grup trendi kırık."
+   "note": "18 Kas: #30, 0/7, 1A −%14,5. Uzak dur."
   },
   "REMX": {
-   "note": "14 Kas: #36, 0/7. UAMY haftada +%14,9 tepki verdi ama grup trendi kırık."
+   "note": "18 Kas: #36, 0/7, 1A −%16,3. Uzak dur."
   },
   "WGMI": {
-   "note": "14 Kas: En zayıf (#37), 1A −%27,3, Cuma −%5,0. WYFI dahil uzak dur."
+   "note": "18 Kas: #37 (son), 0/7, 1A −%25,5. Uzak dur."
   },
   "GDX": {
-   "note": "7 Kas: Hafta +%12 ama trend 2/7: sıçrama, trend değil. İzle."
+   "note": "18 Kas: #28, 0/7, bugün −%6,7, hafta −%14,6. Uzak dur."
   },
   "SIL": {
-   "note": "21 Eki: Zayıflayan, 1A −15%."
+   "note": "18 Kas: #33, 0/7, bugün −%6,5. Uzak dur."
   },
   "COPX": {
-   "note": "12 Kas: #32, 0/7, 1A −%16,3."
+   "note": "18 Kas: #34, 0/7, bugün −%6,8, 1A −%23,7. Uzak dur."
   },
   "XHB": {
    "note": "Konut inşaat: 10 yıllık faiz %5,24 iken en olumsuz grup; 0/7."
   },
   "XLU": {
-   "note": "30 Eki: $43,43 (+%0,7), SMA50 üstü. Faiz artırımı konuşması kamu hizmetlerini sınırlar; doğalgaz dağıtım/orta akım (TRGP) daha güçlü."
+   "note": "18 Kas: #7, 4/7, trend zayıfladı. İzle."
   },
   "XLRE": {
-   "note": "14 Kas: #8, 6/7, hafta +%1,4."
+   "note": "18 Kas: #9, 5/7. Faiz %5 üstünde kaldıkça sınırlı. Ol (seçici)."
   },
   "XLF": {
-   "note": "14 Kas: #3, 7/7, hafta +%3,4. Banka kuralı gereği yatırım yok; bankacılık dışı finans adayları ayrı değerlendirilir."
+   "note": "18 Kas: #6, 6/7. Banka kuralı: yatırım yok."
   },
   "KRE": {
-   "note": "Bölgesel bankalar: banka kuralı; ADX 38 ile güçlü düşüş, piyasa için olumsuz sinyal (kredi tarafı)."
+   "note": "18 Kas: 2/7. Banka kuralı: yatırım yok."
   },
   "TAN": {
    "note": "Güneş enerjisi: 0/7, faiz ve politika baskısı."
@@ -84,19 +84,19 @@
    "note": "Temiz enerji: 0/7."
   },
   "JETS": {
-   "note": "12 Kas: #5, trend 6/7, 1A +%9. Bugün −%2,1; oynak."
+   "note": "18 Kas: #3, 6/7, 1A +%10,3. Petrol düşüşü destekliyor; faiz artışı riski var. Ol (küçük)."
   },
   "KWEB": {
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "14 Kas: Lider #2, 7/7, RS +8,8, hafta +%3,8. Cuma +%1,4 ile en güçlü sektör."
+   "note": "18 Kas: #1, 7/7, rs +9,8, 1A +%5,2. Savunmaya kaçışın ana adresi. Ol."
   },
   "XBI": {
-   "note": "7 Kas: Lider ama trend 4/7, Cuma +%2,6. Seçici: güçlü nakitli isimler (GMAB)."
+   "note": "18 Kas: #12, 3/7, hafta −%7,0. FDA kararları öncesi oynak. Erken giriş adayı, henüz değil."
   },
   "XLY": {
-   "note": "14 Kas: #4, 5/7, hafta +%2,7. Faiz hassas; CROX/ELF gibi nakit üreten isimlerle sınırlı kal."
+   "note": "18 Kas: #4, 5/7, bugün +%1,9. Perakende satış beklentiye eşit geldi. Ol."
   },
   "XLB": {
    "note": "14 Kas: #6, 6/7. İzle."
@@ -109,17 +109,23 @@
   }
  },
  "stocks": {
-  "RKLB": {
-   "note": "7 Kas: Elimde. 6 Kas kapanış $53,07 (+%15,4; hafta −%4,7). Trend 0/7; EMA20 55,97, EMA50 62,28 altında. ATR stop önerisi $48,52. Bilanço 9 Kas kapanış sonrası. Satış kararı sende."
-  },
   "CRWV": {
-   "note": "7 Kas: Elimde. 6 Kas kapanış $46,40 (+%6,3; hafta −%17,3). Trend 0/7; EMA20 59,31 çok uzakta. ATR stop önerisi $40,58. Serbest nakit akışı −$13,7 mlr, borç $51,6 mlr: dilüsyon yüksek. Bilanço 10 Kas. Satış kararı sende."
+   "note": "18 Kas: Elimde. Teknik plan çekirdek stopu 50,27 (kapanış) kırıldı: yarın 1 porsiyon çekirdek sat. B yolu hedef 2: 40,58. 52,09 üstü kapanışta sattığının yarısını geri al. Haber: 18 Kas Nvidia bilançosu sonrası ilk tepki yukarıydı, Nvidia'nın 'disiplinli finansman' vurgusu sonrası gün −%4,1 kapattı. Satış kararı sende."
   },
-  "WYFI": {
-   "note": "7 Kas: Elimde. 6 Kas kapanış $8,88 (+%13,8; hafta −%15,3). Trend 0/7; EMA20 11,33 altında. ATR stop önerisi $7,59. Bilanço 10 Kas. Satış kararı sende."
+  "RKLB": {
+   "note": "18 Kas: Elimde. Teknik plan çekirdek stopu 54,14 (kapanış) kırıldı: yarın 1 porsiyon çekirdek sat. B yolu hedef 2: 50,68–52,01. 58,95 üstü kapanışta sattığını geri al. Haber: Q3 sonrası Neutron gecikmesi; uzay hisseleri 16 Kas'tan beri baskıda. Satış kararı sende."
   },
   "SGML": {
-   "note": "7 Kas: Elimde. 6 Kas kapanış $5,82 (+%8,8; hafta −%21,2). Trend 0/7; $9 geçersizlik seviyesinin %35 altında, EMA20 7,28. ATR stop önerisi $5,13. Bilanço 11 Kas. Satış kararı sende."
+   "note": "18 Kas: Elimde. Teknik plan çekirdek stopu 4,49 (kapanış) kırıldı, B hedef 2 (4,23) yerinde: yarın 1 porsiyon çekirdek sat (planda ikinci erteleme yok). RSI 25,7 aşırı satım; tepki gelirse 5,95 (EMA20) üstü kapanış olmadan geri alma yok. Haber: 16 Kas 125 mn $ 5 yıllık dönüştürülebilir tahvil kapandı; JPMorgan hedefi 11→7. Satış kararı sende."
+  },
+  "TSLA": {
+   "note": "18 Kas: Elimde. Fiyat EMA20 (382,61) ve EMA50 (376,97) üstünde ama ADX 11,5: yön zayıf, yatay seyir. Stop 352,45 (kapanış − 2×ATR): altı kapanışta 1 porsiyon sat. Satış kararı sende."
+  },
+  "UAMY": {
+   "note": "18 Kas: Elimde. EMA20 (2,99) ve EMA50 (3,61) altında, hafta −%23,8. ATR stopu 2,50'nin 2 sent üstünde kapattı: 2,50 altı kapanışta 1 porsiyon sat. 2,99 üstü kapanış olmadan ekleme yok. Satış kararı sende."
+  },
+  "WYFI": {
+   "note": "18 Kas: Elimde. EMA20 (10,16) altında, plan B tetiği (8,91 altı kapanış) çalıştı: hedef 7,43–7,82. Ekleme yok; 7,24 altı kapanışta 1 porsiyon çekirdek sat. 10,16 üstü kapanış gelirse kırılım biter. Satış kararı sende."
   }
  }
 }

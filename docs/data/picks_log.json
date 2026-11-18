@@ -1,4 +1,50 @@
 {
  "_not": "Takip listesi seçim kaydı; takip-listesi-tarama skill'i yazar. Alanlar: ticker, in_date, in_price, stop, out_date, out_price, reason.",
- "picks": []
+ "picks": [
+  {
+   "ticker": "CROX",
+   "in_date": "2026-11-18",
+   "in_price": 162.76,
+   "stop": 151.6,
+   "out_date": null,
+   "out_price": null,
+   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+  },
+  {
+   "ticker": "ELF",
+   "in_date": "2026-11-18",
+   "in_price": 113.77,
+   "stop": 106.94,
+   "out_date": null,
+   "out_price": null,
+   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+  },
+  {
+   "ticker": "GKOS",
+   "in_date": "2026-11-18",
+   "in_price": 233.08,
+   "stop": 221.76,
+   "out_date": null,
+   "out_price": null,
+   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+  },
+  {
+   "ticker": "GMAB",
+   "in_date": "2026-11-18",
+   "in_price": 50.97,
+   "stop": 46.73,
+   "out_date": null,
+   "out_price": null,
+   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+  },
+  {
+   "ticker": "KNSA",
+   "in_date": "2026-11-18",
+   "in_price": 95.05,
+   "stop": 87.27,
+   "out_date": null,
+   "out_price": null,
+   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+  }
+ ]
 }
