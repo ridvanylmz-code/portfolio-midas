@@ -1,52 +1,39 @@
 {
  "BIENY-01": {
-  "gecti": "2026-11-16",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-17"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "BIENY-02": {
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-16"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "BIENY-03": {
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-16"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "BIENY-04": {
   "hafta": "2026-11-08",
   "taraf": "ust"
  },
  "BIENY-05": {
-  "gecti": "2026-11-16",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-16"
+  "hafta": "2026-11-19",
+  "taraf": "ust"
  },
  "BIENY-06": {
-  "hafta": "2026-11-15",
-  "taraf": "ust",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "ust"
  },
  "MIATK-01": {
-  "gecti": "2026-11-17",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "MIATK-02": {
-  "gecti": "2026-11-17",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "MIATK-03": {
-  "gecti": "2026-11-16",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "MIATK-04": {
   "hafta": "2026-11-08",
@@ -54,59 +41,47 @@
   "yakin": "2026-11-13"
  },
  "MIATK-05": {
-  "gecti": "2026-11-18",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "ust"
  },
  "MIATK-06": {
-  "hafta": "2026-11-15",
+  "hafta": "2026-11-19",
   "taraf": "ust"
  },
  "SASA-01": {
-  "gecti": "2026-11-16",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-17"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "SASA-02": {
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-17"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "SASA-03": {
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-16"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "SASA-04": {
   "hafta": "2026-11-08",
   "taraf": "ust"
  },
  "SASA-05": {
-  "gecti": "2026-11-18",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "ust"
  },
  "SASA-06": {
-  "hafta": "2026-11-15",
+  "hafta": "2026-11-19",
   "taraf": "ust"
  },
  "SMRTG-01": {
-  "gecti": "2026-11-18",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "SMRTG-02": {
-  "gecti": "2026-11-18",
-  "hafta": "2026-11-15",
-  "taraf": "alt",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "alt"
  },
  "SMRTG-03": {
-  "hafta": "2026-11-15",
+  "hafta": "2026-11-19",
   "taraf": "alt"
  },
  "SMRTG-04": {
@@ -114,15 +89,34 @@
   "taraf": "ust"
  },
  "SMRTG-05": {
-  "hafta": "2026-11-15",
-  "taraf": "ust",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-19",
+  "taraf": "ust"
  },
  "SMRTG-06": {
-  "hafta": "2026-11-15",
+  "hafta": "2026-11-19",
+  "taraf": "ust"
+ },
+ "THYAO-01": {
+  "hafta": "2026-11-19",
+  "taraf": "alt"
+ },
+ "THYAO-02": {
+  "hafta": "2026-11-19",
+  "taraf": "alt"
+ },
+ "THYAO-03": {
+  "hafta": "2026-11-19",
+  "taraf": "alt"
+ },
+ "THYAO-05": {
+  "hafta": "2026-11-19",
+  "taraf": "ust"
+ },
+ "THYAO-06": {
+  "hafta": "2026-11-19",
   "taraf": "ust"
  },
  "_harita_MIATK": "2026-11-17",
  "_harita_SMRTG": "2026-11-13",
- "_son": "2026-11-18T18:39:54+00:00"
+ "_son": "2026-11-18T22:23:41+00:00"
 }
