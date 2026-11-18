@@ -29,14 +29,15 @@ os.environ['TA_DATA'] = DATA
 sys.path[:0] = [IS, KOD]
 
 PAZAR = {
-    'abd': dict(hisseler=['RKLB', 'CRWV', 'SGML', 'WYFI'], endeks='SPY', para='USD', exch='NASDAQ',
-                ek=['SPY', 'UFO', 'SMH', 'LIT', 'WGMI'], ind='ind.py', struct='struct_.py', run='run.py',
+    'abd': dict(hisseler=['RKLB', 'CRWV', 'SGML', 'WYFI', 'UAMY'], endeks='SPY', para='USD', exch='NASDAQ',
+                ek=['SPY', 'UFO', 'SMH', 'LIT', 'WGMI', 'REMX'], ind='ind.py', struct='struct_.py', run='run.py',
                 cfg='cfg.py', indjson='ind.json', res='res.pkl'),
     'bist': dict(hisseler=['BIENY', 'SASA', 'SMRTG', 'MIATK'], endeks='XU100', para='TRY', exch='BIST',
                  ek=['XU100', 'XTAST', 'XKMYA', 'XUSIN', 'XBLSM'], ind='indb.py', struct=None, run='runb.py',
                  cfg='cfgb.py', indjson='indb.json', res='resb.pkl'),
 }
 BIST = set(PAZAR['bist']['hisseler'])
+EXCH = {'UAMY': 'NYSE'}   # pazar varsayılanından farklı borsa
 
 
 def tr(x, nd=2):
@@ -252,7 +253,7 @@ def cmd_analiz(a):
 def cmd_yayinla(a):
     import pandas as pd
     p = json.load(open(a.plan)); pz = p['pazar']; T = p['tarih']; H = list(p['hisseler']); para = PAZAR[pz]['para']
-    sym = lambda h: f"{PAZAR[pz]['exch']}:{h}"
+    sym = lambda h: f"{EXCH.get(h, PAZAR[pz]['exch'])}:{h}"
     os.makedirs(IS, exist_ok=True); cikti = []
     # 1) bolgeler.csv + cizgiler.csv
     bf = os.path.join(VERI, 'bolgeler.csv'); B = pd.read_csv(bf)
@@ -359,7 +360,8 @@ def cmd_yayinla(a):
 HISSE_TABLO = [('BIENY', 'BIST', 'Yapı ürünleri (seramik)', 'BIST:XTAST'), ('RKLB', 'NASDAQ', 'Uzay / roket', 'NASDAQ:UFO'),
                ('CRWV', 'NASDAQ', 'Yapay zekâ bulut altyapısı', 'NASDAQ:SMH'), ('SGML', 'NASDAQ', 'Lityum madenciliği', 'AMEX:LIT'),
                ('SASA', 'BIST', 'Polyester / kimya', 'BIST:XKMYA'), ('SMRTG', 'BIST', 'Güneş enerjisi ekipmanı', 'BIST:XUSIN (zayıf vekil)'),
-               ('MIATK', 'BIST', 'Yazılım / güvenlik', 'BIST:XBLSM'), ('WYFI', 'NASDAQ', 'Yapay zekâ veri merkezi (WhiteFiber)', 'NASDAQ:WGMI')]
+               ('MIATK', 'BIST', 'Yazılım / güvenlik', 'BIST:XBLSM'), ('WYFI', 'NASDAQ', 'Yapay zekâ veri merkezi (WhiteFiber)', 'NASDAQ:WGMI'),
+               ('UAMY', 'NYSE', 'Antimon / kritik mineraller', 'AMEX:REMX')]
 
 
 def kisa_defter(p, rows, rep, meta, DZ):

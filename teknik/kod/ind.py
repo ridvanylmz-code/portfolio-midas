@@ -1,7 +1,7 @@
 import sys,os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 import json
-S=['RKLB','CRWV','SGML','WYFI']; SEC={'RKLB':['UFO'],'CRWV':['SMH'],'SGML':['LIT'],'WYFI':['WGMI','SMH']}
+S=['RKLB','CRWV','SGML','WYFI','UAMY']; SEC={'RKLB':['UFO'],'CRWV':['SMH'],'SGML':['LIT'],'WYFI':['WGMI','SMH'],'UAMY':['REMX']}
 spy=load('SPY'); out={}
 # regime
 sc=spy.c; e89=ema(sc,89); e233=ema(sc,233)

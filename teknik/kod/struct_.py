@@ -1,7 +1,7 @@
 import sys,os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 import json
-EARN={'RKLB':'2026-08-11','CRWV':'2026-08-12','SGML':'2026-08-14','WYFI':'2026-08-12'}
+EARN={'RKLB':'2026-08-11','CRWV':'2026-08-12','SGML':'2026-08-14','WYFI':'2026-08-12','UAMY':'2026-11-13'}
 def gaps(d,n=60):
     out=[]; x=d.iloc[-n-1:]
     for i in range(1,len(x)):
@@ -50,7 +50,7 @@ def div(d,k,n,label):
     return res
 if __name__=='__main__':
   out={}
-  for s in ['RKLB','CRWV','SGML','WYFI']:
+  for s in ['RKLB','CRWV','SGML','WYFI','UAMY']:
       d=load(s); w=weekly(d)
       x60=d.iloc[-60:]; hv=x60.v.idxmax()
       o=dict(gaps=gaps(d),vp=vprofile(d),darvas=darvas(d),hv_day=str(hv.date()))
