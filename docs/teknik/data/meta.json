@@ -1,10 +1,10 @@
 {
- "guncelleme": "2026-11-18T22:00:10+00:00",
+ "guncelleme": "2026-11-20T21:30:00+00:00",
  "hisseler": {
   "BIENY": {
    "pazar": "bist",
-   "atr": 0.7859,
-   "atr_tarih": "2026-11-18",
+   "atr": 0.7735,
+   "atr_tarih": "2026-11-20",
    "plan": "2026-11-19",
    "mod": "Savunma",
    "bilanco": "3Ç açıklandı 09.11 (9A net zarar 1,19 mlr TL); yıllık ≈Mart 2027"
@@ -19,8 +19,8 @@
   },
   "MIATK": {
    "pazar": "bist",
-   "atr": 1.77,
-   "atr_tarih": "2026-11-18",
+   "atr": 1.6537,
+   "atr_tarih": "2026-11-20",
    "plan": "2026-11-19",
    "mod": "Bant",
    "bilanco": "3Ç açıklandı 09.11 (9A net zarar 199 mln TL); yıllık ≈Mart 2027"
@@ -35,8 +35,8 @@
   },
   "SASA": {
    "pazar": "bist",
-   "atr": 0.0808,
-   "atr_tarih": "2026-11-18",
+   "atr": 0.0786,
+   "atr_tarih": "2026-11-20",
    "plan": "2026-11-19",
    "mod": "Savunma",
    "bilanco": "3Ç açıklandı 06.11 (Ç3 zarar 1,9 mlr TL); yıllık ≈Mart 2027"
@@ -51,16 +51,16 @@
   },
   "SMRTG": {
    "pazar": "bist",
-   "atr": 0.3121,
-   "atr_tarih": "2026-11-18",
+   "atr": 0.2967,
+   "atr_tarih": "2026-11-20",
    "plan": "2026-11-19",
    "mod": "Bant",
    "bilanco": "3Ç açıklandı 07.11 (9A net kâr 152 mln TL); yıllık ≈Mart 2027"
   },
   "THYAO": {
    "pazar": "bist",
-   "atr": 9.7432,
-   "atr_tarih": "2026-11-18",
+   "atr": 9.3959,
+   "atr_tarih": "2026-11-20",
    "plan": "2026-11-19",
    "mod": "Bant",
    "bilanco": "3Ç açıklandı (Kasım başı, teyitsiz); yıllık ≈Mart 2027"
