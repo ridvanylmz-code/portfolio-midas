@@ -15,9 +15,9 @@
    "in_date": "2026-11-18",
    "in_price": 113.77,
    "stop": 106.94,
-   "out_date": null,
-   "out_price": null,
-   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+   "out_date": "2026-11-20",
+   "out_price": 103.47,
+   "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür. | Çıkış: 20 Kas kapanış 103,47 < stop 106,94 (kural 1)."
   },
   {
    "ticker": "GKOS",
@@ -45,6 +45,15 @@
    "out_date": null,
    "out_price": null,
    "reason": "Kayıt başlangıcı: 14 Kas öncesinden devralınan liste; performans bu tarihten ölçülür."
+  },
+  {
+   "ticker": "PG",
+   "in_date": "2026-11-20",
+   "in_price": 169.37,
+   "stop": 162.92,
+   "out_date": null,
+   "out_price": null,
+   "reason": "ELF yerine; temel tüketim lideri, trend 7/7, Risk-off'ta savunma."
   }
  ]
 }
