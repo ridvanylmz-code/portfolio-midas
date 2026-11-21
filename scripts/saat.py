@@ -52,6 +52,7 @@ ENTRIES = [
     once("trend.yml", IST, "03:15", TUE_SAT),
     every("trend-bist.yml", IST, "10:15", "18:30", 120),
     once("technicals.yml", ET, "17:30", idempotent=True),
+    once("dilution.yml", ET, "06:30", idempotent=True),        # SEC EDGAR dilüsyon taraması
     once("technicals-bist.yml", IST, "18:35", idempotent=True),
     once("defter.yml", ET, "18:30", komut="oto", idempotent=True),   # iki piyasa da kapalı
     once("defter.yml", ET, "23:40", komut="oto", idempotent=True),   # yeniden deneme

@@ -21,8 +21,9 @@ Dil: Türkçe, kısa, basit tablo. Al-sat dili porsiyon dilidir (`portfoy-guncel
 
 ## Dilüsyon kontrolü (her hisse, zorunlu)
 Kaynaklar:
-1. TradingView `get-financials`: nakit, serbest nakit akışı (son çeyrek ve TTM). Nakit ömrü = nakit / çeyreklik nakit yakımı.
-2. SEC EDGAR (WebFetch ile; shell sec.gov'a erişemez): son 12 ayda S-3 / S-3ASR (shelf), 424B5 (shelf'ten satış), ATM / "equity distribution agreement" duyurusu.
+1. **`docs/data/dilution.json`** (asıl kaynak; `dilution.yml` her hafta içi SEC EDGAR'dan yazar): her hisse için `risk`, `text`, `reasons`, `fin` (nakit, son 12 ay serbest nakit akışı, nakit ömrü), `shelf`, `takedowns` (424B türü: ATM / hisse / dönüştürülebilir / borç) ve belge bağlantıları. `updated` 3 günden eskiyse ya da hisse yoksa workflow'u çalıştır (`gh api -X POST repos/ridvanylmz-code/portfolio-midas/actions/workflows/dilution.yml/dispatches -f ref=main`).
+2. TradingView `get-financials`: dilution.json'da `fin` yoksa (ör. yabancı şirket, XBRL eksik) nakit ve serbest nakit akışı buradan.
+   Not: sec.gov bu oturumlardan okunamaz (WebFetch robots engeli, shell ağ izni yok); EDGAR'a doğrudan gitme.
 3. Son 30 günün haber başlıkları (TradingView `get-news`).
 
 Seviye:
@@ -33,7 +34,7 @@ Seviye:
 | Düşük | Serbest nakit akışı pozitif, etkin shelf/ATM yok | Not gerekmez |
 | Doğrulanamadı | Kaynaklardan biri okunamadı | Listeye alırsan "doğrulanamadı" etiketiyle |
 
-Sonucu `analysis.json` → `dilution` alanına `{"risk", "text"}` olarak, tarih ve kaynakla yaz.
+Sonucu `analysis.json` → `dilution` alanına `{"risk", "text"}` olarak, tarih ve kaynakla yaz. dilution.json seviyesini haberle (ör. yeni dönüştürülebilir tahvil) yalnız yukarı düzelt; aşağı çekme.
 
 ## Seçim
 - Adaylar arasından en fazla 5 hisse; yalnızca önümüzdeki günlerde yükseliş beklenenler. Düşüş rejiminde 5'i doldurmak zorunlu değil.
