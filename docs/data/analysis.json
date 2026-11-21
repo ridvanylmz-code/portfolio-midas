@@ -48,8 +48,8 @@
     "17 Kas: Q3 sonrası Neutron gecikmesi, Iridium anlaşması, 100. Electron (TradingView)"
    ],
    "dilution": {
-    "risk": "Orta",
-    "text": "Iridium finansmanı için $1,94 mlr'lık ATM programı 15 Eyl'de tamamlandı, yani sulandırmanın büyük kısmı yapıldı; yakın vadede yeni büyük ihraç ihtimali daha düşük. Net zarar sürüyor, bilanço sonrası (9 Kas) kontrol edilmeli."
+    "risk": "Yüksek",
+    "text": "2026-11-21 (SEC EDGAR); nakit $4,61 mlr (2026-09-30), serbest nakit akışı son 12 ay −$326 mn; serbest nakit akışı negatif ve 12 ayda hisse/ATM satışı var; ATM programı: son 424B5 2026-08-13; ortak satışı (sulandırmaz): son 424B7 2026-05-08; etkin shelf: S-3ASR 2025-03-11."
    },
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20"
@@ -102,7 +102,7 @@
    ],
    "dilution": {
     "risk": "Yüksek",
-    "text": "7 Kas (TradingView): serbest nakit akışı TTM −$13,7 mlr, nakit $6,4 mlr, borç $51,6 mlr. Büyüme borç/hisse ihracıyla finanse ediliyor."
+    "text": "2026-11-21 (SEC EDGAR); nakit $4,18 mlr (2026-09-30), serbest nakit akışı son 12 ay −$20,42 mlr; serbest nakit akışı negatif, nakit ömrü 0,8 çeyrek (< 4); ATM programı: son 424B5 2026-09-17; etkin shelf: S-3ASR 2026-06-05."
    },
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20"
@@ -155,7 +155,7 @@
    ],
    "dilution": {
     "risk": "Yüksek",
-    "text": "21 Kas (TradingView haber): Ağustos'taki 310 mn $ dönüştürülebilir tahvile ek olarak Q3 sonrası 298,5 mn $ tahvil ihracı; nakit akışı negatif. SEC EDGAR okunamadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $139 mn (2026-09-30), serbest nakit akışı son 12 ay −$391 mn; serbest nakit akışı negatif, nakit ömrü 1,4 çeyrek (< 4). Haber: Ağustos'ta 310 mn $ ve Q3 sonrası 298,5 mn $ tahvil (özel satış, EDGAR'da 424B yok)."
    },
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20"
@@ -208,7 +208,7 @@
    ],
    "dilution": {
     "risk": "Yüksek",
-    "text": "18 Kas (TradingView haber): 16 Kas'ta 125 mn $ 5 yıllık dönüştürülebilir tahvil kapandı; dönüşümde sulanma riski. SEC EDGAR bu turda okunamadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $6 mn (2025-12-31), serbest nakit akışı yıllık −$7 mn; serbest nakit akışı negatif, nakit ömrü 3,3 çeyrek (< 4). Haber (16 Kas): 125 mn $ dönüştürülebilir tahvil (özel satış, EDGAR'da 424B yok). Finansal veri yıllık (40-F), güncel değil."
    },
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20"
@@ -272,7 +272,7 @@
    ],
    "dilution": {
     "risk": "Yüksek",
-    "text": "Zarar ve geçmişte hisse ihracı nedeniyle risk yüksek (önceki tespit). SEC EDGAR bu turda okunamadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $31 mn (2026-09-30), serbest nakit akışı son 12 ay −$68 mn; serbest nakit akışı negatif, nakit ömrü 1,8 çeyrek (< 4); etkin shelf: S-3ASR 2025-10-16."
    },
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20"
@@ -320,7 +320,7 @@
    ],
    "dilution": {
     "risk": "Düşük",
-    "text": "Nakit pozisyonu güçlü, kâr ediyor. Büyük yapay zekâ yatırımı ileride finansman gerektirebilir; bu turda doğrulanmadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $45,45 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,30 mlr; serbest nakit akışı pozitif."
    },
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20"
@@ -361,7 +361,7 @@
    ],
    "dilution": {
     "risk": "Düşük",
-    "text": "Pozitif serbest nakit akışı, borç neredeyse yok; 12 ayda sermaye artırımı ihtiyacı görünmüyor. 18 Kas: SEC EDGAR okunamadı, shelf/ATM yeniden doğrulanamadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $569 mn (2026-09-30), serbest nakit akışı son 12 ay $197 mn; serbest nakit akışı pozitif; etkin shelf: S-3 2024-06-28 (genel kayıt; 12 ayda hisse satışı yok)."
    },
    "macro": "Faize ve yapay zekâya duyarsız; yazılım ağırlıklı listeyi dengeler.",
    "technical_date": "2026-11-20",
@@ -405,7 +405,7 @@
    ],
    "dilution": {
     "risk": "Düşük",
-    "text": "Güçlü serbest nakit akışı, hisse geri alımı yapıyor; 12 ayda sermaye artırımı ihtiyacı yok. 18 Kas: SEC EDGAR okunamadı, shelf/ATM yeniden doğrulanamadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $163 mn (2026-09-30), serbest nakit akışı son 12 ay $754 mn; serbest nakit akışı pozitif."
    },
    "macro": "Tüketici harcaması; faiz artırımında risk iştahına bağlı kısmı var. Teknolojiden bağımsız.",
    "technical_date": "2026-11-20",
@@ -443,7 +443,7 @@
    "news": [],
    "dilution": {
     "risk": "Düşük",
-    "text": "7 Kas (TradingView): serbest nakit akışı pozitif ($870 mn TTM), nakit $1,5 mlr. Borç satın alma kaynaklı, nakit akışıyla ödeniyor. SEC kaydı (shelf/ATM) bu oturumda doğrulanmadı; yabancı ihraççı (20-F). 12 Kas: SEC EDGAR bu oturumda okunamadı (doğrulanamadı)."
+    "text": "2026-11-21 (SEC EDGAR); nakit $1,72 mlr (2025-12-31), serbest nakit akışı yıllık $1,15 mlr; serbest nakit akışı pozitif. Yabancı şirket: veri yıllık rapordan."
    },
    "macro": "Faize ve yapay zekâya duyarsız; ilaç pipeline'ına bağlı. KNSA ile aynı sağlık sürücüsü: ikisine birden tam boyut girme.",
    "technical_date": "2026-11-20",
@@ -483,8 +483,8 @@
     "16 Kas: BTIG Al, hedef 234→252"
    ],
    "dilution": {
-    "risk": "Orta",
-    "text": "7 Kas (TradingView): serbest nakit akışı yeni pozitife döndü ($19 mn TTM), nakit $337 mn, borç düşük. Nakit yakımı yok ama tampon ince; SEC shelf/ATM bu oturumda doğrulanmadı. 12 Kas: SEC EDGAR bu oturumda okunamadı (doğrulanamadı)."
+    "risk": "Düşük",
+    "text": "2026-11-21 (SEC EDGAR); nakit $162 mn (2026-09-30), serbest nakit akışı son 12 ay $36 mn; serbest nakit akışı pozitif."
    },
    "macro": "Sağlık savunması; tıbbi cihaz geri ödemesine bağlı, faize orta duyarlı.",
    "technical_date": "2026-11-20",
@@ -500,7 +500,7 @@
    "macro": "Savunma tüketimi; düşük beta, faiz artışında temettü hisselerine baskı riski.",
    "dilution": {
     "risk": "Düşük",
-    "text": "21 Kas: güçlü serbest nakit akışı ve düzenli hisse geri alımı; borçlanmaları tahvil (hisse değil). SEC EDGAR okunamadı: doğrulanamadı."
+    "text": "2026-11-21 (SEC EDGAR); nakit $15,37 mlr (2026-09-30), serbest nakit akışı son 12 ay $15,34 mlr; serbest nakit akışı pozitif; 2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-10-15 (genel kayıt; 12 ayda hisse satışı yok)."
    },
    "news": [
     "20 Kas: Temel tüketim düşüş haftasında tek pozitif ana sektör"
