@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T03:24:34+00:00",
+  "updated": "2026-11-21T04:13:01+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 41 sembol; ilk 40 alındı",
@@ -12,8 +12,8 @@
     "TD  KNSA: RSI 55.8 SMA50 83.89 (250 bar)",
     "TD  RKLB: RSI 35.7 SMA50 61.34 (250 bar)",
     "TD  SGML: RSI 22.8 SMA50 7.77 (250 bar)",
-    "TD  TSLA: RSI 37.8 SMA50 375.64 (250 bar)",
-    "TD  UAMY: RSI 34.3 SMA50 3.5 (250 bar)",
+    "TD  TSLA: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  UAMY: HATA RuntimeError: You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait f",
     "TD  WYFI: RSI 29.7 SMA50 13.43 (250 bar)",
     "TD  TEAM: RSI 24.1 SMA50 187.97 (250 bar)",
     "TD  MPC: RSI 33.9 SMA50 422.59 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  MRVL: RSI 27.9 SMA50 220.27 (250 bar)",
     "TD  AMD: RSI 38.4 SMA50 553.1 (250 bar)",
     "TD  NVDA: RSI 15.0 SMA50 207.0 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 38"
   ],
   "tickers": {
     "CROX": {
@@ -413,7 +413,8 @@
         "support20": 338.15,
         "resistance20": 414.23,
         "vol_ratio": 1.25,
-        "bars": 250
+        "bars": 250,
+        "stale": true
       }
     },
     "UAMY": {
@@ -454,7 +455,8 @@
         "support20": 2.18,
         "resistance20": 3.48,
         "vol_ratio": 1.34,
-        "bars": 250
+        "bars": 250,
+        "stale": true
       }
     },
     "WYFI": {
