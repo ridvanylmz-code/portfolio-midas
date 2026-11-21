@@ -1,23 +1,23 @@
-# Karne — ABD (puan.py, 2026-11-19)
+# Karne — ABD (puan.py, 2026-11-22)
 
-Son analiz (2026-11-14):
+Son analiz (2026-11-19):
 ÖZET
-Bölge dokunma oranı: gerçek %100 · şans ort. %nan
-Bölge isabeti (dokunulanlarda): gerçek %17 (n=6) · şans ort. %18 · gerçekten iyi şans oranı %36 (tek yönlü p)
-  KRİTİK: %0 (n=2)
-  ÖNEMLİ: %100 (n=1)
+Bölge dokunma oranı: gerçek %100 · şans ort. %100
+Bölge isabeti (dokunulanlarda): gerçek %57 (n=7) · şans ort. %60 · gerçekten iyi şans oranı %58 (tek yönlü p)
+  KRİTİK: %100 (n=2)
+  ÖNEMLİ: %100 (n=2)
   İzleme: %0 (n=3)
-  direnc: — (n=0)
-  destek: %0 (n=5)
-  pivot: %100 (n=1)
+  direnc: %100 (n=3)
+  destek: %25 (n=4)
+  pivot: — (n=0)
 
-Birikimli (2026-11-01 – 2026-11-14, şans 200 tekrar):
+Birikimli (2026-11-01 – 2026-11-19, şans 200 tekrar):
 ÖZET
-Bölge dokunma oranı: gerçek %66 · şans ort. %49
-Bölge isabeti (dokunulanlarda): gerçek %54 (n=45) · şans ort. %62 · gerçekten iyi şans oranı %84 (tek yönlü p)
-  KRİTİK: %64 (n=18)
-  ÖNEMLİ: %57 (n=14)
-  İzleme: %38 (n=13)
-  direnc: %60 (n=20)
-  destek: %29 (n=17)
-  pivot: %94 (n=8)
+Bölge dokunma oranı: gerçek %71 · şans ort. %55
+Bölge isabeti (dokunulanlarda): gerçek %54 (n=56) · şans ort. %58 · gerçekten iyi şans oranı %66 (tek yönlü p)
+  KRİTİK: %69 (n=21)
+  ÖNEMLİ: %62 (n=16)
+  İzleme: %32 (n=19)
+  direnc: %65 (n=23)
+  destek: %29 (n=24)
+  pivot: %94 (n=9)
