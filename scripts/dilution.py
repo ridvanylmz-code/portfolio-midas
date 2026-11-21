@@ -328,7 +328,12 @@ def main(argv=None):
     today = datetime.now(timezone.utc).date()
     roles = load_tickers(args.market)
     s = _session()
-    cmap = get_json(s, "https://www.sec.gov/files/company_tickers.json")
+    try:
+        cmap = get_json(s, "https://www.sec.gov/files/company_tickers.json")
+    except Exception as e:
+        print(f"SEC erişimi reddedildi ({e}). SEC, User-Agent'ta iletişim bilgisi ister: repo secret "
+              "SEC_USER_AGENT = \"Ad Soyad eposta@ornek.com\" olarak tanımlı mı?", file=sys.stderr)
+        return 2
     ciks = {v["ticker"].upper(): int(v["cik_str"]) for v in cmap.values()}
     out_path = Path(args.out)
     old = json.loads(out_path.read_text()) if out_path.exists() else {}
