@@ -27,6 +27,16 @@ def test_classify():
     assert d.classify_doc("Offering of $125,000,000 4.50% Convertible Senior Notes due 2031") == "dönüştürülebilir"
     assert d.classify_doc("PROSPECTUS SUPPLEMENT $1,000,000,000 4.10% Notes due 2033") == "borç"
     assert d.classify_doc("10,000,000 Shares of Common Stock and Pre-Funded Warrants") == "hisse"
+    assert d.classify_doc("25,000,000 Shares of Common Stock offered by the Selling Stockholders") == "ikincil"
+    assert d.classify_doc("anything", "424B7") == "ikincil"
+    assert d.classify_doc("$500,000,000 5.25% Senior Notes due 2036. The notes rank equally ... shares of common stock of the company") == "borç"
+
+
+def test_latest_concept_wins():
+    f = {"facts": {"us-gaap": {
+        "CashAndCashEquivalentsAtCarryingValue": {"units": {"USD": [{"end": "2019-09-30", "val": 1, "form": "10-K", "filed": "2019-10-01"}]}},
+        "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents": {"units": {"USD": [{"end": "2026-09-30", "val": 9, "form": "10-Q", "filed": "2026-10-20"}]}}}}}
+    assert d.latest_instant(f, d.CASH)["end"] == "2026-09-30"
 
 
 def test_ttm_uses_ytd():

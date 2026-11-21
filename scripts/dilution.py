@@ -35,7 +35,7 @@ REG_FORMS = {"S-1", "S-1/A", "F-1", "F-1/A"}  # shelf dışı kayıtlı halka ar
 TAKEDOWN_FORMS = {"424B5", "424B4", "424B3", "424B7"}
 SHELF_YEARS = 3          # shelf kaydı 3 yıl geçerli
 TAKEDOWN_DAYS = 365      # satışlara 12 ay geriye bakılır
-MAX_DOCS = 4             # şirket başına okunacak en fazla 424B belgesi
+MAX_DOCS = 6             # şirket başına okunacak en fazla 424B belgesi
 DOC_BYTES = 120_000      # belgenin okunacak ilk kısmı
 
 # XBRL kavramları: (taksonomi, kavram) öncelik sırasıyla
@@ -105,21 +105,31 @@ def filing_url(cik, f):
     return f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{f['acc'].replace('-', '')}/{f['doc']}"
 
 
-def classify_doc(text):
-    """424B belge metni → 'ATM' | 'dönüştürülebilir' | 'borç' | 'hisse' | 'diğer'."""
+def classify_doc(text, form=""):
+    """424B belge metni → 'ATM' | 'dönüştürülebilir' | 'borç' | 'hisse' | 'ikincil' | 'diğer'.
+    ikincil: mevcut ortakların satışı (424B7 ya da 'selling stockholders'); şirket yeni hisse çıkarmaz."""
     t = re.sub(r"<[^>]+>", " ", text)
     t = re.sub(r"&#?\w+;", " ", t)
     t = re.sub(r"\s+", " ", t).lower()
-    if re.search(r"at[- ]the[- ]market|equity distribution agreement|sales agreement|open market sale agreement|controlled equity offering", t):
+    title = t[:3000]
+    if form == "424B7" or re.search(r"selling (stock|share)holders?", title):
+        if not re.search(r"we are offering|offered by us", title):
+            return "ikincil"
+    if re.search(r"at[- ]the[- ]market|equity distribution agreement|open market sale agreement|controlled equity offering|sales agreement", t):
         return "ATM"
-    if re.search(r"convertible (senior )?notes|convertible (senior )?debentures|exchangeable notes", t):
+    if re.search(r"convertible (senior )?notes|convertible (senior )?debentures|exchangeable (senior )?notes", title):
         return "dönüştürülebilir"
-    head = t[:6000]
-    equity = re.search(r"(shares of (our )?(class a )?common stock|ordinary shares|american depositary shares|pre-funded warrants|units)", head)
-    debt = re.search(r"(\d+(\.\d+)?% (senior |subordinated )?notes due|floating rate notes|debentures due)", head)
+    debt_re = r"(\d+(\.\d+)?% (senior |subordinated )?notes due|floating rate (senior )?notes|notes due 20\d\d|debentures due)"
+    eq_re = r"(\d[\d,]* shares of (our )?(class [a-c] )?common stock|\d[\d,]* ordinary shares|american depositary shares|pre-funded warrants)"
+    debt, equity = re.search(debt_re, title), re.search(eq_re, title)
     if debt and not equity:
         return "borç"
     if equity:
+        return "hisse"
+    head = t[:8000]
+    if re.search(debt_re, head) and not re.search(eq_re, head):
+        return "borç"
+    if re.search(eq_re, head):
         return "hisse"
     return "diğer"
 
@@ -130,29 +140,33 @@ def _duration_days(e):
     return (parse_date(e["end"]) - parse_date(e["start"])).days
 
 
-def _entries(facts, keys):
-    """İlk bulunan kavramın girdileri ve birimi. Aynı dönem için son başvurunun değeri tutulur."""
+def _entries(facts, keys, instant=None):
+    """Kavramlar arasında en güncel veriyi taşıyanın girdileri ve birimi (şirketler zamanla kavram değiştirir).
+    Aynı dönem için son başvurunun değeri tutulur. instant: True → yalnız anlık, False → yalnız süreli."""
+    found = []
     for tax, name in keys:
         node = (facts or {}).get("facts", {}).get(tax, {}).get(name)
         if not node:
             continue
         for unit, rows in node.get("units", {}).items():
-            if not rows:
-                continue
             best = {}
-            for e in rows:
-                if e.get("form", "").startswith(("10-", "20-", "40-", "6-K")) or "form" not in e:
+            for e in rows or []:
+                if instant is not None and bool(e.get("start")) == instant:
+                    continue
+                if e.get("form", "").startswith(("10-", "20-", "40-", "6-K")):
                     k = (e.get("start"), e["end"])
                     if k not in best or e.get("filed", "") > best[k].get("filed", ""):
                         best[k] = e
             if best:
-                return list(best.values()), unit, f"{tax}:{name}"
-    return [], None, None
+                found.append((max(e["end"] for e in best.values()), list(best.values()), unit, f"{tax}:{name}"))
+    if not found:
+        return [], None, None
+    _, rows, unit, concept = max(found, key=lambda x: x[0])
+    return rows, unit, concept
 
 
 def latest_instant(facts, keys):
-    rows, unit, concept = _entries(facts, keys)
-    rows = [e for e in rows if not e.get("start")]
+    rows, unit, concept = _entries(facts, keys, instant=True)
     if not rows:
         return None
     e = max(rows, key=lambda x: x["end"])
@@ -161,8 +175,7 @@ def latest_instant(facts, keys):
 
 def ttm(facts, keys):
     """Akış kalemi için son 12 ay: yıllık + (son kümülatif − önceki yılın aynı kümülatifi)."""
-    rows, unit, concept = _entries(facts, keys)
-    rows = [e for e in rows if e.get("start")]
+    rows, unit, concept = _entries(facts, keys, instant=False)
     if not rows:
         return None
     annual = [e for e in rows if 340 <= _duration_days(e) <= 380]
@@ -233,24 +246,31 @@ def assess(filings, fin, today, docs=None):
         short = neg and fin["runway_q"] is not None and fin["runway_q"] < 4
         if short:
             level = "Yüksek"
-            reasons.append(f"serbest nakit akışı negatif, nakit ömrü {fin['runway_q']} çeyrek (< 4)")
+            reasons.append(f"serbest nakit akışı negatif, nakit ömrü {str(fin['runway_q']).replace('.', ',')} çeyrek (< 4)")
         elif neg and (equity_takes or regs):
             level = "Yüksek"
             reasons.append("serbest nakit akışı negatif ve 12 ayda hisse/ATM satışı var")
         elif equity_takes or conv_takes or regs or neg:
             level = "Orta"
             if neg:
-                reasons.append(f"serbest nakit akışı negatif, nakit ömrü {fin['runway_q']} çeyrek")
+                reasons.append(f"serbest nakit akışı negatif, nakit ömrü {str(fin['runway_q']).replace('.', ',')} çeyrek")
         else:
             level = "Düşük"
             reasons.append("serbest nakit akışı pozitif")
+        debt_only = any(t["kind"] == "borç" for t in takes) and not (equity_takes or conv_takes)
         if unknown_takes and level == "Düşük":
-            level = "Orta"
-            reasons.append(f"{len(unknown_takes)} adet 424B başvurusunun türü belirlenemedi")
+            if debt_only:
+                reasons.append(f"{len(unknown_takes)} adet 424B türü belirlenemedi; okunanların hepsi borç ihracı")
+            else:
+                level = "Orta"
+                reasons.append(f"{len(unknown_takes)} adet 424B başvurusunun türü belirlenemedi")
     if atm:
         reasons.append(f"ATM programı: son {atm[0]['form']} {atm[0]['date']}")
     if equity_takes and not atm:
         reasons.append(f"hisse satışı: son {equity_takes[0]['form']} {equity_takes[0]['date']}")
+    sec_takes = [t for t in takes if t["kind"] == "ikincil"]
+    if sec_takes:
+        reasons.append(f"ortak satışı (sulandırmaz): son {sec_takes[0]['form']} {sec_takes[0]['date']}")
     if conv_takes:
         reasons.append(f"dönüştürülebilir tahvil: {conv_takes[0]['date']}")
     if regs:
@@ -299,7 +319,7 @@ def scan_one(s, t, cik, today):
     docs = {}
     for f in [f for f in filings if f["form"] in TAKEDOWN_FORMS and parse_date(f["date"]) >= take_from][:MAX_DOCS]:
         try:
-            docs[f["acc"]] = classify_doc(get_text(s, filing_url(cik, f)))
+            docs[f["acc"]] = classify_doc(get_text(s, filing_url(cik, f)), f["form"])
         except Exception as e:  # belge okunamazsa tür bilinmez kalır
             print(f"  {t}: {f['form']} {f['date']} okunamadı: {e}", file=sys.stderr)
     try:
