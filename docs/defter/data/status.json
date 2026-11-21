@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T03:14:04+00:00",
+  "updated": "2026-11-21T06:15:49+00:00",
   "days": 1286,
   "first": "2020-10-01",
   "last": "2026-11-20",
@@ -10,11 +10,7 @@
     "midas_tr": "2026-11-20",
     "info_tr": "2026-11-20",
     "midas_usd": "2026-11-20",
-    "ibkr": "2026-11-19"
+    "ibkr": "2026-11-20"
   },
-  "diag": [
-    "yahoo XU100.IS: HTTPError 429",
-    "yahoo SPY: HTTPError 429",
-    "yahoo USDTRY=X: HTTPError 429"
-  ]
+  "diag": []
 }
