@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:41:08+00:00",
+ "updated": "2026-11-23T22:10:45+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
@@ -231,66 +231,6 @@
    "checked": "2026-11-23",
    "role": "aday"
   },
-  "ARXS": {
-   "cik": 2093536,
-   "name": "Arxis, Inc.",
-   "risk": "Doğrulanamadı",
-   "text": "2026-11-23 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok); 12 ayda hisse satışı başvurusu var; hisse satışı: son 424B4 2026-04-16; ortak satışı (sulandırmaz): son 424B3 2026-10-29; halka arz kaydı (S-1 2026-10-13).",
-   "reasons": [
-    "XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok)",
-    "12 ayda hisse satışı başvurusu var",
-    "hisse satışı: son 424B4 2026-04-16",
-    "ortak satışı (sulandırmaz): son 424B3 2026-10-29",
-    "halka arz kaydı (S-1 2026-10-13)"
-   ],
-   "fin": null,
-   "shelf": [],
-   "takedowns": [
-    {
-     "form": "424B3",
-     "date": "2026-10-29",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526437034/424b3_no.2_omnetics_8-ka.htm",
-     "kind": "ikincil"
-    },
-    {
-     "form": "424B3",
-     "date": "2026-10-29",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526437033/424b3_no.1_3q26_form_10-.htm",
-     "kind": "ikincil"
-    },
-    {
-     "form": "424B3",
-     "date": "2026-10-22",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526428993/omnetics_424b3.htm",
-     "kind": "ikincil"
-    },
-    {
-     "form": "424B4",
-     "date": "2026-04-16",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526159369/d81728d424b4.htm",
-     "kind": "hisse"
-    }
-   ],
-   "registrations": [
-    {
-     "form": "S-1",
-     "date": "2026-10-13",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526419718/arxs-20261013.htm"
-    },
-    {
-     "form": "S-1/A",
-     "date": "2026-04-10",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526151122/d81728ds1a.htm"
-    },
-    {
-     "form": "S-1/A",
-     "date": "2026-04-08",
-     "url": "https://www.sec.gov/Archives/edgar/data/2093536/000119312526146309/d81728ds1a.htm"
-    }
-   ],
-   "checked": "2026-11-23",
-   "role": "aday"
-  },
   "ATR": {
    "cik": 896622,
    "name": "APTARGROUP, INC.",
@@ -341,6 +281,31 @@
     "fcf_basis": "yıllık",
     "fcf_end": "2025-12-31",
     "runway_q": 192.5
+   },
+   "shelf": [],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-23",
+   "role": "aday"
+  },
+  "BILL": {
+   "cik": 1786352,
+   "name": "BILL Holdings, Inc.",
+   "risk": "Düşük",
+   "text": "2026-11-23 (SEC EDGAR); nakit $1,59 mlr (2026-09-30), serbest nakit akışı son 12 ay $414 mn; serbest nakit akışı pozitif.",
+   "reasons": [
+    "serbest nakit akışı pozitif"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 1593537000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 415786000,
+    "capex_ttm": 2115000,
+    "fcf_ttm": 413671000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
    },
    "shelf": [],
    "takedowns": [],
@@ -607,6 +572,51 @@
    "checked": "2026-11-23",
    "role": "aday"
   },
+  "ECL": {
+   "cik": 31462,
+   "name": "ECOLAB INC.",
+   "risk": "Düşük",
+   "text": "2026-11-23 (SEC EDGAR); nakit $722 mn (2026-09-30), serbest nakit akışı son 12 ay $1,80 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-02-23 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: S-3ASR 2026-02-23 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 722300000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 3029200000,
+    "capex_ttm": 1234100000,
+    "fcf_ttm": 1795100000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2026-02-23",
+     "url": "https://www.sec.gov/Archives/edgar/data/31462/000110465926018378/tm263262-1_s3asr.htm"
+    }
+   ],
+   "takedowns": [
+    {
+     "form": "424B5",
+     "date": "2026-05-20",
+     "url": "https://www.sec.gov/Archives/edgar/data/31462/000110465926064583/tm2613881-2_424b5.htm",
+     "kind": "borç"
+    },
+    {
+     "form": "424B5",
+     "date": "2026-05-19",
+     "url": "https://www.sec.gov/Archives/edgar/data/31462/000110465926063558/tm2613881-1_424b5.htm",
+     "kind": "borç"
+    }
+   ],
+   "registrations": [],
+   "checked": "2026-11-23",
+   "role": "aday"
+  },
   "ELF": {
    "cik": 1600033,
    "name": "e.l.f. Beauty, Inc.",
@@ -635,106 +645,6 @@
     }
    ],
    "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-23",
-   "role": "aday"
-  },
-  "EPAM": {
-   "cik": 1352010,
-   "name": "EPAM Systems, Inc.",
-   "risk": "Düşük",
-   "text": "2026-11-23 (SEC EDGAR); nakit $965 mn (2026-09-30), serbest nakit akışı son 12 ay $470 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-11-05 (genel kayıt; 12 ayda hisse satışı yok).",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: S-3ASR 2026-11-05 (genel kayıt; 12 ayda hisse satışı yok)"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 965173000,
-    "cash_date": "2026-09-30",
-    "ocf_ttm": 532942000,
-    "capex_ttm": 62530000,
-    "fcf_ttm": 470412000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-09-30",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-11-05",
-     "url": "https://www.sec.gov/Archives/edgar/data/1352010/000114036126042127/ny20083715x1_s3asr.htm"
-    }
-   ],
-   "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-23",
-   "role": "aday"
-  },
-  "EQIX": {
-   "cik": 1101239,
-   "name": "EQUINIX INC",
-   "risk": "Orta",
-   "text": "2026-11-23 (SEC EDGAR); nakit $3,60 mlr (2026-09-30), serbest nakit akışı son 12 ay −$646 mn; serbest nakit akışı negatif, nakit ömrü 22,3 çeyrek; etkin shelf: S-3ASR 2026-10-28.",
-   "reasons": [
-    "serbest nakit akışı negatif, nakit ömrü 22,3 çeyrek",
-    "etkin shelf: S-3ASR 2026-10-28"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 3597000000,
-    "cash_date": "2026-09-30",
-    "ocf_ttm": 4171000000,
-    "capex_ttm": 4817000000,
-    "fcf_ttm": -646000000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-09-30",
-    "runway_q": 22.3
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-10-28",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926119687/tm2628001-1_s3asr.htm"
-    },
-    {
-     "form": "S-3ASR",
-     "date": "2026-10-28",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926119683/tm2628000-1_s3asr.htm"
-    }
-   ],
-   "takedowns": [
-    {
-     "form": "424B5",
-     "date": "2026-11-03",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926121650/tm2628000-3_424b2.htm",
-     "kind": "diğer"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-07-30",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926088496/tm2621537-1_424b5.htm",
-     "kind": "diğer"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-04-30",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926052435/tm2613041-1_424b5.htm",
-     "kind": "diğer"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-02-19",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926017312/tm265546-4_424b5.htm",
-     "kind": "diğer"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-02-19",
-     "url": "https://www.sec.gov/Archives/edgar/data/1101239/000110465926017310/tm265546-3_424b5.htm",
-     "kind": "diğer"
-    }
-   ],
    "registrations": [],
    "checked": "2026-11-23",
    "role": "aday"
@@ -1076,6 +986,52 @@
    "checked": "2026-11-23",
    "role": "aday"
   },
+  "HEI.A": {
+   "cik": 46619,
+   "name": "HEICO CORP",
+   "risk": "Düşük",
+   "text": "2026-11-23 (SEC EDGAR); nakit $241 mn (2026-07-31), serbest nakit akışı son 12 ay $1,03 mlr; serbest nakit akışı pozitif; 1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-07-13 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı",
+    "etkin shelf: S-3ASR 2026-07-13 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 240959000,
+    "cash_date": "2026-07-31",
+    "ocf_ttm": 1111232000,
+    "capex_ttm": 80952000,
+    "fcf_ttm": 1030280000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-07-31",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2026-07-13",
+     "url": "https://www.sec.gov/Archives/edgar/data/46619/000121390026077381/ea0296077-s3asr_heicocorp.htm"
+    }
+   ],
+   "takedowns": [
+    {
+     "form": "424B5",
+     "date": "2026-07-15",
+     "url": "https://www.sec.gov/Archives/edgar/data/46619/000121390026078392/ea0298006-424b5_heico.htm",
+     "kind": "borç"
+    },
+    {
+     "form": "424B5",
+     "date": "2026-07-13",
+     "url": "https://www.sec.gov/Archives/edgar/data/46619/000121390026077390/ea0296107-424b5_heico.htm",
+     "kind": "diğer"
+    }
+   ],
+   "registrations": [],
+   "checked": "2026-11-23",
+   "role": "aday"
+  },
   "INSM": {
    "cik": 1104506,
    "name": "INSMED Inc",
@@ -1321,6 +1277,31 @@
      "kind": "borç"
     }
    ],
+   "registrations": [],
+   "checked": "2026-11-23",
+   "role": "aday"
+  },
+  "MPWR": {
+   "cik": 1280452,
+   "name": "MONOLITHIC POWER SYSTEMS, INC.",
+   "risk": "Düşük",
+   "text": "2026-11-23 (SEC EDGAR); nakit $1,09 mlr (2026-09-30), serbest nakit akışı son 12 ay $609 mn; serbest nakit akışı pozitif.",
+   "reasons": [
+    "serbest nakit akışı pozitif"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 1091234000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 872984000,
+    "capex_ttm": 263622000,
+    "fcf_ttm": 609362000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
+   },
+   "shelf": [],
+   "takedowns": [],
    "registrations": [],
    "checked": "2026-11-23",
    "role": "aday"
@@ -1688,38 +1669,6 @@
    "checked": "2026-11-23",
    "role": "aday"
   },
-  "PPG": {
-   "cik": 79879,
-   "name": "PPG INDUSTRIES INC",
-   "risk": "Düşük",
-   "text": "2026-11-23 (SEC EDGAR); nakit $1,64 mlr (2026-09-30), serbest nakit akışı son 12 ay $1,28 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-02-27 (genel kayıt; 12 ayda hisse satışı yok).",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: S-3ASR 2026-02-27 (genel kayıt; 12 ayda hisse satışı yok)"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 1642000000,
-    "cash_date": "2026-09-30",
-    "ocf_ttm": 2045000000,
-    "capex_ttm": 765000000,
-    "fcf_ttm": 1280000000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-09-30",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-02-27",
-     "url": "https://www.sec.gov/Archives/edgar/data/79879/000119312526082846/d105523ds3asr.htm"
-    }
-   ],
-   "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-23",
-   "role": "aday"
-  },
   "RKLB": {
    "cik": 1819994,
    "name": "Rocket Lab Corp",
@@ -2009,43 +1958,6 @@
    "checked": "2026-11-23",
    "role": "aday"
   },
-  "TEL": {
-   "cik": 1385157,
-   "name": "TE Connectivity plc",
-   "risk": "Düşük",
-   "text": "2026-11-23 (SEC EDGAR); nakit $1,70 mlr (2026-09-25), serbest nakit akışı yıllık $3,40 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-10-01 (genel kayıt; 12 ayda hisse satışı yok).",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: S-3ASR 2024-10-01 (genel kayıt; 12 ayda hisse satışı yok)"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 1697000000,
-    "cash_date": "2026-09-25",
-    "ocf_ttm": 4525000000,
-    "capex_ttm": 1122000000,
-    "fcf_ttm": 3403000000,
-    "fcf_basis": "yıllık",
-    "fcf_end": "2026-09-25",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2024-10-01",
-     "url": "https://www.sec.gov/Archives/edgar/data/1385157/000110465924104927/tm2424452-1_s3asr.htm"
-    },
-    {
-     "form": "S-3ASR",
-     "date": "2023-12-20",
-     "url": "https://www.sec.gov/Archives/edgar/data/1385157/000110465923127732/tm2333140-1_s3asr.htm"
-    }
-   ],
-   "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-23",
-   "role": "aday"
-  },
   "TENB": {
    "cik": 1660280,
    "name": "Tenable Holdings, Inc.",
@@ -2101,6 +2013,38 @@
      "form": "S-3ASR",
      "date": "2025-08-07",
      "url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025038876/a20250807talens-3securities.htm"
+    }
+   ],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-23",
+   "role": "aday"
+  },
+  "TOL": {
+   "cik": 794170,
+   "name": "Toll Brothers, Inc.",
+   "risk": "Düşük",
+   "text": "2026-11-23 (SEC EDGAR); nakit $1,06 mlr (2026-07-31), serbest nakit akışı son 12 ay $1,09 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-03-14 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: S-3ASR 2024-03-14 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 1057889000,
+    "cash_date": "2026-07-31",
+    "ocf_ttm": 1192090000,
+    "capex_ttm": 101863000,
+    "fcf_ttm": 1090227000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-07-31",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2024-03-14",
+     "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417024000027/s3asr2024.htm"
     }
    ],
    "takedowns": [],
