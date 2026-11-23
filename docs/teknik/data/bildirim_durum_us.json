@@ -1,35 +1,27 @@
 {
  "CRWV-01": {
-  "gecti": "2026-11-19",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "CRWV-02": {
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "CRWV-03": {
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "CRWV-04": {
   "hafta": "2026-11-19",
   "taraf": "alt"
  },
  "CRWV-05": {
-  "gecti": "2026-11-18",
-  "hafta": "2026-11-14",
-  "taraf": "ust",
-  "yakin": "2026-11-18"
+  "hafta": "2026-11-22",
+  "taraf": "ust"
  },
  "CRWV-06": {
-  "gecti": "2026-11-21",
-  "hafta": "2026-11-19",
-  "taraf": "ust",
-  "yakin": "2026-11-21"
+  "hafta": "2026-11-22",
+  "taraf": "ust"
  },
  "CRWV-07": {
   "hafta": "2026-11-19",
@@ -37,37 +29,28 @@
   "yakin": "2026-11-20"
  },
  "RKLB-01": {
-  "gecti": "2026-11-18",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-20"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "RKLB-02": {
-  "gecti": "2026-11-19",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "RKLB-03": {
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "RKLB-04": {
   "hafta": "2026-11-19",
   "taraf": "alt"
  },
  "RKLB-05": {
-  "gecti": "2026-11-20",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-20"
+  "hafta": "2026-11-22",
+  "taraf": "ust"
  },
  "RKLB-06": {
-  "gecti": "2026-11-20",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-20"
+  "hafta": "2026-11-22",
+  "taraf": "ust"
  },
  "RKLB-07": {
   "hafta": "2026-11-19",
@@ -75,19 +58,19 @@
   "yakin": "2026-11-21"
  },
  "SGML-01": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "SGML-02": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "SGML-03": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "SGML-04": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "SGML-05": {
@@ -95,10 +78,8 @@
   "taraf": "alt"
  },
  "SGML-06": {
-  "gecti": "2026-11-19",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "ust"
  },
  "SGML-07": {
   "gecti": "2026-11-20",
@@ -113,18 +94,15 @@
   "yakin": "2026-11-18"
  },
  "UAMY-01": {
-  "gecti": "2026-11-19",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-20"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "UAMY-02": {
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "UAMY-03": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "UAMY-04": {
@@ -133,22 +111,24 @@
   "taraf": "alt",
   "yakin": "2026-11-20"
  },
+ "UAMY-05": {
+  "hafta": "2026-11-22",
+  "taraf": "ust"
+ },
  "WYFI-01": {
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "WYFI-02": {
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-22",
+  "taraf": "alt"
  },
  "WYFI-03": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "WYFI-04": {
-  "hafta": "2026-11-07",
+  "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "WYFI-05": {
@@ -158,15 +138,13 @@
   "yakin": "2026-11-19"
  },
  "WYFI-06": {
-  "gecti": "2026-11-20",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-20"
+  "hafta": "2026-11-22",
+  "taraf": "ust"
  },
  "_harita_CRWV": "2026-11-18",
  "_harita_RKLB": "2026-11-18",
  "_harita_SGML": "2026-11-21",
  "_harita_UAMY": "2026-11-21",
  "_harita_WYFI": "2026-11-21",
- "_son": "2026-11-21T09:50:02+00:00"
+ "_son": "2026-11-23T09:00:16+00:00"
 }
