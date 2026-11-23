@@ -50,6 +50,7 @@ ANALIZ = "__TARIH__"
 uzat = input.int(25, "Bölgeleri sağa uzat (bar)", minval = 5)
 geri = input.int(20, "Bölge başlangıcı (bar geri)", minval = 1)
 etiket = input.bool(true, "Kısa etiketler")
+analizYazi = input.bool(false, "Analiz tarihi yazısı")
 
 var array<box> kutular = array.new<box>()
 var array<line> cizgiler = array.new<line>()
@@ -101,7 +102,7 @@ if barstate.islast
                 ad = tur == "K" ? "KRİTİK" : tur == "O" ? "ÖNEMLİ" : "İzleme"
                 b = box.new(bar_index - geri, ust, bar_index + uzat, alt, border_color = kenar, border_style = stil, bgcolor = dolgu, text = etiket ? ad + " " + fmt(alt) + "–" + fmt(ust) : "", text_color = yazi, text_size = size.small, text_halign = text.align_right, text_valign = text.align_center)
                 array.push(kutular, b)
-    if etiket
+    if analizYazi
         array.push(etiketler, label.new(bar_index + uzat, high, "Analiz: " + ANALIZ, style = label.style_label_left, color = color.new(color.white, 100), textcolor = color.gray, size = size.small))
 '''
 
