@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T20:11:38+00:00",
+ "updated": "2026-11-24T21:30:52+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
@@ -85,20 +85,20 @@
    "cik": 2011286,
    "name": "Amentum Holdings, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $459 mn (2026-07-03), serbest nakit akışı son 12 ay $474 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2025-10-01 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-24 (SEC EDGAR); nakit $521 mn (2026-10-02), serbest nakit akışı yıllık $583 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2025-10-01 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2025-10-01 (genel kayıt; 12 ayda hisse satışı yok)"
    ],
    "fin": {
     "unit": "USD",
-    "cash": 459000000,
-    "cash_date": "2026-07-03",
-    "ocf_ttm": 505000000,
-    "capex_ttm": 31000000,
-    "fcf_ttm": 474000000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-07-03",
+    "cash": 521000000,
+    "cash_date": "2026-10-02",
+    "ocf_ttm": 627000000,
+    "capex_ttm": 44000000,
+    "fcf_ttm": 583000000,
+    "fcf_basis": "yıllık",
+    "fcf_end": "2026-10-02",
     "runway_q": null
    },
    "shelf": [
@@ -581,6 +581,38 @@
      "kind": "borç"
     }
    ],
+   "registrations": [],
+   "checked": "2026-11-24",
+   "role": "aday"
+  },
+  "DHI": {
+   "cik": 882184,
+   "name": "HORTON D R INC /DE/",
+   "risk": "Düşük",
+   "text": "2026-11-24 (SEC EDGAR); nakit $2,06 mlr (2026-09-30), serbest nakit akışı yıllık $3,35 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-07-24 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: S-3ASR 2024-07-24 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 2060400000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 3507200000,
+    "capex_ttm": 160400000,
+    "fcf_ttm": 3346800000,
+    "fcf_basis": "yıllık",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2024-07-24",
+     "url": "https://www.sec.gov/Archives/edgar/data/882184/000119312524183858/d842683ds3asr.htm"
+    }
+   ],
+   "takedowns": [],
    "registrations": [],
    "checked": "2026-11-24",
    "role": "aday"
@@ -1369,50 +1401,6 @@
    "checked": "2026-11-24",
    "role": "aday"
   },
-  "OGE": {
-   "cik": 1021635,
-   "name": "OGE ENERGY CORP.",
-   "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $0 mn (2026-03-31), serbest nakit akışı son 12 ay $225 mn; ATM programı: son 424B5 2026-10-28; etkin shelf: S-3ASR 2026-02-23.",
-   "reasons": [
-    "ATM programı: son 424B5 2026-10-28",
-    "etkin shelf: S-3ASR 2026-02-23"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 200000,
-    "cash_date": "2026-03-31",
-    "ocf_ttm": 1296700000,
-    "capex_ttm": 1071700000,
-    "fcf_ttm": 225000000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-03-31",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-02-23",
-     "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526064121/oge-20260223.htm"
-    },
-    {
-     "form": "S-3ASR",
-     "date": "2024-05-02",
-     "url": "https://www.sec.gov/Archives/edgar/data/1021635/000095017024052004/oge_energy_and_oge_s-3as.htm"
-    }
-   ],
-   "takedowns": [
-    {
-     "form": "424B5",
-     "date": "2026-10-28",
-     "url": "https://www.sec.gov/Archives/edgar/data/1021635/000110465926119644/tm2627941-1_424b5.htm",
-     "kind": "ATM"
-    }
-   ],
-   "registrations": [],
-   "checked": "2026-11-24",
-   "role": "aday"
-  },
   "OKTA": {
    "cik": 1660134,
    "name": "Okta, Inc.",
@@ -1961,38 +1949,6 @@
    "checked": "2026-11-24",
    "role": "aday"
   },
-  "TOL": {
-   "cik": 794170,
-   "name": "Toll Brothers, Inc.",
-   "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,06 mlr (2026-07-31), serbest nakit akışı son 12 ay $1,09 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-03-14 (genel kayıt; 12 ayda hisse satışı yok).",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: S-3ASR 2024-03-14 (genel kayıt; 12 ayda hisse satışı yok)"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 1057889000,
-    "cash_date": "2026-07-31",
-    "ocf_ttm": 1192090000,
-    "capex_ttm": 101863000,
-    "fcf_ttm": 1090227000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-07-31",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2024-03-14",
-     "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417024000027/s3asr2024.htm"
-    }
-   ],
-   "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-24",
-   "role": "aday"
-  },
   "TSLA": {
    "cik": 1318605,
    "name": "Tesla, Inc.",
@@ -2120,6 +2076,62 @@
     }
    ],
    "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-24",
+   "role": "aday"
+  },
+  "WEC": {
+   "cik": 783325,
+   "name": "WEC ENERGY GROUP, INC.",
+   "risk": "Orta",
+   "text": "2026-11-24 (SEC EDGAR); nakit $59 mn (2026-09-30), serbest nakit akışı son 12 ay $942 mn; ATM programı: son 424B5 2026-11-04; etkin shelf: S-3ASR 2026-10-16.",
+   "reasons": [
+    "ATM programı: son 424B5 2026-11-04",
+    "etkin shelf: S-3ASR 2026-10-16"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 58800000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 3837700000,
+    "capex_ttm": 2895600000,
+    "fcf_ttm": 942100000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2026-10-16",
+     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926116528/tm2626690d1_s3asr.htm"
+    },
+    {
+     "form": "S-3ASR",
+     "date": "2024-08-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465924085883/tm2420688d1_s3asr.htm"
+    }
+   ],
+   "takedowns": [
+    {
+     "form": "424B5",
+     "date": "2026-11-04",
+     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926122770/tm2628873d3_424b5.htm",
+     "kind": "ATM"
+    },
+    {
+     "form": "424B5",
+     "date": "2026-11-02",
+     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926120968/tm2628505d1_424b5.htm",
+     "kind": "borç"
+    },
+    {
+     "form": "424B5",
+     "date": "2026-02-23",
+     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926018389/tm266913d1_424b5.htm",
+     "kind": "borç"
+    }
+   ],
    "registrations": [],
    "checked": "2026-11-24",
    "role": "aday"
