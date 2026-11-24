@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T03:45:15+00:00",
+  "updated": "2026-11-24T06:18:09+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -10,8 +10,8 @@
     "TD  GMAB: RSI 61.8 SMA50 43.4 (250 bar)",
     "TD  KNSA: RSI 61.9 SMA50 84.33 (250 bar)",
     "TD  PG: RSI 61.3 SMA50 157.31 (250 bar)",
-    "TD  RKLB: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
-    "TD  SGML: HATA RuntimeError: You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait f",
+    "TD  RKLB: RSI 41.7 SMA50 61.08 (250 bar)",
+    "TD  SGML: RSI 31.1 SMA50 7.68 (250 bar)",
     "TD  TSLA: RSI 52.1 SMA50 376.17 (250 bar)",
     "TD  UAMY: RSI 38.3 SMA50 3.45 (250 bar)",
     "TD  WYFI: RSI 36.3 SMA50 13.23 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  CLF: RSI 39.6 SMA50 12.55 (250 bar)",
     "TD  MRVL: RSI 38.6 SMA50 218.79 (250 bar)",
     "TD  AMD: RSI 42.6 SMA50 552.3 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 38"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
   ],
   "tickers": {
     "CROX": {
@@ -314,25 +314,24 @@
       },
       "td": {
         "date": "2026-11-23",
-        "close": 49.61,
+        "close": 49.63,
         "rsi14": 41.7,
-        "sma20": 55.67,
+        "sma20": 55.68,
         "sma50": 61.08,
         "sma200": 77.6,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -2.404,
+          "macd": -2.402,
           "signal": -1.669,
-          "hist": -0.734
+          "hist": -0.733
         },
         "atr14": 5.1,
         "support20": 43.89,
         "resistance20": 68.26,
-        "vol_ratio": 0.85,
-        "bars": 250,
-        "stale": true
+        "vol_ratio": 0.96,
+        "bars": 250
       }
     },
     "SGML": {
@@ -356,8 +355,8 @@
       },
       "td": {
         "date": "2026-11-23",
-        "close": 4.2,
-        "rsi14": 30.8,
+        "close": 4.22,
+        "rsi14": 31.1,
         "sma20": 5.53,
         "sma50": 7.68,
         "sma200": 12.25,
@@ -365,16 +364,15 @@
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.118,
-          "signal": -1.078,
-          "hist": -0.041
+          "macd": -1.117,
+          "signal": -1.077,
+          "hist": -0.04
         },
-        "atr14": 0.58,
+        "atr14": 0.59,
         "support20": 3.63,
         "resistance20": 8.47,
-        "vol_ratio": 0.03,
-        "bars": 250,
-        "stale": true
+        "vol_ratio": 0.63,
+        "bars": 250
       }
     },
     "TSLA": {
