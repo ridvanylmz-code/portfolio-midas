@@ -1,24 +1,18 @@
 {
  "CRWV-01": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "CRWV-02": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "CRWV-03": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "CRWV-04": {
-  "hafta": "2026-11-19",
+  "hafta": "2026-11-26",
   "taraf": "alt"
  },
  "CRWV-05": {
@@ -27,41 +21,35 @@
   "yakin": "2026-11-23"
  },
  "CRWV-06": {
-  "hafta": "2026-11-22",
+  "hafta": "2026-11-26",
   "taraf": "ust"
  },
  "CRWV-07": {
-  "hafta": "2026-11-19",
-  "taraf": "ust",
-  "yakin": "2026-11-20"
+  "hafta": "2026-11-26",
+  "taraf": "ust"
  },
  "RKLB-01": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "RKLB-02": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "alt",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "RKLB-03": {
-  "hafta": "2026-11-22",
-  "taraf": "alt",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "RKLB-04": {
   "hafta": "2026-11-19",
   "taraf": "alt"
  },
  "RKLB-05": {
-  "hafta": "2026-11-22",
+  "hafta": "2026-11-26",
   "taraf": "ust"
  },
  "RKLB-06": {
-  "hafta": "2026-11-22",
+  "hafta": "2026-11-26",
   "taraf": "ust"
  },
  "RKLB-07": {
@@ -70,22 +58,16 @@
   "yakin": "2026-11-21"
  },
  "SGML-01": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "SGML-02": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "SGML-03": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "SGML-04": {
   "gecti": "2026-11-23",
@@ -94,13 +76,12 @@
   "yakin": "2026-11-23"
  },
  "SGML-05": {
-  "hafta": "2026-11-14",
-  "taraf": "alt"
+  "hafta": "2026-11-26",
+  "taraf": "ust"
  },
  "SGML-06": {
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "ust"
  },
  "SGML-07": {
   "gecti": "2026-11-20",
@@ -115,19 +96,15 @@
   "yakin": "2026-11-18"
  },
  "UAMY-01": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "alt",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "UAMY-02": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "alt",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "UAMY-03": {
-  "hafta": "2026-11-22",
+  "hafta": "2026-11-26",
   "taraf": "alt"
  },
  "UAMY-04": {
@@ -137,47 +114,37 @@
   "yakin": "2026-11-20"
  },
  "UAMY-05": {
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "ust"
  },
  "WYFI-01": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "WYFI-02": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "WYFI-03": {
-  "gecti": "2026-11-23",
-  "hafta": "2026-11-22",
-  "taraf": "alt",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "alt"
  },
  "WYFI-04": {
   "hafta": "2026-11-22",
   "taraf": "alt"
  },
  "WYFI-05": {
-  "gecti": "2026-11-19",
-  "hafta": "2026-11-19",
-  "taraf": "alt",
-  "yakin": "2026-11-19"
+  "hafta": "2026-11-26",
+  "taraf": "ust"
  },
  "WYFI-06": {
-  "hafta": "2026-11-22",
-  "taraf": "ust",
-  "yakin": "2026-11-23"
+  "hafta": "2026-11-26",
+  "taraf": "ust"
  },
  "_harita_CRWV": "2026-11-23",
  "_harita_RKLB": "2026-11-18",
  "_harita_SGML": "2026-11-23",
  "_harita_UAMY": "2026-11-21",
  "_harita_WYFI": "2026-11-21",
- "_son": "2026-11-23T21:15:45+00:00"
+ "_son": "2026-11-25T22:30:21+00:00"
 }
