@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T20:38:34+00:00",
+ "updated": "2026-11-25T23:42:32+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
@@ -702,6 +702,45 @@
    "checked": "2026-11-25",
    "role": "aday"
   },
+  "DD": {
+   "cik": 1666700,
+   "name": "DuPont de Nemours, Inc.",
+   "risk": "Düşük",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,65 mlr (2026-09-30), serbest nakit akışı son 12 ay $793 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-08-12 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: S-3ASR 2024-08-12 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 1652000000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 1129000000,
+    "capex_ttm": 336000000,
+    "fcf_ttm": 793000000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2024-08-12",
+     "url": "https://www.sec.gov/Archives/edgar/data/1666700/000119312524198857/d854677ds3asr.htm"
+    }
+   ],
+   "takedowns": [
+    {
+     "form": "424B3",
+     "date": "2026-08-12",
+     "url": "https://www.sec.gov/Archives/edgar/data/1666700/000119312526345801/d273021d424b3.htm",
+     "kind": "borç"
+    }
+   ],
+   "registrations": [],
+   "checked": "2026-11-25",
+   "role": "aday"
+  },
   "EPAM": {
    "cik": 1352010,
    "name": "EPAM Systems, Inc.",
@@ -1293,6 +1332,28 @@
    "checked": "2026-11-25",
    "role": "aday"
   },
+  "MBGL": {
+   "cik": 2090312,
+   "name": "Mobility Global Inc.",
+   "risk": "Doğrulanamadı",
+   "text": "2026-11-25 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
+   "reasons": [
+    "XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok)"
+   ],
+   "fin": null,
+   "shelf": [],
+   "takedowns": [
+    {
+     "form": "424B3",
+     "date": "2026-11-19",
+     "url": "https://www.sec.gov/Archives/edgar/data/2090312/000110465926130155/tm2627758-7_424b3.htm",
+     "kind": "borç"
+    }
+   ],
+   "registrations": [],
+   "checked": "2026-11-25",
+   "role": "aday"
+  },
   "MRNA": {
    "cik": 1682852,
    "name": "Moderna, Inc.",
@@ -1505,38 +1566,6 @@
      "kind": "diğer"
     }
    ],
-   "registrations": [],
-   "checked": "2026-11-25",
-   "role": "aday"
-  },
-  "PPG": {
-   "cik": 79879,
-   "name": "PPG INDUSTRIES INC",
-   "risk": "Düşük",
-   "text": "2026-11-25 (SEC EDGAR); nakit $1,64 mlr (2026-09-30), serbest nakit akışı son 12 ay $1,28 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-02-27 (genel kayıt; 12 ayda hisse satışı yok).",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: S-3ASR 2026-02-27 (genel kayıt; 12 ayda hisse satışı yok)"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 1642000000,
-    "cash_date": "2026-09-30",
-    "ocf_ttm": 2045000000,
-    "capex_ttm": 765000000,
-    "fcf_ttm": 1280000000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-09-30",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-02-27",
-     "url": "https://www.sec.gov/Archives/edgar/data/79879/000119312526082846/d105523ds3asr.htm"
-    }
-   ],
-   "takedowns": [],
    "registrations": [],
    "checked": "2026-11-25",
    "role": "aday"
@@ -1780,31 +1809,6 @@
      "kind": "borç"
     }
    ],
-   "registrations": [],
-   "checked": "2026-11-25",
-   "role": "aday"
-  },
-  "SPOT": {
-   "cik": 1639920,
-   "name": "Spotify Technology S.A.",
-   "risk": "Düşük",
-   "text": "2026-11-25 (SEC EDGAR); nakit EUR 9,47 mlr (2025-12-31), serbest nakit akışı yıllık EUR 2,87 mlr; serbest nakit akışı pozitif.",
-   "reasons": [
-    "serbest nakit akışı pozitif"
-   ],
-   "fin": {
-    "unit": "EUR",
-    "cash": 9467000000,
-    "cash_date": "2025-12-31",
-    "ocf_ttm": 2933000000,
-    "capex_ttm": 61000000,
-    "fcf_ttm": 2872000000,
-    "fcf_basis": "yıllık",
-    "fcf_end": "2025-12-31",
-    "runway_q": null
-   },
-   "shelf": [],
-   "takedowns": [],
    "registrations": [],
    "checked": "2026-11-25",
    "role": "aday"
