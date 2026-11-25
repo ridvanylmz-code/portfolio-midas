@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T22:35:37+00:00",
+  "updated": "2026-11-25T23:46:48+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -14,7 +14,7 @@
     "TD  SGML: RSI 29.6 SMA50 7.47 (250 bar)",
     "TD  TSLA: RSI 50.3 SMA50 377.17 (250 bar)",
     "TD  UAMY: RSI 36.0 SMA50 3.35 (250 bar)",
-    "TD  WYFI: RSI 33.3 SMA50 12.81 (250 bar)",
+    "TD  WYFI: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
     "TD  TEAM: RSI 34.4 SMA50 185.01 (250 bar)",
     "TD  MPC: RSI 28.7 SMA50 419.35 (250 bar)",
     "TD  ELF: RSI 46.8 SMA50 109.03 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  CLF: RSI 41.5 SMA50 12.51 (250 bar)",
     "TD  MRVL: RSI 35.1 SMA50 215.01 (250 bar)",
     "TD  AMD: RSI 38.0 SMA50 548.35 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 39"
   ],
   "tickers": {
     "CROX": {
@@ -314,7 +314,7 @@
       },
       "td": {
         "date": "2026-11-25",
-        "close": 47.01,
+        "close": 47.02,
         "rsi14": 39.8,
         "sma20": 54.48,
         "sma50": 60.4,
@@ -325,12 +325,12 @@
         "macd": {
           "macd": -3.097,
           "signal": -2.144,
-          "hist": -0.953
+          "hist": -0.952
         },
         "atr14": 5.16,
         "support20": 42.12,
         "resistance20": 68.26,
-        "vol_ratio": 0.97,
+        "vol_ratio": 1.02,
         "bars": 250
       }
     },
@@ -357,21 +357,21 @@
         "date": "2026-11-25",
         "close": 3.98,
         "rsi14": 29.6,
-        "sma20": 5.1,
+        "sma20": 5.09,
         "sma50": 7.47,
         "sma200": 12.17,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -1.069,
+          "macd": -1.07,
           "signal": -1.079,
-          "hist": 0.01
+          "hist": 0.009
         },
         "atr14": 0.55,
         "support20": 3.63,
         "resistance20": 8.01,
-        "vol_ratio": 0.08,
+        "vol_ratio": 0.61,
         "bars": 250
       }
     },
@@ -495,7 +495,8 @@
         "support20": 5.8,
         "resistance20": 11.9,
         "vol_ratio": 0.07,
-        "bars": 250
+        "bars": 250,
+        "stale": true
       }
     },
     "TEAM": {
