@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T18:12:34+00:00",
+ "updated": "2026-11-25T20:38:34+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
@@ -759,6 +759,31 @@
    "checked": "2026-11-25",
    "role": "aday"
   },
+  "FNV": {
+   "cik": 1456346,
+   "name": "FRANCO NEVADA Corp",
+   "risk": "Düşük",
+   "text": "2026-11-25 (SEC EDGAR); nakit $671 mn (2025-12-31), serbest nakit akışı yıllık $1,49 mlr; serbest nakit akışı pozitif.",
+   "reasons": [
+    "serbest nakit akışı pozitif"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 670900000,
+    "cash_date": "2025-12-31",
+    "ocf_ttm": 1493700000,
+    "capex_ttm": 2400000,
+    "fcf_ttm": 1491300000,
+    "fcf_basis": "yıllık",
+    "fcf_end": "2025-12-31",
+    "runway_q": null
+   },
+   "shelf": [],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-25",
+   "role": "aday"
+  },
   "FTDR": {
    "cik": 1727263,
    "name": "Frontdoor, Inc.",
@@ -1484,6 +1509,38 @@
    "checked": "2026-11-25",
    "role": "aday"
   },
+  "PPG": {
+   "cik": 79879,
+   "name": "PPG INDUSTRIES INC",
+   "risk": "Düşük",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,64 mlr (2026-09-30), serbest nakit akışı son 12 ay $1,28 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-02-27 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: S-3ASR 2026-02-27 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 1642000000,
+    "cash_date": "2026-09-30",
+    "ocf_ttm": 2045000000,
+    "capex_ttm": 765000000,
+    "fcf_ttm": 1280000000,
+    "fcf_basis": "son 12 ay",
+    "fcf_end": "2026-09-30",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2026-02-27",
+     "url": "https://www.sec.gov/Archives/edgar/data/79879/000119312526082846/d105523ds3asr.htm"
+    }
+   ],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-25",
+   "role": "aday"
+  },
   "RKLB": {
    "cik": 1819994,
    "name": "Rocket Lab Corp",
@@ -1727,6 +1784,31 @@
    "checked": "2026-11-25",
    "role": "aday"
   },
+  "SPOT": {
+   "cik": 1639920,
+   "name": "Spotify Technology S.A.",
+   "risk": "Düşük",
+   "text": "2026-11-25 (SEC EDGAR); nakit EUR 9,47 mlr (2025-12-31), serbest nakit akışı yıllık EUR 2,87 mlr; serbest nakit akışı pozitif.",
+   "reasons": [
+    "serbest nakit akışı pozitif"
+   ],
+   "fin": {
+    "unit": "EUR",
+    "cash": 9467000000,
+    "cash_date": "2025-12-31",
+    "ocf_ttm": 2933000000,
+    "capex_ttm": 61000000,
+    "fcf_ttm": 2872000000,
+    "fcf_basis": "yıllık",
+    "fcf_end": "2025-12-31",
+    "runway_q": null
+   },
+   "shelf": [],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-25",
+   "role": "aday"
+  },
   "STN": {
    "cik": 1131383,
    "name": "STANTEC INC",
@@ -1747,38 +1829,6 @@
     "runway_q": null
    },
    "shelf": [],
-   "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-25",
-   "role": "aday"
-  },
-  "SUZ": {
-   "cik": 909327,
-   "name": "Suzano S.A.",
-   "risk": "Düşük",
-   "text": "2026-11-25 (SEC EDGAR); nakit BRL 15,18 mlr (2025-12-31), serbest nakit akışı yıllık BRL 13,57 mlr; serbest nakit akışı pozitif; etkin shelf: F-3ASR 2025-05-01 (genel kayıt; 12 ayda hisse satışı yok).",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: F-3ASR 2025-05-01 (genel kayıt; 12 ayda hisse satışı yok)"
-   ],
-   "fin": {
-    "unit": "BRL",
-    "cash": 15179753000,
-    "cash_date": "2025-12-31",
-    "ocf_ttm": 18152175000,
-    "capex_ttm": 4578826000,
-    "fcf_ttm": 13573349000,
-    "fcf_basis": "yıllık",
-    "fcf_end": "2025-12-31",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "F-3ASR",
-     "date": "2025-05-01",
-     "url": "https://www.sec.gov/Archives/edgar/data/909327/000110465925042824/tm2513301d1_f3asr.htm"
-    }
-   ],
    "takedowns": [],
    "registrations": [],
    "checked": "2026-11-25",
@@ -1994,31 +2044,6 @@
    "registrations": [],
    "checked": "2026-11-25",
    "role": "liste/pozisyon"
-  },
-  "TU": {
-   "cik": 868675,
-   "name": "TELUS CORP",
-   "risk": "Düşük",
-   "text": "2026-11-25 (SEC EDGAR); nakit CAD 2,62 mlr (2025-12-31), serbest nakit akışı yıllık CAD 2,14 mlr; serbest nakit akışı pozitif.",
-   "reasons": [
-    "serbest nakit akışı pozitif"
-   ],
-   "fin": {
-    "unit": "CAD",
-    "cash": 2621000000,
-    "cash_date": "2025-12-31",
-    "ocf_ttm": 4866000000,
-    "capex_ttm": 2728000000,
-    "fcf_ttm": 2138000000,
-    "fcf_basis": "yıllık",
-    "fcf_end": "2025-12-31",
-    "runway_q": null
-   },
-   "shelf": [],
-   "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-25",
-   "role": "aday"
   },
   "UAMY": {
    "cik": 101538,
