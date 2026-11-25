@@ -1,5 +1,5 @@
 {
- "guncelleme": "2026-11-25T21:45:40+00:00",
+ "guncelleme": "2026-11-25T22:16:44+00:00",
  "hisseler": {
   "BIENY": {
    "pazar": "bist",
@@ -11,9 +11,9 @@
   },
   "CRWV": {
    "pazar": "us",
-   "atr": 6.6525,
-   "atr_tarih": "2026-11-23",
-   "plan": "2026-11-24",
+   "atr": 6.6091,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Savunma",
    "bilanco": ""
   },
@@ -27,9 +27,9 @@
   },
   "RKLB": {
    "pazar": "us",
-   "atr": 5.1018,
-   "atr_tarih": "2026-11-23",
-   "plan": "2026-11-24",
+   "atr": 5.166,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Bant",
    "bilanco": ""
   },
@@ -43,9 +43,9 @@
   },
   "SGML": {
    "pazar": "us",
-   "atr": 0.5853,
-   "atr_tarih": "2026-11-23",
-   "plan": "2026-11-24",
+   "atr": 0.5538,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Savunma",
    "bilanco": ""
   },
@@ -67,17 +67,17 @@
   },
   "UAMY": {
    "pazar": "us",
-   "atr": 0.3135,
-   "atr_tarih": "2026-11-23",
-   "plan": "2026-11-24",
+   "atr": 0.3041,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Bant",
    "bilanco": ""
   },
   "WYFI": {
    "pazar": "us",
-   "atr": 1.2497,
-   "atr_tarih": "2026-11-23",
-   "plan": "2026-11-24",
+   "atr": 1.2123,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Savunma",
    "bilanco": ""
   }
