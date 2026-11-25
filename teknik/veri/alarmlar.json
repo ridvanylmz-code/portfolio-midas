@@ -1,145 +1,5 @@
 [
  {
-  "fiyat": 52.35,
-  "yon": "cross_up",
-  "ad": "RKLB 52,35 — 22.11 satışları yapılmadıysa 1 porsiyon sat (S3) (v2.4 24.11)",
-  "mesaj": "KRİTİK 52,35–54,32 alt. 1s RSI 70 / CCI +100 aşağı teyidi; yapıldıysa bu emir yok",
-  "sembol": "NASDAQ:RKLB"
- },
- {
-  "fiyat": 53.67,
-  "yon": "cross_up",
-  "ad": "RKLB 53,67 — Sigorta (22.11 satışları için) (v2.4 24.11)",
-  "mesaj": "52,92 + 0,15 ATR. Kapanış üstündeyse 49,25 / 50,97 satışlarının yarısını ertesi gün geri al. 52,35 satışları yapılırsa sigorta 57,93",
-  "sembol": "NASDAQ:RKLB"
- },
- {
-  "fiyat": 45.25,
-  "yon": "cross_down",
-  "ad": "RKLB 45,25 — 1 porsiyon çekirdek sat (kapanış) (v2.4 24.11)",
-  "mesaj": "19.11: 45,97 − 0,15 ATR. 22.11 stopu korundu (KRİTİK destek yok). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
-  "sembol": "NASDAQ:RKLB"
- },
- {
-  "fiyat": 50.14,
-  "yon": "cross_up",
-  "ad": "CRWV 50,14 — 1 porsiyon sat (v2.4 24.11)",
-  "mesaj": "KRİTİK 50,14–52,75 alt. 1s RSI 70 / CCI +100 aşağı teyidi; 22.11 satışları yapılmadıysa önce o (S3)",
-  "sembol": "NASDAQ:CRWV"
- },
- {
-  "fiyat": 59.04,
-  "yon": "cross_up",
-  "ad": "CRWV 59,04 — Sigorta (v2.4 24.11)",
-  "mesaj": "58,04 + 0,15 ATR (üstteki KRİTİK direnç). Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al",
-  "sembol": "NASDAQ:CRWV"
- },
- {
-  "fiyat": 39.28,
-  "yon": "cross_down",
-  "ad": "CRWV 39,28 — B hedefi 1 (uyarı) (v2.4 24.11)",
-  "mesaj": "37,05–39,28. 39,28 altı kapanış B tetiği",
-  "sembol": "NASDAQ:CRWV"
- },
- {
-  "fiyat": 43.47,
-  "yon": "cross_down",
-  "ad": "CRWV 43,47 — 1 porsiyon çekirdek sat (kapanış) (v2.4 24.11)",
-  "mesaj": "44,47 − 0,15 ATR. Yükseltildi (37,31 → 43,47). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
-  "sembol": "NASDAQ:CRWV"
- },
- {
-  "fiyat": 4.31,
-  "yon": "cross_up",
-  "ad": "SGML 4,31 — 22.11 satışları yapılmadıysa sat (S3): önce ertelenen 2 çekirdek (v2.4 24.11)",
-  "mesaj": "ÖNEMLİ 4,31–4,54 alt. 24.11 son sınırı: bugün kapanışa kadar gelmezse kapanışta sat",
-  "sembol": "NASDAQ:SGML"
- },
- {
-  "fiyat": 4.35,
-  "yon": "cross_up",
-  "ad": "SGML 4,35 — Sigorta (22.11 ticaret satışı için) (v2.4 24.11)",
-  "mesaj": "4,26 + 0,15 ATR (22.11). Kapanış üstündeyse 4,07 ticaret satışının yarısını ertesi gün geri al",
-  "sembol": "NASDAQ:SGML"
- },
- {
-  "fiyat": 4.18,
-  "yon": "cross_down",
-  "ad": "SGML 4,18 — Sattığını geri al (yarım) (v2.4 24.11)",
-  "mesaj": "KRİTİK 4,07–4,29. Yalnız satılmış ticaret porsiyonu; bölgede 1s RSI 30 üstüne → yarım. Savunma: yalnız yarım",
-  "sembol": "NASDAQ:SGML"
- },
- {
-  "fiyat": 3.63,
-  "yon": "cross_down",
-  "ad": "SGML 3,63 — B tetiği (uyarı) (v2.4 24.11)",
-  "mesaj": "20.11 dibi. 3,63 altı kapanış B tetiği",
-  "sembol": "NASDAQ:SGML"
- },
- {
-  "fiyat": 3.98,
-  "yon": "cross_down",
-  "ad": "SGML 3,98 — 1 porsiyon çekirdek sat (kapanış) (v2.4 24.11)",
-  "mesaj": "4,07 − 0,15 ATR. Kalan çekirdek varsa; RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
-  "sembol": "NASDAQ:SGML"
- },
- {
-  "fiyat": 8.59,
-  "yon": "cross_up",
-  "ad": "WYFI 8,59 — 22.11 satışları yapılmadıysa sat (S3): önce ertelenen çekirdek (v2.4 24.11)",
-  "mesaj": "ÖNEMLİ 8,59–9,09 alt. Son sınır 30.11 kapanış",
-  "sembol": "NASDAQ:WYFI"
- },
- {
-  "fiyat": 9.32,
-  "yon": "cross_up",
-  "ad": "WYFI 9,32 — Sigorta (v2.4 24.11)",
-  "mesaj": "9,09 + 0,15 ATR (22.11 sigortası korundu). Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al",
-  "sembol": "NASDAQ:WYFI"
- },
- {
-  "fiyat": 7.2,
-  "yon": "cross_down",
-  "ad": "WYFI 7,20 — Sattığını geri al (yarım) (v2.4 24.11)",
-  "mesaj": "KRİTİK 6,97–7,43. Yalnız satılmış ticaret porsiyonu; bölgede 1s RSI 30 üstüne → yarım",
-  "sembol": "NASDAQ:WYFI"
- },
- {
-  "fiyat": 6.43,
-  "yon": "cross_down",
-  "ad": "WYFI 6,43 — B hedefi 1 (uyarı) (v2.4 24.11)",
-  "mesaj": "6,04–6,43. 6,31 altı kapanış B tetiği",
-  "sembol": "NASDAQ:WYFI"
- },
- {
-  "fiyat": 6.78,
-  "yon": "cross_down",
-  "ad": "WYFI 6,78 — 1 porsiyon çekirdek sat (kapanış) (v2.4 24.11)",
-  "mesaj": "6,97 − 0,15 ATR. Kalan çekirdek için; RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
-  "sembol": "NASDAQ:WYFI"
- },
- {
-  "fiyat": 2.41,
-  "yon": "cross_up",
-  "ad": "UAMY 2,41 — 22.11 satışları yapılmadıysa 1 porsiyon sat (S3) (v2.4 24.11)",
-  "mesaj": "KRİTİK 2,41–2,53 alt. 1s RSI 70 / CCI +100 aşağı teyidi",
-  "sembol": "NYSE:UAMY"
- },
- {
-  "fiyat": 2.58,
-  "yon": "cross_up",
-  "ad": "UAMY 2,58 — Sigorta (v2.4 24.11)",
-  "mesaj": "2,53 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al (2,93’ten indirildi: 2,78–2,88 artık ÖNEMLİ)",
-  "sembol": "NYSE:UAMY"
- },
- {
-  "fiyat": 2.18,
-  "yon": "cross_down",
-  "ad": "UAMY 2,18 — B tetiği (uyarı) (v2.4 24.11)",
-  "mesaj": "20.11 dibi. 2,18 altı kapanış B tetiği; 2025 dipleri 2,12 / 1,94 / 1,87",
-  "sembol": "NYSE:UAMY"
- },
- {
   "fiyat": 11.64,
   "yon": "cross_up",
   "ad": "BIENY 11,64 — 22.11 çekirdek satışları yapılmadıysa sat 1.789 + 1.785 (S3) (v2.4 26.11)",
@@ -252,13 +112,6 @@
   "sembol": "BIST:MIATK"
  },
  {
-  "fiyat": 314.2,
-  "yon": "cross_up",
-  "ad": "THYAO 314,20 — 4s ST stop satışı yapılmadıysa kalan ticaret sat (S3) (v2.4 26.11)",
-  "mesaj": "ÖNEMLİ pivot 310,75–314,20 üst. 19.11 satışları da yapılmadıysa 72 adet, yapıldıysa ticaret kalmadı; 1s RSI 70 / CCI +100 aşağı teyidi",
-  "sembol": "BIST:THYAO"
- },
- {
   "fiyat": 334.66,
   "yon": "cross_up",
   "ad": "THYAO 334,66 — Sigorta (19.11 satışları için) (v2.4 26.11)",
@@ -278,5 +131,138 @@
   "ad": "THYAO 284,03 — 1 porsiyon çekirdek sat (kapanış) (v2.4 26.11)",
   "mesaj": "285,48 − 0,15 ATR. RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
   "sembol": "BIST:THYAO"
+ },
+ {
+  "fiyat": 47.74,
+  "yon": "cross_up",
+  "ad": "RKLB 47,74 — Fazla sat 27 (24.11 plan dışı alım, S5) (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ 47,74–49,69 alt. 1s RSI 70 / CCI +100 aşağı teyidi",
+  "sembol": "NASDAQ:RKLB"
+ },
+ {
+  "fiyat": 56.08,
+  "yon": "cross_up",
+  "ad": "RKLB 56,08 — Sigorta (v2.4 26.11)",
+  "mesaj": "1,5 ATR içindeki KRİTİK 53,68–55,31 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonunun yarısını ertesi gün geri al",
+  "sembol": "NASDAQ:RKLB"
+ },
+ {
+  "fiyat": 42.12,
+  "yon": "cross_down",
+  "ad": "RKLB 42,12 — B tetiği (uyarı) (v2.4 26.11)",
+  "mesaj": "25.11 dibi. 42,12 altı kapanış B tetiği; hedef 2025 dipleri 38,26 / 37,57",
+  "sembol": "NASDAQ:RKLB"
+ },
+ {
+  "fiyat": 45.25,
+  "yon": "cross_down",
+  "ad": "RKLB 45,25 — 1 porsiyon çekirdek sat 31 (kapanış) (v2.4 26.11)",
+  "mesaj": "19.11: 45,97 − 0,15 ATR. Korundu (24.11 kapanış 45,98, 25.11 dip 42,12 ama kapanış 47,02). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "NASDAQ:RKLB"
+ },
+ {
+  "fiyat": 44.65,
+  "yon": "cross_up",
+  "ad": "CRWV 44,65 — Çekirdek stop satışı 22 (S3) (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ pivot 42,22–44,65 üst. 24.11 stopu; 25.11 kaçtı → kovalanmaz, pivot üstüne taşındı. Teyit beklenmez",
+  "sembol": "NASDAQ:CRWV"
+ },
+ {
+  "fiyat": 58.23,
+  "yon": "cross_up",
+  "ad": "CRWV 58,23 — Sigorta (v2.4 26.11)",
+  "mesaj": "57,24 + 0,15 ATR (KRİTİK 56,00–57,24). Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al",
+  "sembol": "NASDAQ:CRWV"
+ },
+ {
+  "fiyat": 37.4,
+  "yon": "cross_down",
+  "ad": "CRWV 37,40 — B tetiği (uyarı) (v2.4 26.11)",
+  "mesaj": "25.11 dibi. 37,40 altı kapanış B tetiği; hedef 33,5",
+  "sembol": "NASDAQ:CRWV"
+ },
+ {
+  "fiyat": 37.24,
+  "yon": "cross_down",
+  "ad": "CRWV 37,24 — Son çekirdek stopu 22 (kapanış) (v2.4 26.11)",
+  "mesaj": "38,23 − 0,15 ATR. RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "NASDAQ:CRWV"
+ },
+ {
+  "fiyat": 4.17,
+  "yon": "cross_up",
+  "ad": "SGML 4,17 — Ertelenen 2 çekirdek sat 290 (S3) (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ 4,17–4,38 alt. Son sınır 24.11 kaçtı → kovalanmaz, ilk dirence taşındı. Teyit beklenmez",
+  "sembol": "NASDAQ:SGML"
+ },
+ {
+  "fiyat": 4.46,
+  "yon": "cross_up",
+  "ad": "SGML 4,46 — Sigorta (v2.4 26.11)",
+  "mesaj": "4,38 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonunun yarısını ertesi gün geri al",
+  "sembol": "NASDAQ:SGML"
+ },
+ {
+  "fiyat": 3.63,
+  "yon": "cross_down",
+  "ad": "SGML 3,63 — B tetiği (uyarı) (v2.4 26.11)",
+  "mesaj": "20.11 dibi. 3,63 altı kapanış B tetiği",
+  "sembol": "NASDAQ:SGML"
+ },
+ {
+  "fiyat": 3.76,
+  "yon": "cross_down",
+  "ad": "SGML 3,76 — Son porsiyon stopu 145 (kapanış) (v2.4 26.11)",
+  "mesaj": "3,84 − 0,15 ATR. 24–25.11 kapanışlar 3,98 (eski 3,98 stopuna eşit, altı değil). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "NASDAQ:SGML"
+ },
+ {
+  "fiyat": 6.93,
+  "yon": "cross_up",
+  "ad": "WYFI 6,93 — 2 çekirdek sat 70 (ertelenen + 24.11 stop, S3) (v2.4 26.11)",
+  "mesaj": "KRİTİK 6,93–7,29 alt. Kovalanmaz; ilk dirence taşındı. Ertelenen çekirdeğin son sınırı 30.11 kapanış",
+  "sembol": "NASDAQ:WYFI"
+ },
+ {
+  "fiyat": 8.62,
+  "yon": "cross_up",
+  "ad": "WYFI 8,62 — Sigorta (v2.4 26.11)",
+  "mesaj": "8,44 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonunun yarısını ertesi gün geri al",
+  "sembol": "NASDAQ:WYFI"
+ },
+ {
+  "fiyat": 5.8,
+  "yon": "cross_down",
+  "ad": "WYFI 5,80 — B tetiği (uyarı) (v2.4 26.11)",
+  "mesaj": "25.11 dibi. 5,80 altı kapanış B tetiği; uzatma 1,272 = 5,22",
+  "sembol": "NASDAQ:WYFI"
+ },
+ {
+  "fiyat": 6.13,
+  "yon": "cross_down",
+  "ad": "WYFI 6,13 — Kalan stop 30 (kapanış) (v2.4 26.11)",
+  "mesaj": "6,31 − 0,15 ATR. KRİTİK destek yok; ÖNEMLİ pivot 6,31–6,72 altı. RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "NASDAQ:WYFI"
+ },
+ {
+  "fiyat": 2.29,
+  "yon": "cross_up",
+  "ad": "UAMY 2,29 — 1 porsiyon sat (S3) (v2.4 26.11)",
+  "mesaj": "KRİTİK 2,29–2,41 alt. 1s RSI 70 / CCI +100 aşağı teyidi",
+  "sembol": "NYSE:UAMY"
+ },
+ {
+  "fiyat": 2.69,
+  "yon": "cross_up",
+  "ad": "UAMY 2,69 — Sigorta (v2.4 26.11)",
+  "mesaj": "2,53–2,64 KRİTİK + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al",
+  "sembol": "NYSE:UAMY"
+ },
+ {
+  "fiyat": 1.99,
+  "yon": "cross_down",
+  "ad": "UAMY 1,99 — B tetiği (uyarı) (v2.4 26.11)",
+  "mesaj": "25.11 dibi. 1,99 altı kapanış B tetiği; 04.04.25 dibi 1,87",
+  "sembol": "NYSE:UAMY"
  }
 ]
