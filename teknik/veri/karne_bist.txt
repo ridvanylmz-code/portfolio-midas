@@ -1,23 +1,23 @@
-# Karne — BIST (puan.py, 2026-11-22)
+# Karne — BIST (puan.py, 2026-11-26)
 
-Son analiz (2026-11-19):
+Son analiz (2026-11-22):
 ÖZET
 Bölge dokunma oranı: gerçek %100 · şans ort. %nan
-Bölge isabeti (dokunulanlarda): gerçek %50 (n=2) · şans ort. %47 · gerçekten iyi şans oranı %52 (tek yönlü p)
+Bölge isabeti (dokunulanlarda): gerçek %100 (n=1) · şans ort. %61 · gerçekten iyi şans oranı %45 (tek yönlü p)
   KRİTİK: — (n=0)
   ÖNEMLİ: %100 (n=1)
-  İzleme: %0 (n=1)
+  İzleme: — (n=0)
   direnc: %100 (n=1)
-  destek: %0 (n=1)
+  destek: — (n=0)
   pivot: — (n=0)
 
-Birikimli (2026-11-01 – 2026-11-19, şans 200 tekrar):
+Birikimli (2026-11-01 – 2026-11-22, şans 200 tekrar):
 ÖZET
-Bölge dokunma oranı: gerçek %74 · şans ort. %44
-Bölge isabeti (dokunulanlarda): gerçek %59 (n=32) · şans ort. %50 · gerçekten iyi şans oranı %19 (tek yönlü p)
+Bölge dokunma oranı: gerçek %74 · şans ort. %41
+Bölge isabeti (dokunulanlarda): gerçek %56 (n=43) · şans ort. %49 · gerçekten iyi şans oranı %24 (tek yönlü p)
   KRİTİK: %83 (n=6)
-  ÖNEMLİ: %64 (n=18)
-  İzleme: %31 (n=8)
-  direnc: %64 (n=21)
-  destek: %31 (n=8)
-  pivot: %100 (n=3)
+  ÖNEMLİ: %69 (n=24)
+  İzleme: %19 (n=13)
+  direnc: %69 (n=24)
+  destek: %19 (n=13)
+  pivot: %83 (n=6)

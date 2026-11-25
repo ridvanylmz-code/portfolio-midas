@@ -1,145 +1,5 @@
 [
  {
-  "fiyat": 11.65,
-  "yon": "cross_up",
-  "ad": "BIENY 11,65 — Çekirdek stop satışı (1.789, S3) (v2.4 22.11)",
-  "mesaj": "ÖNEMLİ 11,65–11,90 alt. 19.11 stopu; 20.11 satılmadıysa kovalanmaz, ilk dirençte. 1s RSI 70 / CCI +100 aşağı teyidi beklenmez",
-  "sembol": "BIST:BIENY"
- },
- {
-  "fiyat": 12.94,
-  "yon": "cross_up",
-  "ad": "BIENY 12,94 — Sigorta (v2.4 22.11)",
-  "mesaj": "12,82 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al",
-  "sembol": "BIST:BIENY"
- },
- {
-  "fiyat": 11.35,
-  "yon": "cross_down",
-  "ad": "BIENY 11,35 — B hedefi 1 (uyarı) (v2.4 22.11)",
-  "mesaj": "11,13–11,35. 11,35 altı kapanış B tetiği; hedef 2 10,17–10,47",
-  "sembol": "BIST:BIENY"
- },
- {
-  "fiyat": 11.01,
-  "yon": "cross_down",
-  "ad": "BIENY 11,01 — 1 porsiyon çekirdek sat (kapanış) (v2.4 22.11)",
-  "mesaj": "11,13 − 0,15 ATR. Kalan çekirdek için; RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
-  "sembol": "BIST:BIENY"
- },
- {
-  "fiyat": 1.46,
-  "yon": "cross_up",
-  "ad": "SASA 1,46 — 19.11 satışları yapılmadıysa sat 6.750 (S3) (v2.4 22.11)",
-  "mesaj": "ÖNEMLİ 1,459–1,49 alt. 1s RSI 70 / CCI +100 aşağı teyidi; yapıldıysa bu emir yok",
-  "sembol": "BIST:SASA"
- },
- {
-  "fiyat": 1.63,
-  "yon": "cross_up",
-  "ad": "SASA 1,63 — Sigorta (v2.4 22.11)",
-  "mesaj": "1,62 + 0,15 ATR. 19.11 satışları yapıldıysa: kapanış üstündeyse satılanların yarısını (6.750) ertesi gün geri al",
-  "sembol": "BIST:SASA"
- },
- {
-  "fiyat": 1.44,
-  "yon": "cross_down",
-  "ad": "SASA 1,44 — B hedefi 1 (uyarı) (v2.4 22.11)",
-  "mesaj": "1,409–1,44. 02.11 dibi 1,43 altı kapanış B tetiği; hedef 2 —",
-  "sembol": "BIST:SASA"
- },
- {
-  "fiyat": 1.41,
-  "yon": "cross_down",
-  "ad": "SASA 1,41 — 1 porsiyon çekirdek sat (kapanış) (v2.4 22.11)",
-  "mesaj": "1,409–1,44 pivot alt. 19.11 planından korundu (yeni KRİTİK destek yok). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
-  "sembol": "BIST:SASA"
- },
- {
-  "fiyat": 4.17,
-  "yon": "cross_up",
-  "ad": "SMRTG 4,17 — 19.11 satışları yapılmadıysa sat 2.000 (S3) (v2.4 22.11)",
-  "mesaj": "KRİTİK 4,17–4,27 alt. 1s RSI 70 / CCI +100 aşağı teyidi; yapıldıysa bu emir yok",
-  "sembol": "BIST:SMRTG"
- },
- {
-  "fiyat": 4.31,
-  "yon": "cross_up",
-  "ad": "SMRTG 4,31 — Sigorta (v2.4 22.11)",
-  "mesaj": "4,27 + 0,15 ATR. 19.11 satışları yapıldıysa: kapanış üstündeyse satılanların yarısını (2.000) ertesi gün geri al",
-  "sembol": "BIST:SMRTG"
- },
- {
-  "fiyat": 3.91,
-  "yon": "cross_down",
-  "ad": "SMRTG 3,91 — B hedefi 1 (uyarı) (v2.4 22.11)",
-  "mesaj": "3,80–3,91. 4,00 altı kapanış B tetiği; hedef 2 3,48–3,60",
-  "sembol": "BIST:SMRTG"
- },
- {
-  "fiyat": 3.75,
-  "yon": "cross_down",
-  "ad": "SMRTG 3,75 — 1 porsiyon çekirdek sat (kapanış) (v2.4 22.11)",
-  "mesaj": "19.11: 3,80 − 0,15 ATR. 19.11 stopu korundu (kural önerisi 3,44; risk-offta gevşetilmedi). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
-  "sembol": "BIST:SMRTG"
- },
- {
-  "fiyat": 23.28,
-  "yon": "cross_up",
-  "ad": "MIATK 23,28 — Sat 933 (1 porsiyon + 200 fazla, S3) (v2.4 22.11)",
-  "mesaj": "ÖNEMLİ 23,28–23,84 alt. 24,22 gelmedi → bu dirence taşındı; 1s RSI 70 / CCI +100 aşağı teyidi",
-  "sembol": "BIST:MIATK"
- },
- {
-  "fiyat": 25.19,
-  "yon": "cross_up",
-  "ad": "MIATK 25,19 — Sigorta (v2.4 22.11)",
-  "mesaj": "24,94 + 0,15 ATR (üstteki KRİTİK direnç). Kapanış üstündeyse satılanların yarısını ertesi gün geri al",
-  "sembol": "BIST:MIATK"
- },
- {
-  "fiyat": 22.68,
-  "yon": "cross_down",
-  "ad": "MIATK 22,68 — B hedefi 1 (uyarı) (v2.4 22.11)",
-  "mesaj": "22,02–22,68. 22,38 altı kapanış B tetiği; hedef 2 20,86–21,45",
-  "sembol": "BIST:MIATK"
- },
- {
-  "fiyat": 22.21,
-  "yon": "cross_down",
-  "ad": "MIATK 22,21 — 1 porsiyon çekirdek sat (kapanış) (v2.4 22.11)",
-  "mesaj": "19.11: 22,48 − 0,15 ATR. 19.11 stopu korundu (kural önerisi 20,61; risk-offta gevşetilmedi). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
-  "sembol": "BIST:MIATK"
- },
- {
-  "fiyat": 319.3,
-  "yon": "cross_down",
-  "ad": "THYAO 319,30 — Ticaret porsiyonu iz süren stop (4s ST) (v2.4 22.11)",
-  "mesaj": "4s ST yeşil 319,30. 4s Supertrend(10,2) 319,30 altında 4s kapanış → kalan ticaret porsiyonu (19.11 satışı yapılmadıysa 36+36) sat; ST yükseldikçe stop yükselir",
-  "sembol": "BIST:THYAO"
- },
- {
-  "fiyat": 334.66,
-  "yon": "cross_up",
-  "ad": "THYAO 334,66 — Sigorta (v2.4 22.11)",
-  "mesaj": "333,25 + 0,15 ATR. 19.11 satışları yapıldıysa: kapanış üstündeyse satılanların yarısını (36) ertesi gün geri al",
-  "sembol": "BIST:THYAO"
- },
- {
-  "fiyat": 314.2,
-  "yon": "cross_down",
-  "ad": "THYAO 314,20 — B hedefi 1 (uyarı) (v2.4 22.11)",
-  "mesaj": "310,75–314,20. 321,75 altı kapanış B tetiği; hedef 2 299,93–302,75",
-  "sembol": "BIST:THYAO"
- },
- {
-  "fiyat": 298.52,
-  "yon": "cross_down",
-  "ad": "THYAO 298,52 — 1 porsiyon çekirdek sat (kapanış) (v2.4 22.11)",
-  "mesaj": "299,93 − 0,15 ATR (EMA233). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
-  "sembol": "BIST:THYAO"
- },
- {
   "fiyat": 52.35,
   "yon": "cross_up",
   "ad": "RKLB 52,35 — 22.11 satışları yapılmadıysa 1 porsiyon sat (S3) (v2.4 24.11)",
@@ -278,5 +138,145 @@
   "ad": "UAMY 2,18 — B tetiği (uyarı) (v2.4 24.11)",
   "mesaj": "20.11 dibi. 2,18 altı kapanış B tetiği; 2025 dipleri 2,12 / 1,94 / 1,87",
   "sembol": "NYSE:UAMY"
+ },
+ {
+  "fiyat": 11.64,
+  "yon": "cross_up",
+  "ad": "BIENY 11,64 — 22.11 çekirdek satışları yapılmadıysa sat 1.789 + 1.785 (S3) (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ 11,64–11,92. Tekrar aynı bölgede; teyit beklenmez (stop satışı)",
+  "sembol": "BIST:BIENY"
+ },
+ {
+  "fiyat": 13.17,
+  "yon": "cross_up",
+  "ad": "BIENY 13,17 — Sigorta (v2.4 26.11)",
+  "mesaj": "13,06 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonunun yarısını ertesi gün geri al",
+  "sembol": "BIST:BIENY"
+ },
+ {
+  "fiyat": 10.36,
+  "yon": "cross_down",
+  "ad": "BIENY 10,36 — B hedefi 1 (uyarı) (v2.4 26.11)",
+  "mesaj": "10,17–10,36. 11,28 altı kapanış B tetiği",
+  "sembol": "BIST:BIENY"
+ },
+ {
+  "fiyat": 10.06,
+  "yon": "cross_down",
+  "ad": "BIENY 10,06 — 1 porsiyon çekirdek sat (kapanış) (v2.4 26.11)",
+  "mesaj": "10,17 − 0,15 ATR. Kalan çekirdek varsa; RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "BIST:BIENY"
+ },
+ {
+  "fiyat": 1.41,
+  "yon": "cross_up",
+  "ad": "SASA 1,41 — Çekirdek stop satışı (9.250) — 26.11 (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ 1,405–1,434. Açılışın ilk 30 dk’sı geçince; 1,41–1,43 tepkisi gelirse orada. Gelmezse kovalanmaz, sonraki dirence (1,53) taşınır (S3)",
+  "sembol": "BIST:SASA"
+ },
+ {
+  "fiyat": 1.45,
+  "yon": "cross_up",
+  "ad": "SASA 1,45 — Sigorta (v2.4 26.11)",
+  "mesaj": "1,434 + 0,15 ATR. Satılan ticaret porsiyonu varsa: kapanış üstündeyse yarısını ertesi gün geri al",
+  "sembol": "BIST:SASA"
+ },
+ {
+  "fiyat": 1.38,
+  "yon": "cross_down",
+  "ad": "SASA 1,38 — B tetiği (uyarı) (v2.4 26.11)",
+  "mesaj": "1,365–1,39. 1,39 altı kapanış B tetiği",
+  "sembol": "BIST:SASA"
+ },
+ {
+  "fiyat": 1.35,
+  "yon": "cross_down",
+  "ad": "SASA 1,35 — Son çekirdek stopu (kapanış) (v2.4 26.11)",
+  "mesaj": "1,365 − 0,15 ATR. KRİTİK destek yok; pivot bölgesi altı. RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "BIST:SASA"
+ },
+ {
+  "fiyat": 4.07,
+  "yon": "cross_up",
+  "ad": "SMRTG 4,07 — 19.11 satışları yapılmadıysa sat 2.000 (S3) (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ 4,07–4,17 alt. 1s RSI 70 / CCI +100 aşağı teyidi; yapıldıysa bu emir yok",
+  "sembol": "BIST:SMRTG"
+ },
+ {
+  "fiyat": 4.21,
+  "yon": "cross_up",
+  "ad": "SMRTG 4,21 — Sigorta (v2.4 26.11)",
+  "mesaj": "4,17 + 0,15 ATR. Satılan ticaret porsiyonu varsa: kapanış üstündeyse yarısını ertesi gün geri al",
+  "sembol": "BIST:SMRTG"
+ },
+ {
+  "fiyat": 3.63,
+  "yon": "cross_down",
+  "ad": "SMRTG 3,63 — B hedefi 1 (uyarı) (v2.4 26.11)",
+  "mesaj": "3,56–3,63. 3,81 altı kapanış B tetiği",
+  "sembol": "BIST:SMRTG"
+ },
+ {
+  "fiyat": 3.75,
+  "yon": "cross_down",
+  "ad": "SMRTG 3,75 — 1 porsiyon çekirdek sat (kapanış) (v2.4 26.11)",
+  "mesaj": "19.11: 3,80 − 0,15 ATR. 19.11 stopu korundu (kural önerisi 3,52; risk-offta gevşetilmedi). RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele",
+  "sembol": "BIST:SMRTG"
+ },
+ {
+  "fiyat": 22.5,
+  "yon": "cross_up",
+  "ad": "MIATK 22,50 — Çekirdek stop satışı (733) — 26.11 (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ 22,50–23,10 alt. Açılışın ilk 30 dk’sı geçince; 22,50 tepkisi gelirse orada, gelmezse kovalanmaz (S3: 23,42)",
+  "sembol": "BIST:MIATK"
+ },
+ {
+  "fiyat": 23.33,
+  "yon": "cross_up",
+  "ad": "MIATK 23,33 — Sigorta (v2.4 26.11)",
+  "mesaj": "23,10 + 0,15 ATR. Kapanış üstündeyse satılan ticaret porsiyonlarının yarısını ertesi gün geri al",
+  "sembol": "BIST:MIATK"
+ },
+ {
+  "fiyat": 21.45,
+  "yon": "cross_down",
+  "ad": "MIATK 21,45 — B hedefi 1 (uyarı) (v2.4 26.11)",
+  "mesaj": "20,86–21,45. 21,96 altı kapanış B tetiği",
+  "sembol": "BIST:MIATK"
+ },
+ {
+  "fiyat": 20.63,
+  "yon": "cross_down",
+  "ad": "MIATK 20,63 — Son çekirdek stopu (kapanış) (v2.4 26.11)",
+  "mesaj": "20,86 − 0,15 ATR. RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
+  "sembol": "BIST:MIATK"
+ },
+ {
+  "fiyat": 314.2,
+  "yon": "cross_up",
+  "ad": "THYAO 314,20 — 4s ST stop satışı yapılmadıysa kalan ticaret sat (S3) (v2.4 26.11)",
+  "mesaj": "ÖNEMLİ pivot 310,75–314,20 üst. 19.11 satışları da yapılmadıysa 72 adet, yapıldıysa ticaret kalmadı; 1s RSI 70 / CCI +100 aşağı teyidi",
+  "sembol": "BIST:THYAO"
+ },
+ {
+  "fiyat": 334.66,
+  "yon": "cross_up",
+  "ad": "THYAO 334,66 — Sigorta (19.11 satışları için) (v2.4 26.11)",
+  "mesaj": "333,25 + 0,15 ATR. Kapanış üstündeyse satılanların yarısını (36) ertesi gün geri al",
+  "sembol": "BIST:THYAO"
+ },
+ {
+  "fiyat": 307.27,
+  "yon": "cross_down",
+  "ad": "THYAO 307,27 — B hedefi 1 (uyarı) (v2.4 26.11)",
+  "mesaj": "304,75–307,27. 311,50 altı kapanış B tetiği; hedef 2 298,62–302,25",
+  "sembol": "BIST:THYAO"
+ },
+ {
+  "fiyat": 284.03,
+  "yon": "cross_down",
+  "ad": "THYAO 284,03 — 1 porsiyon çekirdek sat (kapanış) (v2.4 26.11)",
+  "mesaj": "285,48 − 0,15 ATR. RSI ≤ 25 / z ≤ −2,5 ise bir kez ertele, 5 işlem günü son sınır",
+  "sembol": "BIST:THYAO"
  }
 ]
