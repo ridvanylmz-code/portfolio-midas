@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T21:30:52+00:00",
+ "updated": "2026-11-25T01:41:45+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
@@ -8,7 +8,7 @@
    "cik": 868857,
    "name": "AECOM",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,24 mlr (2026-09-30), serbest nakit akışı yıllık $344 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,24 mlr (2026-09-30), serbest nakit akışı yıllık $344 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -26,14 +26,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "ADT": {
    "cik": 1703056,
    "name": "ADT Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $228 mn (2026-09-30), serbest nakit akışı son 12 ay $1,93 mlr; serbest nakit akışı pozitif; ortak satışı (sulandırmaz): son 424B7 2026-07-02; etkin shelf: S-3ASR 2024-03-06 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $228 mn (2026-09-30), serbest nakit akışı son 12 ay $1,93 mlr; serbest nakit akışı pozitif; ortak satışı (sulandırmaz): son 424B7 2026-07-02; etkin shelf: S-3ASR 2024-03-06 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "ortak satışı (sulandırmaz): son 424B7 2026-07-02",
@@ -78,14 +78,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "AMTM": {
    "cik": 2011286,
    "name": "Amentum Holdings, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $521 mn (2026-10-02), serbest nakit akışı yıllık $583 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2025-10-01 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $521 mn (2026-10-02), serbest nakit akışı yıllık $583 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2025-10-01 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2025-10-01 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -110,14 +110,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "ANF": {
    "cik": 1018840,
    "name": "ABERCROMBIE & FITCH CO /DE/",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $638 mn (2026-08-01), serbest nakit akışı son 12 ay $566 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $638 mn (2026-08-01), serbest nakit akışı son 12 ay $566 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -135,14 +135,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "APA": {
    "cik": 1841666,
    "name": "APA Corp",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $75 mn (2026-09-30), serbest nakit akışı son 12 ay $4,44 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-05-01 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $75 mn (2026-09-30), serbest nakit akışı son 12 ay $4,44 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-05-01 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-05-01 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -172,14 +172,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "APG": {
    "cik": 1796209,
    "name": "APi Group Corp",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $373 mn (2026-09-30), serbest nakit akışı son 12 ay $673 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-04-30 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $373 mn (2026-09-30), serbest nakit akışı son 12 ay $673 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-04-30 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2026-04-30 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -204,14 +204,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "ATR": {
    "cik": 896622,
    "name": "APTARGROUP, INC.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $212 mn (2026-09-30), serbest nakit akışı son 12 ay $295 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-02-09 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $212 mn (2026-09-30), serbest nakit akışı son 12 ay $295 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-02-09 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-02-09 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -236,14 +236,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "AWK": {
    "cik": 1410636,
    "name": "American Water Works Company, Inc.",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $121 mn (2026-09-30), serbest nakit akışı son 12 ay −$1,16 mlr; serbest nakit akışı negatif, nakit ömrü 0,4 çeyrek (< 4); etkin shelf: S-3ASR 2025-02-27.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $121 mn (2026-09-30), serbest nakit akışı son 12 ay −$1,16 mlr; serbest nakit akışı negatif, nakit ömrü 0,4 çeyrek (< 4); etkin shelf: S-3ASR 2025-02-27.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 0,4 çeyrek (< 4)",
     "etkin shelf: S-3ASR 2025-02-27"
@@ -298,14 +298,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "BEKE": {
    "cik": 1809587,
    "name": "KE Holdings Inc.",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit CNY 47,35 mlr (2025-12-31), serbest nakit akışı yıllık −CNY 984 mn; serbest nakit akışı negatif, nakit ömrü 192,5 çeyrek.",
+   "text": "2026-11-25 (SEC EDGAR); nakit CNY 47,35 mlr (2025-12-31), serbest nakit akışı yıllık −CNY 984 mn; serbest nakit akışı negatif, nakit ömrü 192,5 çeyrek.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 192,5 çeyrek"
    ],
@@ -323,14 +323,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "CHKP": {
    "cik": 1015922,
    "name": "CHECK POINT SOFTWARE TECHNOLOGIES LTD",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $2,49 mlr (2025-12-31), serbest nakit akışı yıllık $1,17 mlr; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $2,49 mlr (2025-12-31), serbest nakit akışı yıllık $1,17 mlr; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -348,14 +348,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "CPA": {
    "cik": 1345105,
    "name": "Copa Holdings, S.A.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,34 mlr (2025-12-31), serbest nakit akışı yıllık $1,15 mlr; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,34 mlr (2025-12-31), serbest nakit akışı yıllık $1,15 mlr; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -373,14 +373,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "CR": {
    "cik": 1944013,
    "name": "Crane Co",
    "risk": "Doğrulanamadı",
-   "text": "2026-11-24 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
    "reasons": [
     "XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok)"
    ],
@@ -388,14 +388,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "CROX": {
    "cik": 1334036,
    "name": "Crocs, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $163 mn (2026-09-30), serbest nakit akışı son 12 ay $754 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $163 mn (2026-09-30), serbest nakit akışı son 12 ay $754 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -413,14 +413,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "CRWV": {
    "cik": 1769628,
    "name": "CoreWeave, Inc.",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $4,18 mlr (2026-09-30), serbest nakit akışı son 12 ay −$20,42 mlr; serbest nakit akışı negatif, nakit ömrü 0,8 çeyrek (< 4); ATM programı: son 424B5 2026-09-17; etkin shelf: S-3ASR 2026-06-05.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $4,18 mlr (2026-09-30), serbest nakit akışı son 12 ay −$20,42 mlr; serbest nakit akışı negatif, nakit ömrü 0,8 çeyrek (< 4); ATM programı: son 424B5 2026-09-17; etkin shelf: S-3ASR 2026-06-05.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 0,8 çeyrek (< 4)",
     "ATM programı: son 424B5 2026-09-17",
@@ -453,14 +453,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "CUBE": {
    "cik": 1298675,
    "name": "CubeSmart",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $7 mn (2026-03-31), serbest nakit akışı son 12 ay $569 mn; ATM programı: son 424B5 2026-03-02; etkin shelf: S-3ASR 2026-03-02.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $7 mn (2026-03-31), serbest nakit akışı son 12 ay $569 mn; ATM programı: son 424B5 2026-03-02; etkin shelf: S-3ASR 2026-03-02.",
    "reasons": [
     "ATM programı: son 424B5 2026-03-02",
     "etkin shelf: S-3ASR 2026-03-02"
@@ -492,14 +492,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "DAL": {
    "cik": 27904,
    "name": "DELTA AIR LINES, INC.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $3,79 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,52 mlr; serbest nakit akışı pozitif; 1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-07-10 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $3,79 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,52 mlr; serbest nakit akışı pozitif; 1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-07-10 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı",
@@ -543,14 +543,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "DD": {
    "cik": 1666700,
    "name": "DuPont de Nemours, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,65 mlr (2026-09-30), serbest nakit akışı son 12 ay $793 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-08-12 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,65 mlr (2026-09-30), serbest nakit akışı son 12 ay $793 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-08-12 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-08-12 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -582,14 +582,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "DHI": {
    "cik": 882184,
    "name": "HORTON D R INC /DE/",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $2,06 mlr (2026-09-30), serbest nakit akışı yıllık $3,35 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-07-24 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $2,06 mlr (2026-09-30), serbest nakit akışı yıllık $3,35 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-07-24 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-07-24 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -614,59 +614,54 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
-  "ECL": {
-   "cik": 31462,
-   "name": "ECOLAB INC.",
-   "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $722 mn (2026-09-30), serbest nakit akışı son 12 ay $1,80 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-02-23 (genel kayıt; 12 ayda hisse satışı yok).",
+  "ED": {
+   "cik": 1047862,
+   "name": "CONSOLIDATED EDISON INC",
+   "risk": "Yüksek",
+   "text": "2026-11-25 (SEC EDGAR); nakit $100 mn (2026-09-30), serbest nakit akışı son 12 ay −$160 mn; serbest nakit akışı negatif, nakit ömrü 2,5 çeyrek (< 4); ATM programı: son 424B5 2026-05-08; etkin shelf: S-3ASR 2025-04-01.",
    "reasons": [
-    "serbest nakit akışı pozitif",
-    "etkin shelf: S-3ASR 2026-02-23 (genel kayıt; 12 ayda hisse satışı yok)"
+    "serbest nakit akışı negatif, nakit ömrü 2,5 çeyrek (< 4)",
+    "ATM programı: son 424B5 2026-05-08",
+    "etkin shelf: S-3ASR 2025-04-01"
    ],
    "fin": {
     "unit": "USD",
-    "cash": 722300000,
+    "cash": 100000000,
     "cash_date": "2026-09-30",
-    "ocf_ttm": 3029200000,
-    "capex_ttm": 1234100000,
-    "fcf_ttm": 1795100000,
+    "ocf_ttm": 4305000000,
+    "capex_ttm": 4465000000,
+    "fcf_ttm": -160000000,
     "fcf_basis": "son 12 ay",
     "fcf_end": "2026-09-30",
-    "runway_q": null
+    "runway_q": 2.5
    },
    "shelf": [
     {
      "form": "S-3ASR",
-     "date": "2026-02-23",
-     "url": "https://www.sec.gov/Archives/edgar/data/31462/000110465926018378/tm263262-1_s3asr.htm"
+     "date": "2025-04-01",
+     "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312525070438/d942651ds3asr.htm"
     }
    ],
    "takedowns": [
     {
      "form": "424B5",
-     "date": "2026-05-20",
-     "url": "https://www.sec.gov/Archives/edgar/data/31462/000110465926064583/tm2613881-2_424b5.htm",
-     "kind": "borç"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-05-19",
-     "url": "https://www.sec.gov/Archives/edgar/data/31462/000110465926063558/tm2613881-1_424b5.htm",
-     "kind": "borç"
+     "date": "2026-05-08",
+     "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526214752/d11186d424b5.htm",
+     "kind": "ATM"
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "EPAM": {
    "cik": 1352010,
    "name": "EPAM Systems, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $965 mn (2026-09-30), serbest nakit akışı son 12 ay $470 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-11-05 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $965 mn (2026-09-30), serbest nakit akışı son 12 ay $470 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-11-05 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2026-11-05 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -691,14 +686,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "EXR": {
    "cik": 1289490,
    "name": "Extra Space Storage Inc.",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $115 mn (2026-09-30), serbest nakit akışı son 12 ay $1,55 mlr; ATM programı: son 424B5 2026-06-25; etkin shelf: S-3ASR 2024-04-15.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $115 mn (2026-09-30), serbest nakit akışı son 12 ay $1,55 mlr; ATM programı: son 424B5 2026-06-25; etkin shelf: S-3ASR 2024-04-15.",
    "reasons": [
     "ATM programı: son 424B5 2026-06-25",
     "etkin shelf: S-3ASR 2024-04-15"
@@ -741,14 +736,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "FCN": {
    "cik": 887936,
    "name": "FTI CONSULTING, INC",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $88 mn (2026-09-30), serbest nakit akışı son 12 ay $354 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $88 mn (2026-09-30), serbest nakit akışı son 12 ay $354 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -766,14 +761,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "FTDR": {
    "cik": 1727263,
    "name": "Frontdoor, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $581 mn (2026-09-30), serbest nakit akışı son 12 ay $393 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $581 mn (2026-09-30), serbest nakit akışı son 12 ay $393 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -791,14 +786,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "FTV": {
    "cik": 1659166,
    "name": "Fortive Corp",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $377 mn (2026-10-02), serbest nakit akışı son 12 ay $1,09 mlr; serbest nakit akışı pozitif; 1 adet 424B başvurusunun türü belirlenemedi; etkin shelf: S-3ASR 2026-07-20.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $377 mn (2026-10-02), serbest nakit akışı son 12 ay $1,09 mlr; serbest nakit akışı pozitif; 1 adet 424B başvurusunun türü belirlenemedi; etkin shelf: S-3ASR 2026-07-20.",
    "reasons": [
     "serbest nakit akışı pozitif",
     "1 adet 424B başvurusunun türü belirlenemedi",
@@ -831,14 +826,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "FWONA": {
    "cik": 1560385,
    "name": "Liberty Media Corp",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $2,34 mlr (2026-09-30), serbest nakit akışı son 12 ay $978 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-08-20 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $2,34 mlr (2026-09-30), serbest nakit akışı son 12 ay $978 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-08-20 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-08-20 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -863,14 +858,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "GKOS": {
    "cik": 1192448,
    "name": "GLAUKOS Corp",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $162 mn (2026-09-30), serbest nakit akışı son 12 ay $36 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $162 mn (2026-09-30), serbest nakit akışı son 12 ay $36 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -888,14 +883,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "GMAB": {
    "cik": 1434265,
    "name": "GENMAB A/S",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,72 mlr (2025-12-31), serbest nakit akışı yıllık $1,15 mlr; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,72 mlr (2025-12-31), serbest nakit akışı yıllık $1,15 mlr; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -913,14 +908,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "GSAT": {
    "cik": 1366868,
    "name": "Globalstar, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $330 mn (2026-09-30), serbest nakit akışı son 12 ay $468 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2025-02-28 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $330 mn (2026-09-30), serbest nakit akışı son 12 ay $468 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2025-02-28 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2025-02-28 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -945,14 +940,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "INSM": {
    "cik": 1104506,
    "name": "INSMED Inc",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,15 mlr (2026-09-30), serbest nakit akışı son 12 ay −$628 mn; serbest nakit akışı negatif, nakit ömrü 7,3 çeyrek; etkin shelf: S-3ASR 2026-05-15.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,15 mlr (2026-09-30), serbest nakit akışı son 12 ay −$628 mn; serbest nakit akışı negatif, nakit ömrü 7,3 çeyrek; etkin shelf: S-3ASR 2026-05-15.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 7,3 çeyrek",
     "etkin shelf: S-3ASR 2026-05-15"
@@ -977,14 +972,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "ISRG": {
    "cik": 1035267,
    "name": "INTUITIVE SURGICAL INC",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $4,04 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,60 mlr; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $4,04 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,60 mlr; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1002,14 +997,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "JAN": {
    "cik": 2100805,
    "name": "Janus Living, Inc.",
    "risk": "Doğrulanamadı",
-   "text": "2026-11-24 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
    "reasons": [
     "XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok)"
    ],
@@ -1042,14 +1037,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "KNSA": {
    "cik": 1730430,
    "name": "Kiniksa Pharmaceuticals International, plc",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $569 mn (2026-09-30), serbest nakit akışı son 12 ay $197 mn; serbest nakit akışı pozitif; etkin shelf: S-3 2024-06-28 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $569 mn (2026-09-30), serbest nakit akışı son 12 ay $197 mn; serbest nakit akışı pozitif; etkin shelf: S-3 2024-06-28 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3 2024-06-28 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -1074,14 +1069,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "KOD": {
    "cik": 1468748,
    "name": "Kodiak Sciences Inc.",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $89 mn (2026-09-30), serbest nakit akışı son 12 ay −$173 mn; serbest nakit akışı negatif, nakit ömrü 2,1 çeyrek (< 4); hisse satışı: son 424B5 2025-12-17; etkin shelf: S-3ASR 2026-10-20.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $89 mn (2026-09-30), serbest nakit akışı son 12 ay −$173 mn; serbest nakit akışı negatif, nakit ömrü 2,1 çeyrek (< 4); hisse satışı: son 424B5 2025-12-17; etkin shelf: S-3ASR 2026-10-20.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 2,1 çeyrek (< 4)",
     "hisse satışı: son 424B5 2025-12-17",
@@ -1120,14 +1115,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "LEVI": {
    "cik": 94845,
    "name": "LEVI STRAUSS & CO",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $779 mn (2026-08-30), serbest nakit akışı son 12 ay $643 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $779 mn (2026-08-30), serbest nakit akışı son 12 ay $643 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1145,14 +1140,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "LMT": {
    "cik": 936468,
    "name": "LOCKHEED MARTIN CORP",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $5,96 mlr (2026-09-27), serbest nakit akışı son 12 ay $8,38 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-04-23 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $5,96 mlr (2026-09-27), serbest nakit akışı son 12 ay $8,38 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-04-23 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2026-04-23 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -1177,14 +1172,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "LNG": {
    "cik": 3570,
    "name": "Cheniere Energy, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,66 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,79 mlr; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,66 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,79 mlr; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1209,14 +1204,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "LUV": {
    "cik": 92380,
    "name": "SOUTHWEST AIRLINES CO",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $3,62 mlr (2026-09-30), serbest nakit akışı son 12 ay −$450 mn; serbest nakit akışı negatif, nakit ömrü 32,2 çeyrek; etkin shelf: S-3ASR 2024-02-07.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $3,62 mlr (2026-09-30), serbest nakit akışı son 12 ay −$450 mn; serbest nakit akışı negatif, nakit ömrü 32,2 çeyrek; etkin shelf: S-3ASR 2024-02-07.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 32,2 çeyrek",
     "etkin shelf: S-3ASR 2024-02-07"
@@ -1254,14 +1249,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "MBGL": {
    "cik": 2090312,
    "name": "Mobility Global Inc.",
    "risk": "Doğrulanamadı",
-   "text": "2026-11-24 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok).",
    "reasons": [
     "XBRL finansal verisi okunamadı (nakit / faaliyet nakit akışı yok)"
    ],
@@ -1276,14 +1271,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "MRNA": {
    "cik": 1682852,
    "name": "Moderna, Inc.",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $5,17 mlr (2026-09-30), serbest nakit akışı son 12 ay −$1,97 mlr; serbest nakit akışı negatif, nakit ömrü 10,5 çeyrek.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $5,17 mlr (2026-09-30), serbest nakit akışı son 12 ay −$1,97 mlr; serbest nakit akışı negatif, nakit ömrü 10,5 çeyrek.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 10,5 çeyrek"
    ],
@@ -1301,14 +1296,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "MSFT": {
    "cik": 789019,
    "name": "MICROSOFT CORP",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $64,51 mlr (2026-09-30), serbest nakit akışı son 12 ay $59,96 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-12-12 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $64,51 mlr (2026-09-30), serbest nakit akışı son 12 ay $59,96 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-12-12 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-12-12 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -1333,14 +1328,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "MSI": {
    "cik": 68505,
    "name": "Motorola Solutions, Inc.",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $774 mn (2026-10-03), serbest nakit akışı son 12 ay $2,53 mlr; serbest nakit akışı pozitif; 1 adet 424B başvurusunun türü belirlenemedi; etkin shelf: S-3ASR 2024-02-23.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $774 mn (2026-10-03), serbest nakit akışı son 12 ay $2,53 mlr; serbest nakit akışı pozitif; 1 adet 424B başvurusunun türü belirlenemedi; etkin shelf: S-3ASR 2024-02-23.",
    "reasons": [
     "serbest nakit akışı pozitif",
     "1 adet 424B başvurusunun türü belirlenemedi",
@@ -1373,14 +1368,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "NTSK": {
    "cik": 2063196,
    "name": "Netskope Inc",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,07 mlr (2026-07-31), serbest nakit akışı son 12 ay −$70 mn; serbest nakit akışı negatif, nakit ömrü 60,9 çeyrek.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,07 mlr (2026-07-31), serbest nakit akışı son 12 ay −$70 mn; serbest nakit akışı negatif, nakit ömrü 60,9 çeyrek.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 60,9 çeyrek"
    ],
@@ -1398,14 +1393,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "OKTA": {
    "cik": 1660134,
    "name": "Okta, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $2,30 mlr (2026-07-31), serbest nakit akışı son 12 ay $979 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $2,30 mlr (2026-07-31), serbest nakit akışı son 12 ay $979 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1423,14 +1418,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "PG": {
    "cik": 80424,
    "name": "PROCTER & GAMBLE Co",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $15,37 mlr (2026-09-30), serbest nakit akışı son 12 ay $15,34 mlr; serbest nakit akışı pozitif; 2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-10-15 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $15,37 mlr (2026-09-30), serbest nakit akışı son 12 ay $15,34 mlr; serbest nakit akışı pozitif; 2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-10-15 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı",
@@ -1503,14 +1498,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "PHM": {
    "cik": 822416,
    "name": "PULTEGROUP INC/MI/",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $1,37 mlr (2026-09-30), serbest nakit akışı son 12 ay $1,30 mlr; serbest nakit akışı pozitif; 1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-02-05 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $1,37 mlr (2026-09-30), serbest nakit akışı son 12 ay $1,30 mlr; serbest nakit akışı pozitif; 1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-02-05 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "1 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı",
@@ -1549,14 +1544,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "RKLB": {
    "cik": 1819994,
    "name": "Rocket Lab Corp",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $4,61 mlr (2026-09-30), serbest nakit akışı son 12 ay −$326 mn; serbest nakit akışı negatif ve 12 ayda hisse/ATM satışı var; ATM programı: son 424B5 2026-08-13; ortak satışı (sulandırmaz): son 424B7 2026-05-08; etkin shelf: S-3ASR 2025-03-11.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $4,61 mlr (2026-09-30), serbest nakit akışı son 12 ay −$326 mn; serbest nakit akışı negatif ve 12 ayda hisse/ATM satışı var; ATM programı: son 424B5 2026-08-13; ortak satışı (sulandırmaz): son 424B7 2026-05-08; etkin shelf: S-3ASR 2025-03-11.",
    "reasons": [
     "serbest nakit akışı negatif ve 12 ayda hisse/ATM satışı var",
     "ATM programı: son 424B5 2026-08-13",
@@ -1614,14 +1609,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "RPD": {
    "cik": 1560327,
    "name": "Rapid7, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $732 mn (2026-09-30), serbest nakit akışı son 12 ay $140 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $732 mn (2026-09-30), serbest nakit akışı son 12 ay $140 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1639,14 +1634,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "RRC": {
    "cik": 315852,
    "name": "RANGE RESOURCES CORP",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $0 mn (2026-09-30), serbest nakit akışı son 12 ay $1,42 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-05-16 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $0 mn (2026-09-30), serbest nakit akışı son 12 ay $1,42 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-05-16 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-05-16 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -1671,14 +1666,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "SGML": {
    "cik": 1848309,
    "name": "Sigma Lithium Corp",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $6 mn (2025-12-31), serbest nakit akışı yıllık −$7 mn; serbest nakit akışı negatif, nakit ömrü 3,3 çeyrek (< 4).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $6 mn (2025-12-31), serbest nakit akışı yıllık −$7 mn; serbest nakit akışı negatif, nakit ömrü 3,3 çeyrek (< 4).",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 3,3 çeyrek (< 4)"
    ],
@@ -1696,14 +1691,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "SLAB": {
    "cik": 1038074,
    "name": "SILICON LABORATORIES INC.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $440 mn (2026-10-03), serbest nakit akışı son 12 ay $7 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $440 mn (2026-10-03), serbest nakit akışı son 12 ay $7 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1721,14 +1716,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "SN": {
    "cik": 1957132,
    "name": "SharkNinja, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $488 mn (2026-09-30), serbest nakit akışı son 12 ay $509 mn; serbest nakit akışı pozitif; etkin shelf: F-3ASR 2025-08-20 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $488 mn (2026-09-30), serbest nakit akışı son 12 ay $509 mn; serbest nakit akışı pozitif; etkin shelf: F-3ASR 2025-08-20 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: F-3ASR 2025-08-20 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -1753,14 +1748,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "SONY": {
    "cik": 313838,
    "name": "Sony Group Corp",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit JPY 3126,15 mlr (2025-03-31), serbest nakit akışı yıllık JPY 1809,44 mlr; serbest nakit akışı pozitif; etkin shelf: F-3ASR 2026-06-18 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit JPY 3126,15 mlr (2025-03-31), serbest nakit akışı yıllık JPY 1809,44 mlr; serbest nakit akışı pozitif; etkin shelf: F-3ASR 2026-06-18 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: F-3ASR 2026-06-18 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -1792,14 +1787,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "STN": {
    "cik": 1131383,
    "name": "STANTEC INC",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit CAD 416 mn (2025-12-31), serbest nakit akışı yıllık CAD 794 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit CAD 416 mn (2025-12-31), serbest nakit akışı yıllık CAD 794 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1817,14 +1812,46 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
+   "role": "aday"
+  },
+  "SUZ": {
+   "cik": 909327,
+   "name": "Suzano S.A.",
+   "risk": "Düşük",
+   "text": "2026-11-25 (SEC EDGAR); nakit BRL 15,18 mlr (2025-12-31), serbest nakit akışı yıllık BRL 13,57 mlr; serbest nakit akışı pozitif; etkin shelf: F-3ASR 2025-05-01 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: F-3ASR 2025-05-01 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "BRL",
+    "cash": 15179753000,
+    "cash_date": "2025-12-31",
+    "ocf_ttm": 18152175000,
+    "capex_ttm": 4578826000,
+    "fcf_ttm": 13573349000,
+    "fcf_basis": "yıllık",
+    "fcf_end": "2025-12-31",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "F-3ASR",
+     "date": "2025-05-01",
+     "url": "https://www.sec.gov/Archives/edgar/data/909327/000110465925042824/tm2513301d1_f3asr.htm"
+    }
+   ],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "SWKS": {
    "cik": 4127,
    "name": "SKYWORKS SOLUTIONS, INC.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $2,61 mlr (2026-10-02), serbest nakit akışı yıllık $229 mn; serbest nakit akışı pozitif; 2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-08-03 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $2,61 mlr (2026-10-02), serbest nakit akışı yıllık $229 mn; serbest nakit akışı pozitif; 2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı; etkin shelf: S-3ASR 2026-08-03 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "2 adet 424B türü belirlenemedi; okunanların hepsi borç ihracı",
@@ -1875,14 +1902,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "TBBB": {
    "cik": 1978954,
    "name": "BBB FOODS INC",
    "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit MXN 1,43 mlr (2025-12-31), serbest nakit akışı yıllık MXN 1,13 mlr; serbest nakit akışı pozitif; 2 adet 424B başvurusunun türü belirlenemedi; etkin shelf: F-3ASR 2026-05-27.",
+   "text": "2026-11-25 (SEC EDGAR); nakit MXN 1,43 mlr (2025-12-31), serbest nakit akışı yıllık MXN 1,13 mlr; serbest nakit akışı pozitif; 2 adet 424B başvurusunun türü belirlenemedi; etkin shelf: F-3ASR 2026-05-27.",
    "reasons": [
     "serbest nakit akışı pozitif",
     "2 adet 424B başvurusunun türü belirlenemedi",
@@ -1921,14 +1948,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "TENB": {
    "cik": 1660280,
    "name": "Tenable Holdings, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $495 mn (2026-09-30), serbest nakit akışı son 12 ay $280 mn; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $495 mn (2026-09-30), serbest nakit akışı son 12 ay $280 mn; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1946,14 +1973,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "TSLA": {
    "cik": 1318605,
    "name": "Tesla, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $45,45 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,30 mlr; serbest nakit akışı pozitif.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $45,45 mlr (2026-09-30), serbest nakit akışı son 12 ay $3,30 mlr; serbest nakit akışı pozitif.",
    "reasons": [
     "serbest nakit akışı pozitif"
    ],
@@ -1971,14 +1998,14 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "UAMY": {
    "cik": 101538,
    "name": "UNITED STATES ANTIMONY CORP",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $31 mn (2026-09-30), serbest nakit akışı son 12 ay −$68 mn; serbest nakit akışı negatif, nakit ömrü 1,8 çeyrek (< 4); etkin shelf: S-3ASR 2025-10-16.",
+   "text": "2026-11-25 (SEC EDGAR); nakit $31 mn (2026-09-30), serbest nakit akışı son 12 ay −$68 mn; serbest nakit akışı negatif, nakit ömrü 1,8 çeyrek (< 4); etkin shelf: S-3ASR 2025-10-16.",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 1,8 çeyrek (< 4)",
     "etkin shelf: S-3ASR 2025-10-16"
@@ -2013,14 +2040,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   },
   "VFC": {
    "cik": 103379,
    "name": "V F CORP",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $443 mn (2026-09-26), serbest nakit akışı son 12 ay $830 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-05-23 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $443 mn (2026-09-26), serbest nakit akışı son 12 ay $830 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-05-23 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-05-23 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -2045,14 +2072,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "VNT": {
    "cik": 1786842,
    "name": "Vontier Corp",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $258 mn (2026-10-02), serbest nakit akışı son 12 ay $416 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-02-16 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $258 mn (2026-10-02), serbest nakit akışı son 12 ay $416 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-02-16 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2024-02-16 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -2077,70 +2104,14 @@
    ],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
-   "role": "aday"
-  },
-  "WEC": {
-   "cik": 783325,
-   "name": "WEC ENERGY GROUP, INC.",
-   "risk": "Orta",
-   "text": "2026-11-24 (SEC EDGAR); nakit $59 mn (2026-09-30), serbest nakit akışı son 12 ay $942 mn; ATM programı: son 424B5 2026-11-04; etkin shelf: S-3ASR 2026-10-16.",
-   "reasons": [
-    "ATM programı: son 424B5 2026-11-04",
-    "etkin shelf: S-3ASR 2026-10-16"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 58800000,
-    "cash_date": "2026-09-30",
-    "ocf_ttm": 3837700000,
-    "capex_ttm": 2895600000,
-    "fcf_ttm": 942100000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-09-30",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-10-16",
-     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926116528/tm2626690d1_s3asr.htm"
-    },
-    {
-     "form": "S-3ASR",
-     "date": "2024-08-05",
-     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465924085883/tm2420688d1_s3asr.htm"
-    }
-   ],
-   "takedowns": [
-    {
-     "form": "424B5",
-     "date": "2026-11-04",
-     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926122770/tm2628873d3_424b5.htm",
-     "kind": "ATM"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-11-02",
-     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926120968/tm2628505d1_424b5.htm",
-     "kind": "borç"
-    },
-    {
-     "form": "424B5",
-     "date": "2026-02-23",
-     "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926018389/tm266913d1_424b5.htm",
-     "kind": "borç"
-    }
-   ],
-   "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "WTRG": {
    "cik": 78128,
    "name": "Essential Utilities, Inc.",
    "risk": "Düşük",
-   "text": "2026-11-24 (SEC EDGAR); nakit $9 mn (2026-09-30), serbest nakit akışı son 12 ay $529 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-05-08 (genel kayıt; 12 ayda hisse satışı yok).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $9 mn (2026-09-30), serbest nakit akışı son 12 ay $529 mn; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2026-05-08 (genel kayıt; 12 ayda hisse satışı yok).",
    "reasons": [
     "serbest nakit akışı pozitif",
     "etkin shelf: S-3ASR 2026-05-08 (genel kayıt; 12 ayda hisse satışı yok)"
@@ -2183,14 +2154,14 @@
     }
    ],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "aday"
   },
   "WYFI": {
    "cik": 2042022,
    "name": "WhiteFiber, Inc.",
    "risk": "Yüksek",
-   "text": "2026-11-24 (SEC EDGAR); nakit $139 mn (2026-09-30), serbest nakit akışı son 12 ay −$391 mn; serbest nakit akışı negatif, nakit ömrü 1,4 çeyrek (< 4).",
+   "text": "2026-11-25 (SEC EDGAR); nakit $139 mn (2026-09-30), serbest nakit akışı son 12 ay −$391 mn; serbest nakit akışı negatif, nakit ömrü 1,4 çeyrek (< 4).",
    "reasons": [
     "serbest nakit akışı negatif, nakit ömrü 1,4 çeyrek (< 4)"
    ],
@@ -2208,7 +2179,7 @@
    "shelf": [],
    "takedowns": [],
    "registrations": [],
-   "checked": "2026-11-24",
+   "checked": "2026-11-25",
    "role": "liste/pozisyon"
   }
  }
