@@ -1,11 +1,11 @@
 {
- "guncelleme": "2026-11-23T21:16:48+00:00",
+ "guncelleme": "2026-11-25T21:45:40+00:00",
  "hisseler": {
   "BIENY": {
    "pazar": "bist",
-   "atr": 0.7735,
-   "atr_tarih": "2026-11-20",
-   "plan": "2026-11-22",
+   "atr": 0.7109,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Savunma",
    "bilanco": ""
   },
@@ -19,9 +19,9 @@
   },
   "MIATK": {
    "pazar": "bist",
-   "atr": 1.6537,
-   "atr_tarih": "2026-11-20",
-   "plan": "2026-11-22",
+   "atr": 1.519,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Bant",
    "bilanco": ""
   },
@@ -35,9 +35,9 @@
   },
   "SASA": {
    "pazar": "bist",
-   "atr": 0.0786,
-   "atr_tarih": "2026-11-20",
-   "plan": "2026-11-22",
+   "atr": 0.0734,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Savunma",
    "bilanco": ""
   },
@@ -51,17 +51,17 @@
   },
   "SMRTG": {
    "pazar": "bist",
-   "atr": 0.2967,
-   "atr_tarih": "2026-11-20",
-   "plan": "2026-11-22",
+   "atr": 0.2741,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Bant",
    "bilanco": ""
   },
   "THYAO": {
    "pazar": "bist",
-   "atr": 9.3959,
-   "atr_tarih": "2026-11-20",
-   "plan": "2026-11-22",
+   "atr": 9.6752,
+   "atr_tarih": "2026-11-25",
+   "plan": "2026-11-26",
    "mod": "Trend",
    "bilanco": ""
   },
