@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T22:36:03+00:00",
+  "updated": "2026-11-25T01:46:08+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -11,8 +11,8 @@
     "TD  KNSA: RSI 66.1 SMA50 84.88 (250 bar)",
     "TD  PG: RSI 65.8 SMA50 157.83 (250 bar)",
     "TD  RKLB: RSI 38.3 SMA50 60.73 (250 bar)",
-    "TD  SGML: RSI 29.6 SMA50 7.57 (250 bar)",
-    "TD  TSLA: RSI 51.8 SMA50 376.73 (250 bar)",
+    "TD  SGML: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  TSLA: HATA RuntimeError: You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait f",
     "TD  UAMY: RSI 35.3 SMA50 3.4 (250 bar)",
     "TD  WYFI: RSI 34.1 SMA50 13.03 (250 bar)",
     "TD  TEAM: RSI 30.6 SMA50 185.93 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  CLF: RSI 38.3 SMA50 12.53 (250 bar)",
     "TD  MRVL: RSI 35.3 SMA50 216.99 (250 bar)",
     "TD  AMD: RSI 38.7 SMA50 550.48 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 38"
   ],
   "tickers": {
     "CROX": {
@@ -289,7 +289,7 @@
         "atr14": 3.25,
         "support20": 157.4,
         "resistance20": 173.59,
-        "vol_ratio": 0.83,
+        "vol_ratio": 0.88,
         "bars": 250
       }
     },
@@ -372,7 +372,8 @@
         "support20": 3.63,
         "resistance20": 8.4,
         "vol_ratio": 0.34,
-        "bars": 250
+        "bars": 250,
+        "stale": true
       }
     },
     "TSLA": {
@@ -413,7 +414,8 @@
         "support20": 338.15,
         "resistance20": 414.23,
         "vol_ratio": 0.78,
-        "bars": 250
+        "bars": 250,
+        "stale": true
       }
     },
     "UAMY": {
@@ -576,7 +578,7 @@
         "atr14": 17.71,
         "support20": 348.27,
         "resistance20": 447.0,
-        "vol_ratio": 0.76,
+        "vol_ratio": 0.77,
         "bars": 250
       }
     },
@@ -658,7 +660,7 @@
         "atr14": 13.59,
         "support20": 191.25,
         "resistance20": 294.21,
-        "vol_ratio": 0.67,
+        "vol_ratio": 0.69,
         "bars": 250
       }
     },
@@ -740,7 +742,7 @@
         "atr14": 10.41,
         "support20": 98.36,
         "resistance20": 161.9,
-        "vol_ratio": 0.62,
+        "vol_ratio": 0.72,
         "bars": 250
       }
     },
@@ -781,7 +783,7 @@
         "atr14": 15.19,
         "support20": 180.47,
         "resistance20": 266.0,
-        "vol_ratio": 2.01,
+        "vol_ratio": 2.02,
         "bars": 250
       }
     },
@@ -822,7 +824,7 @@
         "atr14": 2.83,
         "support20": 31.21,
         "resistance20": 58.85,
-        "vol_ratio": 0.78,
+        "vol_ratio": 0.77,
         "bars": 250
       }
     },
@@ -986,7 +988,7 @@
         "atr14": 8.9,
         "support20": 77.32,
         "resistance20": 146.07,
-        "vol_ratio": 1.14,
+        "vol_ratio": 1.16,
         "bars": 250
       }
     },
@@ -1147,7 +1149,7 @@
           "signal": 0.622,
           "hist": -1.684
         },
-        "atr14": 8.76,
+        "atr14": 8.78,
         "support20": 230.92,
         "resistance20": 273.07,
         "vol_ratio": 1.11,
@@ -1232,7 +1234,7 @@
         "atr14": 9.42,
         "support20": 142.28,
         "resistance20": 198.74,
-        "vol_ratio": 0.77,
+        "vol_ratio": 0.8,
         "bars": 250
       }
     },
@@ -1314,7 +1316,7 @@
         "atr14": 13.61,
         "support20": 298.38,
         "resistance20": 389.23,
-        "vol_ratio": 0.64,
+        "vol_ratio": 0.66,
         "bars": 250
       }
     },
@@ -1642,7 +1644,7 @@
         "atr14": 16.87,
         "support20": 120.56,
         "resistance20": 253.66,
-        "vol_ratio": 0.8,
+        "vol_ratio": 0.81,
         "bars": 250
       }
     },
