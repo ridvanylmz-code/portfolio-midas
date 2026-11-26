@@ -1,23 +1,23 @@
 {
- "updated": "2026-11-20",
- "note": "Fiyatlar 20 Kas 2026 (TradingView connector (BIST, 20 Kas Cuma kapanışı; 21 Kas 00:30 çekildi). Teknik alanlar 20 Kas; temel TTM alanları bağlayıcıda bu kez verilmedi, 13 Kas değerleri korundu.); trend verisi (4S Trend / 15dk Trend / 15dk Tamam yada Devam / Elliott) Yahoo Finance 15dk mumlarından (gecikmeli). Günlük göstergeler TradingView 1D. Adil değer = analist ortalama hedefi, kendi tahminim değil. Kısa sözlük: 4S Trend = 4 saatlik mumlarda kısa/uzun hareketli ortalama ilişkisi (yukarı = kısa üstte); 15dk Trend = 15 dakikalık mumlarda aynı mantık, daha kısa vade; 15dk Tamam yada Devam = 15 dakikalık ATR tabanlı trend çizgisi (yukarı = Devam, aşağı = Tamam); RSI = ivme (30 altı aşırı satım, 70 üstü aşırı alım); MACD = ivme/trend dönüşü; ADX = trend gücü; Elliott = fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı, kural tabanlı ve kesin değildir. Sermaye artırımı notları otomatik haber/KAP taramasıdır: yatırım kararından önce KAP'tan doğrulayın (bedelli sermaye artırımı kontrolü zorunlu). BIST: yalnızca spot (T+2), günlük ±%10 fiyat sınırı. Yazılı notlar sabittir; trend satırları canlı güncellenir. Yatırım tavsiyesi değildir.",
+ "updated": "2026-11-26",
+ "note": "Fiyatlar 26 Kas 2026 (TradingView connector (BIST, 26 Kas kapanışı; 26 Kas 20:50 çekildi). Fiyat/teknik güncel; temel veriler bu çekimde bağlayıcıdan gelmedi, önceki (Kasım ortası) değerler korundu.); trend verisi (4S Trend / 15dk Trend / 15dk Tamam yada Devam / Elliott) Yahoo Finance 15dk mumlarından (gecikmeli). Günlük göstergeler TradingView 1D. Adil değer = analist ortalama hedefi, kendi tahminim değil. Kısa sözlük: 4S Trend = 4 saatlik mumlarda kısa/uzun hareketli ortalama ilişkisi (yukarı = kısa üstte); 15dk Trend = 15 dakikalık mumlarda aynı mantık, daha kısa vade; 15dk Tamam yada Devam = 15 dakikalık ATR tabanlı trend çizgisi (yukarı = Devam, aşağı = Tamam); RSI = ivme (30 altı aşırı satım, 70 üstü aşırı alım); MACD = ivme/trend dönüşü; ADX = trend gücü; Elliott = fiyatın 5 itki + 3 düzeltme dalgası yaptığı varsayımı, kural tabanlı ve kesin değildir. Sermaye artırımı notları otomatik haber/KAP taramasıdır: yatırım kararından önce KAP'tan doğrulayın (bedelli sermaye artırımı kontrolü zorunlu). BIST: yalnızca spot (T+2), günlük ±%10 fiyat sınırı. Yazılı notlar sabittir; trend satırları canlı güncellenir. Yatırım tavsiyesi değildir.",
  "tickers": {
   "AHGAZ": {
    "name": "Ahlatci Dogal Gaz Dagitim Enerji ve Yatirim AS",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺43,80 (−%3,01). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 41,2."
+    "text": "26 Kas kapanışı ₺42,20 (+%0,00). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 5 (olgun, düzeltme riski). Günlük RSI 36,0."
    },
    "technical": [
-    "20 Kas kapanışı ₺43,80 (−%3,01); trend verisi son fiyatı ₺43,80",
-    "4S Trend aşağı: kısa ortalama 45,08 < uzun ortalama 45,64; son kesişim 4 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 44,31 < uzun 44,92 (69 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺44,24 (fiyata %−1,0 uzak; 80 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺47,38 seviyesinden başlıyor; son uç ₺43,72 (%7,7 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺45,12 – ₺45,98. Sayım ₺47,38 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,0); kesin değildir.",
-    "Günlük RSI 41,2: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD 0,07 sinyalin (0,41) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 14,0: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 11,4; CCI −158",
-    "Fiyat günlük 20 günlük ortalamanın (45,68) altında, SMA50'nin (45,03) altında, SMA200'ün (33,83) üstünde. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺42,20 (+%0,00); trend verisi son fiyatı ₺42,10",
+    "4S Trend aşağı: kısa ortalama 42,74 < uzun ortalama 43,86; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 42,18 < uzun 42,48 (201 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺42,19 (fiyata %−0,2 uzak; 36 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 5 (olgun, düzeltme riski)): Düşüş sayımı ₺47,38 seviyesinden başlıyor; son uç ₺41,42 (%12,6 aşağı). Dalga 5 son itkidir: yorgunluk ve yukarı yönlü düzeltme riski yüksek. Düzeltme bölgesi ₺43,70 – ₺45,10. Bu, dibin/tepenin geldiği anlamına gelmez. Sayım ₺47,38 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,0); kesin değildir.",
+    "Günlük RSI 36,0: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,69 sinyalin (−0,13) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 20,0: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 12,3; CCI −162",
+    "Fiyat günlük 20 günlük ortalamanın (44,56) altında, SMA50'nin (45,19) altında, SMA200'ün (34,17) üstünde. TradingView günlük özeti: Nötr"
    ],
    "fundamental": {
     "metrics": [
@@ -62,26 +62,26 @@
       "Takvimde tarih yok"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺65,00 (kapanışa göre +%48; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺65,00 (kapanışa göre +%54; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "news": []
   },
   "AKSGY": {
    "name": "Akis Gayrimenkul Yatirim Ortakligi A.S.",
    "momentum": {
-    "status": "Karışık",
-    "text": "20 Kas kapanışı ₺8,57 (−%0,46). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 36,4."
+    "status": "Zayıf",
+    "text": "26 Kas kapanışı ₺8,35 (+%0,97). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 34,2."
    },
    "technical": [
-    "20 Kas kapanışı ₺8,57 (−%0,46); trend verisi son fiyatı ₺8,57",
-    "4S Trend aşağı: kısa ortalama 8,79 < uzun ortalama 8,95; son kesişim 3 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 8,58 < uzun 8,72 (99 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺8,53 (fiyata %0,5 uzak; 14 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺9,52 seviyesinden başlıyor; son uç ₺8,46 (%11,1 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺8,86 – ₺9,12 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺9,52 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,5); kesin değildir.",
-    "Günlük RSI 36,4: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,11 sinyalin (−0,08) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 21,6: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 13,4; CCI −174",
-    "Fiyat günlük 20 günlük ortalamanın (9,04) altında, SMA50'nin (9,28) altında, SMA200'ün (9,24) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺8,35 (+%0,97); trend verisi son fiyatı ₺8,36",
+    "4S Trend aşağı: kısa ortalama 8,42 < uzun ortalama 8,63; son kesişim 11 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 8,40 < uzun 8,41 (231 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺8,46 (fiyata %−1,2 uzak; 0 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺9,52 seviyesinden başlıyor; son uç ₺8,24 (%13,4 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺8,73 – ₺9,03. Sayım ₺9,52 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,6); kesin değildir.",
+    "Günlük RSI 34,2: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,22 sinyalin (−0,15) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 24,5: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 4,8; CCI −123",
+    "Fiyat günlük 20 günlük ortalamanın (8,81) altında, SMA50'nin (9,15) altında, SMA200'ün (9,23) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -163,18 +163,18 @@
    "name": "DARPHANE ALTIN SERTIFIKASI",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺68,43 (−%0,98). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 36,5."
+    "text": "26 Kas kapanışı ₺67,32 (+%0,63). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 35,9."
    },
    "technical": [
-    "20 Kas kapanışı ₺68,43 (−%0,98); trend verisi son fiyatı ₺68,43",
-    "4S Trend aşağı: kısa ortalama 69,19 < uzun ortalama 69,83; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 68,52 < uzun 68,87 (276 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺68,29 (fiyata %0,2 uzak; 18 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺72,73 seviyesinden başlıyor; son uç ₺67,51 (%7,2 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺69,50 – ₺70,74. Sayım ₺72,73 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %2,0); kesin değildir.",
-    "Günlük RSI 36,5: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,55 sinyalin (−0,39) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 21,8: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 20,3; CCI −150",
-    "Fiyat günlük 20 günlük ortalamanın (70,24) altında, SMA50'nin (71,36) altında, SMA200'ün (76,59) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺67,32 (+%0,63); trend verisi son fiyatı ₺67,31",
+    "4S Trend aşağı: kısa ortalama 67,97 < uzun ortalama 68,84; son kesişim 20 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 67,39 < uzun 67,81 (72 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺67,13 (fiyata %0,3 uzak; 32 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺69,80 seviyesinden başlıyor; son uç ₺68,04 (%2,5 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺68,04. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺69,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %2,0); kesin değildir.",
+    "Günlük RSI 35,9: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,86 sinyalin (−0,58) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 25,7: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 16,9; CCI −135",
+    "Fiyat günlük 20 günlük ortalamanın (69,51) altında, SMA50'nin (70,93) altında, SMA200'ün (76,24) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -184,7 +184,7 @@
      ],
      [
       "Kapanış",
-      "₺68,43"
+      "₺67,32"
      ]
     ],
     "fair_value": "Şirket değil (fon/sertifika): bilanço, analist hedefi ve sermaye artırımı verisi yok."
@@ -219,19 +219,19 @@
   "ALTNY": {
    "name": "Altinay Savunma Teknolojileri A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺10,53 (−%2,50). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 37,6."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺9,97 (+%3,32). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 35,4."
    },
    "technical": [
-    "20 Kas kapanışı ₺10,53 (−%2,50); trend verisi son fiyatı ₺10,48",
-    "4S Trend aşağı: kısa ortalama 10,84 < uzun ortalama 10,98; son kesişim 2 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 10,53 < uzun 10,76 (97 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺10,55 (fiyata %−0,6 uzak; 77 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺11,85 seviyesinden başlıyor; son uç ₺10,37 (%12,5 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺10,94 – ₺11,28 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺11,85 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,3); kesin değildir.",
-    "Günlük RSI 37,6: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,34 sinyalin (−0,46) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 27,4: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 50,6; CCI −34",
-    "Fiyat günlük 20 günlük ortalamanın (11,12) altında, SMA50'nin (12,25) altında, SMA200'ün (15,30) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺9,97 (+%3,32); trend verisi son fiyatı ₺9,89",
+    "4S Trend aşağı: kısa ortalama 10,04 < uzun ortalama 10,41; son kesişim 10 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 9,93 < uzun 9,98 (229 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺9,84 (fiyata %0,5 uzak; 31 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺11,85 seviyesinden başlıyor; son uç ₺10,08 (%14,9 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺10,08. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺11,85 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,6); kesin değildir.",
+    "Günlük RSI 35,4: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,49 sinyalin (−0,45) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 29,1: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 5,7; CCI −106",
+    "Fiyat günlük 20 günlük ortalamanın (10,73) altında, SMA50'nin (11,73) altında, SMA200'ün (15,19) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -315,18 +315,18 @@
    "name": "Baskent Dogalgaz Dagitim Gayrimenkul Yatirim Ortakligi AS",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺34,56 (−%4,58). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 41,3."
+    "text": "26 Kas kapanışı ₺32,78 (−%1,27). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 35,6."
    },
    "technical": [
-    "20 Kas kapanışı ₺34,56 (−%4,58); trend verisi son fiyatı ₺34,56",
-    "4S Trend aşağı: kısa ortalama 35,92 < uzun ortalama 36,07; son kesişim 0 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 35,27 < uzun 35,97 (53 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺35,02 (fiyata %−1,3 uzak; 44 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺38,72 seviyesinden başlıyor; son uç ₺34,40 (%11,2 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺36,05 – ₺37,07. Sayım ₺38,72 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,1); kesin değildir.",
-    "Günlük RSI 41,3: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,48 sinyalin (−0,79) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 20,0: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 60,9; CCI 2",
-    "Fiyat günlük 20 günlük ortalamanın (36,00) altında, SMA50'nin (38,17) altında, SMA200'ün (45,41) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺32,78 (−%1,27); trend verisi son fiyatı ₺32,88",
+    "4S Trend aşağı: kısa ortalama 33,86 < uzun ortalama 34,76; son kesişim 8 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 33,28 < uzun 33,68 (185 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺33,30 (fiyata %−1,3 uzak; 14 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺38,72 seviyesinden başlıyor; son uç ₺32,00 (%17,4 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺34,57 – ₺36,15. Sayım ₺38,72 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,5); kesin değildir.",
+    "Günlük RSI 35,6: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,87 sinyalin (−0,74) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 19,9: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 8,3; CCI −94",
+    "Fiyat günlük 20 günlük ortalamanın (35,24) altında, SMA50'nin (37,37) altında, SMA200'ün (45,18) altında. TradingView günlük özeti: Güçlü Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -378,19 +378,19 @@
   "BIENY": {
    "name": "Bien Yapi Urunleri Sanayi Turizm Ve Ticaret Anonim Sirketi",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺11,62 (+%1,22). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 38,4."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺12,17 (+%5,46). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 45,8."
    },
    "technical": [
-    "20 Kas kapanışı ₺11,62 (+%1,22); trend verisi son fiyatı ₺11,61",
-    "4S Trend aşağı: kısa ortalama 12,09 < uzun ortalama 12,53; son kesişim 4 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 11,67 < uzun 11,96 (172 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺11,79 (fiyata %−1,5 uzak; 2 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺9,71 seviyesinden başlıyor; son uç ₺11,35 (%16,9 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺11,35. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺9,71 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,7); kesin değildir.",
-    "Günlük RSI 38,4: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,38 sinyalin (−0,40) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 29,5: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 35,9; CCI −33",
-    "Fiyat günlük 20 günlük ortalamanın (12,66) altında, SMA50'nin (13,99) altında, SMA200'ün (20,77) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺12,17 (+%5,46); trend verisi son fiyatı ₺12,18",
+    "4S Trend aşağı: kısa ortalama 11,85 < uzun ortalama 12,07; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 12,10 > uzun 11,87 (29 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺12,06 (fiyata %0,9 uzak; 56 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺14,85 seviyesinden başlıyor; son uç ₺12,57 (%15,4 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺12,57. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺14,85 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,6); kesin değildir.",
+    "Günlük RSI 45,8: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,45 sinyalin (−0,44) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 25,7: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 11,5; CCI −16",
+    "Fiyat günlük 20 günlük ortalamanın (12,33) altında, SMA50'nin (13,34) altında, SMA200'ün (20,52) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -458,18 +458,18 @@
    "name": "Dofer Yapi Maizemeleri Sanayi ve Ticaret A.S.",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺18,97 (+%2,37). 4S Trend yukarı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 48,3."
+    "text": "26 Kas kapanışı ₺17,80 (+%1,66). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 41,1."
    },
    "technical": [
-    "20 Kas kapanışı ₺18,97 (+%2,37); trend verisi son fiyatı ₺19,10",
-    "4S Trend yukarı: kısa ortalama 18,72 > uzun ortalama 18,62; son kesişim 19 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 18,12 < uzun 18,41 (72 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺17,68 (fiyata %7,4 uzak; 0 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺20,24 seviyesinden başlıyor; son uç ₺17,64 (%12,8 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺18,63 – ₺19,25 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺20,24 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,1); kesin değildir.",
-    "Günlük RSI 48,3: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,46 sinyalin (−0,77) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 26,6: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 72,2; CCI 40",
-    "Fiyat günlük 20 günlük ortalamanın (18,82) üstünde, SMA50'nin (20,61) altında, SMA200'ün (29,50) altında. TradingView günlük özeti: Nötr"
+    "26 Kas kapanışı ₺17,80 (+%1,66); trend verisi son fiyatı ₺17,81",
+    "4S Trend aşağı: kısa ortalama 18,07 < uzun ortalama 18,30; son kesişim 5 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 17,89 < uzun 17,98 (76 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺17,67 (fiyata %0,8 uzak; 30 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺20,24 seviyesinden başlıyor; son uç ₺17,50 (%13,5 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺18,55 – ₺19,19. Sayım ₺20,24 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,9); kesin değildir.",
+    "Günlük RSI 41,1: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,50 sinyalin (−0,59) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 20,9: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 10,1; CCI −42",
+    "Fiyat günlük 20 günlük ortalamanın (18,54) altında, SMA50'nin (19,91) altında, SMA200'ün (29,20) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -529,18 +529,18 @@
    "name": "Dogan Sirketler Grubu Holding A.S.",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺15,90 (−%3,11). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 34,8."
+    "text": "26 Kas kapanışı ₺14,98 (+%0,60). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 29,1 (aşırı satım bölgesi)."
    },
    "technical": [
-    "20 Kas kapanışı ₺15,90 (−%3,11); trend verisi son fiyatı ₺15,86",
-    "4S Trend aşağı: kısa ortalama 16,34 < uzun ortalama 16,66; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 16,12 < uzun 16,29 (275 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺16,03 (fiyata %−1,1 uzak; 31 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺18,36 seviyesinden başlıyor; son uç ₺15,79 (%14,0 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺16,77 – ₺17,38 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺18,36 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %2,8); kesin değildir.",
-    "Günlük RSI 34,8: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,49 sinyalin (−0,47) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 35,9: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 17,5; CCI −102",
-    "Fiyat günlük 20 günlük ortalamanın (16,94) altında, SMA50'nin (18,21) altında, SMA200'ün (20,66) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺14,98 (+%0,60); trend verisi son fiyatı ₺14,99",
+    "4S Trend aşağı: kısa ortalama 15,31 < uzun ortalama 15,88; son kesişim 20 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 15,08 < uzun 15,24 (407 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺15,16 (fiyata %−1,1 uzak; 0 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺18,30 seviyesinden başlıyor; son uç ₺14,86 (%18,8 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺16,17 – ₺16,99 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺18,30 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,0); kesin değildir.",
+    "Günlük RSI 29,1: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,70 sinyalin (−0,57) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 40,0: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 1,4; CCI −144",
+    "Fiyat günlük 20 günlük ortalamanın (16,36) altında, SMA50'nin (17,72) altında, SMA200'ün (20,54) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -581,7 +581,7 @@
       "Takvimde tarih yok"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺34,42 (kapanışa göre +%116; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺34,42 (kapanışa göre +%130; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "dilution": {
     "risk": "Düşük",
@@ -623,19 +623,19 @@
   "EMKEL": {
    "name": "Emek Elektrik Endustrisi A.S.",
    "momentum": {
-    "status": "Karışık",
-    "text": "20 Kas kapanışı ₺6,07 (+%1,68). 4S Trend yukarı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 46,9."
+    "status": "Zayıf",
+    "text": "26 Kas kapanışı ₺5,26 (−%0,38). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 38,0."
    },
    "technical": [
-    "20 Kas kapanışı ₺6,07 (+%1,68); trend verisi son fiyatı ₺6,07",
-    "4S Trend yukarı: kısa ortalama 6,09 > uzun ortalama 5,92; son kesişim 11 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 6,09 < uzun 6,10 (62 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺6,30 (fiyata %−3,8 uzak; 2 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺6,80 seviyesinden başlıyor; son uç ₺6,46 (%5,0 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺6,46. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺6,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %9,1); kesin değildir.",
-    "Günlük RSI 46,9: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,37 sinyalin (−0,62) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 26,6: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 57,9; CCI 54",
-    "Fiyat günlük 20 günlük ortalamanın (5,99) üstünde, SMA50'nin (7,23) altında, SMA200'ün (17,24) altında. TradingView günlük özeti: Nötr"
+    "26 Kas kapanışı ₺5,26 (−%0,38); trend verisi son fiyatı ₺5,27",
+    "4S Trend aşağı: kısa ortalama 5,46 < uzun ortalama 5,64; son kesişim 5 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 5,31 < uzun 5,40 (194 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺5,35 (fiyata %−1,5 uzak; 65 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺6,80 seviyesinden başlıyor; son uç ₺5,05 (%25,7 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺5,72 – ₺6,13. Sayım ₺6,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %9,8); kesin değildir.",
+    "Günlük RSI 38,0: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,39 sinyalin (−0,48) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 23,5: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 22,5; CCI −56",
+    "Fiyat günlük 20 günlük ortalamanın (5,78) altında, SMA50'nin (6,69) altında, SMA200'ün (16,93) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -702,19 +702,19 @@
   "EMPAE": {
    "name": "Empa Elektronik Sanayi ve Ticaret A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺33,80 (−%5,48). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 33,8."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺32,58 (+%4,29). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 35,3."
    },
    "technical": [
-    "20 Kas kapanışı ₺33,80 (−%5,48); trend verisi son fiyatı ₺33,66",
-    "4S Trend aşağı: kısa ortalama 36,12 < uzun ortalama 37,39; son kesişim 4 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 34,29 < uzun 35,65 (101 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺34,24 (fiyata %−1,7 uzak; 127 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺42,36 seviyesinden başlıyor; son uç ₺33,52 (%20,9 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺36,90 – ₺38,98 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺42,36 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %7,6); kesin değildir.",
-    "Günlük RSI 33,8: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −2,04 sinyalin (−2,28) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 16,5: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 25,6; CCI −137",
-    "Fiyat günlük 20 günlük ortalamanın (38,36) altında, SMA50'nin (43,29) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺32,58 (+%4,29); trend verisi son fiyatı ₺32,18",
+    "4S Trend aşağı: kısa ortalama 32,92 < uzun ortalama 34,78; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 32,28 < uzun 32,66 (233 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺31,61 (fiyata %1,8 uzak; 25 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺42,36 seviyesinden başlıyor; son uç ₺31,00 (%26,8 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺35,34 – ₺38,02 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺42,36 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,7); kesin değildir.",
+    "Günlük RSI 35,3: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −2,54 sinyalin (−2,34) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 17,6: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 5,9; CCI −133",
+    "Fiyat günlük 20 günlük ortalamanın (36,54) altında, SMA50'nin (41,28) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -770,18 +770,18 @@
    "name": "Enerya Enerji A.S.",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺14,45 (−%2,50). 4S Trend yukarı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 56,8."
+    "text": "26 Kas kapanışı ₺14,07 (+%0,93). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 50,9."
    },
    "technical": [
-    "20 Kas kapanışı ₺14,45 (−%2,50); trend verisi son fiyatı ₺14,40",
-    "4S Trend yukarı: kısa ortalama 14,62 > uzun ortalama 14,46; son kesişim 28 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 14,53 < uzun 14,62 (29 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺14,54 (fiyata %−1,0 uzak; 32 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺13,71 seviyesinden başlıyor; son uç ₺14,40 (%5,0 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺14,40. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺13,71 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %2,4); kesin değildir.",
-    "Günlük RSI 56,8: alıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD 0,40 sinyalin (0,38) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 16,5: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 80,4; CCI 69",
-    "Fiyat günlük 20 günlük ortalamanın (14,16) üstünde, SMA50'nin (13,56) üstünde, SMA200'ün (10,34) üstünde. TradingView günlük özeti: Al"
+    "26 Kas kapanışı ₺14,07 (+%0,93); trend verisi son fiyatı ₺14,09",
+    "4S Trend aşağı: kısa ortalama 14,21 < uzun ortalama 14,30; son kesişim 4 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 14,11 < uzun 14,17 (161 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺14,00 (fiyata %0,7 uzak; 20 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺14,48 seviyesinden başlıyor; son uç ₺14,25 (%1,6 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺14,25. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺14,48 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,3); kesin değildir.",
+    "Günlük RSI 50,9: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 0,23 sinyalin (0,32) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 15,4: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 36,6; CCI −25",
+    "Fiyat günlük 20 günlük ortalamanın (14,15) altında, SMA50'nin (13,71) üstünde, SMA200'ün (10,43) üstünde. TradingView günlük özeti: Nötr"
    ],
    "fundamental": {
     "metrics": [
@@ -826,7 +826,7 @@
       "Takvimde tarih yok"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺20,00 (kapanışa göre +%38; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺20,00 (kapanışa göre +%42; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "news": [
     {
@@ -846,19 +846,19 @@
   "FROTO": {
    "name": "Ford Otomotiv Sanayi A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺70,20 (−%2,09). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 46,0. Sonraki bilanço 11 Şub 2027."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺65,80 (−%1,64). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 36,7. Sonraki bilanço 11 Şub 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺70,20 (−%2,09); trend verisi son fiyatı ₺70,15",
-    "4S Trend aşağı: kısa ortalama 71,66 < uzun ortalama 71,96; son kesişim 1 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 70,43 < uzun 71,34 (50 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺70,57 (fiyata %−0,6 uzak; 68 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺76,80 seviyesinden başlıyor; son uç ₺69,40 (%9,6 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺72,23 – ₺73,97. Sayım ₺76,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,2); kesin değildir.",
-    "Günlük RSI 46,0: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD 0,09 sinyalin (−0,11) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 20,7: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 55,5; CCI −6",
-    "Fiyat günlük 20 günlük ortalamanın (71,51) altında, SMA50'nin (72,85) altında, SMA200'ün (89,19) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺65,80 (−%1,64); trend verisi son fiyatı ₺65,85",
+    "4S Trend aşağı: kısa ortalama 68,07 < uzun ortalama 69,86; son kesişim 9 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 66,24 < uzun 67,45 (182 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺65,18 (fiyata %1,0 uzak; 19 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺74,05 seviyesinden başlıyor; son uç ₺64,60 (%12,8 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺68,21 – ₺70,44. Sayım ₺74,05 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,7); kesin değildir.",
+    "Günlük RSI 36,7: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,80 sinyalin (−0,29) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 19,7: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 11,7; CCI −119",
+    "Fiyat günlük 20 günlük ortalamanın (70,42) altında, SMA50'nin (71,97) altında, SMA200'ün (88,24) altında. TradingView günlük özeti: Güçlü Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -903,7 +903,7 @@
       "11 Şub 2027 (TradingView takvimi)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺149,55 (kapanışa göre +%113; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺149,55 (kapanışa göre +%127; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "news": [
     {
@@ -941,19 +941,19 @@
   "GMSTR": {
    "name": "Istanbul Silver B Tipi Gumus Borsa Yatirim Fonu",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺432,90 (−%5,17). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 20,8 (aşırı satım bölgesi)."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺430,50 (+%4,77). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 30,2."
    },
    "technical": [
-    "20 Kas kapanışı ₺432,90 (−%5,17); trend verisi son fiyatı ₺432,90",
-    "4S Trend aşağı: kısa ortalama 455,73 < uzun ortalama 479,18; son kesişim 80 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 434,73 < uzun 447,41 (229 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺433,88 (fiyata %−0,2 uzak; 98 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺529,00 seviyesinden başlıyor; son uç ₺424,70 (%19,7 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺464,54 – ₺489,16 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺529,00 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,5); kesin değildir.",
-    "Günlük RSI 20,8: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −27,20 sinyalin (−21,73) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 48,0: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 5,6; CCI −224",
-    "Fiyat günlük 20 günlük ortalamanın (500,80) altında, SMA50'nin (553,05) altında, SMA200'ün (627,89) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺430,50 (+%4,77); trend verisi son fiyatı ₺430,50",
+    "4S Trend aşağı: kısa ortalama 430,46 < uzun ortalama 450,71; son kesişim 89 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 427,24 < uzun 427,40 (361 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺425,90 (fiyata %1,1 uzak; 32 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺446,40 seviyesinden başlıyor; son uç ₺433,00 (%3,0 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺433,00. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺446,40 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,5); kesin değildir.",
+    "Günlük RSI 30,2: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −32,58 sinyalin (−27,39) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 51,0: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 9,5; CCI −111",
+    "Fiyat günlük 20 günlük ortalamanın (476,84) altında, SMA50'nin (538,90) altında, SMA200'ün (621,09) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -963,7 +963,7 @@
      ],
      [
       "Kapanış",
-      "₺432,90"
+      "₺430,50"
      ]
     ],
     "fair_value": "Şirket değil (fon/sertifika): bilanço, analist hedefi ve sermaye artırımı verisi yok."
@@ -999,18 +999,18 @@
    "name": "Gimat Magazacilik Insaat Sanayi ve Ticaret A.S.",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺44,26 (−%0,32). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 5 (olgun, düzeltme riski). Günlük RSI 38,7."
+    "text": "26 Kas kapanışı ₺44,84 (−%1,45). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 43,5."
    },
    "technical": [
-    "20 Kas kapanışı ₺44,26 (−%0,32); trend verisi son fiyatı ₺44,00",
-    "4S Trend aşağı: kısa ortalama 45,17 < uzun ortalama 46,54; son kesişim 24 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 44,30 < uzun 44,81 (147 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺44,49 (fiyata %−1,1 uzak; 40 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 5 (olgun, düzeltme riski)): Düşüş sayımı ₺57,45 seviyesinden başlıyor; son uç ₺43,54 (%24,2 aşağı). Dalga 5 son itkidir: yorgunluk ve yukarı yönlü düzeltme riski yüksek. Düzeltme bölgesi ₺48,85 – ₺52,14. Bu, dibin/tepenin geldiği anlamına gelmez. Sayım ₺57,45 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,0); kesin değildir.",
-    "Günlük RSI 38,7: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −1,01 sinyalin (−0,42) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 13,5: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 4,8; CCI −137",
-    "Fiyat günlük 20 günlük ortalamanın (47,49) altında, SMA50'nin (48,28) altında, SMA200'ün (41,43) üstünde. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺44,84 (−%1,45); trend verisi son fiyatı ₺44,84",
+    "4S Trend aşağı: kısa ortalama 45,47 < uzun ortalama 45,92; son kesişim 32 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 45,76 < uzun 45,77 (0 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺45,64 (fiyata %−1,8 uzak; 10 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺42,20 seviyesinden başlıyor; son uç ₺44,70 (%5,9 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺44,70. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺42,20 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,8); kesin değildir.",
+    "Günlük RSI 43,5: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,10 sinyalin (−0,83) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 12,6: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 48,2; CCI −72",
+    "Fiyat günlük 20 günlük ortalamanın (46,67) altında, SMA50'nin (48,02) altında, SMA200'ün (41,82) üstünde. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1055,18 +1055,18 @@
    "name": "Hareket Proje Tasimaciligi ve Yuk Muhendisligi AS",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺6,44 (+%0,63). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 4 (düzeltme). Günlük RSI 41,4."
+    "text": "26 Kas kapanışı ₺7,25 (−%0,82). 4S Trend yukarı, 15dk Trend yukarı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 4 (düzeltme). Günlük RSI 50,7."
    },
    "technical": [
-    "20 Kas kapanışı ₺6,44 (+%0,63); trend verisi son fiyatı ₺6,39",
-    "4S Trend aşağı: kısa ortalama 6,31 < uzun ortalama 6,68; son kesişim 10 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend yukarı: kısa 6,27 > uzun 6,23 (11 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺6,18 (fiyata %3,3 uzak; 85 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 4 (düzeltme)): Düşüş sayımı ₺8,42 seviyesinden başlıyor; son uç ₺6,47 (%23,2 aşağı). Şu an düzeltme dalgası (Dalga 4) sürüyor; bugüne kadarki ucu ₺6,47. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺8,42 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %9,3); kesin değildir.",
-    "Günlük RSI 41,4: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,42 sinyalin (−0,31) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 25,1: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 19,5; CCI −71",
-    "Fiyat günlük 20 günlük ortalamanın (7,08) altında, SMA50'nin (7,65) altında, SMA200'ün (6,55) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺7,25 (−%0,82); trend verisi son fiyatı ₺7,28",
+    "4S Trend yukarı: kısa ortalama 7,09 > uzun ortalama 6,92; son kesişim 2 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 7,37 > uzun 7,20 (143 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺7,46 (fiyata %−2,5 uzak; 4 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 4 (düzeltme)): Düşüş sayımı ₺8,42 seviyesinden başlıyor; son uç ₺7,57 (%10,1 aşağı). Şu an düzeltme dalgası (Dalga 4) sürüyor; bugüne kadarki ucu ₺7,57. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺8,42 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,5); kesin değildir.",
+    "Günlük RSI 50,7: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,24 sinyalin (−0,31) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 20,6: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 52,9; CCI 41",
+    "Fiyat günlük 20 günlük ortalamanın (7,08) üstünde, SMA50'nin (7,75) altında, SMA200'ün (6,57) üstünde. TradingView günlük özeti: Al"
    ],
    "fundamental": {
     "metrics": [
@@ -1146,18 +1146,18 @@
    "name": "Kayseri Seker Fabrikasi AS",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺2,19 (−%2,67). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 26,6 (aşırı satım bölgesi)."
+    "text": "26 Kas kapanışı ₺2,06 (+%0,49). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 22,7 (aşırı satım bölgesi)."
    },
    "technical": [
-    "20 Kas kapanışı ₺2,19 (−%2,67); trend verisi son fiyatı ₺2,19",
-    "4S Trend aşağı: kısa ortalama 2,26 < uzun ortalama 2,33; son kesişim 98 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 2,20 < uzun 2,25 (95 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺2,22 (fiyata %−1,4 uzak; 127 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺2,47 seviyesinden başlıyor; son uç ₺2,18 (%11,7 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺2,29 – ₺2,36. Sayım ₺2,47 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,3); kesin değildir.",
-    "Günlük RSI 26,6: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,16 sinyalin (−0,18) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 56,4: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 15,2; CCI −195",
-    "Fiyat günlük 20 günlük ortalamanın (2,41) altında, SMA50'nin (2,85) altında, SMA200'ün (4,13) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺2,06 (+%0,49); trend verisi son fiyatı ₺2,07",
+    "4S Trend aşağı: kısa ortalama 2,13 < uzun ortalama 2,21. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 2,10 < uzun 2,12 (227 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺2,11 (fiyata %−2,1 uzak; 1 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺2,47 seviyesinden başlıyor; son uç ₺2,05 (%17,0 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺2,21 – ₺2,31. Sayım ₺2,47 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,2); kesin değildir.",
+    "Günlük RSI 22,7: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,17 sinyalin (−0,17) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 57,5: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 0,8; CCI −162",
+    "Fiyat günlük 20 günlük ortalamanın (2,31) altında, SMA50'nin (2,71) altında, SMA200'ün (4,08) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1202,18 +1202,18 @@
    "name": "Kuzey Boru A.S.",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺10,01 (−%8,17). 4S Trend yukarı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 43,9."
+    "text": "26 Kas kapanışı ₺10,51 (+%3,55). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 49,5."
    },
    "technical": [
-    "20 Kas kapanışı ₺10,01 (−%8,17); trend verisi son fiyatı ₺10,04",
-    "4S Trend yukarı: kısa ortalama 10,58 > uzun ortalama 10,50; son kesişim 24 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 10,35 < uzun 10,58 (29 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺10,27 (fiyata %−2,3 uzak; 32 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺11,44 seviyesinden başlıyor; son uç ₺10,02 (%12,4 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺10,56 – ₺10,90 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺11,44 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,5); kesin değildir.",
-    "Günlük RSI 43,9: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,16 sinyalin (−0,39) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 18,9: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 72,2; CCI 30",
-    "Fiyat günlük 20 günlük ortalamanın (10,38) altında, SMA50'nin (11,22) altında, SMA200'ün (19,93) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺10,51 (+%3,55); trend verisi son fiyatı ₺10,45",
+    "4S Trend aşağı: kısa ortalama 10,43 < uzun ortalama 10,43; son kesişim 7 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 10,45 > uzun 10,40 (24 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺10,32 (fiyata %1,2 uzak; 31 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺9,92 seviyesinden başlıyor; son uç ₺10,08 (%1,6 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺10,08. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺9,92 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,6); kesin değildir.",
+    "Günlük RSI 49,5: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,12 sinyalin (−0,24) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 14,4: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 31,4; CCI 30",
+    "Fiyat günlük 20 günlük ortalamanın (10,39) üstünde, SMA50'nin (10,72) altında, SMA200'ün (19,79) altında. TradingView günlük özeti: Nötr"
    ],
    "fundamental": {
     "metrics": [
@@ -1265,19 +1265,19 @@
   "KLSER": {
    "name": "Kaleseramik Canakkale Kalebodur Seramik A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺14,17 (−%3,67). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 39,4."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺15,21 (+%9,98). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 49,5."
    },
    "technical": [
-    "20 Kas kapanışı ₺14,17 (−%3,67); trend verisi son fiyatı ₺14,18",
-    "4S Trend aşağı: kısa ortalama 14,83 < uzun ortalama 14,94; son kesişim 1 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 14,34 < uzun 14,74 (79 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺14,32 (fiyata %−1,0 uzak; 37 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺11,00 seviyesinden başlıyor; son uç ₺14,03 (%27,5 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺14,03. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺11,00 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %7,2); kesin değildir.",
-    "Günlük RSI 39,4: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,66 sinyalin (−0,92) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 32,3: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 56,5; CCI −13",
-    "Fiyat günlük 20 günlük ortalamanın (15,17) altında, SMA50'nin (17,36) altında, SMA200'ün (24,28) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺15,21 (+%9,98); trend verisi son fiyatı ₺15,21",
+    "4S Trend aşağı: kısa ortalama 14,71 < uzun ortalama 14,73; son kesişim 9 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 15,05 > uzun 14,80 (26 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺15,17 (fiyata %0,2 uzak; 31 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺15,80 seviyesinden başlıyor; son uç ₺15,21 (%3,7 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺15,21. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺15,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,6); kesin değildir.",
+    "Günlük RSI 49,5: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,57 sinyalin (−0,76) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 26,2: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 32,2; CCI 33",
+    "Fiyat günlük 20 günlük ortalamanın (14,92) üstünde, SMA50'nin (16,71) altında, SMA200'ün (24,01) altında. TradingView günlük özeti: Nötr"
    ],
    "fundamental": {
     "metrics": [
@@ -1357,18 +1357,18 @@
    "name": "MIA Teknoloji AS",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺23,10 (−%1,53). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 42,6."
+    "text": "26 Kas kapanışı ₺21,78 (−%1,18). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 37,3."
    },
    "technical": [
-    "20 Kas kapanışı ₺23,10 (−%1,53); trend verisi son fiyatı ₺22,54",
-    "4S Trend aşağı: kısa ortalama 23,36 < uzun ortalama 23,80; son kesişim 5 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 22,77 < uzun 23,21 (98 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺22,74 (fiyata %−0,9 uzak; 31 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺26,20 seviyesinden başlıyor; son uç ₺22,38 (%14,6 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺23,84 – ₺24,74 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺26,20 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,7); kesin değildir.",
-    "Günlük RSI 42,6: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,61 sinyalin (−0,66) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 10,2: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 30,8; CCI −139",
-    "Fiyat günlük 20 günlük ortalamanın (24,25) altında, SMA50'nin (25,69) altında, SMA200'ün (35,34) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺21,78 (−%1,18); trend verisi son fiyatı ₺21,88",
+    "4S Trend aşağı: kısa ortalama 22,47 < uzun ortalama 23,06; son kesişim 13 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 22,22 < uzun 22,45 (230 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺22,22 (fiyata %−1,5 uzak; 27 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺24,18 seviyesinden başlıyor; son uç ₺21,68 (%10,3 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺22,63 – ₺23,23. Sayım ₺24,18 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,7); kesin değildir.",
+    "Günlük RSI 37,3: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,82 sinyalin (−0,71) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 9,2: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 6,4; CCI −173",
+    "Fiyat günlük 20 günlük ortalamanın (23,62) altında, SMA50'nin (24,64) altında, SMA200'ün (35,05) altında. TradingView günlük özeti: Güçlü Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1413,6 +1413,12 @@
    },
    "news": [
     {
+     "date": "19 Kas 2026",
+     "title": "MİA Teknoloji, TSK Bulut Bilişim Faz 2 kapsamında 2,39 mn $'lık sözleşme imzaladı",
+     "src": "Matriks",
+     "url": "https://www.tradingview.com/news/matriks:6915108:0/"
+    },
+    {
      "date": "9 Kas 2026",
      "title": "MIATK 9 aylık net zarar 198,6 mn TL (önceki yıl 443,6 mn TL zarar)",
      "src": "Matriks",
@@ -1435,19 +1441,19 @@
   "RYGYO": {
    "name": "Reysas Gayrimenkul Yatirim Ortakligi A.S.",
    "momentum": {
-    "status": "Karışık",
-    "text": "20 Kas kapanışı ₺45,80 (+%0,66). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 41,1."
+    "status": "Zayıf",
+    "text": "26 Kas kapanışı ₺41,50 (−%3,08). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 29,4 (aşırı satım bölgesi)."
    },
    "technical": [
-    "20 Kas kapanışı ₺45,80 (+%0,66); trend verisi son fiyatı ₺45,40",
-    "4S Trend aşağı: kısa ortalama 45,99 < uzun ortalama 47,08; son kesişim 22 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 45,39 < uzun 45,76 (401 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺45,10 (fiyata %0,7 uzak; 5 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺49,80 seviyesinden başlıyor; son uç ₺44,74 (%10,2 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺46,67 – ₺47,87. Sayım ₺49,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,6); kesin değildir.",
-    "Günlük RSI 41,1: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,78 sinyalin (−0,30) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 20,5: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 10,5; CCI −121",
-    "Fiyat günlük 20 günlük ortalamanın (47,88) altında, SMA50'nin (48,29) altında, SMA200'ün (37,52) üstünde. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺41,50 (−%3,08); trend verisi son fiyatı ₺41,84",
+    "4S Trend aşağı: kısa ortalama 43,78 < uzun ortalama 45,32; son kesişim 30 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 42,51 < uzun 43,51 (75 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺42,44 (fiyata %−1,4 uzak; 56 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺49,80 seviyesinden başlıyor; son uç ₺41,74 (%16,2 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺44,82 – ₺46,72. Sayım ₺49,80 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,7); kesin değildir.",
+    "Günlük RSI 29,4: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,46 sinyalin (−0,81) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 25,4: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 3,9; CCI −172",
+    "Fiyat günlük 20 günlük ortalamanın (46,46) altında, SMA50'nin (48,33) altında, SMA200'ün (37,82) üstünde. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1496,18 +1502,18 @@
    "name": "Reysas Tasimacilik ve Lojistik Ticaret Anonim Sirketi",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺24,66 (+%0,57). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 44,6."
+    "text": "26 Kas kapanışı ₺24,10 (+%0,08). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 41,8."
    },
    "technical": [
-    "20 Kas kapanışı ₺24,66 (+%0,57); trend verisi son fiyatı ₺24,72",
-    "4S Trend aşağı: kısa ortalama 24,69 < uzun ortalama 25,17; son kesişim 14 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 24,43 < uzun 24,57 (364 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺24,20 (fiyata %2,1 uzak; 7 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺25,20 seviyesinden başlıyor; son uç ₺24,72 (%1,9 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺24,72. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺25,20 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,3); kesin değildir.",
-    "Günlük RSI 44,6: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,24 sinyalin (−0,02) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 12,8: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 8,2; CCI −95",
-    "Fiyat günlük 20 günlük ortalamanın (25,42) altında, SMA50'nin (25,51) altında, SMA200'ün (22,59) üstünde. TradingView günlük özeti: Nötr"
+    "26 Kas kapanışı ₺24,10 (+%0,08); trend verisi son fiyatı ₺24,22",
+    "4S Trend aşağı: kısa ortalama 24,59 < uzun ortalama 24,90; son kesişim 22 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 24,41 < uzun 24,58 (48 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺24,04 (fiyata %0,8 uzak; 22 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺25,86 seviyesinden başlıyor; son uç ₺23,96 (%7,3 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺24,69 – ₺25,13 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺25,86 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,5); kesin değildir.",
+    "Günlük RSI 41,8: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,34 sinyalin (−0,17) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 12,7: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 12,5; CCI −100",
+    "Fiyat günlük 20 günlük ortalamanın (25,14) altında, SMA50'nin (25,40) altında, SMA200'ün (22,70) üstünde. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1590,19 +1596,19 @@
   "SASA": {
    "name": "Sasa Polyester Sanayi A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺1,44 (−%4,00). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 31,7."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺1,44 (+%3,60). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 4 (düzeltme). Günlük RSI 35,8."
    },
    "technical": [
-    "20 Kas kapanışı ₺1,44 (−%4,00); trend verisi son fiyatı ₺1,45",
-    "4S Trend aşağı: kısa ortalama 1,50 < uzun ortalama 1,54; son kesişim 11 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 1,47 < uzun 1,50 (127 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺1,48 (fiyata %−2,1 uzak; 119 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺1,65 seviyesinden başlıyor; son uç ₺1,44 (%12,7 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺1,52 – ₺1,57. Sayım ₺1,65 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,4); kesin değildir.",
-    "Günlük RSI 31,7: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "26 Kas kapanışı ₺1,44 (+%3,60); trend verisi son fiyatı ₺1,45",
+    "4S Trend aşağı: kısa ortalama 1,45 < uzun ortalama 1,49; son kesişim 19 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 1,46 > uzun 1,45 (13 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺1,44 (fiyata %0,5 uzak; 23 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 4 (düzeltme)): Düşüş sayımı ₺1,65 seviyesinden başlıyor; son uç ₺1,52 (%7,9 aşağı). Şu an düzeltme dalgası (Dalga 4) sürüyor; bugüne kadarki ucu ₺1,52. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺1,65 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,8); kesin değildir.",
+    "Günlük RSI 35,8: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
     "Günlük MACD −0,09 sinyalin (−0,09) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 27,6: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 16,7; CCI −138",
-    "Fiyat günlük 20 günlük ortalamanın (1,59) altında, SMA50'nin (1,85) altında, SMA200'ün (2,39) altında. TradingView günlük özeti: Güçlü Sat"
+    "ADX 27,7: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 7,6; CCI −77",
+    "Fiyat günlük 20 günlük ortalamanın (1,54) altında, SMA50'nin (1,74) altında, SMA200'ün (2,37) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1647,6 +1653,12 @@
    },
    "news": [
     {
+     "date": "16 Kas 2026",
+     "title": "Sasa, 500 mn $'lık yeni ihraç tavanı onayı için SPK'ya başvurdu",
+     "src": "Matriks",
+     "url": "https://www.tradingview.com/news/matriks:6905785:0/"
+    },
+    {
      "date": "13 Kas 2026",
      "title": "Sasa yönetim kurulu borçlanma aracı ihraç tavanını 350 mn $'dan 500 mn $'a çıkardı (KAP)",
      "src": "Reuters",
@@ -1669,31 +1681,25 @@
      "title": "Sasa Polyester 3Ç'de 1,9 mlr TL zarar etti (geçen yıl 797,9 mn TL zarar)",
      "src": "Reuters",
      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L5N46N0D2:0/"
-    },
-    {
-     "date": "6 Kas 2026",
-     "title": "SASA 9 aylık net zarar 1,38 mlr TL (önceki yıl 13,1 mlr TL zarar)",
-     "src": "Matriks",
-     "url": "https://www.tradingview.com/news/matriks:6880384:0/"
     }
    ]
   },
   "SDTTR": {
    "name": "SDT Uzay ve Savunma Teknolojileri A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺10,29 (−%4,55). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 5 (olgun, düzeltme riski). Günlük RSI 26,1 (aşırı satım bölgesi)."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺9,40 (+%1,62). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 23,5 (aşırı satım bölgesi)."
    },
    "technical": [
-    "20 Kas kapanışı ₺10,29 (−%4,55); trend verisi son fiyatı ₺10,29",
-    "4S Trend aşağı: kısa ortalama 10,87 < uzun ortalama 11,37. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 10,43 < uzun 10,74 (150 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺10,44 (fiyata %−1,5 uzak; 99 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 5 (olgun, düzeltme riski)): Düşüş sayımı ₺13,09 seviyesinden başlıyor; son uç ₺10,25 (%21,7 aşağı). Dalga 5 son itkidir: yorgunluk ve yukarı yönlü düzeltme riski yüksek. Düzeltme bölgesi ₺11,33 – ₺12,01. Bu, dibin/tepenin geldiği anlamına gelmez. Sayım ₺13,09 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,6); kesin değildir.",
-    "Günlük RSI 26,1: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −1,05 sinyalin (−1,10) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 41,9: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 3,4; CCI −192",
-    "Fiyat günlük 20 günlük ortalamanın (12,00) altında, SMA50'nin (14,45) altında, SMA200'ün (19,81) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺9,40 (+%1,62); trend verisi son fiyatı ₺9,42",
+    "4S Trend aşağı: kısa ortalama 9,73 < uzun ortalama 10,41. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 9,49 < uzun 9,64 (282 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺9,34 (fiyata %0,9 uzak; 30 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺12,01 seviyesinden başlıyor; son uç ₺9,25 (%23,0 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺10,30 – ₺10,96. Sayım ₺12,01 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,1); kesin değildir.",
+    "Günlük RSI 23,5: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,20 sinyalin (−1,13) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 46,1: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 1,9; CCI −157",
+    "Fiyat günlük 20 günlük ortalamanın (11,20) altında, SMA50'nin (13,65) altında, SMA200'ün (19,65) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1775,18 +1781,18 @@
    "name": "Smart Gunes Enerjisi Teknolojileri Arastirma Gelistirme Uretim Sanayi ve Ticaret",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺4,06 (−%3,79). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 41,8."
+    "text": "26 Kas kapanışı ₺3,99 (+%3,64). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 4 (düzeltme). Günlük RSI 42,0."
    },
    "technical": [
-    "20 Kas kapanışı ₺4,06 (−%3,79); trend verisi son fiyatı ₺4,06",
-    "4S Trend aşağı: kısa ortalama 4,22 < uzun ortalama 4,23; son kesişim 0 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 4,11 < uzun 4,20 (67 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺4,12 (fiyata %−1,6 uzak; 75 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺4,75 seviyesinden başlıyor; son uç ₺4,00 (%15,8 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺4,29 – ₺4,46. Sayım ₺4,75 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,7); kesin değildir.",
-    "Günlük RSI 41,8: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,17 sinyalin (−0,28) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 27,9: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 58,5; CCI 4",
-    "Fiyat günlük 20 günlük ortalamanın (4,25) altında, SMA50'nin (4,83) altında, SMA200'ün (8,38) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺3,99 (+%3,64); trend verisi son fiyatı ₺3,92",
+    "4S Trend aşağı: kısa ortalama 3,98 < uzun ortalama 4,08; son kesişim 8 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 3,96 < uzun 3,98 (199 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺4,00 (fiyata %−2,0 uzak; 1 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 4 (düzeltme)): Düşüş sayımı ₺4,75 seviyesinden başlıyor; son uç ₺4,03 (%15,2 aşağı). Şu an düzeltme dalgası (Dalga 4) sürüyor; bugüne kadarki ucu ₺4,03. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺4,75 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,7); kesin değildir.",
+    "Günlük RSI 42,0: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −0,18 sinyalin (−0,22) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 22,1: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 14,1; CCI −34",
+    "Fiyat günlük 20 günlük ortalamanın (4,16) altında, SMA50'nin (4,51) altında, SMA200'ün (8,29) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1870,18 +1876,18 @@
    "name": "Sok Marketler Ticaret AS",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺41,04 (−%2,56). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 19,0 (aşırı satım bölgesi). Sonraki bilanço 16 Mar 2027."
+    "text": "26 Kas kapanışı ₺38,92 (−%2,99). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 16,1 (aşırı satım bölgesi). Sonraki bilanço 16 Mar 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺41,04 (−%2,56); trend verisi son fiyatı ₺41,02",
-    "4S Trend aşağı: kısa ortalama 42,32 < uzun ortalama 44,82; son kesişim 33 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 41,24 < uzun 41,91 (361 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺41,45 (fiyata %−1,0 uzak; 33 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺48,44 seviyesinden başlıyor; son uç ₺40,52 (%16,4 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺43,55 – ₺45,41. Sayım ₺48,44 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,4); kesin değildir.",
-    "Günlük RSI 19,0: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −3,79 sinyalin (−3,02) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 39,3: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 2,2; CCI −118",
-    "Fiyat günlük 20 günlük ortalamanın (47,89) altında, SMA50'nin (54,19) altında, SMA200'ün (54,03) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺38,92 (−%2,99); trend verisi son fiyatı ₺38,96",
+    "4S Trend aşağı: kısa ortalama 40,23 < uzun ortalama 42,19; son kesişim 41 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 39,63 < uzun 40,06 (493 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺39,77 (fiyata %−2,1 uzak; 0 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺48,44 seviyesinden başlıyor; son uç ₺38,94 (%19,6 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺42,57 – ₺44,81. Sayım ₺48,44 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,5); kesin değildir.",
+    "Günlük RSI 16,1: aşırı satım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −4,05 sinyalin (−3,60) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 47,7: çok güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 1,4; CCI −106",
+    "Fiyat günlük 20 günlük ortalamanın (45,23) altında, SMA50'nin (52,65) altında, SMA200'ün (53,54) altında. TradingView günlük özeti: Güçlü Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -1918,7 +1924,7 @@
       "16 Mar 2027 (TradingView takvimi)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺86,29 (kapanışa göre +%110; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺86,29 (kapanışa göre +%122; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "news": [
     {
@@ -1957,18 +1963,18 @@
    "name": "Turkcell Iletisim Hizmetleri A.S.",
    "momentum": {
     "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺90,85 (−%2,36). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 40,5. Sonraki bilanço 12 Şub 2027."
+    "text": "26 Kas kapanışı ₺86,55 (−%0,46). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 32,9. Sonraki bilanço 12 Şub 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺90,85 (−%2,36); trend verisi son fiyatı ₺90,80",
-    "4S Trend aşağı: kısa ortalama 93,53 < uzun ortalama 94,35; son kesişim 1 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 91,67 < uzun 93,18 (69 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺91,75 (fiyata %−1,1 uzak; 75 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺99,00 seviyesinden başlıyor; son uç ₺90,45 (%8,6 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺93,72 – ₺95,73. Sayım ₺99,00 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,1); kesin değildir.",
-    "Günlük RSI 40,5: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,60 sinyalin (−0,65) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 23,2: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 36,8; CCI −54",
-    "Fiyat günlük 20 günlük ortalamanın (94,34) altında, SMA50'nin (96,42) altında, SMA200'ün (106,49) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺86,55 (−%0,46); trend verisi son fiyatı ₺86,60",
+    "4S Trend aşağı: kısa ortalama 88,84 < uzun ortalama 91,21; son kesişim 9 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 87,44 < uzun 88,44 (201 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺87,74 (fiyata %−1,3 uzak; 71 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺99,00 seviyesinden başlıyor; son uç ₺86,55 (%12,6 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺91,31 – ₺94,24. Sayım ₺99,00 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,3); kesin değildir.",
+    "Günlük RSI 32,9: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,76 sinyalin (−1,06) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 24,3: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 2,9; CCI −151",
+    "Fiyat günlük 20 günlük ortalamanın (92,41) altında, SMA50'nin (95,49) altında, SMA200'ün (105,93) altında. TradingView günlük özeti: Güçlü Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -2013,13 +2019,19 @@
       "12 Şub 2027 (TradingView takvimi)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺152,83 (kapanışa göre +%68; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺152,83 (kapanışa göre +%77; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "dilution": {
     "risk": "Düşük",
     "text": "9 Ekim'de 500 mn ₺ finansman bonosu; Turkcell Finansman 6 mlr ₺'ye kadar kira sertifikası planı: bunlar borçlanmadır, pay çıkarımı değildir. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
    },
    "news": [
+    {
+     "date": "25 Kas 2026",
+     "title": "Turkcell dijital sigorta şirketini 8,5 mn $'a KVK'ya satmak için anlaştı",
+     "src": "Reuters",
+     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L5N47605V:0/"
+    },
     {
      "date": "20 Kas 2026",
      "title": "Turkcell, COP31’de yeşil dönüşüm vizyonunu paylaştı",
@@ -2043,31 +2055,25 @@
      "title": "Ziraat Yatırım: TCELL hedef fiyat 158,5 TL, tavsiye AL",
      "src": "Matriks",
      "url": "https://www.tradingview.com/news/matriks:6893166:0/"
-    },
-    {
-     "date": "10 Kas 2026",
-     "title": "Bilanço analizi - TCELL (GCM Yatırım)",
-     "src": "Matriks",
-     "url": "https://www.tradingview.com/news/matriks:6892955:0/"
     }
    ]
   },
   "THYAO": {
    "name": "Turk Hava Yollari A.O.",
    "momentum": {
-    "status": "Karışık",
-    "text": "20 Kas kapanışı ₺329,00 (+%0,23). 4S Trend yukarı, 15dk Trend yukarı, 15dk Tamam yada Devam: Tamam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 74,1 (aşırı alım bölgesi). Sonraki bilanço 3 Mar 2027."
+    "status": "Zayıf",
+    "text": "26 Kas kapanışı ₺309,75 (−%0,56). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 54,7. Sonraki bilanço 3 Mar 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺329,00 (+%0,23); trend verisi son fiyatı ₺327,75",
-    "4S Trend yukarı: kısa ortalama 325,72 > uzun ortalama 316,98; son kesişim 25 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend yukarı: kısa 326,92 > uzun 326,33 (471 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺329,54 (fiyata %−0,6 uzak; 31 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺320,50 seviyesinden başlıyor; son uç ₺322,75 (%0,7 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺322,75. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺320,50 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %2,6); kesin değildir.",
-    "Günlük RSI 74,1: aşırı alım. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD 13,42 sinyalin (9,33) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 38,7: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 95,2; CCI 82",
-    "Fiyat günlük 20 günlük ortalamanın (304,76) üstünde, SMA50'nin (288,52) üstünde, SMA200'ün (305,00) üstünde. TradingView günlük özeti: Al"
+    "26 Kas kapanışı ₺309,75 (−%0,56); trend verisi son fiyatı ₺309,75",
+    "4S Trend aşağı: kısa ortalama 316,44 < uzun ortalama 316,66; son kesişim 0 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 313,54 < uzun 316,36 (117 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺314,95 (fiyata %−1,7 uzak; 126 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺333,50 seviyesinden başlıyor; son uç ₺309,50 (%7,2 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺318,67 – ₺324,33 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺333,50 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,0); kesin değildir.",
+    "Günlük RSI 54,7: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 9,90 sinyalin (10,51) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 33,9: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 51,9; CCI 21",
+    "Fiyat günlük 20 günlük ortalamanın (308,19) üstünde, SMA50'nin (290,69) üstünde, SMA200'ün (304,92) üstünde. TradingView günlük özeti: Al"
    ],
    "fundamental": {
     "metrics": [
@@ -2108,13 +2114,19 @@
       "3 Mar 2027 (TradingView takvimi)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺435,56 (kapanışa göre +%32; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺435,56 (kapanışa göre +%41; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "dilution": {
     "risk": "Düşük",
     "text": "Bedelli sermaye artırımı kararı veya beklentisi görmedim. Bilanço beklentisi haberleri izlenmeli. (Otomatik haber/KAP taramasıdır; KAP'tan doğrulayın.)"
    },
    "news": [
+    {
+     "date": "25 Kas 2026",
+     "title": "Sektör raporu - Havacılık bülteni (Kuveyt Türk Yatırım)",
+     "src": "Matriks",
+     "url": "https://www.tradingview.com/news/matriks:6929380:0/"
+    },
     {
      "date": "13 Kas 2026",
      "title": "Trafik verileri - THYAO (Destek Yatırım)",
@@ -2138,12 +2150,6 @@
      "title": "Trafik sonuçları - THYAO (GCM Yatırım)",
      "src": "Matriks",
      "url": "https://www.tradingview.com/news/matriks:6895536:0/"
-    },
-    {
-     "date": "10 Kas 2026",
-     "title": "Deniz Yatırım: THYAO hedef fiyat 461 TL, tavsiye AL",
-     "src": "Matriks",
-     "url": "https://www.tradingview.com/news/matriks:6893410:0/"
     }
    ]
   },
@@ -2151,18 +2157,18 @@
    "name": "Tekfen Holding Anonim Sirketi",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺186,00 (−%0,53). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 42,9. Sonraki bilanço 5 Mar 2027."
+    "text": "26 Kas kapanışı ₺185,30 (+%0,87). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 43,0. Sonraki bilanço 5 Mar 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺186,00 (−%0,53); trend verisi son fiyatı ₺186,50",
-    "4S Trend aşağı: kısa ortalama 189,57 < uzun ortalama 192,00; son kesişim 9 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 187,40 < uzun 189,28 (61 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺183,96 (fiyata %1,4 uzak; 12 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺214,00 seviyesinden başlıyor; son uç ₺181,10 (%15,4 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺193,67 – ₺201,43. Sayım ₺214,00 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %6,2); kesin değildir.",
-    "Günlük RSI 42,9: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −6,45 sinyalin (−7,43) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 15,2: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 18,8; CCI −81",
-    "Fiyat günlük 20 günlük ortalamanın (194,76) altında, SMA50'nin (217,97) altında, SMA200'ün (156,80) üstünde. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺185,30 (+%0,87); trend verisi son fiyatı ₺185,90",
+    "4S Trend aşağı: kısa ortalama 186,50 < uzun ortalama 188,76; son kesişim 17 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 186,11 < uzun 186,40 (193 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺184,51 (fiyata %0,8 uzak; 25 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺201,70 seviyesinden başlıyor; son uç ₺189,60 (%6,0 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺189,60. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺201,70 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,6); kesin değildir.",
+    "Günlük RSI 43,0: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −6,02 sinyalin (−6,66) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 11,6: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 12,6; CCI −90",
+    "Fiyat günlük 20 günlük ortalamanın (191,76) altında, SMA50'nin (214,87) altında, SMA200'ün (158,88) üstünde. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -2232,18 +2238,18 @@
    "name": "Tofas Turk Otomobil Fabrikasi A.S.",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺246,50 (−%1,12). 4S Trend yukarı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Yükseliş · Dalga 2 (düzeltme). Günlük RSI 52,9. Sonraki bilanço 16 Şub 2027."
+    "text": "26 Kas kapanışı ₺244,80 (+%5,15). 4S Trend yukarı, 15dk Trend yukarı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 51,2. Sonraki bilanço 16 Şub 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺246,50 (−%1,12); trend verisi son fiyatı ₺245,20",
-    "4S Trend yukarı: kısa ortalama 245,69 > uzun ortalama 242,24; son kesişim 20 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 245,30 < uzun 245,91 (18 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺247,26 (fiyata %−0,8 uzak; 32 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Yükseliş · Dalga 2 (düzeltme)): Yükseliş sayımı ₺231,70 seviyesinden başlıyor; son uç ₺241,90 (%4,4 yukarı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺241,90. Düzeltme bitince ana yön (yukarı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺231,70 altında kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,9); kesin değildir.",
-    "Günlük RSI 52,9: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −0,45 sinyalin (−3,64) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 20,4: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 83,7; CCI 85",
-    "Fiyat günlük 20 günlük ortalamanın (240,68) üstünde, SMA50'nin (253,38) altında, SMA200'ün (285,32) altında. TradingView günlük özeti: Nötr"
+    "26 Kas kapanışı ₺244,80 (+%5,15); trend verisi son fiyatı ₺244,60",
+    "4S Trend yukarı: kısa ortalama 244,34 > uzun ortalama 243,75; son kesişim 1 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 245,54 > uzun 244,69 (11 mum önce kesişti)",
+    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺248,91 (fiyata %−1,8 uzak; 1 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺256,25 seviyesinden başlıyor; son uç ₺250,75 (%2,1 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺250,75. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺256,25 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,6); kesin değildir.",
+    "Günlük RSI 51,2: nötr. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD 0,09 sinyalin (−1,35) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 18,6: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 48,9; CCI 50",
+    "Fiyat günlük 20 günlük ortalamanın (241,78) üstünde, SMA50'nin (250,12) altında, SMA200'ün (283,77) altında. TradingView günlük özeti: Nötr"
    ],
    "fundamental": {
     "metrics": [
@@ -2288,9 +2294,15 @@
       "16 Şub 2027 (TradingView takvimi)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺449,95 (kapanışa göre +%83; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺449,95 (kapanışa göre +%84; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "news": [
+    {
+     "date": "20 Kas 2026",
+     "title": "Tofaş'ta fabrika direktörü değişimi (1 Ocak 2027)",
+     "src": "Reuters",
+     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L5N4711DV:0/"
+    },
     {
      "date": "11 Kas 2026",
      "title": "Otomotiv sektörü raporu (Destek Yatırım)",
@@ -2314,12 +2326,6 @@
      "title": "Ak Yatırım TOASO hedef 530 TL korundu",
      "src": "Matriks",
      "url": "https://www.tradingview.com/news/matriks:6881317:0/"
-    },
-    {
-     "date": "6 Kas 2026",
-     "title": "Yapı Kredi Yatırım TOASO hedef 494 TL, AL",
-     "src": "Matriks",
-     "url": "https://www.tradingview.com/news/matriks:6881219:0/"
     }
    ]
   },
@@ -2327,18 +2333,18 @@
    "name": "TR Dogal Enerji Kaynaklari Arastirma ve Uretim Anonim Sirketi",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺71,05 (−%3,40). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 4 (düzeltme). Günlük RSI 35,7."
+    "text": "26 Kas kapanışı ₺65,15 (+%1,72). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 5 (olgun, düzeltme riski). Günlük RSI 31,6."
    },
    "technical": [
-    "20 Kas kapanışı ₺71,05 (−%3,40); trend verisi son fiyatı ₺70,90",
-    "4S Trend aşağı: kısa ortalama 73,62 < uzun ortalama 75,18; son kesişim 4 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 71,45 < uzun 72,94 (99 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺70,60 (fiyata %0,4 uzak; 8 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 4 (düzeltme)): Düşüş sayımı ₺81,85 seviyesinden başlıyor; son uç ₺72,75 (%11,1 aşağı). Şu an düzeltme dalgası (Dalga 4) sürüyor; bugüne kadarki ucu ₺72,75. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺81,85 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %4,6); kesin değildir.",
-    "Günlük RSI 35,7: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −3,52 sinyalin (−4,09) üstünde (boğa); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 26,8: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 41,2; CCI −100",
-    "Fiyat günlük 20 günlük ortalamanın (77,23) altında, SMA50'nin (87,92) altında, SMA200'ün (95,06) altında. TradingView günlük özeti: Güçlü Sat"
+    "26 Kas kapanışı ₺65,15 (+%1,72); trend verisi son fiyatı ₺64,90",
+    "4S Trend aşağı: kısa ortalama 67,34 < uzun ortalama 70,77; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend aşağı: kısa 65,44 < uzun 66,69 (231 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺64,51 (fiyata %0,6 uzak; 32 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 5 (olgun, düzeltme riski)): Düşüş sayımı ₺81,85 seviyesinden başlıyor; son uç ₺63,90 (%21,9 aşağı). Dalga 5 son itkidir: yorgunluk ve yukarı yönlü düzeltme riski yüksek. Düzeltme bölgesi ₺70,76 – ₺74,99. Bu, dibin/tepenin geldiği anlamına gelmez. Sayım ₺81,85 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %5,5); kesin değildir.",
+    "Günlük RSI 31,6: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −4,51 sinyalin (−4,09) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 28,2: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 2,9; CCI −154",
+    "Fiyat günlük 20 günlük ortalamanın (73,95) altında, SMA50'nin (84,99) altında, SMA200'ün (94,40) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -2422,18 +2428,18 @@
    "name": "Torunlar Gayrimenkul Yatirim Ortakligi A.S.",
    "momentum": {
     "status": "Karışık",
-    "text": "20 Kas kapanışı ₺84,70 (+%0,59). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 3 (güçlü itki). Günlük RSI 39,3. Sonraki bilanço 5 Mar 2027."
+    "text": "26 Kas kapanışı ₺82,75 (+%1,78). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 39,0. Sonraki bilanço 5 Mar 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺84,70 (+%0,59); trend verisi son fiyatı ₺84,00",
-    "4S Trend aşağı: kısa ortalama 84,41 < uzun ortalama 85,71; son kesişim 12 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 83,22 < uzun 83,76 (275 mum önce kesişti)",
-    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺82,44 (fiyata %1,9 uzak; 0 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 3 (güçlü itki)): Düşüş sayımı ₺92,60 seviyesinden başlıyor; son uç ₺82,25 (%11,2 aşağı). Dalga 3 genelde sayımın en sert ve en uzun dalgasıdır; bu yüzden aşağı yönün sürmesi daha olağan senaryodur. Geçici tepki (Dalga 4) bölgesi ₺86,20 – ₺88,65. Sayım ₺92,60 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %2,3); kesin değildir.",
-    "Günlük RSI 39,3: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −1,24 sinyalin (−1,01) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 18,9: trend gücü zayıf (<20, belirgin trend yok); ADX yönü değil gücü gösterir; Stochastic %K 15,3; CCI −131",
-    "Fiyat günlük 20 günlük ortalamanın (86,90) altında, SMA50'nin (89,35) altında, SMA200'ün (91,90) altında. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺82,75 (+%1,78); trend verisi son fiyatı ₺82,55",
+    "4S Trend aşağı: kısa ortalama 82,17 < uzun ortalama 83,50; son kesişim 20 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 82,34 > uzun 82,10 (23 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺81,97 (fiyata %0,7 uzak; 25 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺85,00 seviyesinden başlıyor; son uç ₺83,25 (%2,1 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺83,25. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺85,00 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,1); kesin değildir.",
+    "Günlük RSI 39,0: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −1,87 sinyalin (−1,48) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 23,4: trend gücü orta; ADX yönü değil gücü gösterir; Stochastic %K 14,3; CCI −103",
+    "Fiyat günlük 20 günlük ortalamanın (85,18) altında, SMA50'nin (88,47) altında, SMA200'ün (91,84) altında. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -2478,7 +2484,7 @@
       "5 Mar 2027 (TradingView takvimi)"
      ]
     ],
-    "fair_value": "Analist ortalama hedefi ₺154,00 (kapanışa göre +%82; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
+    "fair_value": "Analist ortalama hedefi ₺154,00 (kapanışa göre +%86; TradingView verisi). Adil değer = analist hedefi, kendi tahminim değil."
    },
    "news": [
     {
@@ -2498,19 +2504,19 @@
   "TUPRS": {
    "name": "Tupras Turkiye Petrol Rafinerileri A.S.",
    "momentum": {
-    "status": "Zayıf",
-    "text": "20 Kas kapanışı ₺322,75 (−%3,58). 4S Trend aşağı, 15dk Trend aşağı, 15dk Tamam yada Devam: Tamam; Elliott Düşüş · Dalga 1 oluşuyor. Günlük RSI 34,4. Sonraki bilanço 11 Şub 2027."
+    "status": "Karışık",
+    "text": "26 Kas kapanışı ₺323,25 (+%1,65). 4S Trend aşağı, 15dk Trend yukarı, 15dk Tamam yada Devam: Devam; Elliott Düşüş · Dalga 2 (düzeltme). Günlük RSI 37,1. Sonraki bilanço 11 Şub 2027."
    },
    "technical": [
-    "20 Kas kapanışı ₺322,75 (−%3,58); trend verisi son fiyatı ₺323,25",
-    "4S Trend aşağı: kısa ortalama 334,74 < uzun ortalama 341,63; son kesişim 3 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
-    "15dk Trend aşağı: kısa 324,29 < uzun 331,60 (126 mum önce kesişti)",
-    "15dk Tamam yada Devam: Tamam (aşağı), çizgi ₺324,69 (fiyata %−0,4 uzak; 64 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
-    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 1 oluşuyor): Düşüş sayımı ₺364,50 seviyesinden başlıyor; son uç ₺318,50 (%12,6 aşağı). Bu ilk itki dalgası sayılıyor, hareket erken evrede olabilir. Sayım doğruysa önce Dalga 2 ile yukarı yönlü bir tepki (₺336,07 – ₺346,93 bandı, hareketin %38–62'si) gelir, ardından genelde daha sert Dalga 3 başlar. Sayım ₺364,50 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,8); kesin değildir.",
-    "Günlük RSI 34,4: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
-    "Günlük MACD −8,56 sinyalin (−8,51) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
-    "ADX 26,1: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 29,3; CCI −148",
-    "Fiyat günlük 20 günlük ortalamanın (347,64) altında, SMA50'nin (372,40) altında, SMA200'ün (297,81) üstünde. TradingView günlük özeti: Sat"
+    "26 Kas kapanışı ₺323,25 (+%1,65); trend verisi son fiyatı ₺323,75",
+    "4S Trend aşağı: kısa ortalama 322,81 < uzun ortalama 329,99; son kesişim 11 mum önce. Kısa ortalama uzunun üstündeyse 4 saatlik görünüm yukarı, altındaysa aşağıdır",
+    "15dk Trend yukarı: kısa 323,62 > uzun 322,10 (24 mum önce kesişti)",
+    "15dk Tamam yada Devam: Devam (yukarı), çizgi ₺322,07 (fiyata %0,5 uzak; 42 mumdur bu yönde). Fiyat çizginin ters tarafına geçince yön değişir: 'Devam' iken çizginin altı 'Tamam', 'Tamam' iken üstü 'Devam' demektir; ani sinyal ve geçici stop gibi okunur",
+    "Elliott (4S, muhtemel sayım, Düşüş · Dalga 2 (düzeltme)): Düşüş sayımı ₺364,50 seviyesinden başlıyor; son uç ₺328,25 (%9,9 aşağı). Şu an düzeltme dalgası (Dalga 2) sürüyor; bugüne kadarki ucu ₺328,25. Düzeltme bitince ana yön (aşağı) devam eder. Dalga 1'in ucu bu veride tutulmadığı için tepki hedefi hesaplanmıyor. Sayım ₺364,50 üstünde kapanışta geçersiz olur (dalga 2, dalga 1 başlangıcını aşamaz). Kural tabanlı, 4S mumlarda (eşik %3,7); kesin değildir.",
+    "Günlük RSI 37,1: satıcı baskısı. RSI, aşırı alım/satım ve ivmeyi ölçer; 50 üstü alıcı, altı satıcı baskısı demektir",
+    "Günlük MACD −11,05 sinyalin (−9,74) altında (ayı); MACD iki hareketli ortalamanın farkıdır, sinyal çizgisini yukarı kesmesi ivme dönüşüdür",
+    "ADX 27,9: güçlü trend; ADX yönü değil gücü gösterir; Stochastic %K 13,3; CCI −94",
+    "Fiyat günlük 20 günlük ortalamanın (338,94) altında, SMA50'nin (365,24) altında, SMA200'ün (299,67) üstünde. TradingView günlük özeti: Sat"
    ],
    "fundamental": {
     "metrics": [
@@ -2559,6 +2565,12 @@
    },
    "news": [
     {
+     "date": "23 Kas 2026",
+     "title": "Teknik analiz/hisse önerisi - TUPRS (Yapı Kredi Yatırım)",
+     "src": "Matriks",
+     "url": "https://www.tradingview.com/news/matriks:6922600:0/"
+    },
+    {
      "date": "20 Kas 2026",
      "title": "Hisse Notu: TUPRS (Deniz Yatırım)",
      "src": "Matriks",
@@ -2581,12 +2593,6 @@
      "title": "Bilanço sezonu tamamlandı, 3Ç sonuçları beklentilerin üzerinde",
      "src": "Matriks",
      "url": "https://www.tradingview.com/news/matriks:6893017:0/"
-    },
-    {
-     "date": "6 Kas 2026",
-     "title": "Tüpraş 3Ç net kâr 68,7 mlr TL (geçen yıl 15,8 mlr); 2026 rafineri marjı hedefi yukarı revize",
-     "src": "Reuters",
-     "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_S8N44I01B:0/"
     }
    ]
   }
