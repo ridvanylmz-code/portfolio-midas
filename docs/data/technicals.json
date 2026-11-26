@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T04:19:26+00:00",
+  "updated": "2026-11-26T22:35:31+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -125,7 +125,7 @@
         "atr14": 6.65,
         "support20": 37.4,
         "resistance20": 64.39,
-        "vol_ratio": 1.13,
+        "vol_ratio": 1.14,
         "bars": 250
       }
     },
@@ -330,7 +330,7 @@
         "atr14": 5.17,
         "support20": 42.12,
         "resistance20": 68.26,
-        "vol_ratio": 1.02,
+        "vol_ratio": 1.03,
         "bars": 250
       }
     },
@@ -986,7 +986,7 @@
         "atr14": 9.02,
         "support20": 70.37,
         "resistance20": 146.07,
-        "vol_ratio": 1.4,
+        "vol_ratio": 1.42,
         "bars": 250
       }
     },
@@ -1683,7 +1683,7 @@
         "atr14": 46.51,
         "support20": 370.4,
         "resistance20": 594.0,
-        "vol_ratio": 1.09,
+        "vol_ratio": 1.1,
         "bars": 250
       }
     }
