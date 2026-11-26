@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-21",
- "summary": "21 Kas güncellemesi; fiyatlar 20 Kas (Cuma) kapanışı, TradingView (market.json 21 Kas 02:31 UTC, piyasa kapalı). Sert hafta: SPY $689,81 (Cuma −%3,6, hafta −%9,2, 1A −%10,6), QQQ $608,45 (Cuma −%5,7, hafta −%11,6), IWM $256,61 (hafta −%8,0), RSP hafta −%6,4. Beş gün üst üste düşüş. SPY SMA200'ün ($732,8) %6 altında, RSI 24,9 (aşırı satım). VIX 35,89 (hafta +%91). 10 yıllık faiz %4,95 (haftada −%3,5: güvenli limana kaçış). Rejim Risk-off 2/7; yükselen hisse oranı %47'den %34'e düştü (1393 taranan hisse). Nakit %35-40 bandının üstünde, %40'ta olmalı. Yeni alım yalnız yarım porsiyon ve yalnız göreli gücü korunan savunma isimlerinden. Makro: Fed tutanakları enflasyon kaygısını gösterdi; Waller aralıkta 50 baz puan artırım istedi, Daly ölçülü artırımdan yana. Yapay zekâ ve yarı iletken satışı derinleşti (SMH Cuma −%10,6). Nomura: mekanik tepki yükselişi gelebilir ama kırılgan. IMF yapay zekâ düzeltmesinin biraz daha sürebileceğini söyledi. Lider: temel tüketim (7/7, haftada yalnız −%1,2), sağlık (6/7). Kamu hizmetleri, havayolu, döngüsel tüketim, gayrimenkul, konut trendi kaybetti: izle. Zayıf: yarı iletken (1A −%28), teknoloji, yapay zekâ, kuantum, BTC madencileri (Cuma −%14), uzay, metal madencileri, uranyum, nükleer, güneş. Takip listesi: ELF çıktı (stop altı), PG girdi → CROX, GKOS, GMAB, KNSA, PG. Haftaya: 25 Kas çekirdek PCE (beklenti aylık +%0,3), Q3 GSYH 2. tahmin (%3,4), dayanıklı mallar; 27 Kas Şükran Günü tatili, 28 Kas yarım gün.",
+ "updated": "2026-11-26",
+ "summary": "26 Kas güncellemesi; ABD piyasaları 26 Kas Şükran Günü nedeniyle kapalı, 27 Kas yarım gün (13:00 ET). Fiyatlar 25 Kas (Çarşamba) kapanışı, TradingView. SPY $716,70 (hafta −%2,3, 1A −%6,6), gün içi $695,45'e indi, kapanışa toparladı; QQQ $633,93 (1A −%10,3), IWM $268,87, VIX 28,3. SPY artık SMA200 ($733,2) altında; QQQ ve IWM de SMA50 altında. Makro (25 Kas): Q3 GSYH ikinci tahmin %4,3 (beklenti %3,5), çekirdek PCE aylık +%0,3 (beklentiyle aynı), dayanıklı mal siparişleri +%0,2 (beklenti +%0,6). Fon yöneticileri teknolojiden 2006'dan beri en hızlı tempoda çıkıyor. Rejim 'Risk-off (savunma)' 2/7: nakit %35-40 bandında olmalı; yeni alım yalnız yarım porsiyon ve yalnız göreli gücü korunan savunma isimlerinden. Yükselen hisse oranı %49. Lider: sağlık (7/7), temel tüketim (7/7), biyoteknoloji (6/7, hafta +%8,1), gayrimenkul, döngüsel tüketim. Zayıf: BTC madencileri/HPC, nadir toprak, uranyum, bakır, nükleer, güneş, lityum, yarı iletken (1A −%20,5). Takip listesi değişmedi: CROX, GKOS, GMAB, KNSA, PG (stop altı kapanış yok; dilüsyon tamamı Düşük, SEC EDGAR 26 Kas). Yedek: ANF, SN. Haftaya: 1 Ara ISM imalat ve JOLTS, 3 Ara ISM hizmet, 4 Ara tarım dışı istihdam (beklenti 90 bin, işsizlik %4,1).",
  "groups": {
   "CIBR": {
    "note": "20 Kas: #6, 3/7, Cuma −%5,1. İzle."
@@ -9,19 +9,19 @@
    "note": "20 Kas: #18, 2/7, 1A −%14,6. Uzak dur."
   },
   "XLK": {
-   "note": "20 Kas: #21, 2/7, Cuma −%7,3, 1A −%20,5. Uzak dur."
+   "note": "26 Kas: #22, 2/7, hafta −%5,4, 1A −%16,9. Fonlar teknolojiden hızla çıkıyor. Uzak dur."
   },
   "AIQ": {
    "note": "20 Kas: #22, 2/7, 1A −%20,0. Uzak dur."
   },
   "SMH": {
-   "note": "20 Kas: #31, 2/7, Cuma −%10,6, 1A −%28,1. Uzak dur."
+   "note": "26 Kas: #30, 2/7, hafta −%9,7, 1A −%20,5. Alım yok."
   },
   "XLE": {
-   "note": "20 Kas: #11, 3/7, 1A −%10,8. Azalt / kâr al."
+   "note": "26 Kas: #14, 3/7, 1A −%12,1. Azalt / kâr al."
   },
   "XLV": {
-   "note": "20 Kas: #2, 6/7, rs +12,6, hafta −%6,0. Ol (seçici)."
+   "note": "26 Kas: Lider #1, 7/7, RS +12,7; hafta yatay, 1A +%3,0. Risk-off'ta ana sığınak."
   },
   "IBIT": {
    "note": "20 Kas: #29, 1/7, 1A −%30,3. Uzak dur."
@@ -30,7 +30,7 @@
    "note": "20 Kas: #26, 2/7, Cuma −%6,9. Uzak dur."
   },
   "DTCR": {
-   "note": "20 Kas: #20, 0/7, hafta −%12,8. Uzak dur."
+   "note": "26 Kas: #23, 0/7, hafta −%5,0. CRWV dahil uzak dur."
   },
   "URA": {
    "note": "20 Kas: #35, 0/7. Uzak dur."
@@ -39,19 +39,19 @@
    "note": "20 Kas: #30, 0/7. Uzak dur."
   },
   "UFO": {
-   "note": "20 Kas: #23, 0/7, Cuma −%5,5. Uzak dur."
+   "note": "26 Kas: #25, 0/7, hafta −%5,8. RKLB dahil uzak dur."
   },
   "ITA": {
    "note": "Savunma: ADX 51 ile güçlü bir DÜŞÜŞ trendi, 0/7. KTOS dahil uzak dur."
   },
   "LIT": {
-   "note": "20 Kas: #28, 0/7. Uzak dur."
+   "note": "26 Kas: #31, 0/7. SGML dahil uzak dur."
   },
   "REMX": {
-   "note": "20 Kas: #36, 0/7. Uzak dur."
+   "note": "26 Kas: #36, 0/7. UAMY dahil uzak dur."
   },
   "WGMI": {
-   "note": "20 Kas: #37 (son), 0/7, Cuma −%14,4, 1A −%38,9. Uzak dur."
+   "note": "26 Kas: En zayıf (#37), hafta −%15,7. WYFI dahil uzak dur."
   },
   "GDX": {
    "note": "20 Kas: #27, 0/7, 1A −%21,4. Uzak dur."
@@ -63,13 +63,13 @@
    "note": "20 Kas: #34, 0/7, 1A −%28. Uzak dur."
   },
   "XHB": {
-   "note": "20 Kas: #9, 1/7. İzle."
+   "note": "26 Kas: #4 ama trend 4/7, 'İzle'."
   },
   "XLU": {
    "note": "20 Kas: #3, 2/7, trend zayıfladı. İzle."
   },
   "XLRE": {
-   "note": "20 Kas: #7, 2/7. İzle."
+   "note": "26 Kas: #8, 6/7, hafta +%1,4."
   },
   "XLF": {
    "note": "20 Kas: #5, 4/7. Banka kuralı: yatırım yok."
@@ -90,13 +90,13 @@
    "note": "Çin internet: bu hafta +3,7% tepki, ama haftalık trend aşağı (fiyat haftalık SMA50'nin çok altında)."
   },
   "XLP": {
-   "note": "20 Kas: #1, 7/7, rs +13,9, hafta −%1,2 (SPY −%9,2). Ol."
+   "note": "26 Kas: #2, 7/7, RS +12,4, hafta +%1,6. PG ve CROX bu gruptan."
   },
   "XBI": {
-   "note": "20 Kas: #13, 2/7, hafta −%7,3. İzle."
+   "note": "26 Kas: #3, 6/7, hafta +%8,1. Güçlü ama adayların çoğu nakit yakıyor (KOD, KYMR dilüsyon Yüksek); seçici ol."
   },
   "XLY": {
-   "note": "20 Kas: #8, 1/7, hafta −%7,0. İzle."
+   "note": "26 Kas: #7, 5/7. ANF ve SN güçlü; TSLA ortalamaların üstünde-altında yatay (ADX 11)."
   },
   "XLB": {
    "note": "20 Kas: #12, 1/7. İzle."

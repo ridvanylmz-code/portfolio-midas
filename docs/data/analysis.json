@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-21",
- "note": "Fiyatlar 20 Kas (Cuma) normal seans kapanışı, TradingView. Takip listesi 21 Kas: CROX, GKOS, GMAB, KNSA, PG (ELF stop altında kapattı, çıktı; PG girdi). Adil değer = analist ortalama hedefi (target_price). Stop = kapanış − 2×ATR, takip eden ve yalnız yukarı. Rejim Risk-off 2/7, yükselen hisse oranı %34, VIX 35,9: nakit %40'ta olmalı; yeni alım yalnız yarım porsiyon ve yalnız göreli gücü korunan savunma isimlerinden. Pozisyon seviyeleri 19 Kas teknik planından.",
+ "updated": "2026-11-26",
+ "note": "Fiyatlar 25 Kas (Çarşamba) kapanışı, TradingView; 26 Kas Şükran Günü tatili, 27 Kas yarım gün. Takip listesi 26 Kas: CROX, GKOS, GMAB, KNSA, PG (değişiklik yok; yedek ANF, SN). Adil değer = analist ortalama hedefi. Stop = kapanış − 2×ATR, takip eden ve yalnız yukarı. Rejim Risk-off 2/7, VIX 28,3: nakit %35-40; yeni alım yalnız yarım porsiyon ve yalnız savunma isimlerinden. Pozisyon seviyeleri 26 Kas teknik planından (salinim.json). Dilüsyon: docs/data/dilution.json (SEC EDGAR, 26 Kas).",
  "tickers": {
   "RKLB": {
    "name": "Rocket Lab",
    "momentum": {
     "status": "Kırık",
-    "text": "20 Kas $45,42. Hafta −%28,7. Plan çekirdek stopu 45,25'in yalnız 17 sent üstünde kapattı; B hedef 2 (45,97–47,01) bölgesinde. 45,25 altı kapanışta 1 porsiyon çekirdek sat; 54,14'e tepkide 1 porsiyon sat."
+    "text": "25 Kas $47,02 (+%2,3; gün içi 42,12; hafta −%16). Trend 0/7; EMA20 53,76 altında. Teknik plan (26 Kas): 47,74'te fazla porsiyonu sat, 48,72'de 1 porsiyon sat; 45,25 altı kapanışta 1 porsiyon çekirdek sat; 42,12 altı kapanış B tetiği."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $45,42 (−%10,92; hafta −%28,70), TradingView normal seans",
@@ -58,7 +58,7 @@
    "name": "CoreWeave",
    "momentum": {
     "status": "Kırık",
-    "text": "20 Kas $39,51. Plan (19 Kas) çekirdek stopu 37,31 sağlam; B hedef 1 (40,60) yerinde, hafta −%29,5. Ekleme yok; 37,31 altı kapanışta 1 porsiyon çekirdek sat. 51,25'e tepkide 1 porsiyon sat."
+    "text": "25 Kas $42,57 (gün içi 37,40'a indi; seans sonrası 43,56). Trend 0/7; EMA20 50,55, SMA50 65,72. Teknik plan (26 Kas): 44,65'te çekirdek stop satışı (kovalanmaz, dirence taşındı), 48,80'de 1 porsiyon sat; son çekirdek stop 37,24 (kapanış); 58,23 üstü kapanışta sattığının yarısını geri al."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $39,51 (−%12,02; hafta −%29,52), TradingView normal seans",
@@ -111,7 +111,7 @@
    "name": "WhiteFiber",
    "momentum": {
     "status": "Kırık",
-    "text": "20 Kas $6,35. Cuma −%17, hafta −%38. Plan çekirdek stopu 7,64 kırıldı, RSI 29,7 (erteleme yok): pazartesi 1 porsiyon çekirdek sat; 9,10'a tepkide 1 porsiyon daha sat. Haber: Cantor hedef 36→24; 298,5 mn $ tahvil ihracı."
+    "text": "25 Kas $6,50 (−%3,5; hafta −%25). Trend 0/7, RSI 33. Teknik plan (26 Kas): 6,93'te 1 porsiyon çekirdek sat (kovalanmaz), 8,07'de 1 porsiyon sat; kalan stop 6,13 (kapanış); 5,80 altı B tetiği."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $6,35 (−%16,99; hafta −%38,23), TradingView normal seans",
@@ -164,7 +164,7 @@
    "name": "Sigma Lithium",
    "momentum": {
     "status": "Kırık",
-    "text": "20 Kas $3,69. Plan çekirdek stopu 3,89 kırıldı ama RSI 22,9 (≤25): plan bir kez erteliyor. Pazartesi kapanış da 3,89 altındaysa salı 1 porsiyon çekirdek sat; 4,66'ya tepkide ertelenen 2 porsiyonu sat. Dilüsyon yüksek (16 Kas dönüştürülebilir tahvil)."
+    "text": "25 Kas $3,98 (yatay; hafta −%8,7). Trend 0/7, RSI 29,6. Teknik plan (26 Kas): 4,17'de ertelenen çekirdek sat, 4,28'de 1 porsiyon sat; son stop 3,76 (kapanış); 3,63 altı B tetiği."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $3,69 (−%9,34; hafta −%23,92), TradingView normal seans",
@@ -217,7 +217,7 @@
    "name": "United States Antimony",
    "momentum": {
     "status": "Kırık",
-    "text": "20 Kas $2,23. ATR stopu 2,50 ve yıllık dip 2,41 kırıldı; altta destek bölgesi yok. Pazartesi 1 porsiyon sat; 2,64'e tepkide 1 porsiyon daha sat. 3,14 üstü kapanışta sattığının yarısını geri al."
+    "text": "25 Kas $2,21 (+%1,4; hafta −%10,9). Trend 0/7. Teknik plan (26 Kas): 2,29'da 1 porsiyon sat, 2,35'te 1 porsiyon daha; 1,99 altı kapanış B tetiği; çekirdek stop kararı sende (kritik destek yok)."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $2,23 (−%6,30; hafta −%23,10), TradingView normal seans",
@@ -280,8 +280,8 @@
   "TSLA": {
    "name": "Tesla",
    "momentum": {
-    "status": "Kırık",
-    "text": "20 Kas $345,82. Cuma −%7,6, hafta −%13,9; EMA20, EMA50 ve SMA200 altına indi, trend 1/7. Stop 352,45 kırıldı: pazartesi 1 porsiyon sat. 378,40 (EMA20) üstü kapanışta sattığını geri al. Haber: Tesla-SpaceX birleşme komiteleri (TradingView, 21 Kas)."
+    "status": "Yatay",
+    "text": "25 Kas $380,14 (−%1,2; gün içi 357,64'ten döndü). Fiyat EMA20 (379,66), SMA50 (377,17) ve SMA200 (381,15) üzerinde sıkışık; trend 4/7, ADX 11 (trend yok). Haber: SpaceX birleşme görüşmeleri, AB sürüş destek sistemi oylaması 15 Ara. ATR stop $340,98. Kırık değil; 357,64 (25 Kas dip) altı kapanışta 1 porsiyon sat, 383,73 üstü kapanış teyit."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $345,82 (−%7,64; hafta −%13,91), TradingView normal seans",
@@ -329,7 +329,7 @@
    "name": "Kiniksa Pharmaceuticals",
    "momentum": {
     "status": "Güçlü",
-    "text": "20 Kas $93,90; trend 7/7, stop $87,27 (takip eden; yalnız yukarı). Piyasa düşerken +%0,4. Bu tur market.json aday listesinde yok ama trend 7/7 korunuyor; kural gereği listede. Tetik: 99,31 (3A tepe) üstü kapanışta 1 porsiyon al."
+    "text": "25 Kas $100,99 (−%1,7; hafta +%6,3). Trend 7/7, RS +43,4; EMA20 94,35 üstünde. Stop $92,52. Tetik: 103,37 (3A tepe) üstü kapanışta yarım porsiyon al."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $93,90 (+%0,38; hafta −%2,57), TradingView normal seans",
@@ -371,7 +371,7 @@
    "name": "Crocs",
    "momentum": {
     "status": "Güçlü",
-    "text": "20 Kas $154,67; trend 7/7, stop $151,60 (takip eden; yalnız yukarı). 3A tepeden (164,24) geri çekildi, EMA20'nin (150,85) 3,8 puan üstünde, stopa (151,60) yakın. Tetik: EMA20 üstünde dönüş mumu gelirse yarım porsiyon al; 151,60 altı kapanışta listeden çıkar."
+    "text": "25 Kas $159,93 (+%0,4). Trend 7/7, RS +33,5; EMA20 152,98 üstünde, RSI 62,7. Stop $148,55. Tetik: 164,24 (3A tepe) üstü kapanışta yarım porsiyon al."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $154,67 (−%1,68; hafta −%2,72), TradingView normal seans",
@@ -415,7 +415,7 @@
    "name": "Genmab",
    "momentum": {
     "status": "Güçlü",
-    "text": "20 Kas $50,60; trend 7/7, stop $46,73 (takip eden; yalnız yukarı). EMA20'nin (50,46) hemen üstünde, rs 51,2 ile listenin en güçlüsü. Tetik: 53,03 üstü kapanışta 1 porsiyon al; 50,46 altı kapanışta bekle."
+    "text": "25 Kas $56,80 (+%0,4; hafta +%10,1). Trend 7/7, RS +57,1; RSI 68,9. Stop $52,39. Tetik: 59,97 (3A tepe) üstü kapanışta yarım porsiyon al ya da EMA20'ye (~51,8) çekilmede."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $50,60 (−%1,46; hafta −%1,21), TradingView normal seans",
@@ -453,7 +453,7 @@
    "name": "Glaukos",
    "momentum": {
     "status": "Güçlü",
-    "text": "20 Kas $237,31; trend 7/7, stop $221,76 (takip eden; yalnız yukarı). Piyasa −%3,6 düşerken yalnız −%0,3: göreli güç en yüksek isimlerden (rs 42,5). Tetik: EMA20'ye (~227) çekilmede yarım porsiyon al ya da 255,19 üstü kapanışta 1 porsiyon."
+    "text": "25 Kas $259,90 (+%1,1; hafta +%5,8). Trend 7/7, RS +60,6 (listenin lideri); 3A tepe 263,02'ye yakın, RSI 70. Stop $236,35. Tetik: 263,02 üstü kapanışta yarım porsiyon al."
    },
    "technical": [
     "20 Kas (Cuma) kapanış $237,31 (−%0,33; hafta −%3,61), TradingView normal seans",
@@ -513,8 +513,8 @@
    "technical_date": "2026-11-20",
    "momentum_date": "2026-11-20",
    "momentum": {
-    "status": "Güçlü",
-    "text": "20 Kas $169,37; trend 7/7, stop $162,93 (takip eden; yalnız yukarı). Yeni (21 Kas): temel tüketim lideri, trend 7/7, rs 21,3; düşüş haftasında +%0,2. Savunma rolü için. Tetik: 173,59 (3A tepe) üstü kapanışta yarım porsiyon al; EMA20'ye (~166) çekilmede yarım porsiyon."
+    "status": "Güçlü (savunma)",
+    "text": "25 Kas $173,23 (+%0,4; hafta +%1,8). Trend 7/7, RS +19,0 (listenin en zayıfı ama düşük oynaklıklı savunma ayağı). EMA20 167,60 üstünde. Stop $166,90. Tetik: 174,56 (3A tepe) üstü kapanışta yarım porsiyon al."
    }
   }
  }
