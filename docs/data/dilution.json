@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T16:13:09+00:00",
+ "updated": "2026-11-26T20:32:55+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
