@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T23:46:48+00:00",
+  "updated": "2026-11-26T04:19:26+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -14,7 +14,7 @@
     "TD  SGML: RSI 29.6 SMA50 7.47 (250 bar)",
     "TD  TSLA: RSI 50.3 SMA50 377.17 (250 bar)",
     "TD  UAMY: RSI 36.0 SMA50 3.35 (250 bar)",
-    "TD  WYFI: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  WYFI: RSI 33.3 SMA50 12.81 (250 bar)",
     "TD  TEAM: RSI 34.4 SMA50 185.01 (250 bar)",
     "TD  MPC: RSI 28.7 SMA50 419.35 (250 bar)",
     "TD  ELF: RSI 46.8 SMA50 109.03 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  CLF: RSI 41.5 SMA50 12.51 (250 bar)",
     "TD  MRVL: RSI 35.1 SMA50 215.01 (250 bar)",
     "TD  AMD: RSI 38.0 SMA50 548.35 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 39"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
   ],
   "tickers": {
     "CROX": {
@@ -289,7 +289,7 @@
         "atr14": 3.17,
         "support20": 158.66,
         "resistance20": 174.56,
-        "vol_ratio": 0.97,
+        "vol_ratio": 0.99,
         "bars": 250
       }
     },
@@ -327,7 +327,7 @@
           "signal": -2.144,
           "hist": -0.952
         },
-        "atr14": 5.16,
+        "atr14": 5.17,
         "support20": 42.12,
         "resistance20": 68.26,
         "vol_ratio": 1.02,
@@ -412,7 +412,7 @@
         "atr14": 19.58,
         "support20": 338.15,
         "resistance20": 414.23,
-        "vol_ratio": 0.95,
+        "vol_ratio": 0.98,
         "bars": 250
       }
     },
@@ -494,9 +494,8 @@
         "atr14": 1.23,
         "support20": 5.8,
         "resistance20": 11.9,
-        "vol_ratio": 0.07,
-        "bars": 250,
-        "stale": true
+        "vol_ratio": 1.24,
+        "bars": 250
       }
     },
     "TEAM": {
@@ -577,7 +576,7 @@
         "atr14": 17.68,
         "support20": 337.98,
         "resistance20": 447.0,
-        "vol_ratio": 0.84,
+        "vol_ratio": 0.9,
         "bars": 250
       }
     },
@@ -615,7 +614,7 @@
           "signal": 0.681,
           "hist": -1.216
         },
-        "atr14": 5.74,
+        "atr14": 5.75,
         "support20": 100.16,
         "resistance20": 123.13,
         "vol_ratio": 0.84,
@@ -823,7 +822,7 @@
         "atr14": 2.75,
         "support20": 29.73,
         "resistance20": 58.85,
-        "vol_ratio": 0.61,
+        "vol_ratio": 0.63,
         "bars": 250
       }
     },
@@ -905,7 +904,7 @@
         "atr14": 4.41,
         "support20": 99.22,
         "resistance20": 115.29,
-        "vol_ratio": 0.88,
+        "vol_ratio": 0.95,
         "bars": 250
       }
     },
@@ -1151,7 +1150,7 @@
         "atr14": 9.01,
         "support20": 230.92,
         "resistance20": 273.07,
-        "vol_ratio": 0.87,
+        "vol_ratio": 0.88,
         "bars": 250
       }
     },
@@ -1190,7 +1189,7 @@
           "hist": 0.037
         },
         "atr14": 5.78,
-        "support20": 86.86,
+        "support20": 86.85,
         "resistance20": 121.5,
         "vol_ratio": 0.74,
         "bars": 250
@@ -1274,7 +1273,7 @@
         "atr14": 9.18,
         "support20": 179.92,
         "resistance20": 234.62,
-        "vol_ratio": 0.91,
+        "vol_ratio": 0.92,
         "bars": 250
       }
     },
@@ -1353,8 +1352,8 @@
           "signal": -9.843,
           "hist": -0.871
         },
-        "atr14": 10.91,
-        "support20": 154.54,
+        "atr14": 10.93,
+        "support20": 154.32,
         "resistance20": 226.94,
         "vol_ratio": 0.95,
         "bars": 250
@@ -1479,7 +1478,7 @@
         "atr14": 8.75,
         "support20": 122.83,
         "resistance20": 168.55,
-        "vol_ratio": 0.83,
+        "vol_ratio": 0.85,
         "bars": 250
       }
     },
@@ -1520,7 +1519,7 @@
         "atr14": 9.66,
         "support20": 136.3,
         "resistance20": 178.38,
-        "vol_ratio": 1.7,
+        "vol_ratio": 1.71,
         "bars": 250
       }
     },
