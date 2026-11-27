@@ -1,9 +1,41 @@
 {
- "updated": "2026-11-27T03:13:26+00:00",
+ "updated": "2026-11-27T11:31:35+00:00",
  "source": "SEC EDGAR (data.sec.gov submissions + XBRL companyfacts)",
  "method": "takip-listesi-tarama dilüsyon tablosu; shelf 3 yıl, satışlar (424B) 12 ay geriye; FCF = faaliyet nakit akışı − yatırım harcaması (son 12 ay); nakit ömrü = (nakit + kısa vadeli yatırım) / çeyreklik yakım",
  "errors": [],
  "tickers": {
+  "AAPL": {
+   "cik": 320193,
+   "name": "Apple Inc.",
+   "risk": "Düşük",
+   "text": "2026-11-27 (SEC EDGAR); nakit $56,72 mlr (2026-09-26), serbest nakit akışı yıllık $136,06 mlr; serbest nakit akışı pozitif; etkin shelf: S-3ASR 2024-11-01 (genel kayıt; 12 ayda hisse satışı yok).",
+   "reasons": [
+    "serbest nakit akışı pozitif",
+    "etkin shelf: S-3ASR 2024-11-01 (genel kayıt; 12 ayda hisse satışı yok)"
+   ],
+   "fin": {
+    "unit": "USD",
+    "cash": 56722000000,
+    "cash_date": "2026-09-26",
+    "ocf_ttm": 145097000000,
+    "capex_ttm": 9041000000,
+    "fcf_ttm": 136056000000,
+    "fcf_basis": "yıllık",
+    "fcf_end": "2026-09-26",
+    "runway_q": null
+   },
+   "shelf": [
+    {
+     "form": "S-3ASR",
+     "date": "2024-11-01",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036124044880/ny20033611x4_s3asr.htm"
+    }
+   ],
+   "takedowns": [],
+   "registrations": [],
+   "checked": "2026-11-27",
+   "role": "aday"
+  },
   "ACM": {
    "cik": 868857,
    "name": "AECOM",
@@ -844,46 +876,6 @@
    },
    "shelf": [],
    "takedowns": [],
-   "registrations": [],
-   "checked": "2026-11-27",
-   "role": "aday"
-  },
-  "FTV": {
-   "cik": 1659166,
-   "name": "Fortive Corp",
-   "risk": "Orta",
-   "text": "2026-11-27 (SEC EDGAR); nakit $377 mn (2026-10-02), serbest nakit akışı son 12 ay $1,09 mlr; serbest nakit akışı pozitif; 1 adet 424B başvurusunun türü belirlenemedi; etkin shelf: S-3ASR 2026-07-20.",
-   "reasons": [
-    "serbest nakit akışı pozitif",
-    "1 adet 424B başvurusunun türü belirlenemedi",
-    "etkin shelf: S-3ASR 2026-07-20"
-   ],
-   "fin": {
-    "unit": "USD",
-    "cash": 377300000,
-    "cash_date": "2026-10-02",
-    "ocf_ttm": 1200100000,
-    "capex_ttm": 114600000,
-    "fcf_ttm": 1085500000,
-    "fcf_basis": "son 12 ay",
-    "fcf_end": "2026-10-02",
-    "runway_q": null
-   },
-   "shelf": [
-    {
-     "form": "S-3ASR",
-     "date": "2026-07-20",
-     "url": "https://www.sec.gov/Archives/edgar/data/1659166/000110465926085083/tm2620115-1_s3asr.htm"
-    }
-   ],
-   "takedowns": [
-    {
-     "form": "424B5",
-     "date": "2026-05-12",
-     "url": "https://www.sec.gov/Archives/edgar/data/1659166/000110465926059059/tm2614175-1_424b5.htm",
-     "kind": "diğer"
-    }
-   ],
    "registrations": [],
    "checked": "2026-11-27",
    "role": "aday"
