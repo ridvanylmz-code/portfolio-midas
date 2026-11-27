@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T03:17:41+00:00",
+  "updated": "2026-11-27T04:28:19+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -15,7 +15,7 @@
     "TD  TSLA: RSI 50.3 SMA50 377.17 (250 bar)",
     "TD  UAMY: RSI 36.0 SMA50 3.35 (250 bar)",
     "TD  WYFI: RSI 33.3 SMA50 12.81 (250 bar)",
-    "TD  TEAM: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  TEAM: RSI 34.4 SMA50 185.01 (250 bar)",
     "TD  MPC: RSI 28.7 SMA50 419.35 (250 bar)",
     "TD  ELF: RSI 46.8 SMA50 109.03 (250 bar)",
     "TD  ILMN: RSI 38.8 SMA50 247.28 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  CLF: RSI 41.5 SMA50 12.51 (250 bar)",
     "TD  MRVL: RSI 35.1 SMA50 215.01 (250 bar)",
     "TD  AMD: RSI 38.0 SMA50 548.35 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 39"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
   ],
   "tickers": {
     "CROX": {
@@ -536,8 +536,7 @@
         "support20": 131.04,
         "resistance20": 209.19,
         "vol_ratio": 0.58,
-        "bars": 250,
-        "stale": true
+        "bars": 250
       }
     },
     "MPC": {
