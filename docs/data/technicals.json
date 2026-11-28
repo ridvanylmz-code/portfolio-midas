@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T01:18:19+00:00",
+  "updated": "2026-11-28T04:08:07+00:00",
   "source_note": "TV = tradingview-ta (gayriresmi), TD = Twelve Data günlük mumlardan hesaplandı",
   "log": [
     "Liste 42 sembol; ilk 40 alındı",
@@ -10,22 +10,22 @@
     "TD  GMAB: RSI 70.5 SMA50 44.76 (250 bar)",
     "TD  KNSA: RSI 65.3 SMA50 85.83 (250 bar)",
     "TD  PG: RSI 65.8 SMA50 158.86 (250 bar)",
-    "TD  RKLB: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  RKLB: RSI 45.2 SMA50 60.06 (250 bar)",
     "TD  SGML: RSI 33.2 SMA50 7.38 (250 bar)",
     "TD  TSLA: RSI 56.4 SMA50 377.84 (250 bar)",
     "TD  UAMY: RSI 37.4 SMA50 3.31 (250 bar)",
     "TD  WYFI: RSI 33.9 SMA50 12.59 (250 bar)",
     "TD  TEAM: RSI 36.0 SMA50 184.08 (250 bar)",
     "TD  MPC: RSI 36.0 SMA50 418.1 (250 bar)",
-    "TD  ELF: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
-    "TD  ILMN: HATA RuntimeError: You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait f",
+    "TD  ELF: RSI 52.5 SMA50 109.42 (250 bar)",
+    "TD  ILMN: RSI 41.9 SMA50 246.49 (250 bar)",
     "TD  AVTR: RSI 38.6 SMA50 15.69 (250 bar)",
     "TD  GRAL: RSI 42.1 SMA50 126.23 (250 bar)",
     "TD  ZS: RSI 63.0 SMA50 215.55 (250 bar)",
     "TD  CVI: RSI 21.1 SMA50 49.81 (250 bar)",
     "TD  DINO: RSI 26.9 SMA50 108.99 (250 bar)",
     "TD  EL: RSI 59.0 SMA50 103.19 (250 bar)",
-    "TD  SXT: HATA RuntimeError: You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait fo",
+    "TD  SXT: RSI 47.5 SMA50 125.99 (250 bar)",
     "TD  MSTR: RSI 28.7 SMA50 134.88 (250 bar)",
     "TD  OKTA: RSI 56.0 SMA50 201.23 (250 bar)",
     "TD  QLYS: RSI 55.6 SMA50 194.61 (250 bar)",
@@ -44,7 +44,7 @@
     "TD  CLF: RSI 46.0 SMA50 12.49 (250 bar)",
     "TD  MRVL: RSI 39.5 SMA50 213.01 (250 bar)",
     "TD  AMD: RSI 40.8 SMA50 545.94 (250 bar)",
-    "Özet: 40 hisse, TV başarılı 40, TD başarılı 36"
+    "Özet: 40 hisse, TV başarılı 40, TD başarılı 40"
   ],
   "tickers": {
     "CROX": {
@@ -314,25 +314,24 @@
       },
       "td": {
         "date": "2026-11-27",
-        "close": 50.95,
-        "rsi14": 45.3,
+        "close": 50.88,
+        "rsi14": 45.2,
         "sma20": 54.07,
         "sma50": 60.06,
-        "sma200": 77.24,
+        "sma200": 77.23,
         "above_sma20": false,
         "above_sma50": false,
         "above_sma200": false,
         "macd": {
-          "macd": -2.936,
-          "signal": -2.303,
-          "hist": -0.633
+          "macd": -2.942,
+          "signal": -2.304,
+          "hist": -0.638
         },
         "atr14": 5.08,
         "support20": 42.12,
         "resistance20": 68.26,
-        "vol_ratio": 0.99,
-        "bars": 250,
-        "stale": true
+        "vol_ratio": 0.54,
+        "bars": 250
       }
     },
     "SGML": {
@@ -619,8 +618,7 @@
         "support20": 100.16,
         "resistance20": 123.13,
         "vol_ratio": 0.4,
-        "bars": 250,
-        "stale": true
+        "bars": 250
       }
     },
     "ILMN": {
@@ -661,8 +659,7 @@
         "support20": 191.25,
         "resistance20": 256.09,
         "vol_ratio": 0.38,
-        "bars": 250,
-        "stale": true
+        "bars": 250
       }
     },
     "AVTR": {
@@ -949,8 +946,7 @@
         "support20": 104.25,
         "resistance20": 127.47,
         "vol_ratio": 0.26,
-        "bars": 250,
-        "stale": true
+        "bars": 250
       }
     },
     "MSTR": {
